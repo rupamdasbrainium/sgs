@@ -7,7 +7,7 @@
         <div class="col-md-12">
           <div class="welcomesec_info inner_heading">
             <div class="heading_info sublogo ">
-              <img  src="{{ asset('admin/images/logo.svg') }}" alt="">
+              <img  src="{{ asset('public/admin/images/logo.svg') }}" alt="">
             </div>
           </div>
           <div class="fromdes_wrap_view">
@@ -55,12 +55,12 @@
                     <div class="form-group">
                       <div class="inp_cont_view cap_inp_imf_add">
                         <div class="capcha_img">
-                          <!-- <img src="{{ asset('admin/images/capcha_img1.png') }}" alt=""> -->
+                          <!-- <img src="{{ asset('public/admin/images/capcha_img1.png') }}" alt=""> -->
                           {!! captcha_img('flat') !!}
                         </div>
                         <div class="reset_capcha_opt">
                           <button type="button" class="reset_capcha" >
-                          <img src="{{ asset('admin/images/cap_ref_btn.png') }}" alt="">
+                          <img src="{{ asset('public/admin/images/cap_ref_btn.png') }}" alt="">
                           </button>
                         </div>
                       </div>
@@ -101,7 +101,7 @@
     
   </div>
   <div class="round_opt_btn">
-    <img src="{{ asset('admin/images/roundopt2.jpg') }}" alt="">
+    <img src="{{ asset('public/admin/images/roundopt2.jpg') }}" alt="">
   </div>
 </section>
 </x-admin-guest-layout>
