@@ -8,16 +8,16 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('public/css/app.css') }}">
         <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ asset('public/js/app.js') }}" defer></script>
         <!-- Custom Styles -->
-        <link rel="icon" type="{{ asset('admin/image/png') }}" href="{{ asset('admin/images/favicon.png') }}"/>
+        <link rel="icon" type="{{ asset('public/admin/image/png') }}" href="{{ asset('public/admin/images/favicon.png') }}"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.0/css/all.css">
-        <link rel="stylesheet" href="{{ asset('admin/css/owl.carousel.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('admin/css/owl.theme.default.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('public/admin/css/owl.carousel.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('public/admin/css/owl.theme.default.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('public/admin/css/style.css') }}">
     </head>
     <body class="admin_content_view">
         <div class="font-sans text-gray-900 antialiased">
@@ -26,7 +26,7 @@
         <!-- Custom Scripts -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src="{{ asset('admin/js/select_optiones.js') }}"></script>
-        <script src="{{ asset('admin/js/custom.js') }}"></script>
+        <script src="{{ asset('public/admin/js/select_optiones.js') }}"></script>
+        <script src="{{ asset('public/admin/js/custom.js') }}"></script>
     </body>
 </html>
