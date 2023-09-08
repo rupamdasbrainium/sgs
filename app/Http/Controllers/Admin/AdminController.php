@@ -59,19 +59,19 @@ class AdminController extends Controller
     public function settings () {
         $user = Auth::guard('admin')->user();
         $data = array();
-        $data['data'] = [ 'banner_image' => asset('admin/images/adminbanner_add.png'), 'logo_image' => asset('admin/images/logo.png'), 'theme_color' => '#5ADFC2', 'primary_button_color' => '#1D1D1B', 'secondary_button_color' => '#FFB11A', 'text_button_color' => '#575757' ];
+        $data['data'] = [ 'banner_image' => asset('public/admin/images/adminbanner_add.png'), 'logo_image' => asset('public/admin/images/logo.png'), 'theme_color' => '#5ADFC2', 'primary_button_color' => '#1D1D1B', 'secondary_button_color' => '#FFB11A', 'text_button_color' => '#575757' ];
         $result = Configuration::where('type', 'settings')->get();
         if (count($result) > 0) {
             $data['data'] = getConfigurationValue($result);
             if (isset($data['data']['banner_image'])) {
-                $data['data']['banner_image'] = asset('upload/banner/' . $data['data']['banner_image']);
+                $data['data']['banner_image'] = asset('public/upload/banner/' . $data['data']['banner_image']);
             } else {
-                $data['data']['banner_image'] = asset('admin/images/adminbanner_add.png');
+                $data['data']['banner_image'] = asset('public/admin/images/adminbanner_add.png');
             }
             if (isset($data['data']['logo_image'])) {
-                $data['data']['logo_image'] = asset('upload/banner/' . $data['data']['logo_image']);
+                $data['data']['logo_image'] = asset('public/upload/banner/' . $data['data']['logo_image']);
             } else {
-                $data['data']['logo_image'] = asset('admin/images/logo.png');
+                $data['data']['logo_image'] = asset('public/admin/images/logo.png');
             }
         }
         $data['user'] = $user;
