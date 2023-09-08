@@ -5,7 +5,7 @@
 	<div class="banner_slider">
 		<div class="banner_panel">
 			<div class="banner_img">
-				<img src="{{ asset('images/passwordadd.png') }}" style=" filter: grayscale(100%);" alt="">
+				<img src="{{ asset('public/images/passwordadd.png') }}" style=" filter: grayscale(100%);" alt="">
 			</div>
 			<div class="banner_cont">
 				<div class="container">
@@ -31,11 +31,11 @@
 				<div class="col-md-12">
 					<div class="welcomesec_info inner_heading">
 						<div class="round_opt_btn3">
-							<img src="{{ asset('images/roundopt2.jpg') }}" alt="">
+							<img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
 						</div>
 						
 						<div class="heading_info sublogo ">
-							<img  src="{{ asset('images/logo.svg') }}" alt="">
+							<img  src="{{ asset('public/images/logo.svg') }}" alt="">
 						</div>
 						<h2>Forgot Your Password</h2>
 						<p>Fear not. We'll email you instructions to reset your password. If you don't have access to you: email anymore. you can try <a href="#">account recovery.</a> </p>
@@ -56,11 +56,11 @@
 											<div class="form-group">
 												<div class="inp_cont_view cap_inp_imf_add">
 													<div class="capcha_img">
-														<img src="{{ asset('images/capcha_img1.png') }}" alt="">
+														<img src="{{ asset('public/images/capcha_img1.png') }}" alt="">
 													</div>
 													<div class="reset_capcha_opt">
 														<button type="reset" class="reset_capcha" >
-														<img src="{{ asset('images/cap_ref_btn.png') }}" alt="">
+														<img src="{{ asset('public/images/cap_ref_btn.png') }}" alt="">
 														</button>
 													</div>
 												</div>
@@ -85,7 +85,7 @@
 		</div>
 	</div>
 	<div class="round_opt_btn">
-		<img src="{{ asset('images/roundopt2.jpg') }}" alt="">
+		<img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
 	</div>
 </section>
 @include('footer')

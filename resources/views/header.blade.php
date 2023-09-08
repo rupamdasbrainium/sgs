@@ -5,12 +5,12 @@
 				<div class="header_info">
 					<div class="logoinfo ">
 						<a href="{{ route('homepage') }}" class="def_logo">
-							<img src="{{ asset('images/logo.svg') }}" alt="">
+							<img src="{{ asset('public/images/logo.svg') }}" alt="">
 						</a>
 					</div>
 					<div class="header_right_info">
 						<div class="mob_user_icon">
-							<span class="accountinfo" ><img src="{{ asset('images/icon1.svg') }}" alt="" ></span>
+							<span class="accountinfo" ><img src="{{ asset('public/images/icon1.svg') }}" alt="" ></span>
 							<!-- <span class="accountinfo" ><i class="far fa-ellipsis-v"></i></span> -->
 							
 							<span class="close_info" ><i class="far fa-times"></i></span>
@@ -24,7 +24,7 @@
 								
 								<div class="mobileheader">
 									<div class="mob_logo_add logoinfo">
-										<a href="javascript:void(0)"><img src="{{ asset('images/logo.svg') }}" alt=""></a>
+										<a href="javascript:void(0)"><img src="{{ asset('public/images/logo.svg') }}" alt=""></a>
 									</div>
 									<div class="closeicon">
 										<i class="far fa-times"></i>
@@ -43,7 +43,7 @@
 								</ul>
 								<div class="count_opt">
 									<div class="cont_icon">
-										<img src="{{ asset('images/worldmap.svg') }}" alt="">
+										<img src="{{ asset('public/images/worldmap.svg') }}" alt="">
 									</div>
 									<div class="cont_leng">
 										<a href="javascript:;" class="active_leng">En</a>

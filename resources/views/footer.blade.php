@@ -29,7 +29,7 @@
 					</div>
 					<div class="copy_rightinfo ">
 						<div class="footer_logo">
-							<a href="{{ route('homepage') }}"><img src="{{ asset('images/logo.svg') }}" alt=""></a>
+							<a href="{{ route('homepage') }}"><img src="{{ asset('public/images/logo.svg') }}" alt=""></a>
 						</div>
 						<p>
 							© 2023 sgs. All rights reserved.
