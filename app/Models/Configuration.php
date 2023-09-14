@@ -19,7 +19,7 @@ class Configuration extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [ 'name', 'value', 'type' ];
+    protected $fillable = [ 'name', 'value', 'type', 'user_id' ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -32,7 +32,7 @@ class Configuration extends Authenticatable
     ];
 
     public function edata () {
-        return (object)[ 'name' => '', 'value' => '', 'type' => '' ];
+        return (object)[ 'name' => '', 'value' => '', 'type' => '', 'user_id' => '' ];
     }
 
 }

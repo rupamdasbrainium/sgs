@@ -22,7 +22,7 @@ class AdminController extends Controller
         $data = array();
         $data['user'] = $user;
         $data['data'] = [ 'identifier' => '', 'password' => '', 'gaccountno' => '' ];
-        $result = Configuration::where('type', 'configuration')->get();
+        $result = Configuration::where('user_id', $user->id)->where('type', 'configuration')->get();
         if (count($result) > 0) {
             $data['data'] = getConfigurationValue($result);
         }
@@ -43,6 +43,7 @@ class AdminController extends Controller
                 'name' => $key,
                 'value' => $value,
                 'type' => 'configuration',
+                'user_id' => $user->id,
             ];
             Configuration::updateOrCreate(
                 ['name' => $key], $row_data
@@ -60,7 +61,7 @@ class AdminController extends Controller
         $user = Auth::guard('admin')->user();
         $data = array();
         $data['data'] = [ 'banner_image' => asset('public/admin/images/adminbanner_add.png'), 'logo_image' => asset('public/admin/images/logo.png'), 'theme_color' => '#5ADFC2', 'primary_button_color' => '#1D1D1B', 'secondary_button_color' => '#FFB11A', 'text_button_color' => '#575757' ];
-        $result = Configuration::where('type', 'settings')->get();
+        $result = Configuration::where('user_id', $user->id)->where('type', 'settings')->get();
         if (count($result) > 0) {
             $data['data'] = getConfigurationValue($result);
             if (isset($data['data']['banner_image'])) {
@@ -94,6 +95,7 @@ class AdminController extends Controller
                 'name' => $key,
                 'value' => $value,
                 'type' => 'settings',
+                'user_id' => $user->id,
             ];
             Configuration::updateOrCreate(
                 ['name' => $key], $row_data
@@ -111,6 +113,7 @@ class AdminController extends Controller
                     'name' => 'banner_image',
                     'value' => $filename,
                     'type' => 'settings',
+                    'user_id' => $user->id,
                 ];
                 Configuration::updateOrCreate(
                     ['name' => 'banner_image'], $row_data
@@ -129,6 +132,7 @@ class AdminController extends Controller
                     'name' => 'logo_image',
                     'value' => $filename,
                     'type' => 'settings',
+                    'user_id' => $user->id,
                 ];
                 Configuration::updateOrCreate(
                     ['name' => 'logo_image'], $row_data
