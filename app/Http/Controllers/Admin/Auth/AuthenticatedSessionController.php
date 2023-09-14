@@ -30,7 +30,7 @@ class AuthenticatedSessionController extends Controller
     public function store(AdminLoginRequest $request)
     {
         // dd($request->all());
-        \DB::enableQueryLog();
+        // \DB::enableQueryLog();
         $request->authenticate();
 
         $request->session()->regenerate();

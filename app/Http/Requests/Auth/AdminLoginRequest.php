@@ -35,15 +35,6 @@ class AdminLoginRequest extends FormRequest
         ];
     }
 
-    public function messages(): array
-    {
-        return [
-            'email.required' => 'Please enter valid captcha',
-            'password.required' => 'Please enter valid captcha',
-            'captcha.required' => 'Please enter valid captcha',
-        ];
-    }
-
     /**
      * Attempt to authenticate the request's credentials.
      *

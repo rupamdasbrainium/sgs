@@ -37,9 +37,15 @@
 									<li class="nav-item">
 										<a class="nav-link" href="javascript:;">Find a gym</a>
 									</li>
+									@if (Auth::user())
+									<li class="nav-item">
+										<a class="nav-link" href="{{ route('logout') }}"> logout</a>
+									</li>
+									@else
 									<li class="nav-item">
 										<a class="nav-link" href="{{ route('login') }}"> login</a>
 									</li>
+									@endif
 								</ul>
 								<div class="count_opt">
 									<div class="cont_icon">

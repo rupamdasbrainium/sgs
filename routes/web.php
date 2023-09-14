@@ -22,14 +22,19 @@ require __DIR__.'/auth.php';
 });*/
 
 
+Route::get('/',[HomeController::class,'index'])->name('homepage');
+Route::get('suscription-form', 'SuscriptionController@suscriptionform')->name('suscriptionform');
+Route::get('payment', 'PaymentController@payment')->name('payment');
+
 Route::middleware('guest')->group(function () {
     // Routes for CustomerController
-    Route::get('/',[HomeController::class,'index'])->name('homepage');
     Route::get('login', 'HomeController@login')->name('login');
     Route::get('forgot-password', 'HomeController@forgotPassword')->name('forgotpassword');
 });
 
 Route::group(['middleware'=>'auth'], function(){
+    // Route::get('/', 'HomeController@index')->name('homepage');
+    Route::get('dashboard', 'HomeController@dashboard')->name('dashboard');
 });
 
 Route::get('/reload-captcha', 'Admin\Auth\AuthenticatedSessionController@reloadCaptcha');

@@ -18,9 +18,14 @@ class HomeController extends Controller
         $data['title'] = 'Login';
         return view('login', compact('data'));
     }
+
     public function forgotPassword () {
         $data = array();
         $data['title'] = 'Forgot Password';
         return view('forgotpassword', compact('data'));
+    }
+
+    public function dashboard () {
+        return redirect()->route('homepage');
     }
 }

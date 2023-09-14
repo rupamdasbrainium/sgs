@@ -12,8 +12,8 @@
 					<div class="row">
 						<div class="col-md-12">
 							<!-- <div class="banner_info">
-									<h1>Elevate Your <span>Fitness,</span></h1>
-									<h2>Ignite Your Potential!</h2>
+														<h1>Elevate Your <span>Fitness,</span></h1>
+														<h2>Ignite Your Potential!</h2>
 							</div> -->
 						</div>
 					</div>
@@ -41,43 +41,54 @@
 						<p>Fear not. We'll email you instructions to reset your password. If you don't have access to you: email anymore. you can try <a href="#">account recovery.</a> </p>
 					</div>
 					<div class="fromdes_info">
-						<div class="from_cont_wrap">
-							<div class="inp_row rowopt2">
-								<div class="form-group">
-									<label for="email">Email</label>
-									<div class="rowopt2_wrap1">
-										<div class="inp_cont_view">
-											<div class="icon_opt">
-												<i class="fal fa-envelope"></i>
+						<form method="POST" action="{{ route('password.email') }}">
+							@csrf
+							<div class="from_cont_wrap">
+								<div class="inp_row rowopt2">
+									<div class="form-group">
+										<label for="email">Email</label>
+										<div class="rowopt2_wrap1">
+											<div class="inp_cont_view">
+												<div class="icon_opt">
+													<i class="fal fa-envelope"></i>
+												</div>
+												<input type="email" class="form-control" name="email" id="email" placeholder="jhon.deo@gmail.com" required>
+												@if ($errors->has('email'))
+												<div class="text-danger mt-3">{{ $errors->first('email') }}</div>
+												@endif
 											</div>
-											<input type="email" class="form-control" id="email" placeholder="jhon.deo@gmail.com" >
-										</div>
-										<div class="inp_row capchacode_opt">
-											<div class="form-group">
-												<div class="inp_cont_view cap_inp_imf_add">
-													<div class="capcha_img">
-														<img src="{{ asset('public/images/capcha_img1.png') }}" alt="">
+											<div class="inp_row capchacode_opt">
+												<div class="form-group">
+													<div class="inp_cont_view cap_inp_imf_add">
+														<div class="capcha_img">
+															{!! captcha_img('flat') !!}
+														</div>
+														<div class="reset_capcha_opt">
+															<button type="button" class="reset_capcha">
+															<img src="{{ asset('public/images/cap_ref_btn.png') }}" alt="">
+															</button>
+														</div>
 													</div>
-													<div class="reset_capcha_opt">
-														<button type="reset" class="reset_capcha" >
-														<img src="{{ asset('public/images/cap_ref_btn.png') }}" alt="">
-														</button>
+													<div class="inp_cont_view cap_inp_block">
+														<input class="form-control inpopt2" type="text" name="captcha" placeholder="Enter the text in the image" id="capcha_codeview" required>
+														@if ($errors->has('captcha'))
+														<div class="text-danger mt-3">Enter valid captcha</div>
+														@endif
 													</div>
 												</div>
-												<div class="inp_cont_view cap_inp_block">
-													<input class="form-control inpopt2" type="text" name="capcha_codeview" placeholder="Enter the text in the image" id="capcha_codeview">
-													
-												</div>
 											</div>
-										</div>
-										
-										<div class="def_btnopt2 frombtn">
-											<button type="button" class="btn2" >Reset Password</button>
+											
+											<div class="def_btnopt2 frombtn">
+												<button type="submit" class="btn2" >Reset Password</button>
+											</div>
+											<div class="forgot_opt text-center mt-3">
+												<a href="{{ route('login') }}">Login</a>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						</form>
 					</div>
 					
 				</div>
