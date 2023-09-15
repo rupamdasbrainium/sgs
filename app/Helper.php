@@ -237,6 +237,11 @@ if (!function_exists('getPhoneCodes')) {
   }
 }
 
+if (!function_exists('findFFDetails')) {
+  
+  
+}
+
 function findFFDetails($id)
 {
   $data= DB::table('users')->where('id',$id)->first();
