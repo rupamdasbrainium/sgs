@@ -11,6 +11,27 @@ class HomeController extends Controller
         $data = array();
         $data['title'] = 'Home';
         $data['franchises']= APICall("Franchises", "get","{}");
+
+        // $api = '{
+        //     "error": null,
+        //     "isErrorConnString": false,
+        //     "data": [
+        //       {
+        //         "id": 3,
+        //         "name": "Centre Démo",
+        //         "phone": "(450) 348-9170",
+        //         "email": "ismael@isma.ca",
+        //         "address_civic_number": "246",
+        //         "address_street": "Saint-Jacques",
+        //         "address_appartment": "",
+        //         "address_city": "Saint-Jean-sur-Richelieu",
+        //         "address_postal_code": "J2W 2A3",
+        //         "address_province_id": 6,
+        //         "categoryHomePage": false
+        //       }
+        //     ]
+        // }';
+        // $data['franchises'] = json_decode($api);
         // dd($data);
         return view('front.home', compact('data'));
 

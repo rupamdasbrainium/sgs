@@ -58,9 +58,10 @@
 										<div class="arrowdown2">
 											<i class="far fa-chevron-down"></i>
 										</div>
+										{{-- @dd($data['franchises']->data) --}}
 										<select class="select_opt" >
 											
-											@foreach ($franchises->data as $franchise)
+											@foreach ($data['franchises']->data as $franchise)
 												<option value="{{$franchise->id}}">{{$franchise->name}}</option>
 											@endforeach
 
@@ -71,7 +72,7 @@
 											<i class="far fa-chevron-down"></i>
 										</div>
 										<select class="select_opt" >
-											@foreach ($franchises as $franchise)
+											@foreach ($data['franchises']->data as $franchise)
 												<option value="{{$franchise->address_province_id}}">{{$franchise->address_civic_number}}{{$franchise->address_street}}{{$franchise->address_city}}</option>
 											@endforeach
 										</select>

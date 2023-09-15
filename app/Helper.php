@@ -246,8 +246,6 @@ if (!function_exists('findFFDetails')) {
   }
 }
 
-
-
 function APICall($uri, $methode, $data){
   $curl = curl_init();
 
