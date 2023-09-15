@@ -239,14 +239,14 @@ if (!function_exists('getPhoneCodes')) {
 
 if (!function_exists('findFFDetails')) {
   
-  
+  function findFFDetails($id)
+  {
+    $data= DB::table('users')->where('id',$id)->first();
+    return $data;
+  }
 }
 
-function findFFDetails($id)
-{
-  $data= DB::table('users')->where('id',$id)->first();
-  return $data;
-}
+
 
 function APICall($uri, $methode, $data){
   $curl = curl_init();
@@ -262,12 +262,18 @@ function APICall($uri, $methode, $data){
       CURLOPT_CUSTOMREQUEST => $methode,
       CURLOPT_POSTFIELDS =>$data,
       CURLOPT_HTTPHEADER => array(
-          'Content-Type: application/json'
+          'Content-Type: application/json',
+          "accept: application/json",
+          "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJhNDgxMDlhYi1jMTQ1LTQ5NjYtYjNmOS1mNzg4MzQ0MjI4ZjYiLCJyb2xlIjoid2ViX2FwcGxpY2F0aW9uIiwibmJmIjoxNjk0NzgyNzM1LCJleHAiOjE2OTQ3ODYzMzUsImlhdCI6MTY5NDc4MjczNX0.l-zNGCNUBhS_ut5Bbl7Pxq-lZi0sYz9Hki4b0ySwETg"
       ),
   ));
 
+  // $response = curl_exec($curl);
   $response = curl_exec($curl);
-
+        $error_msg = '';
+        if (curl_errno($curl)) {
+            $error_msg = curl_error($curl);
+        }
   curl_close($curl);
   return $response;
 }

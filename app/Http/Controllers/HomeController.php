@@ -10,7 +10,10 @@ class HomeController extends Controller
     public function index () {
         $data = array();
         $data['title'] = 'Home';
+        $data['franchises']= APICall("Franchises", "get","{}");
+        // dd($data);
         return view('front.home', compact('data'));
+
     }
 
     public function login () {

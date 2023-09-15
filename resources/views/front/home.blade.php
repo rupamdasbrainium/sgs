@@ -59,10 +59,11 @@
 											<i class="far fa-chevron-down"></i>
 										</div>
 										<select class="select_opt" >
-											<option value="Proactive Gym" selected >Proactive Gym</option>
-											<option value="Proactive Gym" >Proactive Gym</option>
-											<option value="Proactive Gym"  >Proactive Gym</option>
-											<option value="Proactive Gym"  >Proactive Gym</option>
+											
+											@foreach ($franchises->data as $franchise)
+												<option value="{{$franchise->id}}">{{$franchise->name}}</option>
+											@endforeach
+
 										</select>
 									</div>
 									<div class="selectcont ">
@@ -70,10 +71,9 @@
 											<i class="far fa-chevron-down"></i>
 										</div>
 										<select class="select_opt" >
-											<option value="1030 Boulevard rene le" >1030 Boulevard rene le</option>
-											<option value="1030 Boulevard rene le" >1030 Boulevard rene le</option>
-											<option value="1030 Boulevard rene le" >1030 Boulevard rene le</option>
-											<option value="1030 Boulevard rene le" >1030 Boulevard rene le</option>
+											@foreach ($franchises as $franchise)
+												<option value="{{$franchise->address_province_id}}">{{$franchise->address_civic_number}}{{$franchise->address_street}}{{$franchise->address_city}}</option>
+											@endforeach
 										</select>
 									</div>
 									<div class="selectcont ">
