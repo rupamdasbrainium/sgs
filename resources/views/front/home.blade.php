@@ -59,7 +59,7 @@
 											<i class="far fa-chevron-down"></i>
 										</div>
 										{{-- @dd($data['franchises']->data) --}}
-										<select class="select_opt" >
+										<select class="select_opt" id="franchise_name">
 											
 											@foreach ($data['franchises']->data as $franchise)
 												<option value="{{$franchise->id}}">{{$franchise->name}}</option>
@@ -325,3 +325,37 @@
 </section>
 @include('footer')
 </x-guest-layout>
+
+@push('scripts')
+<script>
+$( document ).ready(function() {
+	$("#franchise_name").on('change', function(){
+  alert("The text has been changed.");
+});
+    $.ajax({
+		type: "POST",
+		url: searchURI,
+		dataType: "json",
+		data: {
+			_token: $('meta[name="csrf-token"]').attr("content"),
+			query: request.term,
+			date_range: $("#departure_date").val(),
+		},
+		success: function (data) {
+			if (!data.length) {
+				var result = [
+					{
+						label: noMatch,
+						value: response.term,
+					},
+				];
+				response(result);
+			} else {
+				response(data);
+			}
+		},
+	});
+})
+</script>
+	
+@endpush
