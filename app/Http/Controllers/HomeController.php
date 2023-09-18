@@ -10,7 +10,8 @@ class HomeController extends Controller
     public function index () {
         $data = array();
         $data['title'] = 'Home';
-        $data['franchises']= APICall("Franchises", "get","{}");
+        $franchises = APICall("Franchises", "get","{}");
+        $data['franchises'] = json_decode($franchises);
 
         // $api = '{
         //     "error": null,
