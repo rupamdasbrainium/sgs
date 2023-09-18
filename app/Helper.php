@@ -250,6 +250,36 @@ function APICall($uri, $methode, $data){
   $curl = curl_init();
 
   curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://sgsdev.softsgs.net/Users/login_webApp',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => $methode,
+      CURLOPT_POSTFIELDS => array("identifier" => "A48109AB-C145-4966-B3F9-F788344228F6",
+      "password" => "SgsIsma987654$$"),
+      CURLOPT_HTTPHEADER => array(
+          'Content-Type: application/json',
+          "accept: application/json",
+      ),
+  ));
+
+  // $response = curl_exec($curl);
+  $response = curl_exec($curl);
+        $error_msg = '';
+        if (curl_errno($curl)) {
+            $error_msg = curl_error($curl);
+        }
+  curl_close($curl);
+
+  $login_responce = json_decode($response);
+//login api end
+
+  $curl = curl_init();
+
+  curl_setopt_array($curl, array(
       CURLOPT_URL => 'https://sgsdev.softsgs.net/'.$uri,
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
@@ -262,7 +292,7 @@ function APICall($uri, $methode, $data){
       CURLOPT_HTTPHEADER => array(
           'Content-Type: application/json',
           "accept: application/json",
-          "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJhNDgxMDlhYi1jMTQ1LTQ5NjYtYjNmOS1mNzg4MzQ0MjI4ZjYiLCJyb2xlIjoid2ViX2FwcGxpY2F0aW9uIiwibmJmIjoxNjk0NzgyNzM1LCJleHAiOjE2OTQ3ODYzMzUsImlhdCI6MTY5NDc4MjczNX0.l-zNGCNUBhS_ut5Bbl7Pxq-lZi0sYz9Hki4b0ySwETg"
+          "Authorization: Bearer ".$login_responce->token
       ),
   ));
 

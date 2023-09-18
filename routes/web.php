@@ -23,6 +23,8 @@ require __DIR__.'/auth.php';
 
 
 Route::get('/',[HomeController::class,'index'])->name('homepage');
+Route::get('/planType/{id}',[HomeController::class,'planType']);
+Route::get('/planTypeDetails/{id}',[HomeController::class,'planTypeDetails']);
 Route::get('suscription-form', 'SuscriptionController@suscriptionform')->name('suscriptionform');
 Route::get('payment', 'PaymentController@payment')->name('payment');
 

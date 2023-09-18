@@ -33,10 +33,10 @@ class HomeController extends Controller
               },
               {
                 "id": 4,
-                "name": "Centre Démo",
+                "name": "Centre Démo2",
                 "phone": "(450) 348-9170",
                 "email": "ismael@isma.ca",
-                "address_civic_number": "246",
+                "address_civic_number": "245",
                 "address_street": "Saint-Jacques",
                 "address_appartment": "",
                 "address_city": "Saint-Jean-sur-Richelieu",
@@ -69,12 +69,25 @@ class HomeController extends Controller
     }
 
     public function planType($id){
+        $api = '{ "error": null, "isErrorConnString": false, "data": [ { "id": 6, "name_english": "10 passages adulte", "name_french": "10 passages adulte" }, { "id": 12, "name_english": "6 mois Adulte", "name_french": "12 mois reg" }, { "id": 18, "name_english": "3 mois Adulte", "name_french": "3 mois" }]}';
+        $data = json_decode($api);
+        $html = '';
+        $li = '';
+        if(isset($data)){
+            foreach($data->data as $value){
+                $html .= "<option value='".$value->id."'>".$value->name_english."</option>";
+                $li .= "<li rel='".$value->id."'>".$value->name_english."</li>";
+            }
+        }
+        return [$html,$li];
         $franchisesPlanType = APICall("SubscriptionPlans/types/".$id, "get","{}");
         return json_decode($franchisesPlanType);
     }
 
     public function planTypeDetails($id){
-        $franchisesPlanDetails = APICall("SubscriptionPlans/type/".$id, "get","{}");
-        return json_decode($franchisesPlanDetails);
+        $api = '{ "error": null, "isErrorConnString": false, "data": [ { "id": 6, "name_english": "10 passages adulte", "name_french": "10 passages adulte" }, { "id": 12, "name_english": "6 mois Adulte", "name_french": "12 mois reg" }, { "id": 18, "name_english": "3 mois Adulte", "name_french": "3 mois" }]}';
+        return json_decode($api);
+        // $franchisesPlanDetails = APICall("SubscriptionPlans/type/".$id, "get","{}");
+        // return json_decode($franchisesPlanDetails);
     }
 }

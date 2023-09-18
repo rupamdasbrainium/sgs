@@ -15,7 +15,7 @@ $('.selectcont .select_opt').each(function(){
     for (var i = 0; i < numberOfOptions; i++) {
         $('<li />', {
             text: $this.children('option').eq(i).text(),
-            rel: $this.children('option').eq(i).val()
+            rel: $this.children('option').eq(i).val(),
         }).appendTo($list);
         //if ($this.children('option').eq(i).is(':selected')){
         //  $('li[rel="' + $this.children('option').eq(i).val() + '"]').addClass('is-selected')
@@ -34,6 +34,7 @@ $('.selectcont .select_opt').each(function(){
   
     $listItems.click(function(e) {
         e.stopPropagation();
+        console.log($(this).text());
         $styledSelect.text($(this).text()).removeClass('active');
         $this.val($(this).attr('rel'));
         $list.hide();
