@@ -40,3 +40,17 @@
 		</div>
 	</div>
 </footer>
+@if (Auth::user())
+@push('scripts')
+<script type="text/javascript">
+$(document).ready(function() {
+  var cur_url = location.href;
+  var qpos = cur_url.lastIndexOf('?');
+  if (qpos > 0) {
+    cur_url = cur_url.substr(0, qpos);
+  }
+  $('.left_sidebar .innersidebar_cont ul li a[href="' + cur_url + '"]').parent().addClass('activepage');
+});
+</script>
+@endpush
+@endif
