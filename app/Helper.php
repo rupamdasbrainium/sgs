@@ -246,18 +246,18 @@ if (!function_exists('findFFDetails')) {
   }
 }
 
-function APICall($uri, $methode, $data){
+function APICall($uri, $method, $data){
   $curl = curl_init();
 
   curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://sgsdev.softsgs.net/Users/login_webApp',
+      CURLOPT_URL => 'https://sgsdev.softsgs.net/Users/login_client',
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
       CURLOPT_MAXREDIRS => 10,
       CURLOPT_TIMEOUT => 0,
       CURLOPT_FOLLOWLOCATION => true,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => $methode,
+      CURLOPT_CUSTOMREQUEST => 'Post',
       CURLOPT_POSTFIELDS => array("identifier" => "A48109AB-C145-4966-B3F9-F788344228F6",
       "password" => "SgsIsma987654$$"),
       CURLOPT_HTTPHEADER => array(
@@ -288,7 +288,7 @@ function APICall($uri, $methode, $data){
       CURLOPT_TIMEOUT => 0,
       CURLOPT_FOLLOWLOCATION => true,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => $methode,
+      CURLOPT_CUSTOMREQUEST => $method,
       CURLOPT_POSTFIELDS =>$data,
       CURLOPT_HTTPHEADER => array(
           'Content-Type: application/json',
