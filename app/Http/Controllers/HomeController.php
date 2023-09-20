@@ -10,43 +10,43 @@ class HomeController extends Controller
     public function index () {
         $data = array();
         $data['title'] = 'Home';
-        // $franchises = APICall("Franchises", "get","{}");
-        // $data['franchises'] = json_decode($franchises);
+        $franchises = APICall("Franchises", "get","{}");
+        $data['franchises'] = json_decode($franchises);
         
 
-        $api = '{
-            "error": null,
-            "isErrorConnString": false,
-            "data": [
-              {
-                "id": 3,
-                "name": "Centre Démo",
-                "phone": "(450) 348-9170",
-                "email": "ismael@isma.ca",
-                "address_civic_number": "246",
-                "address_street": "Saint-Jacques",
-                "address_appartment": "",
-                "address_city": "Saint-Jean-sur-Richelieu",
-                "address_postal_code": "J2W 2A3",
-                "address_province_id": 6,
-                "categoryHomePage": false
-              },
-              {
-                "id": 4,
-                "name": "Centre Démo2",
-                "phone": "(450) 348-9170",
-                "email": "ismael@isma.ca",
-                "address_civic_number": "245",
-                "address_street": "Saint-Jacques",
-                "address_appartment": "",
-                "address_city": "Saint-Jean-sur-Richelieu",
-                "address_postal_code": "J2W 2A3",
-                "address_province_id": 6,
-                "categoryHomePage": false
-              }
-            ]
-        }';
-        $data['franchises'] = json_decode($api);
+        // $api = '{
+        //     "error": null,
+        //     "isErrorConnString": false,
+        //     "data": [
+        //       {
+        //         "id": 3,
+        //         "name": "Centre Démo",
+        //         "phone": "(450) 348-9170",
+        //         "email": "ismael@isma.ca",
+        //         "address_civic_number": "246",
+        //         "address_street": "Saint-Jacques",
+        //         "address_appartment": "",
+        //         "address_city": "Saint-Jean-sur-Richelieu",
+        //         "address_postal_code": "J2W 2A3",
+        //         "address_province_id": 6,
+        //         "categoryHomePage": false
+        //       },
+        //       {
+        //         "id": 4,
+        //         "name": "Centre Démo2",
+        //         "phone": "(450) 348-9170",
+        //         "email": "ismael@isma.ca",
+        //         "address_civic_number": "245",
+        //         "address_street": "Saint-Jacques",
+        //         "address_appartment": "",
+        //         "address_city": "Saint-Jean-sur-Richelieu",
+        //         "address_postal_code": "J2W 2A3",
+        //         "address_province_id": 6,
+        //         "categoryHomePage": false
+        //       }
+        //     ]
+        // }';
+        // $data['franchises'] = json_decode($api);
         // dd($data);
         return view('front.home', compact('data'));
 
