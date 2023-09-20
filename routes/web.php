@@ -22,7 +22,6 @@ require __DIR__.'/auth.php';
 });*/
 
 
-Route::get('/',[HomeController::class,'index'])->name('homepage');
 Route::get('/planType/{id}',[HomeController::class,'planType']);
 Route::get('/planTypeDetails/{id}',[HomeController::class,'planTypeDetails']);
 Route::get('suscription-form', 'SuscriptionController@suscriptionform')->name('suscriptionform');
@@ -74,3 +73,5 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
         Route::get('userview/{id}', 'AdminController@userview')->name('userview');
     });
 });
+
+Route::get('/{short_code}',[HomeController::class,'index'])->name('homepage');

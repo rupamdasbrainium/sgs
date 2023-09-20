@@ -7,47 +7,43 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public function index () {
+    public function index ($short_code) {
         $data = array();
         $data['title'] = 'Home';
+        //franchise call
         $franchises = APICall("Franchises", "get","{}");
         $data['franchises'] = json_decode($franchises);
-        
+        $data['short_code'] = $short_code;
 
-        // $api = '{
-        //     "error": null,
-        //     "isErrorConnString": false,
-        //     "data": [
-        //       {
-        //         "id": 3,
-        //         "name": "Centre Démo",
-        //         "phone": "(450) 348-9170",
-        //         "email": "ismael@isma.ca",
-        //         "address_civic_number": "246",
-        //         "address_street": "Saint-Jacques",
-        //         "address_appartment": "",
-        //         "address_city": "Saint-Jean-sur-Richelieu",
-        //         "address_postal_code": "J2W 2A3",
-        //         "address_province_id": 6,
-        //         "categoryHomePage": false
-        //       },
-        //       {
-        //         "id": 4,
-        //         "name": "Centre Démo2",
-        //         "phone": "(450) 348-9170",
-        //         "email": "ismael@isma.ca",
-        //         "address_civic_number": "245",
-        //         "address_street": "Saint-Jacques",
-        //         "address_appartment": "",
-        //         "address_city": "Saint-Jean-sur-Richelieu",
-        //         "address_postal_code": "J2W 2A3",
-        //         "address_province_id": 6,
-        //         "categoryHomePage": false
-        //       }
-        //     ]
-        // }';
-        // $data['franchises'] = json_decode($api);
-        // dd($data);
+        //find franchise_id
+        foreach($data['franchises']->data as $franchise){
+          if($franchise->id == $short_code){
+            // if($franchise->shortCode == $short_code){//actual
+            $franchise_id = $franchise->id;
+            break;
+          }
+        }
+
+        //franchise plan type
+        $franchisesPlanType = APICall("SubscriptionPlans/types?franchise_id=".$franchise_id, "get","{}");
+        $data['franchisesPlanType'] = json_decode($franchisesPlanType);
+
+        //franchise best four plan
+        $best_four_plan = APICall("SubscriptionPlans/franchises/".$franchise_id, "get","{}");
+        $data['best_four_plan'] = json_decode($best_four_plan);
+
+        // $data_plan = [];
+        //franchise best four plan details
+        $data_plan[$data['best_four_plan']->data->subscriptionPlan1] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan1, "get","{}"));
+
+        $data_plan[$data['best_four_plan']->data->subscriptionPlan2] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan2, "get","{}"));
+
+        $data_plan[$data['best_four_plan']->data->subscriptionPlan3] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan3, "get","{}"));
+
+        $data_plan[$data['best_four_plan']->data->subscriptionPlan4] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan4, "get","{}"));
+
+        $data['best_four_plan_details'] = $data_plan;
+        
         return view('front.home', compact('data'));
 
     }
