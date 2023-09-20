@@ -275,6 +275,7 @@ function APICall($uri, $methode, $data){
   curl_close($curl);
 
   $login_responce = json_decode($response);
+  dd($login_responce);
 //login api end
 
   $curl = curl_init();
