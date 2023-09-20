@@ -4,7 +4,7 @@
 			<div class="col-md-12">
 				<div class="header_info">
 					<div class="logoinfo ">
-						<a href="{{ route('homepage') }}" class="def_logo">
+						<a href="{{ route('homepage',['short_code'=>'CentreDemo']) }}" class="def_logo">
 							<img src="{{ asset('public/images/logo.svg') }}" alt="">
 						</a>
 					</div>
