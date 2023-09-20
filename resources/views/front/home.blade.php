@@ -90,11 +90,11 @@
 									</div>
 								</div>
 								<div class="def_btnopt2">
-									<button type="button" class="btn2" >Continue</button>
+									<button type="button" class="btn2" id="home_continue" >Continue</button>
 								</div>
 								
 							</div>
-							<div class="prod_item_wrap">
+							<div class="prod_item_wrap" id="home_prod_item">
 								<div class="prod_item">
 									<div class="action_opt action_opt_title">
 										
@@ -142,7 +142,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="prod_item">
+								{{-- <div class="prod_item">
 									<div class="action_opt action_opt_title">
 										
 										<div class="action_text">
@@ -278,7 +278,7 @@
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> --}}
 							</div>
 						</div>
 					</div>

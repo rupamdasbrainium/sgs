@@ -106,13 +106,16 @@ $(document).ready(function() {
         });
 	});
 
-    $('#franchises').parent().find('.select-options li').on('click', function() {
-		var val = $(this).attr('rel');
+    $('#home_continue').on('click', function() {
+		var val = $("#franchises_name").val();
+		var address_id = $("#franchises_address").val();
+        console.log(val);
         $.ajax({
             type: 'GET',
-            url: 'planType/'+val,
+            url: 'planTypeDetails/'+address_id,
             success: function(data) {
                 console.log(data);
+                $("#home_prod_item").html(data);
             }
         });
 	});
