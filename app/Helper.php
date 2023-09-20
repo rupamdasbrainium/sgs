@@ -258,8 +258,10 @@ function APICall($uri, $method, $data){
       CURLOPT_FOLLOWLOCATION => true,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'Post',
-      CURLOPT_POSTFIELDS => array("identifier" => "A48109AB-C145-4966-B3F9-F788344228F6",
-      "password" => "SgsIsma987654$$"),
+      CURLOPT_POSTFIELDS => '{
+        "identifier": "A48109AB-C145-4966-B3F9-F788344228F6",
+        "password": "SgsIsma987654$$"
+      }',
       CURLOPT_HTTPHEADER => array(
           'Content-Type: application/json',
           "accept: application/json",
@@ -275,7 +277,7 @@ function APICall($uri, $method, $data){
   curl_close($curl);
 
   $login_responce = json_decode($response);
-  dd($login_responce);
+  // dd($login_responce);
 //login api end
 
   $curl = curl_init();
