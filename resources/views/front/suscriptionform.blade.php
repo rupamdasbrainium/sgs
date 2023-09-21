@@ -24,6 +24,8 @@
 						</div>
 					</div>
 					<div class="from_cont_wrap">
+						<form method="post" action="" >
+							@csrf
 						<div class="inp_row gapadj inp_colm2">
 							<div class="form-group">
 								<div class="inp_cont_view noicon_opt">
@@ -216,14 +218,23 @@
 								<div class="payment_block">
 									<h4>Number of Payments *</h4>
 									<div class="payment_contentblock">
-										<div class="radio">
-											<input type="radio" id="testnum1" name="radio-group">
-											<label for="testnum1">12 Payments</label>
-										</div>
-										<div class="radio">
+										@if(isset($data['subscription_plan']) && isset($data['subscription_plan']->data) && count($data['subscription_plan']->data->prices_per_durations))
+											@foreach ($data['subscription_plan']->data->prices_per_durations as $item)
+												@if(count($item->installments))
+													@foreach ($item->installments as $val)
+														<div class="radio">
+															<input type="radio" id="{{ $val->id }}" name="radio-group" value="{{ $val->id }}">
+															<label for="{{ $val->id }}">{{ $val->number_of_payments }} Payments</label>
+														</div>
+													@endforeach
+												@endif
+											@endforeach
+										@endif
+										
+										{{-- <div class="radio">
 											<input type="radio" id="testnum2" name="radio-group">
 											<label for="testnum2">26 Payments</label>
-										</div>
+										</div> --}}
 									</div>
 								</div>
 							</div>
@@ -239,11 +250,14 @@
 										<div class="arrowdown2">
 											<i class="far fa-chevron-down"></i>
 										</div>
-										<select class="select_opt" >
-											<option value="op1" selected >Please choose...</option>
-											<option value="op2">Please choose...</option>
-											<option value="op3">Please choose...</option>
-											<option value="op4">Please choose...</option>
+										<select class="select_opt" name="" >
+											<option value="" selected >Please choose...</option>
+											@if(isset($data['opts_references']) && isset($data['opts_references']->data))
+											@foreach ($data['opts_references']->data as $item)
+												<option value="{{ $item->id }}" selected >{{ $item->display }}</option>
+												
+											@endforeach
+											@endif
 										</select>
 									</div>
 								</div>
@@ -254,6 +268,7 @@
 								<button type="button" class="btn2" >Save</button>
 							</div>
 						</div>
+						</form>
 					</div>
 					
 				</div>

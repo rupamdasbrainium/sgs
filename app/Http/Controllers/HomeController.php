@@ -47,7 +47,7 @@ class HomeController extends Controller
         $best_four_plan_details=$data_plan;
         // dd($best_four_plan_details);
         
-        return view('front.home', compact('data','best_four_plan_details'));
+        return view('front.home', compact('data','best_four_plan_details','franchise_id'));
 
     }
 
