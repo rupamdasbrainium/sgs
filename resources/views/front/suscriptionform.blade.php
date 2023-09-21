@@ -16,54 +16,59 @@
 					<div class="fromdes_info user_contentblock">
 						<div class="sidebar_content">
 							<div class="sidebar_info">
-								<p>Center: <span>Gym Proacif</span></p>
-								<p>Address: <span>246st-iccauses,
-								saint-iean.9.1j2 j4j</span>
+								<p>Center: <span>{{ $franchise->name}}</span></p>
+								<p>Address: 
+									<span>{{ $franchise->address_civic_number}} {{ $franchise->address_street}} {{ $franchise->address_city }} {{ $franchise->address_postal_code }}</span>
 							</p>
-							<p>Package: <span>Acti 1</span></p>
+							<p>Package: <span>
+								@if(isset($data['subscription_plan']) && isset($data['subscription_plan']->data))
+									{{ $data['subscription_plan']->data->name }}
+								@endif
+							</span></p>
 						</div>
 					</div>
 					<div class="from_cont_wrap">
-						<form method="post" action="" >
+						<form method="post" action="{{ route('suscriptionformSave',['id'=>$data['subscription_plan']->data->id]) }}" >
+							{{-- <form method="post" action="{{ route('suscriptionformSave',['id'=>18]) }}" > --}}
 							@csrf
 						<div class="inp_row gapadj inp_colm2">
 							<div class="form-group">
 								<div class="inp_cont_view noicon_opt">
-									<input type="text" class="form-control" placeholder="First Name *" >
+									<input type="text" name="firstname" class="form-control" placeholder="First Name *" required>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="inp_cont_view noicon_opt">
-									<input type="text" class="form-control" placeholder="Last Name *" >
-								</div>
-							</div>
-						</div>
-						<div class="inp_row gapadj inp_colm3">
-							<div class="form-group">
-								<div class="inp_cont_view noicon_opt">
-									<input type="text" class="form-control" placeholder="Street Number *" >
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="inp_cont_view noicon_opt">
-									<input type="text" class="form-control" placeholder="Street *" >
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="inp_cont_view noicon_opt">
-									<input type="text" class="form-control" placeholder="App " >
+									<input type="text" name="lastname" class="form-control" placeholder="Last Name *" required>
 								</div>
 							</div>
 						</div>
 						<div class="inp_row gapadj inp_colm3">
 							<div class="form-group">
 								<div class="inp_cont_view noicon_opt">
-									<input type="text" class="form-control" placeholder="City *" >
+									<input type="text" name="address_civic_number" class="form-control" placeholder="Street Number *" required>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="inp_cont_view noicon_opt">
-									<input type="text" class="form-control" placeholder="Postal Code *" >
+									<input type="text" name="address_street" class="form-control" placeholder="Street *" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="inp_cont_view noicon_opt">
+									<input type="text" name="address_appartment" class="form-control" placeholder="App " >
+								</div>
+							</div>
+						</div>
+						<div class="inp_row gapadj inp_colm3">
+							<div class="form-group">
+								<div class="inp_cont_view noicon_opt">
+									<input type="text" name="address_city" class="form-control" placeholder="City *" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="inp_cont_view noicon_opt">
+									<input type="text" name="address_postal_code" class="form-control" placeholder="Postal Code *" required>
 									<p>Example: j3B 8k7</p>
 								</div>
 							</div>
@@ -74,11 +79,16 @@
 										<div class="arrowdown2">
 											<i class="far fa-chevron-down"></i>
 										</div>
-										<select class="select_opt" >
-											<option value="AB" selected >AB</option>
-											<option value="AB" >AB</option>
+										<select class="select_opt" name="address_province_id" >
+											@if(isset($data['provinces']))
+											@foreach ($data['provinces'] as $item)
+												
+												<option value="{{ $item->id }}" {{ $loop->index==1? "selected":""}} >{{ $item->display_english }}</option>
+											@endforeach
+											@endif
+											{{-- <option value="AB" >AB</option>
 											<option value="AB"  >AB</option>
-											<option value="AB"  >AB</option>
+											<option value="AB"  >AB</option> --}}
 										</select>
 									</div>
 								</div>
@@ -87,13 +97,15 @@
 						<div class="inp_row gapadj inp_colm2">
 							<div class="form-group">
 								<div class="inp_cont_view noicon_opt">
-									<input type="text" class="form-control" placeholder="Phone Number *" >
+									<input type="text"
+									name="phone" class="form-control" placeholder="Phone Number *" required>
 									<p>Example: xxx xxx-xxxx</p>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="inp_cont_view noicon_opt">
-									<input type="text" class="form-control" placeholder="Cell *" >
+									<input type="text"
+									name="cellphone" class="form-control" placeholder="Cell *" required>
 									<p>Example: xxx xxx-xxxx</p>
 								</div>
 							</div>
@@ -101,13 +113,13 @@
 						<div class="inp_row gapadj inp_colm3">
 							<div class="form-group">
 								<div class="inp_cont_view noicon_opt">
-									<input type="text" class="form-control" placeholder="Emergency Phone Number *" >
+									<input type="text" name="emergency_phone" class="form-control" placeholder="Emergency Phone Number *" required>
 									<p>Example: xxx xxx-xxxx</p>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="inp_cont_view noicon_opt">
-									<input type="text" class="form-control" placeholder="Date of birth *" >
+									<input type="text" name="date_of_birth" class="form-control" placeholder="Date of birth *" required>
 								</div>
 							</div>
 							<div class="form-group">
@@ -117,11 +129,9 @@
 										<div class="arrowdown2">
 											<i class="far fa-chevron-down"></i>
 										</div>
-										<select class="select_opt" >
-											<option value="Man" selected >Man</option>
-											<option value="Man">Man</option>
-											<option value="Man">Man</option>
-											<option value="Man">Man</option>
+										<select class="select_opt" name="is_male" >
+											<option value="1" selected >Male</option>
+											<option value="0">Female</option>
 										</select>
 									</div>
 								</div>
@@ -130,12 +140,12 @@
 						<div class="inp_row gapadj inp_colm2">
 							<div class="form-group">
 								<div class="inp_cont_view noicon_opt">
-									<input type="email" class="form-control" placeholder="Email *" >
+									<input type="email" name="email" class="form-control" placeholder="Email *" required>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="inp_cont_view noicon_opt">
-									<input type="email" class="form-control" placeholder="mail Confirmation *" >
+									<input type="email" class="form-control" placeholder="mail Confirmation *" required>
 								</div>
 							</div>
 						</div>
@@ -145,7 +155,7 @@
 									<div class="icon_opt">
 										<i class="fal fa-eye" id="togglePassword" style="cursor: pointer;"></i>
 									</div>
-									<input class="form-control" type="password" name="password" placeholder="Password *" autocomplete="current-password" required="" id="id_password">
+									<input class="form-control" type="password" name="password" placeholder="Password *" autocomplete="current-password" required="" id="id_password" required>
 								</div>
 							</div>
 							<div class="form-group">
@@ -153,14 +163,14 @@
 									<div class="icon_opt">
 										<i class="fal fa-eye" id="togglePassword2" style="cursor: pointer;"></i>
 									</div>
-									<input class="form-control" type="password" name="password" placeholder="Password confirmation *" autocomplete="current-password" required="" id="id_password2">
+									<input class="form-control" type="password" name="confirm-password" placeholder="Password confirmation *" autocomplete="current-password" required="" id="id_password2" required>
 								</div>
 							</div>
 						</div>
 						<div class="inp_row  ">
 							<div class="form-group">
 								<div class="inp_cont_view noicon_opt">
-									<input class="form-control" type="text" placeholder="Referral Code" >
+									<input class="form-control" name="reference_Code" type="text" placeholder="Referral Code" >
 								</div>
 							</div>
 							
@@ -223,7 +233,7 @@
 												@if(count($item->installments))
 													@foreach ($item->installments as $val)
 														<div class="radio">
-															<input type="radio" id="{{ $val->id }}" name="radio-group" value="{{ $val->id }}">
+															<input type="radio" id="{{ $val->id }}" name="radio-group" value="{{ $val->id }}" {{ $loop->index==0? 'required':'' }}>
 															<label for="{{ $val->id }}">{{ $val->number_of_payments }} Payments</label>
 														</div>
 													@endforeach
@@ -250,7 +260,7 @@
 										<div class="arrowdown2">
 											<i class="far fa-chevron-down"></i>
 										</div>
-										<select class="select_opt" name="" >
+										<select class="select_opt" name="reference_id" >
 											<option value="" selected >Please choose...</option>
 											@if(isset($data['opts_references']) && isset($data['opts_references']->data))
 											@foreach ($data['opts_references']->data as $item)
@@ -265,7 +275,7 @@
 						</div>
 						<div class="frombtn_wrap">
 							<div class="def_btnopt2 frombtn frombtn2">
-								<button type="button" class="btn2" >Save</button>
+								<button type="submit" class="btn2" >Save</button>
 							</div>
 						</div>
 						</form>

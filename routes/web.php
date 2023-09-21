@@ -25,6 +25,7 @@ require __DIR__.'/auth.php';
 Route::get('/planType/{id}',[HomeController::class,'planType']);
 Route::get('/planTypeDetails/{id}',[HomeController::class,'planTypeDetails']);
 Route::get('suscription-form/{id}', 'SuscriptionController@suscriptionform')->name('suscriptionform');
+Route::post('suscription-form-save/{id}', 'SuscriptionController@suscriptionformsave')->name('suscriptionformSave');
 Route::get('payment', 'PaymentController@payment')->name('payment');
 
 Route::middleware('guest')->group(function () {

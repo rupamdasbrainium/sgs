@@ -19,36 +19,55 @@ class SuscriptionController extends Controller
         $opts_references = APICall("Options/references?franchise_id=".$data['subscription_plan']->data->id_frinchise."&language_id=2", "get","{}");
         $data['opts_references'] = json_decode($opts_references);
 
+        //franchise call
+        $franchises = APICall("Franchises", "get","{}");
+        $decodefranchises = json_decode($franchises);
+
+        //find franchise_id
+        $franchise_data = '';
+        foreach($decodefranchises->data as $franchise){
+          if($franchise->id == $data['subscription_plan']->data->id_frinchise){
+            $franchise_data = $franchise;
+            break;
+          }
+        }
+        $data['franchise'] = $franchise_data;
+
+        //Provinces call
+        $Provinces = APICall("Options/ProvincesAndStates", "get","{}");
+        $data['provinces'] = json_decode($Provinces);
+
         return view('front.suscriptionform', compact('data'));
     }
 
     public function suscriptionformsave(Request $request, $id){
-        $data = array();
-        $data['firstname'] = $request->firstname;
-        $data['lastname'] = $request->lastname;
-        $data['is_male'] = $request->is_male;
-        $data['address_civic_number'] = $request->address_civic_number;
-        $data['address_street'] = $request->address_street;
-        $data['address_appartment'] = $request->address_appartment;
-        $data['address_city'] = $request->address_city;
-        $data['address_postal_code'] = $request->address_postal_code;
-        $data['address_province_id'] = $request->address_province_id;
-        $data['phone'] = $request->phone;
-        $data['cellphone'] = $request->cellphone;
-        $data['emergency_contact'] = $request->emergency_contact;
-        $data['emergency_phone'] = $request->emergency_phone;
-        $data['date_of_birth'] = $request->date_of_birth;
-        $data['email'] = $request->email;
-        $data['language_id'] = $request->language_id;
-        $data['user_name'] = $request->user_name;
-        $data['password'] = $request->password;
-        $data['driver_license'] = $request->driver_license;
-        $data['occupation'] = $request->occupation;
-        $data['nativeRef_number'] = $request->nativeRef_number;
-        $data['reference_id'] = $request->reference_id;
-        $data['sub_reference_id'] = $request->sub_reference_id;
-        $data['reference_Code'] = $request->reference_Code;
-
+        $fromdata = array();
+        // $data[]
+        $fromdata['firstname'] = $request->firstname;
+        $fromdata['lastname'] = $request->lastname;
+        $fromdata['is_male'] = $request->is_male;
+        $fromdata['address_civic_number'] = $request->address_civic_number;
+        $fromdata['address_street'] = $request->address_street;
+        $fromdata['address_appartment'] = $request->address_appartment;
+        $fromdata['address_city'] = $request->address_city;
+        $fromdata['address_postal_code'] = $request->address_postal_code;
+        $fromdata['address_province_id'] = $request->address_province_id;
+        $fromdata['phone'] = $request->phone;
+        $fromdata['cellphone'] = $request->cellphone;
+        $fromdata['emergency_contact'] = $request->emergency_contact;//not found
+        $fromdata['emergency_phone'] = $request->emergency_phone;
+        $fromdata['date_of_birth'] = $request->date_of_birth;
+        $fromdata['email'] = $request->email;
+        $fromdata['language_id'] = $request->language_id;//nf
+        $fromdata['user_name'] = $request->user_name;//nf
+        $fromdata['password'] = $request->password;
+        $fromdata['driver_license'] = $request->driver_license;//nf
+        $fromdata['occupation'] = $request->occupation;//nf
+        $fromdata['nativeRef_number'] = $request->nativeRef_number;///nf
+        $fromdata['reference_id'] = $request->reference_id;
+        $fromdata['sub_reference_id'] = $request->sub_reference_id;//nf
+        $fromdata['reference_Code'] = $request->reference_Code;
+// dd($fromdata);
         // {
         //     "firstname": "string",
         //     "lastname": "string",
@@ -76,13 +95,9 @@ class SuscriptionController extends Controller
         //     "reference_Code": "string"
         //   }
 
-        //subscriptionplan type call
-        $subscription_plan = APICall("SubscriptionPlans/type/".$id, "get","{}");
-        $data['subscription_plan'] = json_decode($subscription_plan);
-
-        //reference call
-        $opts_references = APICall("Options/references?franchise_id=".$data['subscription_plan']->data->id_frinchise."&language_id=2", "get","{}");
-        $data['opts_references'] = json_decode($opts_references);
+        //clients save type call
+        $clients = APICall("Clients", "POST",json_encode($fromdata));
+        $data['clients'] = json_decode($clients);
 
         return view('front.suscriptionform', compact('data'));
     }
