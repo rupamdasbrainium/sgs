@@ -63,7 +63,7 @@
                                             <select class="select_opt" id="franchises_name">
                                                 @isset($data['franchises'])
                                                     @foreach ($data['franchises']->data as $franchise)
-                                                        <option value="{{ $franchise->id }}">{{ $franchise->name }}</option>
+                                                        <option value="{{ $franchise->id }}" {{ $franchise->id==$franchise_id? "selected":"disabled" }}>{{ $franchise->name }}</option>
                                                     @endforeach
                                                 @endisset
                                             </select>
@@ -75,7 +75,7 @@
                                             <select class="select_opt" id="franchises_address">
                                                 @isset($data['franchises'])
                                                     @foreach ($data['franchises']->data as $franchise)
-                                                        <option value="{{ $franchise->address_province_id }}">
+                                                        <option value="{{ $franchise->address_province_id }}" {{ $franchise->id==$franchise_id? "selected":"disabled" }}>
                                                             {{ $franchise->address_civic_number }}{{ $franchise->address_street }}{{ $franchise->address_city }}
                                                         </option>
                                                     @endforeach
