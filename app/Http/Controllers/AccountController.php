@@ -48,4 +48,22 @@ class AccountController extends Controller
         $data['title'] = 'Pay My Outstanding Balance';
         return view('front.paymyoutstandingbalance', compact('data'));
     }
+
+    public function newMembership () {
+        $data = array();
+        $data['title'] = 'New Membership';
+        return view('front.newmembership', compact('data'));
+    }
+
+    public function upgradeMembership () {
+        $data = array();
+        $data['title'] = 'Upgrade Membership';
+        return view('front.upgrademembership', compact('data'));
+    }
+
+    public function referralCode () {
+        $data = array();
+        $data['title'] = 'My Referral Code';
+        return view('front.referralcode', compact('data'));
+    }
 }

@@ -42,6 +42,9 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('my-contact-information', 'AccountController@myContactInformation')->name('myContactInformation');
     Route::get('my-bank-cards', 'AccountController@myBankCards')->name('myBankCards');
     Route::get('pay-outstanding-balance', 'AccountController@payMyOutstandingBalance')->name('payMyOutstandingBalance');
+    Route::get('new-membership', 'AccountController@newMembership')->name('newMembership');
+    Route::get('upgrade-membership', 'AccountController@upgradeMembership')->name('upgradeMembership');
+    Route::get('referral-code', 'AccountController@referralCode')->name('referralCode');
 });
 
 Route::get('/reload-captcha', 'Admin\Auth\AuthenticatedSessionController@reloadCaptcha');
