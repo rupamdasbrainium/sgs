@@ -70,7 +70,7 @@ class SuscriptionController extends Controller
         $fromdata['sub_reference_id'] = $request->sub_reference_id;//nf
         $fromdata['reference_Code'] = $request->reference_Code;
         // $fromdata['franchise_id'] = $request->franchise_id;
-// dd($fromdata);
+        // dd($fromdata);
         // {
         //     "firstname": "string",
         //     "lastname": "string",
@@ -101,7 +101,31 @@ class SuscriptionController extends Controller
         //clients save type call
         $clients = APICall("Clients?franchise_id=".$request->franchise_id, "POST",json_encode($fromdata));
         $data['clients'] = json_decode($clients);
-dd($data['clients']);
-        return view('front.suscriptionform', compact('data'));
+        // dd($data['clients']);
+        return $data['clients'];
+    }
+
+    public function new_membership($id){
+      $data = array();
+        $data['title'] = 'Memberships';
+
+        //subscriptionplan type call
+        $subscription_plan = APICall("SubscriptionPlans/type/".$id, "get","{}");
+        $data['subscription_plan'] = json_decode($subscription_plan);
+
+        //franchise call
+        $franchises = APICall("Franchises", "get","{}");
+        $decodefranchises = json_decode($franchises);
+
+        //find franchise_id
+        $franchise_data = '';
+        foreach($decodefranchises->data as $franchise){
+          if($franchise->id == $data['subscription_plan']->data->id_frinchise){
+            $franchise_data = $franchise;
+            break;
+          }
+        }
+        $data['franchise'] = $franchise_data;
+        return view('front.newMembership', compact('data'));
     }
 }
