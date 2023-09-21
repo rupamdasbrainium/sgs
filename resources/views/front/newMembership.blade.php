@@ -62,8 +62,8 @@
 																<div class="optionitem_checkopt">
 																	<div class="form-group">
 																		<div class="checkbox">
-																			<input class="styled-checkbox2" id="Option5" value="{{ $item->id }}" type="checkbox" >
-																			<label for="Option5">
+																			<input class="styled-checkbox2" id="Option{{ $loop->iteration }}" value="{{ $item->id }}" type="checkbox" >
+																			<label for="Option{{ $loop->iteration }}">
 																				@if($item->is_initial)
 																				Added to initial fee 
 																				<em>( one time)</em>
