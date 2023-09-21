@@ -61,7 +61,7 @@ class SuscriptionController extends Controller
         $fromdata['email'] = $request->email;
         // $fromdata['language_id'] = $request->language_id;
         $fromdata['language_id'] = 1;//nf
-        $fromdata['user_name'] = $request->user_name;//nf
+        $fromdata['user_name'] = $request->user_name;//nf//required
         $fromdata['password'] = $request->password;
         $fromdata['driver_license'] = $request->driver_license;//nf
         $fromdata['occupation'] = $request->occupation;//nf
@@ -69,7 +69,7 @@ class SuscriptionController extends Controller
         $fromdata['reference_id'] = $request->reference_id;
         $fromdata['sub_reference_id'] = $request->sub_reference_id;//nf
         $fromdata['reference_Code'] = $request->reference_Code;
-        $fromdata['franchise_id'] = $request->franchise_id;
+        // $fromdata['franchise_id'] = $request->franchise_id;
 // dd($fromdata);
         // {
         //     "firstname": "string",
@@ -99,7 +99,7 @@ class SuscriptionController extends Controller
         //   }
 
         //clients save type call
-        $clients = APICall("Clients", "POST",json_encode($fromdata));
+        $clients = APICall("Clients?franchise_id=".$request->franchise_id, "POST",json_encode($fromdata));
         $data['clients'] = json_decode($clients);
 dd($data['clients']);
         return view('front.suscriptionform', compact('data'));

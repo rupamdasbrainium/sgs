@@ -120,7 +120,7 @@
 							</div>
 							<div class="form-group">
 								<div class="inp_cont_view noicon_opt">
-									<input type="text" name="date_of_birth" class="form-control" placeholder="Date of birth *" required>
+									<input type="text" name="date_of_birth" id="datepicker" class="form-control" placeholder="Date of birth *" required>
 								</div>
 							</div>
 							<div class="form-group">
@@ -167,6 +167,14 @@
 									<input class="form-control" type="password" name="confirm-password" placeholder="Password confirmation *" autocomplete="current-password" required="" id="id_password2" required>
 								</div>
 							</div>
+						</div>
+						<div class="inp_row  ">
+							<div class="form-group">
+								<div class="inp_cont_view noicon_opt">
+									<input class="form-control" name="user_name" type="text" placeholder="User name" >
+								</div>
+							</div>
+							
 						</div>
 						<div class="inp_row  ">
 							<div class="form-group">
@@ -297,4 +305,11 @@
 </div>
 </section>
 @include('footer')
+@push('scripts')
+    <script>
+		$(function(){
+			$('#datepicker').datepicker();
+		});
+	</script>
+@endpush
 </x-guest-layout>
