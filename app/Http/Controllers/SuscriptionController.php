@@ -131,7 +131,8 @@ class SuscriptionController extends Controller
     }
 
     function new_membership_save(Request $request, $id){
-      return $request->add_on;
+      // return $request->add_on;
       Session::push('add_on', $request->add_on);
+      return redirect()->route('suscriptionform', ['id' => $id]);
     }
 }

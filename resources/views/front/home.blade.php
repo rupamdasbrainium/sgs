@@ -60,10 +60,10 @@
                                             <div class="arrowdown2">
                                                 <i class="far fa-chevron-down"></i>
                                             </div>
-                                            <select class="select_opt" id="franchises_name">
+                                            <select class="select_opts" id="franchises_name">
                                                 @isset($data['franchises'])
                                                     @foreach ($data['franchises']->data as $franchise)
-                                                        <option value="{{ $franchise->id }}" {{ $franchise->id==$franchise_id? "selected":"disabled" }}>{{ $franchise->name }}</option>
+                                                    <option value="{{ $franchise->id }}" {{ $franchise->id==$franchise_id? 'selected="selected"':'disabled="disabled"' }}>{{ $franchise->name }}</option>
                                                     @endforeach
                                                 @endisset
                                             </select>
@@ -72,7 +72,7 @@
                                             <div class="arrowdown2">
                                                 <i class="far fa-chevron-down"></i>
                                             </div>
-                                            <select class="select_opt" id="franchises_address">
+                                            <select class="select_opts" id="franchises_address">
                                                 @isset($data['franchises'])
                                                     @foreach ($data['franchises']->data as $franchise)
                                                         <option value="{{ $franchise->address_province_id }}" {{ $franchise->id==$franchise_id? "selected":"disabled" }}>
@@ -165,7 +165,7 @@
                                                         @endif
                                                     </ul>
                                                     <div class="subscribe_btn">
-                                                        <a href="{{ route('suscriptionform', ['id' => $values->data->id]) }}"
+                                                        <a href="{{ route('newMembership', ['id' => $values->data->id]) }}"
                                                             class="sub_btn">Subscribe</a>
                                                     </div>
                                                 </div>
@@ -385,4 +385,20 @@
             });
         })
     </script>
+    <style>
+        select.select_opts {
+  border: 0px !important;
+  outline: 0px !important;
+  box-shadow: 0px 0px 0px transparent !important;
+}
+
+select.select_opts {
+  width: 100%;
+  border: 0px;
+  padding: 15px;
+  background: #ddf8f1;
+  border-radius: 10px 10px 10px 0;
+  appearance: none;
+}
+    </style>
 @endpush

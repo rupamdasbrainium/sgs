@@ -120,7 +120,7 @@
 							</div>
 							<div class="form-group">
 								<div class="inp_cont_view noicon_opt">
-									<input type="text" name="date_of_birth" id="datepicker" class="form-control" placeholder="Date of birth *" required>
+									<input type="date" name="date_of_birth" id="datepicker" class="form-control" placeholder="Date of birth *" required>
 								</div>
 							</div>
 							<div class="form-group">
