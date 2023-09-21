@@ -63,10 +63,13 @@
 																	<div class="form-group">
 																		<div class="checkbox">
 																			<input class="styled-checkbox2" id="Option5" value="{{ $item->id }}" type="checkbox" >
-																			@if($item->is_initial)
-																			<label for="Option5">Added to initial fee 
-																				<em>( one time)</em></label>
-																			@endif
+																			<label for="Option5">
+																				@if($item->is_initial)
+																				Added to initial fee 
+																				<em>( one time)</em>
+																				@endif
+																			</label>
+																			
 																		</div>
 																	</div>
 																</div>
