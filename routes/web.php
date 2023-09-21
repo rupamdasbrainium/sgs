@@ -36,6 +36,13 @@ Route::middleware('guest')->group(function () {
 Route::group(['middleware'=>'auth'], function(){
     // Route::get('/', 'HomeController@index')->name('homepage');
     Route::get('dashboard', 'HomeController@dashboard')->name('dashboard');
+    Route::get('account', 'AccountController@account')->name('account');
+    Route::get('change-language', 'AccountController@changeLanguage')->name('changeLanguage');
+    Route::get('change-password', 'AccountController@changePassword')->name('changePassword');
+    Route::get('myprofile', 'AccountController@myProfile')->name('myProfile');
+    Route::get('my-contact-information', 'AccountController@myContactInformation')->name('myContactInformation');
+    Route::get('my-bank-cards', 'AccountController@myBankCards')->name('myBankCards');
+    Route::get('pay-outstanding-balance', 'AccountController@payMyOutstandingBalance')->name('payMyOutstandingBalance');
 });
 
 Route::get('/reload-captcha', 'Admin\Auth\AuthenticatedSessionController@reloadCaptcha');
