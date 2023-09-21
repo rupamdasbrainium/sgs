@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class SuscriptionController extends Controller
 {
@@ -127,5 +128,10 @@ class SuscriptionController extends Controller
         }
         $data['franchise'] = $franchise_data;
         return view('front.newMembership', compact('data'));
+    }
+
+    function new_membership_save(Request $request, $id){
+      return $request->add_on;
+      Session::push('add_on', $request->add_on);
     }
 }

@@ -33,7 +33,7 @@
 							</div>
 						</div>
 						<div class="from_cont_wrap">
-							<form action="{{ route('suscriptionformSave',['id'=>$data['subscription_plan']->data->id]) }}" method="post">
+							<form action="{{ route('newMembershipSave',['id'=>$data['subscription_plan']->data->id]) }}" method="post">
 								{{-- <form action="{{ route('suscriptionformSave',['id'=>18]) }}" method="post"> --}}
 								@csrf
 								<div class="fromdes_info2">
@@ -83,7 +83,7 @@
 											</div>
 											<div class="frombtn_wrap">
 												<div class="def_btnopt2 frombtn frombtn2">
-													<button type="button" class="btn2" >Next</button>
+													<button type="submit" class="btn2" >Next</button>
 												</div>
 											</div>
 										
