@@ -242,7 +242,7 @@
 												@if(count($item->installments))
 													@foreach ($item->installments as $val)
 														<div class="radio">
-															<input type="radio" id="{{ $val->id }}" name="radio-group" value="{{ $val->id }}" {{ $loop->index==0? 'required':'' }}>
+															<input type="radio" id="{{ $val->id }}" name="installments" value="{{ $item->duration_id|$val->id }}" {{ $loop->index==0? 'required':'' }}>
 															<label for="{{ $val->id }}">{{ $val->number_of_payments }} Payments</label>
 														</div>
 													@endforeach

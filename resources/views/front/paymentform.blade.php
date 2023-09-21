@@ -16,11 +16,17 @@
 					<div class="fromdes_info user_contentblock">
 						<div class="sidebar_content">
 							<div class="sidebar_info">
-								<p>Center: <span>Gym Proacif</span></p>
-								<p>Address: <span>246st-iccauses,
-								saint-iean.9.1j2 j4j</span>
+								<p>Center: 
+									<span>{{ $data['membership_details']->data->franchise}}</span></p>
+								{{-- <p>Address: 
+									<span>{{ $data['franchise']->address_civic_number}} {{ $data['franchise']->address_street}} {{ $data['franchise']->address_city }} {{ $data['franchise']->address_postal_code }}</span> --}}
 							</p>
-							<p>Package: <span>Acti 1</span></p>
+							<p>Package: <span>
+								{{-- @if(isset($data['subscription_plan']) && isset($data['subscription_plan']->data))
+								{{ $data['subscription_plan']->data->name }}
+								@endif --}}
+								{{ $data['membership_details']->data->subscriptionPlan}}
+							</span></p>
 						</div>
 					</div>
 					<div class="from_cont_wrap">
@@ -45,7 +51,8 @@
 												Center
 											</div>
 											<div class="sum_inp_right">
-												Gym Proactif
+												{{-- {{ $data['franchise']->name}} --}}
+												{{ $data['membership_details']->data->franchise}}
 											</div>
 										</div>
 										<div class="sum_inp_cont">
@@ -53,7 +60,10 @@
 												Package/Plan Name
 											</div>
 											<div class="sum_inp_right">
-												Action1
+												{{-- @if(isset($data['subscription_plan']) && isset($data['subscription_plan']->data))
+													{{ $data['subscription_plan']->data->name }}
+												@endif --}}
+												{{ $data['membership_details']->data->subscriptionPlan}}
 											</div>
 										</div>
 										
@@ -62,7 +72,7 @@
 												Package
 											</div>
 											<div class="sum_inp_right">
-												399.90$
+												{{ $data['membership_details']->data->initial_subtotal }} $
 											</div>
 										</div>
 										<div class="sum_inp_cont">
@@ -70,7 +80,7 @@
 												Number of Payments
 											</div>
 											<div class="sum_inp_right">
-												12 Payments
+												{{ $data['membership_details']->data->number_of_payments }} Payments
 											</div>
 										</div>
 										<div class="sum_inp_cont">
@@ -78,7 +88,7 @@
 												Beginning of the contract
 											</div>
 											<div class="sum_inp_right">
-												21-2-2023
+												{{ $data['membership_details']->data->begin }}
 											</div>
 										</div>
 										<div class="sum_inp_cont">
@@ -86,7 +96,7 @@
 												End of the contract
 											</div>
 											<div class="sum_inp_right">
-												22-2-2023
+												{{ $data['membership_details']->data->end }}
 											</div>
 										</div>
 										<div class="sum_inp_cont">
@@ -94,7 +104,7 @@
 												Duration
 											</div>
 											<div class="sum_inp_right">
-												12 months
+												{{ $data['membership_details']->data->duration_unit }}
 											</div>
 										</div>
 										<div class="sum_inp_cont">
@@ -157,32 +167,61 @@
 												Subtotal
 											</div>
 											<div class="sum_inp_right">
-												Option1, Option3
+												{{ $data['membership_details']->data->initial_subtotal }}
 											</div>
 										</div>
+										@php
+											$total = $data['membership_details']->data->initial_subtotal;
+										@endphp
+										@foreach ($data['membership_details']->data->initial_taxes as $item)
+										@php
+											$total += $item->amount;
+										@endphp
 										<div class="sum_inp_cont">
+											<div class="sum_inp_left">
+												{{ $item->legal_name}}
+											</div>
+											<div class="sum_inp_right">
+												{{ $item->amount }}$
+											</div>
+										</div>
+										@endforeach
+										@foreach ($data['membership_details']->data->recurant_taxes as $item2)
+										@php
+											$total += $item2->amount;
+										@endphp
+										<div class="sum_inp_cont">
+											<div class="sum_inp_left">
+												{{ $item2->legal_name}}
+											</div>
+											<div class="sum_inp_right">
+												{{ $item2->amount }}$
+											</div>
+										</div>
+										@endforeach
+										{{-- <div class="sum_inp_cont">
 											<div class="sum_inp_left">
 												TPS 12345RT0010
 											</div>
 											<div class="sum_inp_right">
 												2.00$
 											</div>
-										</div>
-										<div class="sum_inp_cont">
+										</div> --}}
+										{{-- <div class="sum_inp_cont">
 											<div class="sum_inp_left">
 												TVQKI255887
 											</div>
 											<div class="sum_inp_right">
 												3.99$
 											</div>
-										</div>
+										</div> --}}
 										
 										<div class="sum_inp_cont">
 											<div class="sum_inp_left">
 												Total
 											</div>
 											<div class="sum_inp_right">
-												45.95$
+												{{ $total }}$
 											</div>
 										</div>
 										
@@ -330,7 +369,7 @@
 											<label >Transit Number <em class="req_text">*</em></label>
 											<div class="inp_cont_view noicon_opt" id="incdec">
 												
-												<input type="text" class="form-control" placeholder="" value="0"  >
+												<input type="text" name="transit_number" class="form-control" placeholder="" value="0"  >
 												<i class="fas fa-sort-up" id="up" ></i>
 												<i class="fas fa-sort-down" id="down" ></i>
 												
@@ -342,7 +381,7 @@
 										<div class="form-group">
 											<label>Branch Number <em class="req_text">*</em></label>
 											<div class="inp_cont_view noicon_opt">
-												<input type="text" class="form-control"  placeholder="" >
+												<input type="text" name="institution" class="form-control"  placeholder="" >
 											</div>
 										</div>
 									</div>
@@ -350,7 +389,7 @@
 										<div class="form-group">
 											<label>Account Number <em class="req_text">*</em></label>
 											<div class="inp_cont_view noicon_opt">
-												<input type="text" class="form-control"  placeholder="" >
+												<input type="text" name="account_number" class="form-control"  placeholder="" >
 											</div>
 										</div>
 									</div>
@@ -359,7 +398,7 @@
 										<div class="form-group">
 											<label>Account Name Holder <em class="req_text">*</em></label>
 											<div class="inp_cont_view noicon_opt">
-												<input type="text" class="form-control"  placeholder="" >
+												<input type="text" name="owner_name" class="form-control"  placeholder="" >
 											</div>
 										</div>
 									</div>

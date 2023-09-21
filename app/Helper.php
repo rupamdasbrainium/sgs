@@ -246,37 +246,41 @@ if (!function_exists('findFFDetails')) {
   }
 }
 
-function APICall($uri, $method, $data){
-  $curl = curl_init();
+function APICall($uri, $method, $data, $token=null){
+  if(!$token){
+    $curl = curl_init();
 
-  curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://sgsdev.softsgs.net/Users/login_webApp',
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'Post',
-      CURLOPT_POSTFIELDS => '{
-        "identifier": "A48109AB-C145-4966-B3F9-F788344228F6",
-        "password": "SgsIsma987654$$"
-      }',
-      CURLOPT_HTTPHEADER => array(
-          'Content-Type: application/json',
-          "accept: application/json",
-      ),
-  ));
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://sgsdev.softsgs.net/Users/login_webApp',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'Post',
+        CURLOPT_POSTFIELDS => '{
+          "identifier": "A48109AB-C145-4966-B3F9-F788344228F6",
+          "password": "SgsIsma987654$$"
+        }',
+        CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json',
+            "accept: application/json",
+        ),
+    ));
 
-  // $response = curl_exec($curl);
-  $response = curl_exec($curl);
-        $error_msg = '';
-        if (curl_errno($curl)) {
-            $error_msg = curl_error($curl);
-        }
-  curl_close($curl);
+    // $response = curl_exec($curl);
+    $response = curl_exec($curl);
+          $error_msg = '';
+          if (curl_errno($curl)) {
+              $error_msg = curl_error($curl);
+          }
+    curl_close($curl);
 
-  $login_responce = json_decode($response);
+    $login_responce = json_decode($response);
+    $token = $login_responce->token;
+  }
+  
   // dd($login_responce);
 //login api end
 
@@ -295,7 +299,7 @@ function APICall($uri, $method, $data){
       CURLOPT_HTTPHEADER => array(
           'Content-Type: application/json',
           "accept: application/json",
-          "Authorization: Bearer ".$login_responce->token
+          "Authorization: Bearer ".$token
       ),
   ));
 

@@ -70,40 +70,40 @@ class SuscriptionController extends Controller
         $fromdata['reference_id'] = $request->reference_id;
         $fromdata['sub_reference_id'] = $request->sub_reference_id;//nf
         $fromdata['reference_Code'] = $request->reference_Code;
-        // $fromdata['franchise_id'] = $request->franchise_id;
-        // dd($fromdata);
-        // {
-        //     "firstname": "string",
-        //     "lastname": "string",
-        //     "is_male": 0,
-        //     "address_civic_number": "string",
-        //     "address_street": "string",
-        //     "address_appartment": "string",
-        //     "address_city": "string",
-        //     "address_postal_code": "string",
-        //     "address_province_id": 0,
-        //     "phone": "string",
-        //     "cellphone": "string",
-        //     "emergency_contact": "string",
-        //     "emergency_phone": "string",
-        //     "date_of_birth": "2023-09-20T14:05:21.187Z",
-        //     "email": "string",
-        //     "language_id": 0,
-        //     "user_name": "string",
-        //     "password": "string",
-        //     "driver_license": "string",
-        //     "occupation": "string",
-        //     "nativeRef_number": "string",
-        //     "reference_id": 0,
-        //     "sub_reference_id": 0,
-        //     "reference_Code": "string"
-        //   }
+
+
 
         //clients save type call
         $clients = APICall("Clients?franchise_id=".$request->franchise_id, "POST",json_encode($fromdata));
         $data['clients'] = json_decode($clients);
+        if (Session::has('installments_id')) {
+          Session::forget('installments_id');
+        }
+        if (Session::has('duration_id')) {
+          Session::forget('duration_id');
+        }
+        if (Session::has('token')) {
+          Session::forget('token');
+        }
+        if (Session::has('subscription_plan_id')) {
+          Session::forget('subscription_plan_id');
+        }
+        if (Session::has('franchise_id')) {
+          Session::forget('franchise_id');
+        }
+        if (Session::has('reference_Code')) {
+          Session::forget('reference_Code');
+        }
+        $duration_installments_arr = explode("|",$request->installments);
+        Session::put('installments_id', $duration_installments_arr[1]);
+        Session::put('duration_id', $duration_installments_arr[0]);
+        Session::put('token', $data['clients']->data->token);
+        Session::put('subscription_plan_id', $id);
+        Session::put('franchise_id', $request->franchise_id);
+        Session::put('reference_Code', $request->reference_Code);
         // dd($data['clients']);
         return $data['clients'];
+
     }
 
     public function new_membership($id){
@@ -132,6 +132,9 @@ class SuscriptionController extends Controller
 
     function new_membership_save(Request $request, $id){
       // return $request->add_on;
+      if (Session::has('add_on')) {
+        Session::forget('add_on');
+      }
       Session::push('add_on', $request->add_on);
       return redirect()->route('suscriptionform', ['id' => $id]);
     }
