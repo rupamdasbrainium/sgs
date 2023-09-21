@@ -31,6 +31,7 @@
 						<form method="post" action="{{ route('suscriptionformSave',['id'=>$data['subscription_plan']->data->id]) }}" >
 							{{-- <form method="post" action="{{ route('suscriptionformSave',['id'=>18]) }}" > --}}
 							@csrf
+							<input type="hidden" name="franchise_id" value="{{ $data['franchise']->id }}">
 						<div class="inp_row gapadj inp_colm2">
 							<div class="form-group">
 								<div class="inp_cont_view noicon_opt">

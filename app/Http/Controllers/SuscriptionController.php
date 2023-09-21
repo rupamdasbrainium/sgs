@@ -69,7 +69,7 @@ class SuscriptionController extends Controller
         $fromdata['reference_id'] = $request->reference_id;
         $fromdata['sub_reference_id'] = $request->sub_reference_id;//nf
         $fromdata['reference_Code'] = $request->reference_Code;
-        $fromdata['franchise_id'] = $id;
+        $fromdata['franchise_id'] = $request->franchise_id;
 // dd($fromdata);
         // {
         //     "firstname": "string",
@@ -101,7 +101,7 @@ class SuscriptionController extends Controller
         //clients save type call
         $clients = APICall("Clients", "POST",json_encode($fromdata));
         $data['clients'] = json_decode($clients);
-
+dd($data['clients']);
         return view('front.suscriptionform', compact('data'));
     }
 }
