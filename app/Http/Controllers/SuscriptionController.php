@@ -54,11 +54,13 @@ class SuscriptionController extends Controller
         $fromdata['address_province_id'] = $request->address_province_id;
         $fromdata['phone'] = $request->phone;
         $fromdata['cellphone'] = $request->cellphone;
-        $fromdata['emergency_contact'] = $request->emergency_contact;//not found
+        // $fromdata['emergency_contact'] = $request->emergency_contact;
+        $fromdata['emergency_contact'] = 'rahul';//not found
         $fromdata['emergency_phone'] = $request->emergency_phone;
         $fromdata['date_of_birth'] = $request->date_of_birth;
         $fromdata['email'] = $request->email;
-        $fromdata['language_id'] = $request->language_id;//nf
+        // $fromdata['language_id'] = $request->language_id;
+        $fromdata['language_id'] = 1;//nf
         $fromdata['user_name'] = $request->user_name;//nf
         $fromdata['password'] = $request->password;
         $fromdata['driver_license'] = $request->driver_license;//nf
@@ -67,6 +69,7 @@ class SuscriptionController extends Controller
         $fromdata['reference_id'] = $request->reference_id;
         $fromdata['sub_reference_id'] = $request->sub_reference_id;//nf
         $fromdata['reference_Code'] = $request->reference_Code;
+        $fromdata['franchise_id'] = $id;
 // dd($fromdata);
         // {
         //     "firstname": "string",
