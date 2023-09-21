@@ -16,9 +16,9 @@
 					<div class="fromdes_info user_contentblock">
 						<div class="sidebar_content">
 							<div class="sidebar_info">
-								<p>Center: <span>{{ $franchise->name}}</span></p>
+								<p>Center: <span>{{ $data['franchise']->name}}</span></p>
 								<p>Address: 
-									<span>{{ $franchise->address_civic_number}} {{ $franchise->address_street}} {{ $franchise->address_city }} {{ $franchise->address_postal_code }}</span>
+									<span>{{ $data['franchise']->address_civic_number}} {{ $data['franchise']->address_street}} {{ $data['franchise']->address_city }} {{ $data['franchise']->address_postal_code }}</span>
 							</p>
 							<p>Package: <span>
 								@if(isset($data['subscription_plan']) && isset($data['subscription_plan']->data))
