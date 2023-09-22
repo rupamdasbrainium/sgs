@@ -34,7 +34,7 @@ class SuscriptionController extends Controller
         }
         $data['franchise'] = $franchise_data;
 
-        //Provinces call
+        // Provinces call
         $Provinces = APICall("Options/ProvincesAndStates", "get","{}");
         $data['provinces'] = json_decode($Provinces);
 
@@ -105,9 +105,12 @@ class SuscriptionController extends Controller
           Session::put('reference_Code', $request->reference_Code);
           return redirect()->route('payment');
         } else {
-          return redirect()->back()->with('error', $data['clients']);
+          $response = array(
+            'message' => $data['clients']->error->message,
+            'message_type' => 'danger'
+          );
+          return redirect()->back()->with($response)->withInput();
         }
-        
         // dd($data['clients']);
         return $data['clients'];
 
@@ -142,7 +145,7 @@ class SuscriptionController extends Controller
       if (Session::has('add_on')) {
         Session::forget('add_on');
       }
-      Session::push('add_on', $request->add_on);
+      Session::put('add_on', $request->add_on);
       return redirect()->route('suscriptionform', ['id' => $id]);
     }
 }

@@ -36,20 +36,22 @@ class PaymentController extends Controller
         // }
         // https://sgsdev.softsgs.net/Memberships/price-details?subscription_plan_id=18&duration_id=5&installment_id=131&date_begin=Thu21%20Sep%202023%2011%3A34%3A23%20GMT&franchise_id=3&lstOptions=5&lstOptions=9&display_language_id=2
 
-        $uri = "Memberships/price-details?display_language_id";
+        $uri = "Memberships/price-details?";
         if (Session::has('subscription_plan_id')){
-            $uri .= "&subscription_plan_id=".Session::get('subscription_plan_id');
+            $uri .= "subscription_plan_id=".Session::get('subscription_plan_id');
         }
         if (Session::has('duration_id')){
             $uri .= "&duration_id=".Session::get('duration_id');
         }
-        if (Session::has('installment_id')){
-            $uri .= "&installment_id=".Session::get('installment_id');
+        // dd(Session::has('installments_id'));
+        if (Session::has('installments_id')){
+            $uri .= "&installment_id=".Session::get('installments_id');
         }
         // if (Session::has('installment_id')){
         //     $uri .= "&installment_id=".Session::get('installment_id');
         // }
-        $uri .= "&date_begin=".Date("Dd M Y H:i:s T");
+        // $uri .= "&date_begin=".Date("Dd M Y H:i:s T");
+        $uri .= "&date_begin=".urlencode(Date("M Dd Y H:i:s")." GMT");
         if (Session::has('franchise_id')){
             $uri .= "&franchise_id=".Session::get('franchise_id');
         }
@@ -62,6 +64,7 @@ class PaymentController extends Controller
                 $uri .= "&lstOptions=".$ad_on_id;
             }
         }
+        $uri .=  "&display_language_id=2";
         if(Session::has('token')){
             $token = Session::get('token');
         }
