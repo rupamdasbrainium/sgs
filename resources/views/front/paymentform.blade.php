@@ -38,7 +38,7 @@
 										<label for="promocode">Promo/Reward Code </label>
 										<div class="inp_cont_view noicon_opt">
 											
-											<input type="text" class="form-control" id="promocode" placeholder="Promo/Reward Code " >
+											<input type="text" class="form-control" name="code_promo" id="promocode" placeholder="Promo/Reward Code " >
 										</div>
 									</div>
 								</div>
@@ -403,7 +403,10 @@
 										</div>
 									</div>
 									
-									
+									<input type="hidden" name="subscription_plan_id" value="{{ $data['membership_details']->data->subscriptionPlan_id }}">
+									<input type="hidden" name="duration_id" value="{{ $data['membership_details']->data->duration_id }}">
+									<input type="hidden" name="subscription_plan_id" value="{{ $data['membership_details']->data->subscriptionPlan_id }}">
+									<input type="hidden" name="subscription_plan_id" value="{{ $data['membership_details']->data->subscriptionPlan_id }}">
 								</div>
 								
 								
