@@ -87,9 +87,24 @@ class PaymentController extends Controller
             $formdata['franchise_id'] = Session::get('franchise_id');
         }
        
-        $pay_methode_acc = APICall('PaymentMethods/account', "post",json_encode($formdata));
+        // $pay_methode_acc = APICall('PaymentMethods/account', "post",json_encode($formdata));
+        // $data['pay_methode_acc'] = json_decode($pay_methode_acc);
+
+        // //PaymentMethods/accounts/client_id
+        // $pay_methode_acc_client = APICall('PaymentMethods/accounts/', "get",json_encode($formdata));
+        // $data['pay_methode_acc_client'] = json_decode($pay_methode_acc_client);
+
+        if(Session::has('token')){
+            $token = Session::get('token');
+        }
+       
+        $pay_methode_acc = APICall('PaymentMethods/account', "post",json_encode($formdata), $token);
         $data['pay_methode_acc'] = json_decode($pay_methode_acc);
+
+        $get_methode_acc = APICall('PaymentMethods/accounts?clients='.$data['pay_methode_acc']->data->client_id, "get","{}", $token);
+        $data['get_methode_acc'] = json_decode($get_methode_acc);
         
+
         //membership with bank account
         $membershipdata = array();
         $membershipdata['subscription_plan_id'] = $request->subscription_plan_id;
@@ -110,7 +125,7 @@ class PaymentController extends Controller
             }
         }
         $membershipdata['code_promo'] = $request->code_promo;
-        $membershipdata['account_id'] = $request->date_begin;
+        $membershipdata['account_id'] = $data['get_methode_acc']->data[0]->id;
 
         // {
         //     // "subscription_plan_id": 0,
@@ -125,7 +140,7 @@ class PaymentController extends Controller
         //     "account_id": 0//nf
         //   }
 
-        $membership_with_bnk_acc = APICall('Memberships/with-bank-account', "post",json_encode($membershipdata));
+        $membership_with_bnk_acc = APICall('Memberships/with-bank-account', "post",json_encode($membershipdata), $token);
         $data['membership_with_bnk_acc'] = json_decode($membership_with_bnk_acc);
 
         return $data;
