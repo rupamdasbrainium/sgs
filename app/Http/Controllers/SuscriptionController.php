@@ -55,13 +55,13 @@ class SuscriptionController extends Controller
         $fromdata['address_province_id'] = $request->address_province_id;
         $fromdata['phone'] = $request->phone;
         $fromdata['cellphone'] = $request->cellphone;
-        // $fromdata['emergency_contact'] = $request->emergency_contact;
-        $fromdata['emergency_contact'] = 'rahul';//not found
+        $fromdata['emergency_contact'] = $request->emergency_contact;
+        // $fromdata['emergency_contact'] = 'rahul';//not found
         $fromdata['emergency_phone'] = $request->emergency_phone;
         $fromdata['date_of_birth'] = $request->date_of_birth;
         $fromdata['email'] = $request->email;
         // $fromdata['language_id'] = $request->language_id;
-        $fromdata['language_id'] = 1;//nf
+        $fromdata['language_id'] = 2;//nf
         $fromdata['user_name'] = $request->user_name;//nf//required
         $fromdata['password'] = $request->password;
         $fromdata['driver_license'] = $request->driver_license;//nf
@@ -76,31 +76,38 @@ class SuscriptionController extends Controller
         //clients save type call
         $clients = APICall("Clients?franchise_id=".$request->franchise_id, "POST",json_encode($fromdata));
         $data['clients'] = json_decode($clients);
-        if (Session::has('installments_id')) {
-          Session::forget('installments_id');
+
+        if($data['clients']->error==null){
+          if (Session::has('installments_id')) {
+            Session::forget('installments_id');
+          }
+          if (Session::has('duration_id')) {
+            Session::forget('duration_id');
+          }
+          if (Session::has('token')) {
+            Session::forget('token');
+          }
+          if (Session::has('subscription_plan_id')) {
+            Session::forget('subscription_plan_id');
+          }
+          if (Session::has('franchise_id')) {
+            Session::forget('franchise_id');
+          }
+          if (Session::has('reference_Code')) {
+            Session::forget('reference_Code');
+          }
+          $duration_installments_arr = explode("|",$request->installments);
+          Session::put('installments_id', $duration_installments_arr[1]);
+          Session::put('duration_id', $duration_installments_arr[0]);
+          Session::put('token', $data['clients']->data->token);
+          Session::put('subscription_plan_id', $id);
+          Session::put('franchise_id', $request->franchise_id);
+          Session::put('reference_Code', $request->reference_Code);
+          return redirect()->route('payment');
+        } else {
+          return redirect()->back()->with('error', $data['clients']);
         }
-        if (Session::has('duration_id')) {
-          Session::forget('duration_id');
-        }
-        if (Session::has('token')) {
-          Session::forget('token');
-        }
-        if (Session::has('subscription_plan_id')) {
-          Session::forget('subscription_plan_id');
-        }
-        if (Session::has('franchise_id')) {
-          Session::forget('franchise_id');
-        }
-        if (Session::has('reference_Code')) {
-          Session::forget('reference_Code');
-        }
-        $duration_installments_arr = explode("|",$request->installments);
-        Session::put('installments_id', $duration_installments_arr[1]);
-        Session::put('duration_id', $duration_installments_arr[0]);
-        Session::put('token', $data['clients']->data->token);
-        Session::put('subscription_plan_id', $id);
-        Session::put('franchise_id', $request->franchise_id);
-        Session::put('reference_Code', $request->reference_Code);
+        
         // dd($data['clients']);
         return $data['clients'];
 

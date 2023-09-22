@@ -5,6 +5,18 @@
 	<div class="welcomesection def_padding inner_content_block">
 		<div class="container">
 			<div class="row">
+				@if(isset($error))
+				<div class="col-md-12">
+					<div class="alert alert-danger">
+						<ul>
+							{{-- @foreach ($error as $error) --}}
+								<li>{{ $error->message }}</li>
+							{{-- @endforeach --}}
+						</ul>
+					</div>
+				</div>
+				@endif
+				
 				<div class="col-md-12">
 					<div class="welcomesec_info inner_heading">
 						<div class="round_opt_btn3 modfround1">
@@ -108,6 +120,13 @@
 									<input type="text"
 									name="cellphone" class="form-control" placeholder="Cell *" required>
 									<p>Example: xxx xxx-xxxx</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="inp_cont_view noicon_opt">
+									<input type="text"
+									name="emergency_contact" class="form-control" placeholder="emergency contact name*" >
+									
 								</div>
 							</div>
 						</div>
