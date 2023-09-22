@@ -29,6 +29,7 @@ Route::get('new-membership/{id}', 'SuscriptionController@new_membership')->name(
 Route::post('new-membership/{id}', 'SuscriptionController@new_membership_save')->name('newMembershipSave');
 Route::post('suscription-form-save/{id}', 'SuscriptionController@suscriptionformsave')->name('suscriptionformSave');
 Route::get('payment', 'PaymentController@payment')->name('payment');
+Route::post('paymentSave', 'PaymentController@paymentSave')->name('paymentSave');
 
 Route::middleware('guest')->group(function () {
     // Routes for CustomerController
