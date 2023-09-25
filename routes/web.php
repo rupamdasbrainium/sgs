@@ -21,7 +21,9 @@ require __DIR__.'/auth.php';
     return view('welcome');
 });*/
 
-
+// Route::get('/',[HomeController::class,'index'])->name('homepage');
+// Route::get('suscription-form', 'SuscriptionController@suscriptionform')->name('suscriptionform');
+// Route::get('payment', 'PaymentController@payment')->name('payment');
 Route::get('/planType/{id}',[HomeController::class,'planType']);
 Route::get('/planTypeDetails/{id}',[HomeController::class,'planTypeDetails']);
 Route::get('suscription-form/{id}', 'SuscriptionController@suscriptionform')->name('suscriptionform');
@@ -34,6 +36,7 @@ Route::post('paymentSave', 'PaymentController@paymentSave')->name('paymentSave')
 Route::middleware('guest')->group(function () {
     // Routes for CustomerController
     Route::get('login', 'HomeController@login')->name('login');
+    Route::post('login','Auth\AuthenticatedSessionController@store')->name('userLogin');
     Route::get('forgot-password', 'HomeController@forgotPassword')->name('forgotpassword');
 });
 

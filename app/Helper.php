@@ -240,7 +240,7 @@ if (!function_exists('getPhoneCodes')) {
 }
 
 if (!function_exists('findFFDetails')) {
-  
+
   function findFFDetails($id)
   {
     $data= DB::table('users')->where('id',$id)->first();
@@ -249,6 +249,7 @@ if (!function_exists('findFFDetails')) {
 }
 
 function APICall($uri, $method, $data, $type='web_app'){
+
   if($type=='web_app'){
     $token = getWabToken();
   }else{
@@ -258,7 +259,7 @@ function APICall($uri, $method, $data, $type='web_app'){
       return redirect()->route('login');
     }
   }
-  
+
   // dd($login_responce);
   //login api end
   $response = apiCallCurl($uri, $method, $data, $token);
@@ -276,7 +277,7 @@ function APICall($uri, $method, $data, $type='web_app'){
     }
   }
   return $response;
-  
+
 }
 
 function apiCallCurl($uri, $method, $data, $token){

@@ -42,7 +42,7 @@ class AccountController extends Controller
         $data['title'] = 'My Credit Card/Bank Account';
         return view('front.mybankcards', compact('data'));
     }
-
+    
     public function payMyOutstandingBalance () {
         $data = array();
         $data['title'] = 'Pay My Outstanding Balance';

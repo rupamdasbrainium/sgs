@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use App\Providers\RouteServiceProvider;
+use Exception;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Providers\RouteServiceProvider;
+use App\Http\Requests\Auth\LoginRequest;
+use Illuminate\Validation\ValidationException;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -28,11 +30,26 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
-        $request->authenticate();
+        try{
 
-        $request->session()->regenerate();
+            $response = $request->authenticate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+            dd($response);
+            // if($data->token){
+            //     // $request->session()->regenerate();
+            //     saveWabToken($data->token);
+            //     return redirect()->intended(RouteServiceProvider::HOME);
+            // }else{
+            //     throw ValidationException::withMessages([
+            //         'email' => trans('auth.failed'),
+            //     ]);
+            // }
+
+
+        }catch(Exception $e){
+            return redirect()->route('login');
+        }
+
     }
 
     /**

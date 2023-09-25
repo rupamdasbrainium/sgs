@@ -33,7 +33,7 @@
 						<div class="round_opt_btn3">
 							<img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
 						</div>
-						
+
 						<div class="heading_info sublogo ">
 							<img  src="{{ asset('public/images/logo.svg') }}" alt="">
 						</div>
@@ -41,17 +41,17 @@
 						<p>Input your details and password to get started</p>
 					</div>
 					<div class="fromdes_info">
-						<form method="POST" action="{{ route('login') }}">
+						<form method="POST" action="{{ route('userLogin') }}">
 							@csrf
 							<div class="from_cont_wrap">
 								<div class="inp_row">
 									<div class="form-group">
-										<label for="email">Email</label>
+										<label for="email">Username</label>
 										<div class="inp_cont_view">
 											<div class="icon_opt">
 												<i class="fal fa-envelope"></i>
 											</div>
-											<input type="email" class="form-control" name="email" id="email" placeholder="jhon.deo@gmail.com" required>
+											<input type="text" class="form-control" name="user" id="email" placeholder="jhon.deo@gmail.com" required>
 											@if ($errors->has('email'))
 					                        <div class="text-danger mt-3">{{ $errors->first('email') }}</div>
 					                        @endif
@@ -84,13 +84,13 @@
 												<img src="{{ asset('public/images/cap_ref_btn.png') }}" alt="">
 												</button>
 											</div>
-											
+
 										</div>
 										<div class="inp_cont_view cap_inp_block">
 											<input class="form-control inpopt2" type="text" name="captcha" placeholder="Enter the text in the image" id="capcha_codeview" required>
 											@if ($errors->has('captcha'))
 					                        <div class="text-danger mt-3">Enter valid captcha</div>
-					                        @endif 
+					                        @endif
 										</div>
 									</div>
 								</div>
@@ -112,11 +112,11 @@
 							</div>
 						</form>
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
-		
+
 	</div>
 	<div class="round_opt_btn">
 		<img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">

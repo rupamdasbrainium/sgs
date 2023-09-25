@@ -29,7 +29,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'string', 'email'],
+            'user' => ['required', 'string'],
             'password' => ['required', 'string'],
             'captcha' => ['required','captcha'],
         ];
@@ -45,16 +45,18 @@ class LoginRequest extends FormRequest
     public function authenticate()
     {
         $this->ensureIsNotRateLimited();
+        $credential = $this->only('user', 'password');
+        $resposne = APICall("Users/login_client","post", json_encode($credential));
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        if (! json_decode($resposne)->token) {
             RateLimiter::hit($this->throttleKey());
-
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
             ]);
         }
 
         RateLimiter::clear($this->throttleKey());
+        return $resposne;
     }
 
     /**
