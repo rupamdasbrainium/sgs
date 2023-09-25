@@ -83,7 +83,44 @@ $(document).ready(function() {
             }
         });
     });
+
+    // $('#franchises_name').parent().find('.select-options li').on('click', function() {
+	// 	var val = $(this).attr('rel');
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: 'planType/'+val,
+    //         success: function(data) {
+    //             $("#franchises_type").html(data[0]);
+    //             $("#franchises_type").parent().find('.select-options').html(data[1]);
+    //             $("#franchises_type").parent().find('.select-styled').text('10 passages adulte');
+    //             var $listItems = $("#franchises_type").parent().find('.select-options').children('li');
+    //             $listItems.click(function(e) {
+    //                 e.stopPropagation();
+    //                 // console.log($(this).text());
+    //                 $("#franchises_type").parent().find('.select-styled').text($(this).text()).removeClass('active');
+    //                 $this.val($(this).attr('rel'));
+    //                 $("#franchises_type").parent().find('.select-options').hide();
+    //                 //console.log($this.val());
+    //             });
+    //         }
+    //     });
+	// });
+
+    // $('#home_continue').on('click', function() {
+	// 	var val = $("#franchises_name").val();
+	// 	var address_id = $("#franchises_address").val();
+    //     console.log(val);
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: 'planTypeDetails/'+address_id,
+    //         success: function(data) {
+    //             console.log(data);
+    //             $("#home_prod_item").html(data);
+    //         }
+    //     });
+	// });
 });
+
 
 
 const togglePassword = document.querySelector('#togglePassword');

@@ -22,9 +22,14 @@ require __DIR__.'/auth.php';
 });*/
 
 
-Route::get('/',[HomeController::class,'index'])->name('homepage');
-Route::get('suscription-form', 'SuscriptionController@suscriptionform')->name('suscriptionform');
+Route::get('/planType/{id}',[HomeController::class,'planType']);
+Route::get('/planTypeDetails/{id}',[HomeController::class,'planTypeDetails']);
+Route::get('suscription-form/{id}', 'SuscriptionController@suscriptionform')->name('suscriptionform');
+Route::get('new-membership/{id}', 'SuscriptionController@new_membership')->name('newMembership');
+Route::post('new-membership/{id}', 'SuscriptionController@new_membership_save')->name('newMembershipSave');
+Route::post('suscription-form-save/{id}', 'SuscriptionController@suscriptionformsave')->name('suscriptionformSave');
 Route::get('payment', 'PaymentController@payment')->name('payment');
+Route::post('paymentSave', 'PaymentController@paymentSave')->name('paymentSave');
 
 Route::middleware('guest')->group(function () {
     // Routes for CustomerController
@@ -82,3 +87,5 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
         Route::get('userview/{id}', 'AdminController@userview')->name('userview');
     });
 });
+
+Route::get('/{short_code}',[HomeController::class,'index'])->name('homepage');

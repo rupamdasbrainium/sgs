@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     public function index ($short_code) {
-        $short_code = 'CentreDemo';
         $data = array();
         $data['title'] = 'Home';
         //franchise call
@@ -18,8 +17,8 @@ class HomeController extends Controller
 
         //find franchise_id
         foreach($data['franchises']->data as $franchise){
-        //   if($franchise->id == $short_code){
-            if($franchise->shortCode == $short_code){//actual
+          if($franchise->id == $short_code){
+            // if($franchise->shortCode == $short_code){//actual
             $franchise_id = $franchise->id;
             break;
           }
@@ -44,10 +43,8 @@ class HomeController extends Controller
         $data_plan[$data['best_four_plan']->data->subscriptionPlan4] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan4, "get","{}"));
 
         $data['best_four_plan_details'] = $data_plan;
-        $best_four_plan_details=$data_plan;
-        // dd($best_four_plan_details);
         
-        return view('front.home', compact('data','best_four_plan_details','franchise_id'));
+        return view('front.home', compact('data'));
 
     }
 
@@ -64,7 +61,7 @@ class HomeController extends Controller
     }
 
     public function dashboard () {
-        return redirect()->route('account');
+        return redirect()->route('homepage');
     }
 
     public function planType($id){

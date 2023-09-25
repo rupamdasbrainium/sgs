@@ -1,274 +1,338 @@
 <x-guest-layout>
-@section('title', $data['title'] . ' |')
-@include('header')
-<section class="maincontent_wrap innermain_content user_information">
-	<div class="welcomesection def_padding inner_content_block">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="welcomesec_info inner_heading">
-						<div class="round_opt_btn3 modfround1">
-							<img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
-						</div>
-						<h2>User Information</h2>
-						<p>Please provide your contact information</p>
-					</div>
-					<div class="fromdes_info user_contentblock">
-						<div class="sidebar_content">
-							<div class="sidebar_info">
-								<p>Center: <span>Gym Proacif</span></p>
-								<p>Address: <span>246st-iccauses,
-								saint-iean.9.1j2 j4j</span>
-							</p>
-							<p>Package: <span>Acti 1</span></p>
+	@section('title', $data['title'] . ' |')
+	@include('header')
+	<section class="maincontent_wrap innermain_content user_information">
+		<div class="welcomesection def_padding inner_content_block">
+			<div class="container">
+				<div class="row">
+					{{-- @dump(Session::get('message')); --}}
+					<div class="col-md-12">
+						@if(Session::has('message'))
+					<div class="col-md-12">
+						<div class="alert alert-danger">
+							{{Session::get('message')}}
+							{{-- <ul> --}}
+								{{-- @foreach ($error as $error) --}}
+									{{-- <li>{{ $error->message }}</li> --}}
+								{{-- @endforeach --}}
+							{{-- </ul> --}}
 						</div>
 					</div>
-					<div class="from_cont_wrap">
-						<div class="inp_row gapadj inp_colm2">
-							<div class="form-group">
-								<div class="inp_cont_view noicon_opt">
-									<input type="text" class="form-control" placeholder="First Name *" >
-								</div>
+					@endif
+						<div class="welcomesec_info inner_heading">
+							<div class="round_opt_btn3 modfround1">
+								<img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
 							</div>
-							<div class="form-group">
-								<div class="inp_cont_view noicon_opt">
-									<input type="text" class="form-control" placeholder="Last Name *" >
-								</div>
+							<h2>User Information</h2>
+							<p>Please provide your contact information</p>
+						</div>
+						<div class="fromdes_info user_contentblock">
+							<div class="sidebar_content">
+								<div class="sidebar_info">
+									<p>Center: <span>{{ $data['franchise']->name}}</span></p>
+									<p>Address: 
+										<span>{{ $data['franchise']->address_civic_number}} {{ $data['franchise']->address_street}} {{ $data['franchise']->address_city }} {{ $data['franchise']->address_postal_code }}</span>
+								</p>
+								<p>Package: <span>
+									@if(isset($data['subscription_plan']) && isset($data['subscription_plan']->data))
+										{{ $data['subscription_plan']->data->name }}
+									@endif
+								</span></p>
 							</div>
 						</div>
-						<div class="inp_row gapadj inp_colm3">
-							<div class="form-group">
-								<div class="inp_cont_view noicon_opt">
-									<input type="text" class="form-control" placeholder="Street Number *" >
+						<div class="from_cont_wrap">
+							<form method="post" action="{{ route('suscriptionformSave',['id'=>$data['subscription_plan']->data->id]) }}" >
+								{{-- <form method="post" action="{{ route('suscriptionformSave',['id'=>18]) }}" > --}}
+								@csrf
+								<input type="hidden" name="franchise_id" value="{{ $data['franchise']->id }}">
+							<div class="inp_row gapadj inp_colm2">
+								<div class="form-group">
+									<div class="inp_cont_view noicon_opt">
+										<input type="text" name="firstname" value="{{old('firstname')}}" class="form-control" placeholder="First Name *" required>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="inp_cont_view noicon_opt">
+										<input type="text" name="lastname" value="{{old('lastname')}}" class="form-control" placeholder="Last Name *" required>
+									</div>
 								</div>
 							</div>
-							<div class="form-group">
-								<div class="inp_cont_view noicon_opt">
-									<input type="text" class="form-control" placeholder="Street *" >
+							<div class="inp_row gapadj inp_colm3">
+								<div class="form-group">
+									<div class="inp_cont_view noicon_opt">
+										<input type="text" name="address_civic_number" value="{{old('address_civic_number')}}" class="form-control" placeholder="Street Number *" required>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="inp_cont_view noicon_opt">
+										<input type="text" name="address_street" value="{{old('address_street')}}" class="form-control" placeholder="Street *" required>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="inp_cont_view noicon_opt">
+										<input type="text" name="address_appartment" value="{{old('address_appartment')}}" class="form-control" placeholder="App " >
+									</div>
 								</div>
 							</div>
-							<div class="form-group">
-								<div class="inp_cont_view noicon_opt">
-									<input type="text" class="form-control" placeholder="App " >
+							<div class="inp_row gapadj inp_colm3">
+								<div class="form-group">
+									<div class="inp_cont_view noicon_opt">
+										<input type="text" name="address_city" value="{{old('address_city')}}" class="form-control" placeholder="City *" required>
+									</div>
 								</div>
-							</div>
-						</div>
-						<div class="inp_row gapadj inp_colm3">
-							<div class="form-group">
-								<div class="inp_cont_view noicon_opt">
-									<input type="text" class="form-control" placeholder="City *" >
+								<div class="form-group">
+									<div class="inp_cont_view noicon_opt">
+										<input type="text" name="address_postal_code" value="{{old('address_postal_code')}}" class="form-control" placeholder="Postal Code *" required>
+										<p>Example: j3B 8k7</p>
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<div class="inp_cont_view noicon_opt">
-									<input type="text" class="form-control" placeholder="Postal Code *" >
-									<p>Example: j3B 8k7</p>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="inp_cont_view noicon_opt">
-									<!-- <input type="text" class="form-control" placeholder="AB  " > -->
-									<div class="selectcont ">
-										<div class="arrowdown2">
-											<i class="far fa-chevron-down"></i>
+								<div class="form-group">
+									<div class="inp_cont_view noicon_opt">
+										<!-- <input type="text" class="form-control" placeholder="AB  " > -->
+										<div class="selectcont ">
+											<div class="arrowdown2">
+												<i class="far fa-chevron-down"></i>
+											</div>
+											<select class="select_opt" name="address_province_id" >
+												@if(isset($data['provinces']))
+												@foreach ($data['provinces'] as $item)
+													
+													<option value="{{ $item->id }}" {{ $loop->index==1? "selected":""}} >{{ $item->display_english }}</option>
+												@endforeach
+												@endif
+												{{-- <option value="AB" >AB</option>
+												<option value="AB"  >AB</option>
+												<option value="AB"  >AB</option> --}}
+											</select>
 										</div>
-										<select class="select_opt" >
-											<option value="AB" selected >AB</option>
-											<option value="AB" >AB</option>
-											<option value="AB"  >AB</option>
-											<option value="AB"  >AB</option>
-										</select>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="inp_row gapadj inp_colm2">
-							<div class="form-group">
-								<div class="inp_cont_view noicon_opt">
-									<input type="text" class="form-control" placeholder="Phone Number *" >
-									<p>Example: xxx xxx-xxxx</p>
+							<div class="inp_row gapadj inp_colm2">
+								<div class="form-group">
+									<div class="inp_cont_view noicon_opt">
+										<input type="text" value="{{old('phone')}}"
+										name="phone" class="form-control" placeholder="Phone Number *" required>
+										<p>Example: xxx xxx-xxxx</p>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="inp_cont_view noicon_opt">
+										<input type="text"
+										name="cellphone" value="{{old('cellphone')}}" class="form-control" placeholder="Cell *" required>
+										<p>Example: xxx xxx-xxxx</p>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="inp_cont_view noicon_opt">
+										<input type="text"
+										name="emergency_contact" value="{{old('emergency_contact')}}" class="form-control" placeholder="emergency contact name*" >
+										
+									</div>
 								</div>
 							</div>
-							<div class="form-group">
-								<div class="inp_cont_view noicon_opt">
-									<input type="text" class="form-control" placeholder="Cell *" >
-									<p>Example: xxx xxx-xxxx</p>
+							<div class="inp_row gapadj inp_colm3">
+								<div class="form-group">
+									<div class="inp_cont_view noicon_opt">
+										<input type="text" value="{{old('emergency_phone')}}" name="emergency_phone" class="form-control" placeholder="Emergency Phone Number *" required>
+										<p>Example: xxx xxx-xxxx</p>
+									</div>
 								</div>
-							</div>
-						</div>
-						<div class="inp_row gapadj inp_colm3">
-							<div class="form-group">
-								<div class="inp_cont_view noicon_opt">
-									<input type="text" class="form-control" placeholder="Emergency Phone Number *" >
-									<p>Example: xxx xxx-xxxx</p>
+								<div class="form-group">
+									<div class="inp_cont_view noicon_opt">
+										<input type="date" name="date_of_birth" value="{{old('date_of_birth')}}" id="datepicker" class="form-control" placeholder="Date of birth *" required>
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<div class="inp_cont_view noicon_opt">
-									<input type="text" class="form-control" placeholder="Date of birth *" >
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="inp_cont_view noicon_opt">
-									<!-- <input type="text" class="form-control" placeholder="Man " > -->
-									<div class="selectcont ">
-										<div class="arrowdown2">
-											<i class="far fa-chevron-down"></i>
+								<div class="form-group">
+									<div class="inp_cont_view noicon_opt">
+										<!-- <input type="text" class="form-control" placeholder="Man " > -->
+										<div class="selectcont ">
+											<div class="arrowdown2">
+												<i class="far fa-chevron-down"></i>
+											</div>
+											<select class="select_opt" name="is_male" >
+												<option value="1" selected >Male</option>
+												<option value="0">Female</option>
+											</select>
 										</div>
-										<select class="select_opt" >
-											<option value="Man" selected >Man</option>
-											<option value="Man">Man</option>
-											<option value="Man">Man</option>
-											<option value="Man">Man</option>
-										</select>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="inp_row gapadj inp_colm2">
-							<div class="form-group">
-								<div class="inp_cont_view noicon_opt">
-									<input type="email" class="form-control" placeholder="Email *" >
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="inp_cont_view noicon_opt">
-									<input type="email" class="form-control" placeholder="mail Confirmation *" >
-								</div>
-							</div>
-						</div>
-						<div class="inp_row gapadj inp_colm2">
-							<div class="form-group">
-								<div class="inp_cont_view noicon_opt noicon_opt2">
-									<div class="icon_opt">
-										<i class="fal fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+							<div class="inp_row gapadj inp_colm2">
+								<div class="form-group">
+									<div class="inp_cont_view noicon_opt">
+										<input type="email" name="email" value="{{old('email')}}" class="form-control" placeholder="Email *" required>
 									</div>
-									<input class="form-control" type="password" name="password" placeholder="Password *" autocomplete="current-password" required="" id="id_password">
 								</div>
-							</div>
-							<div class="form-group">
-								<div class="inp_cont_view  noicon_opt noicon_opt2">
-									<div class="icon_opt">
-										<i class="fal fa-eye" id="togglePassword2" style="cursor: pointer;"></i>
+								<div class="form-group">
+									<div class="inp_cont_view noicon_opt">
+										<input type="email" class="form-control" placeholder="mail Confirmation *" required>
 									</div>
-									<input class="form-control" type="password" name="password" placeholder="Password confirmation *" autocomplete="current-password" required="" id="id_password2">
 								</div>
 							</div>
-						</div>
-						<div class="inp_row  ">
-							<div class="form-group">
-								<div class="inp_cont_view noicon_opt">
-									<input class="form-control" type="text" placeholder="Referral Code" >
+							<div class="inp_row gapadj inp_colm2">
+								<div class="form-group">
+									<div class="inp_cont_view noicon_opt noicon_opt2">
+										<div class="icon_opt">
+											<i class="fal fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+										</div>
+										<input class="form-control" type="password" name="password"  value="{{old('password')}}" placeholder="Password *" autocomplete="current-password" required="" id="id_password" required>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="inp_cont_view  noicon_opt noicon_opt2">
+										<div class="icon_opt">
+											<i class="fal fa-eye" id="togglePassword2" style="cursor: pointer;"></i>
+										</div>
+										<input class="form-control" type="password"  name="confirm-password" placeholder="Password confirmation *" autocomplete="current-password" required="" id="id_password2" required>
+									</div>
+								</div>
+							</div>
+							<div class="inp_row  ">
+								<div class="form-group">
+									<div class="inp_cont_view noicon_opt">
+										<input class="form-control" name="user_name" value="{{old('user_name')}}" type="text" placeholder="User name" >
+									</div>
+								</div>
+								
+							</div>
+							<div class="inp_row  ">
+								<div class="form-group">
+									<div class="inp_cont_view noicon_opt">
+										<input class="form-control" name="reference_Code" value="{{old('reference_Code')}}" type="text" placeholder="Referral Code" >
+									</div>
+								</div>
+								
+							</div>
+							<div class="more_cont_view">
+								<!-- <h4>Membership Options/ Add-ons</h4>
+								<div class="checkout_optview">
+										<div class="inp_row checkoutmore_info">
+												<div class="form-group">
+														<div class="checkbox">
+																<input class="styled-checkbox" id="Option1" type="checkbox" value="value1">
+																<label for="Option1">Option1</label>
+														</div>
+												</div>
+												<div class="form-group">
+														<div class="checkbox">
+																<input class="styled-checkbox" id="Option2" type="checkbox" value="value2">
+																<label for="Option2">Option2</label>
+														</div>
+												</div>
+												<div class="form-group">
+														<div class="checkbox">
+																<input class="styled-checkbox" id="Option3" type="checkbox" value="value3">
+																<label for="Option3">Option3</label>
+														</div>
+												</div>
+												<div class="form-group">
+														<div class="checkbox">
+																<input class="styled-checkbox" id="Option4" type="checkbox" value="value4">
+																<label for="Option4">Option4</label>
+														</div>
+												</div>
+												
+										</div>
+								</div> -->
+								<div class="payment_opt_view">
+									<!-- <div class="payment_block">
+											<h4>Method of Payment</h4>
+											<div class="payment_contentblock">
+													<div class="radio">
+															<input type="radio" id="test1" name="radio-group">
+															<label for="test1">Credit Card</label>
+													</div>
+													
+													<div class="radio">
+															<input type="radio" id="test2" name="radio-group">
+															<label for="test2">Direct Debit</label>
+													</div>
+													<div class="radio">
+															<input type="radio" id="test3" name="radio-group">
+															<label for="test3">Prepaid Account</label>
+													</div>
+											</div>
+									</div> -->
+									<div class="payment_block">
+										<h4>Number of Payments *</h4>
+										<div class="payment_contentblock">
+											{{-- @dump($data['subscription_plan']); --}}
+											@if(isset($data['subscription_plan']) && isset($data['subscription_plan']->data) && count($data['subscription_plan']->data->prices_per_durations))
+												@foreach ($data['subscription_plan']->data->prices_per_durations as $item)
+												
+													@if(count($item->installments))
+														@foreach ($item->installments as $val)
+														{{-- @dump( $item->duration_id,$val->id); --}}
+															<div class="radio">
+																<input type="radio" id="{{ $val->id }}" name="installments" value="{{ $item->duration_id}}|{{$val->id }}" {{ $loop->index==0? 'required':'' }}>
+																<label for="{{ $val->id }}">{{ $val->number_of_payments }} Payments</label>
+															</div>
+														@endforeach
+													@endif
+												@endforeach
+											@endif
+											
+											{{-- <div class="radio">
+												<input type="radio" id="testnum2" name="radio-group">
+												<label for="testnum2">26 Payments</label>
+											</div> --}}
+										</div>
+									</div>
 								</div>
 							</div>
 							
-						</div>
-						<div class="more_cont_view">
-							<!-- <h4>Membership Options/ Add-ons</h4>
-							<div class="checkout_optview">
-									<div class="inp_row checkoutmore_info">
-											<div class="form-group">
-													<div class="checkbox">
-															<input class="styled-checkbox" id="Option1" type="checkbox" value="value1">
-															<label for="Option1">Option1</label>
-													</div>
+							
+							<div class="inp_row">
+								<div class="form-group">
+									<label >Where did you hear about us? *</label>
+									<div class="inp_cont_view noicon_opt">
+										<!-- <input type="email" class="form-control" placeholder="Please choose..." > -->
+										<div class="selectcont ">
+											<div class="arrowdown2">
+												<i class="far fa-chevron-down"></i>
 											</div>
-											<div class="form-group">
-													<div class="checkbox">
-															<input class="styled-checkbox" id="Option2" type="checkbox" value="value2">
-															<label for="Option2">Option2</label>
-													</div>
-											</div>
-											<div class="form-group">
-													<div class="checkbox">
-															<input class="styled-checkbox" id="Option3" type="checkbox" value="value3">
-															<label for="Option3">Option3</label>
-													</div>
-											</div>
-											<div class="form-group">
-													<div class="checkbox">
-															<input class="styled-checkbox" id="Option4" type="checkbox" value="value4">
-															<label for="Option4">Option4</label>
-													</div>
-											</div>
-											
-									</div>
-							</div> -->
-							<div class="payment_opt_view">
-								<!-- <div class="payment_block">
-										<h4>Method of Payment</h4>
-										<div class="payment_contentblock">
-												<div class="radio">
-														<input type="radio" id="test1" name="radio-group">
-														<label for="test1">Credit Card</label>
-												</div>
-												
-												<div class="radio">
-														<input type="radio" id="test2" name="radio-group">
-														<label for="test2">Direct Debit</label>
-												</div>
-												<div class="radio">
-														<input type="radio" id="test3" name="radio-group">
-														<label for="test3">Prepaid Account</label>
-												</div>
-										</div>
-								</div> -->
-								<div class="payment_block">
-									<h4>Number of Payments *</h4>
-									<div class="payment_contentblock">
-										<div class="radio">
-											<input type="radio" id="testnum1" name="radio-group">
-											<label for="testnum1">12 Payments</label>
-										</div>
-										<div class="radio">
-											<input type="radio" id="testnum2" name="radio-group">
-											<label for="testnum2">26 Payments</label>
+											<select class="select_opt" name="reference_id" >
+												<option value="" selected >Please choose...</option>
+												@if(isset($data['opts_references']) && isset($data['opts_references']->data))
+												@foreach ($data['opts_references']->data as $item)
+													<option value="{{ $item->id }}" selected >{{ $item->display }}</option>
+													
+												@endforeach
+												@endif
+											</select>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						
-						
-						<div class="inp_row">
-							<div class="form-group">
-								<label >Where did you hear about us? *</label>
-								<div class="inp_cont_view noicon_opt">
-									<!-- <input type="email" class="form-control" placeholder="Please choose..." > -->
-									<div class="selectcont ">
-										<div class="arrowdown2">
-											<i class="far fa-chevron-down"></i>
-										</div>
-										<select class="select_opt" >
-											<option value="op1" selected >Please choose...</option>
-											<option value="op2">Please choose...</option>
-											<option value="op3">Please choose...</option>
-											<option value="op4">Please choose...</option>
-										</select>
-									</div>
+							<div class="frombtn_wrap">
+								<div class="def_btnopt2 frombtn frombtn2">
+									<button type="submit" class="btn2" >Save</button>
 								</div>
 							</div>
+							</form>
 						</div>
-						<div class="frombtn_wrap">
-							<div class="def_btnopt2 frombtn frombtn2">
-								<button type="button" class="btn2" >Save</button>
-							</div>
-						</div>
+						
 					</div>
 					
 				</div>
-				
 			</div>
 		</div>
+		
 	</div>
-	
-</div>
-<div class="round_opt_btn rount_opt2">
-	<img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
-</div>
-<div class="round_opt_btn rount_opt3">
-	<img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
-</div>
-</section>
-@include('footer')
-</x-guest-layout>
+	<div class="round_opt_btn rount_opt2">
+		<img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
+	</div>
+	<div class="round_opt_btn rount_opt3">
+		<img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
+	</div>
+	</section>
+	@include('footer')
+	@push('scripts')
+		<script>
+			$(function(){
+				$('#datepicker').datepicker();
+			});
+		</script>
+	@endpush
+	</x-guest-layout>
