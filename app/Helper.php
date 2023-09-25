@@ -274,6 +274,7 @@ function APICall($uri, $method, $data, $type='web_app'){
       return apiCallCurl($uri, $method, $data, $token);
     }
   }
+  return $response;
   
 }
 
