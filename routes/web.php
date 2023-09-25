@@ -21,6 +21,18 @@ require __DIR__.'/auth.php';
     return view('welcome');
 });*/
 
+use Illuminate\Support\Facades\App;
+ 
+Route::get('/greeting/{locale}', function ($locale) {
+    if (! in_array($locale, ['en', 'fr'])) {
+        abort(400);
+    }
+ 
+    App::setLocale($locale);
+ 
+    //
+});
+
 
 Route::get('/planType/{id}',[HomeController::class,'planType']);
 Route::get('/planTypeDetails/{id}',[HomeController::class,'planTypeDetails']);
