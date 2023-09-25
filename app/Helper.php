@@ -1,4 +1,6 @@
 <?php
+
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 
 if (!function_exists('getConfigurationValue')) {
@@ -246,9 +248,72 @@ if (!function_exists('findFFDetails')) {
   }
 }
 
-function APICall($uri, $method, $data, $token=null){
-  if(!$token){
-    $curl = curl_init();
+function APICall($uri, $method, $data, $type='web_app'){
+  if($type=='web_app'){
+    $token = getWabToken();
+  }else{
+    $token = getClientToken();
+    if($token == 'unauthorised'){
+      // return '401';
+      return redirect()->route('login');
+    }
+  }
+  
+  // dd($login_responce);
+  //login api end
+  $response = apiCallCurl($uri, $method, $data, $token);
+  if($response == '401'){
+    if($type=='web_app'){
+      $token = getWabToken();
+      return apiCallCurl($uri, $method, $data, $token);
+    }else{
+      $token = getClientToken();
+      if($token == 'unauthorised'){
+        return '401';
+      }
+      return apiCallCurl($uri, $method, $data, $token);
+    }
+  }
+  
+}
+
+function apiCallCurl($uri, $method, $data, $token){
+  $curl = curl_init();
+
+  curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://sgsdev.softsgs.net/'.$uri,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => $method,
+      CURLOPT_POSTFIELDS =>$data,
+      CURLOPT_HTTPHEADER => array(
+          'Content-Type: application/json',
+          "accept: application/json",
+          "Authorization: Bearer ".$token
+      ),
+  ));
+
+  // $response = curl_exec($curl);
+  $response = curl_exec($curl);
+        $error_msg = '';
+        if (curl_errno($curl)) {
+            $error_msg = curl_error($curl);
+        }
+  $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+  if($httpcode == '401'){
+    return $httpcode;
+  }
+  curl_close($curl);
+  return $response;
+}
+
+//genarate web token
+function webAppLoginToken() {
+  $curl = curl_init();
 
     curl_setopt_array($curl, array(
         CURLOPT_URL => 'https://sgsdev.softsgs.net/Users/login_webApp',
@@ -278,39 +343,38 @@ function APICall($uri, $method, $data, $token=null){
     curl_close($curl);
 
     $login_responce = json_decode($response);
-    $token = $login_responce->token;
-  }
-  
-  // dd($login_responce);
-//login api end
-
-  $curl = curl_init();
-
-  curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://sgsdev.softsgs.net/'.$uri,
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => $method,
-      CURLOPT_POSTFIELDS =>$data,
-      CURLOPT_HTTPHEADER => array(
-          'Content-Type: application/json',
-          "accept: application/json",
-          "Authorization: Bearer ".$token
-      ),
-  ));
-
-  // $response = curl_exec($curl);
-  $response = curl_exec($curl);
-        $error_msg = '';
-        if (curl_errno($curl)) {
-            $error_msg = curl_error($curl);
-        }
-  curl_close($curl);
-  return $response;
+    saveWabToken($login_responce->token);
+    return $token = $login_responce->token;
 }
+
+//save web token
+function saveWabToken($token) {
+  Cookie::make('webToken', $token, 60);
+}
+
+//get web token
+function getWabToken() {
+ if(Cookie::has('webToken')){
+   return Cookie::get('webToken');
+ }else{
+  return webAppLoginToken();
+ }
+}
+
+//save client token
+function saveClientToken($token) {
+  Cookie::make('clientToken', $token, 60);
+}
+
+//get client token
+function getClientToken() {
+  if(Cookie::has('webToken')){
+    return Cookie::get('clientToken');
+  }else{
+  //  webAppLoginToken();
+    return 'unauthorised';
+    // return redirect()->route('login');
+  }
+ }
 
 ?>
