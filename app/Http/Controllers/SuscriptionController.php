@@ -103,6 +103,7 @@ class SuscriptionController extends Controller
           Session::put('subscription_plan_id', $id);
           Session::put('franchise_id', $request->franchise_id);
           Session::put('reference_Code', $request->reference_Code);
+          saveClientToken($data['clients']->data->token);
           return redirect()->route('payment');
         } else {
           $response = array(

@@ -65,11 +65,11 @@ class PaymentController extends Controller
             }
         }
         $uri .=  "&display_language_id=2";
-        if(Session::has('token')){
-            $token = Session::get('token');
-        }
+        // if(Session::has('token')){
+        //     $token = Session::get('token');
+        // }
 
-        $membership_details = APICall($uri, "get","{}", $token);
+        $membership_details = APICall($uri, "get","{}", 'client_app');
         $data['membership_details'] = json_decode($membership_details);
 
 
@@ -94,14 +94,14 @@ class PaymentController extends Controller
         // $pay_methode_acc_client = APICall('PaymentMethods/accounts/', "get",json_encode($formdata));
         // $data['pay_methode_acc_client'] = json_decode($pay_methode_acc_client);
 
-        if(Session::has('token')){
-            $token = Session::get('token');
-        }
+        // if(Session::has('token')){
+        //     $token = Session::get('token');
+        // }
        
-        $pay_methode_acc = APICall('PaymentMethods/account', "post",json_encode($formdata), $token);
+        $pay_methode_acc = APICall('PaymentMethods/account', "post",json_encode($formdata), 'client_app');
         $data['pay_methode_acc'] = json_decode($pay_methode_acc);
 
-        $get_methode_acc = APICall('PaymentMethods/accounts?clients='.$data['pay_methode_acc']->data->client_id, "get","{}", $token);
+        $get_methode_acc = APICall('PaymentMethods/accounts?clients='.$data['pay_methode_acc']->data->client_id, "get","{}", "client_app");
         $data['get_methode_acc'] = json_decode($get_methode_acc);
         
 
@@ -140,7 +140,7 @@ class PaymentController extends Controller
         //     "account_id": 0//nf
         //   }
 
-        $membership_with_bnk_acc = APICall('Memberships/with-bank-account', "post",json_encode($membershipdata), $token);
+        $membership_with_bnk_acc = APICall('Memberships/with-bank-account', "post",json_encode($membershipdata), "client_app");
         $data['membership_with_bnk_acc'] = json_decode($membership_with_bnk_acc);
 
         return $data;
