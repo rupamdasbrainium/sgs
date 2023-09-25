@@ -118,10 +118,16 @@
                                                             <i class="far fa-chevron-down"></i>
                                                         </div>
                                                         <select class="select_opt">
-                                                            <option value="Action1" selected>Action 1</option>
-                                                            <option value="Action2">Action 2</option>
+                                                            <option value="Action1" >
+
+                                                                @if (isset($values->data))
+                                                                @foreach($values->data as $)
+
+
+                                                            </option>
+                                                            {{-- <option value="Action2">Action 2</option>
                                                             <option value="Action3">Action 3</option>
-                                                            <option value="Action4">Action 4</option>
+                                                            <option value="Action4">Action 4</option> --}}
                                                         </select>
                                                     </div>
                                                 </div>

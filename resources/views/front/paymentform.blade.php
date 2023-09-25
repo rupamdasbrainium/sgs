@@ -87,18 +87,18 @@
 											</div>
 											<div class="sum_inp_cont">
 												<div class="sum_inp_left">
-													End of the contract
+													Begin of the contract
 												</div>
 												<div class="sum_inp_right">
-													{{ date("Y-m-d",strtotime($data['membership_details']->data->end)) }}
+													{{ date("Y-m-d",strtotime($data['membership_details']->data->begin)) }}
 												</div>
 											</div>
 											<div class="sum_inp_cont">
 												<div class="sum_inp_left">
-													Duration
+													End of the contract
 												</div>
 												<div class="sum_inp_right">
-													{{ date("Y-m-d",strtotime($data['membership_details']->data->duration_unit)) }}
+													{{ date("Y-m-d",strtotime($data['membership_details']->data->end)) }}
 												</div>
 											</div>
 											<div class="sum_inp_cont">
@@ -344,7 +344,7 @@
 														
 														<div class="memberships_nam radio">
 															<input type="radio" id="payment_opt3" name="radio-group_pay">
-															<label for="payment_opt3">Prepaid Account Card</label>
+															<label for="payment_opt3">Bank Account</label>
 														</div>
 														
 													</div>
