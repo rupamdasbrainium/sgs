@@ -60,6 +60,9 @@ class PaymentController extends Controller
         if (Session::has('reference_Code')){
             $uri .= "&reference_Code=".Session::get('reference_Code');
         }
+        if (Session::has('subscription_plan')){
+            $uri .= "&subscription_plan=".Session::get('subscription_plan');
+        }
         if (Session::has('add_on')){
             $add_ons = Session::get('add_on');
             foreach($add_ons as $ad_on_id){
@@ -81,12 +84,14 @@ class PaymentController extends Controller
     }
 
     public function paymentSave(Request $request) {
-       
+    //    dd($request->radio_group_pay);
+      if($request->radio_group_pay=="bank_acc"){
+// dd($request);
         $formdata = array();
         $formdata['transit_number'] = $request->transit_number;
         $formdata['institution'] = $request->institution;
         $formdata['account_number'] = $request->account_number;
-        $formdata['owner_name'] = $request->owner_name;
+        $formdata['owner_name'] = $request->owner_names;
         if (Session::has('franchise_id')){
             $formdata['franchise_id'] = Session::get('franchise_id');
         }
@@ -149,4 +154,50 @@ class PaymentController extends Controller
 
         return $data;
     }
+    else{
+
+        $formdata = array();
+        $formdata['four_digits_number'] = $request->four_digits_number;
+        $formdata['expire_year'] = $request->expire_year;
+        $formdata['expire_month'] = $request->expire_month;
+        $formdata['owner_name'] = $request->owner_name;
+        $formdata['token'] = $request->token;
+        if (Session::has('franchise_id')){
+            $formdata['franchise_id'] = Session::get('franchise_id');
+        
+
+        $pay_method_accc = APICall('PaymentMethods/card', "post",json_encode($formdata), 'client_app');
+        $data['pay_method_accc'] = json_decode($pay_method_accc);
+
+        $get_methode_accc = APICall('PaymentMethods/accounts?clients='.$data['pay_methode_accc']->data->client_id, "get","{}", "client_app");
+        $data['get_methode_accc'] = json_decode($get_methode_accc);
+
+        $membershipdata = array();
+        $membershipdata['subscription_plan_id'] = $request->subscription_plan_id;
+        if (Session::has('duration_id')){
+            $membershipdata['duration_id'] = Session::get('duration_id');
+        }
+        if (Session::has('installment_id')){
+            $membershipdata['installment_id'] = Session::get('installment_id');
+        }
+        $membershipdata['date_begin'] = $request->date_begin;
+        if (Session::has('franchise_id')){
+            $membershipdata['franchise_id'] = Session::get('franchise_id');
+        }
+        if (Session::has('add_on')){
+            $add_ons = Session::get('add_on');
+            foreach($add_ons as $ad_on_id){
+                $membershipdata['lstOptions'][] = $ad_on_id;
+            }
+        }
+        $membershipdata['code_promo'] = $request->code_promo;
+        $membershipdata['account_id'] = $data['get_methode_accc']->data[0]->id;
+
+        $membership_with_credit_card = APICall('Memberships/with-credit-card', "post",json_encode($membershipdata), "client_app");
+        $data['membership_with_credit_card'] = json_decode($membership_with_credit_card);
+
+    }
+    return $data;
+}
+}
 }

@@ -142,6 +142,7 @@ class SuscriptionController extends Controller
     }
 
     function new_membership_save(Request $request, $id){
+      dd($)
       // return $request->add_on;
       if (Session::has('add_on')) {
         Session::forget('add_on');
