@@ -17,8 +17,7 @@ class VerifyWebTokenMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $token = getWabToken();
-        dd($token);
+        $token = getClientToken();
         if($token == "unauthorised"){
             return redirect()->route('login');
         }

@@ -47,19 +47,22 @@ class LoginRequest extends FormRequest
         $this->ensureIsNotRateLimited();
         $credential = $this->only('user', 'password');
         $resposne = APICall("Users/login_client","post", json_encode($credential));
-        // dd($resposne);
         $data = json_decode($resposne);
 
-        if (!property_exists($data,"token")) {
+
+        if(gettype($data)=="object" && property_exists($data,"token")){
+            saveWabToken($data->token);
+            saveClientToken($data->token);
+            RateLimiter::clear($this->throttleKey());
+            return;
+        }
+        else{
             RateLimiter::hit($this->throttleKey());
             throw ValidationException::withMessages([
                 'user' => trans('auth.failed'),
             ]);
-
         }
-        saveWabToken($data->token);
-        saveClientToken($data->token);
-        RateLimiter::clear($this->throttleKey());
+
     }
 
     /**

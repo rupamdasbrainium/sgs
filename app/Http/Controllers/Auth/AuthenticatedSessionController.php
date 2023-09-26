@@ -35,7 +35,8 @@ class AuthenticatedSessionController extends Controller
             $request->session()->regenerate();
             return redirect()->intended(RouteServiceProvider::HOME);
         }catch(Exception $e){
-            return redirect()->route('login')->with('user', $e->getMessage());
+          
+            return redirect()->route('login')->with('user', trans('auth.failed'));
         }
 
     }
