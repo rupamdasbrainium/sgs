@@ -43,16 +43,25 @@
 										<div class="inp_cont_view noicon_opt adbg">
 											<input type="text" class="form-control" name="civic_number" placeholder="246" value="{{ $client->adress->civic_number }}" >
 										</div>
+                                        @if ($errors->has('civic_number'))
+					                        <div class="text-danger mt-3">{{ $errors->first('civic_number') }}</div>
+					                    @endif
 									</div>
 									<div class="form-group">
 										<div class="inp_cont_view noicon_opt adbg">
 											<input type="text" class="form-control" name="street" placeholder="st-jacques "  value="{{ $client->adress->street }}">
 										</div>
+                                        @if ($errors->has('street'))
+                                            <div class="text-danger mt-3">{{ $errors->first('street') }}</div>
+                                        @endif
 									</div>
 									<div class="form-group">
 										<div class="inp_cont_view noicon_opt adbg">
 											<input type="text" class="form-control" name="appartment" placeholder="App" value="{{ $client->adress->appartment }}" >
 										</div>
+                                        @if ($errors->has('appartment'))
+                                            <div class="text-danger mt-3">{{ $errors->first('appartment') }}</div>
+                                        @endif
 									</div>
 								</div>
 								<div class="inp_row gapadj inp_colm3">
@@ -60,12 +69,19 @@
 										<div class="inp_cont_view noicon_opt adbg">
 											<input type="text" class="form-control" name="city" placeholder="saint-jean" value="{{ $client->adress->city }}" >
 										</div>
+                                        @if ($errors->has('city'))
+                                            <div class="text-danger mt-3">{{ $errors->first('city') }}</div>
+                                        @endif
+
 									</div>
 									<div class="form-group">
 										<div class="inp_cont_view noicon_opt adbg">
 											<input type="text" class="form-control" name="postal_code"	 placeholder="1j2 j4j"  value="{{ $client->adress->postal_code }}">
 											<p>Example: j3B 8k7</p>
 										</div>
+                                        @if ($errors->has('postal_code'))
+                                            <div class="text-danger mt-3">{{ $errors->first('postal_code') }}</div>
+                                        @endif
 									</div>
 									<div class="form-group">
 										<div class="inp_cont_view noicon_opt">
@@ -82,6 +98,9 @@
 												</div>
 											</div>
 										</div>
+                                        @if ($errors->has('province_id'))
+                                        <div class="text-danger mt-3">{{ $errors->first('province_id') }}</div>
+                                    @endif
 									</div>
 								</div>
 								<div class="inp_row gapadj inp_colm2">

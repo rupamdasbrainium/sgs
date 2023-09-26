@@ -74,7 +74,7 @@ class AccountController extends Controller
 
                 ]);
                 if($validator->fails()){
-                    return back()->with('error', $validator->getMessageBag()->all());
+                    return back()->with('errors', $validator->messages());
                 }
                 $address = [
                     "civic_number"=>$request->civic_number,
