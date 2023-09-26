@@ -140,7 +140,7 @@
 										</div>
 									</div>
 									<div class="form-group">
-
+                                        <input type="hidden" name="franchise_name" value="{{ $client->franchise_name }}">
 									</div>
 								</div>
 

@@ -76,8 +76,46 @@ class AccountController extends Controller
                 if($validator->fails()){
                     return back()->with('error', $validator->getMessageBag()->all());
                 }
+                $address = [
+                    "civic_number"=>$request->civic_number,
+                    "street"=>$request->street,
+                    "appartment" => $request->appartment,
+                    "city" => $request->city,
+                    "postal_code"=>$request->postal_code,
+                    "province_id"=> $request->province_id,
+
+                ];
+                $franchises = APICall('Francises',"get","{}");
+                $franchises = json_decode($franchises);
+                $franchise_id = 0;
+                foreach($franchises as $fr){
+                    if($fr->name == $request->franchise_name){
+                        $franchise_id = $fr->id;
+                    }
+                }
+                $data = [
+                    "firstname"=>$request->firstname,
+                    "lastname"=>$request->lastname,
+                    "is_male"=>$request->is_male,
+                    "adress"=>json_encode($address),
+                    "phone"=>$request->phone,
+                    "cellphone"=>$request->cellphone,
+                    "emergency_phone"=>$request->emergency_phone,
+                    "emergency_contact"=>$request->emergency_contact
+
+
+                ];
+
+                $response = APICall("Clients/".$franchise_id, "put", json_encode($data));
+                $response = json_decode($response);
+                if(!$response->error){
+                    return redirect()->route('myContactInformation')->with('success', "Contact information updated successfully");
+                }else{
+                    return redirect()->route('myContactInformation')->with('failed', "Contact information updated failed");
+                }
+
             } catch (\Throwable $th) {
-                //throw $th;
+               return redirect()->route('myContactInformation')->with('failed', $th->getMessage());
             }
     }
 
