@@ -52,6 +52,7 @@
 										<img src="{{ asset('public/images/worldmap.svg') }}" alt="">
 									</div>
 									@php
+									$locale = "en";
 										if(session()->has('locale')){
 											$locale = session()->get('locale');
         								}
