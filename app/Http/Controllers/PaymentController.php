@@ -5,12 +5,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\App;
 
 class PaymentController extends Controller
 {
     public function payment() {
         $data = array();
         $data['title'] = 'Suscriptionn Form';
+      
         // return Date("Dd M Y H:i:s T");
 
         // //subscriptionplan type call
@@ -64,7 +66,8 @@ class PaymentController extends Controller
                 $uri .= "&lstOptions=".$ad_on_id;
             }
         }
-        $uri .=  "&display_language_id=2";
+        $uri .=  "&display_language_id=".getLocale();
+        
         // if(Session::has('token')){
         //     $token = Session::get('token');
         // }

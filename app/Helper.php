@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
 
 if (!function_exists('getConfigurationValue')) {
   function getConfigurationValue ($data) {
@@ -378,5 +379,16 @@ function getClientToken() {
     // return redirect()->route('login');
   }
  }
+
+function getLocale(){
+  $locale = App::currentLocale();
+  // dd($locale);
+  if($locale == 'en'){
+      $language = 2;
+  } else {        
+      $language = 1;
+  }
+  return $language;
+}
 
 ?>
