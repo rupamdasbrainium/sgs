@@ -21,11 +21,12 @@ require __DIR__.'/auth.php';
 /*Route::get('/', function () {
     return view('welcome');
 });*/
+
+
 Route::get('/greeting/{locale}', function ($locale) {
     if (! in_array($locale, ['en', 'fr'])) {
         abort(400);
     }
-
     App::setLocale($locale);
 
     //

@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+
 
 class HomeController extends Controller
 {
     public function index ($short_code) {
+//         $locale = App::currentLocale();
+//   dd($locale);
         $short_code = 'CentreDemo';
         $data = array();
         $data['title'] = 'Home';
@@ -46,6 +50,10 @@ class HomeController extends Controller
         $data['best_four_plan_details'] = $data_plan;
         $best_four_plan_details=$data_plan;
         // dd($best_four_plan_details);
+
+
+        // $language = APICall("/Options/languages", "get","{}");
+        // $data['language'] = json_decode($language);
 
         return view('front.home', compact('data','best_four_plan_details','franchise_id'));
 

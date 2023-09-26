@@ -3,16 +3,17 @@
 @include('header')
 <section class="maincontent_wrap inner_pageouter">
 	<div class="inner_page_wrap">
-		@include('layouts.sidebar')		
+		@include('layouts.sidebar')
 		<div class="inner_page_des">
 			<div class="content_block accountinfo">
 				<div class="blocktitle">
 					<h2>My Account</h2>
-					<h3 class="subtitle">Nancy Boudreault</h3>
+					<h3 class="subtitle">{{ $client->firstname ." ". $client->lastname }}</h3>
 					<p><span>My Gym: Gym Prafick</span></p>
+
 					<div class="account_des">
 						<span class="acc_des_title">My Address: </span>
-						<span class="acc_des_info">246st-iccauses,saint-iean.9.1j2 j4j </span>
+						<span class="acc_des_info">{{ getAddress($client->adress) }} </span>
 						<span class="accountedit"><a href="#">Edit</a> </span>
 					</div>
 					<div class="account_leng">
@@ -39,13 +40,13 @@
 						</div>
 					</div>
 				</div>
-				
+
 			</div>
-			
+
 			<div class="content_block memberships">
 				<h2>Memberships</h2>
 				<div class="memberships_content">
-					
+
 					<div class="memberships_opt">
 						<div class="memberships_nam">Act1 Membership - davable $39.99 per Month</div>
 						<div class="memberships_method_view">
@@ -94,12 +95,12 @@
 					</div>
 				</div>
 			</div>
-			
+
 		</div>
-		
-		
+
+
 	</div>
-	
+
 </section>
 @include('footer')
 </x-app-layout>

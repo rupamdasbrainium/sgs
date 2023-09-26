@@ -12,7 +12,7 @@ class PaymentController extends Controller
     public function payment() {
         $data = array();
         $data['title'] = 'Suscriptionn Form';
-      
+
         // return Date("Dd M Y H:i:s T");
 
         // //subscriptionplan type call
@@ -67,7 +67,7 @@ class PaymentController extends Controller
             }
         }
         $uri .=  "&display_language_id=".getLocale();
-        
+
         // if(Session::has('token')){
         //     $token = Session::get('token');
         // }
@@ -81,7 +81,7 @@ class PaymentController extends Controller
     }
 
     public function paymentSave(Request $request) {
-       
+
         $formdata = array();
         $formdata['transit_number'] = $request->transit_number;
         $formdata['institution'] = $request->institution;
@@ -90,7 +90,7 @@ class PaymentController extends Controller
         if (Session::has('franchise_id')){
             $formdata['franchise_id'] = Session::get('franchise_id');
         }
-       
+
         // $pay_methode_acc = APICall('PaymentMethods/account', "post",json_encode($formdata));
         // $data['pay_methode_acc'] = json_decode($pay_methode_acc);
 
@@ -101,13 +101,13 @@ class PaymentController extends Controller
         // if(Session::has('token')){
         //     $token = Session::get('token');
         // }
-       
+
         $pay_methode_acc = APICall('PaymentMethods/account', "post",json_encode($formdata), 'client_app');
         $data['pay_methode_acc'] = json_decode($pay_methode_acc);
 
         $get_methode_acc = APICall('PaymentMethods/accounts?clients='.$data['pay_methode_acc']->data->client_id, "get","{}", "client_app");
         $data['get_methode_acc'] = json_decode($get_methode_acc);
-        
+
 
         //membership with bank account
         $membershipdata = array();
@@ -118,7 +118,10 @@ class PaymentController extends Controller
         if (Session::has('installment_id')){
             $membershipdata['installment_id'] = Session::get('installment_id');
         }
-        $membershipdata['date_begin'] = $request->date_begin;
+
+        $membershipdata['date_begin']  = $request->date_begin;
+
+
         if (Session::has('franchise_id')){
             $membershipdata['franchise_id'] = Session::get('franchise_id');
         }
@@ -143,6 +146,7 @@ class PaymentController extends Controller
         //     // "code_promo": "string",
         //     "account_id": 0//nf
         //   }
+     
 
         $membership_with_bnk_acc = APICall('Memberships/with-bank-account', "post",json_encode($membershipdata), "client_app");
         $data['membership_with_bnk_acc'] = json_decode($membership_with_bnk_acc);

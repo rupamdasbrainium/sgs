@@ -31,7 +31,7 @@ class LoginRequest extends FormRequest
         return [
             'user' => ['required', 'string'],
             'password' => ['required', 'string'],
-            'captcha' => ['required','captcha'],
+            'captcha' => ['required', 'captcha'],
         ];
     }
 
@@ -46,23 +46,20 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
         $credential = $this->only('user', 'password');
-        $resposne = APICall("Users/login_client","post", json_encode($credential));
+        $resposne = APICall("Users/login_client", "post", json_encode($credential));
         $data = json_decode($resposne);
 
-
-        if(gettype($data)=="object" && property_exists($data,"token")){
+        if (gettype($data) == "object" && property_exists($data, "token")) {
             saveWabToken($data->token);
             saveClientToken($data->token);
             RateLimiter::clear($this->throttleKey());
             return;
-        }
-        else{
+        } else {
             RateLimiter::hit($this->throttleKey());
             throw ValidationException::withMessages([
                 'user' => trans('auth.failed'),
             ]);
         }
-
     }
 
     /**
@@ -74,7 +71,7 @@ class LoginRequest extends FormRequest
      */
     public function ensureIsNotRateLimited()
     {
-        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+        if (!RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
             return;
         }
 
@@ -97,6 +94,6 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey()
     {
-        return Str::lower($this->input('email')).'|'.$this->ip();
+        return Str::lower($this->input('email')) . '|' . $this->ip();
     }
 }

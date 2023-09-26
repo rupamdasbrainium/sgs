@@ -10,7 +10,13 @@ class AccountController extends Controller
     public function account () {
         $data = array();
         $data['title'] = 'My Account';
-        return view('front.account', compact('data'));
+        $client = APICall("Clients",'get',"{}");
+        if(!$client){
+            return redirect()->route('login')->with('email', "Your login token has been expired");
+
+        }
+        $client = json_decode($client)->data;
+        return view('front.account', compact('data','client'));
     }
 
     public function changeLanguage () {
@@ -34,7 +40,15 @@ class AccountController extends Controller
     public function myContactInformation () {
         $data = array();
         $data['title'] = 'My Contact Information';
-        return view('front.mycontactinformation', compact('data'));
+        $client = APICall("Clients", "get","{}");
+        if(!$client){
+            return redirect()->route('login')->with('email',"Your login token has been expired");
+        }
+        $client = json_decode($client)->data;
+        $province = APICall('Options/ProvincesAndStates', "get", "{}");
+
+        $province = json_decode($province);
+        return view('front.mycontactinformation', compact('data','client','province'));
     }
 
     public function myBankCards () {
@@ -42,7 +56,7 @@ class AccountController extends Controller
         $data['title'] = 'My Credit Card/Bank Account';
         return view('front.mybankcards', compact('data'));
     }
-    
+
     public function payMyOutstandingBalance () {
         $data = array();
         $data['title'] = 'Pay My Outstanding Balance';

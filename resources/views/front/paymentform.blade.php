@@ -10,16 +10,16 @@
 							<div class="round_opt_btn3 ">
 								<img src="images/roundopt2.jpg" alt="">
 							</div>
-							
+
 							<h2>Payment</h2>
 						</div>
 						<div class="fromdes_info user_contentblock">
 							<div class="sidebar_content">
 								<div class="sidebar_info">
-									<p>Center: 
+									<p>Center:
 										{{-- @dd($data['membership_details']); --}}
 										<span>{{ $data['membership_details']->data->franchise}}</span></p>
-									{{-- <p>Address: 
+									{{-- <p>Address:
 										<span>{{ $data['franchise']->address_civic_number}} {{ $data['franchise']->address_street}} {{ $data['franchise']->address_city }} {{ $data['franchise']->address_postal_code }}</span> --}}
 								</p>
 								<p>Package: <span>
@@ -39,12 +39,12 @@
 										<div class="form-group">
 											<label for="promocode">Promo/Reward Code </label>
 											<div class="inp_cont_view noicon_opt">
-												
+
 												<input type="text" class="form-control" name="code_promo" id="promocode" placeholder="Promo/Reward Code " >
 											</div>
 										</div>
 									</div>
-									
+
 									<div class="summary_content">
 										<h3>Summary of your subscription</h3>
 										<div class="summary_cont_wrap">
@@ -53,7 +53,7 @@
 													Center
 												</div>
 												<div class="sum_inp_right">
-													
+
 													{{-- {{ $data['franchise']->name}} --}}
 													{{ $data['membership_details']->data->franchise}}
 												</div>
@@ -69,7 +69,7 @@
 													{{ $data['membership_details']->data->subscriptionPlan}}
 												</div>
 											</div>
-											
+
 											<div class="sum_inp_cont">
 												<div class="sum_inp_left">
 													Package
@@ -92,6 +92,7 @@
 												</div>
 												<div class="sum_inp_right">
 													{{ date("Y-m-d",strtotime($data['membership_details']->data->begin)) }}
+
 												</div>
 											</div>
 											<div class="sum_inp_cont">
@@ -118,10 +119,10 @@
 													Option1, Option3
 												</div>
 											</div>
-											
+
 										</div>
 									</div>
-									
+
 									<div class="summary_content">
 										<h3>The period of validity of the contract is of fixed duration</h3>
 										<div class="summary_cont_wrap">
@@ -146,7 +147,7 @@
 													@endif --}}option1,Option3
 												</div>
 											</div>
-											
+
 											<div class="sum_inp_cont">
 												<div class="sum_inp_left">
 													Duration
@@ -155,10 +156,10 @@
 													{{ $data['membership_details']->data->duration_unit }}
 												</div>
 											</div>
-											
+
 										</div>
 									</div>
-									
+
 									<div class="summary_content">
 										<h3>1st Payment (1x)</h3>
 										<div class="summary_cont_wrap">
@@ -223,7 +224,7 @@
 													3.99$
 												</div>
 											</div> --}}
-											
+
 											<div class="sum_inp_cont">
 												<div class="sum_inp_left">
 													Total
@@ -232,13 +233,13 @@
 													{{ $total }}$
 												</div>
 											</div>
-											
-											
+
+
 										</div>
 									</div>
-									
+
 									<div class="summary_content">
-										
+
 										<div class="content_block paymentinfo">
 											<h2 class="head_opt">Payment Details</h2>
 											<div class="table_description_view oddoreven_opt oddoreven_opt2">
@@ -252,7 +253,7 @@
 														</tr>
 													</thead>
 													<tbody>
-														
+
 														<tr class="activeitem">
 															<td data-label="TYPE">
 																<div class="pay_view_opt">
@@ -327,43 +328,43 @@
 															<td data-label="PAYMENT">$45.32</td>
 															<td data-label="STATUS">Paid</td>
 														</tr>
-														
+
 													</tbody>
 												</table>
 											</div>
 										</div>
-										
+
 										<div class="content_block more_cont_view">
 											<h2>Method of Payment</h2>
 											<div class="checkout_optview payment_opt_details payment_opt2">
 												<div class="inp_row">
 													<div class="form-group">
-														
+
 														<div class="memberships_nam radio">
 															<input type="radio" id="div1" name="radio-group_pay" class="radio1">
 															<label for="payment_opt1">Credit Card</label>
 														</div>
-														
+
 														<div class="memberships_nam radio">
 															<input type="radio" id="div2" name="radio-group_pay" class="radio2">
 															<label for="payment_opt2">Debit Card</label>
 														</div>
-														
+
 														<div class="memberships_nam radio">
 															<input type="radio" id="payment_opt3" name="radio-group_pay">
 															<label for="payment_opt3">Bank Account</label>
 														</div>
-														
+
 													</div>
-													
-													
+
+
 												</div>
 											</div>
 										</div>
 									</div>
-									
+
 									<div class="from_contentblock">
-										
+
 										<div class="inp_row">
 											<div class="form-group">
 												<label>Direct Debit</label>
@@ -372,20 +373,20 @@
 												</div>
 											</div>
 										</div>
-										
+
 										<div class="inp_row">
 											<div class="form-group">
 												<label >Transit Number <em class="req_text">*</em></label>
 												<div class="inp_cont_view noicon_opt" id="incdec">
-													
+
 													<input type="text" name="transit_number" class="form-control" placeholder="" value="0"  >
 													<i class="fas fa-sort-up" id="up" ></i>
 													<i class="fas fa-sort-down" id="down" ></i>
-													
+
 												</div>
 											</div>
 										</div>
-										
+
 										<div class="inp_row">
 											<div class="form-group">
 												<label>Branch Number <em class="req_text">*</em></label>
@@ -402,7 +403,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 										<div class="inp_row">
 											<div class="form-group">
 												<label>Account Name Holder <em class="req_text">*</em></label>
@@ -414,57 +415,57 @@
 										{{-- @dd( $data['membership_details']); --}}
 										<input type="hidden" name="subscription_plan_id" value="{{ $data['membership_details']->data->subscriptionPlan_id }}">
 										<input type="hidden" name="duration_id" value="{{ Session::get('duration_id')}}">
-										
+                                        <input type="hidden" name="date_begin" value="{{ $data['membership_details']->data->begin }}">
 										{{-- <input type="hidden" name="subscription_plan_id" value="{{ $data['membership_details']->data->subscriptionPlan_id }}">
 										<input type="hidden" name="subscription_plan_id" value="{{ $data['membership_details']->data->subscriptionPlan_id }}"> --}}
 									</div>
-									
-									
+
+
 									<div class="checkbox_block">
 										<div class="inp_row remember_opt">
 											<div class="form-group">
 												<div class="checkbox">
 													<!-- <label><input type="checkbox"> Remember me</label> -->
-													
+
 													<input class="styled-checkbox" type="checkbox" value="value2">
 													<label >I have read an accept  <a href="#">the terms & conditions</a></label>
 												</div>
-												
+
 											</div>
-											
+
 											<div class="form-group">
 												<div class="checkbox">
 													<!-- <label><input type="checkbox"> Remember me</label> -->
-													
+
 													<input class="styled-checkbox" type="checkbox" value="value2">
 													<label >I have read an accept  <a href="#">the suitability for physical activity form</a></label>
 												</div>
-												
+
 											</div>
 										</div>
-										
+
 									</div>
-									
+
 									<div class="frombtn_wrap">
 										<div class="def_btnopt2 frombtn">
 											<button type="submit" class="btn2" >Sign up!</button>
 											<button type="button" class="btn2 backbutton" >Back</button>
 										</div>
 									</div>
-									
+
 								</div>
 							</div>
 							</form>
-							
+
 						</div>
-						
+
 					</div>
-					
-					
+
+
 				</div>
 			</div>
 		</div>
-		
+
 	</div>
 	<div class="round_opt_btn rount_opt1">
 		<img src="images/roundopt2.jpg" alt="">
