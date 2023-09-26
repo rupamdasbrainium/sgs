@@ -112,8 +112,8 @@
 								<div class="inp_row gapadj inp_colm2">
                                     <div class="form-group">
 										<div class="inp_cont_view noicon_opt">
+											<input type="text" class="form-control" name="emergency_contact" placeholder="Emergency contact"  value="{{ $client->emergency_contact }}">
 
-											<input type="text"  name="emergency_contact" value="{{$client->emergency_contact}}" placeholder="Emergency Contact" id="" class="form-control" placeholder="Date of birth *" required>
 										</div>
 									</div>
 									<div class="form-group">
