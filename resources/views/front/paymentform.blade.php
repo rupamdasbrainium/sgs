@@ -379,8 +379,8 @@
                                                         <div class="form-group">
                                                             <label>Direct Debit</label>
                                                             <div class="card_add">
-                                                                <input name="payCard" value="payCard"
-                                                                    type="hidden" />
+                                                                {{-- <input name="payCard" value="payCard"
+                                                                    type="hidden" /> --}}
                                                                 <img src="images/voided.png" alt="" />
                                                             </div>
                                                         </div>
@@ -433,7 +433,19 @@
                                                 </div>
 
                                                 <div id="credit_details">
-                                                    <input name="paydeb" value="creditCard" type="hidden" />
+													<div class="selectcont ">
+														
+														<div class="arrowdown2">
+                                                            <i class="far fa-chevron-down"></i>
+                                                        </div>
+													<select class="select_opt" name="type_id">
+														@foreach( $data['card_types'] as $cardtype)
+														<option value="{{$cardtype->id}}">{{$cardtype->name}}</option>
+														@endforeach
+													</select>
+													
+													</div><br>
+                                                    {{-- <input name="paydeb" value="creditCard" type="hidden" /> --}}
                                                     <div class="inp_row">
                                                         <div class="form-group">
                                                             <label>Account Name Holder <em
@@ -494,6 +506,10 @@
                                                 value="{{ $data['membership_details']->data->subscriptionPlan_id }}">
                                             <input type="hidden" name="duration_id"
                                                 value="{{ Session::get('duration_id') }}">
+												<input type="hidden" name="date_begin"
+                                                value="{{ $data['membership_details']->data->begin }}">
+												<input type="hidden" name="processed_amount"
+                                                value="{{ $total }}">
 
                                             <div class="checkbox_block">
                                                 <div class="inp_row remember_opt">
@@ -501,9 +517,9 @@
                                                         <div class="checkbox">
                                                             <!-- <label><input type="checkbox"> Remember me</label> -->
 
-                                                            <input class="styled-checkbox" type="checkbox"
-                                                                value="value2">
-                                                            <label>I have read an accept <a href="#">the terms &
+                                                            <input class="styled-checkbox" type="checkbox" name="check1" id="checkbox1"
+                                                                value="value1">
+                                                            <label for="checkbox1">I have read an accept <a href="#">the terms &
                                                                     conditions</a></label>
                                                         </div>
 
@@ -513,9 +529,9 @@
                                                         <div class="checkbox">
                                                             <!-- <label><input type="checkbox"> Remember me</label> -->
 
-                                                            <input class="styled-checkbox" type="checkbox"
+                                                            <input class="styled-checkbox" type="checkbox" name="check2" id="checkbox2"
                                                                 value="value2">
-                                                            <label>I have read an accept <a href="#">the
+                                                            <label for="checkbox2">I have read an accept <a href="#">the
                                                                     suitability for physical activity form</a></label>
                                                         </div>
 
@@ -526,7 +542,7 @@
 
                                             <div class="frombtn_wrap">
                                                 <div class="def_btnopt2 frombtn">
-                                                    <button type="submit" class="btn2">Sign up!</button>
+                                                    <button type="submit" class="btn2" id="myButton" disabled>Sign up!</button>
                                                     <button type="button" class="btn2 backbutton">Back</button>
                                                 </div>
                                             </div>
@@ -640,5 +656,38 @@
             }
         }
     </script>
+	{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script> --}}
+	{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+		
+<script>
+
+        $("input[type='checkbox']").on("click", function(){
+            if($("#checkbox1").is(':checked')){
+                $("#myButton").prop("disabled", false);
+            }else{
+                $("#myButton").prop("disabled", true);
+            }
+        });
+
+
+        // $('#checkbox1').on('click', function () {
+        //     $('#update').prop('disabled', true);
+        // }
+        // );
+        // $('#checkbox1').on('dblclick', function () {
+        //     $('#update').prop('disabled', false);
+        // });
+
+
+
+// $('#checkbox1').click(function() {
+// 	if ($(this).is(':checked')) {
+// 		$('#id_of_your_button').attr('disabled', 'disabled');
+// 	} else {
+// 		$('#id_of_your_button').removeAttr('disabled');
+// 	}
+// });
+</script>
 
 </x-guest-layout>
