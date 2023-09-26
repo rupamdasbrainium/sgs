@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CMSController;
 use App\Http\Controllers\Admin\LoginController as AdminLoginController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\App;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,30 @@ require __DIR__.'/auth.php';
 /*Route::get('/', function () {
     return view('welcome');
 });*/
+
+
+
+Route::get('/greeting/{locale}', function ($locale) {
+    if (! in_array($locale, ['en', 'fr'])) {
+        abort(400);
+    }
+
+    App::setLocale($locale);
+
+    //
+});
+
+use Illuminate\Support\Facades\App;
+
+Route::get('/greeting/{locale}', function ($locale) {
+    if (! in_array($locale, ['en', 'fr'])) {
+        abort(400);
+    }
+
+    App::setLocale($locale);
+
+    //
+});
 
 // Route::get('/',[HomeController::class,'index'])->name('homepage');
 // Route::get('suscription-form', 'SuscriptionController@suscriptionform')->name('suscriptionform');

@@ -63,7 +63,9 @@
                                             <select class="select_opts" id="franchises_name">
                                                 @isset($data['franchises'])
                                                     @foreach ($data['franchises']->data as $franchise)
-                                                    <option value="{{ $franchise->id }}" {{ $franchise->id==$franchise_id? 'selected="selected"':'disabled="disabled"' }}>{{ $franchise->name }}</option>
+                                                        <option value="{{ $franchise->id }}"
+                                                            {{ $franchise->id == $franchise_id ? 'selected="selected"' : 'disabled="disabled"' }}>
+                                                            {{ $franchise->name }}</option>
                                                     @endforeach
                                                 @endisset
                                             </select>
@@ -75,7 +77,8 @@
                                             <select class="select_opts" id="franchises_address">
                                                 @isset($data['franchises'])
                                                     @foreach ($data['franchises']->data as $franchise)
-                                                        <option value="{{ $franchise->address_province_id }}" {{ $franchise->id==$franchise_id? "selected":"disabled" }}>
+                                                        <option value="{{ $franchise->address_province_id }}"
+                                                            {{ $franchise->id == $franchise_id ? 'selected' : 'disabled' }}>
                                                             {{ $franchise->address_civic_number }}{{ $franchise->address_street }}{{ $franchise->address_city }}
                                                         </option>
                                                     @endforeach
@@ -102,6 +105,7 @@
 
                                 </div>
                                 <div class="prod_item_wrap" id="home_prod_item">
+
                                     {{-- @dd($data['best_four_plan_details']) --}}
                                     @foreach ($data['best_four_plan_details'] as $values)
                                         <div class="prod_item">
@@ -109,19 +113,19 @@
 
                                                 <div class="action_text">
 
-                                                    <!-- Action 1
-           <div class="arrowdown">
-             <i class="far fa-chevron-down"></i>
-           </div> -->
                                                     <div class="selectcont ">
                                                         <div class="arrowdown2">
-                                                            <i class="far fa-chevron-down"></i>
+                                                            {{-- <i class="far fa-chevron-down"></i> --}}
                                                         </div>
                                                         <select class="select_opt">
-                                                            <option value="Action1" selected>Action 1</option>
-                                                            <option value="Action2">Action 2</option>
+                                                            <option value="{{$values->data->id}}">
+
+                                                                {{ $values->data->name }}
+
+                                                            </option>
+                                                            {{-- <option value="Action2">Action 2</option>
                                                             <option value="Action3">Action 3</option>
-                                                            <option value="Action4">Action 4</option>
+                                                            <option value="Action4">Action 4</option> --}}
                                                         </select>
                                                     </div>
                                                 </div>
@@ -132,18 +136,15 @@
                                                     @if (isset($values->data))
                                                         @if (count($values->data->prices_per_durations))
                                                             @foreach ($values->data->prices_per_durations as $val)
-                                                                
                                                                 ${{ $val->price_initial }}<span>/
                                                                     {{ $val->duration_unit_display }}</span>
                                                                 @php
-																 break;
+                                                                    break;
                                                                 @endphp
-                                                                
                                                             @endforeach
-															@else
-															$0
+                                                        @else
+                                                            $0
                                                         @endif
-														
                                                     @endif
                                                 </div>
                                                 <p>per user/month,billed annually</p>
@@ -387,18 +388,18 @@
     </script>
     <style>
         select.select_opts {
-  border: 0px !important;
-  outline: 0px !important;
-  box-shadow: 0px 0px 0px transparent !important;
-}
+            border: 0px !important;
+            outline: 0px !important;
+            box-shadow: 0px 0px 0px transparent !important;
+        }
 
-select.select_opts {
-  width: 100%;
-  border: 0px;
-  padding: 15px;
-  background: #ddf8f1;
-  border-radius: 10px 10px 10px 0;
-  appearance: none;
-}
+        select.select_opts {
+            width: 100%;
+            border: 0px;
+            padding: 15px;
+            background: #ddf8f1;
+            border-radius: 10px 10px 10px 0;
+            appearance: none;
+        }
     </style>
 @endpush

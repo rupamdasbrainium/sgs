@@ -1,7 +1,8 @@
 <?php
-
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
 
 if (!function_exists('getConfigurationValue')) {
   function getConfigurationValue ($data) {
@@ -352,13 +353,13 @@ function webAppLoginToken() {
 
 //save web token
 function saveWabToken($token) {
-  Cookie::make('webToken', $token, 60);
+  Session::put('webToken', $token);
 }
 
 //get web token
 function getWabToken() {
- if(Cookie::has('webToken')){
-   return Cookie::get('webToken');
+ if(Session::has('webToken')){
+   return Session::get('webToken');
  }else{
   return webAppLoginToken();
  }
@@ -366,18 +367,29 @@ function getWabToken() {
 
 //save client token
 function saveClientToken($token) {
-  Cookie::make('clientToken', $token, 60);
+  Session::put('clientToken', $token);
 }
 
 //get client token
 function getClientToken() {
-  if(Cookie::has('webToken')){
-    return Cookie::get('clientToken');
+  if(Session::has('webToken')){
+    return Session::get('clientToken');
   }else{
   //  webAppLoginToken();
     return 'unauthorised';
     // return redirect()->route('login');
   }
  }
+
+function getLocale(){
+  $locale = App::currentLocale();
+  // dd($locale);
+  if($locale == 'en'){
+      $language = 2;
+  } else {
+      $language = 1;
+  }
+  return $language;
+}
 
 ?>

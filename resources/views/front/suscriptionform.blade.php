@@ -126,7 +126,7 @@
 								<div class="form-group">
 									<div class="inp_cont_view noicon_opt">
 										<input type="text"
-										name="emergency_contact" value="{{old('emergency_contact')}}" class="form-control" placeholder="emergency contact name*" >
+										name="emergency_contact" value="{{old('emergency_contact')}}" class="form-control" placeholder="Emergency Contact Name*" required>
 										
 									</div>
 								</div>
