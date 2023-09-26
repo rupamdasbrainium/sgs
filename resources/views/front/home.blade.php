@@ -100,7 +100,8 @@
                                         </div>
                                     </div>
                                     <div class="def_btnopt2">
-                                        <button type="button" class="btn2" id="home_continue">Continue</button>
+                                        {{-- <button type="button" class="btn2" id="home_continue">Continue</button> --}}
+                                        <button type="button" class="btn2" id="home_continue">{{ __('global.continue') }}</button>
                                     </div>
 
                                 </div>

@@ -265,7 +265,7 @@ function APICall($uri, $method, $data, $type='web_app'){
   $response = apiCallCurl($uri, $method, $data, $token);
   if($response == '401'){
     if($type=='web_app'){
-      $token = getWabToken();
+      $token = getWabToken('401');
       return apiCallCurl($uri, $method, $data, $token);
     }else{
       $token = getClientToken();
@@ -356,7 +356,10 @@ function saveWabToken($token) {
 }
 
 //get web token
-function getWabToken() {
+function getWabToken($code=200) {
+  if($code!=200){
+    return webAppLoginToken(); 
+  }
  if(Session::has('webToken')){
    return Session::get('webToken');
  }else{

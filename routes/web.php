@@ -22,16 +22,24 @@ require __DIR__.'/auth.php';
 });*/
 
 use Illuminate\Support\Facades\App;
- 
-Route::get('/greeting/{locale}', function ($locale) {
-    if (! in_array($locale, ['en', 'fr'])) {
-        abort(400);
-    }
- 
-    App::setLocale($locale);
- 
-    //
+
+Route::get('language/{locale}', function ($locale) {
+    app()->setLocale($locale);
+    session()->put('locale', $locale);
+    return redirect()->back();
 });
+ 
+// Route::get('/greeting/{locale}', function ($locale) {
+//     if (! in_array($locale, ['en', 'fr'])) {
+//         abort(400);
+//     }
+ 
+//     App::setLocale($locale);
+//     $locale = App::currentLocale();
+//   dd($locale);
+//     return redirect()->back();
+//     //
+// });
 
 
 Route::get('/planType/{id}',[HomeController::class,'planType']);

@@ -51,9 +51,17 @@
 									<div class="cont_icon">
 										<img src="{{ asset('public/images/worldmap.svg') }}" alt="">
 									</div>
+									@php
+										if(session()->has('locale')){
+											$locale = session()->get('locale');
+        								}
+									@endphp
+
 									<div class="cont_leng">
-										<a href="javascript:;" class="active_leng">En</a>
-										<a href="javascript:;">Fr</a>
+										{{-- <a href="{{url('language/en')}}" class="active_leng">En</a>
+										<a href="{{url('language/fr')}}">Fr</a> --}}
+										<a href="{{url('language/en')}}" class="{{$locale=='en'? 'active_leng':''}}">En</a>
+										<a href="{{url('language/fr')}}" class="{{$locale=='fr'? 'active_leng':''}}">Fr</a>
 									</div>
 								</div>
 							</div>
