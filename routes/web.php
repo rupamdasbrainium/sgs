@@ -40,7 +40,7 @@ Route::middleware('guest')->group(function () {
     Route::get('forgot-password', 'HomeController@forgotPassword')->name('forgotpassword');
 });
 
-Route::group(['middleware'=>'auth'], function(){
+Route::group(['middleware'=>'verifyToken'], function(){
     // Route::get('/', 'HomeController@index')->name('homepage');
     Route::get('dashboard', 'HomeController@dashboard')->name('dashboard');
     Route::get('account', 'AccountController@account')->name('account');

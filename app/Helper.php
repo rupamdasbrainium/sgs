@@ -270,7 +270,7 @@ function APICall($uri, $method, $data, $type='web_app'){
     }else{
       $token = getClientToken();
       if($token == 'unauthorised'){
-        // return '401';
+        // return '401'
         return redirect()->route('login');
       }
       return apiCallCurl($uri, $method, $data, $token);

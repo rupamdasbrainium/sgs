@@ -31,23 +31,11 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request)
     {
         try{
-
-            $response = $request->authenticate();
-
-            dd($response);
-            // if($data->token){
-            //     // $request->session()->regenerate();
-            //     saveWabToken($data->token);
-            //     return redirect()->intended(RouteServiceProvider::HOME);
-            // }else{
-            //     throw ValidationException::withMessages([
-            //         'email' => trans('auth.failed'),
-            //     ]);
-            // }
-
-
+            $request->authenticate();
+            $request->session()->regenerate();
+            return redirect()->intended(RouteServiceProvider::HOME);
         }catch(Exception $e){
-            return redirect()->route('login');
+            return redirect()->route('login')->with('user', $e->getMessage());
         }
 
     }

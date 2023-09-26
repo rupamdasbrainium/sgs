@@ -52,8 +52,8 @@
 												<i class="fal fa-envelope"></i>
 											</div>
 											<input type="text" class="form-control" name="user" id="email" placeholder="jhon.deo@gmail.com" required>
-											@if ($errors->has('email'))
-					                        <div class="text-danger mt-3">{{ $errors->first('email') }}</div>
+											@if ($errors->has('user'))
+					                        <div class="text-danger mt-3">{{ $errors->first('user') }}</div>
 					                        @endif
 										</div>
 									</div>
