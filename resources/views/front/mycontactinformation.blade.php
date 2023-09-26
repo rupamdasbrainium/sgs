@@ -12,6 +12,9 @@
 				<div class="fromdes_view">
 					<div class="titleopt2">
 						<h3>Change Of Informations</h3>
+                        @if (Session::has('error'))
+
+                        @endif
 					</div>
 					<form action="{{ route('user.name') }}" method="POST">
 						@csrf
@@ -55,7 +58,7 @@
 								<div class="inp_row gapadj inp_colm3">
 									<div class="form-group">
 										<div class="inp_cont_view noicon_opt adbg">
-											<input type="text" class="form-control" name="city" placeholder="saint-jean" {{ $client->adress->city }} >
+											<input type="text" class="form-control" name="city" placeholder="saint-jean" value="{{ $client->adress->city }}" >
 										</div>
 									</div>
 									<div class="form-group">
@@ -84,7 +87,7 @@
 								<div class="inp_row gapadj inp_colm2">
 									<div class="form-group">
 										<div class="inp_cont_view noicon_opt adbg">
-											<input type="text" class="form-control" name="cellphone" placeholder="Phone Number *" value="{{ $client->phone }}">
+											<input type="text" class="form-control" name="phone" placeholder="Phone Number *" value="{{ $client->phone }}">
 											<p>Example: xxx xxx-xxxx</p>
 										</div>
 									</div>
@@ -140,10 +143,7 @@
 
 									</div>
 								</div>
-                                <input type="hidden" name="language_id" value="{{ $client->language_id }}" >
-                                <input type="hidden" name="occupation" value="{{ $client->occupation}}">
-                                <input type="hidden" name="nativeRef_number" value="{{ $client->nativeRef_number }}">
-                                <input type="hidden" name="driver_license" value="{{ $client->driver_license }}">
+
 								<div class="frombtn_wrap">
 									<div class="def_btnopt2 frombtn frombtn2">
 										<button type="submit" class="btn2" >Save</button>

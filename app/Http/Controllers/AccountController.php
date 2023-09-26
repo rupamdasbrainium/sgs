@@ -55,14 +55,11 @@ class AccountController extends Controller
     public function updateContactInformation(Request $request){
             try {
                 //code...
-                dd($request->all());
+
                 $validator = Validator::make($request->all(),[
                     'firstname'=>'required|string',
                     'lastname'=>'required|string',
                     'is_male'=>'required',
-                    'driver_license'=>'required',
-                    'occupation'=>'required',
-                    'nativeRef_number'=>"required",
                     "civic_number"=>'required|string',
                     "street"=>'required|string',
                     "appartment"=>'required|string',
@@ -73,9 +70,12 @@ class AccountController extends Controller
                     "cellphone" => "required|string",
                     "emergency_phone" => "required|string",
                     "emergency_contact" => "required|string",
-                    "language_id"=> 'required'
+
 
                 ]);
+                if($validator->fails()){
+                    return back()->with('error', $validator->getMessageBag()->all());
+                }
             } catch (\Throwable $th) {
                 //throw $th;
             }
