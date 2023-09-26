@@ -96,13 +96,14 @@
 							<div class="inp_row gapadj inp_colm2">
 								<div class="form-group">
 									<div class="inp_cont_view noicon_opt">
-										<input type="text" class="form-control" placeholder="Emergency Phone Number *" >
+										<input type="text" class="form-control" placeholder="Emergency Phone Number *"  value="{{ $client->emergency_phone }}">
 										<p>Example: xxx xxx-xxxx</p>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="inp_cont_view noicon_opt">
-										<input type="text" class="form-control" placeholder="26-11-1982" >
+
+										<input type="date" name="date_of_birth" value="{{date('d/m/Y',strtotime($client->date_of_birth))}}" id="datepicker" class="form-control" placeholder="Date of birth *" required>
 									</div>
 								</div>
 							</div>
@@ -119,8 +120,8 @@
 												</div>
 												<select class="select_opt" >
 													<option value="Select Gender " selected >Select Gender </option>
-													<option value="Select Gender " >Select Gender </option>
-													<option value="Select Gender "  >Select Gender </option>
+													<option value="Select Gender " >Male</option>
+													<option value="Select Gender "  >Female</option>
 													<option value="Select Gender "  >Select Gender </option>
 												</select>
 											</div>

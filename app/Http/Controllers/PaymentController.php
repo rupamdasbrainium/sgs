@@ -115,13 +115,11 @@ class PaymentController extends Controller
         if (Session::has('duration_id')){
             $membershipdata['duration_id'] = Session::get('duration_id');
         }
-        if (Session::has('installment_id')){
-            $membershipdata['installment_id'] = Session::get('installment_id');
+        if (Session::has('installments_id')){
+            $membershipdata['installment_id'] = Session::get('installments_id');
         }
 
         $membershipdata['date_begin']  = $request->date_begin;
-
-
         if (Session::has('franchise_id')){
             $membershipdata['franchise_id'] = Session::get('franchise_id');
         }
@@ -146,8 +144,6 @@ class PaymentController extends Controller
         //     // "code_promo": "string",
         //     "account_id": 0//nf
         //   }
-     
-
         $membership_with_bnk_acc = APICall('Memberships/with-bank-account', "post",json_encode($membershipdata), "client_app");
         $data['membership_with_bnk_acc'] = json_decode($membership_with_bnk_acc);
 
