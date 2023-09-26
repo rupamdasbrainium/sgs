@@ -72,7 +72,8 @@ class PaymentController extends Controller
         $membership_details = APICall($uri, "get","{}", 'client_app');
         $data['membership_details'] = json_decode($membership_details);
 
-
+        $subscription_plan = APICall("SubscriptionPlans/type", "get","{}");
+        $data['subscription_plan'] = json_decode($subscription_plan);
         return view('front.paymentform', compact('data'));
     }
 

@@ -17,7 +17,7 @@
 							<div class="sidebar_content">
 								<div class="sidebar_info">
 									<p>Center: 
-										
+										{{-- @dd($data['membership_details']); --}}
 										<span>{{ $data['membership_details']->data->franchise}}</span></p>
 									{{-- <p>Address: 
 										<span>{{ $data['franchise']->address_civic_number}} {{ $data['franchise']->address_street}} {{ $data['franchise']->address_city }} {{ $data['franchise']->address_postal_code }}</span> --}}
@@ -53,6 +53,7 @@
 													Center
 												</div>
 												<div class="sum_inp_right">
+													
 													{{-- {{ $data['franchise']->name}} --}}
 													{{ $data['membership_details']->data->franchise}}
 												</div>
@@ -87,18 +88,18 @@
 											</div>
 											<div class="sum_inp_cont">
 												<div class="sum_inp_left">
-													End of the contract
+													Begin of the contract
 												</div>
 												<div class="sum_inp_right">
-													{{ date("Y-m-d",strtotime($data['membership_details']->data->end)) }}
+													{{ date("Y-m-d",strtotime($data['membership_details']->data->begin)) }}
 												</div>
 											</div>
 											<div class="sum_inp_cont">
 												<div class="sum_inp_left">
-													Duration
+													End of the contract
 												</div>
 												<div class="sum_inp_right">
-													{{ date("Y-m-d",strtotime($data['membership_details']->data->duration_unit)) }}
+													{{ date("Y-m-d",strtotime($data['membership_details']->data->end)) }}
 												</div>
 											</div>
 											<div class="sum_inp_cont">
@@ -137,7 +138,12 @@
 													Membership Option(s)
 												</div>
 												<div class="sum_inp_right">
-													Option1, Option3
+													{{-- @dd($data['subscription_plan']); --}}
+														{{-- @if(isset($data['subscription_plan']) && isset($data['subscription_plan']->data))
+														@foreach( $data['subscription_plan']->data->options as $val)
+														{{$val->name}}
+														@endforeach
+													@endif --}}option1,Option3
 												</div>
 											</div>
 											
@@ -332,19 +338,20 @@
 											<div class="checkout_optview payment_opt_details payment_opt2">
 												<div class="inp_row">
 													<div class="form-group">
+														
 														<div class="memberships_nam radio">
-															<input type="radio" id="payment_opt1" name="radio-group_pay" checked>
+															<input type="radio" id="div1" name="radio-group_pay" class="radio1">
 															<label for="payment_opt1">Credit Card</label>
 														</div>
 														
 														<div class="memberships_nam radio">
-															<input type="radio" id="payment_opt2" name="radio-group_pay">
+															<input type="radio" id="div2" name="radio-group_pay" class="radio2">
 															<label for="payment_opt2">Debit Card</label>
 														</div>
 														
 														<div class="memberships_nam radio">
 															<input type="radio" id="payment_opt3" name="radio-group_pay">
-															<label for="payment_opt3">Prepaid Account Card</label>
+															<label for="payment_opt3">Bank Account</label>
 														</div>
 														
 													</div>
