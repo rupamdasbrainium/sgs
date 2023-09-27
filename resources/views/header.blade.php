@@ -32,19 +32,19 @@
 								</div>
 								<ul class="navbar-nav mr-auto">
 									<li class="nav-item active">
-										<a class="nav-link" href="javascript:;">Memberships</a>
+										<a class="nav-link" href="javascript:;">{{ __('header.memberships') }}</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="javascript:;">Find a gym</a>
+										<a class="nav-link" href="javascript:;">{{ __('header.gym') }}</a>
 									</li>
 									@if (Session::has('clientToken'))
 
 									<li class="nav-item">
-										<a class="nav-link" href="{{ route('logout') }}"> logout</a>
+										<a class="nav-link" href="{{ route('logout') }}"> {{ __('header.logout') }}</a>
 									</li>
 									@else
 									<li class="nav-item">
-										<a class="nav-link" href="{{ route('login') }}"> login</a>
+										<a class="nav-link" href="{{ route('login') }}"> {{ __('header.login') }}</a>
 									</li>
 									@endif
 								</ul>
@@ -53,7 +53,7 @@
 										<img src="{{ asset('public/images/worldmap.svg') }}" alt="">
 									</div>
 									@php
-									$locale = "en";
+									$locale =  app()->currentLocale();
 										if(session()->has('locale')){
 											$locale = session()->get('locale');
         								}
