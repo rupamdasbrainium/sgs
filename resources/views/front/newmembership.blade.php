@@ -17,15 +17,15 @@
 						<div class="sidebar_content">
 							<div class="sidebar_info">
 								<p>
-									Center: 
+									{{ __('newMembership.center') }}: 
 									<span>{{ $data['franchise']->name}}
 								</p>
 								<p>
-									Address: 
+									{{ __('newMembership.address') }}: 
 									<span>{{ $data['franchise']->address_civic_number}} {{ $data['franchise']->address_street}} {{ $data['franchise']->address_city }} {{ $data['franchise']->address_postal_code }}</span>
 								</p>
 								<p>
-									Package: 
+									{{ __('newMembership.package') }}: 
 									@if(isset($data['subscription_plan']) && isset($data['subscription_plan']->data))
 										{{ $data['subscription_plan']->data->name }}
 									@endif
@@ -38,7 +38,7 @@
 								@csrf
 								<div class="fromdes_info2">
 									<div class="content_block packge_des newsub_opt">
-										<h2>Memberships</h2>
+										<h2>{{ __('newMembership.memberships') }}</h2>
 										<div class="packge_wrap_opt prod_view">
 										
 											
@@ -46,7 +46,7 @@
 												@if(isset($data['subscription_plan']) && isset($data['subscription_plan']->data) && count($data['subscription_plan']->data->options))
 													@foreach ($data['subscription_plan']->data->options as $item)
 													<div class="optionitem_add">
-														<h3>Option {{ $loop->iteration }}</h3>
+														<h3>{{ __('newMembership.option') }} {{ $loop->iteration }}</h3>
 														<div class="optionitem_block">
 															<div class="opt_add">
 																<img src="images/prod_img1.png" alt="">
@@ -55,9 +55,9 @@
 																<p>{{ $item->name }}</p>
 																<div class="price_opt_add">${{ $item->price }}</div>
 																<div class="optionitem_prod">
-																	<span>6 private training</span>
-																	<span>Quantity: {{ $item->quantity }} X {{ $item->deliverable_quantity }}</span>
-																	<span>Price: ${{ $item->price }}</span>
+																	<span>{{ __('newMembership.training') }}</span>
+																	<span>{{ __('newMembership.quantity') }}: {{ $item->quantity }} X {{ $item->deliverable_quantity }}</span>
+																	<span>{{ __('newMembership.price') }}: ${{ $item->price }}</span>
 																</div>
 																<div class="optionitem_checkopt">
 																	<div class="form-group">
@@ -65,8 +65,8 @@
 																			<input name="add_on[]" class="styled-checkbox2" id="Option{{ $loop->iteration }}" value="{{ $item->id }}" type="checkbox" >
 																			<label for="Option{{ $loop->iteration }}">
 																				@if($item->is_initial)
-																				Added to initial fee 
-																				<em>( one time)</em>
+																				{{ __('newMembership.initial_fee') }} 
+																				<em>( {{ __('newMembership.onetime') }})</em>
 																				@endif
 																			</label>
 																			
@@ -83,7 +83,7 @@
 											</div>
 											<div class="frombtn_wrap">
 												<div class="def_btnopt2 frombtn frombtn2">
-													<button type="submit" class="btn2" >Next</button>
+													<button type="submit" class="btn2" >{{ __('newMembership.next') }}</button>
 												</div>
 											</div>
 										
