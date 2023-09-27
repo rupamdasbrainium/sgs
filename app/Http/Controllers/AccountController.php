@@ -97,7 +97,7 @@ class AccountController extends Controller
         if($client == "unauthorised"){
             return redirect()->route('login')->with('user',"Your login token has been expired");
         }
-        
+
         $client = json_decode($client)->data;
         $province = APICall('Options/ProvincesAndStates', "get", "{}");
         if($province == "unauthorised"){
@@ -200,7 +200,7 @@ class AccountController extends Controller
         }
         $uri .=  "&display_language_id=" . getLocale();
 
-      
+
         $pay_methods_acc = APICall('PaymentMethods/accounts', "get", "{}", 'client_app');
         $data['pay_methods_acc'] = json_decode($pay_methods_acc);
 
