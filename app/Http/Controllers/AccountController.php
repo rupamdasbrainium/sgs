@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Validator;
 use PhpParser\Node\Stmt\TryCatch;
 
@@ -133,8 +134,25 @@ class AccountController extends Controller
 
     public function newMembership () {
         $data = array();
-        $data['title'] = 'New Membership';
-        return view('front.newmembership', compact('data'));
+        $data['title'] = trans('global.Subscription plan');
+
+
+        return view('front.newmembershipStepOne', compact('data'));
+    }
+
+    public function newMembershipSteptwo () {
+        $data = array();
+        $data['title'] = trans('global.Subscription plan options');
+
+        
+        return view('front.newmembershipStepTwo', compact('data'));
+    }
+    public function newMembershipFinal () {
+        $data = array();
+        $data['title'] = trans('global.Subscription plan payments');
+
+        
+        return view('front.newmembershipStepFinal', compact('data'));
     }
 
     public function upgradeMembership () {

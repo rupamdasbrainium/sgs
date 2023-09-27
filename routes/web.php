@@ -63,6 +63,9 @@ Route::group(['middleware'=>'verifyToken'], function(){
     Route::get('upgrade-membership', 'AccountController@upgradeMembership')->name('upgradeMembership');
     Route::get('referral-code', 'AccountController@referralCode')->name('referralCode');
 });
+Route::get('new-membership', 'AccountController@newMembership')->name('newMembership');
+Route::get('new-membership-step-two', 'AccountController@newMembershipSteptwo')->name('newMembershipSteptwo');
+Route::get('new-membership-final', 'AccountController@newMembershipFinal')->name('newMembershipFinal');
 
 Route::get('/reload-captcha', 'Admin\Auth\AuthenticatedSessionController@reloadCaptcha');
 
