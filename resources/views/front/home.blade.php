@@ -174,7 +174,7 @@
                                                         @endif
                                                     </ul>
                                                     <div class="subscribe_btn">
-                                                        <a href="{{ route('newMembership', ['id' => $values->data->id]) }}"
+                                                        <a href="{{ route('newMembershipfont', [$values->data->id]) }}"
                                                             class="sub_btn">{{ __('global.subscribe') }}</a>
                                                     </div>
                                                 </div>
@@ -183,7 +183,7 @@
                                     @endforeach
                                     {{-- <div class="prod_item">
 									<div class="action_opt action_opt_title">
-										
+
 										<div class="action_text">
 											<!-- Action 2
 											<div class="arrowdown">
@@ -229,7 +229,7 @@
 								</div>
 								<div class="prod_item">
 									<div class="action_opt action_opt_title">
-										
+
 										<div class="action_text">
 											<!-- Action 3
 											<div class="arrowdown">

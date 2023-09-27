@@ -35,11 +35,13 @@ Route::get('language/{locale}', function ($locale) {
 Route::get('/planType/{id}',[HomeController::class,'planType']);
 Route::get('/planTypeDetails/{id}',[HomeController::class,'planTypeDetails']);
 Route::get('suscription-form/{id}', 'SuscriptionController@suscriptionform')->name('suscriptionform');
-Route::get('new-membership/{id}', 'SuscriptionController@new_membership')->name('newMembership');
+Route::get('new-membership/{id}', 'SuscriptionController@new_membership')->name('newMembershipfont');
 Route::post('new-membership/{id}', 'SuscriptionController@new_membership_save')->name('newMembershipSave');
 Route::post('suscription-form-save/{id}', 'SuscriptionController@suscriptionformsave')->name('suscriptionformSave');
 Route::get('payment', 'PaymentController@payment')->name('payment');
 Route::post('paymentSave', 'PaymentController@paymentSave')->name('paymentSave');
+Route::get('addPayment', 'PaymentController@addPayment')->name('front.addPayment');
+Route::post('paymentaddSave', 'PaymentController@paymentaddSave')->name('paymentaddSave');
 
 Route::middleware('guest')->group(function () {
     // Routes for CustomerController
@@ -53,18 +55,20 @@ Route::group(['middleware'=>'verifyToken'], function(){
     Route::get('dashboard', 'HomeController@dashboard')->name('dashboard');
     Route::get('account', 'AccountController@account')->name('account');
     Route::get('change-language', 'AccountController@changeLanguage')->name('changeLanguage');
+    Route::post('languageUpdate',"AccountController@languageUpdate")->name('userLanguageUpdate');
     Route::get('change-password', 'AccountController@changePassword')->name('changePassword');
 
     Route::post('changePasswordUser', 'AccountController@changePasswordUser')->name('changePasswordUser');
 
     Route::get('myprofile', 'AccountController@myProfile')->name('myProfile');
     Route::get('my-contact-information', 'AccountController@myContactInformation')->name('myContactInformation');
-    Route::post('my-contact-information',"AccountController@updateContactInformation")->name('user.name');
+    Route::post('my-contact-information',"AccountController@updateContactInformation")->name('user.update');
     Route::get('my-bank-cards', 'AccountController@myBankCards')->name('myBankCards');
     Route::get('pay-outstanding-balance', 'AccountController@payMyOutstandingBalance')->name('payMyOutstandingBalance');
     Route::get('new-membership', 'AccountController@newMembership')->name('newMembership');
     Route::get('upgrade-membership', 'AccountController@upgradeMembership')->name('upgradeMembership');
     Route::get('referral-code', 'AccountController@referralCode')->name('referralCode');
+   
 });
 
 Route::get('/reload-captcha', 'Admin\Auth\AuthenticatedSessionController@reloadCaptcha');
