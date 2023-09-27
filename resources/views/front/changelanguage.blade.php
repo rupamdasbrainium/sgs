@@ -10,11 +10,17 @@
 					<h2 class="addpadding">Change Language</h2>
 					<div class="fromdes_view ">
 						<div class="fromdes_info">
-							<div class="from_contentblock">
+							<form method="POST" name="myforms" action="{{ route('userLanguageUpdate') }}">
+							@csrf
+							{{-- <input type="hidden" name="subscription_plan_id"
+							value="{{ $data['language']->iso_code }}">
+							<input type="hidden" name="subscription_plan_id"
+							value="{{ $data['language']->id }}"> --}}
+							 <div class="from_contentblock">
 								<div class="inp_row gapadj singcol_opt">
 									<div class="form-group langopt">
 										<div class="selectoption2">
-											<select id="demo-htmlselect" class="selectoption2_info">
+											<select id="demo-htmlselect" class="selectoption2_info" name="display">
 												@foreach($data['language'] as $lang)
 												<!-- <option data-imagesrc=""  value="Select Language" selected >Select Language</option> -->
 												<option data-imagesrc="{{ asset('public/images/flag/french.png') }}"  value="{{$lang->id}}" >{{$lang->display}}</option>
@@ -31,6 +37,7 @@
 									</div>
 								</div>
 							</div>
+							</form>
 						</div>
 					</div>
 				</div>

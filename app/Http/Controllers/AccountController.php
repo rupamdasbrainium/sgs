@@ -47,6 +47,20 @@ class AccountController extends Controller
         return view('front.changelanguage', compact('data'));
     }
 
+    public function mylanguagechange (Request $request) {
+        $data = array();
+        $data['title'] = 'Change Language';
+        $language_id = (int)$request->language_id;
+        // $carddata['iso_code'] = $request->type_id;
+        // $carddata['display'] = $request->type_id;
+        
+        $languages = APICall('Clients/language?language_id='.$language_id,"put","{}");
+        $data['languages'] = json_decode($languages);
+
+        return redirect(route("mylanguagechange"));
+    }
+
+
     public function languageUpdate(Request $request){
         try {
             //code...
