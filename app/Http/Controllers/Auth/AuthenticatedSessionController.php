@@ -56,6 +56,6 @@ class AuthenticatedSessionController extends Controller
         session()->forget('clientToken');
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login');
     }
 }

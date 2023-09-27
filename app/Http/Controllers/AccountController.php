@@ -205,7 +205,7 @@ class AccountController extends Controller
                 }
 
             } catch (\Throwable $th) {
-                dd($th);
+                    
                return redirect()->route('myContactInformation')->with('failed', $th->getMessage());
             }
     }
