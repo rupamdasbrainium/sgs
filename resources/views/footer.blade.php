@@ -4,7 +4,7 @@
 			<div class="col-md-12">
 				<div class="footer_des">
 					<div class="footer_link continfo">
-						<h3>Contact Information</h3>
+						<h3>{{ __('footer.contact') }}</h3>
 						<ul>
 							<li><a href="tel:+978 4569877"><span> <i class="far fa-phone-alt"></i></span>000-5824-879258</a></li>
 							<li><span><i class="far fa-map-marker-alt"></i></span>EN 60, 5th Floor,700091</li>
@@ -12,11 +12,11 @@
 						</ul>
 					</div>
 					<div class="footer_link">
-						<h3>Links</h3>
+						<h3>{{ __('footer.links') }}</h3>
 						<ul>
-							<li><a href="terms_conditions.html">Terms & Conditions</a></li>
-							<li><a href="javascript:void(0)">Privacy Policy</a></li>
-							<li><a href="javascript:void(0)">Law 25</a></li>
+							<li><a href="terms_conditions.html">{{ __('footer.terms') }}</a></li>
+							<li><a href="javascript:void(0)">{{ __('footer.policy') }}</a></li>
+							<li><a href="javascript:void(0)">{{ __('footer.law') }} 25</a></li>
 						</ul>
 					</div>
 					<div class="social_media ">
@@ -32,7 +32,7 @@
 							<a href="{{ route('homepage',['short_code'=>'CentreDemo']) }}"><img src="{{ asset('public/images/logo.svg') }}" alt=""></a>
 						</div>
 						<p>
-							© 2023 sgs. All rights reserved.
+							© 2023 sgs. {{ __('footer.all_right') }}.
 						</p>
 					</div>
 				</div>

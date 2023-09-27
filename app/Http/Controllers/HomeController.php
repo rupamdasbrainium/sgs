@@ -19,7 +19,7 @@ class HomeController extends Controller
         $franchises = APICall("Franchises", "get","{}");
         $data['franchises'] = json_decode($franchises);
         $data['short_code'] = $short_code;
-        
+
         //find franchise_id
         foreach($data['franchises']->data as $franchise){
         //   if($franchise->id == $short_code){
@@ -51,9 +51,10 @@ class HomeController extends Controller
         $best_four_plan_details=$data_plan;
         // dd($best_four_plan_details);
 
+
         // $language = APICall("/Options/languages", "get","{}");
         // $data['language'] = json_decode($language);
-        
+
         return view('front.home', compact('data','best_four_plan_details','franchise_id'));
 
     }
@@ -86,7 +87,7 @@ class HomeController extends Controller
                 $li .= "<li rel='".$value->id."'>".$value->name_english."</li>";
             }
         }
-        return [$html,$li]; 
+        return [$html,$li];
     }
 
     public function planTypeDetails($id){
@@ -241,9 +242,9 @@ class HomeController extends Controller
                 // dd($value);
                 $html .= '<div class="prod_item">
                 <div class="action_opt action_opt_title">
-                    
+
                     <div class="action_text">
-                        
+
                         <!-- Action 1
                         <div class="arrowdown">
                                 <i class="far fa-chevron-down"></i>

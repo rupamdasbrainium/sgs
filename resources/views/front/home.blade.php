@@ -12,8 +12,10 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="banner_info">
-                                    <h1>Elevate Your <span>Fitness,</span></h1>
-                                    <h2>Ignite Your Potential!</h2>
+                                    <h1>{{ __('global.banner_info_h1') }} <span>{{ __('global.banner_info_h1_span') }}</span></h1>
+                                    <h2>{{ __('global.banner_info_h2') }}!</h2>
+                                    {{-- <h1>Elevate Your <span>Fitness,</span></h1> --}}
+                                    {{-- <h2>Ignite Your Potential!</h2> --}}
                                 </div>
                             </div>
                         </div>
@@ -35,10 +37,11 @@
                             </div>
 
                             <div class="heading_info ">
-                                <h3>Welcome To SGS</h3>
+                                <h3>{{ __('global.heading_info') }}</h3>
                             </div>
-                            <h2>Select Your Magic Plan</h2>
-                            <p>Transform Your Body, Transform Your Life at Fitness Gym</p>
+                            <h2>{{ __('global.magic_plan') }}</h2>
+                            {{-- <p>Transform Your Body, Transform Your Life at Fitness Gym</p> --}}
+                            <p>{{ __('global.welcomesec_info') }}</p>
                         </div>
 
                     </div>
@@ -149,11 +152,11 @@
                                                         @endif
                                                     @endif
                                                 </div>
-                                                <p>per user/month,billed annually</p>
+                                                <p>{{ __('global.price') }}</p>
                                             </div>
                                             <div class="individual_opt">
                                                 <div class="individual_head">
-                                                    For individual entrepreneurs
+                                                    {{ __('global.individual_head') }}
                                                 </div>
                                                 <div class="individual_des">
                                                     <ul>
@@ -169,7 +172,7 @@
                                                     </ul>
                                                     <div class="subscribe_btn">
                                                         <a href="{{ route('newMembership', ['id' => $values->data->id]) }}"
-                                                            class="sub_btn">Subscribe</a>
+                                                            class="sub_btn">{{ __('global.subscribe') }}</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -325,8 +328,8 @@
             </div>
             <div class="subscribe_info">
                 <div class="sub_text_info">
-                    <h2>Find a GYM Near you</h2>
-                    <p>To find a Club, use the search bar, navigate using the map, or turn on location services.
+                    <h2>{{ __('global.sub_text_info') }}</h2>
+                    <p>{{ __('global.sub_text_info_p') }}.
                     </p>
                     <div class="sub_from">
                         <div class="form-group">

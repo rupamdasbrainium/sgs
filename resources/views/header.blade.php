@@ -12,16 +12,16 @@
 						<div class="mob_user_icon">
 							<span class="accountinfo" ><img src="{{ asset('public/images/icon1.svg') }}" alt="" ></span>
 							<!-- <span class="accountinfo" ><i class="far fa-ellipsis-v"></i></span> -->
-							
+
 							<span class="close_info" ><i class="far fa-times"></i></span>
 						</div>
-						
+
 						<nav class="navbar navbar-expand-lg ">
 							<button class="navbar-toggler menu-btn" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
 							</button>
 							<div class="collapse navbar-collapse menucont" id="navbarSupportedContent">
-								
+
 								<div class="mobileheader">
 									<div class="mob_logo_add logoinfo">
 										<a href="javascript:void(0)"><img src="{{ asset('public/images/logo.svg') }}" alt=""></a>
@@ -32,18 +32,19 @@
 								</div>
 								<ul class="navbar-nav mr-auto">
 									<li class="nav-item active">
-										<a class="nav-link" href="javascript:;">Memberships</a>
+										<a class="nav-link" href="javascript:;">{{ __('header.memberships') }}</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="javascript:;">Find a gym</a>
+										<a class="nav-link" href="javascript:;">{{ __('header.gym') }}</a>
 									</li>
-									@if (Auth::user())
+									@if (Session::has('clientToken'))
+
 									<li class="nav-item">
-										<a class="nav-link" href="{{ route('logout') }}"> logout</a>
+										<a class="nav-link" href="{{ route('logout') }}"> {{ __('header.logout') }}</a>
 									</li>
 									@else
 									<li class="nav-item">
-										<a class="nav-link" href="{{ route('login') }}"> login</a>
+										<a class="nav-link" href="{{ route('login') }}"> {{ __('header.login') }}</a>
 									</li>
 									@endif
 								</ul>
@@ -52,7 +53,7 @@
 										<img src="{{ asset('public/images/worldmap.svg') }}" alt="">
 									</div>
 									@php
-									$locale = "en";
+									$locale =  app()->currentLocale();
 										if(session()->has('locale')){
 											$locale = session()->get('locale');
         								}
