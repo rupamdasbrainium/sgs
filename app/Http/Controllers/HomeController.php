@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     public function index ($short_code) {
-//         $locale = App::currentLocale();
-//   dd($locale);
+        $lang_id = getLocale();
         $short_code = 'CentreDemo';
         $data = array();
         $data['title'] = 'Home';
@@ -39,13 +38,13 @@ class HomeController extends Controller
 
         // $data_plan = [];
         //franchise best four plan details
-        $data_plan[$data['best_four_plan']->data->subscriptionPlan1] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan1, "get","{}"));
+        $data_plan[$data['best_four_plan']->data->subscriptionPlan1] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan1."?language_id=".$lang_id, "get","{}"));
 
-        $data_plan[$data['best_four_plan']->data->subscriptionPlan2] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan2, "get","{}"));
+        $data_plan[$data['best_four_plan']->data->subscriptionPlan2] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan2."?language_id=".$lang_id, "get","{}"));
 
-        $data_plan[$data['best_four_plan']->data->subscriptionPlan3] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan3, "get","{}"));
+        $data_plan[$data['best_four_plan']->data->subscriptionPlan3] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan3."?language_id=".$lang_id, "get","{}"));
 
-        $data_plan[$data['best_four_plan']->data->subscriptionPlan4] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan4, "get","{}"));
+        $data_plan[$data['best_four_plan']->data->subscriptionPlan4] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan4."?language_id=".$lang_id, "get","{}"));
 
         $data['best_four_plan_details'] = $data_plan;
         $best_four_plan_details=$data_plan;

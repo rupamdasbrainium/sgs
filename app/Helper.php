@@ -386,6 +386,9 @@ function getClientToken() {
 
 function getLocale(){
   $locale = App::currentLocale();
+			if(session()->has('locale')){
+					$locale = session()->get('locale');
+      }
   // dd($locale);
   if($locale == 'en'){
       $language = 2;

@@ -1,4 +1,7 @@
 <x-guest-layout>
+	@php
+		$lang_id = getLocale();
+	@endphp
 	@section('title', $data['title'] . ' |')
 	@include('header')
 	<section class="maincontent_wrap innermain_content user_information">
@@ -97,7 +100,7 @@
 												@if(isset($data['provinces']))
 												@foreach ($data['provinces'] as $item)
 													
-													<option value="{{ $item->id }}" {{ $item ->id == old("address_province_id") ? "selected":""}} >{{ $item->display_english }}</option>
+													<option value="{{ $item->id }}" {{ $item ->id == old("address_province_id") ? "selected" : "" }} >{{ $lang_id == 2? $item->display_english :  $item->display_french}}</option>
 												@endforeach
 												@endif
 												{{-- <option value="AB" >AB</option>
