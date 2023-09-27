@@ -40,6 +40,8 @@ Route::post('new-membership/{id}', 'SuscriptionController@new_membership_save')-
 Route::post('suscription-form-save/{id}', 'SuscriptionController@suscriptionformsave')->name('suscriptionformSave');
 Route::get('payment', 'PaymentController@payment')->name('payment');
 Route::post('paymentSave', 'PaymentController@paymentSave')->name('paymentSave');
+Route::get('addPayment', 'PaymentController@addPayment')->name('front.addPayment');
+Route::post('paymentaddSave', 'PaymentController@paymentaddSave')->name('paymentaddSave');
 
 Route::middleware('guest')->group(function () {
     // Routes for CustomerController
@@ -62,6 +64,7 @@ Route::group(['middleware'=>'verifyToken'], function(){
     Route::get('new-membership', 'AccountController@newMembership')->name('newMembership');
     Route::get('upgrade-membership', 'AccountController@upgradeMembership')->name('upgradeMembership');
     Route::get('referral-code', 'AccountController@referralCode')->name('referralCode');
+   
 });
 
 Route::get('/reload-captcha', 'Admin\Auth\AuthenticatedSessionController@reloadCaptcha');

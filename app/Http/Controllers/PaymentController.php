@@ -157,7 +157,8 @@ class PaymentController extends Controller
             $membership_with_bnk_acc = APICall('Memberships/with-bank-account', "post", json_encode($membershipdata), "client_app");
             $data['membership_with_bnk_acc'] = json_decode($membership_with_bnk_acc);
 
-            return $data;
+            $data["title"] = "My Account"; 
+            return view('front.myprofile', compact('data'));
         } else {
 
             $carddata = array();
@@ -198,7 +199,70 @@ class PaymentController extends Controller
                 $membership_with_credit_card = APICall('Memberships/with-credit-card', "post", json_encode($membershipcarddata), "client_app");
                 $data['membership_with_credit_card'] = json_decode($membership_with_credit_card);
             }
-            return $data;
+            return view('front.myprofile', compact('data'));
         }
     }
+
+
+    public function addPayment()
+    {
+        $data = array();
+        $data['title'] = 'Add Acoount';
+        $uri = "Memberships/price-details?";
+        $uri .=  "&display_language_id=" . getLocale(); 
+
+        $membership_details = APICall($uri, "get", "{}", 'client_app');
+        $data['membership_details'] = json_decode($membership_details);
+        $card =  APICall("PaymentMethods/accepted_cards", "get", "{}", 'client_app');
+        $data['card_types'] = json_decode($card);
+
+        return view('front.addPayment', compact('data'));
+    }
+
+    public function paymentaddSave(Request $request)
+    {
+        if ($request->radio_group_pay == "bank_acc") {
+            $formdata = array();
+            $formdata['transit_number'] = $request->transit_number;
+            $formdata['institution'] = $request->institution;
+            $formdata['account_number'] = $request->account_number;
+            $formdata['owner_name'] = $request->owner_names;
+            if (Session::has('franchise_id')) {
+                $formdata['franchise_id'] = Session::get('franchise_id');
+            }
+
+            $pay_methode_acc = APICall('PaymentMethods/account', "post", json_encode($formdata), 'client_app');
+            $data['pay_methode_acc'] = json_decode($pay_methode_acc);
+
+            $get_methode_acc = APICall('PaymentMethods/accounts?clients=' . $data['pay_methode_acc']->data->client_id, "get", "{}", "client_app");
+            $data['get_methode_acc'] = json_decode($get_methode_acc);
+
+
+            //membership with bank account
+            $membershipdata = array();
+
+            $membershipdata['account_id'] = $data['get_methode_acc']->data[0]->id;
+
+              return redirect(route("myBankCards"));
+        } else {
+
+            $carddata = array();
+            $carddata['four_digits_number'] = $request->four_digits_number;
+            $carddata['expire_year'] = $request->expiry_year;
+            $carddata['expire_month'] = $request->expiry_month;
+            $carddata['owner_name'] = $request->owner_name;
+            $carddata['token'] = $request->token;
+            $carddata['type_id'] = $request->type_id;
+            if (Session::has('franchise_id')) {
+                $carddata['franchise_id'] = Session::get('franchise_id');
+
+                $pay_methods_account = APICall('PaymentMethods/card', "post", json_encode($carddata), 'client_app');
+                $data['pay_methods_account'] = json_decode($pay_methods_account);
+
+                // $data["title"] = "My Account"; 
+            }
+            return redirect(route("myBankCards"));
+        }
+    }
+
 }
