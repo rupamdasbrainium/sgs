@@ -56,4 +56,6 @@ return [
     'back' => 'Dos',
     'credit_card_number' => 'Numéro de Carte de Crédit',
     'Expiry_Month' => 'Mois d\'expiration',
+    'Expiry_Year' => 'Année d\'expiration',
+    'CVV' => 'CVV',
 ];

@@ -23,13 +23,10 @@ require __DIR__.'/auth.php';
 });*/
 
 
-Route::get('/greeting/{locale}', function ($locale) {
-    if (! in_array($locale, ['en', 'fr'])) {
-        abort(400);
-    }
-    App::setLocale($locale);
-
-    //
+Route::get('language/{locale}', function ($locale) {
+    app()->setLocale($locale);
+    session()->put('locale', $locale);
+    return redirect()->back();
 });
 
 // Route::get('/',[HomeController::class,'index'])->name('homepage');

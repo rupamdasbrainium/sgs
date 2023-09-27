@@ -56,4 +56,6 @@ return [
     'back' => 'Back',
     'credit_card_number' => 'Credit Card Number',
     'Expiry_Month' => 'Expiry Month',
+    'Expiry_Year' => 'Expiry Year',
+    'CVV' => 'CVV',
 ];

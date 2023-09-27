@@ -451,7 +451,7 @@
 
                                                     <div class="inp_row">
                                                         <div class="form-group">
-                                                            <label>Expiry Month <em class="req_text">*</em></label>
+                                                            <label>{{ __('paymentForm.Expiry_Month') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="expiry_month"
                                                                     class="form-control" placeholder="">
@@ -460,7 +460,7 @@
                                                     </div>
                                                     <div class="inp_row">
                                                         <div class="form-group">
-                                                            <label>Expiry Year <em class="req_text">*</em></label>
+                                                            <label>{{ __('paymentForm.Expiry_Year') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="expiry_year"
                                                                     class="form-control" placeholder="">
@@ -469,7 +469,7 @@
                                                     </div>
                                                     <div class="inp_row">
                                                         <div class="form-group">
-                                                            <label>CVV<em class="req_text">*</em></label>
+                                                            <label>{{ __('paymentForm.CVV') }}<em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="four_digits_number"
                                                                     class="form-control" placeholder="">
@@ -497,9 +497,8 @@
                                                             <input class="styled-checkbox" type="checkbox"
                                                                 name="check1" id="checkbox1" value="value1"
                                                                 onclick="checksignup()">
-                                                            <label for="checkbox1">I have read an accept <a
-                                                                    href="#">the terms &
-                                                                    conditions</a></label>
+                                                            <label for="checkbox1">{{ __('paymentForm.accept') }} <a
+                                                                    href="#">{{ __('paymentForm.terms') }}</a></label>
                                                         </div>
 
                                                     </div>
@@ -511,9 +510,8 @@
                                                             <input class="styled-checkbox" type="checkbox"
                                                                 name="check2" id="checkbox2" value="value2"
                                                                 onclick="checksignup()">
-                                                            <label for="checkbox2">I have read an accept <a
-                                                                    href="#">the
-                                                                    suitability for physical activity form</a></label>
+                                                            <label for="checkbox2">{{ __('paymentForm.accept') }} <a
+                                                                    href="#">{{ __('paymentForm.suitability') }}</a></label>
                                                         </div>
 
                                                     </div>
@@ -524,8 +522,8 @@
                                             <div class="frombtn_wrap">
                                                 <div class="def_btnopt2 frombtn">
                                                     <button type="submit" value="submit" class="btn2"
-                                                        id="myButton" disabled>Sign up!</button>
-                                                    <button type="button" class="btn2 backbutton">Back</button>
+                                                        id="myButton" disabled>{{ __('paymentForm.sign_up') }}!</button>
+                                                    <button type="button" class="btn2 backbutton">{{ __('paymentForm.back') }}</button>
                                                 </div>
                                             </div>
 
