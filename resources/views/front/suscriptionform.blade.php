@@ -100,7 +100,7 @@
 												@if(isset($data['provinces']))
 												@foreach ($data['provinces'] as $item)
 													
-													<option value="{{ $item->id }}" {{ $loop->index==1? "selected":""}} >{{ $lang_id == 2? $item->display_english :  $item->display_french}}</option>
+													<option value="{{ $item->id }}" {{ $item ->id == old("address_province_id") ? "selected" : "" }} >{{ $lang_id == 2? $item->display_english :  $item->display_french}}</option>
 												@endforeach
 												@endif
 												{{-- <option value="AB" >AB</option>
@@ -154,8 +154,8 @@
 												<i class="far fa-chevron-down"></i>
 											</div>
 											<select class="select_opt" name="is_male" >
-												<option value="1" selected >{{ __('suscription.male') }}</option>
-												<option value="0">{{ __('suscription.female') }}</option>
+												<option value="1" {{ old('is_male') == 1 ? "selected" : "" }} >{{ __('suscription.male') }}</option>
+												<option value="0" {{ old('is_male') == 0 ? "selected" : "" }}>{{ __('suscription.female') }}</option>
 											</select>
 										</div>
 									</div>
@@ -299,7 +299,7 @@
 												<option value="" selected >{{ __('suscription.please_choose') }}...</option>
 												@if(isset($data['opts_references']) && isset($data['opts_references']->data))
 												@foreach ($data['opts_references']->data as $item)
-													<option value="{{ $item->id }}" selected >{{ $item->display }}</option>
+													<option value="{{ $item->id }}" {{ $item ->id == old("reference_id") ? "selected":""}} >{{ $item->display }}</option>
 													
 												@endforeach
 												@endif
