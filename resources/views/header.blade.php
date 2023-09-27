@@ -40,11 +40,11 @@
 									@if (Session::has('clientToken'))
 
 									<li class="nav-item">
-										<a class="nav-link" href="{{ route('logout') }}"> {{ __('header.logout') }}</a>
+										<a class="nav-link" href="{{ route('logout') }}">{{ __('header.logout') }}</a>
 									</li>
 									@else
 									<li class="nav-item">
-										<a class="nav-link" href="{{ route('login') }}"> {{ __('header.login') }}</a>
+										<a class="nav-link" href="{{ route('login') }}">{{ __('header.login') }}</a>
 									</li>
 									@endif
 								</ul>

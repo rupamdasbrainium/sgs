@@ -88,8 +88,8 @@ class AccountController extends Controller
         $new_password = APICall("Users/new_password", "post", json_encode($data), 'client_app');
         $data = json_decode($new_password);
         // dd($data);
-        return view('front.changepassword', compact('data'));
-        // return redirect()->back()->with('success','password change successfully');
+        // return view('front.changepassword', compact('data'));
+        return redirect()->back()->with('success','password change successfully');
     }
 
     public function myProfile () {

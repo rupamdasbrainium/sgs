@@ -54,7 +54,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
         session()->forget('webToken');
         session()->forget('clientToken');
-        $request->session()->regenerateToken();
+        // $request->session()->regenerateToken();
 
         return redirect('/');
     }
