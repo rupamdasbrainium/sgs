@@ -35,11 +35,13 @@ Route::get('language/{locale}', function ($locale) {
 Route::get('/planType/{id}',[HomeController::class,'planType']);
 Route::get('/planTypeDetails/{id}',[HomeController::class,'planTypeDetails']);
 Route::get('suscription-form/{id}', 'SuscriptionController@suscriptionform')->name('suscriptionform');
-Route::get('new-membership/{id}', 'SuscriptionController@new_membership')->name('newMembership');
+Route::get('new-membership/{id}', 'SuscriptionController@new_membership')->name('newMembershipfont');
 Route::post('new-membership/{id}', 'SuscriptionController@new_membership_save')->name('newMembershipSave');
 Route::post('suscription-form-save/{id}', 'SuscriptionController@suscriptionformsave')->name('suscriptionformSave');
 Route::get('payment', 'PaymentController@payment')->name('payment');
 Route::post('paymentSave', 'PaymentController@paymentSave')->name('paymentSave');
+Route::get('addPayment', 'PaymentController@addPayment')->name('front.addPayment');
+Route::post('paymentaddSave', 'PaymentController@paymentaddSave')->name('paymentaddSave');
 
 Route::middleware('guest')->group(function () {
     // Routes for CustomerController
@@ -63,6 +65,7 @@ Route::group(['middleware'=>'verifyToken'], function(){
     Route::get('new-membership', 'AccountController@newMembership')->name('newMembership');
     Route::get('upgrade-membership', 'AccountController@upgradeMembership')->name('upgradeMembership');
     Route::get('referral-code', 'AccountController@referralCode')->name('referralCode');
+   
 });
 Route::get('new-membership', 'AccountController@newMembership')->name('newMembership');
 Route::get('new-membership-step-two', 'AccountController@newMembershipSteptwo')->name('newMembershipSteptwo');
