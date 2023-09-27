@@ -43,13 +43,16 @@ class AccountController extends Controller
         $data = array();
         $data['title'] = 'My Contact Information';
         $client = APICall("Clients", "get","{}");
-        if(!$client){
-            return redirect()->route('login')->with('email',"Your login token has been expired");
+        if($client == "unauthorised"){
+            return redirect()->route('login')->with('user',"Your login token has been expired");
         }
         $client = json_decode($client)->data;
         $province = APICall('Options/ProvincesAndStates', "get", "{}");
-
+        if($province == "unauthorised"){
+            return redirect()->route('login')->with('user',"Your login token has been expired");
+        }
         $province = json_decode($province);
+        // dd($client);
         return view('front.mycontactinformation', compact('data','client','province'));
     }
     public function updateContactInformation(Request $request){
@@ -76,6 +79,20 @@ class AccountController extends Controller
                 if($validator->fails()){
                     return back()->with('errors', $validator->messages());
                 }
+
+                $franchises = APICall('Franchises',"get","{}");
+
+                $franchises = json_decode($franchises);
+                $franchise_id = 0;
+                foreach($franchises->data as $fr){
+
+                    if($fr->name == $request->franchise_name){
+                        $franchise_id = $fr->id;
+                    }
+                }
+                $clients = APICall("Clients","get","{}");
+             
+                $clients = json_decode($clients)->data;
                 $address = [
                     "civic_number"=>$request->civic_number,
                     "street"=>$request->street,
@@ -85,28 +102,23 @@ class AccountController extends Controller
                     "province_id"=> $request->province_id,
 
                 ];
-                $franchises = APICall('Francises',"get","{}");
-                $franchises = json_decode($franchises);
-                $franchise_id = 0;
-                foreach($franchises as $fr){
-                    if($fr->name == $request->franchise_name){
-                        $franchise_id = $fr->id;
-                    }
-                }
                 $data = [
                     "firstname"=>$request->firstname,
                     "lastname"=>$request->lastname,
                     "is_male"=>$request->is_male,
-                    "adress"=>json_encode($address),
                     "phone"=>$request->phone,
                     "cellphone"=>$request->cellphone,
                     "emergency_phone"=>$request->emergency_phone,
-                    "emergency_contact"=>$request->emergency_contact
-
-
+                    "emergency_contact"=>$request->emergency_contact,
+                    "adress"=>$address,
+                    "driver_license" => $clients->driver_license ? $clients->driver_license :  "",
+                    "occupation" => $clients->nativeRef_number ? $clients->nativeRef_number :  "",
+                    "nativeRef_number" => $clients->nativeRef_number ? $clients->nativeRef_number :  "",
                 ];
 
+
                 $response = APICall("Clients/".$franchise_id, "put", json_encode($data));
+
                 $response = json_decode($response);
                 if(!$response->error){
                     return redirect()->route('myContactInformation')->with('success', "Contact information updated successfully");
@@ -115,6 +127,7 @@ class AccountController extends Controller
                 }
 
             } catch (\Throwable $th) {
+                dd($th);
                return redirect()->route('myContactInformation')->with('failed', $th->getMessage());
             }
     }

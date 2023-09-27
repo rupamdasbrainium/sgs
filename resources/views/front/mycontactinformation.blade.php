@@ -16,7 +16,7 @@
 
                         @endif
 					</div>
-					<form action="{{ route('user.name') }}" method="POST">
+					<form action="{{ route('user.update') }}" method="POST">
 						@csrf
 						<div class="fromdes_info user_contentblock">
 							<div class="from_cont_wrap">
@@ -90,9 +90,11 @@
 													<div class="arrowdown2">
 														<i class="far fa-chevron-down"></i>
 													</div>
+                                                   
 													<select class="select_opt" name="province_id">
 														@foreach ($province as $pr )
-														<option value="{{ $pr->id }}" {{ $pr->id == $client->adress->province_id ? "selected" : '' }} >{{ $pr->display_english }}</option>
+
+														<option value="{{ $pr->id }}" {{ ($pr->id == $client->adress->province_id) ? "selected" : '' }} >{{ $pr->display_english }}</option>
 														@endforeach
 													</select>
 												</div>

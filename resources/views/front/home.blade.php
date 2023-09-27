@@ -176,7 +176,7 @@
                                     @endforeach
                                     {{-- <div class="prod_item">
 									<div class="action_opt action_opt_title">
-										
+
 										<div class="action_text">
 											<!-- Action 2
 											<div class="arrowdown">
@@ -222,7 +222,7 @@
 								</div>
 								<div class="prod_item">
 									<div class="action_opt action_opt_title">
-										
+
 										<div class="action_text">
 											<!-- Action 3
 											<div class="arrowdown">
