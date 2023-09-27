@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
+use Facade\FlareClient\Api;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -11,14 +12,28 @@ class AccountController extends Controller
 {
     public function account () {
         $data = array();
+
         $data['title'] = 'My Account';
         $client = APICall("Clients",'get',"{}");
         if(!$client){
             return redirect()->route('login')->with('email', "Your login token has been expired");
 
         }
+
         $client = json_decode($client)->data;
-        return view('front.account', compact('data','client'));
+
+        $membership = APICall('Memberships/client?display_language_id='.$client->language_id,"get","{}");
+        // dd($membership);
+        // $payments = APICall('Payments/schedualed/client',"get","{}");
+
+        // if(!empty($payments->data)){
+        //     $payments = json_decode($payments);
+        // }else{
+        //     $payments = "";
+        // }
+        $languages = APICall('Options/languages',"get","{}");
+        $languages = json_decode($languages);
+        return view('front.account', compact('data','client','languages'));
     }
 
     public function changeLanguage () {
@@ -27,6 +42,19 @@ class AccountController extends Controller
         return view('front.changelanguage', compact('data'));
     }
 
+    public function languageUpdate(Request $request){
+        try {
+            //code...
+            $language_id = (int)$request->language_id;
+
+            APICall('Clients/language?language_id='.$language_id,"put","{}");
+            return redirect()->back();
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            return back()->withErrors(["error" => $th->getMessage()]);
+        }
+    }
     public function changePassword () {
         $data = array();
         $data['title'] = 'Change Password';
@@ -36,7 +64,25 @@ class AccountController extends Controller
     public function myProfile () {
         $data = array();
         $data['title'] = 'My Profile';
-        return view('front.myprofile', compact('data'));
+        $client = APICall("Clients",'get',"{}");
+        if(!$client){
+            return redirect()->route('login')->with('email', "Your login token has been expired");
+        }
+
+        $client = json_decode($client)->data;
+
+        $membership = APICall('Memberships/client?display_language_id='.$client->language_id,"get","{}");
+        // dd($membership);
+        $payments = APICall('Payments/schedualed/client',"get","{}");
+        $payments = json_decode($payments);
+        if(!empty($payments->data)){
+            $payments = $payments->data;
+        }else{
+            $payments = "";
+        }
+        $languages = APICall('Options/languages',"get","{}");
+        $languages = json_decode($languages);
+        return view('front.myprofile', compact('data', 'client','payments','languages'));
     }
 
     public function myContactInformation () {
@@ -46,6 +92,7 @@ class AccountController extends Controller
         if($client == "unauthorised"){
             return redirect()->route('login')->with('user',"Your login token has been expired");
         }
+        
         $client = json_decode($client)->data;
         $province = APICall('Options/ProvincesAndStates', "get", "{}");
         if($province == "unauthorised"){
@@ -77,7 +124,8 @@ class AccountController extends Controller
 
                 ]);
                 if($validator->fails()){
-                    return back()->with('errors', $validator->messages());
+                    return back()->withErrors($validator)
+                    ->withInput();;
                 }
 
                 $franchises = APICall('Franchises',"get","{}");
@@ -91,7 +139,7 @@ class AccountController extends Controller
                     }
                 }
                 $clients = APICall("Clients","get","{}");
-             
+
                 $clients = json_decode($clients)->data;
                 $address = [
                     "civic_number"=>$request->civic_number,
@@ -115,7 +163,6 @@ class AccountController extends Controller
                     "occupation" => $clients->nativeRef_number ? $clients->nativeRef_number :  "",
                     "nativeRef_number" => $clients->nativeRef_number ? $clients->nativeRef_number :  "",
                 ];
-
 
                 $response = APICall("Clients/".$franchise_id, "put", json_encode($data));
 

@@ -35,7 +35,7 @@ class AuthenticatedSessionController extends Controller
             $request->session()->regenerate();
             return redirect()->intended(RouteServiceProvider::HOME);
         }catch(Exception $e){
-          
+
             return redirect()->route('login')->with('user', trans('auth.failed'));
         }
 
@@ -52,7 +52,8 @@ class AuthenticatedSessionController extends Controller
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
-
+        session()->forget('webToken');
+        session()->forget('clientToken');
         $request->session()->regenerateToken();
 
         return redirect('/');
