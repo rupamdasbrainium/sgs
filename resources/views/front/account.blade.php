@@ -14,30 +14,33 @@
 					<div class="account_des">
 						<span class="acc_des_title">My Address: </span>
 						<span class="acc_des_info">{{ getAddress($client->adress) }} </span>
-						<span class="accountedit"><a href="#">Edit</a> </span>
+						<span class="accountedit"><a href="{{ route('myContactInformation') }}">Edit</a> </span>
 					</div>
 					<div class="account_leng">
 						<div class="account_leng_title">Preferred communication language</div>
-						<div class="account_leng_opt">
-							<div class="account_select_opt">
-								<div class="selectcont ">
-									<div class="arrowdown2">
-										<i class="far fa-chevron-down"></i>
-									</div>
-									<select class="select_opt" >
-										<option value="English" selected >English</option>
-										<option value="English" >English</option>
-										<option value="English"  >English</option>
-										<option value="English"  >English</option>
-									</select>
-								</div>
-							</div>
-							<div class="account_leng_opt_btn">
-								<div class="def_btnopt2 frombtn">
-									<button type="button" class="btn2" >Submit</button>
-								</div>
-							</div>
-						</div>
+                        <form action="{{ route('userLanguageUpdate') }}" method="POST">
+                            @csrf
+                            <div class="account_leng_opt">
+                                <div class="account_select_opt">
+                                    <div class="selectcont ">
+                                        <div class="arrowdown2">
+                                            <i class="far fa-chevron-down"></i>
+                                        </div>
+                                        <select class="select_opt" name="language_id">
+                                            @foreach ($languages as $item)
+                                            <option value="{{ $item->id }}" {{ $client->language_id == $item->id ? "selected" : "" }}>{{ $item->display }}</option>
+                                            @endforeach
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="account_leng_opt_btn">
+                                    <div class="def_btnopt2 frombtn">
+                                        <button type="submit" class="btn2" >Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
 					</div>
 				</div>
 
