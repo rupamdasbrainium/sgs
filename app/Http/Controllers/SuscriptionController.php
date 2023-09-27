@@ -9,15 +9,16 @@ use Illuminate\Support\Facades\Session;
 class SuscriptionController extends Controller
 {
     public function suscriptionForm ($id) {
+        $lang_id = getLocale();
         $data = array();
         $data['title'] = 'Suscriptionn Form';
 
         //subscriptionplan type call
-        $subscription_plan = APICall("SubscriptionPlans/type/".$id, "get","{}");
+        $subscription_plan = APICall("SubscriptionPlans/type/".$id."?language_id=".$lang_id, "get","{}");
         $data['subscription_plan'] = json_decode($subscription_plan);
 
         //reference call
-        $opts_references = APICall("Options/references?franchise_id=".$data['subscription_plan']->data->id_frinchise."&language_id=2", "get","{}");
+        $opts_references = APICall("Options/references?franchise_id=".$data['subscription_plan']->data->id_frinchise."&language_id=".$lang_id, "get","{}");
         $data['opts_references'] = json_decode($opts_references);
 
         //franchise call
@@ -118,11 +119,12 @@ class SuscriptionController extends Controller
     }
 
     public function new_membership($id){
+      $lang_id = getLocale();
       $data = array();
         $data['title'] = 'Memberships';
 
         //subscriptionplan type call
-        $subscription_plan = APICall("SubscriptionPlans/type/".$id, "get","{}");
+        $subscription_plan = APICall("SubscriptionPlans/type/".$id."?language_id=".$lang_id, "get","{}");
         $data['subscription_plan'] = json_decode($subscription_plan);
 
         //franchise call

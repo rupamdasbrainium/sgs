@@ -12,6 +12,7 @@ class PaymentController extends Controller
 {
     public function payment()
     {
+        $lang_id = getLocale();
         $data = array();
         $data['title'] = 'Suscriptionn Form';
 
@@ -71,7 +72,7 @@ class PaymentController extends Controller
                 $uri .= "&lstOptions=" . $ad_on_id;
             }
         }
-        $uri .=  "&display_language_id=" . getLocale();
+        $uri .=  "&display_language_id=" . $lang_id;
 
         // if(Session::has('token')){
         //     $token = Session::get('token');
