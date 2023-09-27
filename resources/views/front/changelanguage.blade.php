@@ -15,9 +15,11 @@
 									<div class="form-group langopt">
 										<div class="selectoption2">
 											<select id="demo-htmlselect" class="selectoption2_info">
+												@foreach($data['language'] as $lang)
 												<!-- <option data-imagesrc=""  value="Select Language" selected >Select Language</option> -->
-												<option data-imagesrc="{{ asset('public/images/flag/french.png') }}"  value="French" >French</option>
-												<option data-imagesrc="{{ asset('public/images/flag/english.png') }}"  value="English"  >English</option>
+												<option data-imagesrc="{{ asset('public/images/flag/french.png') }}"  value="{{$lang->id}}" >{{$lang->display}}</option>
+												{{-- <option data-imagesrc="{{ asset('public/images/flag/english.png') }}"  value="English"  >English</option> --}}
+												@endforeach
 											</select>
 										</div>
 									</div>
@@ -25,7 +27,7 @@
 								
 								<div class="frombtn_wrap addmag_top">
 									<div class="def_btnopt2 frombtn frombtn2">
-										<button type="button" class="btn2">Save</button>
+										<button type="submit" class="btn2">Save</button>
 									</div>
 								</div>
 							</div>

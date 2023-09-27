@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use PhpParser\Node\Stmt\TryCatch;
+use Illuminate\Support\Facades\Session;
 
 class AccountController extends Controller
 {
@@ -39,6 +40,10 @@ class AccountController extends Controller
     public function changeLanguage () {
         $data = array();
         $data['title'] = 'Change Language';
+
+        $language = APICall('Options/languages', "get", "{}", 'client_app');
+        $data['language'] = json_decode($language);
+
         return view('front.changelanguage', compact('data'));
     }
 
@@ -182,6 +187,27 @@ class AccountController extends Controller
     public function myBankCards () {
         $data = array();
         $data['title'] = 'My Credit Card/Bank Account';
+
+        $uri = "Memberships/price-details?";
+        if (Session::has('owner_name')) {
+            $uri .= "owner_name=" . Session::get('owner_name');
+        }
+        if (Session::has('duration_id')) {
+            $uri .= "&duration_id=" . Session::get('duration_id');
+        }
+        if (Session::has('subscription_plan')) {
+            $uri .= "&subscription_plan=" . Session::get('subscription_plan');
+        }
+        $uri .=  "&display_language_id=" . getLocale();
+
+      
+        $pay_methods_acc = APICall('PaymentMethods/accounts', "get", "{}", 'client_app');
+        $data['pay_methods_acc'] = json_decode($pay_methods_acc);
+
+        $pay_methods_accc = APICall('PaymentMethods/cards', "get", "{}", 'client_app');
+        $data['pay_methods_accc'] = json_decode($pay_methods_accc);
+        // dd( $data['pay_methods_accc']);
+
         return view('front.mybankcards', compact('data'));
     }
 
@@ -208,4 +234,6 @@ class AccountController extends Controller
         $data['title'] = 'My Referral Code';
         return view('front.referralcode', compact('data'));
     }
+
+
 }

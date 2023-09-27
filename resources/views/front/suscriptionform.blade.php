@@ -151,8 +151,8 @@
 												<i class="far fa-chevron-down"></i>
 											</div>
 											<select class="select_opt" name="is_male" >
-												<option value="1" {{ old('is_male') == 1 ? "selected" : "" }} >{{ __('suscription.male') }}</option>
-												<option value="0" {{ old('is_male') == 0 ? "selected" : "" }}>{{ __('suscription.female') }}</option>
+												<option value="1" {{ $item ->id =  old('is_male') == 1 ? "selected" : "" }} >{{ __('suscription.male') }}</option>
+												<option value="0" {{ $item ->id = old('is_male') == 0 ? "selected" : "" }}>{{ __('suscription.female') }}</option>
 											</select>
 										</div>
 									</div>
@@ -296,7 +296,7 @@
 												<option value="" selected >{{ __('suscription.please_choose') }}...</option>
 												@if(isset($data['opts_references']) && isset($data['opts_references']->data))
 												@foreach ($data['opts_references']->data as $item)
-													<option value="{{ $item->id }}" {{ $item ->id == old("reference_id") ? "selected":""}} >{{ $item->display }}</option>
+													<option value="{{ $item->id }}" {{ $item ->id == old("reference_id") ? "selected" : "" }}>{{ $item->display }}</option>
 													
 												@endforeach
 												@endif
