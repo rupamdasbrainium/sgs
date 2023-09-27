@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CMSController;
 use App\Http\Controllers\Admin\LoginController as AdminLoginController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\App;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,27 +22,19 @@ require __DIR__.'/auth.php';
     return view('welcome');
 });*/
 
-use Illuminate\Support\Facades\App;
 
-Route::get('language/{locale}', function ($locale) {
-    app()->setLocale($locale);
-    session()->put('locale', $locale);
-    return redirect()->back();
+Route::get('/greeting/{locale}', function ($locale) {
+    if (! in_array($locale, ['en', 'fr'])) {
+        abort(400);
+    }
+    App::setLocale($locale);
+
+    //
 });
- 
-// Route::get('/greeting/{locale}', function ($locale) {
-//     if (! in_array($locale, ['en', 'fr'])) {
-//         abort(400);
-//     }
- 
-//     App::setLocale($locale);
-//     $locale = App::currentLocale();
-//   dd($locale);
-//     return redirect()->back();
-//     //
-// });
 
-
+// Route::get('/',[HomeController::class,'index'])->name('homepage');
+// Route::get('suscription-form', 'SuscriptionController@suscriptionform')->name('suscriptionform');
+// Route::get('payment', 'PaymentController@payment')->name('payment');
 Route::get('/planType/{id}',[HomeController::class,'planType']);
 Route::get('/planTypeDetails/{id}',[HomeController::class,'planTypeDetails']);
 Route::get('suscription-form/{id}', 'SuscriptionController@suscriptionform')->name('suscriptionform');
@@ -54,10 +47,11 @@ Route::post('paymentSave', 'PaymentController@paymentSave')->name('paymentSave')
 Route::middleware('guest')->group(function () {
     // Routes for CustomerController
     Route::get('login', 'HomeController@login')->name('login');
+    Route::post('login','Auth\AuthenticatedSessionController@store')->name('userLogin');
     Route::get('forgot-password', 'HomeController@forgotPassword')->name('forgotpassword');
 });
 
-Route::group(['middleware'=>'auth'], function(){
+Route::group(['middleware'=>'verifyToken'], function(){
     // Route::get('/', 'HomeController@index')->name('homepage');
     Route::get('dashboard', 'HomeController@dashboard')->name('dashboard');
     Route::get('account', 'AccountController@account')->name('account');
@@ -65,8 +59,12 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('change-password', 'AccountController@changePassword')->name('changePassword');
     Route::get('myprofile', 'AccountController@myProfile')->name('myProfile');
     Route::get('my-contact-information', 'AccountController@myContactInformation')->name('myContactInformation');
+    Route::post('my-contact-information',"AccountController@updateContactInformation")->name('user.name');
     Route::get('my-bank-cards', 'AccountController@myBankCards')->name('myBankCards');
     Route::get('pay-outstanding-balance', 'AccountController@payMyOutstandingBalance')->name('payMyOutstandingBalance');
+    Route::get('new-membership', 'AccountController@newMembership')->name('newMembership');
+    Route::get('upgrade-membership', 'AccountController@upgradeMembership')->name('upgradeMembership');
+    Route::get('referral-code', 'AccountController@referralCode')->name('referralCode');
 });
 
 Route::get('/reload-captcha', 'Admin\Auth\AuthenticatedSessionController@reloadCaptcha');

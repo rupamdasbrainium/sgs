@@ -41,7 +41,7 @@
                 </a>
             </li>
             <li>
-                <a href="new_membership.html">
+                <a href="{{ route('newMembership') }}">
                     <span><img src="{{ asset('public/images/icon5.svg') }}" alt="" ></span>
                     <em>New Membership</em>
                     <strong class="arroright_opt"><i class="far fa-long-arrow-right"></i></strong>
@@ -49,7 +49,7 @@
                 </a>
             </li>
             <li>
-                <a href="upgrade_membership.html">
+                <a href="{{ route('upgradeMembership') }}">
                     <span><img src="{{ asset('public/images/icon5.svg') }}" alt="" ></span>
                     <em>Upgrade Membership</em>
                     <strong class="arroright_opt"><i class="far fa-long-arrow-right"></i></strong>
@@ -70,7 +70,7 @@
                 </a>
             </li>
             <li >
-                <a href="referral_code.html">
+                <a href="{{ route('referralCode') }}">
                     <span><img src="{{ asset('public/images/referral_code.svg') }}" alt="" ></span>
                     <em>My Referral Code</em>
                     <strong class="arroright_opt"><i class="far fa-long-arrow-right"></i></strong>

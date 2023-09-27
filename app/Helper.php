@@ -241,7 +241,7 @@ if (!function_exists('getPhoneCodes')) {
 }
 
 if (!function_exists('findFFDetails')) {
-  
+
   function findFFDetails($id)
   {
     $data= DB::table('users')->where('id',$id)->first();
@@ -250,6 +250,7 @@ if (!function_exists('findFFDetails')) {
 }
 
 function APICall($uri, $method, $data, $type='web_app'){
+
   if($type=='web_app'){
     $token = getWabToken();
   }else{
@@ -259,7 +260,7 @@ function APICall($uri, $method, $data, $type='web_app'){
       return redirect()->route('login');
     }
   }
-  
+
   // dd($login_responce);
   //login api end
   $response = apiCallCurl($uri, $method, $data, $token);
@@ -270,14 +271,14 @@ function APICall($uri, $method, $data, $type='web_app'){
     }else{
       $token = getClientToken();
       if($token == 'unauthorised'){
-        // return '401';
+        // return '401'
         return redirect()->route('login');
       }
       return apiCallCurl($uri, $method, $data, $token);
     }
   }
   return $response;
-  
+
 }
 
 function apiCallCurl($uri, $method, $data, $token){
@@ -358,7 +359,7 @@ function saveWabToken($token) {
 //get web token
 function getWabToken($code=200) {
   if($code!=200){
-    return webAppLoginToken(); 
+    return webAppLoginToken();
   }
  if(Session::has('webToken')){
    return Session::get('webToken');
@@ -388,10 +389,18 @@ function getLocale(){
   // dd($locale);
   if($locale == 'en'){
       $language = 2;
-  } else {        
+  } else {
       $language = 1;
   }
   return $language;
+}
+
+function getAddress($data){
+    if($data == null){
+        return "No Address";
+    }else{
+         return $data->civic_number."".$data->street."-".$data->appartment.",".$data->city.",".$data->postal_code;
+    }
 }
 
 ?>
