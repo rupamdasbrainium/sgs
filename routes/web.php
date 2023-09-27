@@ -57,6 +57,9 @@ Route::group(['middleware'=>'verifyToken'], function(){
     Route::get('change-language', 'AccountController@changeLanguage')->name('changeLanguage');
     Route::post('languageUpdate',"AccountController@languageUpdate")->name('userLanguageUpdate');
     Route::get('change-password', 'AccountController@changePassword')->name('changePassword');
+
+    Route::post('changePasswordUser', 'AccountController@changePasswordUser')->name('changePasswordUser');
+
     Route::get('myprofile', 'AccountController@myProfile')->name('myProfile');
     Route::get('my-contact-information', 'AccountController@myContactInformation')->name('myContactInformation');
     Route::post('my-contact-information',"AccountController@updateContactInformation")->name('user.update');
