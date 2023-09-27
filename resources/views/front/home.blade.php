@@ -171,7 +171,7 @@
                                                         @endif
                                                     </ul>
                                                     <div class="subscribe_btn">
-                                                        <a href="{{ route('newMembership', ['id' => $values->data->id]) }}"
+                                                        <a href="{{ route('newMembershipfont', [$values->data->id]) }}"
                                                             class="sub_btn">{{ __('global.subscribe') }}</a>
                                                     </div>
                                                 </div>

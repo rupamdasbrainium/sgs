@@ -38,7 +38,7 @@ Route::get('/greeting/{locale}', function ($locale) {
 Route::get('/planType/{id}',[HomeController::class,'planType']);
 Route::get('/planTypeDetails/{id}',[HomeController::class,'planTypeDetails']);
 Route::get('suscription-form/{id}', 'SuscriptionController@suscriptionform')->name('suscriptionform');
-Route::get('new-membership/{id}', 'SuscriptionController@new_membership')->name('newMembership');
+Route::get('new-membership/{id}', 'SuscriptionController@new_membership')->name('newMembershipfont');
 Route::post('new-membership/{id}', 'SuscriptionController@new_membership_save')->name('newMembershipSave');
 Route::post('suscription-form-save/{id}', 'SuscriptionController@suscriptionformsave')->name('suscriptionformSave');
 Route::get('payment', 'PaymentController@payment')->name('payment');
