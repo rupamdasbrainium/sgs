@@ -211,23 +211,7 @@
                                                             </div>
                                                         </div>
                                                     @endforeach
-                                                    {{-- <div class="sum_inp_cont">
-												<div class="sum_inp_left">
-													TPS 12345RT0010
-												</div>
-												<div class="sum_inp_right">
-													2.00$
-												</div>
-											</div> --}}
-                                                    {{-- <div class="sum_inp_cont">
-												<div class="sum_inp_left">
-													TVQKI255887
-												</div>
-												<div class="sum_inp_right">
-													3.99$
-												</div>
-											</div> --}}
-
+                                                    
                                                     <div class="sum_inp_cont">
                                                         <div class="sum_inp_left">
                                                             {{ __('paymentForm.total') }}
@@ -236,8 +220,6 @@
                                                             {{ $total }}$
                                                         </div>
                                                     </div>
-
-
                                                 </div>
                                             </div>
 
@@ -290,10 +272,7 @@
                                                                 <tr>
                                                                     <td data-label="TYPE">
                                                                         <div class="pay_view_opt">
-                                                                            <!-- <div class="checkbox">
-                    <input class="styled-checkbox" id="Option1" type="checkbox" value="value1">
-                    <label for="Option1">&nbsp;</label>
-                 </div>  -->
+                                                                            
 																		{{ __('paymentForm.payments') }}
                                                                         </div>
                                                                     </td>
@@ -446,7 +425,6 @@
                                                         </select>
 
                                                     </div><br>
-                                                    {{-- <input name="paydeb" value="creditCard" type="hidden" /> --}}
                                                     <div class="inp_row">
                                                         <div class="form-group">
                                                             <label>{{ __('paymentForm.Account_Name_Holder') }} <em
@@ -466,9 +444,7 @@
                                                                 <input type="text" name="token"
                                                                     class="form-control" placeholder=""
                                                                     value="">
-                                                                {{-- <i class="fas fa-sort-up" id="up"></i>
-                                                                <i class="fas fa-sort-down" id="down"></i> --}}
-
+                                                                
                                                             </div>
                                                         </div>
                                                     </div>
@@ -663,8 +639,6 @@
         }
     </script>
     <script>
-        var x = document.getElementById("checkbox1").value;
-
         function checksignup() {
             var checkbox1 = document.getElementById("checkbox1").checked;
             var checkbox2 = document.getElementById("checkbox2").checked;
