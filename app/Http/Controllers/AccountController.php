@@ -134,7 +134,7 @@ class AccountController extends Controller
 
     public function newMembership () {
         $data = array();
-        $data['title'] = trans('global.Subscription plan');
+        $data['title'] = trans('newMembership.memberships');
 
 
         return view('front.newmembershipStepOne', compact('data'));
@@ -149,7 +149,7 @@ class AccountController extends Controller
     }
     public function newMembershipFinal () {
         $data = array();
-        $data['title'] = trans('global.Subscription plan payments');
+        $data['title'] = trans('newMembership.payments');
 
         
         return view('front.newmembershipStepFinal', compact('data'));

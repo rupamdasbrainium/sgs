@@ -6,7 +6,7 @@
 			@include('layouts.sidebar')
 			<div class="inner_page_des">
 	
-				<h2>{{ $data['title'] }}</h2>
+				{{-- <h2>{{ $data['title'] }}</h2> --}}
 				<div class="prod_item_wrap" id="home_prod_item">
 					
 					{{-- <div class="from_cont_wrap" style="flex: 0 100%;"> --}}
@@ -288,7 +288,7 @@
 													</tbody>
 												</table>
 											</div>
-										</div>
+										</div>--}}
 
 										<div class="content_block more_cont_view">
 											<h2>{{ __('paymentForm.method_of_payment') }}</h2>
@@ -323,7 +323,7 @@
 												</div>
 											</div>
 										</div>
-									</div> --}}
+									</div> 
 
 									<div class="from_contentblock">
 
