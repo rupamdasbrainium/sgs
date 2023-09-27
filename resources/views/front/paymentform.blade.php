@@ -16,14 +16,14 @@
                         <div class="fromdes_info user_contentblock">
                             <div class="sidebar_content">
                                 <div class="sidebar_info">
-                                    <p>Center:
+                                    <p>{{ __('paymentForm.center') }}:
                                         {{-- @dd($data['membership_details']); --}}
                                         <span>{{ $data['membership_details']->data->franchise }}</span>
                                     </p>
                                     {{-- <p>Address: 
 										<span>{{ $data['franchise']->address_civic_number}} {{ $data['franchise']->address_street}} {{ $data['franchise']->address_city }} {{ $data['franchise']->address_postal_code }}</span> --}}
                                     </p>
-                                    <p>Package: <span>
+                                    <p>{{ __('paymentForm.package') }}: <span>
                                             {{-- @if (isset($data['subscription_plan']) && isset($data['subscription_plan']->data))
 									{{ $data['subscription_plan']->data->name }}
 									@endif --}}
@@ -39,7 +39,7 @@
                                         <div class="from_cont_wrap">
                                             <div class="inp_row">
                                                 <div class="form-group">
-                                                    <label for="promocode">Promo/Reward Code </label>
+                                                    <label for="promocode">{{ __('paymentForm.promo') }} </label>
                                                     <div class="inp_cont_view noicon_opt">
 
                                                         <input type="text" class="form-control" name="code_promo"
@@ -49,11 +49,11 @@
                                             </div>
 
                                             <div class="summary_content">
-                                                <h3>Summary of your subscription</h3>
+                                                <h3>{{ __('paymentForm.summary') }}</h3>
                                                 <div class="summary_cont_wrap">
                                                     <div class="sum_inp_cont">
                                                         <div class="sum_inp_left">
-                                                            Center
+                                                            {{ __('paymentForm.center') }}
                                                         </div>
                                                         <div class="sum_inp_right">
 
@@ -63,7 +63,7 @@
                                                     </div>
                                                     <div class="sum_inp_cont">
                                                         <div class="sum_inp_left">
-                                                            Package/Plan Name
+                                                            {{ __('paymentForm.package_plan_Name') }}
                                                         </div>
                                                         <div class="sum_inp_right">
                                                             {{-- @if (isset($data['subscription_plan']) && isset($data['subscription_plan']->data))
@@ -75,7 +75,7 @@
 
                                                     <div class="sum_inp_cont">
                                                         <div class="sum_inp_left">
-                                                            Package
+                                                            {{ __('paymentForm.package') }}
                                                         </div>
                                                         <div class="sum_inp_right">
                                                             {{ $data['membership_details']->data->initial_subtotal }} $
@@ -83,16 +83,16 @@
                                                     </div>
                                                     <div class="sum_inp_cont">
                                                         <div class="sum_inp_left">
-                                                            Number of Payments
+															{{ __('paymentForm.number_of_payments') }}
                                                         </div>
                                                         <div class="sum_inp_right">
                                                             {{ $data['membership_details']->data->number_of_payments }}
-                                                            Payments
+                                                            {{ __('paymentForm.payments') }}
                                                         </div>
                                                     </div>
                                                     <div class="sum_inp_cont">
                                                         <div class="sum_inp_left">
-                                                            Begin of the contract
+                                                            {{ __('paymentForm.begin_of_the_contract') }}
                                                         </div>
                                                         <div class="sum_inp_right">
                                                             {{ date('Y-m-d', strtotime($data['membership_details']->data->begin)) }}
@@ -100,7 +100,7 @@
                                                     </div>
                                                     <div class="sum_inp_cont">
                                                         <div class="sum_inp_left">
-                                                            End of the contract
+                                                            {{ __('paymentForm.end_of_the_contract') }}
                                                         </div>
                                                         <div class="sum_inp_right">
                                                             {{ date('Y-m-d', strtotime($data['membership_details']->data->end)) }}
@@ -108,7 +108,7 @@
                                                     </div>
                                                     <div class="sum_inp_cont">
                                                         <div class="sum_inp_left">
-                                                            Duration
+                                                            {{ __('paymentForm.duration') }}
                                                         </div>
                                                         <div class="sum_inp_right">
                                                             {{ $data['membership_details']->data->duration_unit }}
@@ -116,10 +116,10 @@
                                                     </div>
                                                     <div class="sum_inp_cont">
                                                         <div class="sum_inp_left">
-                                                            Membership options/Add-ons
+                                                            {{ __('paymentForm.membership') }}
                                                         </div>
                                                         <div class="sum_inp_right">
-                                                            Option1, Option3
+															{{ __('paymentForm.option') }}
                                                         </div>
                                                     </div>
 
@@ -127,11 +127,11 @@
                                             </div>
 
                                             <div class="summary_content">
-                                                <h3>The period of validity of the contract is of fixed duration</h3>
+                                                <h3>{{ __('paymentForm.period_of_validity') }}</h3>
                                                 <div class="summary_cont_wrap">
                                                     <div class="sum_inp_cont">
                                                         <div class="sum_inp_left">
-                                                            Package Name
+                                                            {{ __('paymentForm.package_name') }}
                                                         </div>
                                                         <div class="sum_inp_right">
                                                             {{ $data['membership_details']->data->subscriptionPlan }}
@@ -139,7 +139,7 @@
                                                     </div>
                                                     <div class="sum_inp_cont">
                                                         <div class="sum_inp_left">
-                                                            Membership Option(s)
+                                                            {{ __('paymentForm.membership_opt') }}
                                                         </div>
                                                         <div class="sum_inp_right">
                                                             {{-- @dd($data['subscription_plan']); --}}
@@ -153,7 +153,7 @@
 
                                                     <div class="sum_inp_cont">
                                                         <div class="sum_inp_left">
-                                                            Duration
+                                                            {{ __('paymentForm.duration') }}
                                                         </div>
                                                         <div class="sum_inp_right">
                                                             {{ $data['membership_details']->data->duration_unit }}
@@ -164,11 +164,11 @@
                                             </div>
 
                                             <div class="summary_content">
-                                                <h3>1st Payment (1x)</h3>
+                                                <h3>{{ __('paymentForm.1st_pay') }}</h3>
                                                 <div class="summary_cont_wrap">
                                                     <div class="sum_inp_cont">
                                                         <div class="sum_inp_left">
-                                                            Fee per Payment
+                                                            {{ __('paymentForm.fee') }}
                                                         </div>
                                                         <div class="sum_inp_right">
                                                             39.99$
@@ -176,7 +176,7 @@
                                                     </div>
                                                     <div class="sum_inp_cont">
                                                         <div class="sum_inp_left">
-                                                            Subtotal
+                                                            {{ __('paymentForm.subtotal') }}
                                                         </div>
                                                         <div class="sum_inp_right">
                                                             {{ $data['membership_details']->data->initial_subtotal }}
@@ -230,7 +230,7 @@
 
                                                     <div class="sum_inp_cont">
                                                         <div class="sum_inp_left">
-                                                            Total
+                                                            {{ __('paymentForm.total') }}
                                                         </div>
                                                         <div class="sum_inp_right">
                                                             {{ $total }}$
@@ -244,15 +244,15 @@
                                             <div class="summary_content">
 
                                                 <div class="content_block paymentinfo">
-                                                    <h2 class="head_opt">Payment Details</h2>
+                                                    <h2 class="head_opt">{{ __('paymentForm.payment_details') }}</h2>
                                                     <div class="table_description_view oddoreven_opt oddoreven_opt2">
                                                         <table class="table">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>TYPE</th>
-                                                                    <th>PAYMENT DATE</th>
-                                                                    <th>PAYMENT</th>
-                                                                    <th>STATUS</th>
+                                                                    <th>{{ __('paymentForm.type') }}</th>
+																	<th>{{ __('paymentForm.pay_date') }}</th>
+																	<th>{{ __('paymentForm.pay') }}</th>
+																	<th>{{ __('paymentForm.status') }}</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -260,32 +260,32 @@
                                                                 <tr class="activeitem">
                                                                     <td data-label="TYPE">
                                                                         <div class="pay_view_opt">
-                                                                            Payments
+                                                                            {{ __('paymentForm.payments') }}
                                                                         </div>
                                                                     </td>
                                                                     <td data-label="PAYMENT DATE">2023-7-18</td>
                                                                     <td data-label="PAYMENT">$45.32</td>
-                                                                    <td data-label="STATUS">Paid</td>
+                                                                    <td data-label="STATUS">{{ __('paymentForm.paid') }}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td data-label="TYPE">
                                                                         <div class="pay_view_opt">
-                                                                            Payments
+                                                                            {{ __('paymentForm.payments') }}
                                                                         </div>
                                                                     </td>
                                                                     <td data-label="PAYMENT DATE">2023-7-18</td>
                                                                     <td data-label="PAYMENT">$45.32</td>
-                                                                    <td data-label="STATUS">Paid</td>
+                                                                    <td data-label="STATUS">{{ __('paymentForm.paid') }}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td data-label="TYPE">
                                                                         <div class="pay_view_opt">
-                                                                            Payments
+																			{{ __('paymentForm.payments') }}
                                                                         </div>
                                                                     </td>
                                                                     <td data-label="PAYMENT DATE">2023-7-18</td>
                                                                     <td data-label="PAYMENT">$45.32</td>
-                                                                    <td data-label="STATUS">Paid</td>
+                                                                    <td data-label="STATUS">{{ __('paymentForm.paid') }}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td data-label="TYPE">
@@ -294,42 +294,42 @@
                     <input class="styled-checkbox" id="Option1" type="checkbox" value="value1">
                     <label for="Option1">&nbsp;</label>
                  </div>  -->
-                                                                            Payments
+																		{{ __('paymentForm.payments') }}
                                                                         </div>
                                                                     </td>
                                                                     <td data-label="PAYMENT DATE">2023-7-18</td>
                                                                     <td data-label="PAYMENT">$45.32</td>
-                                                                    <td data-label="STATUS">Paid</td>
+                                                                    <td data-label="STATUS">{{ __('paymentForm.paid') }}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td data-label="TYPE">
                                                                         <div class="pay_view_opt">
-                                                                            Payments
+                                                                            {{ __('paymentForm.payments') }}
                                                                         </div>
                                                                     </td>
                                                                     <td data-label="PAYMENT DATE">2023-7-18</td>
                                                                     <td data-label="PAYMENT">$45.32</td>
-                                                                    <td data-label="STATUS">Paid</td>
+                                                                    <td data-label="STATUS">{{ __('paymentForm.paid') }}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td data-label="TYPE">
                                                                         <div class="pay_view_opt">
-                                                                            Payments
+                                                                            {{ __('paymentForm.payments') }}
                                                                         </div>
                                                                     </td>
                                                                     <td data-label="PAYMENT DATE">2023-7-18</td>
                                                                     <td data-label="PAYMENT">$45.32</td>
-                                                                    <td data-label="STATUS">Paid</td>
+                                                                    <td data-label="STATUS">{{ __('paymentForm.paid') }}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td data-label="TYPE">
                                                                         <div class="pay_view_opt">
-                                                                            Payments
+                                                                            {{ __('paymentForm.payments') }}
                                                                         </div>
                                                                     </td>
                                                                     <td data-label="PAYMENT DATE">2023-7-18</td>
                                                                     <td data-label="PAYMENT">$45.32</td>
-                                                                    <td data-label="STATUS">Paid</td>
+                                                                    <td data-label="STATUS">{{ __('paymentForm.paid') }}</td>
                                                                 </tr>
 
                                                             </tbody>
@@ -338,7 +338,7 @@
                                                 </div>
 
                                                 <div class="content_block more_cont_view">
-                                                    <h2>Method of Payment</h2>
+                                                    <h2>{{ __('paymentForm.method_of_payment') }}</h2>
                                                     <div class="checkout_optview payment_opt_details payment_opt2">
                                                         <div class="inp_row">
                                                             <div class="form-group">
@@ -347,21 +347,21 @@
                                                                     <input type="radio" id="payment_opt1"
                                                                         name="radio_group_pay" class="radio1"
                                                                         value="credit_acc" onclick="showA();">
-                                                                    <label for="payment_opt1">Credit Card</label>
+                                                                    <label for="payment_opt1">{{ __('paymentForm.Credit_Card') }}</label>
                                                                 </div>
 
                                                                 <div class="memberships_nam radio">
                                                                     <input type="radio" id="payment_opt2"
                                                                         name="radio_group_pay" class="radio2"
                                                                         value="credit_acc" onclick="showA();">
-                                                                    <label for="payment_opt2">Debit Card</label>
+                                                                    <label for="payment_opt2">{{ __('paymentForm.Debit_Card') }}</label>
                                                                 </div>
 
                                                                 <div class="memberships_nam radio">
                                                                     <input type="radio" id="payment_opt3"
                                                                         name="radio_group_pay" onclick="show();"
                                                                         value="bank_acc" checked>
-                                                                    <label for="payment_opt3">Bank Account</label>
+                                                                    <label for="payment_opt3">{{ __('paymentForm.Bank_Account') }}</label>
                                                                 </div>
 
                                                             </div>
@@ -377,7 +377,7 @@
                                                 <div id="bank_details">
                                                     <div class="inp_row">
                                                         <div class="form-group">
-                                                            <label>Direct Debit</label>
+                                                            <label>{{ __('paymentForm.Direct_Debit') }}</label>
                                                             <div class="card_add">
                                                                 {{-- <input name="payCard" value="payCard"
                                                                     type="hidden" /> --}}
@@ -388,7 +388,7 @@
 
                                                     <div class="inp_row">
                                                         <div class="form-group">
-                                                            <label>Transit Number <em class="req_text">*</em></label>
+                                                            <label>{{ __('paymentForm.Transit_Number') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt" id="incdec">
 
                                                                 <input type="text" name="transit_number"
@@ -403,7 +403,7 @@
 
                                                     <div class="inp_row">
                                                         <div class="form-group">
-                                                            <label>Branch Number <em class="req_text">*</em></label>
+                                                            <label>{{ __('paymentForm.Branch_Number') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="institution"
                                                                     class="form-control" placeholder="">
@@ -412,7 +412,7 @@
                                                     </div>
                                                     <div class="inp_row">
                                                         <div class="form-group">
-                                                            <label>Account Number <em class="req_text">*</em></label>
+                                                            <label>{{ __('paymentForm.Account_Number') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="account_number"
                                                                     class="form-control" placeholder="">
@@ -422,7 +422,7 @@
 
                                                     <div class="inp_row">
                                                         <div class="form-group">
-                                                            <label>Account Name Holder <em
+                                                            <label>{{ __('paymentForm.Account_Name_Holder') }} <em
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="owner_names"
@@ -449,7 +449,7 @@
                                                     {{-- <input name="paydeb" value="creditCard" type="hidden" /> --}}
                                                     <div class="inp_row">
                                                         <div class="form-group">
-                                                            <label>Account Name Holder <em
+                                                            <label>{{ __('paymentForm.Account_Name_Holder') }} <em
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="owner_name"
@@ -459,7 +459,7 @@
                                                     </div>
                                                     <div class="inp_row">
                                                         <div class="form-group">
-                                                            <label>Credit Card Number <em
+                                                            <label>{{ __('paymentForm.credit_card_number') }} <em
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt" id="incdec">
 
@@ -519,7 +519,8 @@
                                                             <!-- <label><input type="checkbox"> Remember me</label> -->
 
                                                             <input class="styled-checkbox" type="checkbox"
-                                                                name="check1" id="checkbox1" value="value1">
+                                                                name="check1" id="checkbox1" value="value1"
+                                                                onclick="checksignup()">
                                                             <label for="checkbox1">I have read an accept <a
                                                                     href="#">the terms &
                                                                     conditions</a></label>
@@ -532,7 +533,8 @@
                                                             <!-- <label><input type="checkbox"> Remember me</label> -->
 
                                                             <input class="styled-checkbox" type="checkbox"
-                                                                name="check2" id="checkbox2" value="value2">
+                                                                name="check2" id="checkbox2" value="value2"
+                                                                onclick="checksignup()">
                                                             <label for="checkbox2">I have read an accept <a
                                                                     href="#">the
                                                                     suitability for physical activity form</a></label>
@@ -545,8 +547,8 @@
 
                                             <div class="frombtn_wrap">
                                                 <div class="def_btnopt2 frombtn">
-                                                    <button type="submit" class="btn2" id="myButton"
-                                                        disabled>Sign up!</button>
+                                                    <button type="submit" value="submit" class="btn2"
+                                                        id="myButton" disabled>Sign up!</button>
                                                     <button type="button" class="btn2 backbutton">Back</button>
                                                 </div>
                                             </div>
@@ -660,37 +662,18 @@
             }
         }
     </script>
-    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script> --}}
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
     <script>
-        $("input[type='checkbox']").on("click", function() {
-            if ($("#checkbox1").is(':checked')) {
-                $("#myButton").prop("disabled", false);
+        var x = document.getElementById("checkbox1").value;
+
+        function checksignup() {
+            var checkbox1 = document.getElementById("checkbox1").checked;
+            var checkbox2 = document.getElementById("checkbox2").checked;
+            if (checkbox1 && checkbox2) {
+                document.getElementById("myButton").disabled = false;
             } else {
-                $("#myButton").prop("disabled", true);
+                document.getElementById("myButton").disabled = true;
             }
-        });
-
-
-        // $('#checkbox1').on('click', function () {
-        //     $('#update').prop('disabled', true);
-        // }
-        // );
-        // $('#checkbox1').on('dblclick', function () {
-        //     $('#update').prop('disabled', false);
-        // });
-
-
-
-        // $('#checkbox1').click(function() {
-        // 	if ($(this).is(':checked')) {
-        // 		$('#id_of_your_button').attr('disabled', 'disabled');
-        // 	} else {
-        // 		$('#id_of_your_button').removeAttr('disabled');
-        // 	}
-        // });
+        }
     </script>
 
 </x-guest-layout>

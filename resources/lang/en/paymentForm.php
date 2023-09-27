@@ -54,4 +54,6 @@ return [
     'suitability' => 'the suitability for physical activity form',
     'sign_up' => 'Sign up',
     'back' => 'Back',
+    'credit_card_number' => 'Credit Card Number',
+    'Expiry_Month' => 'Expiry Month',
 ];

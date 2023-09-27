@@ -54,4 +54,6 @@ return [
     'suitability' => 'la forme d\'aptitude à l\'activité physique',
     'sign_up' => 'S\'inscrire',
     'back' => 'Dos',
+    'credit_card_number' => 'Numéro de Carte de Crédit',
+    'Expiry_Month' => 'Mois d\'expiration',
 ];
