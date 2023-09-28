@@ -386,7 +386,8 @@ class AccountController extends Controller
                 }
             }
             $membershipdata['code_promo'] = $request->code_promo;
-            $membershipdata['account_id'] = $data['get_methode_acc']->data[0]->id;
+            // $membershipdata['account_id'] = $data['get_methode_acc']->data[0]->id;
+            $membershipdata['account_id'] = $request->old_acc;
 
             // {
             //     // "subscription_plan_id": 0,
@@ -402,6 +403,7 @@ class AccountController extends Controller
             //   }
             $membership_with_bnk_acc = APICall('Memberships/with-bank-account', "post", json_encode($membershipdata), "client_app");
             $data['membership_with_bnk_acc'] = json_decode($membership_with_bnk_acc);
+            return redirect()->route('newMembership');
         }else{
             $membershipcarddata = array();
                 $membershipcarddata['subscription_plan_id'] = $request->subscription_plan_id;
@@ -423,10 +425,15 @@ class AccountController extends Controller
                 }
                 $membershipcarddata['code_promo'] = $request->code_promo;
                 $membershipcarddata['processed_amount'] = $request->processed_amount;
-                $membershipcarddata['card_id'] = $data['pay_method_accc']->data->id;//request card -id
+                // $membershipcarddata['card_id'] = $data['pay_method_accc']->data->id;//request card -id
+                $membershipcarddata['card_id'] = $request->old_card;//request card -id
 
                 $membership_with_credit_card = APICall('Memberships/with-credit-card', "post", json_encode($membershipcarddata), "client_app");
                 $data['membership_with_credit_card'] = json_decode($membership_with_credit_card);
+                // if($data['membership_with_credit_card']->error == null){
+
+                // }
+                return redirect()->route('newMembership');
         }
     }
 

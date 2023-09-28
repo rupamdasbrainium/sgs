@@ -323,206 +323,210 @@
 												</div>
 											</div>
 										</div> --}}
-										<div class="content_block more_cont_view">
-											<h2>Method of Payment</h2>
-											<div class="checkout_optview payment_opt_details">
-												<div class="inp_row">
-													<div class="form-group">
-														<div class="memberships_nam radio">
-															<input type="radio" id="payment_opt1" name="radio-group_pay" value="credit" checked>
-															<label for="payment_opt1">Credit Card</label>
-														</div>
-												
-														<div class="memberships_nam radio">
-															<input type="radio" id="payment_opt2" name="radio-group_pay" value="debit">
-															<label for="payment_opt2">Debit Card</label>
-														</div>
+										<form method="post" action="{{ route('newMembershipFinalsave')}}">
+											@csrf
+											<div class="content_block more_cont_view">
+												<h2>Method of Payment</h2>
+												<div class="checkout_optview payment_opt_details">
+													<div class="inp_row">
+														<div class="form-group">
+															<div class="memberships_nam radio">
+																<input type="radio" id="payment_opt1" name="radio-group_pay" value="credit" checked>
+																<label for="payment_opt1">Credit Card</label>
+															</div>
+													
+															<div class="memberships_nam radio">
+																<input type="radio" id="payment_opt2" name="radio-group_pay" value="debit">
+																<label for="payment_opt2">Debit Card</label>
+															</div>
+															
+															<div class="memberships_nam radio">
+																<input type="radio" id="payment_opt3" name="radio-group_pay" value="bank">
+																<label for="payment_opt3">Prepaid Account Card</label>
+															</div>
 														
-														<div class="memberships_nam radio">
-															<input type="radio" id="payment_opt3" name="radio-group_pay" value="bank">
-															<label for="payment_opt3">Prepaid Account Card</label>
 														</div>
-													
-													</div>
 
-													<div id="bank_details">
-														<div class="inp_row">
-															<div class="form-group">
-																<label>{{ __('paymentForm.Direct_Debit') }}</label>
-																<div class="card_add">
-																	
-																	<img src="images/voided.png" alt="" />
-																</div>
-															</div>
-														</div>
-			
-														<div class="inp_row">
-															<div class="form-group">
-																<label>{{ __('paymentForm.Transit_Number') }} <em class="req_text">*</em></label>
-																<div class="inp_cont_view noicon_opt" id="incdec">
-			
-																	<input type="text" name="transit_number"
-																		class="form-control" placeholder=""
-																		value="">
-																</div>
-															</div>
-														</div>
-			
-														<div class="inp_row">
-															<div class="form-group">
-																<label>{{ __('paymentForm.Branch_Number') }} <em class="req_text">*</em></label>
-																<div class="inp_cont_view noicon_opt">
-																	<input type="text" name="institution"
-																		class="form-control" placeholder="">
-																</div>
-															</div>
-														</div>
-														<div class="inp_row">
-															<div class="form-group">
-																<label>{{ __('paymentForm.Account_Number') }} <em class="req_text">*</em></label>
-																<div class="inp_cont_view noicon_opt">
-																	<input type="text" name="account_number"
-																		class="form-control" placeholder="">
-																</div>
-															</div>
-														</div>
-			
-														<div class="inp_row">
-															<div class="form-group">
-																<label>{{ __('paymentForm.Account_Name_Holder') }} <em
-																		class="req_text">*</em></label>
-																<div class="inp_cont_view noicon_opt">
-																	<input type="text" name="owner_names"
-																		class="form-control" placeholder="bank">
-																</div>
-															</div>
-														</div>
-													</div>
-
-													<div id="credit_details">
-														<div class="selectcont ">
-			
-															<div class="arrowdown2">
-																<i class="far fa-chevron-down"></i>
-															</div>
-															<select class="select_opt" name="type_id">
-																@foreach ($data['card_types'] as $cardtype)
-																	<option value="{{ $cardtype->id }}">
-																		{{ $cardtype->name }}</option>
-																@endforeach
-															</select>
-			
-														</div><br>
-														<div class="inp_row">
-															<div class="form-group">
-																<label>{{ __('paymentForm.Account_Name_Holder') }} <em
-																		class="req_text">*</em></label>
-																<div class="inp_cont_view noicon_opt">
-																	<input type="text" name="owner_name"
-																		class="form-control" placeholder="">
-																</div>
-															</div>
-														</div>
-														<div class="inp_row">
-															<div class="form-group">
-																<label>{{ __('paymentForm.credit_card_number') }} <em
-																		class="req_text">*</em></label>
-																<div class="inp_cont_view noicon_opt" id="incdec">
-			
-																	<input type="text" name="token"
-																		class="form-control" placeholder=""
-																		value="">
-																	
-																</div>
-															</div>
-														</div>
-			
-														<div class="inp_row">
-															<div class="form-group">
-																<label>{{ __('paymentForm.Expiry_Month') }} <em class="req_text">*</em></label>
-																<div class="inp_cont_view noicon_opt">
-																	<input type="text" name="expiry_month"
-																		class="form-control" placeholder="">
-																</div>
-															</div>
-														</div>
-														<div class="inp_row">
-															<div class="form-group">
-																<label>{{ __('paymentForm.Expiry_Year') }} <em class="req_text">*</em></label>
-																<div class="inp_cont_view noicon_opt">
-																	<input type="text" name="expiry_year"
-																		class="form-control" placeholder="">
-																</div>
-															</div>
-														</div>
-														<div class="inp_row">
-															<div class="form-group">
-																<label>{{ __('paymentForm.CVV') }}<em class="req_text">*</em></label>
-																<div class="inp_cont_view noicon_opt">
-																	<input type="text" name="four_digits_number"
-																		class="form-control" placeholder="">
-																</div>
-															</div>
-														</div>
-			
-													</div>
-
-													<input type="hidden" name="subscription_plan_id" value="{{ $data['membership_details']->data->subscriptionPlan_id }}">
-													<input type="hidden" name="duration_id" value="{{ Session::get('duration_id') }}">
-													<input type="hidden" name="date_begin" value="{{ $data['membership_details']->data->begin }}">
-													<input type="hidden" name="processed_amount" value="{{ $total }}">
-							
-													<div class="frombtn_wrap select_optblock">
-														<div class="select_card_opt">
-							
-															<div class="form-group">
-																<div class="inp_cont_view noicon_opt">
-							
-																	<div class="selectcont ">
-																		<div class="arrowdown2">
-																			<i class="far fa-chevron-down"></i>
-																		</div>
-																		<select class="select_opt" id="old_card" name="old_card">
-																			@foreach($data['pay_methods_card']->data as $card)
-																			<option value="{{ $card->id }}" >XXX   XXX   XXXX {{   $card->four_digits_number }}</option>
-																			@endforeach
-																		</select>
-																		{{-- <select class="select_opt" id="old_acc" name="">
-																			@foreach($data['pay_methods_acc']->data as $acc)
-																			<option value="{{ $acc->id }}" >XXX   XXX   XXXX {{   $acc->account_last_digits }}</option>
-																			@endforeach
-																			
-																		</select>  --}}
+														<div id="bank_details">
+															<div class="inp_row">
+																<div class="form-group">
+																	<label>{{ __('paymentForm.Direct_Debit') }}</label>
+																	<div class="card_add">
+																		
+																		<img src="images/voided.png" alt="" />
 																	</div>
-							
 																</div>
 															</div>
-							
+				
+															<div class="inp_row">
+																<div class="form-group">
+																	<label>{{ __('paymentForm.Transit_Number') }} <em class="req_text">*</em></label>
+																	<div class="inp_cont_view noicon_opt" id="incdec">
+				
+																		<input type="text" name="transit_number"
+																			class="form-control" placeholder=""
+																			value="">
+																	</div>
+																</div>
+															</div>
+				
+															<div class="inp_row">
+																<div class="form-group">
+																	<label>{{ __('paymentForm.Branch_Number') }} <em class="req_text">*</em></label>
+																	<div class="inp_cont_view noicon_opt">
+																		<input type="text" name="institution"
+																			class="form-control" placeholder="">
+																	</div>
+																</div>
+															</div>
+															<div class="inp_row">
+																<div class="form-group">
+																	<label>{{ __('paymentForm.Account_Number') }} <em class="req_text">*</em></label>
+																	<div class="inp_cont_view noicon_opt">
+																		<input type="text" name="account_number"
+																			class="form-control" placeholder="">
+																	</div>
+																</div>
+															</div>
+				
+															<div class="inp_row">
+																<div class="form-group">
+																	<label>{{ __('paymentForm.Account_Name_Holder') }} <em
+																			class="req_text">*</em></label>
+																	<div class="inp_cont_view noicon_opt">
+																		<input type="text" name="owner_names"
+																			class="form-control" placeholder="bank">
+																	</div>
+																</div>
+															</div>
 														</div>
-														<div class="def_btnopt2 frombtn frombtn2">
-															<button type="button" class="btn2" id="add_pay_method" >Add a Payment Method</button>
+
+														<div id="credit_details">
+															<div class="selectcont ">
+				
+																<div class="arrowdown2">
+																	<i class="far fa-chevron-down"></i>
+																</div>
+																<select class="select_opt" name="type_id">
+																	@foreach ($data['card_types'] as $cardtype)
+																		<option value="{{ $cardtype->id }}">
+																			{{ $cardtype->name }}</option>
+																	@endforeach
+																</select>
+				
+															</div><br>
+															<div class="inp_row">
+																<div class="form-group">
+																	<label>{{ __('paymentForm.Account_Name_Holder') }} <em
+																			class="req_text">*</em></label>
+																	<div class="inp_cont_view noicon_opt">
+																		<input type="text" name="owner_name"
+																			class="form-control" placeholder="">
+																	</div>
+																</div>
+															</div>
+															<div class="inp_row">
+																<div class="form-group">
+																	<label>{{ __('paymentForm.credit_card_number') }} <em
+																			class="req_text">*</em></label>
+																	<div class="inp_cont_view noicon_opt" id="incdec">
+				
+																		<input type="text" name="token"
+																			class="form-control" placeholder=""
+																			value="">
+																		
+																	</div>
+																</div>
+															</div>
+				
+															<div class="inp_row">
+																<div class="form-group">
+																	<label>{{ __('paymentForm.Expiry_Month') }} <em class="req_text">*</em></label>
+																	<div class="inp_cont_view noicon_opt">
+																		<input type="text" name="expiry_month"
+																			class="form-control" placeholder="">
+																	</div>
+																</div>
+															</div>
+															<div class="inp_row">
+																<div class="form-group">
+																	<label>{{ __('paymentForm.Expiry_Year') }} <em class="req_text">*</em></label>
+																	<div class="inp_cont_view noicon_opt">
+																		<input type="text" name="expiry_year"
+																			class="form-control" placeholder="">
+																	</div>
+																</div>
+															</div>
+															<div class="inp_row">
+																<div class="form-group">
+																	<label>{{ __('paymentForm.CVV') }}<em class="req_text">*</em></label>
+																	<div class="inp_cont_view noicon_opt">
+																		<input type="text" name="four_digits_number"
+																			class="form-control" placeholder="">
+																	</div>
+																</div>
+															</div>
+				
 														</div>
-													</div>
-													<div class="aboundopt">
-														<p>Amount to be paid: ${{ $total }}</p>
-													</div>
-													<div class="frombtn_wrap">
-														<div class="def_btnopt2 frombtn frombtn2">
-															<button type="submit" class="btn2" >Pay Now</button>
+
+														<input type="hidden" name="subscription_plan_id" value="{{ $data['membership_details']->data->subscriptionPlan_id }}">
+														<input type="hidden" name="duration_id" value="{{ Session::get('duration_id') }}">
+														<input type="hidden" name="date_begin" value="{{ $data['membership_details']->data->begin }}">
+														<input type="hidden" name="processed_amount" value="{{ $total }}">
+														<input type="hidden" name="new_key" id="new_key" value="0">
+								
+														<div class="frombtn_wrap select_optblock">
+															<div class="select_card_opt">
+								
+																<div class="form-group">
+																	<div class="inp_cont_view noicon_opt">
+								
+																		<div class="selectcont ">
+																			<div class="arrowdown2">
+																				<i class="far fa-chevron-down"></i>
+																			</div>
+																			<select class="select_opt" id="old_card" name="old_card">
+																				@foreach($data['pay_methods_card']->data as $card)
+																				<option value="{{ $card->id }}" >XXX   XXX   XXXX {{   $card->four_digits_number }}</option>
+																				@endforeach
+																			</select>
+																			<select class="select_opt" id="old_acc" name="old_acc">
+																				@foreach($data['pay_methods_acc']->data as $acc)
+																				<option value="{{ $acc->id }}" >XXX   XXX   XXXX {{   $acc->account_last_digits }}</option>
+																				@endforeach
+																				
+																			</select> 
+																		</div>
+								
+																	</div>
+																</div>
+								
+															</div>
+															<div class="def_btnopt2 frombtn frombtn2">
+																<button type="button" class="btn2" id="add_pay_method" >Add a Payment Method</button>
+															</div>
 														</div>
+														<div class="aboundopt">
+															<p>Amount to be paid: ${{ $total }}</p>
+														</div>
+														<div class="frombtn_wrap">
+															<div class="def_btnopt2 frombtn frombtn2">
+																<button type="submit" class="btn2" >Pay Now</button>
+															</div>
+														</div>
+								
+														
 													</div>
-							
-													
+								
 												</div>
-							
+								
+											
+								
+								
+								
+								
 											</div>
-							
-										
-							
-							
-							
-							
-										</div>
+										</form>
 									</div> 
 
 									
@@ -556,6 +560,7 @@
 				$('#old_acc').hide();
 
 				$('#add_pay_method').click(function(){
+					$("#new_key").val(1);
 					let radio_group_pay = $('input[name="radio-group_pay"]:checked').val();
 					if(radio_group_pay=='bank'){
 						$('#bank_details').show();
@@ -573,7 +578,7 @@
 				});
 
 				$('input[type=radio][name=radio-group_pay]').change(function() {
-					
+					$("#new_key").val(0);
 					if (this.value == 'bank') {
 						$('#bank_details').hide();
 						$('#credit_details').hide();

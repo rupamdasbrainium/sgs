@@ -10,7 +10,7 @@
 				<div class="prod_item_wrap" id="home_prod_item">
 					
 					<div class="from_cont_wrap" style="flex: 0 100%;">
-						<form action="{{ route('newMembershipSave',['id'=>$data['subscription_plan']->data->id]) }}" method="post">
+						<form action="{{ route('newMembershipSteptwosave',['id'=>$data['subscription_plan']->data->id]) }}" method="post">
 							{{-- <form action="{{ route('suscriptionformSave',['id'=>18]) }}" method="post"> --}}
 							@csrf
 							<div class="fromdes_info2">

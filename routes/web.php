@@ -72,7 +72,9 @@ Route::group(['middleware'=>'verifyToken'], function(){
 });
 Route::get('new-membership', 'AccountController@newMembership')->name('newMembership');
 Route::get('new-membership-step-two/{id}', 'AccountController@newMembershipSteptwo')->name('newMembershipSteptwo');
+Route::get('new-membership-step-two/{id}', 'AccountController@newMembershipSteptwosubmit')->name('newMembershipSteptwosave');
 Route::get('new-membership-final', 'AccountController@newMembershipFinal')->name('newMembershipFinal');
+Route::get('new-membership-final', 'AccountController@newMembershipFinalSave')->name('newMembershipFinalsave');
 
 Route::get('/reload-captcha', 'Admin\Auth\AuthenticatedSessionController@reloadCaptcha');
 
