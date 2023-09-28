@@ -248,23 +248,186 @@ class AccountController extends Controller
         $data = array();
         $data['title'] = trans('newMembership.memberships');
 
+        //franchise best four plan
+        // $best_four_plan = APICall("SubscriptionPlans/franchises/".$franchise_id, "get","{}");
+        // $data['best_four_plan'] = json_decode($best_four_plan);
+        $franchise_id =3;
+        //franchise get all plan
+        $all_plan = APICall("SubscriptionPlans/types?franchise_id=".$franchise_id, "get","{}");
+        $data['all_plan'] = json_decode($all_plan);
+
+        // $data_plan = [];
+        //franchise best four plan details
+        foreach($data['all_plan']->data as $item){
+            $data['all_plan_details'][] = json_decode(APICall("SubscriptionPlans/type/".$item->id, "get","{}"));
+        }
+        // $data_plan[$data['best_four_plan']->data->subscriptionPlan1] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan1, "get","{}"));
+
+        // $data_plan[$data['best_four_plan']->data->subscriptionPlan2] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan2, "get","{}"));
+
+        // $data_plan[$data['best_four_plan']->data->subscriptionPlan3] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan3, "get","{}"));
+
+        // $data_plan[$data['best_four_plan']->data->subscriptionPlan4] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan4, "get","{}"));
+
+        // $data['best_four_plan_details'] = $data_plan;
 
         return view('front.newmembershipStepOne', compact('data'));
     }
 
-    public function newMembershipSteptwo () {
+    public function newMembershipSteptwo ($id) {
+        $lang_id = getLocale();
         $data = array();
-        $data['title'] = trans('global.Subscription plan options');
+        $data['title'] = trans('newMembership.memberships').' '.trans('newMembership.option');
 
-        
+        //subscriptionplan type call
+        $subscription_plan = APICall("SubscriptionPlans/type/".$id."?language_id=".$lang_id, "get","{}");
+        $data['subscription_plan'] = json_decode($subscription_plan);
+
         return view('front.newmembershipStepTwo', compact('data'));
     }
+
+    public function newMembershipSteptwosubmit (Request $request, $id) {
+        // return $request->add_on;
+        if (Session::has('add_on')) {
+            Session::forget('add_on');
+        }
+        Session::put('add_on', $request->add_on);
+        if (Session::has('installments_id')) {
+            Session::forget('installments_id');
+        }
+        if (Session::has('duration_id')) {
+            Session::forget('duration_id');
+        }
+        
+        $duration_installments_arr = explode("|",$request->installments);
+        Session::put('installments_id', $duration_installments_arr[1]);
+        Session::put('duration_id', $duration_installments_arr[0]);
+
+        if (Session::has('subscription_plan_id')) {
+            Session::forget('subscription_plan_id');
+        }
+        Session::put('subscription_plan_id', $id);
+        if (Session::has('franchise_id')) {
+            Session::forget('franchise_id');
+        }
+        Session::put('franchise_id', $request->franchise_id); 
+        
+        return redirect()->route('newMembershipFinal');
+    }
+
     public function newMembershipFinal () {
+
+        $lang_id = getLocale();
         $data = array();
-        $data['title'] = trans('newMembership.payments');
+        $data['title'] = trans('paymentForm.payments');
+
+        $uri = "Memberships/price-details?";
+        if (Session::has('subscription_plan_id')) {
+            $uri .= "subscription_plan_id=" . Session::get('subscription_plan_id');
+        }
+        if (Session::has('duration_id')) {
+            $uri .= "&duration_id=" . Session::get('duration_id');
+        }
+        if (Session::has('installments_id')) {
+            $uri .= "&installment_id=" . Session::get('installments_id');
+        }
+        
+        // $uri .= "&date_begin=".Date("Dd M Y H:i:s T");
+        $uri .= "&date_begin=" . urlencode(Date("M Dd Y H:i:s") . " GMT");
+        if (Session::has('franchise_id')) {
+            $uri .= "&franchise_id=" . Session::get('franchise_id');
+        }
+        if (Session::has('reference_Code')) {
+            $uri .= "&reference_Code=" . Session::get('reference_Code');
+        }
+        
+        if (Session::has('add_on')) {
+            $add_ons = Session::get('add_on');
+            foreach ($add_ons as $ad_on_id) {
+                $uri .= "&lstOptions=" . $ad_on_id;
+            }
+        }
+        $uri .=  "&display_language_id=" . $lang_id;
+
+        $membership_details = APICall($uri, "get", "{}", 'client_app');
+        $data['membership_details'] = json_decode($membership_details);
+
+        $pay_methods_acc = APICall('PaymentMethods/accounts', "get", "{}", 'client_app');
+        $data['pay_methods_acc'] = json_decode($pay_methods_acc);
+
+        $pay_methods_card = APICall('PaymentMethods/cards', "get", "{}", 'client_app');
+        $data['pay_methods_card'] = json_decode($pay_methods_card);
 
         
         return view('front.newmembershipStepFinal', compact('data'));
+    }
+
+    public function newMembershipFinalSave (Request $request) {
+
+        if ($request->radio_group_pay == "bank_acc") {
+            //membership with bank account
+            $membershipdata = array();
+            $membershipdata['subscription_plan_id'] = $request->subscription_plan_id;
+            if (Session::has('duration_id')) {
+                $membershipdata['duration_id'] = Session::get('duration_id');
+            }
+            if (Session::has('installments_id')) {
+                $membershipdata['installment_id'] = Session::get('installments_id');
+            }
+
+            $membershipdata['date_begin']  = $request->date_begin;
+            if (Session::has('franchise_id')) {
+                $membershipdata['franchise_id'] = Session::get('franchise_id');
+            }
+            if (Session::has('add_on')) {
+                $add_ons = Session::get('add_on');
+                foreach ($add_ons as $ad_on_id) {
+                    $membershipdata['lstOptions'][] = $ad_on_id;
+                }
+            }
+            $membershipdata['code_promo'] = $request->code_promo;
+            $membershipdata['account_id'] = $data['get_methode_acc']->data[0]->id;
+
+            // {
+            //     // "subscription_plan_id": 0,
+            //     // "duration_id": 0,
+            //     // "installment_id": 0,
+            //     // "date_begin": "2023-09-21T11:39:08.178Z",
+            //     // "franchise_id": 0,
+            //     // "lstOptions": [
+            //     //   0
+            //     // ],
+            //     // "code_promo": "string",
+            //     "account_id": 0//nf
+            //   }
+            $membership_with_bnk_acc = APICall('Memberships/with-bank-account', "post", json_encode($membershipdata), "client_app");
+            $data['membership_with_bnk_acc'] = json_decode($membership_with_bnk_acc);
+        }else{
+            $membershipcarddata = array();
+                $membershipcarddata['subscription_plan_id'] = $request->subscription_plan_id;
+                if (Session::has('duration_id')) {
+                    $membershipcarddata['duration_id'] = Session::get('duration_id');
+                }
+                if (Session::has('installments_id')) {
+                    $membershipcarddata['installment_id'] = Session::get('installments_id');
+                }
+                $membershipcarddata['date_begin'] = $request->date_begin;
+                if (Session::has('franchise_id')) {
+                    $membershipcarddata['franchise_id'] = Session::get('franchise_id');
+                }
+                if (Session::has('add_on')) {
+                    $add_ons = Session::get('add_on');
+                    foreach ($add_ons as $ad_on_id) {
+                        $membershipcarddata['lstOptions'][] = $ad_on_id;
+                    }
+                }
+                $membershipcarddata['code_promo'] = $request->code_promo;
+                $membershipcarddata['processed_amount'] = $request->processed_amount;
+                $membershipcarddata['card_id'] = $data['pay_method_accc']->data->id;//request card -id
+
+                $membership_with_credit_card = APICall('Memberships/with-credit-card', "post", json_encode($membershipcarddata), "client_app");
+                $data['membership_with_credit_card'] = json_decode($membership_with_credit_card);
+        }
     }
 
     public function upgradeMembership () {
