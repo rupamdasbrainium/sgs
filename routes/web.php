@@ -48,6 +48,7 @@ Route::middleware('guest')->group(function () {
     Route::get('login', 'HomeController@login')->name('login');
     Route::post('login','Auth\AuthenticatedSessionController@store')->name('userLogin');
     Route::get('forgot-password', 'HomeController@forgotPassword')->name('forgotpassword');
+    Route::get('logout', 'Auth\AuthenticatedSessionController@destroy')->name('userLogout');
 });
 
 Route::group(['middleware'=>'verifyToken'], function(){
@@ -56,6 +57,7 @@ Route::group(['middleware'=>'verifyToken'], function(){
     Route::get('account', 'AccountController@account')->name('account');
     Route::get('change-language', 'AccountController@changeLanguage')->name('changeLanguage');
     Route::post('languageUpdate',"AccountController@languageUpdate")->name('userLanguageUpdate');
+    Route::post('mylanguagechange',"AccountController@mylanguagechange")->name('mylanguagechange');
     Route::get('change-password', 'AccountController@changePassword')->name('changePassword');
 
     Route::post('changePasswordUser', 'AccountController@changePasswordUser')->name('changePasswordUser');
@@ -68,7 +70,7 @@ Route::group(['middleware'=>'verifyToken'], function(){
     Route::get('new-membership', 'AccountController@newMembership')->name('newMembership');
     Route::get('upgrade-membership', 'AccountController@upgradeMembership')->name('upgradeMembership');
     Route::get('referral-code', 'AccountController@referralCode')->name('referralCode');
-   
+
 });
 Route::get('new-membership', 'AccountController@newMembership')->name('newMembership');
 Route::get('new-membership-step-two/{id}', 'AccountController@newMembershipSteptwo')->name('newMembershipSteptwo');

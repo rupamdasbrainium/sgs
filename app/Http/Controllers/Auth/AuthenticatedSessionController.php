@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Session;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -48,14 +49,17 @@ class AuthenticatedSessionController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Request $request)
-    {
+    { 
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
         session()->forget('webToken');
         session()->forget('clientToken');
-        $request->session()->regenerateToken();
+        if(Session::has('webToken')){
+            Session::forget('clientToken');
+          }
+        // $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login');
     }
 }

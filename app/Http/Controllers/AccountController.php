@@ -26,28 +26,61 @@ class AccountController extends Controller
         $client = json_decode($client)->data;
 
         $membership = APICall('Memberships/client?display_language_id='.$client->language_id,"get","{}");
-        // dd($membership);
-        // $payments = APICall('Payments/schedualed/client',"get","{}");
+        $membership = json_decode($membership);
+        if($membership->data == null){
+            $membership = "";
+        }
 
-        // if(!empty($payments->data)){
-        //     $payments = json_decode($payments);
-        // }else{
-        //     $payments = "";
-        // }
+        //getting cards
+
+        $response = APICall('PaymentMethods/cards',"get","{}");
+        $cards = json_decode($response);
+
+        if(!$cards->error && $cards->data){
+            $data["cards"] = $cards->data;
+        }else{
+            $data['cards'] = null;
+        }
+
+        //gettting bank accounts;
+        $response = APICall('PaymentMethods/accounts',"get","{}");
+        $bank = json_decode($response);
+
+        if(!$bank->error && $bank->data){
+            $data["banks"] = $bank->data;
+        }else{
+
+            $data['banks'] = null;
+        }
+
         $languages = APICall('Options/languages',"get","{}");
         $languages = json_decode($languages);
-        return view('front.account', compact('data','client','languages'));
+        return view('front.account', compact('data','client','languages','membership'));
     }
 
     public function changeLanguage () {
         $data = array();
         $data['title'] = 'Change Language';
 
-        $language = APICall('Options/languages', "get", "{}", 'client_app');
+        $language = APICall('Options/languages', "get", "{}");
         $data['language'] = json_decode($language);
-
+     
         return view('front.changelanguage', compact('data'));
     }
+
+    public function mylanguagechange (Request $request) {
+        $data = array();
+        $data['title'] = 'Change Language';
+        $language_id = (int)$request->display;
+        // $carddata['iso_code'] = $request->type_id;
+        // $carddata['display'] = $request->type_id;
+        
+        $language = APICall('Clients/language?language_id='.$language_id,"put","{}");
+        $data['language'] = json_decode($language);
+
+        return redirect(route("changeLanguage"));
+    }
+
 
     public function languageUpdate(Request $request){
         try {
@@ -104,6 +137,12 @@ class AccountController extends Controller
         $client = json_decode($client)->data;
 
         $membership = APICall('Memberships/client?display_language_id='.$client->language_id,"get","{}");
+        $membership = json_decode($membership);
+        if(!$membership->error && $membership->data){
+            $membership = $membership;
+        }else{
+            $membership = "";
+        }
         // dd($membership);
         $payments = APICall('Payments/schedualed/client',"get","{}");
         $payments = json_decode($payments);
@@ -112,9 +151,28 @@ class AccountController extends Controller
         }else{
             $payments = "";
         }
+        $response = APICall('PaymentMethods/cards',"get","{}");
+        $cards = json_decode($response);
+
+        if(!$cards->error && $cards->data){
+            $data["cards"] = $cards->data;
+        }else{
+            $data['cards'] = null;
+        }
+
+        //gettting bank accounts;
+        $response = APICall('PaymentMethods/accounts',"get","{}");
+        $bank = json_decode($response);
+
+        if(!$bank->error && $bank->data){
+            $data["banks"] = $bank->data;
+        }else{
+
+            $data['banks'] = null;
+        }
         $languages = APICall('Options/languages',"get","{}");
         $languages = json_decode($languages);
-        return view('front.myprofile', compact('data', 'client','payments','languages'));
+        return view('front.myprofile', compact('data', 'client','payments','languages','membership'));
     }
 
     public function myContactInformation () {
@@ -124,7 +182,7 @@ class AccountController extends Controller
         if($client == "unauthorised"){
             return redirect()->route('login')->with('user',"Your login token has been expired");
         }
-        
+
         $client = json_decode($client)->data;
         $province = APICall('Options/ProvincesAndStates', "get", "{}");
         if($province == "unauthorised"){
@@ -206,7 +264,7 @@ class AccountController extends Controller
                 }
 
             } catch (\Throwable $th) {
-                dd($th);
+
                return redirect()->route('myContactInformation')->with('failed', $th->getMessage());
             }
     }
@@ -227,13 +285,13 @@ class AccountController extends Controller
         }
         $uri .=  "&display_language_id=" . getLocale();
 
-      
+
         $pay_methods_acc = APICall('PaymentMethods/accounts', "get", "{}", 'client_app');
         $data['pay_methods_acc'] = json_decode($pay_methods_acc);
 
         $pay_methods_accc = APICall('PaymentMethods/cards', "get", "{}", 'client_app');
         $data['pay_methods_accc'] = json_decode($pay_methods_accc);
-        // dd( $data['pay_methods_accc']);
+
 
         return view('front.mybankcards', compact('data'));
     }
@@ -440,6 +498,10 @@ class AccountController extends Controller
     public function upgradeMembership () {
         $data = array();
         $data['title'] = 'Upgrade Membership';
+
+        $upgrademembership = APICall('Memberships/client', "get", "{}");
+        $data['upgrademembership'] = json_decode($upgrademembership);
+
         return view('front.upgrademembership', compact('data'));
     }
 

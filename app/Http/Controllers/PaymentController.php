@@ -159,7 +159,7 @@ class PaymentController extends Controller
             $data['membership_with_bnk_acc'] = json_decode($membership_with_bnk_acc);
 
             $data["title"] = "My Account"; 
-            return view('front.myprofile', compact('data'));
+            return redirect(route("myProfile"));
         } else {
 
             $carddata = array();
@@ -200,7 +200,7 @@ class PaymentController extends Controller
                 $membership_with_credit_card = APICall('Memberships/with-credit-card', "post", json_encode($membershipcarddata), "client_app");
                 $data['membership_with_credit_card'] = json_decode($membership_with_credit_card);
             }
-            return view('front.myprofile', compact('data'));
+            return redirect(route("myProfile"));
         }
     }
 
@@ -234,15 +234,6 @@ class PaymentController extends Controller
 
             $pay_methode_acc = APICall('PaymentMethods/account', "post", json_encode($formdata), 'client_app');
             $data['pay_methode_acc'] = json_decode($pay_methode_acc);
-
-            $get_methode_acc = APICall('PaymentMethods/accounts?clients=' . $data['pay_methode_acc']->data->client_id, "get", "{}", "client_app");
-            $data['get_methode_acc'] = json_decode($get_methode_acc);
-
-
-            //membership with bank account
-            $membershipdata = array();
-
-            $membershipdata['account_id'] = $data['get_methode_acc']->data[0]->id;
 
               return redirect(route("myBankCards"));
         } else {

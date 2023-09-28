@@ -49,7 +49,7 @@
 														<h3>{{ __('newMembership.option') }} {{ $loop->iteration }}</h3>
 														<div class="optionitem_block">
 															<div class="opt_add">
-																<img src="images/prod_img1.png" alt="">
+																<img src="{{asset('public/images/prod_img1.png')}}" alt="">
 															</div>
 															<div class="optionitem_des">
 																<p>{{ $item->name }}</p>
