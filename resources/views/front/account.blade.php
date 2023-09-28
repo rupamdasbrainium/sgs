@@ -48,6 +48,7 @@
 
 			<div class="content_block memberships">
 				<h2>Memberships</h2>
+              
                 @if($membership == "")
                     <div class="memberships_content">
                         No Membership Found
@@ -57,7 +58,7 @@
                     @foreach ($membership->data as $item)
 
 					<div class="memberships_opt">
-						<div class="memberships_nam">{{ $item->type }}- davable ${{ $item->recurantCharge }} per Month</div>
+						<div class="memberships_nam">{{ $item->type }} - davable ${{ $item->recurantCharge }} per Month</div>
 						<div class="memberships_method_view">
 							<div class="memberships_method">Method of  payment:</div>
 							<div class="memberships_method_opt">
@@ -66,10 +67,19 @@
 										<i class="far fa-chevron-down"></i>
 									</div>
 									<select class="select_opt" >
-										<option value="visa" selected >xxx xxx xxxx 4242 visa</option>
-										<option value="visa" >xxx xxx xxxx 4242 visa</option>
-										<option value="visa"  >xxx xxx xxxx 4242 visa</option>
-										<option value="visa"  >xxx xxx xxxx 4242 visa</option>
+                                        @if($data["cards"] != null)
+                                            @foreach ($data["cards"] as $card)
+
+                                            <option value="{{ $card->id }}" {{ ($item->creditCardId && $item->creditCardId == $card->id) ? "selected" : "" }} >xxx xxx xxxx {{ $card->four_digits_number}} Card</option>
+                                            @endforeach
+                                        @endif
+                                        @if($data['banks'] != null)
+                                            @foreach ($data["banks"] as $bank)
+                                            <option value="{{ $bank->id }}" {{ ($item->bancAccountId && $item->bancAccountId == $bank->id) ? "selected" : "" }} >xxx xxx xxxx {{ $bank->account_last_digits}} Bank</option>
+                                            @endforeach
+                                        @endif
+
+
 									</select>
 								</div>
 							</div>

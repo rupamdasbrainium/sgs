@@ -29,14 +29,29 @@ class AccountController extends Controller
         if($membership->data == null){
             $membership = "";
         }
-        // dd($membership);
-        // $payments = APICall('Payments/schedualed/client',"get","{}");
 
-        // if(!empty($payments->data)){
-        //     $payments = json_decode($payments);
-        // }else{
-        //     $payments = "";
-        // }
+        //getting cards
+
+        $response = APICall('PaymentMethods/cards',"get","{}");
+        $cards = json_decode($response);
+
+        if(!$cards->error && $cards->data){
+            $data["cards"] = $cards->data;
+        }else{
+            $data['cards'] = null;
+        }
+
+        //gettting bank accounts;
+        $response = APICall('PaymentMethods/accounts',"get","{}");
+        $bank = json_decode($response);
+
+        if(!$bank->error && $bank->data){
+            $data["banks"] = $bank->data;
+        }else{
+
+            $data['banks'] = null;
+        }
+
         $languages = APICall('Options/languages',"get","{}");
         $languages = json_decode($languages);
         return view('front.account', compact('data','client','languages','membership'));
@@ -107,6 +122,12 @@ class AccountController extends Controller
         $client = json_decode($client)->data;
 
         $membership = APICall('Memberships/client?display_language_id='.$client->language_id,"get","{}");
+        $membership = json_decode($membership);
+        if(!$membership->error && $membership->data){
+            $membership = $membership;
+        }else{
+            $membership = "";
+        }
         // dd($membership);
         $payments = APICall('Payments/schedualed/client',"get","{}");
         $payments = json_decode($payments);
@@ -115,9 +136,28 @@ class AccountController extends Controller
         }else{
             $payments = "";
         }
+        $response = APICall('PaymentMethods/cards',"get","{}");
+        $cards = json_decode($response);
+
+        if(!$cards->error && $cards->data){
+            $data["cards"] = $cards->data;
+        }else{
+            $data['cards'] = null;
+        }
+
+        //gettting bank accounts;
+        $response = APICall('PaymentMethods/accounts',"get","{}");
+        $bank = json_decode($response);
+
+        if(!$bank->error && $bank->data){
+            $data["banks"] = $bank->data;
+        }else{
+
+            $data['banks'] = null;
+        }
         $languages = APICall('Options/languages',"get","{}");
         $languages = json_decode($languages);
-        return view('front.myprofile', compact('data', 'client','payments','languages'));
+        return view('front.myprofile', compact('data', 'client','payments','languages','membership'));
     }
 
     public function myContactInformation () {
