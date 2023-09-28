@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use App\Models\AdminUser;
 use App\Models\User;
+use App\Models\Content;
 use App\Models\Configuration;
 
 class AdminController extends Controller
@@ -216,7 +217,8 @@ class AdminController extends Controller
 
     public function cmsList () {
         $user = Auth::guard('admin')->user();
-        $result = Content::where('deleted', 0)->get();
+        // $result = Content::where('deleted', 0)->get();
+        $result = array();
         $data = array();
         $data['data'] = $result;
         $data['user'] = $user;
@@ -248,7 +250,7 @@ class AdminController extends Controller
             $data['form_caption'] = 'Edit Form';
             return view('admin.cmsadd2', compact('data'));
         } else {
-            return view('admin.cmsadd', compact('data'));
+            return view('admin.cmsadd2', compact('data'));
         }
     }
 

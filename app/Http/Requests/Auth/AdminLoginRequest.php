@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Http\Request;
+use App\Models\AdminUser;
+use Illuminate\Support\Facades\Hash;
 
 class AdminLoginRequest extends FormRequest
 {
@@ -29,7 +32,7 @@ class AdminLoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'string', 'email'],
+            'email' => ['required', 'string'],
             'password' => ['required', 'string'],
             'captcha' => ['required','captcha'],
         ];
@@ -45,8 +48,28 @@ class AdminLoginRequest extends FormRequest
     public function authenticate()
     {
         $this->ensureIsNotRateLimited();
+        $formdata1 = $this->only('email','password');
 
-        if (!Auth::guard('admin')->attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        $formdata = array();
+        $formdata['identifier'] = $formdata1['email'];
+        $formdata['password'] = $formdata1['password'];        
+        $resposne = AdminAPICall(json_encode($formdata));
+
+        if (gettype($resposne) == "object" && property_exists($resposne, "token")) {
+            RateLimiter::clear($this->throttleKey());
+            $user_check = AdminUser::where($this->only('email'))->count();
+            if($user_check == 0){
+                AdminUser::create(['email'=>$formdata1['email']]);
+            }
+            
+        } else {
+            RateLimiter::hit($this->throttleKey());
+            throw ValidationException::withMessages([
+                'user' => trans('auth.failed'),
+            ]);
+        }
+        $user = AdminUser::where($this->only('email'))->first();
+        if (!Auth::guard('admin')->loginUsingId($user->id)) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
