@@ -484,12 +484,12 @@
 																		</div>
 																		<select class="select_opt" id="old_card" name="old_card">
 																			@foreach($data['pay_methods_card']->data as $card)
-																			<option value="" >XXX   XXX   XXXX {{   $card->four_digits_number }}</option>
+																			<option value="{{ $card->id }}" >XXX   XXX   XXXX {{   $card->four_digits_number }}</option>
 																			@endforeach
 																		</select>
 																		{{-- <select class="select_opt" id="old_acc" name="">
 																			@foreach($data['pay_methods_acc']->data as $acc)
-																			<option value="AB" >XXX   XXX   XXXX {{   $acc->account_last_digits }}</option>
+																			<option value="{{ $acc->id }}" >XXX   XXX   XXXX {{   $acc->account_last_digits }}</option>
 																			@endforeach
 																			
 																		</select>  --}}
@@ -552,17 +552,39 @@
 			$( document ).ready(function() {
 				$('#bank_details').hide();
 				$('#credit_details').hide();
+				$('#old_card').show();
+				$('#old_acc').hide();
 
 				$('#add_pay_method').click(function(){
 					let radio_group_pay = $('input[name="radio-group_pay"]:checked').val();
 					if(radio_group_pay=='bank'){
 						$('#bank_details').show();
 						$('#credit_details').hide();
+						$('#old_card').hide();
+						$('#old_acc').hide();
 					} else if(radio_group_pay=='debit' || radio_group_pay=='credit'){
 						$('#bank_details').hide();
 						$('#credit_details').show();
+						$('#old_card').hide();
+						$('#old_acc').hide();
 					} else {
 						console.log('not selected radio'+radio_group_pay);
+					}
+				});
+
+				$('input[type=radio][name=radio-group_pay]').change(function() {
+					
+					if (this.value == 'bank') {
+						$('#bank_details').hide();
+						$('#credit_details').hide();
+						$('#old_card').hide();
+						$('#old_acc').show();
+					}
+					else {
+						$('#bank_details').hide();
+						$('#credit_details').hide();
+						$('#old_card').show();
+						$('#old_acc').hide();
 					}
 				});
 			});
