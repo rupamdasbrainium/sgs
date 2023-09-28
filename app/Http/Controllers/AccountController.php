@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Facade\FlareClient\Api;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use PhpParser\Node\Stmt\TryCatch;
 use Illuminate\Support\Facades\Session;
@@ -78,6 +79,31 @@ class AccountController extends Controller
         $data = array();
         $data['title'] = 'Change Password';
         return view('front.changepassword', compact('data'));
+    }
+
+    public function changePasswordUser (Request $request) {
+
+        $validator = Validator::make($request->all(),[
+            'old_password'=>'required|string',
+            'new_password'=>'required|string',
+            'con_password'=>'required|string|same:new_password',
+        ]);
+        if($validator->fails()){
+            return back()->with('errors', $validator->messages());
+        }
+        $data = array();
+        // $data['title'] = 'Change Password';
+        $data['oldPassword'] = $request->old_password;
+        $data['newPassword'] = $request->new_password;
+        $clientIP = request()->ip();
+        $data['from_ip'] = $clientIP;
+        // dd($clientIP);
+
+        $new_password = APICall("Users/new_password", "post", json_encode($data), 'client_app');
+        $data = json_decode($new_password);
+        // dd($data);
+        return view('front.changepassword', compact('data'));
+        // return redirect()->back()->with('success','password change successfully');
     }
 
     public function myProfile () {

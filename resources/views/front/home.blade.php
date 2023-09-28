@@ -1,4 +1,7 @@
 <x-guest-layout>
+    @php
+        $lang_id = getLocale();
+    @endphp
     @section('title', $data['title'] . ' |')
     @include('header')
     <div class="banner_outer">
@@ -95,7 +98,7 @@
                                             <select class="select_opt" id="franchises_type">
 
                                                 @foreach ($data['franchisesPlanType']->data as $value)
-                                                    <option value="{{ $value->id }}">{{ $value->name_english }}
+                                                <option value="{{ $value->id }}">{{ $lang_id == 2? $value->name_english :  $value->name_french}}
                                                     </option>
                                                 @endforeach
 
