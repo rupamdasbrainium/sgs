@@ -16,21 +16,21 @@
 					<div class="fromdes_info user_contentblock">
 						<div class="from_cont_wrap">
 							<div class="cards_des_wrap">
-								<div class="cards_des_row"> 
-									@dd($data['pay_methods_accc'])
+								<div class="cards_des_row">
+								
 									@foreach ($data['pay_methods_accc']->data as $value)
 									<div class="cards_desinfo_item ">
 										<div class="cards_cont_block">
 											<div class="card_cont_des">
 												<div class="card_img">
 												</div>
-												
+
 												<div class="card_view">
 													<div class="card_item_top">
 														<div class="card_item_head">
-															
+
 															<h4>{{$value->owner_name}}</h4>
-																													
+
 															<div class="def_card">
 																<a href="#">By Default</a>
 															</div>
@@ -42,12 +42,12 @@
 													<div class="card_optblock">
 														<div class="card_icon_text">
 															{{-- @dd($data['pay_methods_accc']) --}}
-															
-															
+
+
 															<span class="card_opt_text">Credit card ending with </span>
 															<span class="card_opt_pass">**** </span>
 															<span class="card_opt_pass">{{$value->four_digits_number}}</span>
-														
+
 														</div>
 														<div class="card_icon">
 															<img src="{{ asset('public/images/card.png') }}" alt="">
@@ -60,12 +60,12 @@
 														</div>
 													</div>
 												</div>
-												
+
 											</div>
 										</div>
 									</div>
 									@endforeach
-									
+
 								</div>
 								<div class="cards_des_row modf_card">
 									<div class="cards_desinfo_item ">

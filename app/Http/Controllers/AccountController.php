@@ -25,6 +25,10 @@ class AccountController extends Controller
         $client = json_decode($client)->data;
 
         $membership = APICall('Memberships/client?display_language_id='.$client->language_id,"get","{}");
+        $membership = json_decode($membership);
+        if($membership->data == null){
+            $membership = "";
+        }
         // dd($membership);
         // $payments = APICall('Payments/schedualed/client',"get","{}");
 
@@ -35,7 +39,7 @@ class AccountController extends Controller
         // }
         $languages = APICall('Options/languages',"get","{}");
         $languages = json_decode($languages);
-        return view('front.account', compact('data','client','languages'));
+        return view('front.account', compact('data','client','languages','membership'));
     }
 
     public function changeLanguage () {
@@ -205,7 +209,7 @@ class AccountController extends Controller
                 }
 
             } catch (\Throwable $th) {
-                    
+
                return redirect()->route('myContactInformation')->with('failed', $th->getMessage());
             }
     }
@@ -232,7 +236,7 @@ class AccountController extends Controller
 
         $pay_methods_accc = APICall('PaymentMethods/cards', "get", "{}", 'client_app');
         $data['pay_methods_accc'] = json_decode($pay_methods_accc);
-        // dd( $data['pay_methods_accc']);
+
 
         return view('front.mybankcards', compact('data'));
     }

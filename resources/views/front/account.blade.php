@@ -48,10 +48,16 @@
 
 			<div class="content_block memberships">
 				<h2>Memberships</h2>
+                @if($membership == "")
+                    <div class="memberships_content">
+                        No Membership Found
+                    </div>
+                @else
 				<div class="memberships_content">
+                    @foreach ($membership->data as $item)
 
 					<div class="memberships_opt">
-						<div class="memberships_nam">Act1 Membership - davable $39.99 per Month</div>
+						<div class="memberships_nam">{{ $item->type }}- davable ${{ $item->recurantCharge }} per Month</div>
 						<div class="memberships_method_view">
 							<div class="memberships_method">Method of  payment:</div>
 							<div class="memberships_method_opt">
@@ -69,34 +75,14 @@
 							</div>
 						</div>
 						<div class="ranew_opt_block">
-							<div class="memberships_method_date">End date: 2023/02/04 </div>
+							<div class="memberships_method_date">End date: {{ date('Y/m/d',strtotime($item->end)) }} </div>
 							<div class="ren_opt"><a href="#">Renew</a> </div>
 						</div>
 					</div>
-					<div class="memberships_opt">
-						<div class="memberships_nam">Act1 Membership - davable $39.99 per Month</div>
-						<div class="memberships_method_view">
-							<div class="memberships_method">Method of  payment:</div>
-							<div class="memberships_method_opt">
-								<div class="selectcont ">
-									<div class="arrowdown2">
-										<i class="far fa-chevron-down"></i>
-									</div>
-									<select class="select_opt" >
-										<option value="visa" selected >xxx xxx xxxx 4242 visa</option>
-										<option value="visa" >xxx xxx xxxx 4242 visa</option>
-										<option value="visa"  >xxx xxx xxxx 4242 visa</option>
-										<option value="visa"  >xxx xxx xxxx 4242 visa</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class="ranew_opt_block">
-							<div class="memberships_method_date">End date: 2023/02/04 </div>
-							<div class="ren_opt"><a href="#">Renew</a> </div>
-						</div>
-					</div>
+                    @endforeach
+
 				</div>
+                @endif
 			</div>
 
 		</div>
