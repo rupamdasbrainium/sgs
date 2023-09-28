@@ -45,5 +45,5 @@ class Content extends Authenticatable
      *
      * @var array<string, string>
      */
-    // protected $table = 'contents';
+    protected $table = 'contents';
 }

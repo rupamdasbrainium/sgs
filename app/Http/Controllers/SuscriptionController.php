@@ -114,7 +114,7 @@ class SuscriptionController extends Controller
           return redirect()->back()->with($response)->withInput();
         }
         // dd($data['clients']);
-        return $data['clients'];
+        // return $data['clients'];
 
     }
 

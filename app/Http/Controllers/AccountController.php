@@ -112,7 +112,6 @@ class AccountController extends Controller
             return back()->with('errors', $validator->messages());
         }
         $data = array();
-        // $data['title'] = 'Change Password';
         $data['oldPassword'] = $request->old_password;
         $data['newPassword'] = $request->new_password;
         $clientIP = request()->ip();
@@ -122,8 +121,13 @@ class AccountController extends Controller
         $new_password = APICall("Users/new_password", "post", json_encode($data), 'client_app');
         $data = json_decode($new_password);
         // dd($data);
-        return view('front.changepassword', compact('data'));
-        // return redirect()->back()->with('success','password change successfully');
+        if($data->error==null){
+            return redirect()->back()->with('success','password change successfully');
+        }
+        else{
+            return redirect()->back()->with('error','password not change');
+        }
+        
     }
 
     public function myProfile () {

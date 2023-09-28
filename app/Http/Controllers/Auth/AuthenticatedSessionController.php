@@ -55,6 +55,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
         session()->forget('webToken');
         session()->forget('clientToken');
+        // $request->session()->regenerateToken();
         if(Session::has('webToken')){
             Session::forget('clientToken');
           }

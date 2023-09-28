@@ -76,11 +76,11 @@
 </div>
 <!-- End of Main Content -->
 @push('css')
-<link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('public/plugins/summernote/summernote-bs4.min.css') }}">
 @endpush
 @push('scripts')
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
+<script src="{{ asset('public/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <script type="text/javascript">
 $(document).ready(function() {
   $('#body').summernote({
