@@ -48,6 +48,7 @@ Route::middleware('guest')->group(function () {
     Route::get('login', 'HomeController@login')->name('login');
     Route::post('login','Auth\AuthenticatedSessionController@store')->name('userLogin');
     Route::get('forgot-password', 'HomeController@forgotPassword')->name('forgotpassword');
+    Route::get('logout', 'Auth\AuthenticatedSessionController@destroy')->name('userLogout');
 });
 
 Route::group(['middleware'=>'verifyToken'], function(){
@@ -69,8 +70,7 @@ Route::group(['middleware'=>'verifyToken'], function(){
     Route::get('new-membership', 'AccountController@newMembership')->name('newMembership');
     Route::get('upgrade-membership', 'AccountController@upgradeMembership')->name('upgradeMembership');
     Route::get('referral-code', 'AccountController@referralCode')->name('referralCode');
-    Route::get('user-logout', 'Auth\AuthenticatedSessionController@destroy');
-   
+
 });
 
 Route::get('/reload-captcha', 'Admin\Auth\AuthenticatedSessionController@reloadCaptcha');
