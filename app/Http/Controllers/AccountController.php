@@ -41,23 +41,23 @@ class AccountController extends Controller
         $data = array();
         $data['title'] = 'Change Language';
 
-        $language = APICall('Options/languages', "get", "{}", 'client_app');
+        $language = APICall('Options/languages', "get", "{}");
         $data['language'] = json_decode($language);
-
+     
         return view('front.changelanguage', compact('data'));
     }
 
     public function mylanguagechange (Request $request) {
         $data = array();
         $data['title'] = 'Change Language';
-        $language_id = (int)$request->language_id;
+        $language_id = (int)$request->display;
         // $carddata['iso_code'] = $request->type_id;
         // $carddata['display'] = $request->type_id;
         
-        $languages = APICall('Clients/language?language_id='.$language_id,"put","{}");
-        $data['languages'] = json_decode($languages);
+        $language = APICall('Clients/language?language_id='.$language_id,"put","{}");
+        $data['language'] = json_decode($language);
 
-        return redirect(route("mylanguagechange"));
+        return redirect(route("changeLanguage"));
     }
 
 
@@ -240,6 +240,10 @@ class AccountController extends Controller
     public function upgradeMembership () {
         $data = array();
         $data['title'] = 'Upgrade Membership';
+
+        $upgrademembership = APICall('Memberships/client', "get", "{}");
+        $data['upgrademembership'] = json_decode($upgrademembership);
+
         return view('front.upgrademembership', compact('data'));
     }
 

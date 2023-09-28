@@ -10,7 +10,7 @@
 					<h2 class="addpadding">Change Language</h2>
 					<div class="fromdes_view ">
 						<div class="fromdes_info">
-							<form method="POST" name="myforms" action="{{ route('userLanguageUpdate') }}">
+							<form method="POST" name="myforms" action="{{ route('mylanguagechange') }}">
 							@csrf
 							{{-- <input type="hidden" name="subscription_plan_id"
 							value="{{ $data['language']->iso_code }}">

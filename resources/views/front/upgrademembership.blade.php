@@ -41,6 +41,8 @@
 							<div class="content_block more_cont_view">
 								<h2>Membership Options/ Add-ons</h2>
 								<div class="optionwrap_block">
+									@if(isset($data['upgrademembership']))
+									@foreach( $data['upgrademembership']->data as $item)
 									<div class="optionitem_add">
 										<h3>Option 1</h3>
 										<div class="optionitem_block">
@@ -50,7 +52,7 @@
 											<div class="optionitem_des">
 												<p>Stainless Steel Elliptical
 												Exercise Equipment,</p>
-												<div class="price_opt_add">$179.40</div>
+												<div class="price_opt_add">{{$item->recurantCharge}}</div>
 												<div class="optionitem_prod">
 													<span>6 private training</span>
 													<span>Quantity: 1 X 6</span>
@@ -67,93 +69,10 @@
 													</div>
 												</div>
 											</div>
-										</div>
-										
-									</div>
-									<div class="optionitem_add">
-										<h3>Option 2</h3>
-										<div class="optionitem_block">
-											<div class="opt_add">
-												<img src="{{ asset('public/images/prod_img2.png') }}" alt="">
-											</div>
-											<div class="optionitem_des">
-												<p>Zorex HGZ-1001 Home
-												Gym Machine</p>
-												<div class="price_opt_add">$179.40</div>
-												<div class="optionitem_prod">
-													<span>6 private training</span>
-													<span>Quantity: 1 X 6</span>
-													<span>Price: 179.40</span>
-												</div>
-												<div class="optionitem_checkopt">
-													<div class="form-group">
-														<div class="checkbox">
-															<input class="styled-checkbox2" id="Option2" type="checkbox" value="value2">
-															<label for="Option2">Added to initial fee
-															<em>( one time)</em></label>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										
-									</div>
-									<div class="optionitem_add">
-										<h3>Option 3</h3>
-										<div class="optionitem_block">
-											<div class="opt_add">
-												<img src="{{ asset('public/images/prod_img3.png') }}" alt="">
-											</div>
-											<div class="optionitem_des">
-												<p>Treadmills - Buy Online
-												Treadmill </p>
-												<div class="price_opt_add">$179.40</div>
-												<div class="optionitem_prod">
-													<span>6 private training</span>
-													<span>Quantity: 1 X 6</span>
-													<span>Price: 179.40</span>
-												</div>
-												<div class="optionitem_checkopt">
-													<div class="form-group">
-														<div class="checkbox">
-															<input class="styled-checkbox2" id="Option3" type="checkbox" value="value3">
-															<label for="Option3">Added to initial fee
-															<em>( one time)</em></label>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										
-									</div>
-									<div class="optionitem_add">
-										<h3>Option 4</h3>
-										<div class="optionitem_block">
-											<div class="opt_add">
-												<img src="{{ asset('public/images/prod_img4.png') }}" alt="">
-											</div>
-											<div class="optionitem_des">
-												<p>Stainless Steel Elliptical
-												Exercise Equipment,</p>
-												<div class="price_opt_add">$179.40</div>
-												<div class="optionitem_prod">
-													<span>6 private training</span>
-													<span>Quantity: 1 X 6</span>
-													<span>Price: 179.40</span>
-												</div>
-												<div class="optionitem_checkopt">
-													<div class="form-group">
-														<div class="checkbox">
-															<input class="styled-checkbox2" id="Option4" type="checkbox" value="value4">
-															<label for="Option4">Added to initial fee
-															<em>( one time)</em></label>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										
-									</div>
+										</div>										
+									</div>					
+									@endforeach
+									@endif
 								</div>
 								
 								<div class="frombtn_wrap">
