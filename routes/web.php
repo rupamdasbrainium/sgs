@@ -69,14 +69,18 @@ Route::group(['middleware'=>'verifyToken'], function(){
     Route::get('pay-outstanding-balance', 'AccountController@payMyOutstandingBalance')->name('payMyOutstandingBalance');
     Route::get('new-membership', 'AccountController@newMembership')->name('newMembership');
     Route::get('upgrade-membership', 'AccountController@upgradeMembership')->name('upgradeMembership');
+    Route::post('upgrademembershipsubmit', 'AccountController@upgrademembershipsubmit')->name('upgrademembershipsubmit');
+    Route::get('upgrademembershipfinal', 'AccountController@upgrademembershipfinal')->name('upgrademembershipfinal');
+    Route::post('upgrademembershipfinalsubmit', 'AccountController@upgrademembershipfinalsubmit')->name('upgrademembershipfinalsubmit');
+
     Route::get('referral-code', 'AccountController@referralCode')->name('referralCode');
+    Route::get('new-membership', 'AccountController@newMembership')->name('newMembership');
+    Route::get('new-membership-step-two/{id}', 'AccountController@newMembershipSteptwo')->name('newMembershipSteptwo');
+    Route::post('new-membership-step-two/{id}', 'AccountController@newMembershipSteptwosubmit')->name('newMembershipSteptwosave');
+    Route::get('new-membership-final', 'AccountController@newMembershipFinal')->name('newMembershipFinal');
+    Route::post('new-membership-final', 'AccountController@newMembershipFinalSave')->name('newMembershipFinalsave');
 
 });
-Route::get('new-membership', 'AccountController@newMembership')->name('newMembership');
-Route::get('new-membership-step-two/{id}', 'AccountController@newMembershipSteptwo')->name('newMembershipSteptwo');
-Route::get('new-membership-step-two/{id}', 'AccountController@newMembershipSteptwosubmit')->name('newMembershipSteptwosave');
-Route::get('new-membership-final', 'AccountController@newMembershipFinal')->name('newMembershipFinal');
-Route::get('new-membership-final', 'AccountController@newMembershipFinalSave')->name('newMembershipFinalsave');
 
 Route::get('/reload-captcha', 'Admin\Auth\AuthenticatedSessionController@reloadCaptcha');
 

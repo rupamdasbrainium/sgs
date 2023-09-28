@@ -35,10 +35,11 @@
 				<div class="referral_code_des">
 					<div class="referral_code_from">
 						<div class="form-group">
+							
 							<div class="inp_cont_view noicon_opt">
-								<input type="text" class="form-control" placeholder="JBAF6" >
-								<div class="def_btnopt2 frombtn">
-									<button type="button" class="btn2" >COPY</button>
+								<input type="text" class="form-control" placeholder="JBAF6" value="{{$data['referral']->data->reference_code}}" id="myInput">
+								<div class="def_btnopt2 frombtn" >
+									<button type="button" onclick="myFunction()" class="btn2" >COPY</button>
 								</div>
 							</div>
 						</div>
@@ -73,7 +74,7 @@
 							<div class="tab-pane fade" id="nav-email" >
 								<div class="emailopt">
 									<i class="fal fa-envelope"></i>
-									info@domain.com
+									{{$data['referral']->data->email}}"
 								</div>
 							</div>
 							
@@ -86,5 +87,16 @@
 		</div>
 	</div>
 </section>
+<script>
+	function myFunction() {
+  var copyText = document.getElementById("myInput");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+
+  navigator.clipboard.writeText(copyText.value);
+  alert("Copied the text: " + copyText.value);
+}
+</script>
+
 @include('footer')
 </x-app-layout>

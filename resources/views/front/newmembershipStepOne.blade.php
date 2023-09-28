@@ -66,6 +66,7 @@
 									@endif
 								</ul>
 								<div class="subscribe_btn">
+									
 									<a href="{{ route('newMembershipSteptwo', [$values->data->id]) }}"
 										class="sub_btn">{{ __('global.subscribe') }}</a>
 								</div>
