@@ -50,6 +50,11 @@ class LoginRequest extends FormRequest
         $data = json_decode($resposne);
 
         if (gettype($data) == "object" && property_exists($data, "token")) {
+            //clearing sessions previous token
+            session()->forget('webToken');
+            session()->forget('clientToken');
+
+            //saving new token data
             saveWabToken($data->token);
             saveClientToken($data->token);
             RateLimiter::clear($this->throttleKey());

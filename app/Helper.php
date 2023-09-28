@@ -375,7 +375,7 @@ function saveClientToken($token) {
 
 //get client token
 function getClientToken() {
-  if(Session::has('webToken')){
+  if(Session::has('clientToken')){
     return Session::get('clientToken');
   }else{
   //  webAppLoginToken();
