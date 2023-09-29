@@ -70,8 +70,6 @@ Route::group(['middleware'=>'verifyToken'], function(){
     Route::get('new-membership', 'AccountController@newMembership')->name('newMembership');
     Route::get('upgrade-membership', 'AccountController@upgradeMembership')->name('upgradeMembership');
     Route::post('upgrademembershipsubmit', 'AccountController@upgrademembershipsubmit')->name('upgrademembershipsubmit');
-    Route::get('upgrademembershipfinal', 'AccountController@upgrademembershipfinal')->name('upgrademembershipfinal');
-    Route::post('upgrademembershipfinalsubmit', 'AccountController@upgrademembershipfinalsubmit')->name('upgrademembershipfinalsubmit');
 
     Route::get('referral-code', 'AccountController@referralCode')->name('referralCode');
     Route::get('new-membership', 'AccountController@newMembership')->name('newMembership');
