@@ -19,7 +19,7 @@ class CreateContentsTable extends Migration
             $table->longText('body');
             $table->string('slug');
             $table->boolean('status')->comment('0:Inactive, 1:Active');
-            $table->boolean('deleted');
+            $table->boolean('deleted')->default(0);
             $table->timestamps();
         });
     }

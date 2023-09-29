@@ -58,6 +58,99 @@ class AdminController extends Controller
         return redirect()->back()->with($response);
     }
 
+    public function cmsView ($id = '') {
+        $user = Auth::guard('admin')->user();
+        $data = array();
+        $data['user'] = $user;
+        $data['id'] = $id;
+        $data['data'] = [ 'title' => '', 'body' => '', 'slug' => '', 'status' => '' ];
+        
+        $data['title'] = 'Admin CMS';
+        if (!empty($id)) {
+            $result = Content::where('deleted', 0)->where('id', $id)->first();
+            if (empty($result)) {
+                $response = array(
+                    'message' => 'Content not found',
+                    'message_type' => 'danger'
+                );
+                return redirect()->action('Admin\AdminController@cmslistView')->with($response);
+            }
+            $data['data'] = $result;
+            $data['title'] = 'CMS Edit';
+            $data['form_caption'] = 'Edit Form';
+            return view('admin.cmsadd', compact('data')); // ata tik kore korte hobe , kaj ta hoyni.
+        } else {
+            return view('admin.cmsadd', compact('data'));
+        }
+            
+        
+        // return view('admin.cmsadd', compact('data'));
+    }
+
+    public function cmsViewPost(Request $request, $id = ''){
+        if (!empty($id)) {
+            $request->validate([
+                'title' => 'required|unique:contents,title,' . $id,
+                'body' => 'required',
+                'slug' => 'required',
+                'status' => 'required',
+            ]);
+
+            $row_data = Content::where('deleted', 0)->where('id', $id)->first();
+            if (!empty($row_data)) {
+                $row_data->title = $request['title'];
+                $row_data->body = $request['body'];
+                $row_data->slug = $request['slug'];
+                $row_data->status = $request['status'];
+                $row_data->save();
+                $response = array(
+                    'message' => 'CMS successfully updated',
+                    'message_type' => 'success'
+                );
+            } else {
+                $response = array(
+                    'message' => 'CMS unable updated',
+                    'message_type' => 'danger'
+                );
+            }
+        } else {
+            $request->validate([
+                'title' => 'required|unique:contents,title',
+                'body' => 'required',
+                'slug' => 'required',
+                'status' => 'required',
+            ]);
+
+            $row_data = new Content();
+            $row_data->title = $request['title'];
+            $row_data->body = $request['body'];
+            $row_data->slug = $request['slug'];
+            $row_data->status = $request['status'];
+            $row_data->save();
+            $response = array(
+                'message' => 'CMS successfully added',
+                'message_type' => 'success'
+            );
+        }
+
+        return redirect()->action('Admin\AdminController@cmslistView')->with($response);
+        // return view('admin.cmslist')->with($response);
+    }
+
+    public function cmslistView () {
+        $user = Auth::guard('admin')->user();
+        $result = Content::where('deleted', 0)->get();
+        // $result = array();
+        $data = array();
+        $data['data'] = $result;
+        $data['user'] = $user;
+        // $data['id'] = $id;
+        $data['title'] = 'Content Management';
+        $data['form_caption'] = 'Content Management';
+        return view('admin.cmslistView', compact('data'));
+    }
+
+
     public function settings () {
         $user = Auth::guard('admin')->user();
         $data = array();
@@ -217,8 +310,8 @@ class AdminController extends Controller
 
     public function cmsList () {
         $user = Auth::guard('admin')->user();
-        // $result = Content::where('deleted', 0)->get();
-        $result = array();
+        $result = Content::where('deleted', 0)->get();
+        // $result = array();
         $data = array();
         $data['data'] = $result;
         $data['user'] = $user;
@@ -250,7 +343,7 @@ class AdminController extends Controller
             $data['form_caption'] = 'Edit Form';
             return view('admin.cmsadd2', compact('data'));
         } else {
-            return view('admin.cmsadd2', compact('data'));
+            return view('admin.cmsadd', compact('data'));
         }
     }
 

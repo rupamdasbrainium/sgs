@@ -98,6 +98,12 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
         Route::post('configuration', 'AdminController@configurationStore')->name('configuration');
         Route::get('settings', 'AdminController@settings')->name('settings');
         Route::post('settings', 'AdminController@settingsStore')->name('settings');
+
+        Route::get('cmslistView', 'AdminController@cmslistView')->name('cmslistView');
+        Route::get('cmsView', 'AdminController@cmsView')->name('cmsView');
+        Route::get('cmsView/{id}', 'AdminController@cmsView')->name('cmsView2');
+        Route::post('cmsViewPost', 'AdminController@cmsViewPost')->name('cmsViewPost');
+
         Route::get('logout', 'Auth\AuthenticatedSessionController@destroy')->name('logout');
         Route::get('account', 'AdminController@account')->name('account');
         Route::post('account', 'AdminController@accountpost')->name('adminpostaccount');
