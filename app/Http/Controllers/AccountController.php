@@ -499,8 +499,18 @@ class AccountController extends Controller
         $membership = APICall('Memberships/client?display_language_id='.$client->language_id,"get","{}");
         $data['membership'] = json_decode($membership);
 
-        $subscription_plan = APICall("SubscriptionPlans/type/", "get","{}");
-        $data['subscription_plan'] = json_decode($subscription_plan);
+        $franchise_id = 3;
+        //franchise get all plan
+        $all_plan = APICall("SubscriptionPlans/types?franchise_id=".$franchise_id, "get","{}");
+        $data['all_plan'] = json_decode($all_plan);
+
+        foreach($data['all_plan']->data as $item){
+            $data['subscription_plan'][] = json_decode(APICall("SubscriptionPlans/type/".$item->id, "get","{}"));
+        }
+
+        
+        // $subscription_plan = APICall("SubscriptionPlans/type/", "get","{}");
+        // $data['subscription_plan'] = json_decode($subscription_plan);
 
         $pay_methods_card = APICall('PaymentMethods/cards', "get", "{}", 'client_app');
         $data['pay_methods_card'] = json_decode($pay_methods_card);

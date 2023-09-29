@@ -55,12 +55,17 @@
                                                         </div>
                                                         <div class="optionitem_des">
                                                             <p>{{ $item->type }}</p>
+															{{-- @dd($data['subscription_plan']) --}}
                                                             <div class="price_opt_add">{{ $item->recurantCharge }}</div>
+															@if(isset($data['subscription_plan']) && isset($data['subscription_plan']->data) && count($data['subscription_plan']->data->options))
+													@foreach ($data['subscription_plan']->data->options as $item)
                                                             <div class="optionitem_prod">
-                                                                <span>6 private training</span>
-                                                                <span>Quantity: 1 X 6</span>
-                                                                <span>Price: 179.40</span>
+                                                                <span>{{$item->quantity}}</span>
+                                                                <span>Quantity: {{$item->deliverable_quantity}}</span>
+                                                                <span>Price:{{$item->price}} </span>
                                                             </div>
+															@endforeach
+															@endif
                                                             <div class="optionitem_checkopt">
                                                                 <div class="form-group">
                                                                     <div class="checkbox">
