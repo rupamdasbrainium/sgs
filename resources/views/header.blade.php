@@ -40,7 +40,7 @@
 									@if (Session::has('clientToken'))
 									<li class="nav-item">
 										<a class="nav-link" href="{{ route('userLogout') }}"> {{ __('header.logout') }}</a>
-										<a class="nav-link" href="{{ route('logout') }}">{{ __('header.logout') }}</a>
+										{{-- <a class="nav-link" href="{{ route('logout') }}">{{ __('header.logout') }}</a> --}}
 									</li>
 									@else
 									<li class="nav-item">
