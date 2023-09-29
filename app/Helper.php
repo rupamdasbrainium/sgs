@@ -347,6 +347,10 @@ function webAppLoginToken() {
     curl_close($curl);
 
     $login_responce = json_decode($response);
+    if(!$login_responce){
+      echo $error_msg;
+      die;
+    };
     saveWabToken($login_responce->token);
     return $token = $login_responce->token;
 }
@@ -442,7 +446,7 @@ function AdminAPICall($data){
             $error_msg = '';
             if (curl_errno($curl)) {
                 $error_msg = curl_error($curl);
-            }
+            }        
       $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
       if($httpcode == '401' || $httpcode == '403'){
         return 'unauthorised';
@@ -450,6 +454,10 @@ function AdminAPICall($data){
       curl_close($curl);
   
       $login_responce = json_decode($response);
+      if(!$login_responce){
+        echo $error_msg;
+        die;
+      };
       saveAdminToken($login_responce->token);
       return $login_responce;
 
