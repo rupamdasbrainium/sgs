@@ -531,6 +531,12 @@ class AccountController extends Controller
             if (Session::has('installments_id')) {
                 $membershipdata['installment_id'] = Session::get('installments_id');
             }
+            if (Session::has('add_on')) {
+                $add_ons = Session::get('add_on');
+                foreach ($add_ons as $ad_on_id) {
+                    $membershipcarddata['lstOptions'][] = $ad_on_id;
+                }
+            }
             $membershipdata['code_promo'] = $request->code_promo;
             $membershipdata['account_id'] = $request->old_acc;
 
@@ -546,7 +552,12 @@ class AccountController extends Controller
                 if (Session::has('installments_id')) {
                     $membershipcarddata['installment_id'] = Session::get('installments_id');
                 }
-
+                if (Session::has('add_on')) {
+                    $add_ons = Session::get('add_on');
+                    foreach ($add_ons as $ad_on_id) {
+                        $membershipcarddata['lstOptions'][] = $ad_on_id;
+                    }
+                }
                 $membershipcarddata['code_promo'] = $request->code_promo;
                 $membershipcarddata['processed_amount'] = $request->processed_amount;
                 $membershipcarddata['card_id'] = $request->old_card;
