@@ -8,9 +8,9 @@
                     <div class="col-md-12">
                        
                         <div class="fromdes_info user_contentblock">
-                            <div class="sidebar_content">
-                           
-                            </div>
+
+                                @include('layouts.sidebar')                          
+
                             <div class="from_cont_wrap">
                                 <form method="POST" name="myform" action="{{ route('paymentaddSave') }}"
                                     onsubmit="return validfunc()">

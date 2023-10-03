@@ -273,32 +273,7 @@ class AccountController extends Controller
             }
     }
 
-    public function myBankCards () {
-        $data = array();
-        $data['title'] = 'My Credit Card/Bank Account';
-
-        $uri = "Memberships/price-details?";
-        if (Session::has('owner_name')) {
-            $uri .= "owner_name=" . Session::get('owner_name');
-        }
-        if (Session::has('duration_id')) {
-            $uri .= "&duration_id=" . Session::get('duration_id');
-        }
-        if (Session::has('subscription_plan')) {
-            $uri .= "&subscription_plan=" . Session::get('subscription_plan');
-        }
-        $uri .=  "&display_language_id=" . getLocale();
-
-
-        $pay_methods_acc = APICall('PaymentMethods/accounts', "get", "{}", 'client_app');
-        $data['pay_methods_acc'] = json_decode($pay_methods_acc);
-
-        $pay_methods_accc = APICall('PaymentMethods/cards', "get", "{}", 'client_app');
-        $data['pay_methods_accc'] = json_decode($pay_methods_accc);
-
-
-        return view('front.mybankcards', compact('data'));
-    }
+   
 
     public function payMyOutstandingBalance () {
         $data = array();
@@ -584,5 +559,95 @@ class AccountController extends Controller
         return view('front.referralcode', compact('data'));
     }
 
+    public function myBankCards () {
+        $data = array();
+        $data['title'] = 'My Credit Card/Bank Account';
+
+        $uri = "Memberships/price-details?";
+        if (Session::has('owner_name')) {
+            $uri .= "owner_name=" . Session::get('owner_name');
+        }
+        if (Session::has('duration_id')) {
+            $uri .= "&duration_id=" . Session::get('duration_id');
+        }
+        if (Session::has('subscription_plan')) {
+            $uri .= "&subscription_plan=" . Session::get('subscription_plan');
+        }
+        $uri .=  "&display_language_id=" . getLocale();
+
+
+        $pay_methods_acc = APICall('PaymentMethods/accounts', "get", "{}", 'client_app');
+        $data['pay_methods_acc'] = json_decode($pay_methods_acc);
+
+        $pay_methods_accc = APICall('PaymentMethods/cards', "get", "{}", 'client_app');
+        $data['pay_methods_accc'] = json_decode($pay_methods_accc);
+
+
+        return view('front.mybankcards', compact('data'));
+    }
+
+    public function modifyBanks($id)
+{
+    $data = array();
+    $data['title'] = 'Modify Bank Account';
+
+    $pay_methods_acc = APICall('PaymentMethods/accounts', "get", "{}", 'client_app');
+    $data['pay_methods_acc'] = json_decode($pay_methods_acc);
+
+    $data["card"] = array_map(function($card) use ($id){
+        if($id == $card->id){
+            return $card;
+        }
+        },(array)$data['pay_methods_acc']->data);
+        $data["card"]= array_filter($data["card"]);
+        $data["card"] = array_values($data["card"]);
+dd($data["card"]);
+    return view('front.modifyBanks', compact('data'));
+}
+
+public function modifyBanksUpdate(Request $request){
+
+    $formdata = array();
+    $formdata['transit_number'] = $request->transit_number;
+    $formdata['institution'] = $request->institution;
+    $formdata['account_number'] = $request->account_number;
+    $formdata['owner_name'] = $request->owner_names;
+
+    $response = APICall("PaymentMethods/account", "put", json_encode($formdata));
+    $response = json_decode($response);
+    return redirect()->back();
+}
+public function modifyCards($id)
+{
+    $data = array();
+    $data['title'] = 'Modify Bank Account';
+    $pay_methods_accc = APICall('PaymentMethods/Cards', "get", "{}", 'client_app');
+    $data['pay_methods_accc'] = json_decode($pay_methods_accc);
+
+    $data["card"] = array_map(function($card) use ($id){
+        if($id == $card->id){
+            return $card;
+        }
+        },(array)$data['pay_methods_accc']->data);
+        $data["card"]= array_filter($data["card"]);
+        $data["card"] = array_values($data["card"]);
+
+    return view('front.modifyCards', compact('data'));
+}
+
+public function modifyCardsUpdate(Request $request){
+
+    $formdata = array();
+    $formdata['number_card'] = $request->four_digits_number;
+    $formdata['expire_month'] = $request->expiry_month;
+    $formdata['expire_year'] = $request->expiry_year;
+    $formdata['owner_name'] = $request->owner_name;
+
+    $response = APICall("PaymentMethods/card", "put", json_encode($formdata));
+
+    $response = json_decode($response);
+    return redirect()->back();
+
+}
 
 }

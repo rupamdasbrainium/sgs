@@ -66,6 +66,8 @@ Route::group(['middleware'=>'verifyToken'], function(){
     Route::get('my-contact-information', 'AccountController@myContactInformation')->name('myContactInformation');
     Route::post('my-contact-information',"AccountController@updateContactInformation")->name('user.update');
     Route::get('my-bank-cards', 'AccountController@myBankCards')->name('myBankCards');
+    Route::get('modify-bank/{id}', 'AccountController@modifyBanks')->name('modifyBanks');
+    Route::get('modify-Card/{id}', 'AccountController@modifyCards')->name('modifyCards');
     Route::get('pay-outstanding-balance', 'AccountController@payMyOutstandingBalance')->name('payMyOutstandingBalance');
     Route::get('new-membership', 'AccountController@newMembership')->name('newMembership');
     Route::get('upgrade-membership', 'AccountController@upgradeMembership')->name('upgradeMembership');
