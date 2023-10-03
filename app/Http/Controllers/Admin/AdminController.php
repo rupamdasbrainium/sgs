@@ -78,7 +78,7 @@ class AdminController extends Controller
             $data['data'] = $result;
             $data['title'] = 'CMS Edit';
             $data['form_caption'] = 'Edit Form';
-            return view('admin.cmsadd', compact('data')); // ata tik kore korte hobe , kaj ta hoyni.
+            return view('admin.cmsadd', compact('data'));
         } else {
             return view('admin.cmsadd', compact('data'));
         }
@@ -121,11 +121,14 @@ class AdminController extends Controller
                 'status' => 'required',
             ]);
 
+            // $user = Auth::user();
+            //$admin_user = new AdminUser();
             $row_data = new Content();
             $row_data->title = $request['title'];
             $row_data->body = $request['body'];
             $row_data->slug = $request['slug'];
             $row_data->status = $request['status'];
+            $row_data->admin_user_id = Auth::guard('admin')->user()->id;
             $row_data->save();
             $response = array(
                 'message' => 'CMS successfully added',
@@ -134,7 +137,6 @@ class AdminController extends Controller
         }
 
         return redirect()->action('Admin\AdminController@cmslistView')->with($response);
-        // return view('admin.cmslist')->with($response);
     }
 
     public function cmslistView () {
@@ -417,7 +419,8 @@ class AdminController extends Controller
             );
         }
 
-        return redirect()->action('Admin\AdminController@cmslist')->with($response);
+        // return redirect()->action('Admin\AdminController@cmslist')->with($response);
+        return redirect()->action('Admin\AdminController@cmslistView')->with($response);
     }
 
     public function userList ($type = '') {

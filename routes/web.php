@@ -103,18 +103,20 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
         Route::get('cmsView', 'AdminController@cmsView')->name('cmsView');
         Route::get('cmsView/{id}', 'AdminController@cmsView')->name('cmsView2');
         Route::post('cmsViewPost', 'AdminController@cmsViewPost')->name('cmsViewPost');
+        Route::post('cmsViewPost/{id}', 'AdminController@cmsViewPost')->name('cmsViewPost');
+        Route::get('cmsdelete/{id}', 'AdminController@cmsdelete')->name('cmsdelete');
 
         Route::get('logout', 'Auth\AuthenticatedSessionController@destroy')->name('logout');
         Route::get('account', 'AdminController@account')->name('account');
         Route::post('account', 'AdminController@accountpost')->name('adminpostaccount');
         Route::get('accountpassword', 'AdminController@accountpassword')->name('accountpassword');
         Route::post('accountpassword', 'AdminController@accountpasswordpost')->name('accountpasswordpost');
-        Route::get('cms', 'AdminController@cmslist')->name('cms');
-        Route::get('cmsadd', 'AdminController@cmsadd')->name('cmsadd');
-        Route::get('cmsadd/{id}', 'AdminController@cmsadd')->name('cmsadd2');
-        Route::post('cmsaddpost', 'AdminController@cmsaddpost')->name('cmsaddpost');
-        Route::post('cmsaddpost/{id}', 'AdminController@cmsaddpost')->name('cmsaddpost');
-        Route::get('cmsdelete/{id}', 'AdminController@cmsdelete')->name('cmsdelete');
+        // Route::get('cms', 'AdminController@cmslist')->name('cms');
+        // Route::get('cmsadd', 'AdminController@cmsadd')->name('cmsadd');
+        // Route::get('cmsadd/{id}', 'AdminController@cmsadd')->name('cmsadd2');
+        // Route::post('cmsaddpost', 'AdminController@cmsaddpost')->name('cmsaddpost');
+        // Route::post('cmsaddpost/{id}', 'AdminController@cmsaddpost')->name('cmsaddpost');
+        // Route::get('cmsdelete/{id}', 'AdminController@cmsdelete')->name('cmsdelete');
         Route::get('user/{type}', 'AdminController@userlist')->name('userlist');
         Route::get('useredit/{id}', 'AdminController@useredit')->name('useredit');
         Route::post('usereditpost/{id}', 'AdminController@usereditpost')->name('usereditpost');
