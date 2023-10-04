@@ -28,8 +28,8 @@
 											<select id="demo-htmlselect" class="selectoption2_info" name="display">
 												@foreach($data['language'] as $lang)
 												<!-- <option data-imagesrc=""  value="Select Language" selected >Select Language</option> -->
-												<option data-imagesrc="{{ asset('public/images/flag/french.png') }}"  value="{{$lang->id}}" >{{$lang->display}}</option>
-												{{-- <option data-imagesrc="{{ asset('public/images/flag/english.png') }}"  value="English"  >English</option> --}}
+												<option data-imagesrc="{{ $lang->id == 2?asset('public/images/flag/english.png') : asset('public/images/flag/french.png') }}"  value="{{$lang->id}}" >{{$lang->display}}</option>
+												{{-- <option data-imagesrc="{{  }}"  value="English"  >English</option> --}}
 												@endforeach
 											</select>
 										</div>
