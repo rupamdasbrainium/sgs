@@ -122,6 +122,7 @@ class PaymentController extends Controller
             $carddata['owner_name'] = $request->owner_name;
             $carddata['token'] = $request->token;
             $carddata['type_id'] = $request->type_id;
+            $carddata['pan'] = $request->pan;
             if (Session::has('franchise_id')) {
                 $carddata['franchise_id'] = Session::get('franchise_id');
                 $pay_method_accc = APICall('PaymentMethods/card', "post", json_encode($carddata), 'client_app');

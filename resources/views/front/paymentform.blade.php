@@ -446,12 +446,23 @@
                                                             </select>
 
                                                         </div><br>
+                                                       
                                                         <div class="inp_row">
                                                             <div class="form-group">
                                                                 <label>{{ __('paymentForm.Account_Name_Holder') }} <em
                                                                         class="req_text">*</em></label>
                                                                 <div class="inp_cont_view noicon_opt">
                                                                     <input type="text" name="owner_name"
+                                                                        class="form-control" placeholder="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="inp_row">
+                                                            <div class="form-group">
+                                                                <label>{{ __('paymentForm.PAN') }} <em
+                                                                        class="req_text">*</em></label>
+                                                                <div class="inp_cont_view noicon_opt">
+                                                                    <input type="text" name="pan"
                                                                         class="form-control" placeholder="">
                                                                 </div>
                                                             </div>
@@ -637,10 +648,14 @@
                 var expiry_month = document.myform.expiry_month.value;
                 var expiry_year = document.myform.expiry_year.value;
                 var four_digits_number = document.myform.four_digits_number.value;
-
+                var pan = document.myform.pan.value;
 
                 if (owner_name == "") {
                     alert("Name can't be blank");
+                    return false;
+                }
+                if (pan.length != 16) {
+                    alert("Pan must be at least 16 characters long.");
                     return false;
                 }
                 if (four_digits_number.length != 16) {
