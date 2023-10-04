@@ -534,9 +534,9 @@
 																</div>
 								
 															</div>
-															<div class="def_btnopt2 frombtn frombtn2">
+															{{-- <div class="def_btnopt2 frombtn frombtn2">
 																<button type="button" class="btn2" id="add_pay_method" >Add a Payment Method</button>
-															</div>
+															</div> --}}
 														</div>
 														<div class="aboundopt">
 															<p>Amount to be paid: ${{ $total }}</p>
