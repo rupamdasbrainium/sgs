@@ -140,7 +140,6 @@ class AccountController extends Controller
               );
             return redirect()->back()->with($response);
         }
-    }
 
     public function myProfile () {
         $data = array();
