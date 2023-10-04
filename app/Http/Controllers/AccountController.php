@@ -78,7 +78,12 @@ class AccountController extends Controller
         $language = APICall('Clients/language?language_id='.$language_id,"put","{}");
         $data['language'] = json_decode($language);
 
-        return redirect(route("changeLanguage"));
+       
+        $response = array(
+            'message' => 'Language Changed succesfully',
+          );
+
+        return redirect(route("changeLanguage"))->with($response);
     }
 
 
@@ -116,18 +121,22 @@ class AccountController extends Controller
         $data['newPassword'] = $request->new_password;
         $clientIP = request()->ip();
         $data['from_ip'] = $clientIP;
-        // dd($clientIP);
-
         $new_password = APICall("Users/new_password", "post", json_encode($data), 'client_app');
         $data = json_decode($new_password);
-        // dd($data);
-        if($data->error==null){
-            return redirect()->back()->with('success','password change successfully');
+
+        if($data->error!=null){
+            $response = array(
+                      'message' => 'wrong input',
+                      'message_type' => 'danger'
+                    );
+                    return redirect()->back()->with($response)->withInput();
         }
         else{
-            return redirect()->back()->with('error','password not change');
-        }
-        
+            $response = array(
+                'message' => 'password Changed succesfully',
+              );
+            return redirect()->back()->with($response);
+        }       
     }
 
     public function myProfile () {
@@ -285,9 +294,6 @@ class AccountController extends Controller
         $data = array();
         $data['title'] = trans('newMembership.memberships');
     
-        //franchise best four plan
-        // $best_four_plan = APICall("SubscriptionPlans/franchises/".$franchise_id, "get","{}");
-        // $data['best_four_plan'] = json_decode($best_four_plan);
         if (Session::has('franchise_id')) {
             Session::forget('franchise_id');
         }
@@ -297,21 +303,10 @@ class AccountController extends Controller
         $all_plan = APICall("SubscriptionPlans/types?franchise_id=".$franchise_id, "get","{}");
         $data['all_plan'] = json_decode($all_plan);
 
-        // $data_plan = [];
         //franchise best four plan details
         foreach($data['all_plan']->data as $item){
             $data['all_plan_details'][] = json_decode(APICall("SubscriptionPlans/type/".$item->id, "get","{}"));
         }
-        // $data_plan[$data['best_four_plan']->data->subscriptionPlan1] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan1, "get","{}"));
-
-        // $data_plan[$data['best_four_plan']->data->subscriptionPlan2] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan2, "get","{}"));
-
-        // $data_plan[$data['best_four_plan']->data->subscriptionPlan3] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan3, "get","{}"));
-
-        // $data_plan[$data['best_four_plan']->data->subscriptionPlan4] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan4, "get","{}"));
-
-        // $data['best_four_plan_details'] = $data_plan;
-
         return view('front.newmembershipStepOne', compact('data'));
     }
 
@@ -575,13 +570,11 @@ class AccountController extends Controller
         }
         $uri .=  "&display_language_id=" . getLocale();
 
-
         $pay_methods_acc = APICall('PaymentMethods/accounts', "get", "{}", 'client_app');
         $data['pay_methods_acc'] = json_decode($pay_methods_acc);
 
         $pay_methods_accc = APICall('PaymentMethods/cards', "get", "{}", 'client_app');
         $data['pay_methods_accc'] = json_decode($pay_methods_accc);
-
 
         return view('front.mybankcards', compact('data'));
     }
@@ -593,7 +586,6 @@ class AccountController extends Controller
 
     $pay_methods_acc = APICall('PaymentMethods/accounts', "get", "{}", 'client_app');
     $data['pay_methods_acc'] = json_decode($pay_methods_acc);
-// dd($data['pay_methods_acc']);
     $data["bank"] = array_map(function($bank) use ($id){
         if($id == $bank->id){
             return $bank;
@@ -607,13 +599,18 @@ class AccountController extends Controller
 public function modifyBanksUpdate(Request $request){
 
     $formdata = array();
-    $formdata['transit_number'] = $request->transit_number;
+    $formdata['transit'] = $request->transit_number;
     $formdata['institution'] = $request->institution;
     $formdata['account_number'] = $request->account_number;
     $formdata['owner_name'] = $request->owner_names;
 
-    $response = APICall("PaymentMethods/account", "put", json_encode($formdata));
+    $response = APICall("PaymentMethods/account", "put", json_encode($formdata), 'client_app');
     $response = json_decode($response);
+    $response = array(
+        'message' => 'Bank updated succesfully',
+      );
+
+    return redirect(route('myBankCards'))->with($response);
     return redirect()->back();
 }
 public function modifyCards($id)
@@ -643,9 +640,12 @@ public function modifyCardsUpdate(Request $request){
     $formdata['owner_name'] = $request->owner_name;
 
     $response = APICall("PaymentMethods/card", "put", json_encode($formdata), 'client_app');
-
     $response = json_decode($response);
-    return redirect()->back();
+    $response = array(
+        'message' => 'Card modified succesfully',
+      );
+
+    return redirect(route('myBankCards'))->with($response);
 
 }
 

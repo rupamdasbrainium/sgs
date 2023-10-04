@@ -75,6 +75,14 @@ class PaymentController extends Controller
             $get_methode_acc = APICall('PaymentMethods/accounts?clients=' . $data['pay_methode_acc']->data->client_id, "get", "{}", "client_app");
             $data['get_methode_acc'] = json_decode($get_methode_acc);
 
+            if($data['get_methode_acc']->error!=null){
+                $response = array(
+                          'message' => $data['get_methode_acc']->error->message,
+                          'message_type' => 'danger'
+                        );
+                        return redirect()->back()->with($response)->withInput();
+            }
+
             //membership with bank account
             $membershipdata = array();
             $membershipdata['subscription_plan_id'] = $request->subscription_plan_id;
@@ -101,7 +109,10 @@ class PaymentController extends Controller
             $data['membership_with_bnk_acc'] = json_decode($membership_with_bnk_acc);
 
             $data["title"] = "My Account"; 
-            return redirect(route("myProfile"));
+            $response = array(
+                'message' => 'payment completed succesfully',
+              );
+            return redirect(route("myProfile"))->with($response);
         } else {
 
             $carddata = array();
@@ -116,7 +127,14 @@ class PaymentController extends Controller
                 $pay_method_accc = APICall('PaymentMethods/card', "post", json_encode($carddata), 'client_app');
                 $data['pay_method_accc'] = json_decode($pay_method_accc);
                
-                // if($data['pay_method_accc']->error==null){
+                if($data['pay_method_accc']->error!=null){
+                    $response = array(
+                              'message' => $data['pay_method_accc']->error->message,
+                              'message_type' => 'danger'
+                            );
+                            return redirect()->back()->with($response)->withInput();
+                }
+              
 
                 $membershipcarddata = array();
                 $membershipcarddata['subscription_plan_id'] = $request->subscription_plan_id;
@@ -145,14 +163,12 @@ class PaymentController extends Controller
                 $data['membership_with_credit_card'] = json_decode($membership_with_credit_card);
 
             }
-            return redirect(route("myProfile"));
+            $response = array(
+                'message' => 'payment completed succesfully',
+              );
+            return redirect(route("myProfile"))->with($response);
         }
-    // } else {
-    //     $response = array(
-    //       'message' => $data['pay_method_accc']->error->message,
-    //       'message_type' => 'danger'
-    //     );
-    //     return redirect()->back()->with($response)->withInput();
+ 
     }
 
 
@@ -181,12 +197,24 @@ class PaymentController extends Controller
             $formdata['owner_name'] = $request->owner_names;
             if (Session::has('franchise_id')) {
                 $formdata['franchise_id'] = Session::get('franchise_id');
-            }
 
             $pay_methode_acc = APICall('PaymentMethods/account', "post", json_encode($formdata), 'client_app');
             $data['pay_methode_acc'] = json_decode($pay_methode_acc);
 
-              return redirect(route("myBankCards"));
+            if($data['pay_method_acc']->error!=null){
+                $response = array(
+                          'message' => $data['pay_method_acc']->error->message,
+                          'message_type' => 'danger'
+                        );
+                        return redirect()->back()->with($response)->withInput();
+            }
+             else{
+              $response = array(
+                'message' => 'payment add succesfully',
+              );
+              return redirect(route("myBankCards"))->with($response);
+            }
+            
 
         } else {
             $carddata = array();
@@ -208,4 +236,5 @@ class PaymentController extends Controller
         }
     }
 
+}
 }

@@ -34,6 +34,8 @@ Route::get('language/{locale}', function ($locale) {
 // Route::get('payment', 'PaymentController@payment')->name('payment');
 Route::get('/planType/{id}',[HomeController::class,'planType']);
 Route::get('/planTypeDetails/{id}',[HomeController::class,'planTypeDetails']);
+Route::get('/terms-and-condition',[HomeController::class,'termsAndCondition'])->name('front.terms');
+Route::get('/privacy-policy',[HomeController::class,'privacyPolicy'])->name('front.privacy');
 Route::get('suscription-form/{id}', 'SuscriptionController@suscriptionform')->name('suscriptionform');
 Route::get('new-membership/{id}', 'SuscriptionController@new_membership')->name('newMembershipfont');
 Route::post('new-membership/{id}', 'SuscriptionController@new_membership_save')->name('newMembershipSave');

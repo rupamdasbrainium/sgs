@@ -7,6 +7,16 @@
 		<div class="inner_page_des">
 			<div class="content_block accountinfo">
 				<div class="blocktitle">
+					@if(Session::has('message'))
+						<div class="alert alert-danger">
+							{{Session::get('message')}}
+						</div>
+						@endif
+					@if(Session::has('message'))
+						<div class="alert alert-success">
+							{{Session::get('message')}}
+						</div>
+						@endif
 					<h2 class="addpadding">Change Password</h2>
 					<div class="fromdes_view ">
 						<div class="fromdes_info">
