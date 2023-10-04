@@ -354,7 +354,7 @@ class AccountController extends Controller
         $subscription_plan = APICall("SubscriptionPlans/type/".$id."?language_id=".$lang_id, "get","{}");
         $data['subscription_plan'] = json_decode($subscription_plan);
 
-        return view('front.newmembershipStepTwo', compact('data'));
+        return view('front.newMembershipStepTwo', compact('data'));
     }
 
     public function newMembershipSteptwosubmit (Request $request, $id) {
