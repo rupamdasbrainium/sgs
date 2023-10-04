@@ -64,7 +64,7 @@ class AccountController extends Controller
 
         $language = APICall('Options/languages', "get", "{}");
         $data['language'] = json_decode($language);
-     
+
         return view('front.changelanguage', compact('data'));
     }
 
@@ -74,7 +74,7 @@ class AccountController extends Controller
         $language_id = (int)$request->display;
         // $carddata['iso_code'] = $request->type_id;
         // $carddata['display'] = $request->type_id;
-        
+
         $language = APICall('Clients/language?language_id='.$language_id,"put","{}");
         $data['language'] = json_decode($language);
 
@@ -116,18 +116,18 @@ class AccountController extends Controller
         $data['newPassword'] = $request->new_password;
         $clientIP = request()->ip();
         $data['from_ip'] = $clientIP;
-        // dd($clientIP);
+
 
         $new_password = APICall("Users/new_password", "post", json_encode($data), 'client_app');
         $data = json_decode($new_password);
-        // dd($data);
+
         if($data->error==null){
             return redirect()->back()->with('success','password change successfully');
         }
         else{
             return redirect()->back()->with('error','password not change');
         }
-        
+
     }
 
     public function myProfile () {
@@ -273,18 +273,48 @@ class AccountController extends Controller
             }
     }
 
-   
+
 
     public function payMyOutstandingBalance () {
         $data = array();
         $data['title'] = 'Pay My Outstanding Balance';
+        $response =  APICall('Payments/schedualed/client',"get","{}");
+        if ($response == "") {
+           return redirect()->route('login')->withErrors(["user" => "Session Expired. Please login again"]);
+        }
+        $payments = json_decode($response);
+        if($payments->error == null){
+            $data["payments"] = $payments->data;
+            $data["outstandingAmount"] = array_reduce((array)$data["payments"], function($v1, $v2){
+                if(!$v2->is_paid){
+                    return $v1+ $v2->amount;
+                }
+            },0);
+        }else{
+            $data["payments"] = null;
+        }
+        $banks = APICall("PaymentMethods/accounts", "GET","{}");
+        $banks = json_decode($banks);
+        if($banks->error == null){
+            $data["banks"] = $banks->data;
+        }else{
+            $data["banks"] = null;
+        }
+        $cards = APICall("PaymentMethods/cards","GET","{}");
+        $cards = json_decode($cards);
+        if($cards->error == null)
+        {
+            $data["cards"] = $cards->data;
+        }else{
+            $data["cards"] = null;
+        }
         return view('front.paymyoutstandingbalance', compact('data'));
     }
 
     public function newMembership () {
         $data = array();
         $data['title'] = trans('newMembership.memberships');
-    
+
         //franchise best four plan
         // $best_four_plan = APICall("SubscriptionPlans/franchises/".$franchise_id, "get","{}");
         // $data['best_four_plan'] = json_decode($best_four_plan);
@@ -339,7 +369,7 @@ class AccountController extends Controller
         if (Session::has('duration_id')) {
             Session::forget('duration_id');
         }
-        
+
         $duration_installments_arr = explode("|",$request->installments);
         Session::put('installments_id', $duration_installments_arr[1]);
         Session::put('duration_id', $duration_installments_arr[0]);
@@ -348,7 +378,7 @@ class AccountController extends Controller
             Session::forget('subscription_plan_id');
         }
         Session::put('subscription_plan_id', $id);
-        
+
         return redirect()->route('newMembershipFinal');
     }
 
@@ -368,17 +398,17 @@ class AccountController extends Controller
         if (Session::has('installments_id')) {
             $uri .= "&installment_id=" . Session::get('installments_id');
         }
-        
+
         // $uri .= "&date_begin=".Date("Dd M Y H:i:s T");
         $uri .= "&date_begin=" . urlencode(Date("M Dd Y H:i:s") . " GMT");
         if (Session::has('franchise_id')) {
             $uri .= "&franchise_id=" . Session::get('franchise_id');
         }
-      
+
         if (Session::has('reference_Code')) {
             $uri .= "&reference_Code=" . Session::get('reference_Code');
         }
-        
+
         if (Session::has('add_on')) {
             $add_ons = Session::get('add_on');
             foreach ($add_ons as $ad_on_id) {
@@ -483,7 +513,7 @@ class AccountController extends Controller
             $data['subscription_plan'][] = json_decode(APICall("SubscriptionPlans/type/".$item->id, "get","{}"));
         }
 
-        
+
         // $subscription_plan = APICall("SubscriptionPlans/type/", "get","{}");
         // $data['subscription_plan'] = json_decode($subscription_plan);
 
@@ -497,7 +527,7 @@ class AccountController extends Controller
     public function upgrademembershipsubmit (Request $request) {
 
         if ($request->radio_group_pay == "bank_acc") {
-    
+
             $membershipdata = array();
             $membershipdata['subscription_plan_id'] = $request->subscription_plan_id;
             if (Session::has('duration_id')) {
@@ -601,7 +631,7 @@ class AccountController extends Controller
         },(array)$data['pay_methods_acc']->data);
         $data["card"]= array_filter($data["card"]);
         $data["card"] = array_values($data["card"]);
-dd($data["card"]);
+
     return view('front.modifyBanks', compact('data'));
 }
 
