@@ -74,6 +74,16 @@ class HomeController extends Controller
         return redirect()->route('account');
     }
 
+    public function termsAndCondition () {
+        $data = array();
+        $data['title'] = 'Terms and Condition';
+        return view('front.termsAndCondition', compact('data'));
+    }
+    public function privacyPolicy () {
+        $data = array();
+        $data['title'] = 'Privacy Policy';
+        return view('front.privacyPolicy', compact('data'));
+    }
     public function planType($id){
         // $franchisesPlanType = '{ "error": null, "isErrorConnString": false, "data": [ { "id": 6, "name_english": "10 passages adulte", "name_french": "10 passages adulte" }, { "id": 12, "name_english": "6 mois Adulte", "name_french": "12 mois reg" }, { "id": 18, "name_english": "3 mois Adulte", "name_french": "3 mois" }]}';
         $franchisesPlanType = APICall("SubscriptionPlans/types/".$id, "get","{}");
