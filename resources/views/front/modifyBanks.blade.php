@@ -6,21 +6,19 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                       
                         <div class="fromdes_info user_contentblock">
 
-                                @include('layouts.sidebar')                          
+                            @include('layouts.sidebar')
 
                             <div class="from_cont_wrap">
-                                <form method="POST" name="myform" action=""
-                                    onsubmit="return validfunc()">
+                                <form method="POST" name="myform" action="{{route('modifyBanksUpdate')}}" onsubmit="return validfunc()">
                                     @csrf
+                                    <input type="hidden" name="bank_id" value="{{$data["bank"][0]->id}}">
                                     <div class="fromdes_info">
                                         <div class="from_cont_wrap">
                                             <div class="content_block paymentinfo">
                                                 <h2 class="head_opt">{{ __('paymentForm.payment_details') }}</h2>
                                             </div>
-@dd($data["bank"])
                                             <div class="from_contentblock">
 
                                                 <div id="bank_details">
@@ -28,8 +26,6 @@
                                                         <div class="form-group">
                                                             <label>{{ __('paymentForm.Direct_Debit') }}</label>
                                                             <div class="card_add">
-                                                                {{-- <input name="payCard" value="payCard"
-                                                                    type="hidden" /> --}}
                                                                 <img src="images/voided.png" alt="" />
                                                             </div>
                                                         </div>
@@ -37,32 +33,34 @@
 
                                                     <div class="inp_row">
                                                         <div class="form-group">
-                                                            <label>{{ __('paymentForm.Transit_Number') }} <em class="req_text">*</em></label>
+                                                            <label>{{ __('paymentForm.Transit_Number') }} <em
+                                                                    class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt" id="incdec">
 
                                                                 <input type="text" name="transit_number"
                                                                     class="form-control" placeholder=""
-                                                                    value="{{ $data["bank"]->transit}}">
-
+                                                                    value="{{ $data['bank'][0]->transit }}">
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="inp_row">
                                                         <div class="form-group">
-                                                            <label>{{ __('paymentForm.Branch_Number') }} <em class="req_text">*</em></label>
+                                                            <label>{{ __('paymentForm.Branch_Number') }} <em
+                                                                    class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="institution"
-                                                                    class="form-control" placeholder="">
+                                                                    class="form-control" placeholder=""  value="{{ $data['bank'][0]->institution }}">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="inp_row">
                                                         <div class="form-group">
-                                                            <label>{{ __('paymentForm.Account_Number') }} <em class="req_text">*</em></label>
+                                                            <label>{{ __('paymentForm.Account_Number') }} <em
+                                                                    class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="account_number"
-                                                                    class="form-control" placeholder="">
+                                                                    class="form-control" placeholder=""  value="{{ $data['bank'][0]->account_last_digits }}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -73,35 +71,29 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="owner_names"
-                                                                    class="form-control" placeholder="bank">
+                                                                    class="form-control" placeholder="bank" value="{{ $data['bank'][0]->owner_name }}">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                      
 
                                             <div class="frombtn_wrap">
                                                 <div class="def_btnopt2 frombtn">
                                                     <button type="submit" value="submit" class="btn2"
                                                         id="myButton">{{ __('paymentForm.submit') }}!</button>
-                                                    <button type="button" class="btn2 backbutton">{{ __('paymentForm.back') }}</button>
+                                                    <button type="button"
+                                                        class="btn2 backbutton">{{ __('paymentForm.back') }}</button>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </form>
-
                             </div>
-
                         </div>
-
-
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="round_opt_btn rount_opt1">
             <img src="images/roundopt2.jpg" alt="">
@@ -113,7 +105,6 @@
             <img src="images/roundopt2.jpg" alt="">
         </div>
     </section>
-
 
     @include('footer')
 

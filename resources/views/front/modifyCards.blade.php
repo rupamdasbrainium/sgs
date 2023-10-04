@@ -12,9 +12,9 @@
                             @include('layouts.sidebar')
 
                             <div class="from_cont_wrap">
-                                <form method="POST" name="myform" action="" onsubmit="return validfunc()">
+                                <form method="POST" name="myform" action="{{route('modifyCardsUpdate')}}" onsubmit="return validfunc()">
                                     @csrf
-                                    <input type="hidden">
+                                    <input type="hidden" name="credit_id" value="{{$data["card"][0]->id}}">
                                     <div class="fromdes_info">
                                         <div class="from_cont_wrap">
                                             <div class="content_block paymentinfo">

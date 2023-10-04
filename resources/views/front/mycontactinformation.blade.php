@@ -7,11 +7,11 @@
             <div class="inner_page_des">
                 <div class="content_block accountinfo">
                     <div class="blocktitle2">
-                        <h2>My Contact Information</h2>
+                        <h2>{{ __('mycontactinformatiion.My_Contact_Information') }}</h2>
                     </div>
                     <div class="fromdes_view">
                         <div class="titleopt2">
-                            <h3>Change Of Informations</h3>
+                            <h3>{{ __('mycontactinformatiion.Change_Of_Informations') }}</h3>
 
                         </div>
                         <form action="{{ route('user.update') }}" method="POST">
@@ -83,7 +83,7 @@
                                             <div class="inp_cont_view noicon_opt adbg">
                                                 <input type="text" class="form-control" name="postal_code"
                                                     placeholder="1j2 j4j" value="{{ $client->adress->postal_code }}">
-                                                <p>Example: j3B 8k7</p>
+                                                <p>{{ __('mycontactinformatiion.Example') }}: j3B 8k7</p>
                                             </div>
                                             @if ($errors->has('postal_code'))
                                                 <div class="text-danger mt-3">{{ $errors->first('postal_code') }}</div>
@@ -117,7 +117,7 @@
                                             <div class="inp_cont_view noicon_opt adbg">
                                                 <input type="text" class="form-control" name="phone"
                                                     placeholder="Phone Number *" value="{{ $client->phone }}">
-                                                <p>Example: xxx xxx-xxxx</p>
+                                                <p>{{ __('mycontactinformatiion.Example') }}: xxx xxx-xxxx</p>
                                             </div>
                                             @if ($errors->has('phone'))
                                                 <div class="text-danger mt-3">{{ $errors->first('phone') }}</div>
@@ -127,7 +127,7 @@
                                             <div class="inp_cont_view noicon_opt adbg">
                                                 <input type="text" class="form-control" name="cellphone"
                                                     placeholder="Cell *" value="{{ $client->cellphone }}">
-                                                <p>Example: xxx xxx-xxxx</p>
+                                                <p>{{ __('mycontactinformatiion.Example') }}: xxx xxx-xxxx</p>
                                                 @if ($errors->has('cellphone'))
                                                     <div class="text-danger mt-3">{{ $errors->first('cellphone') }}
                                                     </div>
@@ -141,7 +141,7 @@
                                                 <input type="text" class="form-control" name="emergency_phone"
                                                     placeholder="Emergency Phone Number *"
                                                     value="{{ $client->emergency_phone }}">
-                                                <p>Example: xxx xxx-xxxx</p>
+                                                <p>{{ __('mycontactinformatiion.Example') }}: xxx xxx-xxxx</p>
                                             </div>
                                             @if ($errors->has('emergency_phone'))
                                             <div class="text-danger mt-3">{{ $errors->first('emergency_phone') }}
@@ -186,10 +186,10 @@
                                                             name="is_male">
                                                         <select class="select_opt" disabled>
                                                             <option value="1" disabled
-                                                                {{ $client->is_male ? 'selected' : '' }}>Male</option>
+                                                                {{ $client->is_male ? 'selected' : '' }}>{{ __('mycontactinformatiion.Male') }}</option>
                                                             <option value="0" disabled
-                                                                {{ !$client->is_male ? 'selected' : '' }}>Female</option>
-                                                            <option value="" disabled>Select Gender </option>
+                                                                {{ !$client->is_male ? 'selected' : '' }}>{{ __('mycontactinformatiion.Female') }}</option>
+                                                            <option value="" disabled>{{ __('mycontactinformatiion.Select_Gender') }} </option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -203,7 +203,7 @@
 
                                     <div class="frombtn_wrap">
                                         <div class="def_btnopt2 frombtn frombtn2">
-                                            <button type="submit" class="btn2">Save</button>
+                                            <button type="submit" class="btn2">{{ __('mycontactinformatiion.Save') }}</button>
                                         </div>
                                     </div>
                                 </div>

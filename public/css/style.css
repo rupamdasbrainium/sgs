@@ -291,7 +291,7 @@ ul.navbar-nav li a {
 	/* padding-bottom:5px; */
 }
 .price_text {
-	font-size:40px;
+	font-size:32px;
 	font-style:normal;
 	font-weight:600;
 	line-height:normal;
@@ -300,7 +300,7 @@ ul.navbar-nav li a {
 }
 .price_text span {
 	color:#5ADFC2;
-	font-size:20px;
+	font-size:15px;
 	font-style:normal;
 	font-weight:500;
 	line-height:normal;
@@ -651,7 +651,7 @@ button.searchicon_opt {
 	gap:20px;
 }
 .selectcont {
-	flex:0 28%;
+	flex:0 32%;
 	position:relative;
 	background:#ddf8f1;
 	border-radius:10px 10px 10px 0;
@@ -701,11 +701,11 @@ button.searchicon_opt {
 	bottom:0;
 	left:0;
 	background-color:transparent;
-	padding:10px 15px;
+	padding:10px 10px;
 	border:1px solid transparent;
 	border-radius:0px;
 	color:#606268;
-	font-size: 18px;
+	font-size: 15px;
 }
 .select-styled:after {
 	content:"";
@@ -762,6 +762,11 @@ button.searchicon_opt {
 	display:flex;
 	gap:18px;
 	align-items: center;
+}
+
+.individual_des ul {
+    min-height: 304px;
+    /* overflow-y: scroll; */
 }
 .cassback_opt {
 	/* font-family:'Nunito';*/
@@ -1075,7 +1080,7 @@ button.navbar-toggler.menu-btn {
 
 	    line-height: inherit;
     padding: 10px 20px 0 0px;
-    font-size: 15px;
+    font-size: 14px;
 
 }
 .styled-checkbox2+label:before {
@@ -1306,7 +1311,7 @@ span.prog_bar_opt {
 }
 .innermain_content {
 	position:relative;
-	overflow:hidden;
+	/* overflow:hidden; */
 }
 .round_opt_btn.rount_opt1 {
 	bottom:inherit;
@@ -1319,7 +1324,7 @@ span.prog_bar_opt {
 	top:61%;
 	width:12%;
 	left:inherit;
-	right:-4%;
+	right:0%;
 }
 .round_opt_btn.rount_opt3 {
 	bottom:inherit;
@@ -1345,7 +1350,7 @@ span.prog_bar_opt {
 .sidebar_info p {
 	padding:0px;
 	margin:0px;
-	font-size:18px;
+	font-size:16px;
 	margin-bottom:10px;
 	line-height:25px;
 }
@@ -1464,8 +1469,15 @@ transition: 0.3s;
 	margin-left:0;
 	padding:30px 25px;
 }
+
+
+.inner_page_des .prod_item {
+    flex: 0 32%;
+    margin-bottom: 4%;
+}
 .paymentinfo {
-	width:90%;
+	/* width:90%; */
+	width:100%; 
 }
 .content_block h2 {
 	padding-bottom:25px;
@@ -1612,7 +1624,7 @@ h3.subtitle {
 	font-weight:400;
 }
 .select-options li {
-	font-size:15px;
+	font-size:14px;
 	font-weight:400;
 }
 .def-select2 .select-styled {
@@ -2155,8 +2167,9 @@ div#nav-tab {
 .action_text .select-styled {
     font-weight: 500;
     color: #5ADFC2;
-    font-size: 20px !important;
+    font-size: 18px !important;
     padding: 0px;
+	text-transform: capitalize;
 }
 .action_text .select {
     height: auto;
@@ -3356,6 +3369,24 @@ input[type="color"] {
 	
 }
 @media (max-width:767px) {
+	.action_text .select-styled {
+
+		font-size: 16px !important;
+
+	}
+	.prod_item {
+		margin: 0px 0px 2%;
+		flex: 0 0 100% !important;
+	}
+	.individual_des ul {
+		min-height: auto;
+		/* overflow-y: scroll; */
+	}
+	.memberships_method_view {
+		flex-direction: column;
+		align-items: baseline;
+		gap: 13px;
+	}
 	.color_Settings {
 	
 		padding: 15px;

@@ -66,7 +66,7 @@
                                             <div class="arrowdown2">
                                                 <i class="far fa-chevron-down"></i>
                                             </div>
-                                            <select class="select_opts" id="franchises_name">
+                                            <select class="select_opt" id="franchises_name">
                                                 @isset($data['franchises'])
                                                     @foreach ($data['franchises']->data as $franchise)
                                                         <option value="{{ $franchise->id }}"
@@ -80,7 +80,7 @@
                                             <div class="arrowdown2">
                                                 <i class="far fa-chevron-down"></i>
                                             </div>
-                                            <select class="select_opts" id="franchises_address">
+                                            <select class="select_opt" id="franchises_address">
                                                 @isset($data['franchises'])
                                                     @foreach ($data['franchises']->data as $franchise)
                                                         <option value="{{ $franchise->address_province_id }}"
@@ -394,20 +394,4 @@
             });
         })
     </script>
-    <style>
-        select.select_opts {
-            border: 0px !important;
-            outline: 0px !important;
-            box-shadow: 0px 0px 0px transparent !important;
-        }
-
-        select.select_opts {
-            width: 100%;
-            border: 0px;
-            padding: 15px;
-            background: #ddf8f1;
-            border-radius: 10px 10px 10px 0;
-            appearance: none;
-        }
-    </style>
 @endpush

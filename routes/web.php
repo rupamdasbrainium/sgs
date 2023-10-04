@@ -34,6 +34,8 @@ Route::get('language/{locale}', function ($locale) {
 // Route::get('payment', 'PaymentController@payment')->name('payment');
 Route::get('/planType/{id}',[HomeController::class,'planType']);
 Route::get('/planTypeDetails/{id}',[HomeController::class,'planTypeDetails']);
+Route::get('/terms-and-condition',[HomeController::class,'termsAndCondition'])->name('front.terms');
+Route::get('/privacy-policy',[HomeController::class,'privacyPolicy'])->name('front.privacy');
 Route::get('suscription-form/{id}', 'SuscriptionController@suscriptionform')->name('suscriptionform');
 Route::get('new-membership/{id}', 'SuscriptionController@new_membership')->name('newMembershipfont');
 Route::post('new-membership/{id}', 'SuscriptionController@new_membership_save')->name('newMembershipSave');
@@ -68,6 +70,8 @@ Route::group(['middleware'=>'verifyToken'], function(){
     Route::get('my-bank-cards', 'AccountController@myBankCards')->name('myBankCards');
     Route::get('modify-bank/{id}', 'AccountController@modifyBanks')->name('modifyBanks');
     Route::get('modify-Card/{id}', 'AccountController@modifyCards')->name('modifyCards');
+    Route::post('bank-update', 'AccountController@modifyBanksUpdate')->name('modifyBanksUpdate'); 
+    Route::post('card-update', 'AccountController@modifyCardsUpdate')->name('modifyCardsUpdate');
     Route::get('pay-outstanding-balance', 'AccountController@payMyOutstandingBalance')->name('payMyOutstandingBalance');
     Route::get('new-membership', 'AccountController@newMembership')->name('newMembership');
     Route::get('upgrade-membership', 'AccountController@upgradeMembership')->name('upgradeMembership');

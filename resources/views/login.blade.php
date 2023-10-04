@@ -37,8 +37,8 @@
 						<div class="heading_info sublogo ">
 							<img  src="{{ asset('public/images/logo.svg') }}" alt="">
 						</div>
-						<h2>Login</h2>
-						<p>Input your details and password to get started</p>
+						<h2>{{ __('login.Login') }}</h2>
+						<p>{{ __('login.Input_your_details') }}</p>
 					</div>
 					<div class="fromdes_info">
 						<form method="POST" action="{{ route('userLogin') }}">
@@ -46,7 +46,7 @@
 							<div class="from_cont_wrap">
 								<div class="inp_row">
 									<div class="form-group">
-										<label for="email">Username</label>
+										<label for="email">{{ __('login.Username') }}</label>
 										<div class="inp_cont_view">
 											<div class="icon_opt">
 												<i class="fal fa-envelope"></i>
@@ -60,7 +60,7 @@
 								</div>
 								<div class="inp_row">
 									<div class="form-group">
-										<label for="id_password">Password</label>
+										<label for="id_password">{{ __('login.Password') }}</label>
 										<div class="inp_cont_view">
 											<div class="icon_opt">
 												<i class="fal fa-eye" id="togglePassword" style="cursor: pointer;"></i>
@@ -87,9 +87,9 @@
 
 										</div>
 										<div class="inp_cont_view cap_inp_block">
-											<input class="form-control inpopt2" type="text" name="captcha" placeholder="Enter the text in the image" id="capcha_codeview" required>
+											<input class="form-control inpopt2" type="text" name="captcha" placeholder="{{ __('login.captcha') }}" id="capcha_codeview" required>
 											@if ($errors->has('captcha'))
-					                        <div class="text-danger mt-3">Enter valid captcha</div>
+					                        <div class="text-danger mt-3">{{ __('login.validcaptcha') }}</div>
 					                        @endif
 										</div>
 									</div>
@@ -99,15 +99,15 @@
 										<div class="checkbox">
 											<!-- <label><input type="checkbox"> Remember me</label> -->
 											<input class="styled-checkbox" id="styled-checkbox-2" type="checkbox" value="value2">
-											<label for="styled-checkbox-2">Remember me</label>
+											<label for="styled-checkbox-2">{{ __('login.Remember_me') }}</label>
 										</div>
 										<div class="forgot_opt">
-											<a href="{{ route('forgotpassword') }}">Forgot Password?</a>
+											<a href="{{ route('forgotpassword') }}">{{ __('login.Forgot_Password') }}</a>
 										</div>
 									</div>
 								</div>
 								<div class="def_btnopt2 frombtn">
-									<button type="submit" class="btn2 fulldidthbtn" >Login</button>
+									<button type="submit" class="btn2 fulldidthbtn" >{{ __('login.Login') }}</button>
 								</div>
 							</div>
 						</form>
