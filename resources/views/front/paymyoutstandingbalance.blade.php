@@ -6,16 +6,16 @@
 		@include('layouts.sidebar')
 		<div class="inner_page_des">
 
-			<div class="content_block paymentinfo">
-				<h2 class="head_opt"><span>Total outstanding balance: $90.64</span>Payment Details</h2>
+			<div class="content_block paymentinfo"> 
+				<h2 class="head_opt"><span>{{ __('paymyoutstandingbalance.Total_outstanding_balance') }}: $90.64</span>{{ __('paymyoutstandingbalance.Payment_Details') }}</h2>
 				<div class="table_description_view oddoreven_opt">
 					<table class="table">
 						<thead>
 						  <tr>
-							<th>TYPE</th>
-							<th>PAYMENT DATE</th>
-							<th>PAYMENT</th>
-							<th>STATUS</th>
+							<th>{{ __('paymyoutstandingbalance.TYPE') }}</th>
+							<th>{{ __('paymyoutstandingbalance.PAYMENT_DATE') }}</th>
+							<th>{{ __('paymyoutstandingbalance.PAYMENT') }}</th>
+							<th>{{ __('paymyoutstandingbalance.STATUS') }}</th>
 						  </tr>
 						</thead>
 						<tbody>
@@ -26,13 +26,13 @@
 										<input class="styled-checkbox" id="Option1" type="checkbox" value="value1">
 										<label for="Option1">&nbsp;</label>
 									</div> 
-									Payments
+									{{ __('paymyoutstandingbalance.Payments') }}
 								</div>
 								
 							</td>
 							<td data-label="PAYMENT DATE">2023-7-18</td>
 							<td data-label="PAYMENT">$45.32</td>
-							<td data-label="STATUS">Unpaid</td>
+							<td data-label="STATUS">{{ __('paymyoutstandingbalance.Unpaid') }}</td>
 						  </tr>
 						  <tr class="odditem"> 
 							<td data-label="TYPE">
@@ -41,69 +41,53 @@
 										<input class="styled-checkbox" id="Option2" type="checkbox" value="value1">
 										<label for="Option2">&nbsp;</label>
 									</div> 
-									Payments
+									{{ __('paymyoutstandingbalance.Payments') }}
 								</div>
 
 							</td>
 							<td data-label="PAYMENT DATE">2023-7-18</td>
 							<td data-label="PAYMENT">$45.32</td>
-							<td data-label="STATUS">Unpaid</td>
+							<td data-label="STATUS">{{ __('paymyoutstandingbalance.Unpaid') }}</td>
 						  </tr>
 						  <tr>
 							<td data-label="TYPE">
 								<div class="pay_view_opt">
-									<!-- <div class="checkbox">
-										<input class="styled-checkbox" id="Option1" type="checkbox" value="value1">
-										<label for="Option1">&nbsp;</label>
-									</div>  -->
-									Payments
+									{{ __('paymyoutstandingbalance.Payments') }}
 								</div>
 							</td>
 							<td data-label="PAYMENT DATE">2023-7-18</td>
 							<td data-label="PAYMENT">$45.32</td>
-							<td data-label="STATUS">Paid</td>
+							<td data-label="STATUS">{{ __('paymyoutstandingbalance.Paid') }}</td>
 						  </tr>
 						  <tr>
 							<td data-label="TYPE">
 								<div class="pay_view_opt">
-									<!-- <div class="checkbox">
-										<input class="styled-checkbox" id="Option1" type="checkbox" value="value1">
-										<label for="Option1">&nbsp;</label>
-									</div>  -->
-									Payments
+									{{ __('paymyoutstandingbalance.Payments') }}
 								</div>
 							</td>
 							<td data-label="PAYMENT DATE">2023-7-18</td>
 							<td data-label="PAYMENT">$45.32</td>
-							<td data-label="STATUS">Paid</td>
+							<td data-label="STATUS">{{ __('paymyoutstandingbalance.Paid') }}</td>
 						  </tr>
 						  <tr>
 							<td data-label="TYPE">
 								<div class="pay_view_opt">
-									<!-- <div class="checkbox">
-										<input class="styled-checkbox" id="Option1" type="checkbox" value="value1">
-										<label for="Option1">&nbsp;</label>
-									</div>  -->
-									Payments
+									{{ __('paymyoutstandingbalance.Payments') }}
 								</div>
 							</td>
 							<td data-label="PAYMENT DATE">2023-7-18</td>
 							<td data-label="PAYMENT">$45.32</td>
-							<td data-label="STATUS">Paid</td>
+							<td data-label="STATUS">{{ __('paymyoutstandingbalance.Paid') }}</td>
 						  </tr>
 						  <tr>
 							<td data-label="TYPE">
 								<div class="pay_view_opt">
-									<!-- <div class="checkbox">
-										<input class="styled-checkbox" id="Option1" type="checkbox" value="value1">
-										<label for="Option1">&nbsp;</label>
-									</div>  -->
-									Payments
+									{{ __('paymyoutstandingbalance.Payments') }}
 								</div>
 							</td>
 							<td data-label="PAYMENT DATE">2023-7-18</td>
 							<td data-label="PAYMENT">$45.32</td>
-							<td data-label="STATUS">Paid</td>
+							<td data-label="STATUS">{{ __('paymyoutstandingbalance.Paid') }}</td>
 						  </tr>
 						
 						</tbody>
@@ -112,23 +96,23 @@
 			</div>
 
 			<div class="content_block more_cont_view">
-				<h2>Method of Payment</h2>
+				<h2>{{ __('paymyoutstandingbalance.Method_of_Payment') }}</h2>
 				<div class="checkout_optview payment_opt_details">
 					<div class="inp_row">
 						<div class="form-group">
 							<div class="memberships_nam radio">
 								<input type="radio" id="payment_opt1" name="radio-group_pay" checked>
-								<label for="payment_opt1">Credit Card</label>
+								<label for="payment_opt1">{{ __('paymyoutstandingbalance.Credit_Card') }}</label>
 							</div>
 					
 							<div class="memberships_nam radio">
 								<input type="radio" id="payment_opt2" name="radio-group_pay">
-								<label for="payment_opt2">Debit Card</label>
+								<label for="payment_opt2">{{ __('paymyoutstandingbalance.Debit_Card') }}</label>
 							</div>
 							
 							<div class="memberships_nam radio">
 								<input type="radio" id="payment_opt3" name="radio-group_pay">
-								<label for="payment_opt3">Prepaid Account Card</label>
+								<label for="payment_opt3">{{ __('paymyoutstandingbalance.Prepaid_Account_Card') }}</label>
 							</div>
 						
 						</div>
@@ -156,15 +140,15 @@
 
 							</div>
 							<div class="def_btnopt2 frombtn frombtn2">
-								<button type="button" class="btn2" >Add a Payment Method</button>
+								<button type="button" class="btn2" >{{ __('paymyoutstandingbalance.Add_Payment_Method') }}</button>
 							</div>
 						</div>
 						<div class="aboundopt">
-							<p>Amount to be paid: $90.64</p>
+							<p>{{ __('paymyoutstandingbalance.Amount_paid') }}: $90.64</p>
 						</div>
 						<div class="frombtn_wrap">
 							<div class="def_btnopt2 frombtn frombtn2">
-								<button type="button" class="btn2" >Pay Now</button>
+								<button type="button" class="btn2" >{{ __('paymyoutstandingbalance.Pay_Now') }}</button>
 							</div>
 						</div>
 

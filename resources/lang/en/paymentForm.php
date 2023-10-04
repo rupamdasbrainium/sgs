@@ -58,4 +58,6 @@ return [
     'Expiry_Month' => 'Expiry Month',
     'Expiry_Year' => 'Expiry Year',
     'CVV' => 'CVV',
+    'PAN' => 'PAN',
+    'submit' => 'submit',
 ];

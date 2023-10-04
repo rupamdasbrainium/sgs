@@ -15,4 +15,10 @@ return [
 
     'My_Credit_Card_Bank_Account' => 'Ma carte de crédit/compte bancaire',
     'Cards_and_accounts' => 'Cartes et comptes',
+    'By_Default' => 'Par défaut',
+    'Platinum_Mastercard_BNC' => 'Platine Mastercard BNC',
+    'Credit_card_ending' => 'Carte de crédit se terminant par',
+    'Modify' => 'Modifier',
+    'Bank_acoount_number_ending' => 'Numéro de compte bancaire se terminant par',
+    'Add_Payment_Method' => 'Ajouter un moyen de paiement',
 ];

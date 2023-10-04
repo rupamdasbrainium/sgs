@@ -23,16 +23,10 @@
                                 <div class="sidebar_content">
                                     <div class="sidebar_info">
                                         <p>{{ __('paymentForm.center') }}:
-                                            {{-- @dd($data['membership_details']); --}}
                                             <span>{{ $data['membership_details']->data->franchise }}</span>
                                         </p>
-                                        {{-- <p>Address: 
-										<span>{{ $data['franchise']->address_civic_number}} {{ $data['franchise']->address_street}} {{ $data['franchise']->address_city }} {{ $data['franchise']->address_postal_code }}</span> --}}
                                         </p>
                                         <p>{{ __('paymentForm.package') }}: <span>
-                                                {{-- @if (isset($data['subscription_plan']) && isset($data['subscription_plan']->data))
-									{{ $data['subscription_plan']->data->name }}
-									@endif --}}
                                                 {{ $data['membership_details']->data->subscriptionPlan }}
                                             </span></p>
                                     </div>
@@ -49,7 +43,7 @@
                                                         <div class="inp_cont_view noicon_opt">
 
                                                             <input type="text" class="form-control" name="code_promo"
-                                                                id="promocode" placeholder="Promo/Reward Code ">
+                                                                id="promocode" placeholder="{{ __('paymentForm.promo') }} ">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -62,8 +56,6 @@
                                                                 {{ __('paymentForm.center') }}
                                                             </div>
                                                             <div class="sum_inp_right">
-
-                                                                {{-- {{ $data['franchise']->name}} --}}
                                                                 {{ $data['membership_details']->data->franchise }}
                                                             </div>
                                                         </div>
@@ -72,9 +64,6 @@
                                                                 {{ __('paymentForm.package_plan_Name') }}
                                                             </div>
                                                             <div class="sum_inp_right">
-                                                                {{-- @if (isset($data['subscription_plan']) && isset($data['subscription_plan']->data))
-														{{ $data['subscription_plan']->data->name }}
-													@endif --}}
                                                                 {{ $data['membership_details']->data->subscriptionPlan }}
                                                             </div>
                                                         </div>

@@ -13,12 +13,15 @@ return [
     |
     */
 
-    'My_Credit_Card_Bank_Account' => 'My Credit Card/Bank Account',
-    'Cards_and_accounts' => 'Cards and accounts',
-    'By_Default' => 'By Default',
-    'Platinum_Mastercard_BNC' => 'Platinum Mastercard BNC',
-    'Credit_card_ending' => 'Credit card ending with',
-    'Modify' => 'Modify',
-    'Bank_acoount_number_ending' => 'Bank acoount number ending with',
-    'Add_Payment_Method' => 'Add a Payment Method',
+    'Memberships' => 'Adhésions',
+    'Act1_Membership_davable' => 'Adhésion à Act1 - davable',
+    'per_Month' => 'par mois',
+    'Method_of_payment' => 'Moyen de paiement',
+    'End_date' => 'Date de fin',
+    'Upgrade' => 'Mise à niveau',
+    'Membership_Options_Add-ons' => 'Options d\'adhésion/modules complémentaires',
+    'Option' => 'Option',
+    'Quantity' => 'Quantité',
+    'Price' => 'Prix',
+    'Pay_Now' => 'Payez maintenant',
 ];
