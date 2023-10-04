@@ -19,6 +19,15 @@
                     <strong class="arroright_opt"><i class="far fa-long-arrow-right"></i></strong>
                 </a>
             </li>
+
+            <li>
+                <a href="{{ route('admin.cmslistView') }}">
+                    <span><img src="{{ asset('admin/images/admin_configuration.svg') }}" alt="" ></span>
+                    <em>Content Management</em>
+                    <strong class="arroright_opt"><i class="far fa-long-arrow-right"></i></strong>
+                </a>
+            </li>
+
         </ul>
     </div>
 </div>

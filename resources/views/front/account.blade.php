@@ -7,17 +7,17 @@
 		<div class="inner_page_des">
 			<div class="content_block accountinfo">
 				<div class="blocktitle">
-					<h2>My Account</h2>
+					<h2>{{ __('account.My_Account') }}</h2>
 					<h3 class="subtitle">{{ $client->firstname ." ". $client->lastname }}</h3>
-					<p><span>My Gym: Gym Prafick</span></p>
+					<p><span>{{ __('account.My_Gym') }}</span></p>
 
 					<div class="account_des">
-						<span class="acc_des_title">My Address: </span>
+						<span class="acc_des_title">{{ __('account.My_Address') }}: </span>
 						<span class="acc_des_info">{{ getAddress($client->adress) }} </span>
-						<span class="accountedit"><a href="{{ route('myContactInformation') }}">Edit</a> </span>
+						<span class="accountedit"><a href="{{ route('myContactInformation') }}">{{ __('account.Edit') }}</a> </span>
 					</div>
 					<div class="account_leng">
-						<div class="account_leng_title">Preferred communication language</div>
+						<div class="account_leng_title">{{ __('account.communication_language') }}</div>
                         <form action="{{ route('userLanguageUpdate') }}" method="POST">
                             @csrf
                             <div class="account_leng_opt">
@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="account_leng_opt_btn">
                                     <div class="def_btnopt2 frombtn">
-                                        <button type="submit" class="btn2" >Submit</button>
+                                        <button type="submit" class="btn2" >{{ __('account.Submit') }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -47,20 +47,20 @@
 			</div>
 
 			<div class="content_block memberships">
-				<h2>Memberships</h2>
+				<h2>{{ __('account.Memberships') }}</h2>
               
                 @if($membership == "")
                     <div class="memberships_content">
-                        No Membership Found
+						{{ __('account.No_Membership') }}
                     </div>
                 @else
 				<div class="memberships_content">
                     @foreach ($membership->data as $item)
 
 					<div class="memberships_opt">
-						<div class="memberships_nam">{{ $item->type }} - davable ${{ $item->recurantCharge }} per Month</div>
+						<div class="memberships_nam">{{ $item->type }} - {{ __('account.davable') }} ${{ $item->recurantCharge }} {{ __('account.per_Month') }}</div>
 						<div class="memberships_method_view">
-							<div class="memberships_method">Method of  payment:</div>
+							<div class="memberships_method">{{ __('account.Method_of_payment') }}:</div>
 							<div class="memberships_method_opt">
 								<div class="selectcont ">
 									<div class="arrowdown2">
@@ -70,12 +70,12 @@
                                         @if($data["cards"] != null)
                                             @foreach ($data["cards"] as $card)
 
-                                            <option value="{{ $card->id }}" {{ ($item->creditCardId && $item->creditCardId == $card->id) ? "selected" : "" }} >xxx xxx xxxx {{ $card->four_digits_number}} Card</option>
+                                            <option value="{{ $card->id }}" {{ ($item->creditCardId && $item->creditCardId == $card->id) ? "selected" : "" }} >xxx xxx xxxx {{ $card->four_digits_number}} {{ __('account.Card') }}</option>
                                             @endforeach
                                         @endif
                                         @if($data['banks'] != null)
                                             @foreach ($data["banks"] as $bank)
-                                            <option value="{{ $bank->id }}" {{ ($item->bancAccountId && $item->bancAccountId == $bank->id) ? "selected" : "" }} >xxx xxx xxxx {{ $bank->account_last_digits}} Bank</option>
+                                            <option value="{{ $bank->id }}" {{ ($item->bancAccountId && $item->bancAccountId == $bank->id) ? "selected" : "" }} >xxx xxx xxxx {{ $bank->account_last_digits}} {{ __('account.Bank') }}</option>
                                             @endforeach
                                         @endif
 
@@ -85,8 +85,8 @@
 							</div>
 						</div>
 						<div class="ranew_opt_block">
-							<div class="memberships_method_date">End date: {{ date('Y/m/d',strtotime($item->end)) }} </div>
-							<div class="ren_opt"><a href="#">Renew</a> </div>
+							<div class="memberships_method_date">{{ __('account.End_date') }}: {{ date('Y/m/d',strtotime($item->end)) }} </div>
+							<div class="ren_opt"><a href="#">{{ __('account.Renew') }}</a> </div>
 						</div>
 					</div>
                     @endforeach
