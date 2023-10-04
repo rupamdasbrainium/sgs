@@ -413,7 +413,6 @@
 
                                                 <div id="credit_details">
                                                     <div class="selectcont ">
-
                                                         <div class="arrowdown2">
                                                             <i class="far fa-chevron-down"></i>
                                                         </div>
@@ -441,7 +440,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt" id="incdec">
 
-                                                                <input type="text" name="token"
+                                                                <input type="text" name="four_digits_number"
                                                                     class="form-control" placeholder=""
                                                                     value="">
                                                                 
@@ -471,7 +470,7 @@
                                                         <div class="form-group">
                                                             <label>{{ __('paymentForm.CVV') }}<em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="text" name="four_digits_number"
+                                                                <input type="text" name="token"
                                                                     class="form-control" placeholder="">
                                                             </div>
                                                         </div>
@@ -617,7 +616,7 @@
                     alert("Name can't be blank");
                     return false;
                 }
-                if (token.length != 16) {
+                if (four_digits_number.length != 16) {
                     alert("Card number must be at least 16 characters long.");
                     return false;
                 }
@@ -629,7 +628,7 @@
                     alert("Expiry year must be at least 4 characters long.");
                     return false;
                 }
-                if (four_digits_number.length != 3) {
+                if (token.length != 3) {
                     alert("CVV must be at least 3 characters long.");
                     return false;
                 }

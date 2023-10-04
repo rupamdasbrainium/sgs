@@ -593,15 +593,14 @@ class AccountController extends Controller
 
     $pay_methods_acc = APICall('PaymentMethods/accounts', "get", "{}", 'client_app');
     $data['pay_methods_acc'] = json_decode($pay_methods_acc);
-
-    $data["card"] = array_map(function($card) use ($id){
-        if($id == $card->id){
-            return $card;
+// dd($data['pay_methods_acc']);
+    $data["bank"] = array_map(function($bank) use ($id){
+        if($id == $bank->id){
+            return $bank;
         }
         },(array)$data['pay_methods_acc']->data);
-        $data["card"]= array_filter($data["card"]);
-        $data["card"] = array_values($data["card"]);
-dd($data["card"]);
+        $data["bank"]= array_filter($data["bank"]);
+        $data["bank"] = array_values($data["bank"]);
     return view('front.modifyBanks', compact('data'));
 }
 
@@ -620,7 +619,7 @@ public function modifyBanksUpdate(Request $request){
 public function modifyCards($id)
 {
     $data = array();
-    $data['title'] = 'Modify Bank Account';
+    $data['title'] = 'Modify Card Account';
     $pay_methods_accc = APICall('PaymentMethods/Cards', "get", "{}", 'client_app');
     $data['pay_methods_accc'] = json_decode($pay_methods_accc);
 
@@ -643,7 +642,7 @@ public function modifyCardsUpdate(Request $request){
     $formdata['expire_year'] = $request->expiry_year;
     $formdata['owner_name'] = $request->owner_name;
 
-    $response = APICall("PaymentMethods/card", "put", json_encode($formdata));
+    $response = APICall("PaymentMethods/card", "put", json_encode($formdata), 'client_app');
 
     $response = json_decode($response);
     return redirect()->back();
