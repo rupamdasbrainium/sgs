@@ -7,11 +7,11 @@
             <div class="inner_page_des">
                 <div class="content_block accountinfo">
                     <div class="blocktitle2">
-                        <h2>My Credit Card/Bank Account</h2>
+                        <h2>{{ __('mybankcards.My_Credit_Card_Bank_Account') }}</h2>
                     </div>
                     <div class="fromdes_view">
                         <div class="titleopt2">
-                            <h3>Cards and accounts</h3>
+                            <h3>{{ __('mybankcards.Cards_and_accounts') }}</h3>
                         </div>
                         <div class="fromdes_info user_contentblock">
                             <div class="from_cont_wrap">
