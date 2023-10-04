@@ -44,6 +44,16 @@
                                                 </div>
                                                 <div class="inp_row">
                                                     <div class="form-group">
+                                                        <label>{{ __('paymentForm.PAN') }} <em
+                                                                class="req_text">*</em></label>
+                                                        <div class="inp_cont_view noicon_opt">
+                                                            <input type="text" name="pan"
+                                                                class="form-control" placeholder=""value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="inp_row">
+                                                    <div class="form-group">
                                                         <label>{{ __('paymentForm.credit_card_number') }} <em
                                                                 class="req_text">*</em></label>
                                                         <div class="inp_cont_view noicon_opt" id="incdec">

@@ -200,22 +200,14 @@ class PaymentController extends Controller
                 $formdata['franchise_id'] = Session::get('franchise_id');
 
             $pay_methode_acc = APICall('PaymentMethods/account', "post", json_encode($formdata), 'client_app');
-            $data['pay_methode_acc'] = json_decode($pay_methode_acc);
-
-            if($data['pay_method_acc']->error!=null){
-                $response = array(
-                          'message' => $data['pay_method_acc']->error->message,
-                          'message_type' => 'danger'
-                        );
-                        return redirect()->back()->with($response)->withInput();
-            }
-             else{
+            $data['pay_methode_acc'] = json_decode($pay_methode_acc);          
+        }            
               $response = array(
-                'message' => 'payment add succesfully',
+                'message' => 'bank add succesfully',
               );
               return redirect(route("myBankCards"))->with($response);
-            }
             
+         
 
         } else {
             $carddata = array();
@@ -225,17 +217,19 @@ class PaymentController extends Controller
             $carddata['owner_name'] = $request->owner_name;
             $carddata['token'] = $request->token;
             $carddata['type_id'] = $request->type_id;
+            $carddata['pan'] = $request->pan;
             if (Session::has('franchise_id')) {
                 $carddata['franchise_id'] = Session::get('franchise_id');
-
+            
                 $pay_methods_account = APICall('PaymentMethods/card', "post", json_encode($carddata), 'client_app');
-                $data['pay_methods_account'] = json_decode($pay_methods_account);
-
-                // $data["title"] = "My Account"; 
-            }
-            return redirect(route("myBankCards"));
+                $data['pay_methods_account'] = json_decode($pay_methods_account);              
+            }           
+                $response = array(
+                  'message' => 'credit card add succesfully',
+                );
+                return redirect(route("myBankCards"))->with($response);
         }
-    }
+    
 
 }
 }

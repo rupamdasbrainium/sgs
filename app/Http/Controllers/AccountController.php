@@ -603,7 +603,6 @@ public function modifyBanksUpdate(Request $request){
     $formdata['institution'] = $request->institution;
     $formdata['account_number'] = $request->account_number;
     $formdata['owner_name'] = $request->owner_names;
-
     $response = APICall("PaymentMethods/account", "put", json_encode($formdata), 'client_app');
     $response = json_decode($response);
     $response = array(
@@ -611,7 +610,7 @@ public function modifyBanksUpdate(Request $request){
       );
 
     return redirect(route('myBankCards'))->with($response);
-    return redirect()->back();
+   
 }
 public function modifyCards($id)
 {
@@ -638,9 +637,11 @@ public function modifyCardsUpdate(Request $request){
     $formdata['expire_month'] = $request->expiry_month;
     $formdata['expire_year'] = $request->expiry_year;
     $formdata['owner_name'] = $request->owner_name;
+    $formdata['pan'] = $request->pan;
 
     $response = APICall("PaymentMethods/card", "put", json_encode($formdata), 'client_app');
     $response = json_decode($response);
+  
     $response = array(
         'message' => 'Card modified succesfully',
       );
