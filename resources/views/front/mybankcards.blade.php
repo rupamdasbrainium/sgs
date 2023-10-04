@@ -43,8 +43,6 @@
                                                                     </div>
                                                                     <div class="card_optblock">
                                                                         <div class="card_icon_text">
-                                                                            {{-- @dd($data['pay_methods_accc']) --}}
-
 
                                                                             <span class="card_opt_text">Credit card
                                                                                 ending with </span>
@@ -66,7 +64,7 @@
                                                                         </div>
                                                                     </div>
 																	<div class="def_btnopt2 frombtn frombtn2">
-																		<a href="{{route('modifyBanks', $value->id)}}" type="button" class="btn2">Modify</a>
+																		<a href="{{route('modifyCards', $value->id)}}" type="button" class="btn2">Modify</a>
 																	</div>
                                                                 </div>
 
@@ -102,8 +100,6 @@
                                                                     </div>
                                                                     <div class="card_optblock">
                                                                         <div class="card_icon_text">
-                                                                            {{-- @dd($data['pay_methods_accc']) --}}
-
 
                                                                             <span class="card_opt_text">Bank acoount
                                                                                 number ending with </span>
@@ -125,7 +121,7 @@
                                                                         </div>
                                                                     </div>
 																	<div class="def_btnopt2 frombtn frombtn2">
-																		<a href="{{route('modifyCards', $value->id)}}" type="button" class="btn2">Modify</a>
+																		<a href="{{route('modifyBanks', $values->id)}}" type="button" class="btn2">Modify</a>
 																	</div>
                                                                 </div>
 

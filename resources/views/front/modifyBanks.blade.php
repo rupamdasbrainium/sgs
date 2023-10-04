@@ -11,14 +11,14 @@
                             @include('layouts.sidebar')
 
                             <div class="from_cont_wrap">
-                                <form method="POST" name="myform" action="" onsubmit="return validfunc()">
+                                <form method="POST" name="myform" action="{{route('modifyBanksUpdate')}}" onsubmit="return validfunc()">
                                     @csrf
+                                    <input type="hidden" name="bank_id" value="{{$data["bank"][0]->id}}">
                                     <div class="fromdes_info">
                                         <div class="from_cont_wrap">
                                             <div class="content_block paymentinfo">
                                                 <h2 class="head_opt">{{ __('paymentForm.payment_details') }}</h2>
                                             </div>
-                                            @dd($data['bank'])
                                             <div class="from_contentblock">
 
                                                 <div id="bank_details">
@@ -39,7 +39,7 @@
 
                                                                 <input type="text" name="transit_number"
                                                                     class="form-control" placeholder=""
-                                                                    value="{{ $data['bank']->transit }}">
+                                                                    value="{{ $data['bank'][0]->transit }}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -50,7 +50,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="institution"
-                                                                    class="form-control" placeholder="">
+                                                                    class="form-control" placeholder=""  value="{{ $data['bank'][0]->institution }}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -60,7 +60,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="account_number"
-                                                                    class="form-control" placeholder="">
+                                                                    class="form-control" placeholder=""  value="{{ $data['bank'][0]->account_last_digits }}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -71,7 +71,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="owner_names"
-                                                                    class="form-control" placeholder="bank">
+                                                                    class="form-control" placeholder="bank" value="{{ $data['bank'][0]->owner_name }}">
                                                             </div>
                                                         </div>
                                                     </div>
