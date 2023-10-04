@@ -119,7 +119,7 @@ class AccountController extends Controller
             'con_password' => 'required|string|same:new_password',
         ]);
         if ($validator->fails()) {
-            return back()->with('errors', $validator->messages());
+            return back()->with('errors', $validator->messages()->all());
         }
         $data = array();
         $data['oldPassword'] = $request->old_password;
