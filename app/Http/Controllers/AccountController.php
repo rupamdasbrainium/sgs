@@ -296,11 +296,15 @@ class AccountController extends Controller
         $payments = json_decode($response);
         if($payments->error == null){
             $data["payments"] = $payments->data;
-            $data["outstandingAmount"] = array_reduce((array)$data["payments"], function($v1, $v2){
+
+            $data["outstandingAmount"] = 0 ;
+            foreach((array)$data["payments"] as $v2){
                 if(!$v2->is_paid){
-                    return $v1+ $v2->amount;
+                    $data["outstandingAmount"] += (float)$v2->amount;
+
                 }
-            },0);
+            };
+
         }else{
             $data["payments"] = null;
         }
@@ -308,6 +312,7 @@ class AccountController extends Controller
         $banks = json_decode($banks);
         if($banks->error == null){
             $data["banks"] = $banks->data;
+            $data["client_id"] = $data["banks"][0]->client_id;
         }else{
             $data["banks"] = null;
         }
@@ -316,10 +321,49 @@ class AccountController extends Controller
         if($cards->error == null)
         {
             $data["cards"] = $cards->data;
+            $data["client_id"] = $data["cards"][0]->client_id;
         }else{
             $data["cards"] = null;
         }
         return view('front.paymyoutstandingbalance', compact('data'));
+    }
+
+    public function payOutstandinfPayment(Request $request){
+
+        $validator = Validator::make($request->all(),[
+            "payment_method_id" => "required",
+            "totalAmount" => "required|min:1",
+            "payment_checkbox" => "required"
+        ]);
+        if($validator->fails()){
+            return back()->withErrors($validator);
+        }else{
+
+            //credit card payment
+            if($request->payment_type == "credit_card"){
+                $paymentIds = explode(",", $request->payment_ids);
+                dd($paymentIds);
+                $response = APICall("Payments?credit_card_id=". $request->payment_method_id . "&amount=". $request->totalAmount, "POST", json_encode($paymentIds), "client_app");
+                $response = json_decode($response);
+
+                if($response->error == null){
+                    return redirect()->route('payMyOutstandingBalance')->with("success", "Payment Successfull");
+                }else{
+                    return redirect()->route('payMyOutstandingBalance')->withErrors(["error"=> $response->message]);
+                }
+            }
+            //bank account payment
+            else{
+
+                $response = APICall("Payments/client/".$request->client_id."/amount/".$request->totalAmount,"POST", "{}","client_app");
+                $response = json_decode($response);
+                if($response->error == null){
+                    return redirect()->route('payMyOutstandingBalance')->with("success", "Payment Successfull");
+                }else{
+                    return redirect()->route('payMyOutstandingBalance')->withErrors(["error"=> $response->message]);
+                }
+            }
+        }
     }
 
     public function newMembership () {
