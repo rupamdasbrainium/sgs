@@ -23,8 +23,23 @@ class AccountController extends Controller
         if (!$client) {
             return redirect()->route('login')->with('email', "Your login token has been expired");
         }
-
         $client = json_decode($client)->data;
+
+
+        $franchises = APICall("Franchises", "get","{}");
+        $data['franchises'] = json_decode($franchises);
+        $clients = APICall("Clients", "get","{}");
+        $data['clients'] = json_decode($clients);
+
+      
+
+        foreach($data['franchises']->data as $franchise){
+            if($franchise->name ==  $data['clients']->data->franchise_name){
+            $franchise_id = $franchise->id;
+            Session::put('franchise_id',$franchise_id);
+          }
+        }
+dd( Session::get('franchise_id',$franchise_id));
 
         $membership = APICall('Memberships/client?display_language_id=' . $client->language_id, "get", "{}");
         $membership = json_decode($membership);
