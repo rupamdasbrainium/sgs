@@ -177,6 +177,13 @@ class PaymentController extends Controller
     {
         $data = array();
         $data['title'] = 'Add Acoount';
+        $client = APICall("Clients",'get',"{}");
+        if(!$client){
+            return redirect()->route('login')->with('email', "Your login token has been expired");
+
+        }
+
+        $client = json_decode($client)->data;
         $uri = "Memberships/price-details?";
         $uri .=  "&display_language_id=" . getLocale(); 
 
@@ -196,27 +203,29 @@ class PaymentController extends Controller
             $formdata['institution'] = $request->institution;
             $formdata['account_number'] = $request->account_number;
             $formdata['owner_name'] = $request->owner_names;
-            if (Session::has('franchise_id')) {
-                $formdata['franchise_id'] = Session::get('franchise_id');
+            
+                
+                if (Session::has('franchise_id')) {
+                    $formdata['franchise_id'] = Session::get('franchise_id');
+                    $formdata['franchise_id'] =3;
 
             $pay_methode_acc = APICall('PaymentMethods/account', "post", json_encode($formdata), 'client_app');
-            $data['pay_methode_acc'] = json_decode($pay_methode_acc);
-
-            if($data['pay_method_acc']->error!=null){
-                $response = array(
-                          'message' => $data['pay_method_acc']->error->message,
-                          'message_type' => 'danger'
-                        );
-                        return redirect()->back()->with($response)->withInput();
-            }
-             else{
+            $data['pay_methode_acc'] = json_decode($pay_methode_acc); 
+                }
+              
+            // if( $data['pay_methode_acc']->error!=null){
+            //     $response = array(
+            //               'message' =>  $data['pay_methode_acc']->error->message,
+            //               'message_type' => 'danger'
+            //             );
+            //             return redirect()->back()->with($response)->withInput();
+            // }      
+                   
               $response = array(
-                'message' => 'payment add succesfully',
+                'message' => 'bank add succesfully',
               );
               return redirect(route("myBankCards"))->with($response);
-            }
             
-
         } else {
             $carddata = array();
             $carddata['four_digits_number'] = $request->four_digits_number;
@@ -225,17 +234,19 @@ class PaymentController extends Controller
             $carddata['owner_name'] = $request->owner_name;
             $carddata['token'] = $request->token;
             $carddata['type_id'] = $request->type_id;
-            if (Session::has('franchise_id')) {
+            $carddata['pan'] = $request->pan;
+             if (Session::has('franchise_id')) {
                 $carddata['franchise_id'] = Session::get('franchise_id');
-
+                   
                 $pay_methods_account = APICall('PaymentMethods/card', "post", json_encode($carddata), 'client_app');
-                $data['pay_methods_account'] = json_decode($pay_methods_account);
-
-                // $data["title"] = "My Account"; 
-            }
-            return redirect(route("myBankCards"));
+                $data['pay_methods_account'] = json_decode($pay_methods_account);              
+             }     
+                $response = array(
+                  'message' => 'credit card add succesfully',
+                );
+                return redirect(route("myBankCards"))->with($response);
         }
-    }
+    
 
 }
 }

@@ -5,29 +5,50 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 
 class HomeController extends Controller
 {
     public function index ($short_code) {
         $lang_id = getLocale();
-        $short_code = 'CentreDemo';
+        // $short_code = 'CentreDemo';
         $data = array();
         $data['title'] = 'Home';
         //franchise call
         $franchises = APICall("Franchises", "get","{}");
         $data['franchises'] = json_decode($franchises);
         $data['short_code'] = $short_code;
-
+        $franchise_id = '';
+        
         //find franchise_id
         foreach($data['franchises']->data as $franchise){
-        //   if($franchise->id == $short_code){
-            if($franchise->shortCode == $short_code){//actual
+            if($franchise->shortCode == $short_code){
             $franchise_id = $franchise->id;
             break;
           }
+          
+        }
+        $response = array(
+            'message' => 'Input path is wrong',
+          );
+
+        if(!$franchise_id){
+            return redirect(route('login'))->with($response);
         }
 
+        foreach($data['franchises']->data as $franchise){
+            //   if($franchise->id == $short_code){
+                if($franchise->name == $franchise_id){//actual
+                $franchise_id = $franchise->id;
+                break;
+              }
+
+        // if (Session::has('franchise_id')) {
+        //     Session::forget('franchise_id');
+        // }
+        // Session::put('franchise_id',$franchise_id );
+        
         //franchise plan type
         $franchisesPlanType = APICall("SubscriptionPlans/types?franchise_id=".$franchise_id, "get","{}");
         $data['franchisesPlanType'] = json_decode($franchisesPlanType);
@@ -100,149 +121,7 @@ class HomeController extends Controller
     }
 
     public function planTypeDetails($id){
-        // $franchisesPlanDetails = '{
-        //     "error": null,
-        //     "isErrorConnString": false,
-        //     "data": {
-        //       "id": 12,
-        //       "name": "12 mois reg",
-        //       "age_min": 0,
-        //       "age_max": 120,
-        //       "id_category": 2,
-        //       "id_frinchise": 3,
-        //       "prices_per_durations": [
-        //         {
-        //           "duration_id": 5,
-        //           "duration_unit_id": 0,
-        //           "duration_unit_display": "mois",
-        //           "frequency": 12,
-        //           "price_initial": 9.57,
-        //           "price_recurant": 39.99,
-        //           "installments": [
-        //             {
-        //               "id": 160,
-        //               "number_of_payments": 6
-        //             }
-        //           ]
-        //         }
-        //       ],
-        //       "options": [
-        //         {
-        //           "id": 5,
-        //           "name": "Nouvelle/remplacement de carte d",
-        //           "quantity": 1,
-        //           "deliverable_quantity": 1,
-        //           "price": 20,
-        //           "is_initial": true
-        //         },
-        //         {
-        //           "id": 7,
-        //           "name": "12 seance d",
-        //           "quantity": 1,
-        //           "deliverable_quantity": 0,
-        //           "price": 200,
-        //           "is_initial": true
-        //         },
-        //         {
-        //           "id": 8,
-        //           "name": "24 séance d",
-        //           "quantity": 1,
-        //           "deliverable_quantity": 0,
-        //           "price": 350,
-        //           "is_initial": true
-        //         },
-        //         {
-        //           "id": 9,
-        //           "name": "Le package de 12 shake ",
-        //           "quantity": 1,
-        //           "deliverable_quantity": 12,
-        //           "price": 12.55,
-        //           "is_initial": true
-        //         },
-        //         {
-        //           "id": 11,
-        //           "name": "Gourde a l",
-        //           "quantity": 1,
-        //           "deliverable_quantity": 1,
-        //           "price": 0,
-        //           "is_initial": true
-        //         },
-        //         {
-        //           "id": 13,
-        //           "name": "Acces au cours de zumba",
-        //           "quantity": 1,
-        //           "deliverable_quantity": 1,
-        //           "price": 7.5,
-        //           "is_initial": true
-        //         },
-        //         {
-        //           "id": 14,
-        //           "name": "Accès au cours de spinning",
-        //           "quantity": 1,
-        //           "deliverable_quantity": 1,
-        //           "price": 100,
-        //           "is_initial": true
-        //         },
-        //         {
-        //           "id": 15,
-        //           "name": "Accès au cours de cardioboxe",
-        //           "quantity": 1,
-        //           "deliverable_quantity": 1,
-        //           "price": 120,
-        //           "is_initial": true
-        //         },
-        //         {
-        //           "id": 16,
-        //           "name": "Accès a tous les cours du centre 25$ par mois",
-        //           "quantity": 1,
-        //           "deliverable_quantity": 1,
-        //           "price": 25,
-        //           "is_initial": false
-        //         },
-        //         {
-        //           "id": 17,
-        //           "name": "block 50 minute",
-        //           "quantity": 1,
-        //           "deliverable_quantity": 50,
-        //           "price": 10,
-        //           "is_initial": true
-        //         },
-        //         {
-        //           "id": 18,
-        //           "name": "Yoga",
-        //           "quantity": 1,
-        //           "deliverable_quantity": 1,
-        //           "price": 8.3,
-        //           "is_initial": false
-        //         },
-        //         {
-        //           "id": 19,
-        //           "name": "Shake 5",
-        //           "quantity": 1,
-        //           "deliverable_quantity": 1,
-        //           "price": 12.5,
-        //           "is_initial": true
-        //         },
-        //         {
-        //           "id": 20,
-        //           "name": "Assurance annulation",
-        //           "quantity": 1,
-        //           "deliverable_quantity": 1,
-        //           "price": 20,
-        //           "is_initial": true
-        //         },
-        //         {
-        //           "id": 21,
-        //           "name": "tonus",
-        //           "quantity": 1,
-        //           "deliverable_quantity": 1,
-        //           "price": 6.29,
-        //           "is_initial": true
-        //         }
-        //       ],
-        //       "inclusions": []
-        //     }
-        //   }';
+       
         $franchisesPlanDetails = APICall("SubscriptionPlans/type/".$id, "get","{}");
         $data = json_decode($franchisesPlanDetails);
         $html = '';

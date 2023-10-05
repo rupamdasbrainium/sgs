@@ -10,6 +10,11 @@
 			<div class="banner_cont">
 				<div class="container">
 					<div class="row">
+						@if(Session::has('message'))
+						<div class="alert alert-danger">
+							{{Session::get('message')}}
+						</div>
+							@endif
 						<div class="col-md-12">
 							<!-- <div class="banner_info">
 													<h1>Elevate Your <span>Fitness,</span></h1>
