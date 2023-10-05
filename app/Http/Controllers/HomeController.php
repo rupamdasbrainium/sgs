@@ -23,8 +23,7 @@ class HomeController extends Controller
         
         //find franchise_id
         foreach($data['franchises']->data as $franchise){
-        //   if($franchise->id == $short_code){
-            if($franchise->shortCode == $short_code){//actual
+            if($franchise->shortCode == $short_code){
             $franchise_id = $franchise->id;
             break;
           }
@@ -37,13 +36,19 @@ class HomeController extends Controller
         if(!$franchise_id){
             return redirect(route('login'))->with($response);
         }
+
+        foreach($data['franchises']->data as $franchise){
+            //   if($franchise->id == $short_code){
+                if($franchise->name == $franchise_id){//actual
+                $franchise_id = $franchise->id;
+                break;
+              }
+
         // if (Session::has('franchise_id')) {
         //     Session::forget('franchise_id');
         // }
-        Session::put('franchise_id',$franchise_id );
-// dd(Session::get('franchise_id',$franchise_id ));
-       
-
+        // Session::put('franchise_id',$franchise_id );
+        
         //franchise plan type
         $franchisesPlanType = APICall("SubscriptionPlans/types?franchise_id=".$franchise_id, "get","{}");
         $data['franchisesPlanType'] = json_decode($franchisesPlanType);

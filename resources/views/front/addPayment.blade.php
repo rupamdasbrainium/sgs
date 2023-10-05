@@ -83,7 +83,7 @@
                                                             <label>{{ __('paymentForm.Transit_Number') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt" id="incdec">
 
-                                                                <input type="text" name="transit_number"
+                                                                <input type="number" name="transit_number"
                                                                     class="form-control" placeholder=""
                                                                     value="">
                                                                 {{-- <i class="fas fa-sort-up" id="up"></i>
@@ -97,7 +97,7 @@
                                                         <div class="form-group">
                                                             <label>{{ __('paymentForm.Branch_Number') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="text" name="institution"
+                                                                <input type="number" name="institution"
                                                                     class="form-control" placeholder="">
                                                             </div>
                                                         </div>
@@ -106,7 +106,7 @@
                                                         <div class="form-group">
                                                             <label>{{ __('paymentForm.Account_Number') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="text" name="account_number"
+                                                                <input type="number" name="account_number"
                                                                     class="form-control" placeholder="">
                                                             </div>
                                                         </div>
@@ -153,7 +153,7 @@
                                                             <label>{{ __('paymentForm.PAN') }} <em
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="text" name="pan"
+                                                                <input type="number" name="pan"
                                                                     class="form-control" placeholder="">
                                                             </div>
                                                         </div>
@@ -164,7 +164,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt" id="incdec">
 
-                                                                <input type="text" name="four_digits_number"
+                                                                <input type="number" name="four_digits_number"
                                                                     class="form-control" placeholder=""
                                                                     value="">
                                                                 
@@ -176,7 +176,7 @@
                                                         <div class="form-group">
                                                             <label>{{ __('paymentForm.Expiry_Month') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="text" name="expiry_month"
+                                                                <input type="number" name="expiry_month"
                                                                     class="form-control" placeholder="">
                                                             </div>
                                                         </div>
@@ -185,7 +185,7 @@
                                                         <div class="form-group">
                                                             <label>{{ __('paymentForm.Expiry_Year') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="text" name="expiry_year"
+                                                                <input type="number" name="expiry_year"
                                                                     class="form-control" placeholder="">
                                                             </div>
                                                         </div>
@@ -194,7 +194,7 @@
                                                         <div class="form-group">
                                                             <label>{{ __('paymentForm.CVV') }}<em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="text" name="token"
+                                                                <input type="number" name="token"
                                                                     class="form-control" placeholder="">
                                                             </div>
                                                         </div>

@@ -177,6 +177,13 @@ class PaymentController extends Controller
     {
         $data = array();
         $data['title'] = 'Add Acoount';
+        $client = APICall("Clients",'get',"{}");
+        if(!$client){
+            return redirect()->route('login')->with('email', "Your login token has been expired");
+
+        }
+
+        $client = json_decode($client)->data;
         $uri = "Memberships/price-details?";
         $uri .=  "&display_language_id=" . getLocale(); 
 
@@ -200,13 +207,12 @@ class PaymentController extends Controller
                 
                 if (Session::has('franchise_id')) {
                     $formdata['franchise_id'] = Session::get('franchise_id');
-                  
+                    $formdata['franchise_id'] =3;
 
             $pay_methode_acc = APICall('PaymentMethods/account', "post", json_encode($formdata), 'client_app');
             $data['pay_methode_acc'] = json_decode($pay_methode_acc); 
                 }
-                dd(Session::get('franchise_id'));
-            // dd( $data['pay_methode_acc'])   ;
+              
             // if( $data['pay_methode_acc']->error!=null){
             //     $response = array(
             //               'message' =>  $data['pay_methode_acc']->error->message,

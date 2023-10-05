@@ -61,7 +61,13 @@ class AccountController extends Controller
     public function changeLanguage () {
         $data = array();
         $data['title'] = 'Change Language';
+        $client = APICall("Clients",'get',"{}");
+        if(!$client){
+            return redirect()->route('login')->with('email', "Your login token has been expired");
 
+        }
+
+        $client = json_decode($client)->data;
         $language = APICall('Options/languages', "get", "{}");
         $data['language'] = json_decode($language);
      
@@ -71,6 +77,13 @@ class AccountController extends Controller
     public function mylanguagechange (Request $request) {
         $data = array();
         $data['title'] = 'Change Language';
+        $client = APICall("Clients",'get',"{}");
+        if(!$client){
+            return redirect()->route('login')->with('email', "Your login token has been expired");
+
+        }
+
+        $client = json_decode($client)->data;
         $language_id = (int)$request->display;
         // $carddata['iso_code'] = $request->type_id;
         // $carddata['display'] = $request->type_id;
@@ -103,6 +116,13 @@ class AccountController extends Controller
     public function changePassword () {
         $data = array();
         $data['title'] = 'Change Password';
+        $client = APICall("Clients",'get',"{}");
+        if(!$client){
+            return redirect()->route('login')->with('email', "Your login token has been expired");
+
+        }
+
+        $client = json_decode($client)->data;
         return view('front.changepassword', compact('data'));
     }
 
@@ -287,13 +307,26 @@ class AccountController extends Controller
     public function payMyOutstandingBalance () {
         $data = array();
         $data['title'] = 'Pay My Outstanding Balance';
+        $client = APICall("Clients",'get',"{}");
+        if(!$client){
+            return redirect()->route('login')->with('email', "Your login token has been expired");
+
+        }
+
+        $client = json_decode($client)->data;
         return view('front.paymyoutstandingbalance', compact('data'));
     }
 
     public function newMembership () {
         $data = array();
         $data['title'] = trans('newMembership.memberships');
-    
+        $client = APICall("Clients",'get',"{}");
+        if(!$client){
+            return redirect()->route('login')->with('email', "Your login token has been expired");
+
+        }
+
+        $client = json_decode($client)->data;
         if (Session::has('franchise_id')) {
             Session::forget('franchise_id');
         }
@@ -314,7 +347,13 @@ class AccountController extends Controller
         $lang_id = getLocale();
         $data = array();
         $data['title'] = trans('newMembership.memberships').' '.trans('newMembership.option');
+        $client = APICall("Clients",'get',"{}");
+        if(!$client){
+            return redirect()->route('login')->with('email', "Your login token has been expired");
 
+        }
+
+        $client = json_decode($client)->data;
         //subscriptionplan type call
         $subscription_plan = APICall("SubscriptionPlans/type/".$id."?language_id=".$lang_id, "get","{}");
         $data['subscription_plan'] = json_decode($subscription_plan);
@@ -352,7 +391,13 @@ class AccountController extends Controller
         $lang_id = getLocale();
         $data = array();
         $data['title'] = trans('paymentForm.payments');
+        $client = APICall("Clients",'get',"{}");
+        if(!$client){
+            return redirect()->route('login')->with('email', "Your login token has been expired");
 
+        }
+
+        $client = json_decode($client)->data;
         $uri = "Memberships/price-details?";
         if (Session::has('subscription_plan_id')) {
             $uri .= "subscription_plan_id=" . Session::get('subscription_plan_id');
@@ -452,7 +497,18 @@ class AccountController extends Controller
                 $membership_with_credit_card = APICall('Memberships/with-credit-card', "post", json_encode($membershipcarddata), "client_app");
                 $data['membership_with_credit_card'] = json_decode($membership_with_credit_card);
 
-                return redirect()->route('myProfile');
+                if( $data['membership_with_credit_card']->error!=null){
+                    $response = array(
+                              'message' => $data['pay_method_accc']->error->message,
+                              'message_type' => 'danger'
+                            );
+                            return redirect()->back()->with($response)->withInput();
+                }
+                $response = array(
+                    'message' => 'payment completed succesfully',
+                  );
+                return redirect(route("myProfile"))->with($response);
+
         }
     }
 
@@ -557,7 +613,13 @@ class AccountController extends Controller
     public function myBankCards () {
         $data = array();
         $data['title'] = 'My Credit Card/Bank Account';
+        $client = APICall("Clients",'get',"{}");
+        if(!$client){
+            return redirect()->route('login')->with('email', "Your login token has been expired");
 
+        }
+
+        $client = json_decode($client)->data;
         $uri = "Memberships/price-details?";
         if (Session::has('owner_name')) {
             $uri .= "owner_name=" . Session::get('owner_name');
@@ -583,7 +645,13 @@ class AccountController extends Controller
 {
     $data = array();
     $data['title'] = 'Modify Bank Account';
+    $client = APICall("Clients",'get',"{}");
+        if(!$client){
+            return redirect()->route('login')->with('email', "Your login token has been expired");
 
+        }
+
+        $client = json_decode($client)->data;
     $pay_methods_acc = APICall('PaymentMethods/accounts', "get", "{}", 'client_app');
     $data['pay_methods_acc'] = json_decode($pay_methods_acc);
     $data["bank"] = array_map(function($bank) use ($id){
@@ -603,8 +671,14 @@ public function modifyBanksUpdate(Request $request){
     $formdata['institution'] = $request->institution;
     $formdata['account_number'] = $request->account_number;
     $formdata['owner_name'] = $request->owner_names;
+
+    // if (Session::has('franchise_id')) {
+    //     $formdata['franchise_id'] = Session::get('franchise_id');
+    //     $formdata['franchise_id'] = 3;
+
     $response = APICall("PaymentMethods/account", "put", json_encode($formdata), 'client_app');
     $response = json_decode($response);
+    // }
     $response = array(
         'message' => 'Bank updated succesfully',
       );
@@ -616,6 +690,13 @@ public function modifyCards($id)
 {
     $data = array();
     $data['title'] = 'Modify Card Account';
+    $client = APICall("Clients",'get',"{}");
+    if(!$client){
+        return redirect()->route('login')->with('email', "Your login token has been expired");
+
+    }
+
+    $client = json_decode($client)->data;
     $pay_methods_accc = APICall('PaymentMethods/Cards', "get", "{}", 'client_app');
     $data['pay_methods_accc'] = json_decode($pay_methods_accc);
 
@@ -639,9 +720,13 @@ public function modifyCardsUpdate(Request $request){
     $formdata['owner_name'] = $request->owner_name;
     $formdata['pan'] = $request->pan;
 
+    // if (Session::has('franchise_id')) {
+    //     $formdata['franchise_id'] = Session::get('franchise_id');
+    //     $formdata['franchise_id'] = 3;
+
     $response = APICall("PaymentMethods/card", "put", json_encode($formdata), 'client_app');
     $response = json_decode($response);
-  
+    // }
     $response = array(
         'message' => 'Card modified succesfully',
       );
