@@ -116,13 +116,17 @@ class PaymentController extends Controller
         } else {
 
             $carddata = array();
-            $carddata['four_digits_number'] = $request->four_digits_number;
+
+            
+            $carddata['four_digits_number'] = substr($request->four_digits_number,12,15);
             $carddata['expire_year'] = $request->expiry_year;
             $carddata['expire_month'] = $request->expiry_month;
             $carddata['owner_name'] = $request->owner_name;
             $carddata['token'] = $request->token;
             $carddata['type_id'] = $request->type_id;
             $carddata['pan'] = $request->pan;
+
+
             if (Session::has('franchise_id')) {
                 $carddata['franchise_id'] = Session::get('franchise_id');
                 $pay_method_accc = APICall('PaymentMethods/card', "post", json_encode($carddata), 'client_app');
@@ -207,19 +211,11 @@ class PaymentController extends Controller
                 
                 if (Session::has('franchise_id')) {
                     $formdata['franchise_id'] = Session::get('franchise_id');
-                    $formdata['franchise_id'] =3;
+                   
 
             $pay_methode_acc = APICall('PaymentMethods/account', "post", json_encode($formdata), 'client_app');
             $data['pay_methode_acc'] = json_decode($pay_methode_acc); 
-                }
-              
-            // if( $data['pay_methode_acc']->error!=null){
-            //     $response = array(
-            //               'message' =>  $data['pay_methode_acc']->error->message,
-            //               'message_type' => 'danger'
-            //             );
-            //             return redirect()->back()->with($response)->withInput();
-            // }      
+                } 
                    
               $response = array(
                 'message' => 'bank add succesfully',
@@ -228,18 +224,20 @@ class PaymentController extends Controller
             
         } else {
             $carddata = array();
-            $carddata['four_digits_number'] = $request->four_digits_number;
+
+            $carddata['four_digits_number'] = substr($request->four_digits_number,12,15);
             $carddata['expire_year'] = $request->expiry_year;
             $carddata['expire_month'] = $request->expiry_month;
             $carddata['owner_name'] = $request->owner_name;
-            $carddata['token'] = $request->token;
             $carddata['type_id'] = $request->type_id;
             $carddata['pan'] = $request->pan;
              if (Session::has('franchise_id')) {
                 $carddata['franchise_id'] = Session::get('franchise_id');
+
                    
                 $pay_methods_account = APICall('PaymentMethods/card', "post", json_encode($carddata), 'client_app');
-                $data['pay_methods_account'] = json_decode($pay_methods_account);              
+                $data['pay_methods_account'] = json_decode($pay_methods_account);  
+                // dd( $pay_methods_account);         
              }     
                 $response = array(
                   'message' => 'credit card add succesfully',

@@ -13,8 +13,7 @@
 
                             <div class="from_cont_wrap">
                                 <form method="POST" name="myform" action="{{route('modifyCardsUpdate')}}" onsubmit="return validfunc()">
-                                    @csrf
-                                    <input type="hidden" name="credit_id" value="{{$data["card"][0]->id}}">
+                                    @csrf                                  
                                     <div class="fromdes_info">
                                         <div class="from_cont_wrap">
                                             <div class="content_block paymentinfo">
@@ -26,12 +25,11 @@
                                                     <div class="form-group">
                                                         <label>{{ __('paymentForm.Credit') }}</label>
                                                         <div class="card_add">
-                                                            {{-- <input name="payCard" value="payCard"
-                                                                type="hidden" /> --}}
                                                             <img src="images/voided.png" alt="" />
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <input type="hidden" name="credit_id" value="{{$data["card"][0]->id}}">
                                                 <div class="inp_row">
                                                     <div class="form-group">
                                                         <label>{{ __('paymentForm.Account_Name_Holder') }} <em
@@ -44,21 +42,11 @@
                                                 </div>
                                                 <div class="inp_row">
                                                     <div class="form-group">
-                                                        <label>{{ __('paymentForm.PAN') }} <em
-                                                                class="req_text">*</em></label>
-                                                        <div class="inp_cont_view noicon_opt">
-                                                            <input type="text" name="pan"
-                                                                class="form-control" placeholder=""value="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="inp_row">
-                                                    <div class="form-group">
                                                         <label>{{ __('paymentForm.credit_card_number') }} <em
                                                                 class="req_text">*</em></label>
                                                         <div class="inp_cont_view noicon_opt" id="incdec">
 
-                                                            <input type="text" name="token" class="form-control"
+                                                            <input type="text" name="four_digits_number" class="form-control"
                                                                 placeholder="" value="{{$data["card"][0]->four_digits_number}}">
 
                                                         </div>
@@ -81,23 +69,11 @@
                                                                 class="req_text">*</em></label>
                                                         <div class="inp_cont_view noicon_opt">
                                                             <input type="text" name="expiry_year"
-                                                                class="form-control" placeholder="{{$data["card"][0]->expire_year}}">
+                                                                class="form-control" placeholder="" value="{{$data["card"][0]->expire_year}}">
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="inp_row">
-                                                    <div class="form-group">
-                                                        <label>{{ __('paymentForm.CVV') }}<em
-                                                                class="req_text">*</em></label>
-                                                        <div class="inp_cont_view noicon_opt">
-                                                            <input type="text" name="four_digits_number"
-                                                                class="form-control" placeholder="{{$data["card"][0]->four_digits_number}}">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
                                             </div>
-
 
                                             <div class="frombtn_wrap">
                                                 <div class="def_btnopt2 frombtn">
@@ -156,12 +132,8 @@
                     alert("Name can't be blank");
                     return false;
                 }
-                if (token.length != 16) {
-                    alert("Card number must be at least 16 characters long.");
-                    return false;
-                }
-                if (expiry_month.length != 2) {
-                    alert("Expiry month must be at least 2 characters long.");
+                if (expiry_month.length <3) {
+                    alert("Expiry month must not be greater than 2 characters.");
                     return false;
                 }
                 if (expiry_year.length != 4) {

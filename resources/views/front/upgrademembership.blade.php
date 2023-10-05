@@ -9,14 +9,14 @@
                 <div class="content_block memberships">
                     <h2>{{ __('upgrademembership.Memberships') }}</h2>
                     <div class="memberships_content memberships2">
+                        @foreach ($data['membership']->data as $item)
                         <div class="memberships_item_block activecheckopt ">
                             <div class="memberships_opt ">
-                                <div class="memberships_nam radio">
-                                    @foreach ($data['membership']->data as $item)
+                                <div class="memberships_nam radio">                                  
                                         <input type="radio" id="testnum{{$loop->iteration}}" name="radio-group" checked>
                                         <label for="testnum{{$loop->iteration}}">{{ __('upgrademembership.Act1_Membership_davable') }} {{ $item->recurantCharge }} {{ __('upgrademembership.per_Month') }}
                                         </label>
-                                    @endforeach
+                                    
                                 </div>
                                 <div class="memberships_method_view">
                                     <div class="memberships_method">{{ __('upgrademembership.Method_of_payment') }}:</div>
@@ -44,8 +44,12 @@
                                 <div class="content_block more_cont_view">
                                     <h2>{{ __('upgrademembership.Membership_Options_Add-ons') }}</h2>
                                     <div class="optionwrap_block">
-                                        @if (isset($data['membership']))
-                                            @foreach ($data['membership']->data as $item)
+                                        @php
+                                         $data['subscription_plan'] = json_decode(APICall("SubscriptionPlans/type/" . $item->typeId."?language_id=".$item->languageId, "get", "{}" ,"client_app"));
+                                        $subscription_plan = json_decode( $data['subscription_plan'])->data;
+                                        @endphp
+                                        @if (isset($subscription_plan))
+                                            @foreach ($subscription_plan as $item)
                                                 <div class="optionitem_add">
                                                     <h3>{{ __('upgrademembership.Option') }} 1</h3>
                                                     <div class="optionitem_block">
@@ -57,14 +61,14 @@
                                                             <p>{{ $item->type }}</p>
 															
                                                             <div class="price_opt_add">{{ $item->recurantCharge }}</div>
-															@if(isset($data['subscription_plan']) && isset($data['subscription_plan']->data) && count($data['subscription_plan']->data->options))
-													@foreach ($data['subscription_plan']->data->options as $item)
+															@if( count($item->options))
+													{{-- @foreach ($data['subscription_plan']->data->options as $item) --}}
                                                             <div class="optionitem_prod">
                                                                 <span>{{$item->quantity}}</span>
                                                                 <span>{{ __('upgrademembership.Quantity') }}: {{$item->deliverable_quantity}}</span>
                                                                 <span>{{ __('upgrademembership.Price') }}:{{$item->price}} </span>
                                                             </div>
-															@endforeach
+															{{-- @endforeach --}}
 															@endif
                                                             <div class="optionitem_checkopt">
                                                                 <div class="form-group">
@@ -119,6 +123,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
                 </div>
 
