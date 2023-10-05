@@ -70,9 +70,10 @@ Route::group(['middleware'=>'verifyToken'], function(){
     Route::get('my-bank-cards', 'AccountController@myBankCards')->name('myBankCards');
     Route::get('modify-bank/{id}', 'AccountController@modifyBanks')->name('modifyBanks');
     Route::get('modify-Card/{id}', 'AccountController@modifyCards')->name('modifyCards');
-    Route::post('bank-update', 'AccountController@modifyBanksUpdate')->name('modifyBanksUpdate'); 
+    Route::post('bank-update', 'AccountController@modifyBanksUpdate')->name('modifyBanksUpdate');
     Route::post('card-update', 'AccountController@modifyCardsUpdate')->name('modifyCardsUpdate');
     Route::get('pay-outstanding-balance', 'AccountController@payMyOutstandingBalance')->name('payMyOutstandingBalance');
+    Route::post("pay-outstanding-balance", "AccountController@payOutstandinfPayment")->name('payMyOutstandingBalance.post');
     Route::get('new-membership', 'AccountController@newMembership')->name('newMembership');
     Route::get('upgrade-membership', 'AccountController@upgradeMembership')->name('upgradeMembership');
     Route::post('upgrademembershipsubmit', 'AccountController@upgrademembershipsubmit')->name('upgrademembershipsubmit');
