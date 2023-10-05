@@ -17,7 +17,7 @@
 							{{Session::get('message')}}
 						</div>
 						@endif
-					<h2 class="addpadding">Change Password</h2>
+					<h2 class="addpadding">{{ __('changepassword.Change_Password') }}</h2>
 					<div class="fromdes_view ">
 						<div class="fromdes_info">
 							<div class="from_contentblock">
@@ -25,7 +25,7 @@
 									@csrf
 								<div class="inp_row gapadj singcol_opt">
 									<div class="form-group">
-										<label> <em class="req_text">*</em> Enter Old Password </label>
+										<label> <em class="req_text">*</em> {{ __('changepassword.Old_Password') }} </label>
 										<div class="inp_cont_view">
 											<div class="icon_opt">
 												<i class="fal fa-eye" id="togglePassword" style="cursor: pointer;"></i>
@@ -35,7 +35,7 @@
 									</div>
 									
 									<div class="form-group">
-										<label ><em class="req_text">*</em> Enter New Password  </label>
+										<label ><em class="req_text">*</em> {{ __('changepassword.New_Password') }}  </label>
 										<div class="inp_cont_view">
 											<div class="icon_opt">
 												<i class="fal fa-eye" id="togglePassword2" style="cursor: pointer;"></i>
@@ -44,7 +44,7 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label ><em class="req_text">*</em> Enter Confirm Password</label>
+										<label ><em class="req_text">*</em> {{ __('changepassword.Confirm_Password') }}</label>
 										<div class="inp_cont_view">
 											<div class="icon_opt">
 												<i class="fal fa-eye" id="togglePassword3" style="cursor: pointer;"></i>
@@ -56,7 +56,7 @@
 								
 								<div class="frombtn_wrap singcol_btn">
 									<div class="def_btnopt2 frombtn frombtn2">
-										<button type="submit" class="btn2">Change Password</button>
+										<button type="submit" class="btn2">{{ __('changepassword.Change_Password') }}</button>
 									</div>
 								</div>
 							</form>
