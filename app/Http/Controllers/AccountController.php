@@ -39,7 +39,7 @@ class AccountController extends Controller
             Session::put('franchise_id',$franchise_id);
           }
         }
-dd( Session::get('franchise_id',$franchise_id));
+// dd( Session::get('franchise_id',$franchise_id));
 
         $membership = APICall('Memberships/client?display_language_id=' . $client->language_id, "get", "{}");
         $membership = json_decode($membership);
