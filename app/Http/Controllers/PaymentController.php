@@ -59,6 +59,7 @@ class PaymentController extends Controller
 
     public function paymentSave(Request $request)
     {
+        $lang_id = Session::get('language_id');
         if ($request->radio_group_pay == "bank_acc") {
             $formdata = array();
             $formdata['transit_number'] = $request->transit_number;
@@ -105,7 +106,7 @@ class PaymentController extends Controller
             $membershipdata['code_promo'] = $request->code_promo;
             $membershipdata['account_id'] = $data['get_methode_acc']->data[0]->id;
 
-            $membership_with_bnk_acc = APICall('Memberships/with-bank-account', "post", json_encode($membershipdata), "client_app");
+            $membership_with_bnk_acc = APICall('Memberships/with-bank-account?display_language_id='.$lang_id, "post", json_encode($membershipdata), "client_app");
             $data['membership_with_bnk_acc'] = json_decode($membership_with_bnk_acc);
 
             $data["title"] = "My Account"; 
@@ -160,7 +161,7 @@ class PaymentController extends Controller
                 // dd($data['pay_method_accc']);
                 $membershipcarddata['card_id'] = $data['pay_method_accc']->data->id;
 
-                $membership_with_credit_card = APICall('Memberships/with-credit-card', "post", json_encode($membershipcarddata), "client_app");
+                $membership_with_credit_card = APICall('Memberships/with-credit-card?display_language_id='.$lang_id, "post", json_encode($membershipcarddata), "client_app");
                 $data['membership_with_credit_card'] = json_decode($membership_with_credit_card);
 
             }

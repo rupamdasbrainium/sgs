@@ -64,12 +64,6 @@ class HomeController extends Controller
 
         $data['best_four_plan_details'] = $data_plan;
         $best_four_plan_details=$data_plan;
-        // dd($best_four_plan_details);
-
-
-        // $language = APICall("/Options/languages", "get","{}");
-        // $data['language'] = json_decode($language);
-
         return view('front.home', compact('data','best_four_plan_details','franchise_id'));
     }
 
@@ -116,7 +110,8 @@ class HomeController extends Controller
 
     public function planTypeDetails($id){
        
-        $franchisesPlanDetails = APICall("SubscriptionPlans/type/".$id, "get","{}");
+        $lang_id = getLocale();
+        $franchisesPlanDetails = APICall("SubscriptionPlans/type/".$id. "?language_id=" .$lang_id, "get","{}");
         $data = json_decode($franchisesPlanDetails);
         $html = '';
         if(isset($data)){

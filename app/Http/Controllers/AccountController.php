@@ -30,7 +30,7 @@ class AccountController extends Controller
         $data['franchises'] = json_decode($franchises);
         $clients = APICall("Clients", "get","{}");
         $data['clients'] = json_decode($clients);
-
+        Session::put('language_id',$data['clients']->data->language_id);
       
 
         foreach($data['franchises']->data as $franchise){
@@ -125,6 +125,7 @@ class AccountController extends Controller
             $language_id = (int)$request->language_id;
 
             APICall('Clients/language?language_id=' . $language_id, "put", "{}");
+            Session::put('language_id',$language_id);
             return redirect()->back();
         } catch (\Throwable $th) {
             //throw $th;
@@ -422,20 +423,21 @@ class AccountController extends Controller
         }
         Session::put('franchise_id', 3);
         $franchise_id = 3;
+
+        $lang_id = $client->language_id;
         //franchise get all plan
         $all_plan = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id, "get", "{}");
         $data['all_plan'] = json_decode($all_plan);
 
         //franchise best four plan details
         foreach ($data['all_plan']->data as $item) {
-            $data['all_plan_details'][] = json_decode(APICall("SubscriptionPlans/type/" . $item->id, "get", "{}"));
+            $data['all_plan_details'][] = json_decode(APICall("SubscriptionPlans/type/" . $item->id. "?language_id=" .$lang_id, "get", "{}"));
         }
         return view('front.newmembershipStepOne', compact('data'));
     }
 
     public function newMembershipSteptwo($id)
     {
-        $lang_id = getLocale();
         $data = array();
         $data['title'] = trans('newMembership.memberships').' '.trans('newMembership.option');
         $client = APICall("Clients",'get',"{}");
@@ -445,6 +447,7 @@ class AccountController extends Controller
         }
 
         $client = json_decode($client)->data;
+        $lang_id = $client->language_id;
         //subscriptionplan type call
         $subscription_plan = APICall("SubscriptionPlans/type/" . $id . "?language_id=" . $lang_id, "get", "{}");
         $data['subscription_plan'] = json_decode($subscription_plan);
@@ -481,7 +484,7 @@ class AccountController extends Controller
     public function newMembershipFinal()
     {
 
-        $lang_id = getLocale();
+        // $lang_id = getLocale();
         $data = array();
         $data['title'] = trans('paymentForm.payments');
         $client = APICall("Clients",'get',"{}");
@@ -491,6 +494,7 @@ class AccountController extends Controller
         }
 
         $client = json_decode($client)->data;
+        $lang_id = $client->language_id;
         $uri = "Memberships/price-details?";
         if (Session::has('subscription_plan_id')) {
             $uri .= "subscription_plan_id=" . Session::get('subscription_plan_id');
@@ -538,6 +542,8 @@ class AccountController extends Controller
     public function newMembershipFinalSave(Request $request)
     {
 
+        // $lang_id = getLocale();
+        $lang_id = Session::get('language_id');
         if ($request->radio_group_pay == "bank_acc") {
             //membership with bank account
             $membershipdata = array();
@@ -562,8 +568,9 @@ class AccountController extends Controller
             $membershipdata['code_promo'] = $request->code_promo;
             $membershipdata['account_id'] = $request->old_acc;
 
-            $membership_with_bnk_acc = APICall('Memberships/with-bank-account', "post", json_encode($membershipdata), "client_app");
+            $membership_with_bnk_acc = APICall('Memberships/with-bank-account?display_language_id='.$lang_id, "post", json_encode($membershipdata), "client_app");
             $data['membership_with_bnk_acc'] = json_decode($membership_with_bnk_acc);
+            Session::put('display_language_id',$data['membership_with_bnk_acc']->display_language_id);
             return redirect()->route('myProfile');
         } else {
             $membershipcarddata = array();
@@ -588,7 +595,7 @@ class AccountController extends Controller
             $membershipcarddata['processed_amount'] = $request->processed_amount;
             $membershipcarddata['card_id'] = $request->old_card; //request card -id
 
-            $membership_with_credit_card = APICall('Memberships/with-credit-card', "post", json_encode($membershipcarddata), "client_app");
+            $membership_with_credit_card = APICall('Memberships/with-credit-card?display_language_id='.$lang_id, "post", json_encode($membershipcarddata), "client_app");
             $data['membership_with_credit_card'] = json_decode($membership_with_credit_card);
 
                 if( $data['membership_with_credit_card']->error!=null){
@@ -626,7 +633,7 @@ class AccountController extends Controller
         $data['all_plan'] = json_decode($all_plan);
 
         foreach ($data['all_plan']->data as $item) {
-            $data['subscription_plan'][] = json_decode(APICall("SubscriptionPlans/type/" . $item->id, "get", "{}"));
+            $data['subscription_plan'][] = json_decode(APICall("SubscriptionPlans/type/" . $item->id. "?language_id=" .$client->language_id, "get", "{}"));
         }
 
 
@@ -642,7 +649,8 @@ class AccountController extends Controller
 
     public function upgrademembershipsubmit(Request $request)
     {
-
+        // $lang_id = getLocale();
+        $lang_id = Session::get('language_id');
         if ($request->radio_group_pay == "bank_acc") {
 
             $membershipdata = array();
@@ -662,7 +670,7 @@ class AccountController extends Controller
             $membershipdata['code_promo'] = $request->code_promo;
             $membershipdata['account_id'] = $request->old_acc;
 
-            $membership_with_bnk_acc = APICall('Memberships/with-bank-account', "post", json_encode($membershipdata), "client_app");
+            $membership_with_bnk_acc = APICall('Memberships/with-bank-account?display_language_id='.$lang_id, "post", json_encode($membershipdata), "client_app");
             $data['membership_with_bnk_acc'] = json_decode($membership_with_bnk_acc);
             return redirect()->route('myProfile');
         } else {
@@ -684,7 +692,7 @@ class AccountController extends Controller
             $membershipcarddata['processed_amount'] = $request->processed_amount;
             $membershipcarddata['card_id'] = $request->old_card;
 
-            $membership_with_credit_card = APICall('Memberships/with-credit-card', "post", json_encode($membershipcarddata), "client_app");
+            $membership_with_credit_card = APICall('Memberships/with-credit-card?display_language_id='.$lang_id, "post", json_encode($membershipcarddata), "client_app");
             $data['membership_with_credit_card'] = json_decode($membership_with_credit_card);
 
             return redirect()->route('myProfile');

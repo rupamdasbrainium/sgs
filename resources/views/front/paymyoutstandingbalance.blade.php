@@ -26,7 +26,7 @@
                                 <tbody>
                                     @if ($data['payments'] == null)
                                         <tr>
-                                            <td colspan="4">No Payments Data Availble</td>
+                                            <td colspan="4">{{ __('paymyoutstandingbalance.No_Payments_Data_Availble') }}</td>
                                         </tr>
                                     @else
                                         @foreach ($data['payments'] as $key => $pt)
@@ -55,10 +55,6 @@
                                                 <tr>
                                                     <td data-label="TYPE">
                                                         <div class="pay_view_opt">
-                                                            <!-- <div class="checkbox">
-                                                    <input class="styled-checkbox" id="Option1" type="checkbox" value="value1">
-                                                    <label for="Option1">&nbsp;</label>
-                                                </div>  -->
                                                 {{ __('paymyoutstandingbalance.Payments') }}
                                                         </div>
                                                     </td>
@@ -89,7 +85,7 @@
                                     <div class="memberships_nam radio bank">
                                         <input type="radio" id="payment_opt3" name="payment_type"
                                             value="bank_account">
-                                        <label for="payment_opt3">Bank Account</label>
+                                        <label for="payment_opt3">{{ __('paymyoutstandingbalance.Bank_Account') }}</label>
                                     </div>
 
                                 </div>
@@ -107,10 +103,10 @@
                                                         @if ($data['cards'] != null)
                                                             @foreach ($data['cards'] as $card)
                                                                 <option value="{{ $card->id }}">XXXX XXXX XXXX
-                                                                    {{ $card->four_digits_number }} - Card</option>
+                                                                    {{ $card->four_digits_number }} - {{ __('paymyoutstandingbalance.Card') }}</option>
                                                             @endforeach
                                                         @else
-                                                            <option value="" selected hidden>No Card Found
+                                                            <option value="" selected hidden>{{ __('paymyoutstandingbalance.No_Card_Found') }}
                                                             </option>
                                                         @endif
                                                     </select>
@@ -123,11 +119,10 @@
                                                         @if ($data['banks'] != null)
                                                             @foreach ($data['banks'] as $bank)
                                                                 <option value="{{ $bank->id }}">XXXX XXXX XXXX
-                                                                    {{ $bank->account_last_digits }} - Bank</option>
+                                                                    {{ $bank->account_last_digits }} - {{ __('paymyoutstandingbalance.Bank') }}</option>
                                                             @endforeach
                                                         @else
-                                                            <option value="" selected hidden> No Bank Account
-                                                                Found
+                                                            <option value="" selected hidden> {{ __('paymyoutstandingbalance.No_Bank_Account_Found') }}
                                                             </option>
                                                         @endif
                                                     </select>
