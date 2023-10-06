@@ -34,6 +34,7 @@ class AuthenticatedSessionController extends Controller
         try{
             $request->authenticate();
             $request->session()->regenerate();
+            // Session::put('rahul',121);
             return redirect()->intended(RouteServiceProvider::HOME);
         }catch(Exception $e){
 

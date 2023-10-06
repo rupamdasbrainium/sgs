@@ -23,16 +23,10 @@
                                 <div class="sidebar_content">
                                     <div class="sidebar_info">
                                         <p>{{ __('paymentForm.center') }}:
-                                            {{-- @dd($data['membership_details']); --}}
                                             <span>{{ $data['membership_details']->data->franchise }}</span>
                                         </p>
-                                        {{-- <p>Address: 
-										<span>{{ $data['franchise']->address_civic_number}} {{ $data['franchise']->address_street}} {{ $data['franchise']->address_city }} {{ $data['franchise']->address_postal_code }}</span> --}}
                                         </p>
                                         <p>{{ __('paymentForm.package') }}: <span>
-                                                {{-- @if (isset($data['subscription_plan']) && isset($data['subscription_plan']->data))
-									{{ $data['subscription_plan']->data->name }}
-									@endif --}}
                                                 {{ $data['membership_details']->data->subscriptionPlan }}
                                             </span></p>
                                     </div>
@@ -49,7 +43,7 @@
                                                         <div class="inp_cont_view noicon_opt">
 
                                                             <input type="text" class="form-control" name="code_promo"
-                                                                id="promocode" placeholder="Promo/Reward Code ">
+                                                                id="promocode" placeholder="{{ __('paymentForm.promo') }} ">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -62,8 +56,6 @@
                                                                 {{ __('paymentForm.center') }}
                                                             </div>
                                                             <div class="sum_inp_right">
-
-                                                                {{-- {{ $data['franchise']->name}} --}}
                                                                 {{ $data['membership_details']->data->franchise }}
                                                             </div>
                                                         </div>
@@ -72,9 +64,6 @@
                                                                 {{ __('paymentForm.package_plan_Name') }}
                                                             </div>
                                                             <div class="sum_inp_right">
-                                                                {{-- @if (isset($data['subscription_plan']) && isset($data['subscription_plan']->data))
-														{{ $data['subscription_plan']->data->name }}
-													@endif --}}
                                                                 {{ $data['membership_details']->data->subscriptionPlan }}
                                                             </div>
                                                         </div>
@@ -347,14 +336,6 @@
                                                                     </div>
 
                                                                     <div class="memberships_nam radio">
-                                                                        <input type="radio" id="payment_opt2"
-                                                                            name="radio_group_pay" class="radio2"
-                                                                            value="credit_acc" onclick="showA();">
-                                                                        <label
-                                                                            for="payment_opt2">{{ __('paymentForm.Debit_Card') }}</label>
-                                                                    </div>
-
-                                                                    <div class="memberships_nam radio">
                                                                         <input type="radio" id="payment_opt3"
                                                                             name="radio_group_pay" onclick="show();"
                                                                             value="bank_acc" checked>
@@ -462,7 +443,7 @@
                                                                 <label>{{ __('paymentForm.PAN') }} <em
                                                                         class="req_text">*</em></label>
                                                                 <div class="inp_cont_view noicon_opt">
-                                                                    <input type="text" name="pan"
+                                                                    <input type="text" name="pan" 
                                                                         class="form-control" placeholder="">
                                                                 </div>
                                                             </div>
@@ -473,7 +454,7 @@
                                                                         class="req_text">*</em></label>
                                                                 <div class="inp_cont_view noicon_opt" id="incdec">
 
-                                                                    <input type="text" name="four_digits_number"
+                                                                    <input type="number" name="four_digits_number"
                                                                         class="form-control" placeholder=""
                                                                         value="">
 
@@ -486,7 +467,7 @@
                                                                 <label>{{ __('paymentForm.Expiry_Month') }} <em
                                                                         class="req_text">*</em></label>
                                                                 <div class="inp_cont_view noicon_opt">
-                                                                    <input type="text" name="expiry_month"
+                                                                    <input type="number" name="expiry_month" min="0" max="12"
                                                                         class="form-control" placeholder="">
                                                                 </div>
                                                             </div>
@@ -496,17 +477,7 @@
                                                                 <label>{{ __('paymentForm.Expiry_Year') }} <em
                                                                         class="req_text">*</em></label>
                                                                 <div class="inp_cont_view noicon_opt">
-                                                                    <input type="text" name="expiry_year"
-                                                                        class="form-control" placeholder="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="inp_row">
-                                                            <div class="form-group">
-                                                                <label>{{ __('paymentForm.CVV') }}<em
-                                                                        class="req_text">*</em></label>
-                                                                <div class="inp_cont_view noicon_opt">
-                                                                    <input type="text" name="token"
+                                                                    <input type="number" name="expiry_year" max="9999" min="2023"
                                                                         class="form-control" placeholder="">
                                                                 </div>
                                                             </div>
@@ -632,7 +603,7 @@
                     alert("Branchcode must be at least 6 characters long.");
                     return false;
                 }
-                if (account_number.length != 16) {
+                if (account_number.length != 12) {
                     alert("Account number must be at least 16 characters long.");
                     return false;
                 }
@@ -644,7 +615,6 @@
 
             if (valcheck == "credit_acc") {
                 var owner_name = document.myform.owner_name.value;
-                var token = document.myform.token.value;
                 var expiry_month = document.myform.expiry_month.value;
                 var expiry_year = document.myform.expiry_year.value;
                 var four_digits_number = document.myform.four_digits_number.value;
@@ -654,26 +624,23 @@
                     alert("Name can't be blank");
                     return false;
                 }
-                if (pan.length != 16) {
-                    alert("Pan must be at least 16 characters long.");
-                    return false;
-                }
-                if (four_digits_number.length != 16) {
-                    alert("Card number must be at least 16 characters long.");
-                    return false;
-                }
-                if (expiry_month.length != 2) {
-                    alert("Expiry month must be at least 2 characters long.");
-                    return false;
-                }
+                // if (pan.length >=14 && pan.length <=16 ) {
+                //     alert("Pan must be between 14 to 16 characters long.");
+                //     return false;
+                // }
+                // if (four_digits_number.length != 16) {
+                //     alert("Card number must be at least 16 characters long.");
+                //     return false;
+                // }
+                // if (expiry_month.value <=12) {
+                //     alert("Expiry month must not be greater than 2 characters.");
+                //     return false;
+                // }
                 if (expiry_year.length != 4) {
                     alert("Expiry year must be at least 4 characters long.");
                     return false;
                 }
-                if (token.length != 3) {
-                    alert("CVV must be at least 3 characters long.");
-                    return false;
-                }
+
             }
         }
     </script>

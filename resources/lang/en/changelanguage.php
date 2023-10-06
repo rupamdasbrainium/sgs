@@ -13,12 +13,6 @@ return [
     |
     */
 
-    'My_Credit_Card_Bank_Account' => 'My Credit Card/Bank Account',
-    'Cards_and_accounts' => 'Cards and accounts',
-    'By_Default' => 'By Default',
-    'Platinum_Mastercard_BNC' => 'Platinum Mastercard BNC',
-    'Credit_card_ending' => 'Credit card ending with',
-    'Modify' => 'Modify',
-    'Bank_acoount_number_ending' => 'Bank acoount number ending with',
-    'Add_Payment_Method' => 'Add a Payment Method',
+    'Change_Language' => 'Change Language',
+    'Save' => 'Save',
 ];

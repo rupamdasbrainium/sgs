@@ -181,143 +181,6 @@
                                             </div>
                                         </div>
                                     @endforeach
-                                    {{-- <div class="prod_item">
-									<div class="action_opt action_opt_title">
-
-										<div class="action_text">
-											<!-- Action 2
-											<div class="arrowdown">
-													<i class="far fa-chevron-down"></i>
-											</div> -->
-											<div class="selectcont ">
-												<div class="arrowdown2">
-													<i class="far fa-chevron-down"></i>
-												</div>
-												<select class="select_opt" >
-													<option value="Action1">Action 1</option>
-													<option value="Action2" selected>Action 2</option>
-													<option value="Action3" >Action 3</option>
-													<option value="Action4" >Action 4</option>
-												</select>
-											</div>
-										</div>
-									</div>
-									<div class="action_opt">
-										<div class="price_text">
-											$3.99 <span>/ month</span>
-										</div>
-										<p>per user/month,billed annually</p>
-									</div>
-									<div class="individual_opt">
-										<div class="individual_head">
-											For individual entrepreneurs
-										</div>
-										<div class="individual_des">
-											<ul>
-												<li><span><i class="far fa-check"></i></span>Monthly limit of 500 users</li>
-												<li><span><i class="far fa-check"></i></span>Monthly limit of 1500 orders</li>
-												<li><span><i class="far fa-check"></i></span>Basic Financial Tools</li>
-												<li><span><i class="fal fa-times"></i></span>Email Support</li>
-												<li><span><i class="fal fa-times"></i></span>Email Support</li>
-												<li><span><i class="fal fa-times"></i></span>Email Support</li>
-											</ul>
-											<div class="subscribe_btn">
-												<a href="#" class="sub_btn">Subscribe</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="prod_item">
-									<div class="action_opt action_opt_title">
-
-										<div class="action_text">
-											<!-- Action 3
-											<div class="arrowdown">
-													<i class="far fa-chevron-down"></i>
-											</div> -->
-											<div class="selectcont ">
-												<div class="arrowdown2">
-													<i class="far fa-chevron-down"></i>
-												</div>
-												<select class="select_opt" >
-													<option value="Action1">Action 1</option>
-													<option value="Action2">Action 2</option>
-													<option value="Action3" selected >Action 3</option>
-													<option value="Action4" >Action 4</option>
-												</select>
-											</div>
-										</div>
-									</div>
-									<div class="action_opt">
-										<div class="price_text">
-											$3.99 <span>/ month</span>
-										</div>
-										<p>per user/month,billed annually</p>
-									</div>
-									<div class="individual_opt">
-										<div class="individual_head">
-											For individual entrepreneurs
-										</div>
-										<div class="individual_des">
-											<ul>
-												<li><span><i class="far fa-check"></i></span>Monthly limit of 500 users</li>
-												<li><span><i class="far fa-check"></i></span>Monthly limit of 1500 orders</li>
-												<li><span><i class="far fa-check"></i></span>Basic Financial Tools</li>
-												<li><span><i class="fal fa-times"></i></span>Email Support</li>
-												<li><span><i class="fal fa-times"></i></span>Email Support</li>
-												<li><span><i class="fal fa-times"></i></span>Email Support</li>
-											</ul>
-											<div class="subscribe_btn">
-												<a href="#" class="sub_btn">Subscribe</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="prod_item">
-									<div class="action_opt action_opt_title">
-										<div class="action_text">
-											<!-- Action 2
-											<div class="arrowdown">
-													<i class="far fa-chevron-down"></i>
-											</div> -->
-											<div class="selectcont ">
-												<div class="arrowdown2">
-													<i class="far fa-chevron-down"></i>
-												</div>
-												<select class="select_opt" name="4" >
-													<option value="action1">Action 1</option>
-													<option value="action2">Action 2</option>
-													<option value="action3" >Action 3</option>
-													<option selected value="action4" >Action 4</option>
-												</select>
-											</div>
-										</div>
-									</div>
-									<div class="action_opt">
-										<div class="price_text">
-											$3.99 <span>/ month</span>
-										</div>
-										<p>per user/month,billed annually</p>
-									</div>
-									<div class="individual_opt">
-										<div class="individual_head">
-											For individual entrepreneurs
-										</div>
-										<div class="individual_des">
-											<ul>
-												<li><span><i class="far fa-check"></i></span>Monthly limit of 500 users</li>
-												<li><span><i class="far fa-check"></i></span>Monthly limit of 1500 orders</li>
-												<li><span><i class="far fa-check"></i></span>Basic Financial Tools</li>
-												<li><span><i class="fal fa-times"></i></span>Email Support</li>
-												<li><span><i class="fal fa-times"></i></span>Email Support</li>
-												<li><span><i class="fal fa-times"></i></span>Email Support</li>
-											</ul>
-											<div class="subscribe_btn">
-												<a href="#" class="sub_btn">Subscribe</a>
-											</div>
-										</div>
-									</div>
-								</div> --}}
                                 </div>
                             </div>
                         </div>
@@ -393,5 +256,21 @@
                 },
             });
         })
+    </script>
+    <script>
+    $('.carousel.carousel-multi .item').each(function () {
+        var next = $(this).next();
+        if (!next.length) {
+            next = $(this).siblings(':first');
+        }
+        next.children(':first-child').clone().attr("aria-hidden", "true").appendTo($(this));
+    
+        if (next.next().length > 0) {
+            next.next().children(':first-child').clone().attr("aria-hidden", "true").appendTo($(this));
+        }
+        else {
+            $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
+        }
+    });
     </script>
 @endpush

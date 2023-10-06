@@ -34,18 +34,17 @@
                                                                             <h4>{{ $value->owner_name }}</h4>
 
                                                                             <div class="def_card">
-                                                                                <a href="#">By Default</a>
+                                                                                <a href="#">{{ __('mybankcards.By_Default') }}</a>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="card_name_opt">
-                                                                        <h5>Platinum Mastercard BNC</h5>
+                                                                        <h5>{{ __('mybankcards.Platinum_Mastercard_BNC') }}</h5>
                                                                     </div>
                                                                     <div class="card_optblock">
                                                                         <div class="card_icon_text">
 
-                                                                            <span class="card_opt_text">Credit card
-                                                                                ending with </span>
+                                                                            <span class="card_opt_text">{{ __('mybankcards.Credit_card_ending') }}</span>
                                                                             <span class="card_opt_pass">**** </span>
                                                                             <span
                                                                                 class="card_opt_pass">{{ $value->four_digits_number }}</span>
@@ -64,7 +63,7 @@
                                                                         </div>
                                                                     </div>
 																	<div class="def_btnopt2 frombtn frombtn2">
-																		<a href="{{route('modifyCards', $value->id)}}" type="button" class="btn2">Modify</a>
+																		<a href="{{route('modifyCards', $value->id)}}" type="button" class="btn2">{{ __('mybankcards.Modify') }}</a>
 																	</div>
                                                                 </div>
 
@@ -91,18 +90,18 @@
                                                                             <h4>{{ $values->owner_name }}</h4>
 
                                                                             <div class="def_card">
-                                                                                <a href="#">By Default</a>
+                                                                                <a href="#">{{ __('mybankcards.By_Default') }}</a>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="card_name_opt">
-                                                                        <h5>Platinum Mastercard BNC</h5>
+                                                                        <h5>{{ __('mybankcards.Platinum_Mastercard_BNC') }}</h5>
                                                                     </div>
                                                                     <div class="card_optblock">
                                                                         <div class="card_icon_text">
 
-                                                                            <span class="card_opt_text">Bank acoount
-                                                                                number ending with </span>
+                                                                            <span class="card_opt_text">{{ __('mybankcards.Bank_acoount_number_ending') }}
+                                                                                 </span>
                                                                             <span class="card_opt_pass">**** </span>
                                                                             <span
                                                                                 class="card_opt_pass">{{ $values->account_last_digits }}</span>
@@ -121,7 +120,7 @@
                                                                         </div>
                                                                     </div>
 																	<div class="def_btnopt2 frombtn frombtn2">
-																		<a href="{{route('modifyBanks', $values->id)}}" type="button" class="btn2">Modify</a>
+																		<a href="{{route('modifyBanks', $values->id)}}" type="button" class="btn2">{{ __('mybankcards.Modify') }}</a>
 																	</div>
                                                                 </div>
 
@@ -137,8 +136,8 @@
  
                                 <div class="frombtn_wrap">
                                     <div class="def_btnopt2 frombtn frombtn2">
-                                        <a href="{{ route('front.addPayment') }}" type="button" class="btn2">Add a
-                                            Payment Method</a>
+                                        <a href="{{ route('front.addPayment') }}" type="button" class="btn2">{{ __('mybankcards.Add_Payment_Method') }}
+                                        </a>
                                     </div>
                                 </div>
                             </div>

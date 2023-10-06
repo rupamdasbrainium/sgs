@@ -34,7 +34,6 @@
 						</div>
 						<div class="from_cont_wrap">
 							<form action="{{ route('newMembershipSave',['id'=>$data['subscription_plan']->data->id]) }}" method="post">
-								{{-- <form action="{{ route('suscriptionformSave',['id'=>18]) }}" method="post"> --}}
 								@csrf
 								<div class="fromdes_info2">
 									<div class="content_block packge_des newsub_opt">

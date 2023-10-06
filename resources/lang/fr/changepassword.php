@@ -13,12 +13,8 @@ return [
     |
     */
 
-    'My_Credit_Card_Bank_Account' => 'My Credit Card/Bank Account',
-    'Cards_and_accounts' => 'Cards and accounts',
-    'By_Default' => 'By Default',
-    'Platinum_Mastercard_BNC' => 'Platinum Mastercard BNC',
-    'Credit_card_ending' => 'Credit card ending with',
-    'Modify' => 'Modify',
-    'Bank_acoount_number_ending' => 'Bank acoount number ending with',
-    'Add_Payment_Method' => 'Add a Payment Method',
+    'Change_Password' => 'Changer le mot de passe',
+    'Old_Password' => 'Entrez l\'ancien mot de passe',
+    'New_Password' => 'Entrez un nouveau mot de passe',
+    'Confirm_Password' => 'Entrez Confirmer le mot de passe',
 ];

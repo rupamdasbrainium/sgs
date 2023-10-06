@@ -58,4 +58,6 @@ return [
     'Expiry_Month' => 'Mois d\'expiration',
     'Expiry_Year' => 'Année d\'expiration',
     'CVV' => 'CVV',
+    'PAN' => 'POÊLE',
+    'submit' => 'soumettre',
 ];

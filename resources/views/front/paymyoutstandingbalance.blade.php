@@ -10,23 +10,23 @@
                         @csrf
                     <input type="hidden" name="client_id" value="{{$data["client_id"]}}">
                     <div class="content_block paymentinfo">
-                        <h2 class="head_opt"><span>Total outstanding balance:
-                                ${{ $data['outstandingAmount'] }}</span>Payment
-                            Details</h2>
+                        <h2 class="head_opt"><span>{{ __('paymyoutstandingbalance.Total_outstanding_balance') }}:
+                                ${{ $data['outstandingAmount'] }}</span>{{ __('paymyoutstandingbalance.Payment_Details') }}
+                            </h2>
                         <div class="table_description_view oddoreven_opt">
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>TYPE</th>
-                                        <th>PAYMENT DATE</th>
-                                        <th>PAYMENT</th>
-                                        <th>STATUS</th>
+                                        <th>{{ __('paymyoutstandingbalance.TYPE') }}</th>
+							            <th>{{ __('paymyoutstandingbalance.PAYMENT_DATE') }}</th>
+							            <th>{{ __('paymyoutstandingbalance.PAYMENT') }}</th>
+							            <th>{{ __('paymyoutstandingbalance.STATUS') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @if ($data['payments'] == null)
                                         <tr>
-                                            <td colspan="4">No Payments Data Availble</td>
+                                            <td colspan="4">{{ __('paymyoutstandingbalance.No_Payments_Data_Availble') }}</td>
                                         </tr>
                                     @else
                                         @foreach ($data['payments'] as $key => $pt)
@@ -42,30 +42,26 @@
                                                                     data-value="{{ $pt->amount }}"
                                                                     onclick="">&nbsp;</label>
                                                             </div>
-                                                            Payments
+                                                            {{ __('paymyoutstandingbalance.Payments') }}
                                                         </div>
 
                                                     </td>
                                                     <td data-label="PAYMENT DATE">
                                                         {{ date('Y-m-d', strtotime($pt->paymentDate)) }}</td>
                                                     <td data-label="PAYMENT">${{ $pt->amount }}</td>
-                                                    <td data-label="STATUS">Unpaid</td>
+                                                    <td data-label="STATUS">{{ __('paymyoutstandingbalance.Unpaid') }}</td>
                                                 </tr>
                                             @else
                                                 <tr>
                                                     <td data-label="TYPE">
                                                         <div class="pay_view_opt">
-                                                            <!-- <div class="checkbox">
-                                                    <input class="styled-checkbox" id="Option1" type="checkbox" value="value1">
-                                                    <label for="Option1">&nbsp;</label>
-                                                </div>  -->
-                                                            Payments
+                                                {{ __('paymyoutstandingbalance.Payments') }}
                                                         </div>
                                                     </td>
                                                     <td data-label="PAYMENT DATE">
                                                         {{ date('Y-m-d', strtotime($pt->paymentDate)) }}</td>
                                                     <td data-label="PAYMENT">${{ $pt->amount }}</td>
-                                                    <td data-label="STATUS">Paid</td>
+                                                    <td data-label="STATUS">{{ __('paymyoutstandingbalance.Paid') }}</td>
                                                 </tr>
                                             @endif
                                         @endforeach
@@ -76,20 +72,20 @@
                     </div>
 
                     <div class="content_block more_cont_view">
-                        <h2>Method of Payment</h2>
+                        <h2>{{ __('paymyoutstandingbalance.Method_of_Payment') }}</h2>
                         <div class="checkout_optview payment_opt_details">
                             <div class="inp_row">
                                 <div class="form-group">
                                     <div class="memberships_nam radio cards">
                                         <input type="radio" id="payment_opt1" name="payment_type"
                                             value="credit_card" checked>
-                                        <label for="payment_opt1">Credit Card</label>
+                                        <label for="payment_opt1">{{ __('paymyoutstandingbalance.Credit_Card') }}</label>
                                     </div>
 
                                     <div class="memberships_nam radio bank">
                                         <input type="radio" id="payment_opt3" name="payment_type"
                                             value="bank_account">
-                                        <label for="payment_opt3">Bank Account</label>
+                                        <label for="payment_opt3">{{ __('paymyoutstandingbalance.Bank_Account') }}</label>
                                     </div>
 
                                 </div>
@@ -106,12 +102,11 @@
                                                     <select class="select_opt" name="payment_method_id">
                                                         @if ($data['cards'] != null)
                                                             @foreach ($data['cards'] as $card)
-
                                                                 <option value="{{ $card->id }}">XXXX XXXX XXXX
-                                                                    {{ $card->four_digits_number }} - Card</option>
+                                                                    {{ $card->four_digits_number }} - {{ __('paymyoutstandingbalance.Card') }}</option>
                                                             @endforeach
                                                         @else
-                                                            <option value="" selected hidden>No Card Found
+                                                            <option value="" selected hidden>{{ __('paymyoutstandingbalance.No_Card_Found') }}
                                                             </option>
                                                         @endif
                                                     </select>
@@ -123,34 +118,31 @@
                                                     <select class="select_opt" name="payment_method_id">
                                                         @if ($data['banks'] != null)
                                                             @foreach ($data['banks'] as $bank)
-
                                                                 <option value="{{ $bank->id }}">XXXX XXXX XXXX
-                                                                    {{ $bank->account_last_digits }} - Bank</option>
+                                                                    {{ $bank->account_last_digits }} - {{ __('paymyoutstandingbalance.Bank') }}</option>
                                                             @endforeach
                                                         @else
-                                                            <option value="" selected hidden> No Bank Account
-                                                                Found
+                                                            <option value="" selected hidden> {{ __('paymyoutstandingbalance.No_Bank_Account_Found') }}
                                                             </option>
                                                         @endif
                                                     </select>
                                                 </div>
-
                                             </div>
                                         </div>
 
                                     </div>
                                     <div class="def_btnopt2 frombtn frombtn2">
-                                        <button type="button" class="btn2">Add a Payment Method</button>
+                                        <button type="button" class="btn2">{{ __('paymyoutstandingbalance.Add_Payment_Method') }}</button>
                                     </div>
                                 </div>
                                 <div class="aboundopt">
-                                    <p id="totalAmount">Amount to be paid: $0</p>
+                                    <p id="totalAmount">{{ __('paymyoutstandingbalance.Amount_paid') }}: $0</p>
                                 </div>
                                 <div class="frombtn_wrap">
                                     <div class="def_btnopt2 frombtn frombtn2">
                                         <input type="hidden" name="payment_ids">
                                         <input type="hidden" name="totalAmount">
-                                        <button type="submit" class="btn2">Pay Now</button>
+                                        <button type="submit" class="btn2">{{ __('paymyoutstandingbalance.Pay_Now') }}</button>
                                     </div>
                                 </div>
                             </div>

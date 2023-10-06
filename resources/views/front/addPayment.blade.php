@@ -5,6 +5,11 @@
         <div class="welcomesection def_padding inner_content_block">
             <div class="container">
                 <div class="row">
+                    @if(Session::has('message'))
+                    <div class="alert alert-danger">
+                        {{Session::get('message')}}
+                    </div>
+                        @endif
                     <div class="col-md-12">
                        
                         <div class="fromdes_info user_contentblock">
@@ -78,7 +83,7 @@
                                                             <label>{{ __('paymentForm.Transit_Number') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt" id="incdec">
 
-                                                                <input type="text" name="transit_number"
+                                                                <input type="number" name="transit_number"
                                                                     class="form-control" placeholder=""
                                                                     value="">
                                                                 {{-- <i class="fas fa-sort-up" id="up"></i>
@@ -92,7 +97,7 @@
                                                         <div class="form-group">
                                                             <label>{{ __('paymentForm.Branch_Number') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="text" name="institution"
+                                                                <input type="number" name="institution"
                                                                     class="form-control" placeholder="">
                                                             </div>
                                                         </div>
@@ -101,7 +106,7 @@
                                                         <div class="form-group">
                                                             <label>{{ __('paymentForm.Account_Number') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="text" name="account_number"
+                                                                <input type="number" name="account_number"
                                                                     class="form-control" placeholder="">
                                                             </div>
                                                         </div>
@@ -131,7 +136,6 @@
                                                                     {{ $cardtype->name }}</option>
                                                             @endforeach
                                                         </select>
-
                                                     </div><br>
                                                     <div class="inp_row">
                                                         <div class="form-group">
@@ -145,11 +149,21 @@
                                                     </div>
                                                     <div class="inp_row">
                                                         <div class="form-group">
+                                                            <label>{{ __('paymentForm.PAN') }} <em
+                                                                    class="req_text">*</em></label>
+                                                            <div class="inp_cont_view noicon_opt">
+                                                                <input type="text" name="pan" 
+                                                                    class="form-control" placeholder="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="inp_row">
+                                                        <div class="form-group">
                                                             <label>{{ __('paymentForm.credit_card_number') }} <em
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt" id="incdec">
 
-                                                                <input type="text" name="token"
+                                                                <input type="text" name="four_digits_number"
                                                                     class="form-control" placeholder=""
                                                                     value="">
                                                                 
@@ -161,7 +175,7 @@
                                                         <div class="form-group">
                                                             <label>{{ __('paymentForm.Expiry_Month') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="text" name="expiry_month"
+                                                                <input type="number" name="expiry_month" min="0" max="12"
                                                                     class="form-control" placeholder="">
                                                             </div>
                                                         </div>
@@ -170,24 +184,13 @@
                                                         <div class="form-group">
                                                             <label>{{ __('paymentForm.Expiry_Year') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="text" name="expiry_year"
+                                                                <input type="number" name="expiry_year" max="9999" min="2023"
                                                                     class="form-control" placeholder="">
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="inp_row">
-                                                        <div class="form-group">
-                                                            <label>{{ __('paymentForm.CVV') }}<em class="req_text">*</em></label>
-                                                            <div class="inp_cont_view noicon_opt">
-                                                                <input type="text" name="four_digits_number"
-                                                                    class="form-control" placeholder="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
                                                 </div>
-                                            </div>
-                                      
+                                            </div>                                     
 
                                             <div class="frombtn_wrap">
                                                 <div class="def_btnopt2 frombtn">
@@ -265,8 +268,8 @@
                     alert("Branchcode must be at least 6 characters long.");
                     return false;
                 }
-                if (account_number.length != 16) {
-                    alert("Account number must be at least 16 characters long.");
+                if (account_number.length < 13) {
+                    alert("Account number must be at least 12 characters long.");
                     return false;
                 }
                 if (owner_names == "") {
@@ -281,26 +284,26 @@
                 var expiry_month = document.myform.expiry_month.value;
                 var expiry_year = document.myform.expiry_year.value;
                 var four_digits_number = document.myform.four_digits_number.value;
-
+                var pan = document.myform.pan.value;
 
                 if (owner_name == "") {
                     alert("Name can't be blank");
                     return false;
                 }
-                if (token.length != 16) {
+                // if (pan.length > 13 && pan.length <= 16) {
+                //     alert("Pan must be between 14 to 16 characters long.");
+                //     return false;
+                // }
+                if (four_digits_number.length != 16) {
                     alert("Card number must be at least 16 characters long.");
                     return false;
                 }
-                if (expiry_month.length != 2) {
-                    alert("Expiry month must be at least 2 characters long.");
+                if (expiry_month.value <=12) {
+                    alert("Expiry month must not be greater than 2 characters.");
                     return false;
                 }
                 if (expiry_year.length != 4) {
                     alert("Expiry year must be at least 4 characters long.");
-                    return false;
-                }
-                if (four_digits_number.length != 3) {
-                    alert("CVV must be at least 3 characters long.");
                     return false;
                 }
             }
