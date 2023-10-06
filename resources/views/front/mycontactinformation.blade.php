@@ -101,7 +101,7 @@
                                                             @foreach ($province as $pr)
                                                                 <option value="{{ $pr->id }}"
                                                                     {{ $pr->id == $client->adress->province_id ? 'selected' : '' }}>
-                                                                    {{ $pr->display_english }}</option>
+                                                                    {{ ucfirst(strtolower($pr->display_english)) }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>

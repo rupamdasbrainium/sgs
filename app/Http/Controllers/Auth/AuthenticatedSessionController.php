@@ -31,16 +31,9 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
-        try{
-            $request->authenticate();
-            $request->session()->regenerate();
-            // Session::put('rahul',121);
-            return redirect()->intended(RouteServiceProvider::HOME);
-        }catch(Exception $e){
-
-            return redirect()->route('login')->with('user', trans('auth.failed'));
-        }
-
+        $request->authenticate();
+        $request->session()->regenerate();
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
@@ -50,16 +43,16 @@ class AuthenticatedSessionController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Request $request)
-    { 
+    {
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
         session()->forget('webToken');
         session()->forget('clientToken');
         // $request->session()->regenerateToken();
-        if(Session::has('webToken')){
+        if (Session::has('webToken')) {
             Session::forget('clientToken');
-          }
+        }
         // $request->session()->regenerateToken();
 
         return redirect('/login');

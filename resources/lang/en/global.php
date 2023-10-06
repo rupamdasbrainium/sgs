@@ -25,6 +25,7 @@ return [
     'subscribe' => 'Subscribe',
     'sub_text_info' => 'Find a GYM Near you',
     'sub_text_info_p' => 'To find a Club, use the search bar, navigate using the map, or turn on location services',
+    "find_gym_placeholder"=>"Enter address"
     // 'Subscription plan' => 'New Subscription',
     // 'Subscription plan options' => 'Subscription plan options',
     // 'Subscription plan payments' => 'Payments',
