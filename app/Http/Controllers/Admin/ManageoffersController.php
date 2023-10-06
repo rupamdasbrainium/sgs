@@ -13,7 +13,7 @@ class ManageoffersController extends Controller
     {
         $data = array();
         $data['data'] = array();
-        $data['title'] = 'Manage Offers';
+        $data['title'] = trans('title_message.Manage_Offers');
         return view('admin.manageoffers', compact('data'));
     }
 
@@ -21,7 +21,7 @@ class ManageoffersController extends Controller
     {
         $data = array();
         $data['data'] = array();
-        $data['title'] = 'Manage Events';
+        $data['title'] = trans('title_message.Manage_Events');
         return view('admin.manageoffers', compact('data'));
     }
 
@@ -29,7 +29,7 @@ class ManageoffersController extends Controller
     {
         $data = array();
         $data['data'] = array();
-        $data['title'] = 'Chat Monitoring';
+        $data['title'] = trans('title_message.Chat_Monitoring');
         return view('admin.manageoffers', compact('data'));
     }
 
@@ -37,7 +37,7 @@ class ManageoffersController extends Controller
     {
         $data = array();
         $data['data'] = array();
-        $data['title'] = 'Transactions';
+        $data['title'] = trans('title_message.Transactions');
         return view('admin.manageoffers', compact('data'));
     }
 
@@ -45,7 +45,7 @@ class ManageoffersController extends Controller
     {
         $data = array();
         $data['data'] = array();
-        $data['title'] = 'Manage Subscribers';
+        $data['title'] = trans('title_message.Manage_Subscribers');
         return view('admin.manageoffers', compact('data'));
     }
 

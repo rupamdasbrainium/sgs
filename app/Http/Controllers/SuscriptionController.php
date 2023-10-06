@@ -11,7 +11,7 @@ class SuscriptionController extends Controller
     public function suscriptionForm ($id) {
         $lang_id = getLocale();
         $data = array();
-        $data['title'] = 'Suscriptionn Form';
+        $data['title'] = trans('title_message.Subscription_Form');
 
         //subscriptionplan type call
         $subscription_plan = APICall("SubscriptionPlans/type/".$id."?language_id=".$lang_id, "get","{}");
@@ -57,19 +57,17 @@ class SuscriptionController extends Controller
         $fromdata['phone'] = $request->phone;
         $fromdata['cellphone'] = $request->cellphone;
         $fromdata['emergency_contact'] = $request->emergency_contact;
-        // $fromdata['emergency_contact'] = 'rahul';//not found
         $fromdata['emergency_phone'] = $request->emergency_phone;
         $fromdata['date_of_birth'] = $request->date_of_birth;
         $fromdata['email'] = $request->email;
-        // $fromdata['language_id'] = $request->language_id;
-        $fromdata['language_id'] = 2;//nf
-        $fromdata['user_name'] = $request->user_name;//nf//required
+        $fromdata['language_id'] = 2;
+        $fromdata['user_name'] = $request->user_name;
         $fromdata['password'] = $request->password;
-        $fromdata['driver_license'] = $request->driver_license;//nf
-        $fromdata['occupation'] = $request->occupation;//nf
-        $fromdata['nativeRef_number'] = $request->nativeRef_number;///nf
+        $fromdata['driver_license'] = $request->driver_license;
+        $fromdata['occupation'] = $request->occupation;
+        $fromdata['nativeRef_number'] = $request->nativeRef_number;
         $fromdata['reference_id'] = $request->reference_id;
-        $fromdata['sub_reference_id'] = $request->sub_reference_id;//nf
+        $fromdata['sub_reference_id'] = $request->sub_reference_id;
         $fromdata['reference_Code'] = $request->reference_Code;
 
 
@@ -113,15 +111,12 @@ class SuscriptionController extends Controller
           );
           return redirect()->back()->with($response)->withInput();
         }
-        // dd($data['clients']);
-        // return $data['clients'];
-
     }
 
     public function new_membership($id){
       $lang_id = getLocale();
       $data = array();
-        $data['title'] = 'Memberships';
+        $data['title'] = trans('title_message.Memberships');
 
         //subscriptionplan type call
         $subscription_plan = APICall("SubscriptionPlans/type/".$id."?language_id=".$lang_id, "get","{}");
@@ -144,7 +139,6 @@ class SuscriptionController extends Controller
     }
 
     function new_membership_save(Request $request, $id){
-      // return $request->add_on;
       if (Session::has('add_on')) {
         Session::forget('add_on');
       }

@@ -14,7 +14,7 @@ class HomeController extends Controller
         $lang_id = getLocale();
         // $short_code = 'CentreDemo';
         $data = array();
-        $data['title'] = 'Home';
+        $data['title'] = trans('title_message.Home');
         //franchise call
         $franchises = APICall("Franchises", "get","{}");
         $data['franchises'] = json_decode($franchises);
@@ -31,26 +31,12 @@ class HomeController extends Controller
           
         }
         $response = array(
-            'message' => 'Input path is wrong',
+            'message' => trans('title_message.Input_path_wrong'),
           );
 
         if(!$franchise_id){
             return redirect(route('login'))->with($response);
         }
-
-        // foreach($data['franchises']->data as $franchise){
-        //     //   if($franchise->id == $short_code){
-        //         if($franchise->name == $franchise_id){//actual
-        //         $franchise_id = $franchise->id;
-        //         break;
-        //       }
-
-        // if (Session::has('franchise_id')) {
-        //     Session::forget('franchise_id');
-        // }
-        // Session::put('franchise_id',$franchise_id );
-// dd(Session::get('franchise_id',$franchise_id ));
-       
 
         //franchise plan type
         $franchisesPlanType = APICall("SubscriptionPlans/types?franchise_id=".$franchise_id, "get","{}");
@@ -77,13 +63,13 @@ class HomeController extends Controller
 
     public function login () {
         $data = array();
-        $data['title'] = 'Login';
+        $data['title'] = trans('title_message.Login');
         return view('login', compact('data'));
     }
 
     public function forgotPassword () {
         $data = array();
-        $data['title'] = 'Forgot Password';
+        $data['title'] = trans('title_message.Forgot_Password');
         return view('forgotpassword', compact('data'));
     }
 
@@ -93,16 +79,15 @@ class HomeController extends Controller
 
     public function termsAndCondition () {
         $data = array();
-        $data['title'] = 'Terms and Condition';
+        $data['title'] = trans('title_message.Terms_Condition');
         return view('front.termsAndCondition', compact('data'));
     }
     public function privacyPolicy () {
         $data = array();
-        $data['title'] = 'Privacy Policy';
+        $data['title'] = trans('title_message.Privacy_Policy');
         return view('front.privacyPolicy', compact('data'));
     }
     public function planType($id){
-        // $franchisesPlanType = '{ "error": null, "isErrorConnString": false, "data": [ { "id": 6, "name_english": "10 passages adulte", "name_french": "10 passages adulte" }, { "id": 12, "name_english": "6 mois Adulte", "name_french": "12 mois reg" }, { "id": 18, "name_english": "3 mois Adulte", "name_french": "3 mois" }]}';
         $franchisesPlanType = APICall("SubscriptionPlans/types/".$id, "get","{}");
         $data = json_decode($franchisesPlanType);
         $html = '';
@@ -124,7 +109,6 @@ class HomeController extends Controller
         $html = '';
         if(isset($data)){
             foreach($data->data->prices_per_durations as $value){
-                // dd($value);
                 $html .= '<div class="prod_item">
                 <div class="action_opt action_opt_title">
 
@@ -160,7 +144,7 @@ class HomeController extends Controller
                     <div class="individual_des">
                         <ul>
                             <li><span><i class="far fa-check"></i></span>Monthly limit of 500 users</li>
-                            <li><span><i class="far fa-check"></i></span>Monthly limit of 1500 orders</li>
+                            <li><span><i class="far fa-check"></i></span>Monthly limit of 1500 orders</li>s
                             <li><span><i class="far fa-check"></i></span>Basic Financial Tools</li>
                             <li><span><i class="fal fa-times"></i></span>Email Support</li>
                             <li><span><i class="fal fa-times"></i></span>Email Support</li>

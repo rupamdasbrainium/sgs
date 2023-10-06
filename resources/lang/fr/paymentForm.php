@@ -60,4 +60,12 @@ return [
     'CVV' => 'CVV',
     'PAN' => 'POÊLE',
     'submit' => 'soumettre',
+    'Transit_number_5_characters' => 'Le numéro de transit doit comporter au moins 5 caractères',
+    'Branchcode_mustbe_6_characters' => 'Le code de succursale doit comporter au moins 6 caractères',
+    'Account_number_mustbe_12_characters' => 'Le numéro de compte doit comporter au moins 12 caractères',
+    'Account_name_blank' => 'Le nom du compte ne peut pas être vide',
+    'Name_blank' => 'Le nom ne peut pas être vide',
+    'Card_number_mustbe_16_characters' => 'Le numéro de carte doit comporter au moins 16 caractères',
+    'Expiry_month' => 'Le mois d\'expiration ne doit pas dépasser 2 caractères',
+    'Expiry_year' => 'L\'année d\'expiration doit comporter au moins 4 caractères',
 ];
