@@ -183,14 +183,14 @@ class AccountController extends Controller
     {
         $data = array();
         $data['title'] = 'My Profile';
-        $client = APICall("Clients", 'get', "{}");
+        $client = APICall("Clients", 'get', "{}", 'client_app');
         if (!$client) {
             return redirect()->route('login')->with('email', "Your login token has been expired");
         }
 
         $client = json_decode($client)->data;
 
-        $membership = APICall('Memberships/client?display_language_id=' . $client->language_id, "get", "{}");
+        $membership = APICall('Memberships/client?display_language_id=' . $client->language_id, "get", "{}","client_app");
         $membership = json_decode($membership);
         if (!$membership->error && $membership->data) {
             $membership = $membership;
@@ -198,14 +198,14 @@ class AccountController extends Controller
             $membership = "";
         }
         // dd($membership);
-        $payments = APICall('Payments/schedualed/client', "get", "{}");
+        $payments = APICall('Payments/schedualed/client', "get", "{}","client_app");
         $payments = json_decode($payments);
         if (!empty($payments->data)) {
             $payments = $payments->data;
         } else {
             $payments = "";
         }
-        $response = APICall('PaymentMethods/cards', "get", "{}");
+        $response = APICall('PaymentMethods/cards', "get", "{}","client_app");
         $cards = json_decode($response);
 
         if (!$cards->error && $cards->data) {
@@ -215,7 +215,7 @@ class AccountController extends Controller
         }
 
         //gettting bank accounts;
-        $response = APICall('PaymentMethods/accounts', "get", "{}");
+        $response = APICall('PaymentMethods/accounts', "get", "{}","client_app");
         $bank = json_decode($response);
 
         if (!$bank->error && $bank->data) {
@@ -224,7 +224,7 @@ class AccountController extends Controller
 
             $data['banks'] = null;
         }
-        $languages = APICall('Options/languages', "get", "{}");
+        $languages = APICall('Options/languages', "get", "{}","client_app");
         $languages = json_decode($languages);
         return view('front.myprofile', compact('data', 'client', 'payments', 'languages', 'membership'));
     }
@@ -388,7 +388,8 @@ class AccountController extends Controller
                 if ($response->error == null) {
                     return redirect()->route('payMyOutstandingBalance')->with("success", "Payment Successfull");
                 } else {
-                    return redirect()->route('payMyOutstandingBalance')->withErrors(["error" => $response->message]);
+                    
+                    return redirect()->route('payMyOutstandingBalance')->withErrors(["error" => $response->error->message]);
                 }
             }
             //bank account payment
@@ -399,7 +400,7 @@ class AccountController extends Controller
                 if ($response->error == null) {
                     return redirect()->route('payMyOutstandingBalance')->with("success", "Payment Successfull");
                 } else {
-                    return redirect()->route('payMyOutstandingBalance')->withErrors(["error" => $response->message]);
+                    return redirect()->route('payMyOutstandingBalance')->withErrors(["error" => $response->error->message]);
                 }
             }
         }

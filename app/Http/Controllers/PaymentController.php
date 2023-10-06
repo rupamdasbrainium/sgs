@@ -65,23 +65,19 @@ class PaymentController extends Controller
             $formdata['institution'] = $request->institution;
             $formdata['account_number'] = $request->account_number;
             $formdata['owner_name'] = $request->owner_names;
-            if (Session::has('franchise_id')) {
-                $formdata['franchise_id'] = Session::get('franchise_id');
-            }
-
+            $formdata['franchise_id'] = Session::get('franchise_id');
+// dd($formdata);
             $pay_methode_acc = APICall('PaymentMethods/account', "post", json_encode($formdata), 'client_app');
             $data['pay_methode_acc'] = json_decode($pay_methode_acc);
-
-            $get_methode_acc = APICall('PaymentMethods/accounts?clients=' . $data['pay_methode_acc']->data->client_id, "get", "{}", "client_app");
-            $data['get_methode_acc'] = json_decode($get_methode_acc);
-
-            if($data['get_methode_acc']->error!=null){
+            if($data['pay_methode_acc']->error!=null){
                 $response = array(
-                          'message' => $data['get_methode_acc']->error->message,
+                          'message' => $data['pay_methode_acc']->error->message,
                           'message_type' => 'danger'
                         );
                         return redirect()->back()->with($response)->withInput();
             }
+            $get_methode_acc = APICall('PaymentMethods/accounts?clients=' . $data['pay_methode_acc']->data->client_id, "get", "{}", "client_app");
+            $data['get_methode_acc'] = json_decode($get_methode_acc);
 
             //membership with bank account
             $membershipdata = array();

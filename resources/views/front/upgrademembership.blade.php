@@ -45,47 +45,39 @@
                                     <h2>{{ __('upgrademembership.Membership_Options_Add-ons') }}</h2>
                                     <div class="optionwrap_block">
                                         @php
-                                         $data['subscription_plan'] = json_decode(APICall("SubscriptionPlans/type/" . $item->typeId."?language_id=".$item->languageId, "get", "{}" ,"client_app"));
-                                        $subscription_plan = json_decode( $data['subscription_plan'])->data;
-                                        @endphp
-                                        @if (isset($subscription_plan))
-                                            @foreach ($subscription_plan as $item)
+                                       $subscription_plan = json_decode(APICall("SubscriptionPlans/type/" . $item->typeId."?language_id=".$item->languageId, "get", "{}" ,"client_app"));
+                                       
+                                        @endphp                                      
+                                       @if (isset($subscription_plan) && isset($subscription_plan->data) && count($subscription_plan->data->options))                                      
+                                            @foreach ($subscription_plan->data->options as $item)
                                                 <div class="optionitem_add">
-                                                    <h3>{{ __('upgrademembership.Option') }} 1</h3>
+                                                    <h3>{{ __('upgrademembership.Option') }} </h3>
                                                     <div class="optionitem_block">
                                                         <div class="opt_add">
                                                             <img src="{{ asset('public/images/prod_img1.png') }}"
                                                                 alt="">
                                                         </div>
                                                         <div class="optionitem_des">
-                                                            <p>{{ $item->type }}</p>
-															
-                                                            <div class="price_opt_add">{{ $item->recurantCharge }}</div>
-															@if( count($item->options))
-													{{-- @foreach ($data['subscription_plan']->data->options as $item) --}}
+                                                            <p>{{ $item->name }}</p>
+                                                            <div class="price_opt_add">${{ $item->price }}</div>
                                                             <div class="optionitem_prod">
-                                                                <span>{{$item->quantity}}</span>
-                                                                <span>{{ __('upgrademembership.Quantity') }}: {{$item->deliverable_quantity}}</span>
+                                                                <span>{{ __('newMembership.training') }}</span>
+                                                                <span>{{ __('upgrademembership.Quantity') }}: {{ $item->quantity }} X {{ $item->deliverable_quantity }}</span>
                                                                 <span>{{ __('upgrademembership.Price') }}:{{$item->price}} </span>
                                                             </div>
-															{{-- @endforeach --}}
-															@endif
                                                             <div class="optionitem_checkopt">
                                                                 <div class="form-group">
                                                                     <div class="checkbox">
                                                                         <input name="add_on[]"
                                                                                 class="styled-checkbox2"
-                                                                                id="Option{{ $loop->iteration }}"
-                                                                                
+                                                                                id="Option{{ $loop->iteration }}"  value="{{ $item->id }}"
                                                                                 type="checkbox">
                                                                             <label for="Option{{ $loop->iteration }}">
-                                                                               
+                                                                                @if($item->is_initial)
                                                                                     {{ __('newMembership.initial_fee') }}
-                                                                                    <em>(
-                                                                                        {{ __('newMembership.onetime') }})</em>
-                                                                               
+                                                                                    <em>({{ __('newMembership.onetime') }})</em>
+                                                                                @endif
                                                                             </label>
-
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -99,14 +91,14 @@
 										<h4>{{ __('suscription.nop') }} *</h4>
 										<div class="payment_contentblock">
 											
-											@if(isset($data['subscription_plan']) && isset($data['subscription_plan']->data) && count($data['subscription_plan']->data->prices_per_durations))
-												@foreach ($data['subscription_plan']->data->prices_per_durations as $item)
+											@if(isset($subscription_plan) && isset($subscription_plan->data) && count($subscription_plan->data->prices_per_durations))
+												@foreach ($subscription_plan->data->prices_per_durations as $item1)
 												
-													@if(count($item->installments))
-														@foreach ($item->installments as $val)
+													@if(count($item1->installments))
+														@foreach ($item1->installments as $val)
 														
 															<div class="radio">
-																<input type="radio" id="{{ $val->id }}" name="installments" value="{{ $item->duration_id}}|{{$val->id }}" {{ $loop->index==0? 'required':'' }}>
+																<input type="radio" id="{{ $val->id }}" name="installments" value="{{ $item1->duration_id}}|{{$val->id }}" {{ $loop->index==0? 'required':'' }}>
 																<label for="{{ $val->id }}">{{ $val->number_of_payments }} {{ __('suscription.payments') }}</label>
 															</div>
 														@endforeach

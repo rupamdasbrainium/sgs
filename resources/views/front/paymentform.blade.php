@@ -336,14 +336,6 @@
                                                                     </div>
 
                                                                     <div class="memberships_nam radio">
-                                                                        <input type="radio" id="payment_opt2"
-                                                                            name="radio_group_pay" class="radio2"
-                                                                            value="credit_acc" onclick="showA();">
-                                                                        <label
-                                                                            for="payment_opt2">{{ __('paymentForm.Debit_Card') }}</label>
-                                                                    </div>
-
-                                                                    <div class="memberships_nam radio">
                                                                         <input type="radio" id="payment_opt3"
                                                                             name="radio_group_pay" onclick="show();"
                                                                             value="bank_acc" checked>
@@ -451,7 +443,7 @@
                                                                 <label>{{ __('paymentForm.PAN') }} <em
                                                                         class="req_text">*</em></label>
                                                                 <div class="inp_cont_view noicon_opt">
-                                                                    <input type="number" name="pan"
+                                                                    <input type="text" name="pan" 
                                                                         class="form-control" placeholder="">
                                                                 </div>
                                                             </div>
@@ -475,7 +467,7 @@
                                                                 <label>{{ __('paymentForm.Expiry_Month') }} <em
                                                                         class="req_text">*</em></label>
                                                                 <div class="inp_cont_view noicon_opt">
-                                                                    <input type="text" name="expiry_month"
+                                                                    <input type="number" name="expiry_month" min="0" max="12"
                                                                         class="form-control" placeholder="">
                                                                 </div>
                                                             </div>
@@ -485,7 +477,7 @@
                                                                 <label>{{ __('paymentForm.Expiry_Year') }} <em
                                                                         class="req_text">*</em></label>
                                                                 <div class="inp_cont_view noicon_opt">
-                                                                    <input type="text" name="expiry_year"
+                                                                    <input type="number" name="expiry_year" max="9999" min="2023"
                                                                         class="form-control" placeholder="">
                                                                 </div>
                                                             </div>
@@ -611,7 +603,7 @@
                     alert("Branchcode must be at least 6 characters long.");
                     return false;
                 }
-                if (account_number.length != 16) {
+                if (account_number.length != 12) {
                     alert("Account number must be at least 16 characters long.");
                     return false;
                 }
@@ -632,18 +624,18 @@
                     alert("Name can't be blank");
                     return false;
                 }
-                if (pan.length >= 14 && pan.length <= 16) {
-                    alert("Card number must be between 14 to 16 characters long.");
-                    return false;
-                }
-                if (four_digits_number.length != 16) {
-                    alert("Card number must be at least 16 characters long.");
-                    return false;
-                }
-                if (expiry_month.length < 3) {
-                    alert("Expiry month must not be greater than 2 characters.");
-                    return false;
-                }
+                // if (pan.length >=14 && pan.length <=16 ) {
+                //     alert("Pan must be between 14 to 16 characters long.");
+                //     return false;
+                // }
+                // if (four_digits_number.length != 16) {
+                //     alert("Card number must be at least 16 characters long.");
+                //     return false;
+                // }
+                // if (expiry_month.value <=12) {
+                //     alert("Expiry month must not be greater than 2 characters.");
+                //     return false;
+                // }
                 if (expiry_year.length != 4) {
                     alert("Expiry year must be at least 4 characters long.");
                     return false;
