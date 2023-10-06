@@ -14,7 +14,7 @@ class PaymentController extends Controller
     {
         $lang_id = getLocale();
         $data = array();
-        $data['title'] = 'Suscriptionn Form';
+        $data['title'] = trans('title_message.Subscription_Form');
 
         // https://sgsdev.softsgs.net/Memberships/price-details?subscription_plan_id=18&duration_id=5&installment_id=131&date_begin=Thu21%20Sep%202023%2011%3A34%3A23%20GMT&franchise_id=3&lstOptions=5&lstOptions=9&display_language_id=2
 
@@ -67,7 +67,6 @@ class PaymentController extends Controller
             $formdata['account_number'] = $request->account_number;
             $formdata['owner_name'] = $request->owner_names;
             $formdata['franchise_id'] = Session::get('franchise_id');
-// dd($formdata);
             $pay_methode_acc = APICall('PaymentMethods/account', "post", json_encode($formdata), 'client_app');
             $data['pay_methode_acc'] = json_decode($pay_methode_acc);
             if($data['pay_methode_acc']->error!=null){
@@ -105,9 +104,9 @@ class PaymentController extends Controller
             $membership_with_bnk_acc = APICall('Memberships/with-bank-account?display_language_id='.$lang_id, "post", json_encode($membershipdata), "client_app");
             $data['membership_with_bnk_acc'] = json_decode($membership_with_bnk_acc);
 
-            $data["title"] = "My Account"; 
+            $data["title"] = trans('title_message.My_Account'); 
             $response = array(
-                'message' => 'payment completed succesfully',
+                'message' => trans('title_message.Payment_Successfull'),
               );
             return redirect(route("myProfile"))->with($response);
         } else {
@@ -166,7 +165,7 @@ class PaymentController extends Controller
 
             }
             $response = array(
-                'message' => 'payment completed succesfully',
+                'message' => trans('title_message.Payment_completed_succesfully'),
               );
             return redirect(route("myProfile"))->with($response);
         }
@@ -177,10 +176,10 @@ class PaymentController extends Controller
     public function addPayment()
     {
         $data = array();
-        $data['title'] = 'Add Acoount';
+        $data['title'] = trans('title_message.Add_Acoount');
         $client = APICall("Clients",'get',"{}");
         if(!$client){
-            return redirect()->route('login')->with('email', "Your login token has been expired");
+            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
 
         }
 
@@ -215,7 +214,7 @@ class PaymentController extends Controller
                 } 
                    
               $response = array(
-                'message' => 'bank add succesfully',
+                'message' => trans('title_message.Bank_added_succesfully'),
               );
               return redirect(route("myBankCards"))->with($response);
             
@@ -233,11 +232,10 @@ class PaymentController extends Controller
 
                    
                 $pay_methods_account = APICall('PaymentMethods/card', "post", json_encode($carddata), 'client_app');
-                $data['pay_methods_account'] = json_decode($pay_methods_account);  
-                // dd( $pay_methods_account);         
+                $data['pay_methods_account'] = json_decode($pay_methods_account);        
              }     
                 $response = array(
-                  'message' => 'credit card add succesfully',
+                  'message' => trans('title_message.Credit_card_added_succesfully'),
                 );
                 return redirect(route("myBankCards"))->with($response);
         }

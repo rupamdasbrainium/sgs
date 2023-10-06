@@ -596,19 +596,19 @@
                 var owner_names = document.myform.owner_names.value;
 
                 if (transit_number.length != 5) {
-                    alert("Transit number must be at least 5 characters long");
+                    alert(trans('paymentForm.Transit_number_5_characters'));
                     return false;
                 }
                 if (institution.length != 6) {
-                    alert("Branchcode must be at least 6 characters long.");
+                    alert(trans('paymentForm.Branchcode_mustbe_6_characters'));
                     return false;
                 }
-                if (account_number.length != 12) {
-                    alert("Account number must be at least 16 characters long.");
-                    return false;
-                }
+                // if (account_number.length != 12) {
+                //     alert("Account number must be at least 16 characters long.");
+                //     return false;
+                // }
                 if (owner_names == "") {
-                    alert("Account name can't be blank.");
+                    alert(trans('paymentForm.Account_name_blank'));
                     return false;
                 }
             }
@@ -621,23 +621,12 @@
                 var pan = document.myform.pan.value;
 
                 if (owner_name == "") {
-                    alert("Name can't be blank");
+                    alert(trans('paymentForm.Name_blank'));
                     return false;
                 }
-                // if (pan.length >=14 && pan.length <=16 ) {
-                //     alert("Pan must be between 14 to 16 characters long.");
-                //     return false;
-                // }
-                // if (four_digits_number.length != 16) {
-                //     alert("Card number must be at least 16 characters long.");
-                //     return false;
-                // }
-                // if (expiry_month.value <=12) {
-                //     alert("Expiry month must not be greater than 2 characters.");
-                //     return false;
-                // }
+                
                 if (expiry_year.length != 4) {
-                    alert("Expiry year must be at least 4 characters long.");
+                    alert(trans('paymentForm.Expiry_year'));
                     return false;
                 }
 

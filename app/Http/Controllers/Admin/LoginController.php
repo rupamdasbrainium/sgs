@@ -12,7 +12,7 @@ class LoginController extends Controller
 {
     public function index()
     {
-        $title = "Admin Login";
+        $title = trans('title_message.Admin_Login');
         return view('admin.login', compact('title'));
     }
 

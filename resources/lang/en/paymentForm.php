@@ -60,4 +60,12 @@ return [
     'CVV' => 'CVV',
     'PAN' => 'PAN',
     'submit' => 'submit',
+    'Transit_number_5_characters' => 'Transit number must be at least 5 characters long',
+    'Branchcode_mustbe_6_characters' => 'Branchcode must be at least 6 characters long',
+    'Account_number_mustbe_12_characters' => 'Account number must be at least 12 characters long',
+    'Account_name_blank' => 'Account name can\'t be blank',
+    'Name_blank' => 'Name can\'t be blank',
+    'Card_number_mustbe_16_characters' => 'Card number must be at least 16 characters long',
+    'Expiry_month' => 'Expiry month must not be greater than 2 characters',
+    'Expiry_year' => 'Expiry year must be at least 4 characters long',
 ];

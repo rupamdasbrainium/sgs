@@ -13,9 +13,8 @@ return [
     |
     */
 
-    'memberships' => 'Memberships',
-    'gym' => 'Get Direction/Itinerary',
-    'logout' => 'logout',
-    'login' => 'login',
+    'Edit' => 'Modifier',
+    'Delete' => 'Supprimer',
+
 
 ];
