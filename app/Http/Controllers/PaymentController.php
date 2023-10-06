@@ -129,13 +129,13 @@ class PaymentController extends Controller
                 $pay_method_accc = APICall('PaymentMethods/card', "post", json_encode($carddata), 'client_app');
                 $data['pay_method_accc'] = json_decode($pay_method_accc);
                
-                if($data['pay_method_accc']->error!=null){
-                    $response = array(
-                              'message' => $data['pay_method_accc']->error->message,
-                              'message_type' => 'danger'
-                            );
-                            return redirect()->back()->with($response)->withInput();
-                }
+                // if($data['pay_method_accc']->error!=null){
+                //     $response = array(
+                //               'message' => $data['pay_method_accc']->error->message,
+                //               'message_type' => 'danger'
+                //             );
+                //             return redirect()->back()->with($response)->withInput();
+                // }
               
 
                 $membershipcarddata = array();
