@@ -189,17 +189,18 @@
             </div>
         </div>
 
-        <div class="subscribe_content">
+        <div class="subscribe_content" >
             <div class="outer_shape1">
             </div>
-            <div class="subscribe_info">
-                <div class="sub_text_info">
+            <div class="subscribe_info" id="findGym">
+                <div class="sub_text_info" >
                     <h2>{{ __('global.sub_text_info') }}</h2>
                     <p>{{ __('global.sub_text_info_p') }}.
                     </p>
                     <div class="sub_from">
+                        
                         <div class="form-group">
-                            <input type="email" class="form-control" id="email" placeholder="hjgbhjg bvjhvjhg">
+                            <input type="email" class="form-control" id="email" placeholder="{{ __('global.find_gym_placeholder') }}">
                             <button type="button" class="searchicon_opt">
                                 <i class="far fa-search"></i>
                             </button>

@@ -156,8 +156,12 @@
     </section>
     @include('footer')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    	<!-- Toastr -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script>
         $(document).ready(function() {
+
             $('.select-banks').css({
                 "display": "none",
                 "visibility": "hidden"
@@ -204,6 +208,15 @@
                 $('input[name="totalAmount"]').val(amount);
                 $('input[name="payment_ids"]').val(payemntIds);
             });
+
+            toastr.options.timeOut = 3000;
+            @if(Session::has('error'))
+            toastr.error('{{ Session::get('error') }}');
+            @endif
+
+            @if(Session::has('success'))
+            toastr.success('{{ Session::get('success') }}');
+            @endif
 
         });
     </script>

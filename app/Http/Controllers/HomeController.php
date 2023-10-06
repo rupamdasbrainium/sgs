@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -10,31 +11,31 @@ use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
-    public function index ($short_code) {
+    public function index($short_code)
+    {
         $lang_id = getLocale();
         // $short_code = 'CentreDemo';
         $data = array();
         $data['title'] = 'Home';
         //franchise call
-        $franchises = APICall("Franchises", "get","{}");
+        $franchises = APICall("Franchises", "get", "{}");
         $data['franchises'] = json_decode($franchises);
         $data['short_code'] = $short_code;
         $franchise_id = '';
-        
+
         //find franchise_id
-        foreach($data['franchises']->data as $franchise){
-        //   if($franchise->id == $short_code){
-            if($franchise->shortCode == $short_code){//actual
-            $franchise_id = $franchise->id;
-            break;
-          }
-          
+        foreach ($data['franchises']->data as $franchise) {
+            //   if($franchise->id == $short_code){
+            if ($franchise->shortCode == $short_code) { //actual
+                $franchise_id = $franchise->id;
+                break;
+            }
         }
         $response = array(
             'message' => 'Input path is wrong',
-          );
+        );
 
-        if(!$franchise_id){
+        if (!$franchise_id) {
             return redirect(route('login'))->with($response);
         }
 
@@ -49,81 +50,94 @@ class HomeController extends Controller
         //     Session::forget('franchise_id');
         // }
         // Session::put('franchise_id',$franchise_id );
-// dd(Session::get('franchise_id',$franchise_id ));
-       
+        // dd(Session::get('franchise_id',$franchise_id ));
+
 
         //franchise plan type
-        $franchisesPlanType = APICall("SubscriptionPlans/types?franchise_id=".$franchise_id, "get","{}");
+        $franchisesPlanType = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id, "get", "{}");
         $data['franchisesPlanType'] = json_decode($franchisesPlanType);
 
         //franchise best four plan
-        $best_four_plan = APICall("SubscriptionPlans/franchises/".$franchise_id, "get","{}");
+        $best_four_plan = APICall("SubscriptionPlans/franchises/" . $franchise_id, "get", "{}");
         $data['best_four_plan'] = json_decode($best_four_plan);
 
         // $data_plan = [];
         //franchise best four plan details
-        $data_plan[$data['best_four_plan']->data->subscriptionPlan1] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan1."?language_id=".$lang_id, "get","{}"));
+        $data_plan[$data['best_four_plan']->data->subscriptionPlan1] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan1 . "?language_id=" . $lang_id, "get", "{}"));
 
-        $data_plan[$data['best_four_plan']->data->subscriptionPlan2] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan2."?language_id=".$lang_id, "get","{}"));
+        $data_plan[$data['best_four_plan']->data->subscriptionPlan2] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan2 . "?language_id=" . $lang_id, "get", "{}"));
 
-        $data_plan[$data['best_four_plan']->data->subscriptionPlan3] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan3."?language_id=".$lang_id, "get","{}"));
+        $data_plan[$data['best_four_plan']->data->subscriptionPlan3] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan3 . "?language_id=" . $lang_id, "get", "{}"));
 
-        $data_plan[$data['best_four_plan']->data->subscriptionPlan4] = json_decode(APICall("SubscriptionPlans/type/".$data['best_four_plan']->data->subscriptionPlan4."?language_id=".$lang_id, "get","{}"));
+        $data_plan[$data['best_four_plan']->data->subscriptionPlan4] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan4 . "?language_id=" . $lang_id, "get", "{}"));
 
         $data['best_four_plan_details'] = $data_plan;
-        $best_four_plan_details=$data_plan;
-        return view('front.home', compact('data','best_four_plan_details','franchise_id'));
+        $best_four_plan_details = $data_plan;
+        return view('front.home', compact('data', 'best_four_plan_details', 'franchise_id'));
     }
 
-    public function login () {
+    public function login()
+    {
         $data = array();
         $data['title'] = 'Login';
         return view('login', compact('data'));
     }
 
-    public function forgotPassword () {
+    public function forgotPassword()
+    {
         $data = array();
         $data['title'] = 'Forgot Password';
         return view('forgotpassword', compact('data'));
     }
 
-    public function dashboard () {
+    public function dashboard()
+    {
         return redirect()->route('account');
     }
 
-    public function termsAndCondition () {
+    public function termsAndCondition()
+    {
         $data = array();
         $data['title'] = 'Terms and Condition';
         return view('front.termsAndCondition', compact('data'));
     }
-    public function privacyPolicy () {
+    public function privacyPolicy()
+    {
         $data = array();
         $data['title'] = 'Privacy Policy';
         return view('front.privacyPolicy', compact('data'));
     }
-    public function planType($id){
+    public function law25()
+    {
+        $data = [];
+        $data["title"] = "Law 25";
+        return view('front.law25', compact('data'));
+    }
+    public function planType($id)
+    {
         // $franchisesPlanType = '{ "error": null, "isErrorConnString": false, "data": [ { "id": 6, "name_english": "10 passages adulte", "name_french": "10 passages adulte" }, { "id": 12, "name_english": "6 mois Adulte", "name_french": "12 mois reg" }, { "id": 18, "name_english": "3 mois Adulte", "name_french": "3 mois" }]}';
-        $franchisesPlanType = APICall("SubscriptionPlans/types/".$id, "get","{}");
+        $franchisesPlanType = APICall("SubscriptionPlans/types/" . $id, "get", "{}");
         $data = json_decode($franchisesPlanType);
         $html = '';
         $li = '';
-        if(isset($data)){
-            foreach($data->data as $value){
-                $html .= "<option value='".$value->id."'>".$value->name_english."</option>";
-                $li .= "<li rel='".$value->id."'>".$value->name_english."</li>";
+        if (isset($data)) {
+            foreach ($data->data as $value) {
+                $html .= "<option value='" . $value->id . "'>" . $value->name_english . "</option>";
+                $li .= "<li rel='" . $value->id . "'>" . $value->name_english . "</li>";
             }
         }
-        return [$html,$li];
+        return [$html, $li];
     }
 
-    public function planTypeDetails($id){
-       
+    public function planTypeDetails($id)
+    {
+
         $lang_id = getLocale();
-        $franchisesPlanDetails = APICall("SubscriptionPlans/type/".$id. "?language_id=" .$lang_id, "get","{}");
+        $franchisesPlanDetails = APICall("SubscriptionPlans/type/" . $id . "?language_id=" . $lang_id, "get", "{}");
         $data = json_decode($franchisesPlanDetails);
         $html = '';
-        if(isset($data)){
-            foreach($data->data->prices_per_durations as $value){
+        if (isset($data)) {
+            foreach ($data->data->prices_per_durations as $value) {
                 // dd($value);
                 $html .= '<div class="prod_item">
                 <div class="action_opt action_opt_title">
@@ -149,7 +163,7 @@ class HomeController extends Controller
                 </div>
                 <div class="action_opt">
                     <div class="price_text">
-                        $'.$value->price_initial.' <span>/ '.$value->duration_unit_display.'</span>
+                        $' . $value->price_initial . ' <span>/ ' . $value->duration_unit_display . '</span>
                     </div>
                     <p>per user/month,billed annually</p>
                 </div>

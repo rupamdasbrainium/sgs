@@ -50,11 +50,11 @@
 									</div>
 								</div>
 								<ul class="navbar-nav mr-auto">
-									<li class="nav-item active">
-										<a class="nav-link" href="javascript:;">{{ __('header.memberships') }}</a>
+									<li class="nav-item {{ Request::is('CentreDemo') ? 'active' : '' }}">
+										<a class="nav-link" href="{{ route('homepage',['short_code'=>'CentreDemo']) }}">{{ __('header.memberships') }}</a>
 									</li>
-									<li class="nav-item">
-										<a class="nav-link" href="javascript:;">{{ __('header.gym') }}</a>
+									<li class="nav-item {{ Request::is('CentreDemo#findGym') ? 'active' : '' }}">
+										<a class="nav-link" href="{{ url('/CentreDemo#findGym')}}">{{ __('header.gym') }}</a>
 									</li>
 									@if (Session::has('clientToken'))
 									<li class="nav-item">
@@ -62,7 +62,7 @@
 										{{-- <a class="nav-link" href="{{ route('logout') }}">{{ __('header.logout') }}</a> --}}
 									</li>
 									@else
-									<li class="nav-item">
+									<li class="nav-item {{ Request::is('login')? 'active':'' }}">
 										<a class="nav-link" href="{{ route('login') }}">{{ __('header.login') }}</a>
 									</li>
 									@endif

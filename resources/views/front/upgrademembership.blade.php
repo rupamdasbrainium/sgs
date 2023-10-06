@@ -14,7 +14,7 @@
                             <div class="memberships_opt ">
                                 <div class="memberships_nam radio">                                  
                                         <input type="radio" id="testnum{{$loop->iteration}}" name="radio-group" checked>
-                                        <label for="testnum{{$loop->iteration}}">{{ __('upgrademembership.Act1_Membership_davable') }} {{ $item->recurantCharge }} {{ __('upgrademembership.per_Month') }}
+                                        <label for="testnum{{$loop->iteration}}">{{ __('upgrademembership.Act1_Membership_davable') }} ${{ $item->recurantCharge }} {{ __('upgrademembership.per_Month') }}
                                         </label>
                                     
                                 </div>
