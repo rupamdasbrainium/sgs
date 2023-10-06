@@ -25,6 +25,15 @@ require __DIR__.'/auth.php';
 
 Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
+    if(session()->has('clientToken')){
+        if($locale=='en'){
+            $language_id=2;
+        }else{
+            $language_id=1;
+        }
+        APICall('Clients/language?language_id=' . $language_id, "put", "{}",'client_app');
+        session()->put('language_id',$language_id);
+    }
     session()->put('locale', $locale);
     return redirect()->back();
 });

@@ -1,3 +1,22 @@
+@php
+	$locale =  app()->currentLocale();
+	if(session()->has('locale')){
+		$locale = session()->get('locale');
+    }
+
+	if(Session::has('clientToken')){
+		if(Session::has('language_id')){
+			$language_id = Session::get('language_id');
+			if($language_id==2){
+				$locale = 'en';
+			}
+			else {
+				$locale = 'fr';
+			}
+		}
+	}
+	app()->setLocale($locale);
+@endphp
 <header class="header_outer">
 	<div class="container">
 		<div class="row">
@@ -52,12 +71,6 @@
 									<div class="cont_icon">
 										<img src="{{ asset('public/images/worldmap.svg') }}" alt="">
 									</div>
-									@php
-									$locale =  app()->currentLocale();
-										if(session()->has('locale')){
-											$locale = session()->get('locale');
-        								}
-									@endphp
 
 									<div class="cont_leng">
 										{{-- <a href="{{url('language/en')}}" class="active_leng">En</a>

@@ -37,5 +37,6 @@ return [
     'Payments' => 'Payments',
     'Paid' => 'Paid',
     'Unpaid' => 'Unpaid',
+    'My_Profile' => 'My Profile',
     
 ];

@@ -18,10 +18,10 @@ class AccountController extends Controller
     {
         $data = array();
 
-        $data['title'] = 'My Account';
+        $data['title'] = trans('title_message.My_Account');
         $client = APICall("Clients", 'get', "{}");
         if (!$client) {
-            return redirect()->route('login')->with('email', "Your login token has been expired");
+            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
         }
         $client = json_decode($client)->data;
 
@@ -77,10 +77,10 @@ class AccountController extends Controller
     public function changeLanguage()
     {
         $data = array();
-        $data['title'] = 'Change Language';
+        $data['title'] = trans('title_message.Change_Language');
         $client = APICall("Clients",'get',"{}");
         if(!$client){
-            return redirect()->route('login')->with('email', "Your login token has been expired");
+            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
 
         }
 
@@ -88,16 +88,17 @@ class AccountController extends Controller
         $language = APICall('Options/languages', "get", "{}");
         $data['language'] = json_decode($language);
 
-        return view('front.changelanguage', compact('data'));
+        return view('front.changelanguage', compact('data','client'));
     }
 
     public function mylanguagechange(Request $request)
     {
+        // dd('hi');
         $data = array();
-        $data['title'] = 'Change Language';
+        $data['title'] = trans('title_message.Change_Language');
         $client = APICall("Clients",'get',"{}");
         if(!$client){
-            return redirect()->route('login')->with('email', "Your login token has been expired");
+            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
 
         }
 
@@ -105,13 +106,21 @@ class AccountController extends Controller
         $language_id = (int)$request->display;
         // $carddata['iso_code'] = $request->type_id;
         // $carddata['display'] = $request->type_id;
-
-        $language = APICall('Clients/language?language_id=' . $language_id, "put", "{}");
+        
+        $language = APICall('Clients/language?language_id=' . $language_id, "put", "{}",'client_app');
         $data['language'] = json_decode($language);
-
+        Session::put('language_id',$language_id);
+        
+        if($language_id==2){
+            $locale = 'en';
+        }else{
+            $locale = 'fr';
+        }
+        // dd($language_id,$data,$locale);
+        app()->setLocale($locale);
 
         $response = array(
-            'message' => 'Language Changed succesfully',
+            'message' => trans('title_message.Language_Changed_succesfully'),
         );
 
         return redirect(route("changeLanguage"))->with($response);
@@ -122,10 +131,17 @@ class AccountController extends Controller
     {
         try {
             //code...
+            
             $language_id = (int)$request->language_id;
 
-            APICall('Clients/language?language_id=' . $language_id, "put", "{}");
+            APICall('Clients/language?language_id=' . $language_id, "put", "{}",'client_app');
             Session::put('language_id',$language_id);
+            if($language_id==2){
+                $locale = 'en';
+            }else{
+                $locale = 'fr';
+            }
+            app()->setLocale($locale);
             return redirect()->back();
         } catch (\Throwable $th) {
             //throw $th;
@@ -138,7 +154,7 @@ class AccountController extends Controller
         $data['title'] = 'Change Password';
         $client = APICall("Clients",'get',"{}");
         if(!$client){
-            return redirect()->route('login')->with('email', "Your login token has been expired");
+            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
 
         }
 
@@ -172,11 +188,11 @@ class AccountController extends Controller
             );
             return redirect()->back()->with($response)->withInput();
         } else {
-            return redirect()->back()->with('error', 'password not change');
+            return redirect()->back()->with('error', trans('title_message.Password_not_change'));
         }
 
         $response = array(
-            'message' => 'password Changed succesfully',
+            'message' => trans('title_message.Password_Changed_succesfully'),
         );
         return redirect()->back()->with($response);
     }
@@ -184,10 +200,12 @@ class AccountController extends Controller
     public function myProfile()
     {
         $data = array();
-        $data['title'] = 'My Profile';
+        // trans('messages.welcome')
+        // $data['title'] = 'My Profile';
+        $data['title'] = trans('myProfile.My_Profile');
         $client = APICall("Clients", 'get', "{}");
         if (!$client) {
-            return redirect()->route('login')->with('email', "Your login token has been expired");
+            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
         }
 
         $client = json_decode($client)->data;
@@ -234,16 +252,16 @@ class AccountController extends Controller
     public function myContactInformation()
     {
         $data = array();
-        $data['title'] = 'My Contact Information';
+        $data['title'] = trans('title_message.My_Contact_Information');
         $client = APICall("Clients", "get", "{}");
         if ($client == "unauthorised") {
-            return redirect()->route('login')->with('user', "Your login token has been expired");
+            return redirect()->route('login')->with('user', trans('title_message.login_token_expired'));
         }
 
         $client = json_decode($client)->data;
         $province = APICall('Options/ProvincesAndStates', "get", "{}");
         if ($province == "unauthorised") {
-            return redirect()->route('login')->with('user', "Your login token has been expired");
+            return redirect()->route('login')->with('user', trans('title_message.login_token_expired'));
         }
         $province = json_decode($province);
         // dd($client);
@@ -413,7 +431,7 @@ class AccountController extends Controller
         $data['title'] = trans('newMembership.memberships');
         $client = APICall("Clients",'get',"{}");
         if(!$client){
-            return redirect()->route('login')->with('email', "Your login token has been expired");
+            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
 
         }
 
@@ -442,7 +460,7 @@ class AccountController extends Controller
         $data['title'] = trans('newMembership.memberships').' '.trans('newMembership.option');
         $client = APICall("Clients",'get',"{}");
         if(!$client){
-            return redirect()->route('login')->with('email', "Your login token has been expired");
+            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
 
         }
 
@@ -489,7 +507,7 @@ class AccountController extends Controller
         $data['title'] = trans('paymentForm.payments');
         $client = APICall("Clients",'get',"{}");
         if(!$client){
-            return redirect()->route('login')->with('email', "Your login token has been expired");
+            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
 
         }
 
@@ -619,7 +637,7 @@ class AccountController extends Controller
         $data['title'] = 'Upgrade Membership';
         $client = APICall("Clients", 'get', "{}");
         if (!$client) {
-            return redirect()->route('login')->with('email', "Your login token has been expired");
+            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
         }
         $client = json_decode($client)->data;
         $lang_id = getLocale();
@@ -706,7 +724,7 @@ class AccountController extends Controller
         $data['title'] = 'My Referral Code';
         $client = APICall("Clients", 'get', "{}");
         if (!$client) {
-            return redirect()->route('login')->with('email', "Your login token has been expired");
+            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
         }
         $client = json_decode($client)->data;
         $referral = APICall('Clients', "get", "{}", 'client_app');
@@ -721,7 +739,7 @@ class AccountController extends Controller
         $data['title'] = 'My Credit Card/Bank Account';
         $client = APICall("Clients",'get',"{}");
         if(!$client){
-            return redirect()->route('login')->with('email', "Your login token has been expired");
+            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
 
         }
 
@@ -753,7 +771,7 @@ class AccountController extends Controller
     $data['title'] = 'Modify Bank Account';
     $client = APICall("Clients",'get',"{}");
         if(!$client){
-            return redirect()->route('login')->with('email', "Your login token has been expired");
+            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
 
         }
         $client = json_decode($client)->data;
