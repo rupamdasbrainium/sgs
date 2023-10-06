@@ -182,18 +182,18 @@ class AccountController extends Controller
 
         if ($data->error != null) {
             $response = array(
-                'message' => 'wrong input',
+                'message' => trans('title_message.Password_not_change'),
                 'message_type' => 'danger'
             );
-            return redirect()->back()->with($response)->withInput();
+            return redirect()->back()->with($response);
         } else {
-            return redirect()->back()->with('error', trans('title_message.Password_not_change'));
+            $response = array(
+                'message' => trans('title_message.Password_Changed_succesfully'),
+            );
+            return redirect()->back()->with($response);
         }
 
-        $response = array(
-            'message' => trans('title_message.Password_Changed_succesfully'),
-        );
-        return redirect()->back()->with($response);
+        
     }
 
     public function myProfile()
