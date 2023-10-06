@@ -158,9 +158,7 @@ class AccountController extends Controller
 
         $membership = APICall('Memberships/client?display_language_id=' . $client->language_id, "get", "{}");
         $membership = json_decode($membership);
-        if (!$membership->error && $membership->data) {
-            $membership = $membership;
-        } else {
+        if ($membership->error != null && $membership->data == null) {
             $membership = "";
         }
         // dd($membership);
