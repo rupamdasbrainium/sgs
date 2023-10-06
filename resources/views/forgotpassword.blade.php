@@ -11,10 +11,6 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
-							<!-- <div class="banner_info">
-														<h1>Elevate Your <span>Fitness,</span></h1>
-														<h2>Ignite Your Potential!</h2>
-							</div> -->
 						</div>
 					</div>
 				</div>
@@ -37,8 +33,8 @@
 						<div class="heading_info sublogo ">
 							<img  src="{{ asset('public/images/logo.svg') }}" alt="">
 						</div>
-						<h2>Forgot Your Password</h2>
-						<p>Fear not. We'll email you instructions to reset your password. If you don't have access to you: email anymore. you can try <a href="#">account recovery.</a> </p>
+						<h2>{{ __('forgetpassword.Forgot_Your_Password') }}</h2>
+						<p>{{ __('forgetpassword.Fear_not') }}<a href="#">{{ __('forgetpassword.account_recovery') }}</a> </p>
 					</div>
 					<div class="fromdes_info">
 						<form method="POST" action="{{ route('password.email') }}">
@@ -46,7 +42,7 @@
 							<div class="from_cont_wrap">
 								<div class="inp_row rowopt2">
 									<div class="form-group">
-										<label for="email">Email</label>
+										<label for="email">{{ __('forgetpassword.Email') }}</label>
 										<div class="rowopt2_wrap1">
 											<div class="inp_cont_view">
 												<div class="icon_opt">
@@ -70,19 +66,19 @@
 														</div>
 													</div>
 													<div class="inp_cont_view cap_inp_block">
-														<input class="form-control inpopt2" type="text" name="captcha" placeholder="Enter the text in the image" id="capcha_codeview" required>
+														<input class="form-control inpopt2" type="text" name="captcha" placeholder="{{ __('forgetpassword.Enter_the_text') }}" id="capcha_codeview" required>
 														@if ($errors->has('captcha'))
-														<div class="text-danger mt-3">Enter valid captcha</div>
+														<div class="text-danger mt-3">{{ __('forgetpassword.captcha') }}</div>
 														@endif
 													</div>
 												</div>
 											</div>
 											
 											<div class="def_btnopt2 frombtn">
-												<button type="submit" class="btn2" >Reset Password</button>
+												<button type="submit" class="btn2" >{{ __('forgetpassword.Reset_Password') }}</button>
 											</div>
 											<div class="forgot_opt text-center mt-3">
-												<a href="{{ route('login') }}">Login</a>
+												<a href="{{ route('login') }}">{{ __('forgetpassword.Login') }}</a>
 											</div>
 										</div>
 									</div>

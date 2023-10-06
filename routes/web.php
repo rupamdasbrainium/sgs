@@ -87,7 +87,7 @@ Route::group(['middleware' => 'verifyToken'], function () {
     Route::post("pay-outstanding-balance", "AccountController@payOutstandingPayment")->name('payMyOutstandingBalance.post');
     Route::get('new-membership', 'AccountController@newMembership')->name('newMembership');
     Route::get('upgrade-membership', 'AccountController@upgradeMembership')->name('upgradeMembership');
-    Route::post('upgrademembershipsubmit', 'AccountController@upgrademembershipsubmit')->name('upgrademembershipsubmit');
+    Route::post('upgragemembershipsubmit', 'AccountController@upgragemembershipsubmit')->name('upgragemembershipsubmit');
 
     Route::get('referral-code', 'AccountController@referralCode')->name('referralCode');
     Route::get('new-membership', 'AccountController@newMembership')->name('newMembership');

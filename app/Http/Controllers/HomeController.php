@@ -16,7 +16,7 @@ class HomeController extends Controller
         $lang_id = getLocale();
         // $short_code = 'CentreDemo';
         $data = array();
-        $data['title'] = 'Home';
+        $data['title'] = trans('title_message.Home');
         //franchise call
         $franchises = APICall("Franchises", "get", "{}");
         $data['franchises'] = json_decode($franchises);
@@ -32,8 +32,8 @@ class HomeController extends Controller
             }
         }
         $response = array(
-            'message' => 'Input path is wrong',
-        );
+            'message' => trans('title_message.Input_path_wrong'),
+          );
 
         if (!$franchise_id) {
             return redirect(route('login'))->with($response);
@@ -79,14 +79,14 @@ class HomeController extends Controller
     public function login()
     {
         $data = array();
-        $data['title'] = 'Login';
+        $data['title'] = trans('title_message.Login');
         return view('login', compact('data'));
     }
 
     public function forgotPassword()
     {
         $data = array();
-        $data['title'] = 'Forgot Password';
+        $data['title'] = trans('title_message.Forgot_Password');
         return view('forgotpassword', compact('data'));
     }
 
@@ -98,13 +98,13 @@ class HomeController extends Controller
     public function termsAndCondition()
     {
         $data = array();
-        $data['title'] = 'Terms and Condition';
+        $data['title'] = trans('title_message.Terms_Condition');
         return view('front.termsAndCondition', compact('data'));
     }
     public function privacyPolicy()
     {
         $data = array();
-        $data['title'] = 'Privacy Policy';
+        $data['title'] = trans('title_message.Privacy_Policy');
         return view('front.privacyPolicy', compact('data'));
     }
     public function law25()
@@ -136,9 +136,8 @@ class HomeController extends Controller
         $franchisesPlanDetails = APICall("SubscriptionPlans/type/" . $id . "?language_id=" . $lang_id, "get", "{}");
         $data = json_decode($franchisesPlanDetails);
         $html = '';
-        if (isset($data)) {
-            foreach ($data->data->prices_per_durations as $value) {
-                // dd($value);
+        if(isset($data)){
+            foreach($data->data->prices_per_durations as $value){
                 $html .= '<div class="prod_item">
                 <div class="action_opt action_opt_title">
 
@@ -174,7 +173,7 @@ class HomeController extends Controller
                     <div class="individual_des">
                         <ul>
                             <li><span><i class="far fa-check"></i></span>Monthly limit of 500 users</li>
-                            <li><span><i class="far fa-check"></i></span>Monthly limit of 1500 orders</li>
+                            <li><span><i class="far fa-check"></i></span>Monthly limit of 1500 orders</li>s
                             <li><span><i class="far fa-check"></i></span>Basic Financial Tools</li>
                             <li><span><i class="fal fa-times"></i></span>Email Support</li>
                             <li><span><i class="fal fa-times"></i></span>Email Support</li>

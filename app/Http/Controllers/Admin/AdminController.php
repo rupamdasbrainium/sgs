@@ -27,7 +27,7 @@ class AdminController extends Controller
         if (count($result) > 0) {
             $data['data'] = getConfigurationValue($result);
         }
-        $data['title'] = 'Admin Configuration';
+        $data['title'] = trans('title_message.Admin_Configuration');
         return view('admin.configuration', compact('data'));
     }
 
@@ -52,7 +52,7 @@ class AdminController extends Controller
         }
 
         $response = array(
-            'message' => 'Configuration successfully updated',
+            'message' => trans('title_message.Configuration_successfully_updated'),
             'message_type' => 'success'
         );
         return redirect()->back()->with($response);
@@ -65,26 +65,24 @@ class AdminController extends Controller
         $data['id'] = $id;
         $data['data'] = [ 'title' => '', 'body' => '', 'slug' => '', 'status' => '' ];
         
-        $data['title'] = 'Admin CMS';
+        $data['title'] = trans('title_message.Admin_CMS');
         if (!empty($id)) {
             $result = Content::where('deleted', 0)->where('id', $id)->first();
             if (empty($result)) {
                 $response = array(
-                    'message' => 'Content not found',
+                    'message' => trans('title_message.Content_not_found'),
                     'message_type' => 'danger'
                 );
                 return redirect()->action('Admin\AdminController@cmslistView')->with($response);
             }
             $data['data'] = $result;
-            $data['title'] = 'CMS Edit';
-            $data['form_caption'] = 'Edit Form';
+            $data['title'] = trans('title_message.Content_not_found');
+            $data['form_caption'] = trans('title_message.Edit_Form');
             return view('admin.cmsadd', compact('data'));
         } else {
             return view('admin.cmsadd', compact('data'));
         }
             
-        
-        // return view('admin.cmsadd', compact('data'));
     }
 
     public function cmsViewPost(Request $request, $id = ''){
@@ -104,12 +102,12 @@ class AdminController extends Controller
                 $row_data->status = $request['status'];
                 $row_data->save();
                 $response = array(
-                    'message' => 'CMS successfully updated',
+                    'message' => trans('title_message.CMS_successfully_updated'),
                     'message_type' => 'success'
                 );
             } else {
                 $response = array(
-                    'message' => 'CMS unable updated',
+                    'message' => trans('title_message.CMS_unable_updated'),
                     'message_type' => 'danger'
                 );
             }
@@ -120,9 +118,6 @@ class AdminController extends Controller
                 'slug' => 'required',
                 'status' => 'required',
             ]);
-
-            // $user = Auth::user();
-            //$admin_user = new AdminUser();
             $row_data = new Content();
             $row_data->title = $request['title'];
             $row_data->body = $request['body'];
@@ -131,7 +126,7 @@ class AdminController extends Controller
             $row_data->admin_user_id = Auth::guard('admin')->user()->id;
             $row_data->save();
             $response = array(
-                'message' => 'CMS successfully added',
+                'message' => trans('title_message.CMS_successfully_added'),
                 'message_type' => 'success'
             );
         }
@@ -147,8 +142,8 @@ class AdminController extends Controller
         $data['data'] = $result;
         $data['user'] = $user;
         // $data['id'] = $id;
-        $data['title'] = 'Content Management';
-        $data['form_caption'] = 'Content Management';
+        $data['title'] = trans('title_message.Content_Management');
+        $data['form_caption'] = trans('title_message.Content_Management');
         return view('admin.cmslistView', compact('data'));
     }
 
@@ -172,15 +167,12 @@ class AdminController extends Controller
             }
         }
         $data['user'] = $user;
-        $data['title'] = 'Admin Settings';
+        $data['title'] = trans('title_message.Admin_Settings');
         return view('admin.settings', compact('data'));
     }
 
     public function settingsStore (Request $request) {
         $user = Auth::guard('admin')->user();
-        /*$request->validate([
-            'identifier' => 'required',
-        ]);*/
 
         $input_data = $request->all();
         unset($input_data['_token']);
@@ -237,7 +229,7 @@ class AdminController extends Controller
         }
 
         $response = array(
-            'message' => 'Settings successfully updated',
+            'message' => trans('title_message.Settings_successfully_updated'),
             'message_type' => 'success'
         );
         return redirect()->back()->with($response);
@@ -249,8 +241,8 @@ class AdminController extends Controller
         $data['data'] = '';
         $data['user'] = $user;
         // $data['id'] = $id;
-        $data['title'] = 'Admin Account';
-        $data['form_caption'] = 'Account Information';
+        $data['title'] = trans('title_message.Admin_Account');
+        $data['form_caption'] = trans('title_message.Account_Information');
         return view('admin.account', compact('data'));
     }
 
@@ -260,8 +252,8 @@ class AdminController extends Controller
         $data['data'] = '';
         $data['user'] = $user;
         // $data['id'] = $id;
-        $data['title'] = 'Admin Password';
-        $data['form_caption'] = 'Change Password';
+        $data['title'] = trans('title_message.Admin_Password');
+        $data['form_caption'] = trans('title_message.Change_Password');
         return view('admin.password', compact('data'));
     }
 
@@ -279,7 +271,7 @@ class AdminController extends Controller
         $row_data->filename = $filename;
         $row_data->save();
         $response = array(
-            'message' => 'Account successfully updated',
+            'message' => trans('title_message.Account_successfully_updated'),
             'message_type' => 'success'
         );
         return redirect()->back()->with($response);
@@ -297,13 +289,13 @@ class AdminController extends Controller
             $row_data->password = Hash::make($request['password']);
             $row_data->save();
             $response = array(
-                'message' => 'Account password successfully updated',
+                'message' => trans('title_message.Account_password_successfully_updated'),
                 'message_type' => 'success'
             );
             return redirect()->back()->with($response);
         } else {
             $response = array(
-                'message' => 'Old password does not match',
+                'message' => trans('title_message.Old_password_does_not_match'),
                 'message_type' => 'danger'
             );
             return redirect()->back()->with($response);
@@ -313,13 +305,11 @@ class AdminController extends Controller
     public function cmsList () {
         $user = Auth::guard('admin')->user();
         $result = Content::where('deleted', 0)->get();
-        // $result = array();
         $data = array();
         $data['data'] = $result;
         $data['user'] = $user;
-        // $data['id'] = $id;
-        $data['title'] = 'Content Management';
-        $data['form_caption'] = 'Content Management';
+        $data['title'] = trans('title_message.Content_Management');
+        $data['form_caption'] = trans('title_message.Content_Management');
         return view('admin.cmslist', compact('data'));
     }
 
@@ -329,13 +319,13 @@ class AdminController extends Controller
         $data['data'] = '';
         $data['user'] = $user;
         $data['id'] = $id;
-        $data['title'] = 'CMS Add';
-        $data['form_caption'] = 'Add Form';
+        $data['title'] = trans('title_message.CMS_Add');
+        $data['form_caption'] = trans('title_message.Add_Form');
         if (!empty($id)) {
             $result = Content::where('deleted', 0)->where('id', $id)->first();
             if (empty($result)) {
                 $response = array(
-                    'message' => 'Content not found',
+                    'message' => trans('title_message.Content_not_found'),
                     'message_type' => 'danger'
                 );
                 return redirect()->action('Admin\AdminController@cmslist')->with($response);
@@ -366,12 +356,12 @@ class AdminController extends Controller
                 $row_data->status = $request['status'];
                 $row_data->save();
                 $response = array(
-                    'message' => 'CMS successfully updated',
+                    'message' => trans('title_message.CMS_successfully_updated'),
                     'message_type' => 'success'
                 );
             } else {
                 $response = array(
-                    'message' => 'CMS unable updated',
+                    'message' => trans('title_message.CMS_unable_updated'),
                     'message_type' => 'danger'
                 );
             }
@@ -390,7 +380,7 @@ class AdminController extends Controller
             $row_data->status = $request['status'];
             $row_data->save();
             $response = array(
-                'message' => 'CMS successfully added',
+                'message' => trans('title_message.CMS_successfully_added'),
                 'message_type' => 'success'
             );
         }
@@ -403,23 +393,21 @@ class AdminController extends Controller
             $row_data = Content::where('deleted', 0)->where('id', $id)->delete();
             if ($row_data) {
                 $response = array(
-                    'message' => 'CMS successfully deleted',
+                    'message' => trans('title_message.CMS_deleted'),
                     'message_type' => 'success'
                 );
             } else {
                 $response = array(
-                    'message' => 'CMS unable to delete',
+                    'message' => trans('title_message.CMS_unable_to_delete'),
                     'message_type' => 'danger'
                 );
             }
         } else {
             $response = array(
-                'message' => 'CMS unable to delete',
+                'message' => trans('title_message.CMS_unable_to_delete'),
                 'message_type' => 'danger'
             );
         }
-
-        // return redirect()->action('Admin\AdminController@cmslist')->with($response);
         return redirect()->action('Admin\AdminController@cmslistView')->with($response);
     }
 
@@ -430,14 +418,13 @@ class AdminController extends Controller
         $data['data'] = $result;
         $data['user'] = $user;
         $data['add_user'] = false;
-        // $data['id'] = $id;
         if ($type == 'seller') {
-            $data['title'] = 'Sellers List';
+            $data['title'] = trans('title_message.Sellers_List');
             $data['add_user'] = true;
         } else {
-            $data['title'] = 'Buyers List';
+            $data['title'] = trans('title_message.Buyers_List');
         }
-        $data['form_caption'] = 'Edit Form';
+        $data['form_caption'] = trans('title_message.Edit_Form');
         return view('admin.userlist', compact('data'));
     }
 
@@ -450,15 +437,15 @@ class AdminController extends Controller
         $result = User::where('id', $id)->first();
         if (empty($result)) {
             $response = array(
-                'message' => 'User not found',
+                'message' => trans('title_message.User_not_found'),
                 'message_type' => 'danger'
             );
             $ref = basename($_SERVER['HTTP_REFERER']);
             return redirect()->action('Admin\AdminController@userlist', $ref)->with($response);
         }
         $data['data'] = $result;
-        $data['title'] = 'User Edit';
-        $data['form_caption'] = 'Edit Form';
+        $data['title'] = trans('title_message.User_Edit');
+        $data['form_caption'] = trans('title_message.Edit_Form');
         return view('admin.useredit', compact('data'));
     }
 
@@ -473,10 +460,9 @@ class AdminController extends Controller
         $row_data->name = $request['name'];
         $row_data->email = $request['email'];
         $row_data->status = $request['status'];
-        // $row_data->filename = $filename;
         $row_data->save();
         $response = array(
-            'message' => 'User successfully updated',
+            'message' => trans('title_message.User_successfully_updated'),
             'message_type' => 'success'
         );
         return redirect()->action('Admin\AdminController@userlist', $row_data->type)->with($response);
@@ -491,15 +477,15 @@ class AdminController extends Controller
         $result = User::where('id', $id)->first();
         if (empty($result)) {
             $response = array(
-                'message' => 'User not found',
+                'message' => trans('title_message.User_not_found'),
                 'message_type' => 'danger'
             );
             $ref = basename($_SERVER['HTTP_REFERER']);
             return redirect()->action('Admin\AdminController@userlist', $ref)->with($response);
         }
         $data['data'] = $result;
-        $data['title'] = 'User View';
-        $data['form_caption'] = 'Edit View';
+        $data['title'] = trans('title_message.User_View');
+        $data['form_caption'] = trans('title_message.Edit_View');
         return view('admin.userview', compact('data'));
     }
 

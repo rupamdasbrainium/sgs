@@ -328,9 +328,9 @@ class AccountController extends Controller
 
             $response = json_decode($response);
             if (!$response->error) {
-                return redirect()->route('myContactInformation')->with('success', "Contact information updated successfully");
+                return redirect()->route('myContactInformation')->with('success', trans('title_message.Contact_information_updated_successfully'));
             } else {
-                return redirect()->route('myContactInformation')->with('failed', "Contact information updated failed");
+                return redirect()->route('myContactInformation')->with('failed', trans('title_message.Contact_information_updated_failed'));
             }
         } catch (\Throwable $th) {
 
@@ -343,10 +343,10 @@ class AccountController extends Controller
     public function payMyOutstandingBalance()
     {
         $data = array();
-        $data['title'] = 'Pay My Outstanding Balance';
+        $data['title'] = trans('title_message.Pay_My_Outstanding_Balance');
         $response =  APICall('Payments/schedualed/client', "get", "{}");
         if ($response == "") {
-            return redirect()->route('login')->withErrors(["user" => "Session Expired. Please login again"]);
+            return redirect()->route('login')->withErrors(["user" => trans('title_message.Session_Expired')]);
         }
         $payments = json_decode($response);
         if ($payments->error == null) {
@@ -401,7 +401,7 @@ class AccountController extends Controller
                 $response = APICall($url, "post", $paymentIds, "client_app");
                 $response = json_decode($response);
                 if ($response->error == null) {
-                    return redirect()->route('payMyOutstandingBalance')->with("success", "Payment Successfull");
+                    return redirect()->route('payMyOutstandingBalance')->with("success", trans('title_message.Payment_Successfull'));
                 } else {
                     return redirect()->route('payMyOutstandingBalance')->with("error", $response->error->message);
                 }
@@ -603,7 +603,7 @@ class AccountController extends Controller
             }
             $membershipcarddata['code_promo'] = $request->code_promo;
             $membershipcarddata['processed_amount'] = $request->processed_amount;
-            $membershipcarddata['card_id'] = $request->old_card; //request card -id
+            $membershipcarddata['card_id'] = $request->old_card;
 
             $membership_with_credit_card = APICall('Memberships/with-credit-card?display_language_id=' . $lang_id, "post", json_encode($membershipcarddata), "client_app");
             $data['membership_with_credit_card'] = json_decode($membership_with_credit_card);
@@ -625,15 +625,15 @@ class AccountController extends Controller
     public function upgradeMembership()
     {
         $data = array();
-        $data['title'] = 'Upgrade Membership';
-        $client = APICall("Clients", 'get', "{}");
+        $data['title'] = trans('title_message.Upgrade_Membership');
+        $client = APICall("Clients", 'get', "{}", "client_app");
         if (!$client) {
             return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
         }
         $client = json_decode($client)->data;
         $lang_id = getLocale();
         $data['title'] = trans('newMembership.memberships') . ' ' . trans('newMembership.option');
-        $membership = APICall('Memberships/client?display_language_id=' . $client->language_id, "get", "{}");
+        $membership = APICall('Memberships/client?display_language_id=' . $client->language_id, "get", "{}","client_app");
         $data['membership'] = json_decode($membership);
 
         $franchise_id = 3;
@@ -712,7 +712,7 @@ class AccountController extends Controller
     public function referralCode()
     {
         $data = array();
-        $data['title'] = 'My Referral Code';
+        $data['title'] = trans('title_message.Referral_Code');
         $client = APICall("Clients", 'get', "{}");
         if (!$client) {
             return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
@@ -727,9 +727,9 @@ class AccountController extends Controller
     public function myBankCards()
     {
         $data = array();
-        $data['title'] = 'My Credit Card/Bank Account';
-        $client = APICall("Clients", 'get', "{}");
-        if (!$client) {
+        $data['title'] = trans('title_message.Credit_Card_Bank_Account');
+        $client = APICall("Clients",'get',"{}");
+        if(!$client){
             return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
         }
 
@@ -756,11 +756,11 @@ class AccountController extends Controller
     }
 
     public function modifyBanks($id)
-    {
-        $data = array();
-        $data['title'] = 'Modify Bank Account';
-        $client = APICall("Clients", 'get', "{}");
-        if (!$client) {
+{
+    $data = array();
+    $data['title'] = trans('title_message.Modify_Bank_Account');
+    $client = APICall("Clients",'get',"{}");
+        if(!$client){
             return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
         }
         $client = json_decode($client)->data;
@@ -792,19 +792,19 @@ class AccountController extends Controller
         if (Session::has('franchise_id')) {
             $carddata['franchise_id'] = Session::get('franchise_id');
 
-            $response = APICall("PaymentMethods/account", "put", json_encode($formdata), 'client_app');
-            $response = json_decode($response);
-        }
-        $response = array(
-            'message' => 'Bank updated succesfully',
-        );
+    $response = APICall("PaymentMethods/account", "put", json_encode($formdata), 'client_app');
+    $response = json_decode($response);
+    }
+    $response = array(
+        'message' => trans('title_message.Bank_updated_succesfully'),
+      );
 
         return redirect(route('myBankCards'))->with($response);
     }
     public function modifyCards($id)
     {
         $data = array();
-        $data['title'] = 'Modify Card Account';
+        $data['title'] = trans('title_message.Modify_Card_Account');
         $pay_methods_accc = APICall('PaymentMethods/Cards', "get", "{}", 'client_app');
         $data['pay_methods_accc'] = json_decode($pay_methods_accc);
 
@@ -836,7 +836,7 @@ class AccountController extends Controller
         $response = json_decode($response);
 
         $response = array(
-            'message' => 'Card modified succesfully',
+            'message' => trans('title_message.Card_modified_succesfully'),
         );
 
         return redirect(route('myBankCards'))->with($response);
@@ -856,8 +856,47 @@ class AccountController extends Controller
             return redirect()->back()->with($response)->withInput();
         }
         $response = array(
-            'message' => 'membership renewed succesfully',
-        );
-        return redirect(route("account"))->with($response);
+            'message' => trans('title_message.membership_renewed_succesfully'),
+          );
+        return redirect(route("account"))->with($response);    
+    }
+
+    public function upgragemembershipsubmit(Request $request){
+
+        $lang_id = Session::get('language_id');
+
+        $formdata = array();      
+        $formdata['date_begin'] = $request->date_begin;
+        $formdata['card_id'] = $request->card_id;
+     
+        $formdata['processed_amount'] = $request->processed_amount;
+
+        if (Session::has('installments_id')) {
+            Session::forget('installments_id');
+        }
+        if (Session::has('duration_id')) {
+            Session::forget('duration_id');
+        }   
+        $duration_installments_arr = explode("|", $request->installments);
+        $formdata['installment_id'] = $duration_installments_arr[1];
+        $formdata['duration_id'] = $duration_installments_arr[0];
+        $formdata['subscription_plan_id'] = $request->typeId;
+        $formdata['franchise_id'] = Session::get('franchise_id');
+// dd($formdata);
+        $membership_with_credit_card = APICall('Memberships/with-credit-card?display_language_id='.$lang_id, "post", json_encode($formdata), "client_app");
+        $data['membership_with_credit_card'] = json_decode($membership_with_credit_card);
+
+        if(  $data['membership_with_credit_card'] ->error!=null){
+            $response = array(
+                      'message' => $data['membership_with_credit_card'] ->error->message,
+                      'message_type' => 'danger'
+                    );
+                    return redirect()->back()->with($response)->withInput();
+        }
+        $response = array(
+            'message' => 'membership upgraded succesfully',
+          );
+        return redirect(route("account"))->with($response); 
+
     }
 }
