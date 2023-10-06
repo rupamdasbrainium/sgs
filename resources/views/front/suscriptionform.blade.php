@@ -337,5 +337,10 @@
 				$('#datepicker').datepicker();
 			});
 		</script>
+<script>
+	var string = ;
+var phone = [string.slice(0, 3), " ", string.slice(3,7), " ", string.slice(7)].join('');
+</script>
+
 	@endpush
 	</x-guest-layout>

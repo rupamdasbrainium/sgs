@@ -37,6 +37,14 @@ class HomeController extends Controller
         if(!$franchise_id){
             return redirect(route('login'))->with($response);
         }
+
+        // foreach($data['franchises']->data as $franchise){
+        //     //   if($franchise->id == $short_code){
+        //         if($franchise->name == $franchise_id){//actual
+        //         $franchise_id = $franchise->id;
+        //         break;
+        //       }
+
         // if (Session::has('franchise_id')) {
         //     Session::forget('franchise_id');
         // }

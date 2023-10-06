@@ -136,7 +136,6 @@
                                                                     {{ $cardtype->name }}</option>
                                                             @endforeach
                                                         </select>
-
                                                     </div><br>
                                                     <div class="inp_row">
                                                         <div class="form-group">
@@ -153,7 +152,7 @@
                                                             <label>{{ __('paymentForm.PAN') }} <em
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="number" name="pan"
+                                                                <input type="text" name="pan" 
                                                                     class="form-control" placeholder="">
                                                             </div>
                                                         </div>
@@ -164,7 +163,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt" id="incdec">
 
-                                                                <input type="number" name="four_digits_number"
+                                                                <input type="text" name="four_digits_number"
                                                                     class="form-control" placeholder=""
                                                                     value="">
                                                                 
@@ -176,7 +175,7 @@
                                                         <div class="form-group">
                                                             <label>{{ __('paymentForm.Expiry_Month') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="number" name="expiry_month"
+                                                                <input type="number" name="expiry_month" min="0" max="12"
                                                                     class="form-control" placeholder="">
                                                             </div>
                                                         </div>
@@ -185,24 +184,13 @@
                                                         <div class="form-group">
                                                             <label>{{ __('paymentForm.Expiry_Year') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="number" name="expiry_year"
+                                                                <input type="number" name="expiry_year" max="9999" min="2023"
                                                                     class="form-control" placeholder="">
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="inp_row">
-                                                        <div class="form-group">
-                                                            <label>{{ __('paymentForm.CVV') }}<em class="req_text">*</em></label>
-                                                            <div class="inp_cont_view noicon_opt">
-                                                                <input type="number" name="token"
-                                                                    class="form-control" placeholder="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
                                                 </div>
-                                            </div>
-                                      
+                                            </div>                                     
 
                                             <div class="frombtn_wrap">
                                                 <div class="def_btnopt2 frombtn">
@@ -280,8 +268,8 @@
                     alert("Branchcode must be at least 6 characters long.");
                     return false;
                 }
-                if (account_number.length != 16) {
-                    alert("Account number must be at least 16 characters long.");
+                if (account_number.length < 13) {
+                    alert("Account number must be at least 12 characters long.");
                     return false;
                 }
                 if (owner_names == "") {
@@ -302,24 +290,20 @@
                     alert("Name can't be blank");
                     return false;
                 }
-                if (pan.length != 16) {
-                    alert("Card number must be at least 16 characters long.");
-                    return false;
-                }
+                // if (pan.length > 13 && pan.length <= 16) {
+                //     alert("Pan must be between 14 to 16 characters long.");
+                //     return false;
+                // }
                 if (four_digits_number.length != 16) {
                     alert("Card number must be at least 16 characters long.");
                     return false;
                 }
-                if (expiry_month.length != 2) {
-                    alert("Expiry month must be at least 2 characters long.");
+                if (expiry_month.value <=12) {
+                    alert("Expiry month must not be greater than 2 characters.");
                     return false;
                 }
                 if (expiry_year.length != 4) {
                     alert("Expiry year must be at least 4 characters long.");
-                    return false;
-                }
-                if (token.length != 3) {
-                    alert("CVV must be at least 3 characters long.");
                     return false;
                 }
             }
