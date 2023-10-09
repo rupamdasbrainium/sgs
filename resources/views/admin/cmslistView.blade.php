@@ -61,7 +61,7 @@
                                                                                 <td>{{ $value->created_at->format('d-m-Y') }}</td>
                                                                                 <td>{{ ($value->status) ? 'Active' : 'Inactive' }}</td>
                                                                                 <td style="width:200px;">
-                                                                                    <a href="{{ route('admin.cmsView2', $value->id) }}" class="btn btn-primary fas fa-edit">Edit</a>
+                                                                                    <a href="{{ route('admin.editcms', $value->id) }}" class="btn btn-primary fas fa-edit">Edit</a>
                                                                                     <?php if (!$value->readable) { ?>
                                                                                     <a href="{{ route('admin.cmsdelete', $value->id) }}" onclick="return delChk()" class="btn btn-danger btn-del fa fa-trash">Delete</a>
                                                                                     <?php } ?>

@@ -221,7 +221,7 @@
 
                                                 <div class="summary_content">
 
-                                                    <div class="content_block paymentinfo">
+                                                    {{-- <div class="content_block paymentinfo">
                                                         <h2 class="head_opt">{{ __('paymentForm.payment_details') }}
                                                         </h2>
                                                         <div
@@ -319,7 +319,7 @@
                                                                 </tbody>
                                                             </table>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
 
                                                     <div class="content_block more_cont_view">
                                                         <h2>{{ __('paymentForm.method_of_payment') }}</h2>
@@ -373,7 +373,7 @@
 
                                                                     <input type="text" name="transit_number"
                                                                         class="form-control" placeholder=""
-                                                                        value="">
+                                                                        value="{{old('transit_number')}}">
                                                                     {{-- <i class="fas fa-sort-up" id="up"></i>
                                                                 <i class="fas fa-sort-down" id="down"></i> --}}
 
@@ -387,7 +387,7 @@
                                                                         class="req_text">*</em></label>
                                                                 <div class="inp_cont_view noicon_opt">
                                                                     <input type="text" name="institution"
-                                                                        class="form-control" placeholder="">
+                                                                        class="form-control" placeholder=""  value="{{old('institution')}}">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -397,7 +397,7 @@
                                                                         class="req_text">*</em></label>
                                                                 <div class="inp_cont_view noicon_opt">
                                                                     <input type="text" name="account_number"
-                                                                        class="form-control" placeholder="">
+                                                                        class="form-control" placeholder="" value="{{old('account_number')}}">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -408,7 +408,7 @@
                                                                         class="req_text">*</em></label>
                                                                 <div class="inp_cont_view noicon_opt">
                                                                     <input type="text" name="owner_names"
-                                                                        class="form-control" placeholder="bank">
+                                                                        class="form-control" placeholder="bank" value="{{old('owner_names')}}">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -434,7 +434,7 @@
                                                                         class="req_text">*</em></label>
                                                                 <div class="inp_cont_view noicon_opt">
                                                                     <input type="text" name="owner_name"
-                                                                        class="form-control" placeholder="">
+                                                                        class="form-control" placeholder="" value="{{old('owner_name')}}">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -444,7 +444,7 @@
                                                                         class="req_text">*</em></label>
                                                                 <div class="inp_cont_view noicon_opt">
                                                                     <input type="text" name="pan" 
-                                                                        class="form-control" placeholder="">
+                                                                        class="form-control" placeholder="" value="{{old('pan')}}">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -456,7 +456,7 @@
 
                                                                     <input type="number" name="four_digits_number"
                                                                         class="form-control" placeholder=""
-                                                                        value="">
+                                                                        value="{{old('four_digits_number')}}">
 
                                                                 </div>
                                                             </div>
@@ -468,7 +468,7 @@
                                                                         class="req_text">*</em></label>
                                                                 <div class="inp_cont_view noicon_opt">
                                                                     <input type="number" name="expiry_month" min="0" max="12"
-                                                                        class="form-control" placeholder="">
+                                                                        class="form-control" placeholder="" value="{{old('expiry_month')}}">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -478,7 +478,7 @@
                                                                         class="req_text">*</em></label>
                                                                 <div class="inp_cont_view noicon_opt">
                                                                     <input type="number" name="expiry_year" max="9999" min="2023"
-                                                                        class="form-control" placeholder="">
+                                                                        class="form-control" placeholder="" value="{{old('expiry_year')}}">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -604,7 +604,7 @@
                     return false;
                 }
                 // if (account_number.length != 12) {
-                //     alert("Account number must be at least 16 characters long.");
+                //     alert("Account number must be at least 12 characters long.");
                 //     return false;
                 // }
                 if (owner_names == "") {
@@ -624,7 +624,18 @@
                     alert(trans('paymentForm.Name_blank'));
                     return false;
                 }
-                
+                // if (pan.length >=14 && pan.length <=16 ) {
+                //     alert("Pan must be between 14 to 16 characters long.");
+                //     return false;
+                // }
+                if (four_digits_number.length != 4) {
+                    alert("Card number must be at least 4 characters long.");
+                    return false;
+                }
+                // if (expiry_month.value <=12) {
+                //     alert("Expiry month must not be greater than 2 characters.");
+                //     return false;
+                // }
                 if (expiry_year.length != 4) {
                     alert(trans('paymentForm.Expiry_year'));
                     return false;

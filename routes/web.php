@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\App;
 | contains the "web" middleware group. Now create something great!
 |
 */
-require __DIR__.'/auth.php';
+
+require __DIR__ . '/auth.php';
 
 /*Route::get('/', function () {
     return view('welcome');
@@ -25,14 +26,14 @@ require __DIR__.'/auth.php';
 
 Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
-    if(session()->has('clientToken')){
-        if($locale=='en'){
-            $language_id=2;
-        }else{
-            $language_id=1;
+    if (session()->has('clientToken')) {
+        if ($locale == 'en') {
+            $language_id = 2;
+        } else {
+            $language_id = 1;
         }
-        APICall('Clients/language?language_id=' . $language_id, "put", "{}",'client_app');
-        session()->put('language_id',$language_id);
+        APICall('Clients/language?language_id=' . $language_id, "put", "{}", 'client_app');
+        session()->put('language_id', $language_id);
     }
     session()->put('locale', $locale);
     return redirect()->back();
@@ -41,10 +42,11 @@ Route::get('language/{locale}', function ($locale) {
 // Route::get('/',[HomeController::class,'index'])->name('homepage');
 // Route::get('suscription-form', 'SuscriptionController@suscriptionform')->name('suscriptionform');
 // Route::get('payment', 'PaymentController@payment')->name('payment');
-Route::get('/planType/{id}',[HomeController::class,'planType']);
-Route::get('/planTypeDetails/{id}',[HomeController::class,'planTypeDetails']);
-Route::get('/terms-and-condition',[HomeController::class,'termsAndCondition'])->name('front.terms');
-Route::get('/privacy-policy',[HomeController::class,'privacyPolicy'])->name('front.privacy');
+Route::get('/planType/{id}', [HomeController::class, 'planType']);
+Route::get('/planTypeDetails/{id}', [HomeController::class, 'planTypeDetails']);
+Route::get('/terms-and-condition', [HomeController::class, 'termsAndCondition'])->name('front.terms');
+Route::get('/privacy-policy', [HomeController::class, 'privacyPolicy'])->name('front.privacy');
+Route::get("/law-25", [HomeController::class, 'law25'])->name('front.law25');
 Route::get('suscription-form/{id}', 'SuscriptionController@suscriptionform')->name('suscriptionform');
 Route::get('new-membership/{id}', 'SuscriptionController@new_membership')->name('newMembershipfont');
 Route::post('new-membership/{id}', 'SuscriptionController@new_membership_save')->name('newMembershipSave');
@@ -57,35 +59,35 @@ Route::post('paymentaddSave', 'PaymentController@paymentaddSave')->name('payment
 Route::middleware('guest')->group(function () {
     // Routes for CustomerController
     Route::get('login', 'HomeController@login')->name('login');
-    Route::post('login','Auth\AuthenticatedSessionController@store')->name('userLogin');
+    Route::post('login', 'Auth\AuthenticatedSessionController@store')->name('userLogin');
     Route::get('forgot-password', 'HomeController@forgotPassword')->name('forgotpassword');
     Route::get('logout', 'Auth\AuthenticatedSessionController@destroy')->name('userLogout');
 });
 
-Route::group(['middleware'=>'verifyToken'], function(){
+Route::group(['middleware' => 'verifyToken'], function () {
     // Route::get('/', 'HomeController@index')->name('homepage');
     Route::get('dashboard', 'HomeController@dashboard')->name('dashboard');
     Route::get('account', 'AccountController@account')->name('account');
     Route::get('change-language', 'AccountController@changeLanguage')->name('changeLanguage');
-    Route::post('languageUpdate',"AccountController@languageUpdate")->name('userLanguageUpdate');
-    Route::post('mylanguagechange',"AccountController@mylanguagechange")->name('mylanguagechange');
+    Route::post('languageUpdate', "AccountController@languageUpdate")->name('userLanguageUpdate');
+    Route::post('mylanguagechange', "AccountController@mylanguagechange")->name('mylanguagechange');
     Route::get('change-password', 'AccountController@changePassword')->name('changePassword');
 
     Route::post('changePasswordUser', 'AccountController@changePasswordUser')->name('changePasswordUser');
 
     Route::get('myprofile', 'AccountController@myProfile')->name('myProfile');
     Route::get('my-contact-information', 'AccountController@myContactInformation')->name('myContactInformation');
-    Route::post('my-contact-information',"AccountController@updateContactInformation")->name('user.update');
+    Route::post('my-contact-information', "AccountController@updateContactInformation")->name('user.update');
     Route::get('my-bank-cards', 'AccountController@myBankCards')->name('myBankCards');
     Route::get('modify-bank/{id}', 'AccountController@modifyBanks')->name('modifyBanks');
     Route::get('modify-Card/{id}', 'AccountController@modifyCards')->name('modifyCards');
     Route::post('bank-update', 'AccountController@modifyBanksUpdate')->name('modifyBanksUpdate');
     Route::post('card-update', 'AccountController@modifyCardsUpdate')->name('modifyCardsUpdate');
     Route::get('pay-outstanding-balance', 'AccountController@payMyOutstandingBalance')->name('payMyOutstandingBalance');
-    Route::post("pay-outstanding-balance", "AccountController@payOutstandinfPayment")->name('payMyOutstandingBalance.post');
+    Route::post("pay-outstanding-balance", "AccountController@payOutstandingPayment")->name('payMyOutstandingBalance.post');
     Route::get('new-membership', 'AccountController@newMembership')->name('newMembership');
     Route::get('upgrade-membership', 'AccountController@upgradeMembership')->name('upgradeMembership');
-    Route::post('upgrademembershipsubmit', 'AccountController@upgrademembershipsubmit')->name('upgrademembershipsubmit');
+    Route::post('upgragemembershipsubmit', 'AccountController@upgragemembershipsubmit')->name('upgragemembershipsubmit');
 
     Route::get('referral-code', 'AccountController@referralCode')->name('referralCode');
     Route::get('new-membership', 'AccountController@newMembership')->name('newMembership');
@@ -99,25 +101,28 @@ Route::group(['middleware'=>'verifyToken'], function(){
 Route::get('/reload-captcha', 'Admin\Auth\AuthenticatedSessionController@reloadCaptcha');
 
 // Admin
-Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
-    Route::namespace('Auth')->middleware('guest:admin')->group(function() {
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
+    Route::namespace('Auth')->middleware('guest:admin')->group(function () {
         Route::get('login', 'AuthenticatedSessionController@create')->name('login');
         Route::post('login', 'AuthenticatedSessionController@store')->name('adminlogin');
         Route::get('forgot-password', 'PasswordResetLinkController@create')->name('password.request');
         Route::post('forgot-password', 'PasswordResetLinkController@store')
-                ->name('password.email');
+            ->name('password.email');
     });
     Route::get('/reload-captcha', 'Auth\AuthenticatedSessionController@reloadCaptcha');
-    Route::middleware('admin')->group(function() {
+    Route::middleware('admin')->group(function () {
         Route::get('dashboard', 'AdminController@dashboard')->name('dashboard');
         Route::get('configuration', 'AdminController@configuration')->name('configuration');
         Route::post('configuration', 'AdminController@configurationStore')->name('configuration');
         Route::get('settings', 'AdminController@settings')->name('settings');
+        Route::get('settingspicsend', 'AdminController@settingspicsend')->name('settingspicsend');
+        Route::get('settingspicsendfooter', 'AdminController@settingspicsendfooter')->name('settingspicsendfooter');
+        // Route::get('settingsimgsend', 'AdminController@settingsimgsend')->name('settingsimgsend');
         Route::post('settings', 'AdminController@settingsStore')->name('settings');
 
         Route::get('cmslistView', 'AdminController@cmslistView')->name('cmslistView');
         Route::get('cmsView', 'AdminController@cmsView')->name('cmsView');
-        Route::get('cmsView/{id}', 'AdminController@cmsView')->name('cmsView2');
+        Route::get('cmsView/{id}', 'AdminController@cmsView')->name('editcms');
         Route::post('cmsViewPost', 'AdminController@cmsViewPost')->name('cmsViewPost');
         Route::post('cmsViewPost/{id}', 'AdminController@cmsViewPost')->name('cmsViewPost');
         Route::get('cmsdelete/{id}', 'AdminController@cmsdelete')->name('cmsdelete');
@@ -140,4 +145,4 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
     });
 });
 
-Route::get('/{short_code}',[HomeController::class,'index'])->name('homepage');
+Route::get('/{short_code}', [HomeController::class, 'index'])->name('homepage');

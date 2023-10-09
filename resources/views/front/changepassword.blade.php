@@ -7,16 +7,18 @@
 		<div class="inner_page_des">
 			<div class="content_block accountinfo">
 				<div class="blocktitle">
-					@if(Session::has('message'))
+
+					@if(Session::has('errors'))				
 						<div class="alert alert-danger">
-							{{Session::get('message')}}
+							@foreach(Session::get('errors') as $error) 
+							<span>
+							
+								{{$error}}
+							</span>
+							@endforeach
 						</div>
 						@endif
-					@if(Session::has('message'))
-						<div class="alert alert-success">
-							{{Session::get('message')}}
-						</div>
-						@endif
+
 					<h2 class="addpadding">{{ __('changepassword.Change_Password') }}</h2>
 					<div class="fromdes_view ">
 						<div class="fromdes_info">

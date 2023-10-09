@@ -69,12 +69,12 @@ class PaymentController extends Controller
             $formdata['franchise_id'] = Session::get('franchise_id');
             $pay_methode_acc = APICall('PaymentMethods/account', "post", json_encode($formdata), 'client_app');
             $data['pay_methode_acc'] = json_decode($pay_methode_acc);
-            if($data['pay_methode_acc']->error!=null){
+            if ($data['pay_methode_acc']->error != null) {
                 $response = array(
-                          'message' => $data['pay_methode_acc']->error->message,
-                          'message_type' => 'danger'
-                        );
-                        return redirect()->back()->with($response)->withInput();
+                    'message' => $data['pay_methode_acc']->error->message,
+                    'message_type' => 'danger'
+                );
+                return redirect()->back()->with($response)->withInput();
             }
             $get_methode_acc = APICall('PaymentMethods/accounts?clients=' . $data['pay_methode_acc']->data->client_id, "get", "{}", "client_app");
             $data['get_methode_acc'] = json_decode($get_methode_acc);
@@ -101,7 +101,7 @@ class PaymentController extends Controller
             $membershipdata['code_promo'] = $request->code_promo;
             $membershipdata['account_id'] = $data['get_methode_acc']->data[0]->id;
 
-            $membership_with_bnk_acc = APICall('Memberships/with-bank-account?display_language_id='.$lang_id, "post", json_encode($membershipdata), "client_app");
+            $membership_with_bnk_acc = APICall('Memberships/with-bank-account?display_language_id=' . $lang_id, "post", json_encode($membershipdata), "client_app");
             $data['membership_with_bnk_acc'] = json_decode($membership_with_bnk_acc);
 
             $data["title"] = trans('title_message.My_Account'); 
@@ -113,8 +113,8 @@ class PaymentController extends Controller
 
             $carddata = array();
 
-            
-            $carddata['four_digits_number'] = substr($request->four_digits_number,12,15);
+
+            $carddata['four_digits_number'] = substr($request->four_digits_number, 12, 15);
             $carddata['expire_year'] = $request->expiry_year;
             $carddata['expire_month'] = $request->expiry_month;
             $carddata['owner_name'] = $request->owner_name;
@@ -127,15 +127,15 @@ class PaymentController extends Controller
                 $carddata['franchise_id'] = Session::get('franchise_id');
                 $pay_method_accc = APICall('PaymentMethods/card', "post", json_encode($carddata), 'client_app');
                 $data['pay_method_accc'] = json_decode($pay_method_accc);
-               
-                if($data['pay_method_accc']->error!=null){
+
+                if ($data['pay_method_accc']->error != null) {
                     $response = array(
-                              'message' => $data['pay_method_accc']->error->message,
-                              'message_type' => 'danger'
-                            );
-                            return redirect()->back()->with($response)->withInput();
+                        'message' => $data['pay_method_accc']->error->message,
+                        'message_type' => 'danger'
+                    );
+                    return redirect()->back()->with($response)->withInput();
                 }
-              
+
 
                 $membershipcarddata = array();
                 $membershipcarddata['subscription_plan_id'] = $request->subscription_plan_id;
@@ -160,16 +160,14 @@ class PaymentController extends Controller
                 // dd($data['pay_method_accc']);
                 $membershipcarddata['card_id'] = $data['pay_method_accc']->data->id;
 
-                $membership_with_credit_card = APICall('Memberships/with-credit-card?display_language_id='.$lang_id, "post", json_encode($membershipcarddata), "client_app");
+                $membership_with_credit_card = APICall('Memberships/with-credit-card?display_language_id=' . $lang_id, "post", json_encode($membershipcarddata), "client_app");
                 $data['membership_with_credit_card'] = json_decode($membership_with_credit_card);
-
             }
             $response = array(
                 'message' => trans('title_message.Payment_completed_succesfully'),
               );
             return redirect(route("myProfile"))->with($response);
         }
- 
     }
 
 
@@ -185,7 +183,7 @@ class PaymentController extends Controller
 
         $client = json_decode($client)->data;
         $uri = "Memberships/price-details?";
-        $uri .=  "&display_language_id=" . getLocale(); 
+        $uri .=  "&display_language_id=" . getLocale();
 
         $membership_details = APICall($uri, "get", "{}", 'client_app');
         $data['membership_details'] = json_decode($membership_details);
@@ -203,11 +201,11 @@ class PaymentController extends Controller
             $formdata['institution'] = $request->institution;
             $formdata['account_number'] = $request->account_number;
             $formdata['owner_name'] = $request->owner_names;
-            
-                
-                if (Session::has('franchise_id')) {
-                    $formdata['franchise_id'] = Session::get('franchise_id');
-                   
+
+
+            if (Session::has('franchise_id')) {
+                $formdata['franchise_id'] = Session::get('franchise_id');
+
 
             $pay_methode_acc = APICall('PaymentMethods/account', "post", json_encode($formdata), 'client_app');
             $data['pay_methode_acc'] = json_decode($pay_methode_acc); 
@@ -221,16 +219,16 @@ class PaymentController extends Controller
         } else {
             $carddata = array();
 
-            $carddata['four_digits_number'] = substr($request->four_digits_number,12,15);
+            $carddata['four_digits_number'] = substr($request->four_digits_number, 12, 15);
             $carddata['expire_year'] = $request->expiry_year;
             $carddata['expire_month'] = $request->expiry_month;
             $carddata['owner_name'] = $request->owner_name;
             $carddata['type_id'] = $request->type_id;
             $carddata['pan'] = $request->pan;
-             if (Session::has('franchise_id')) {
+            if (Session::has('franchise_id')) {
                 $carddata['franchise_id'] = Session::get('franchise_id');
 
-                   
+
                 $pay_methods_account = APICall('PaymentMethods/card', "post", json_encode($carddata), 'client_app');
                 $data['pay_methods_account'] = json_decode($pay_methods_account);        
              }     
@@ -239,7 +237,5 @@ class PaymentController extends Controller
                 );
                 return redirect(route("myBankCards"))->with($response);
         }
-    
-
-}
+    }
 }

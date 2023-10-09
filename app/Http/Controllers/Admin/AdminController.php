@@ -78,7 +78,7 @@ class AdminController extends Controller
             $data['data'] = $result;
             $data['title'] = trans('title_message.Content_not_found');
             $data['form_caption'] = trans('title_message.Edit_Form');
-            return view('admin.cmsadd', compact('data'));
+            return view('admin.editcms', compact('data'));
         } else {
             return view('admin.cmsadd', compact('data'));
         }
@@ -105,6 +105,7 @@ class AdminController extends Controller
                     'message' => trans('title_message.CMS_successfully_updated'),
                     'message_type' => 'success'
                 );
+
             } else {
                 $response = array(
                     'message' => trans('title_message.CMS_unable_updated'),
@@ -171,6 +172,79 @@ class AdminController extends Controller
         return view('admin.settings', compact('data'));
     }
 
+
+    public function settingspicsend () {
+        $user = Auth::guard('admin')->user();
+        $data = array();
+        $data['data'] = [ 'banner_image' => asset('public/admin/images/adminbanner_add.png'), 'logo_image' => asset('public/admin/images/logo.png'), 'theme_color' => '#5ADFC2', 'primary_button_color' => '#1D1D1B', 'secondary_button_color' => '#FFB11A', 'text_button_color' => '#575757' ];
+        $result = Configuration::where('user_id', $user->id)->where('type', 'settings')->get();
+        if (count($result) > 0) {
+            $data['data'] = getConfigurationValue($result);
+            if (isset($data['data']['banner_image'])) {
+                $data['data']['banner_image'] = asset('public/upload/banner/' . $data['data']['banner_image']);
+            } else {
+                $data['data']['banner_image'] = asset('public/admin/images/adminbanner_add.png');
+            }
+            if (isset($data['data']['logo_image'])) {
+                $data['data']['logo_image'] = asset('public/upload/banner/' . $data['data']['logo_image']);
+            } else {
+                $data['data']['logo_image'] = asset('public/admin/images/logo.png');
+            }
+        }
+        $data['user'] = $user;
+        
+        $data['title'] = trans('title_message.Admin_Settings');
+        return view('admin.header', compact('data'));
+    }
+
+    public function settingspicsendfooter () {
+        $user = Auth::guard('admin')->user();
+        $data = array();
+        $data['data'] = [ 'banner_image' => asset('public/admin/images/adminbanner_add.png'), 'logo_image' => asset('public/admin/images/logo.png'), 'theme_color' => '#5ADFC2', 'primary_button_color' => '#1D1D1B', 'secondary_button_color' => '#FFB11A', 'text_button_color' => '#575757' ];
+        $result = Configuration::where('user_id', $user->id)->where('type', 'settings')->get();
+        if (count($result) > 0) {
+            $data['data'] = getConfigurationValue($result);
+            if (isset($data['data']['banner_image'])) {
+                $data['data']['banner_image'] = asset('public/upload/banner/' . $data['data']['banner_image']);
+            } else {
+                $data['data']['banner_image'] = asset('public/admin/images/adminbanner_add.png');
+            }
+            if (isset($data['data']['logo_image'])) {
+                $data['data']['logo_image'] = asset('public/upload/banner/' . $data['data']['logo_image']);
+            } else {
+                $data['data']['logo_image'] = asset('public/admin/images/logo.png');
+            }
+        }
+        $data['user'] = $user;
+        
+        $data['title'] = trans('title_message.Admin_Settings');
+        return view('admin.footer', compact('data'));
+    }
+
+    // public function settingsimgsend () {
+    //     $user = Auth::guard('admin')->user();
+    //     $data = array();
+    //     $data['data'] = [ 'banner_image' => asset('public/admin/images/adminbanner_add.png'), 'logo_image' => asset('public/admin/images/logo.png'), 'theme_color' => '#5ADFC2', 'primary_button_color' => '#1D1D1B', 'secondary_button_color' => '#FFB11A', 'text_button_color' => '#575757' ];
+    //     $result = Configuration::where('user_id', $user->id)->where('type', 'settings')->get();
+    //     if (count($result) > 0) {
+    //         $data['data'] = getConfigurationValue($result);
+    //         if (isset($data['data']['banner_image'])) {
+    //             $data['data']['banner_image'] = asset('public/upload/banner/' . $data['data']['banner_image']);
+    //         } else {
+    //             $data['data']['banner_image'] = asset('public/admin/images/adminbanner_add.png');
+    //         }
+    //         if (isset($data['data']['logo_image'])) {
+    //             $data['data']['logo_image'] = asset('public/upload/banner/' . $data['data']['logo_image']);
+    //         } else {
+    //             $data['data']['logo_image'] = asset('public/admin/images/logo.png');
+    //         }
+    //     }
+    //     $data['user'] = $user;
+    //     $data['title'] = trans('title_message.Admin_Settings');
+       
+    //     return view('header', compact('data'));
+    // }
+
     public function settingsStore (Request $request) {
         $user = Auth::guard('admin')->user();
 
@@ -188,6 +262,7 @@ class AdminController extends Controller
             Configuration::updateOrCreate(
                 ['name' => $key], $row_data
             );
+           
         }
 
         if ($request->hasFile('banner_image')) {
@@ -206,7 +281,8 @@ class AdminController extends Controller
                 Configuration::updateOrCreate(
                     ['name' => 'banner_image'], $row_data
                 );
-            }
+            } 
+           
         }
 
         if ($request->hasFile('logo_image')) {
@@ -224,10 +300,11 @@ class AdminController extends Controller
                 ];
                 Configuration::updateOrCreate(
                     ['name' => 'logo_image'], $row_data
-                );
+                );   
+
             }
         }
-
+        // return view('header',compact('row_data'));
         $response = array(
             'message' => trans('title_message.Settings_successfully_updated'),
             'message_type' => 'success'

@@ -103,13 +103,12 @@
 	</div>
 	
 </div>
-<div class="round_opt_btn rount_opt2">
+{{-- <div class="round_opt_btn rount_opt2">
 	<img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
 </div>
 <div class="round_opt_btn rount_opt3">
 	<img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
-</div>
+</div> --}}
 </section>
 @include('footer')
-
 </x-guest-layout>
