@@ -1,5 +1,6 @@
 @section('title', 'Admin Login |')
 <x-admin-guest-layout>
+  @include('admin.header')
 <section class="maincontent_wrap innermain_content">
   <div class="welcomesection def_padding inner_content_block">
     <div class="container">
@@ -12,8 +13,8 @@
           </div>
           <div class="fromdes_wrap_view">
             <div class="welcomesec_info inner_heading">
-              <h2>Login</h2>
-              <p>Input your details and password to get started</p>
+              <h2>{{ __('login.Login') }}</h2>
+						  <p>{{ __('login.Input_your_details') }}</p>
             </div>
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />

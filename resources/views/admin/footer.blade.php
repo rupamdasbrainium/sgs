@@ -29,7 +29,7 @@
                     </div>
                     <div class="copy_rightinfo ">
                         <div class="footer_logo">
-                            <a href="#"><img src="{{ url($data['data']['logo_image'])}}" alt=""></a>
+                            {{-- <a href="#"><img src="{{ url($data['data']['logo_image'])}}" alt=""></a> --}}
                         </div>
                         <p>
                             © 2023 sgs. All rights reserved.

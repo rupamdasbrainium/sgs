@@ -100,8 +100,6 @@ class AccountController extends Controller
 
         $client = json_decode($client)->data;
         $language_id = (int)$request->display;
-        // $carddata['iso_code'] = $request->type_id;
-        // $carddata['display'] = $request->type_id;
 
         $language = APICall('Clients/language?language_id=' . $language_id, "put", "{}", 'client_app');
         $data['language'] = json_decode($language);
@@ -112,13 +110,14 @@ class AccountController extends Controller
         } else {
             $locale = 'fr';
         }
-        app()->setLocale($locale);
+        // app()->setLocale($locale);
 
         $response = array(
             'message' => trans('title_message.Language_Changed_succesfully'),
         );
 
-        return redirect(route("changeLanguage"))->with($response);
+        // return redirect(route("changeLanguage"))->with($response);
+        return redirect('language/'.$locale);
     }
 
 
