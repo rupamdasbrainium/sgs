@@ -28,9 +28,9 @@
                         </ul>
                     </div>
                     <div class="copy_rightinfo ">
-                        <div class="footer_logo">
+                        {{-- <div class="footer_logo">
                             <a href="#"><img src=" {{ asset('public/upload/banner/' . $logo->value) }}" style="width: 186px; height:43px;" alt=""></a>
-                        </div>
+                        </div> --}}
                         <p>
                             © 2023 sgs. All rights reserved.
                         </p>

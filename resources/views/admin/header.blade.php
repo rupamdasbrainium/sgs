@@ -23,19 +23,16 @@
             <div class="col-md-12">
                 <div class="header_info">
                     <div class="logoinfo ">
-                        <a href="index.html" class="def_logo">
+                        {{-- <a href="index.html" class="def_logo">
                             <img src="{{ asset('public/upload/banner/' . $logo->value) }}" style="width: 186px; height:43px;" alt="">
-                        </a>
+                        </a> --}}
                     </div>
                     <div class="header_right_info">
                         <div class="mob_user_icon">
                             <span class="accountinfo" ><img src="{{ asset('public/admin/images/icon1.svg') }}" alt="" ></span>
                             
                             <span class="close_info" ><i class="far fa-times"></i></span>
-                        </div>
-
-                        {{-- -------------- --}}
-    
+                        </div>    
                             <nav class="navbar navbar-expand-lg ">
                                 <button class="navbar-toggler menu-btn" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
@@ -51,7 +48,7 @@
                                         </div>
                                     </div>
                                     <ul class="navbar-nav mr-auto">
-                                        @if (Session::has('adminToken'))
+                                        @if(Auth::guard('admin')->check())
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{ route('admin.logout') }}"> {{ __('header.logout') }}</a>
                                         </li>
