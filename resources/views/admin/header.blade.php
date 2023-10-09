@@ -5,7 +5,7 @@
                 <div class="header_info">
                     <div class="logoinfo ">
                         <a href="index.html" class="def_logo">
-                            <img src="{{ asset('public/admin/images/logo.svg') }}" alt="">
+                            <img src=" {{ url($data['data']['logo_image'])}} " alt="" style="width: 186px; height: 43px;">
                         </a>
                     </div>
                     <div class="header_right_info">

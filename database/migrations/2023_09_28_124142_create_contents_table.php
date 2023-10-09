@@ -15,10 +15,13 @@ class CreateContentsTable extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->id();
+            $table->integer('franchise_id')->default(3);
             $table->string('title');
             $table->longText('body');
             $table->string('slug');
             $table->boolean('status')->comment('0:Inactive, 1:Active');
+            $table->string('english')->nullable();
+            $table->string('french')->nullable();
             $table->boolean('deleted')->default(0);
             $table->integer('admin_user_id');
             $table->timestamps();

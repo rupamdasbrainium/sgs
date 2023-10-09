@@ -15,6 +15,7 @@ class CreateConfigurationsTable extends Migration
     {
         Schema::create('configurations', function (Blueprint $table) {
             $table->id();
+            $table->integer('franchise_id')->default(3);
             $table->string('name');
             $table->text('value');
             $table->string('type');

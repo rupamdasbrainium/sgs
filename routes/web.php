@@ -115,11 +115,14 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::get('configuration', 'AdminController@configuration')->name('configuration');
         Route::post('configuration', 'AdminController@configurationStore')->name('configuration');
         Route::get('settings', 'AdminController@settings')->name('settings');
+        Route::get('settingspicsend', 'AdminController@settingspicsend')->name('settingspicsend');
+        Route::get('settingspicsendfooter', 'AdminController@settingspicsendfooter')->name('settingspicsendfooter');
+        // Route::get('settingsimgsend', 'AdminController@settingsimgsend')->name('settingsimgsend');
         Route::post('settings', 'AdminController@settingsStore')->name('settings');
 
         Route::get('cmslistView', 'AdminController@cmslistView')->name('cmslistView');
         Route::get('cmsView', 'AdminController@cmsView')->name('cmsView');
-        Route::get('cmsView/{id}', 'AdminController@cmsView')->name('cmsView2');
+        Route::get('cmsView/{id}', 'AdminController@cmsView')->name('editcms');
         Route::post('cmsViewPost', 'AdminController@cmsViewPost')->name('cmsViewPost');
         Route::post('cmsViewPost/{id}', 'AdminController@cmsViewPost')->name('cmsViewPost');
         Route::get('cmsdelete/{id}', 'AdminController@cmsdelete')->name('cmsdelete');

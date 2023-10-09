@@ -99,13 +99,15 @@ class HomeController extends Controller
     {
         $data = array();
         $data['title'] = trans('title_message.Terms_Condition');
-        return view('front.termsAndCondition', compact('data'));
+        $terms = DB::table('contents')->where('franchise_id',3)->where('slug','terms')->where('status',1)->first();
+        return view('front.termsAndCondition', compact('data','terms'));
     }
     public function privacyPolicy()
     {
         $data = array();
         $data['title'] = trans('title_message.Privacy_Policy');
-        return view('front.privacyPolicy', compact('data'));
+        $privacy = DB::table('contents')->where('franchise_id',3)->where('slug','privacy')->where('status',1)->first();
+        return view('front.privacyPolicy', compact('data','privacy'));
     }
     public function law25()
     {
