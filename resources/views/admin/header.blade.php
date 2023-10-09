@@ -23,8 +23,8 @@
             <div class="col-md-12">
                 <div class="header_info">
                     <div class="logoinfo ">
-                        <a href="{{ route('homepage',['short_code'=>'CentreDemo']) }}" class="def_logo">
-                            <img src="{{ asset('public/images/logo.svg') }}" alt="">
+                        <a href="index.html" class="def_logo">
+                            <img src="{{ asset('public/upload/banner/' . $logo->value) }}" style="width: 186px; height:43px;" alt="">
                         </a>
                     </div>
                     <div class="header_right_info">
