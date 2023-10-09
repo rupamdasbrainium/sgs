@@ -33,6 +33,12 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
+                                            <label>google key <em class="req_text">*</em> </label>
+                                            <div class="inp_cont_view noicon_opt">
+                                                <input class="form-control" type="text" name="identifier" placeholder="" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
                                             <label >Google Account Number  </label>
                                             <div class="inp_cont_view noicon_opt">
                                                 <input class="form-control" type="text" name="gaccountno" placeholder="It would be used for Google Analytics purpose" value="{{ $data['data']['gaccountno'] }}" >

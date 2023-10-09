@@ -24,11 +24,12 @@ class AdminController extends Controller
         $data['user'] = $user;
         $data['data'] = [ 'identifier' => '', 'password' => '', 'gaccountno' => '' ];
         $result = Configuration::where('user_id', $user->id)->where('type', 'configuration')->get();
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
         if (count($result) > 0) {
             $data['data'] = getConfigurationValue($result);
         }
         $data['title'] = trans('title_message.Admin_Configuration');
-        return view('admin.configuration', compact('data'));
+        return view('admin.configuration', compact('data','logo'));
     }
 
     public function configurationStore (Request $request) {
@@ -66,6 +67,7 @@ class AdminController extends Controller
         $data['data'] = [ 'title' => '', 'body' => '', 'slug' => '', 'status' => '' ];
         
         $data['title'] = trans('title_message.Admin_CMS');
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
         if (!empty($id)) {
             $result = Content::where('deleted', 0)->where('id', $id)->first();
             if (empty($result)) {
@@ -78,9 +80,9 @@ class AdminController extends Controller
             $data['data'] = $result;
             $data['title'] = trans('title_message.Content_not_found');
             $data['form_caption'] = trans('title_message.Edit_Form');
-            return view('admin.editcms', compact('data'));
+            return view('admin.editcms', compact('data','logo'));
         } else {
-            return view('admin.cmsadd', compact('data'));
+            return view('admin.cmsadd', compact('data','logo'));
         }
             
     }
@@ -93,7 +95,7 @@ class AdminController extends Controller
                 'slug' => 'required',
                 'status' => 'required',
             ]);
-
+           
             $row_data = Content::where('deleted', 0)->where('id', $id)->first();
             if (!empty($row_data)) {
                 $row_data->title = $request['title'];
@@ -144,8 +146,9 @@ class AdminController extends Controller
         $data['user'] = $user;
         // $data['id'] = $id;
         $data['title'] = trans('title_message.Content_Management');
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
         $data['form_caption'] = trans('title_message.Content_Management');
-        return view('admin.cmslistView', compact('data'));
+        return view('admin.cmslistView', compact('data','logo'));
     }
 
 
@@ -154,6 +157,7 @@ class AdminController extends Controller
         $data = array();
         $data['data'] = [ 'banner_image' => asset('public/admin/images/adminbanner_add.png'), 'logo_image' => asset('public/admin/images/logo.png'), 'theme_color' => '#5ADFC2', 'primary_button_color' => '#1D1D1B', 'secondary_button_color' => '#FFB11A', 'text_button_color' => '#575757' ];
         $result = Configuration::where('user_id', $user->id)->where('type', 'settings')->get();
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
         if (count($result) > 0) {
             $data['data'] = getConfigurationValue($result);
             if (isset($data['data']['banner_image'])) {
@@ -169,81 +173,9 @@ class AdminController extends Controller
         }
         $data['user'] = $user;
         $data['title'] = trans('title_message.Admin_Settings');
-        return view('admin.settings', compact('data'));
+        return view('admin.settings', compact('data','logo'));
     }
 
-
-    public function settingspicsend () {
-        $user = Auth::guard('admin')->user();
-        $data = array();
-        $data['data'] = [ 'banner_image' => asset('public/admin/images/adminbanner_add.png'), 'logo_image' => asset('public/admin/images/logo.png'), 'theme_color' => '#5ADFC2', 'primary_button_color' => '#1D1D1B', 'secondary_button_color' => '#FFB11A', 'text_button_color' => '#575757' ];
-        $result = Configuration::where('user_id', $user->id)->where('type', 'settings')->get();
-        if (count($result) > 0) {
-            $data['data'] = getConfigurationValue($result);
-            if (isset($data['data']['banner_image'])) {
-                $data['data']['banner_image'] = asset('public/upload/banner/' . $data['data']['banner_image']);
-            } else {
-                $data['data']['banner_image'] = asset('public/admin/images/adminbanner_add.png');
-            }
-            if (isset($data['data']['logo_image'])) {
-                $data['data']['logo_image'] = asset('public/upload/banner/' . $data['data']['logo_image']);
-            } else {
-                $data['data']['logo_image'] = asset('public/admin/images/logo.png');
-            }
-        }
-        $data['user'] = $user;
-        
-        $data['title'] = trans('title_message.Admin_Settings');
-        return view('admin.header', compact('data'));
-    }
-
-    public function settingspicsendfooter () {
-        $user = Auth::guard('admin')->user();
-        $data = array();
-        $data['data'] = [ 'banner_image' => asset('public/admin/images/adminbanner_add.png'), 'logo_image' => asset('public/admin/images/logo.png'), 'theme_color' => '#5ADFC2', 'primary_button_color' => '#1D1D1B', 'secondary_button_color' => '#FFB11A', 'text_button_color' => '#575757' ];
-        $result = Configuration::where('user_id', $user->id)->where('type', 'settings')->get();
-        if (count($result) > 0) {
-            $data['data'] = getConfigurationValue($result);
-            if (isset($data['data']['banner_image'])) {
-                $data['data']['banner_image'] = asset('public/upload/banner/' . $data['data']['banner_image']);
-            } else {
-                $data['data']['banner_image'] = asset('public/admin/images/adminbanner_add.png');
-            }
-            if (isset($data['data']['logo_image'])) {
-                $data['data']['logo_image'] = asset('public/upload/banner/' . $data['data']['logo_image']);
-            } else {
-                $data['data']['logo_image'] = asset('public/admin/images/logo.png');
-            }
-        }
-        $data['user'] = $user;
-        
-        $data['title'] = trans('title_message.Admin_Settings');
-        return view('admin.footer', compact('data'));
-    }
-
-    // public function settingsimgsend () {
-    //     $user = Auth::guard('admin')->user();
-    //     $data = array();
-    //     $data['data'] = [ 'banner_image' => asset('public/admin/images/adminbanner_add.png'), 'logo_image' => asset('public/admin/images/logo.png'), 'theme_color' => '#5ADFC2', 'primary_button_color' => '#1D1D1B', 'secondary_button_color' => '#FFB11A', 'text_button_color' => '#575757' ];
-    //     $result = Configuration::where('user_id', $user->id)->where('type', 'settings')->get();
-    //     if (count($result) > 0) {
-    //         $data['data'] = getConfigurationValue($result);
-    //         if (isset($data['data']['banner_image'])) {
-    //             $data['data']['banner_image'] = asset('public/upload/banner/' . $data['data']['banner_image']);
-    //         } else {
-    //             $data['data']['banner_image'] = asset('public/admin/images/adminbanner_add.png');
-    //         }
-    //         if (isset($data['data']['logo_image'])) {
-    //             $data['data']['logo_image'] = asset('public/upload/banner/' . $data['data']['logo_image']);
-    //         } else {
-    //             $data['data']['logo_image'] = asset('public/admin/images/logo.png');
-    //         }
-    //     }
-    //     $data['user'] = $user;
-    //     $data['title'] = trans('title_message.Admin_Settings');
-       
-    //     return view('header', compact('data'));
-    // }
 
     public function settingsStore (Request $request) {
         $user = Auth::guard('admin')->user();
@@ -318,9 +250,10 @@ class AdminController extends Controller
         $data['data'] = '';
         $data['user'] = $user;
         // $data['id'] = $id;
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
         $data['title'] = trans('title_message.Admin_Account');
         $data['form_caption'] = trans('title_message.Account_Information');
-        return view('admin.account', compact('data'));
+        return view('admin.account', compact('data','logo'));
     }
 
     public function accountPassword () {
@@ -386,8 +319,9 @@ class AdminController extends Controller
         $data['data'] = $result;
         $data['user'] = $user;
         $data['title'] = trans('title_message.Content_Management');
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
         $data['form_caption'] = trans('title_message.Content_Management');
-        return view('admin.cmslist', compact('data'));
+        return view('admin.cmslist', compact('data','logo'));
     }
 
     public function cmsAdd ($id = '') {
@@ -398,6 +332,7 @@ class AdminController extends Controller
         $data['id'] = $id;
         $data['title'] = trans('title_message.CMS_Add');
         $data['form_caption'] = trans('title_message.Add_Form');
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
         if (!empty($id)) {
             $result = Content::where('deleted', 0)->where('id', $id)->first();
             if (empty($result)) {
@@ -410,9 +345,10 @@ class AdminController extends Controller
             $data['data'] = $result;
             $data['title'] = 'CMS Edit';
             $data['form_caption'] = 'Edit Form';
-            return view('admin.cmsadd2', compact('data'));
+           
+            return view('admin.cmsadd2', compact('data','logo'));
         } else {
-            return view('admin.cmsadd', compact('data'));
+            return view('admin.cmsadd', compact('data','logo'));
         }
     }
 
@@ -495,6 +431,7 @@ class AdminController extends Controller
         $data['data'] = $result;
         $data['user'] = $user;
         $data['add_user'] = false;
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
         if ($type == 'seller') {
             $data['title'] = trans('title_message.Sellers_List');
             $data['add_user'] = true;
@@ -511,6 +448,7 @@ class AdminController extends Controller
         $data['data'] = '';
         $data['user'] = $user;
         $data['id'] = $id;
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
         $result = User::where('id', $id)->first();
         if (empty($result)) {
             $response = array(
@@ -518,7 +456,7 @@ class AdminController extends Controller
                 'message_type' => 'danger'
             );
             $ref = basename($_SERVER['HTTP_REFERER']);
-            return redirect()->action('Admin\AdminController@userlist', $ref)->with($response);
+            return redirect()->action('Admin\AdminController@userlist', $ref,compact('logo'))->with($response);
         }
         $data['data'] = $result;
         $data['title'] = trans('title_message.User_Edit');

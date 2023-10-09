@@ -5,7 +5,7 @@
                 <div class="header_info">
                     <div class="logoinfo ">
                         <a href="index.html" class="def_logo">
-                            <img src=" {{ url($data['data']['logo_image'])}} " alt="" style="width: 186px; height: 43px;">
+                            <img src="{{ asset('public/upload/banner/' . $logo->value) }}" style="width: 186px; height:43px;" alt="">
                         </a>
                     </div>
                     <div class="header_right_info">

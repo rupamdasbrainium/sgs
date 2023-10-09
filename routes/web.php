@@ -115,9 +115,6 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::get('configuration', 'AdminController@configuration')->name('configuration');
         Route::post('configuration', 'AdminController@configurationStore')->name('configuration');
         Route::get('settings', 'AdminController@settings')->name('settings');
-        Route::get('settingspicsend', 'AdminController@settingspicsend')->name('settingspicsend');
-        Route::get('settingspicsendfooter', 'AdminController@settingspicsendfooter')->name('settingspicsendfooter');
-        // Route::get('settingsimgsend', 'AdminController@settingsimgsend')->name('settingsimgsend');
         Route::post('settings', 'AdminController@settingsStore')->name('settings');
 
         Route::get('cmslistView', 'AdminController@cmslistView')->name('cmslistView');
