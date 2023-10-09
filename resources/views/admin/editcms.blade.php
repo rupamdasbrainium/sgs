@@ -15,7 +15,7 @@
                                     @csrf
                                     <div class="inp_row">
                                         <div class="form-group">
-                                            <label>Title aaaaa<em class="req_text">*</em> </label>
+                                            <label>Title<em class="req_text">*</em> </label>
                                             <div class="inp_cont_view noicon_opt">
                                                 {{-- <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" required value="{{ $data['data']->title }}"> --}}
                                                 <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" required value="{{ $data['data']['title'] }}">
