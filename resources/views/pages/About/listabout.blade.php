@@ -8,10 +8,10 @@
 <div class="row">
 <div class="col-lg-12 margin-tb">
 <div class="pull-left">
-<h2>About Us</h2>
+<h2>{{ __('about.About_Us') }}</h2>
 </div>
 <div class="pull-right mb-2">
-<a class="btn btn-success" onClick="add()" href="javascript:void(0)"> Create New</a>
+<a class="btn btn-success" onClick="add()" href="javascript:void(0)"> {{ __('about.Create_New') }}</a>
 </div>
 </div>
 </div>
@@ -24,10 +24,10 @@
 <table class="table table-bordered" id="about">
 <thead>
 <tr>
-<th>Id</th>
-<th>title</th>
-<th>content</th>
-<th>Action</th>
+<th>{{ __('about.Id') }}</th>
+<th>{{ __('about.title') }}</th>
+<th>{{ __('about.content') }}</th>
+<th>{{ __('about.Action') }}</th>
 </tr>
 </thead>
 </table>
@@ -44,20 +44,19 @@
 <form action="javascript:void(0)" id="AboutForm" name="AboutForm" class="form-horizontal" method="POST">
 <input type="hidden" name="id" id="id">
 <div class="form-group">
-<label for="title" class="col-sm-2 control-label">Title</label>
+<label for="title" class="col-sm-2 control-label">{{ __('about.Title') }}</label>
 <div class="col-sm-12">
 <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" maxlength="50" required="">
 </div>
 </div>  
 <div class="form-group">
-<label for="content" class="col-sm-2 control-label">Content</label>
+<label for="content" class="col-sm-2 control-label">{{ __('about.Content') }}</label>
 <div class="col-sm-12">
-{{-- <input type="text" class="form-control" id="content" name="content" placeholder="Enter content" maxlength="50" required=""> --}}
 <textarea class="form-control" name="content" id="content" placeholder="Enter content" required cols="30" rows="10"></textarea>
 </div>
 </div>
 <div class="col-sm-offset-2 col-sm-10">
-<button type="submit" class="btn btn-primary" id="btn-save">Save changes
+<button type="submit" class="btn btn-primary" id="btn-save">{{ __('about.Save_changes') }}
 </button>
 </div>
 </form>

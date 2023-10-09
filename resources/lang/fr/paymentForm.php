@@ -68,4 +68,6 @@ return [
     'Card_number_mustbe_16_characters' => 'Le numéro de carte doit comporter au moins 16 caractères',
     'Expiry_month' => 'Le mois d\'expiration ne doit pas dépasser 2 caractères',
     'Expiry_year' => 'L\'année d\'expiration doit comporter au moins 4 caractères',
+    'Amount_to_be_paid' => 'Montant à payer',
+    'Pay_Now' => 'Payez maintenant',
 ];

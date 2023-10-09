@@ -8,10 +8,10 @@
 <div class="row">
 <div class="col-lg-12 margin-tb">
 <div class="pull-left">
-<h2>Contact Us</h2>
+<h2>{{ __('about.Contact_Us') }}</h2>
 </div>
 <div class="pull-right mb-2">
-<a class="btn btn-success" onClick="add()" href="javascript:void(0)"> Create Contact</a>
+<a class="btn btn-success" onClick="add()" href="javascript:void(0)"> {{ __('about.Create_Contact') }}</a>
 </div>
 </div>
 </div>
@@ -24,11 +24,11 @@
 <table class="table table-bordered" id="contact">
 <thead>
 <tr>
-<th>Id</th>
-<th>Name</th>
-<th>Email</th>
-<th>Comment</th>
-<th>Action</th>
+<th>{{ __('about.Id') }}</th>
+<th>{{ __('about.Name') }}</th>
+<th>{{ __('about.Email') }}</th>
+<th>{{ __('about.Comment') }}</th>
+<th>{{ __('about.Action') }}</th>
 </tr>
 </thead>
 </table>
@@ -45,26 +45,26 @@
 <form action="javascript:void(0)" id="ContactForm" name="ContactForm" class="form-horizontal" method="POST">
 <input type="hidden" name="id" id="id">
 <div class="form-group">
-<label for="title" class="col-sm-2 control-label">Name</label>
+<label for="title" class="col-sm-2 control-label">{{ __('about.Name') }}</label>
 <div class="col-sm-12">
 <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" maxlength="50" required="">
 </div>
 </div>  
 <div class="form-group">
-<label for="content" class="col-sm-2 control-label">Email</label>
+<label for="content" class="col-sm-2 control-label">{{ __('about.Email') }}</label>
 <div class="col-sm-12">
 <input type="text" class="form-control" id="email" name="email" placeholder="Enter Your Email" maxlength="50" required="">
 </div>
 <div class="form-group">
-<label for="content" class="col-sm-2 control-label">Content</label>
+<label for="content" class="col-sm-2 control-label">{{ __('about.Content') }}</label>
 <div class="col-sm-12">
      <textarea name="comment" id="editor">
-        &lt;p&gt;This is some sample content.&lt;/p&gt;
+        &lt;p&gt;{{ __('about.sample_content') }}.&lt;/p&gt;
     </textarea>
 </div>
 </div>
 <div class="col-sm-offset-2 col-sm-10">
-<button type="submit" class="btn btn-primary" id="btn-save">Save changes
+<button type="submit" class="btn btn-primary" id="btn-save">{{ __('about.Save_changes') }}
 </button>
 </div>
 </form>

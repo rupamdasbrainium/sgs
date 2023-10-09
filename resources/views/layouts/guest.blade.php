@@ -1,3 +1,22 @@
+@php
+	$locale =  app()->currentLocale();
+	if(session()->has('locale')){
+		$locale = session()->get('locale');
+    }
+
+	if(Session::has('clientToken')){
+		if(Session::has('language_id')){
+			$language_id = Session::get('language_id');
+			if($language_id==2){
+				$locale = 'en';
+			}
+			else {
+				$locale = 'fr';
+			}
+		}
+	}
+	app()->setLocale($locale);
+@endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>

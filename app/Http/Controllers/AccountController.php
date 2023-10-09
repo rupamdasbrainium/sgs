@@ -92,7 +92,6 @@ class AccountController extends Controller
 
     public function mylanguagechange(Request $request)
     {
-        // dd('hi');
         $data = array();
         $data['title'] = trans('title_message.Change_Language');
         $client = APICall("Clients",'get',"{}");
@@ -103,8 +102,6 @@ class AccountController extends Controller
 
         $client = json_decode($client)->data;
         $language_id = (int)$request->display;
-        // $carddata['iso_code'] = $request->type_id;
-        // $carddata['display'] = $request->type_id;
         
         $language = APICall('Clients/language?language_id=' . $language_id, "put", "{}",'client_app');
         $data['language'] = json_decode($language);
@@ -115,7 +112,6 @@ class AccountController extends Controller
         }else{
             $locale = 'fr';
         }
-        // dd($language_id,$data,$locale);
         app()->setLocale($locale);
 
         $response = array(
@@ -128,9 +124,7 @@ class AccountController extends Controller
 
     public function languageUpdate(Request $request)
     {
-        try {
-            //code...
-            
+        try {            
             $language_id = (int)$request->language_id;
 
             APICall('Clients/language?language_id=' . $language_id, "put", "{}",'client_app');
@@ -140,8 +134,9 @@ class AccountController extends Controller
             }else{
                 $locale = 'fr';
             }
-            app()->setLocale($locale);
-            return redirect()->back();
+            // app()->setLocale($locale);
+            // return redirect()->back();
+            return redirect('language/'.$locale);
         } catch (\Throwable $th) {
             //throw $th;
             return back()->withErrors(["error" => $th->getMessage()]);
@@ -250,6 +245,7 @@ class AccountController extends Controller
 
     public function myContactInformation()
     {
+        $lang_id = getLocale();
         $data = array();
         $data['title'] = trans('title_message.My_Contact_Information');
         $client = APICall("Clients", "get", "{}");

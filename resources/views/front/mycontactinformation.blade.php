@@ -1,4 +1,7 @@
 <x-app-layout>
+    @php
+        $lang_id = getLocale();
+    @endphp
     @section('title', $data['title'] . ' |')
     @include('header')
     <section class="maincontent_wrap inner_pageouter">
@@ -101,7 +104,7 @@
                                                             @foreach ($province as $pr)
                                                                 <option value="{{ $pr->id }}"
                                                                     {{ $pr->id == $client->adress->province_id ? 'selected' : '' }}>
-                                                                    {{ $pr->display_english }}</option>
+                                                                    {{ $lang_id == 2? $pr->display_english :  $pr->display_french}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>

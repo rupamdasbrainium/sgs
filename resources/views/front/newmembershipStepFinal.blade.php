@@ -326,18 +326,18 @@
 										<form method="post" action="{{ route('newMembershipFinalsave')}}">
 											@csrf
 											<div class="content_block more_cont_view">
-												<h2>Method of Payment</h2>
+												<h2>{{ __('paymentForm.method_of_payment') }}</h2>
 												<div class="checkout_optview payment_opt_details">
 													<div class="inp_row">
 														<div class="form-group">
 															<div class="memberships_nam radio">
 																<input type="radio" id="payment_opt1" name="radio-group_pay" value="credit" checked>
-																<label for="payment_opt1">Credit Card</label>
+																<label for="payment_opt1">{{ __('paymentForm.Credit_Card') }}</label>
 															</div>
 													
 															<div class="memberships_nam radio">
 																<input type="radio" id="payment_opt2" name="radio-group_pay" value="debit">
-																<label for="payment_opt2">Debit Card</label>
+																<label for="payment_opt2">{{ __('paymentForm.Debit_Card') }}</label>
 															</div>
 															
 															<div class="memberships_nam radio">
@@ -539,11 +539,11 @@
 															</div> --}}
 														</div>
 														<div class="aboundopt">
-															<p>Amount to be paid: ${{ $total }}</p>
+															<p>{{ __('paymentForm.Amount_to_be_paid') }}: ${{ $total }}</p>
 														</div>
 														<div class="frombtn_wrap">
 															<div class="def_btnopt2 frombtn frombtn2">
-																<button type="submit" class="btn2" >Pay Now</button>
+																<button type="submit" class="btn2" >{{ __('paymentForm.Pay_Now') }}</button>
 															</div>
 														</div>
 								

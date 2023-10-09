@@ -7,11 +7,11 @@
             <div class="row mb-2">
                 <div class="col-sm-6 title-bar">
                     <h1>{{ $data['title'] }}</h1>
-                    <a href="{{ route('admin.cmsadd') }}">Add Content</a>
+                    <a href="{{ route('admin.cmsadd') }}">{{ __('cms.Add_Content') }}</a>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('cms.Home') }}</a></li>
                         <li class="breadcrumb-item active">{{ $data['title'] }}</li>
                     </ol>
                 </div>
