@@ -21,4 +21,6 @@ return [
     'validcaptcha' => 'Entrez un captcha valide',
     'Remember_me' => 'Souviens-toi de moi',
     'Forgot_Password' => 'Mot de passe oublié?',
+    'Email' => 'E-mail',
+    'Password' => 'Mot de passe',
 ];

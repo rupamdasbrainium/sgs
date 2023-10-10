@@ -1,5 +1,6 @@
 @section('title', 'Admin Login |')
 <x-admin-guest-layout>
+  @include('admin.header')
 <section class="maincontent_wrap innermain_content">
   <div class="welcomesection def_padding inner_content_block">
     <div class="container">
@@ -12,8 +13,8 @@
           </div>
           <div class="fromdes_wrap_view">
             <div class="welcomesec_info inner_heading">
-              <h2>Login</h2>
-              <p>Input your details and password to get started</p>
+              <h2>{{ __('login.Login') }}</h2>
+						  <p>{{ __('login.Input_your_details') }}</p>
             </div>
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -23,7 +24,7 @@
                 <div class="from_cont_wrap">
                   <div class="inp_row">
                     <div class="form-group">
-                      <label for="email">Email</label>
+                      <label for="email">{{ __('login.Email') }}</label>
                       <div class="inp_cont_view">
                         <div class="icon_opt">
                           <i class="fal fa-envelope"></i>
@@ -38,7 +39,7 @@
                   
                   <div class="inp_row">
                     <div class="form-group">
-                      <label for="id_password">Password</label>
+                      <label for="id_password">{{ __('login.Password') }}</label>
                       <div class="inp_cont_view">
                         <div class="icon_opt">
                           <i class="fal fa-eye" id="togglePassword" style="cursor: pointer;"></i>
@@ -65,9 +66,9 @@
                         </div>
                       </div>
                       <div class="inp_cont_view cap_inp_block">
-                        <input class="form-control inpopt2" type="text" name="captcha" placeholder="Enter the text in the image" id="captcha" required>   
+                        <input class="form-control inpopt2" type="text" name="captcha" placeholder="{{ __('login.captcha') }}" id="captcha" required>   
                         @if ($errors->has('captcha'))
-                        <div class="text-danger mt-3">Enter valid captcha</div>
+                        <div class="text-danger mt-3">{{ __('login.validcaptcha') }}</div>
                         @endif                     
                       </div>
                     </div>
@@ -75,19 +76,17 @@
                   
                   <div class="inp_row remember_opt">
                     <div class="form-group">
-                      <div class="checkbox">
-                        <!-- <label><input type="checkbox"> Remember me</label> -->
-                        
+                      <div class="checkbox">          
                         <input class="styled-checkbox" id="styled-checkbox-2" name="remember" type="checkbox">
-                        <label for="styled-checkbox-2">Remember me</label>
+                        <label for="styled-checkbox-2">{{ __('login.Remember_me') }}</label>
                       </div>
                       <div class="forgot_opt">
-                        <a href="{{ route('admin.password.request') }}">Forgot Password?</a>
+                        <a href="{{ route('admin.password.request') }}">{{ __('login.Forgot_Password') }}</a>
                       </div>
                     </div>
                   </div>
                   <div class="def_btnopt2 frombtn">
-                    <button type="submit" class="btn2 fulldidthbtn" >Login</button>
+                    <button type="submit" class="btn2 fulldidthbtn" >{{ __('login.Login') }}</button>
                   </div>
                   
                 </div>
