@@ -64,7 +64,7 @@ class AdminController extends Controller
         $data = array();
         $data['user'] = $user;
         $data['id'] = $id;
-        $data['data'] = [ 'title' => '', 'body' => '', 'slug' => '', 'status' => '' ];
+        $data['data'] = [ 'title' => '', 'body' => '', 'english' => '', 'french' => '', 'slug' => '', 'status' => '' ];
         
         $data['title'] = trans('title_message.Admin_CMS');
         $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
@@ -100,6 +100,8 @@ class AdminController extends Controller
             if (!empty($row_data)) {
                 $row_data->title = $request['title'];
                 $row_data->body = $request['body'];
+                $row_data->english = $request['body_english'];
+                $row_data->french = $request['body_french'];
                 $row_data->slug = $request['slug'];
                 $row_data->status = $request['status'];
                 $row_data->save();
@@ -124,6 +126,8 @@ class AdminController extends Controller
             $row_data = new Content();
             $row_data->title = $request['title'];
             $row_data->body = $request['body'];
+            $row_data->english = $request['body_english'];
+            $row_data->french = $request['body_french'];
             $row_data->slug = $request['slug'];
             $row_data->status = $request['status'];
             $row_data->admin_user_id = Auth::guard('admin')->user()->id;

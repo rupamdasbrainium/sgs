@@ -46,6 +46,7 @@
                                     <div class="text-danger">{{ $errors->first('body') }}</div>
                                     @endif
                                 </div>
+                                
                                 <div class="form-group col-md-4">
                                     <label for="slug">Slug*</label>
                                     <input type="text" class="form-control" name="slug" id="slug" placeholder="Enter slug" required value="{{ $data['data']->slug }}">

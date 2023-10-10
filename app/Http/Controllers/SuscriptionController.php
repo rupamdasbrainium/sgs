@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use App\Models\Configuration;
 
 class SuscriptionController extends Controller
 {
@@ -12,7 +13,7 @@ class SuscriptionController extends Controller
         $lang_id = getLocale();
         $data = array();
         $data['title'] = trans('title_message.Subscription_Form');
-
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
         //subscriptionplan type call
         $subscription_plan = APICall("SubscriptionPlans/type/".$id."?language_id=".$lang_id, "get","{}");
         $data['subscription_plan'] = json_decode($subscription_plan);
@@ -39,7 +40,7 @@ class SuscriptionController extends Controller
         $Provinces = APICall("Options/ProvincesAndStates", "get","{}");
         $data['provinces'] = json_decode($Provinces);
 
-        return view('front.suscriptionform', compact('data'));
+        return view('front.suscriptionform', compact('data','logo'));
     }
 
     public function suscriptionformsave(Request $request, $id){
@@ -117,7 +118,8 @@ class SuscriptionController extends Controller
       $lang_id = getLocale();
       $data = array();
         $data['title'] = trans('title_message.Memberships');
-
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
+       
         //subscriptionplan type call
         $subscription_plan = APICall("SubscriptionPlans/type/".$id."?language_id=".$lang_id, "get","{}");
         $data['subscription_plan'] = json_decode($subscription_plan);
@@ -135,7 +137,7 @@ class SuscriptionController extends Controller
           }
         }
         $data['franchise'] = $franchise_data;
-        return view('front.newMembership', compact('data'));
+        return view('front.newMembership', compact('data','logo'));
     }
 
     function new_membership_save(Request $request, $id){
