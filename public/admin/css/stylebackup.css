@@ -1861,14 +1861,14 @@ table {
 	box-shadow:0 1px 1px rgba(0,0,0,.3);
 }
 table thead {
-	background:#5ADFC2;
+	/* background:#5ADFC2; */
 	height:auto;
 }
 table thead tr th {
 	text-transform:uppercase;
 	text-align:left;
 	padding:10px 15px;
-	background:#5ADFC2 !important;
+	/* background:#5ADFC2 !important; */
 	color:#fff !important;
 	font-weight:600;
 	text-align:center;

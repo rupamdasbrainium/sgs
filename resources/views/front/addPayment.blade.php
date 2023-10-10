@@ -190,7 +190,7 @@
 
                                             <div class="frombtn_wrap">
                                                 <div class="def_btnopt2 frombtn">
-                                                    <button type="submit" value="submit" class="btn2"
+                                                    <button type="submit" value="submit" style="background-color: {{$button->value}}" class="btn2"
                                                         id="myButton">{{ __('paymentForm.submit') }}!</button>
                                                     <button type="button" class="btn2 backbutton">{{ __('paymentForm.back') }}</button>
                                                 </div>

@@ -19,7 +19,7 @@
                                                 <label>{{ __('admin.Banner_Image') }} </label>
                                                 <div class="inp_cont_view noicon_opt">
                                                     <div class="adminbanner adhight" style="background: url({{ $data['data']['banner_image'] }})no-repeat center center;">
-                                                        <div class="edit_btn banneredit">
+                                                        <div class="edit_btn banneredit"  style="background-color: {{$button->value}}">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </div>
                                                     </div>
@@ -30,7 +30,7 @@
                                                 <label>{{ __('admin.Logo_Image') }} </label>
                                                 <div class="inp_cont_view noicon_opt">
                                                     <div class="admin_logoadd adhight" style="background: url({{ $data['data']['logo_image'] }})no-repeat center center;">
-                                                        <div class="edit_btn logoedit">
+                                                        <div class="edit_btn logoedit"  style="background-color: {{$button->value}}">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </div>
                                                     </div>
@@ -88,7 +88,7 @@
                                         </div>
                                         <div class="frombtn_wrap singcol_btn">
                                             <div class="def_btnopt2 frombtn frombtn2">
-                                                <button type="submit" class="btn2">{{ __('admin.Save') }}</button>
+                                                <button type="submit" class="btn2" style="background-color: {{$button->value}}">{{ __('admin.Save') }}</button>
                                             </div>
                                         </div>
                                     </form>

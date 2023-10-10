@@ -178,6 +178,8 @@ class PaymentController extends Controller
         $data = array();
         $data['title'] = trans('title_message.Add_Acoount');
         $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
+        $theme = Configuration::where('name','theme_color')->where('franchise_id',3)->first();
+        $button = Configuration::where('name','primary_button_color')->where('franchise_id',3)->first();
         $client = APICall("Clients",'get',"{}");
         if(!$client){
             return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
@@ -193,7 +195,7 @@ class PaymentController extends Controller
         $card =  APICall("PaymentMethods/accepted_cards", "get", "{}", 'client_app');
         $data['card_types'] = json_decode($card);
 
-        return view('front.addPayment', compact('data','logo'));
+        return view('front.addPayment', compact('data','logo','theme','button'));
     }
 
     public function paymentaddSave(Request $request)

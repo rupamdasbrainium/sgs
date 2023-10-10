@@ -10,7 +10,7 @@
                     <h2 class="addpadding">{{ __('admin.Content_Management') }}</h2>
                     <div class="frombtn_wrap singcol_btn">
                         <div class="def_btnopt2 frombtn frombtn2">
-                            <a href="{{ route('admin.cmsView') }}"><button type="button" class="btn2">{{ __('admin.Add_Content') }}</button></a>
+                            <a href="{{ route('admin.cmsView') }}"><button type="button" style="background-color: {{$button->value}}" class="btn2">{{ __('admin.Add_Content') }}</button></a>
                         </div>
                     </div>
                     <div class="fromdes_view ">
@@ -42,14 +42,14 @@
                                                                 <?php } ?>
                                                                 <div class="card-body">
                                                                     <table id="dtable" class="table table-bordered table-striped">
-                                                                        <thead>
+                                                                        <thead >
                                                                             <tr>
-                                                                                <th>#</th>
-                                                                                <th>{{ __('admin.Title') }}</th>
-                                                                                <th>{{ __('admin.Slug') }}</th>
-                                                                                <th>{{ __('admin.Created_Date') }}</th>
-                                                                                <th>{{ __('admin.Status') }}</th>
-                                                                                <th>{{ __('admin.Action') }}</th>
+                                                                                <th style="background-color: {{$theme->value}}">#</th>
+                                                                                <th style="background-color: {{$theme->value}}">{{ __('admin.Title') }}</th>
+                                                                                <th style="background-color: {{$theme->value}}">{{ __('admin.Slug') }}</th>
+                                                                                <th style="background-color: {{$theme->value}}">{{ __('admin.Created_Date') }}</th>{{ __('admin.Content_Management') }}
+                                                                                <th style="background-color: {{$theme->value}}">{{ __('admin.Status') }}</th>
+                                                                                <th style="background-color: {{$theme->value}}">{{ __('admin.Action') }}</th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
@@ -59,7 +59,7 @@
                                                                                 <td>{{ $value->title }}</td>
                                                                                 <td>{{ $value->slug }}</td>
                                                                                 <td>{{ $value->created_at->format('d-m-Y') }}</td>
-                                                                                <td>{{ ($value->status) ? 'Active' : 'Inactive' }}</td>
+                                                                                <td>{{ ($value->status) ?  __('admin.Active')  : __('admin.Inactive') }}</td>
                                                                                 <td style="width:200px;">
                                                                                     <a href="{{ route('admin.editcms', $value->id) }}" class="btn btn-primary fas fa-edit">{{ __('admin.Edit') }}</a>
                                                                                     <?php if (!$value->readable) { ?>

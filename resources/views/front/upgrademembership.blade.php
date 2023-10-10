@@ -74,7 +74,7 @@
 													$total += $item->price;
 												@endphp
                                                         <div class="optionitem_add">
-                                                            <h3>{{ __('upgrademembership.Option') }} </h3>
+                                                            <h3 style="background-color: {{$theme->value}}">{{ __('upgrademembership.Option') }} </h3>
                                                             <div class="optionitem_block">
                                                                 <div class="opt_add">
                                                                     <img src="{{ asset('public/images/prod_img1.png') }}"
@@ -153,7 +153,7 @@
                                             <div class="frombtn_wrap">
                                                 <div class="def_btnopt2 frombtn frombtn2">
                                                     <button type="submit"
-                                                        class="btn2">{{ __('upgrademembership.Pay_Now') }}</button>
+                                                        class="btn2" style="background-color: {{$button->value}}">{{ __('upgrademembership.Pay_Now') }}</button>
                                                 </div>
                                             </div>
                                         </div>

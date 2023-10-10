@@ -51,17 +51,20 @@ class HomeController extends Controller
     public function login () {
         $data = array();
         $data['title'] = 'Login';
-        return view('login', compact('data'));
+        $button = Configuration::where('name','primary_button_color')->first();
+        return view('login', compact('data','button'));
     }
 
     public function forgotPassword () {
         $data = array();
         $data['title'] = 'Forgot Password';
-        return view('forgotpassword', compact('data'));
+        $button = Configuration::where('name','primary_button_color')->first();
+        return view('forgotpassword', compact('data','button'));
     }
 
     public function dashboard () {
-        return redirect()->route('homepage');
+        $button = Configuration::where('name','primary_button_color')->first();
+        return redirect()->route('homepage','button');
     }
 
     public function planType($id){

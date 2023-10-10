@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Models\Configuration;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -19,7 +20,8 @@ class AuthenticatedSessionController extends Controller
     public function create()
     {
         // return view('admin.auth.login');
-        return view('admin.login');
+        $button = Configuration::where('name','primary_button_color')->first();
+        return view('admin.login',compact('button'));
     }
 
     /**
