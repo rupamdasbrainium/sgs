@@ -47,7 +47,7 @@
                                                                                 <th>#</th>
                                                                                 <th>{{ __('admin.Title') }}</th>
                                                                                 <th>{{ __('admin.Slug') }}</th>
-                                                                                <th>{{ __('admin.Created_Date') }}</th>{{ __('admin.Content_Management') }}
+                                                                                <th>{{ __('admin.Created_Date') }}</th>
                                                                                 <th>{{ __('admin.Status') }}</th>
                                                                                 <th>{{ __('admin.Action') }}</th>
                                                                             </tr>
@@ -61,9 +61,9 @@
                                                                                 <td>{{ $value->created_at->format('d-m-Y') }}</td>
                                                                                 <td>{{ ($value->status) ? 'Active' : 'Inactive' }}</td>
                                                                                 <td style="width:200px;">
-                                                                                    <a href="{{ route('admin.editcms', $value->id) }}" class="btn btn-primary fas fa-edit">Edit{{ __('admin.Content_Management') }}</a>
+                                                                                    <a href="{{ route('admin.editcms', $value->id) }}" class="btn btn-primary fas fa-edit">{{ __('admin.Edit') }}</a>
                                                                                     <?php if (!$value->readable) { ?>
-                                                                                    <a href="{{ route('admin.cmsdelete', $value->id) }}" onclick="return delChk()" class="btn btn-danger btn-del fa fa-trash">Delete{{ __('admin.Content_Management') }}</a>
+                                                                                    <a href="{{ route('admin.cmsdelete', $value->id) }}" onclick="return delChk()" class="btn btn-danger btn-del fa fa-trash">{{ __('admin.Delete') }}</a>
                                                                                     <?php } ?>
                                                                                 </td>
                                                                             </tr>

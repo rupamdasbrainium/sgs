@@ -10,7 +10,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('admin.Home') }}</a></li>
                         <li class="breadcrumb-item active">{{ $data['title'] }}</li>
                     </ol>
                 </div>
@@ -33,31 +33,31 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group col-md-4">
-                                    <label for="name">Name*</label>
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name" required value="{{ $data['data']->name }}">
+                                    <label for="name">{{ __('admin.Name') }}*</label>
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="{{ __('admin.Enter_Name') }}" required value="{{ $data['data']->name }}">
                                     @if ($errors->has('name'))
                                     <div class="text-danger">{{ $errors->first('name') }}</div>
                                     @endif
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="email">Email*</label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Enter slug" required value="{{ $data['data']->email }}">
+                                    <label for="email">{{ __('admin.Email') }}*</label>
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="{{ __('admin.Enter_Email') }}" required value="{{ $data['data']->email }}">
                                     @if ($errors->has('email'))
                                     <div class="text-danger">{{ $errors->first('email') }}</div>
                                     @endif
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label>Status*</label>
+                                    <label>{{ __('admin.Status') }}*</label>
                                     <select name="status" id="status" class="form-control" required>
-                                        <option value="1" {{ $data['data']->status == 1 ? 'selected' : '' }}>Active</option>
-                                        <option value="0" {{ $data['data']->status == 0 ? 'selected' : '' }}>Inactive</option>
+                                        <option value="1" {{ $data['data']->status == 1 ? 'selected' : '' }}>{{ __('admin.Active') }}</option>
+                                        <option value="0" {{ $data['data']->status == 0 ? 'selected' : '' }}>{{ __('admin.Inactive') }}</option>
                                     </select>
                                 </div>
                                 
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <a href="{{ route('admin.userlist', $data['data']->user_type) }}" class="ml-3">Cancel</a>
+                                <button type="submit" class="btn btn-primary">{{ __('admin.Submit') }}</button>
+                                <a href="{{ route('admin.userlist', $data['data']->user_type) }}" class="ml-3">{{ __('admin.Cancel') }}</a>
                             </div>
                         </form>
                     </div>

@@ -11,12 +11,12 @@
                     </h1>
                     @if ($data['add_user'])
                     &nbsp;&nbsp;&nbsp;
-                    <a href="javascript:;">Add Seller</a>
+                    <a href="javascript:;">{{ __('admin.Add_Seller') }}</a>
                     @endif
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('admin.Home') }}</a></li>
                         <li class="breadcrumb-item active">{{ $data['title'] }}</li>
                     </ol>
                 </div>
@@ -45,11 +45,11 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Created Date</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th>{{ __('admin.Name') }}</th>
+                                        <th>{{ __('admin.Email') }}</th>
+                                        <th>{{ __('admin.Created_Date') }}</th>
+                                        <th>{{ __('admin.Status') }}</th>
+                                        <th>{{ __('admin.Action') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -63,8 +63,8 @@
                                         @endif</td>
                                         <td>{{ ($value->status) ? 'Active' : 'Inactive' }}</td>
                                         <td style="width:200px;">
-                                            <a href="{{ route('admin.userview', $value->id) }}" class="btn btn-primary fas fa-eye">View</a>
-                                            <a href="{{ route('admin.useredit', $value->id) }}" class="btn btn-primary fas fa-edit">Edit</a>
+                                            <a href="{{ route('admin.userview', $value->id) }}" class="btn btn-primary fas fa-eye">{{ __('admin.View') }}</a>
+                                            <a href="{{ route('admin.useredit', $value->id) }}" class="btn btn-primary fas fa-edit">{{ __('admin.Edit') }}</a>
                                             <!-- <a href="{{ route('admin.cmsdelete', $value->id) }}" onclick="return delChk()" class="btn btn-danger btn-del fa fa-trash">Delete</a> -->
                                         </td>
                                     </tr>

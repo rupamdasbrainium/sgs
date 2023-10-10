@@ -12,7 +12,7 @@
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800"></h1>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                    class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                    class="fas fa-download fa-sm text-white-50"></i>{{ __('admin.Generate_Report') }}</a>
         </div>
 
         <!-- Content Row -->
@@ -20,7 +20,7 @@
 
             <div class="container col-lg-9">
                 <div class="pull-left text-center">
-                    <h2>Edit About Us</h2>
+                    <h2>{{ __('admin.Edit_About_Us') }}</h2>
                 </div>
 
 
@@ -29,17 +29,17 @@
                         @csrf
 
                         <div class="form-group">
-                            <label>Title</label>
-                            <input class="form-control" type="text" name="title" required placeholder="Enter Title" 
+                            <label>{{ __('admin.Title') }}</label>
+                            <input class="form-control" type="text" name="title" required placeholder="{{ __('admin.Enter_Title') }}" 
                                value="{{ $data->title }}">
                         </div>
                         <div class="form-group">
-                            <label>Content</label>
-                            <textarea class="form-control" type="text" name="content" id="content" placeholder="Enter content" required
+                            <label>{{ __('admin.Content') }}</label>
+                            <textarea class="form-control" type="text" name="content" id="content" placeholder="{{ __('admin.Enter_content') }}" required
                                 cols="30" rows="10">{{ $data->content }}</textarea>
                         </div>
                         <div class="form-group">
-                            <button class="btn-btn-sm btn-primary">Update</button>
+                            <button class="btn-btn-sm btn-primary">{{ __('admin.Update') }}</button>
                         </div>
                     </form>
                 </div>

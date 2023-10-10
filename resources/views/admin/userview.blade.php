@@ -10,7 +10,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('admin.Home') }}</a></li>
                         <li class="breadcrumb-item active">{{ $data['title'] }}</li>
                     </ol>
                 </div>
@@ -29,10 +29,10 @@
                     <div class="text-center">
                         @if (!empty($data['data']->image))
                         <a href="{{ asset($data['data']->image) }}" data-toggle="lightbox" data-title="ID Card">
-                            <img class="profile-user-img img-fluid img-circle" src="{{ asset($data['data']->image) }}" alt="User profile picture">
+                            <img class="profile-user-img img-fluid img-circle" src="{{ asset($data['data']->image) }}" alt="{{ __('admin.User_profile_picture') }}">
                         </a>
                         @else
-                        <img class="profile-user-img img-fluid img-circle" src="{{ asset('images/user.jpg') }}" alt="User profile picture">
+                        <img class="profile-user-img img-fluid img-circle" src="{{ asset('images/user.jpg') }}" alt="{{ __('admin.User_profile_picture') }}">
                         @endif
                     </div>
                     <h3 class="profile-username text-center">{{ $data['data']->name }}</h3>
@@ -44,56 +44,56 @@
             <!-- About Me Box -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Details</h3>
+                <h3 class="card-title">{{ __('admin.Details') }}</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <strong><i class="fas fa-envelope mr-1"></i> Email</strong>
+                <strong><i class="fas fa-envelope mr-1"></i> {{ __('admin.Email') }}</strong>
                 <p class="text-muted">
                   {{ $data['data']->email }}
                 </p>
                 <hr>
-                <strong><i class="fas fa-phone-alt mr-1"></i> Phone</strong>
+                <strong><i class="fas fa-phone-alt mr-1"></i> {{ __('admin.Phone') }}</strong>
                 <p class="text-muted">{{ $data['data']->phone }}</p>
                 
                 @if (!empty($data['data']->address))
                 <hr>
-                <strong><i class="fas fa-phone-alt mr-1"></i> Address</strong>
+                <strong><i class="fas fa-phone-alt mr-1"></i> {{ __('admin.Address') }}</strong>
                 <p class="text-muted">{{ $data['data']->address }}</p>
                 @endif
                 @if (!empty($data['data']->city))
                 <hr>
-                <strong><i class="fas fa-phone-alt mr-1"></i> City</strong>
+                <strong><i class="fas fa-phone-alt mr-1"></i> {{ __('admin.City') }}</strong>
                 <p class="text-muted">{{ $data['data']->city }}</p>
                 @endif
                 @if (!empty($data['data']->country))
                 <hr>
-                <strong><i class="fas fa-phone-alt mr-1"></i> Country</strong>
+                <strong><i class="fas fa-phone-alt mr-1"></i> {{ __('admin.Country') }}</strong>
                 <p class="text-muted">{{ $data['data']->country }}</p>
                 @endif
                 @if (!empty($data['data']->pincode))
                 <hr>
-                <strong><i class="fas fa-phone-alt mr-1"></i> Post Code</strong>
+                <strong><i class="fas fa-phone-alt mr-1"></i> {{ __('admin.Post_Code') }}</strong>
                 <p class="text-muted">{{ $data['data']->pincode }}</p>
                 @endif
                 @if (!empty($data['data']->dob))
                 <hr>
-                <strong><i class="fas fa-phone-alt mr-1"></i> Date of Birth</strong>
+                <strong><i class="fas fa-phone-alt mr-1"></i>{{ __('admin.DOB') }}</strong>
                 <p class="text-muted">{{ $data['data']->dob }}</p>
                 @endif
 
                 @if (!empty($data['data']->image))
                 <hr>
-                <strong><i class="fas fa-pencil-alt mr-1"></i> ID Card</strong>
+                <strong><i class="fas fa-pencil-alt mr-1"></i> {{ __('admin.ID') }}</strong>
                 <p class="text-muted">
                     <div class="filtr-item col-sm-2" data-category="id_card" data-sort="ID Card">
                         <a href="{{ asset($data['data']->id_card) }}" data-toggle="lightbox" data-title="ID Card">
-                            <img class="profile-user-img img-fluid img-circle" src="{{ asset($data['data']->id_card) }}" alt="User profile picture">
+                            <img class="profile-user-img img-fluid img-circle" src="{{ asset($data['data']->id_card) }}" alt="{{ __('admin.User_profile_picture') }}">
                         </a>
                     </div>
                 </p>
                 @endif
-                <div class="text-center"><a href="{{ route('admin.userlist', $data['data']->user_type) }}">Back</a></div>
+                <div class="text-center"><a href="{{ route('admin.userlist', $data['data']->user_type) }}">{{ __('admin.Back') }}</a></div>
               </div>
               <!-- /.card-body -->
             </div>
