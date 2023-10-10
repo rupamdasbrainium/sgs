@@ -42,4 +42,6 @@ return [
     'Enter_slug' => 'Entrez le limace',
     'Active' => 'Actif',
     'Inactive' => 'Inactif',
+    'English' => 'Anglais',
+    'French' => 'Français',
 ];

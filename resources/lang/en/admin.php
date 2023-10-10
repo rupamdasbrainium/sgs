@@ -42,4 +42,6 @@ return [
     'Enter_slug' => 'Enter slug',
     'Active' => 'Active',
     'Inactive' => 'Inactive',
+    'English' => 'English',
+    'French' => 'French',
 ];
