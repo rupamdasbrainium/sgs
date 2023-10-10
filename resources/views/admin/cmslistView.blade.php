@@ -7,10 +7,10 @@
         <div class="inner_page_des">
             <div class="content_block accountinfo">
                 <div class="blocktitle">
-                    <h2 class="addpadding">Content Management</h2>
+                    <h2 class="addpadding">{{ __('admin.Content_Management') }}</h2>
                     <div class="frombtn_wrap singcol_btn">
                         <div class="def_btnopt2 frombtn frombtn2">
-                            <a href="{{ route('admin.cmsView') }}"><button type="button" class="btn2">Add Content</button></a>
+                            <a href="{{ route('admin.cmsView') }}"><button type="button" class="btn2">{{ __('admin.Add_Content') }}</button></a>
                         </div>
                     </div>
                     <div class="fromdes_view ">
@@ -19,7 +19,7 @@
                                     <div class="inp_row">
                                         <div class="col-sm-6">
                                             <ol class="breadcrumb float-sm-right">
-                                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                                <li class="breadcrumb-item"><a href="#">{{ __('admin.Home') }}</a></li>
                                                 <li class="breadcrumb-item active">{{ $data['title'] }}</li>
                                             </ol>
                                         </div>
@@ -45,11 +45,11 @@
                                                                         <thead>
                                                                             <tr>
                                                                                 <th>#</th>
-                                                                                <th>Title</th>
-                                                                                <th>Slug</th>
-                                                                                <th>Created Date</th>
-                                                                                <th>Status</th>
-                                                                                <th>Action</th>
+                                                                                <th>{{ __('admin.Title') }}</th>
+                                                                                <th>{{ __('admin.Slug') }}</th>
+                                                                                <th>{{ __('admin.Created_Date') }}</th>{{ __('admin.Content_Management') }}
+                                                                                <th>{{ __('admin.Status') }}</th>
+                                                                                <th>{{ __('admin.Action') }}</th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
@@ -61,9 +61,9 @@
                                                                                 <td>{{ $value->created_at->format('d-m-Y') }}</td>
                                                                                 <td>{{ ($value->status) ? 'Active' : 'Inactive' }}</td>
                                                                                 <td style="width:200px;">
-                                                                                    <a href="{{ route('admin.editcms', $value->id) }}" class="btn btn-primary fas fa-edit">Edit</a>
+                                                                                    <a href="{{ route('admin.editcms', $value->id) }}" class="btn btn-primary fas fa-edit">Edit{{ __('admin.Content_Management') }}</a>
                                                                                     <?php if (!$value->readable) { ?>
-                                                                                    <a href="{{ route('admin.cmsdelete', $value->id) }}" onclick="return delChk()" class="btn btn-danger btn-del fa fa-trash">Delete</a>
+                                                                                    <a href="{{ route('admin.cmsdelete', $value->id) }}" onclick="return delChk()" class="btn btn-danger btn-del fa fa-trash">Delete{{ __('admin.Content_Management') }}</a>
                                                                                     <?php } ?>
                                                                                 </td>
                                                                             </tr>

@@ -8,14 +8,14 @@
             <li>
                 <a href="{{ route('admin.settings') }}">
                     <span><img src="{{ asset('admin/images/adminsetup.svg') }}" alt="" ></span>
-                    <em>Admin Settings</em>
+                    <em>{{ __('admin.Admin_Settings') }}</em>
                     <strong class="arroright_opt"><i class="far fa-long-arrow-right"></i></strong>
                 </a>
             </li>
             <li>
                 <a href="{{ route('admin.configuration') }}">
                     <span><img src="{{ asset('admin/images/admin_configuration.svg') }}" alt="" ></span>
-                    <em>Admin Configuration</em>
+                    <em>{{ __('admin.Admin_Configuration') }}</em>
                     <strong class="arroright_opt"><i class="far fa-long-arrow-right"></i></strong>
                 </a>
             </li>
@@ -23,7 +23,7 @@
             <li>
                 <a href="{{ route('admin.cmslistView') }}">
                     <span><img src="{{ asset('admin/images/admin_configuration.svg') }}" alt="" ></span>
-                    <em>Content Management</em>
+                    <em>{{ __('admin.Content_Management') }}</em>
                     <strong class="arroright_opt"><i class="far fa-long-arrow-right"></i></strong>
                 </a>
             </li>
