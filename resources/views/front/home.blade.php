@@ -8,7 +8,7 @@
         <div class="banner_slider">
             <div class="banner_panel">
                 <div class="banner_img">
-                    <img src="{{ asset('public/images/yoav_banner_img.png') }}" alt="">
+                    <img src="{{ asset('public/upload/banner/' . $logo->value) }}" style="width: 1349px; height:659.73px;" alt="">
                 </div>
                 <div class="banner_cont">
                     <div class="container">

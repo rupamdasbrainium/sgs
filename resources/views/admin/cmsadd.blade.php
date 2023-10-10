@@ -29,6 +29,20 @@
                                                 <textarea class="form-control" id="body" name="body" required>{{ $data['data']['body'] }}</textarea>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <label>Body [English]<em class="req_text">*</em> </label>
+                                            <div class="inp_cont_view noicon_opt">
+                                                {{-- <textarea class="form-control" id="body" name="body" required>{{ $data['data']->body }}</textarea> --}}
+                                                <textarea class="form-control" id="body" name="body_english" >{{ $data['data']['english'] }}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Body [French]<em class="req_text">*</em> </label>
+                                            <div class="inp_cont_view noicon_opt">
+                                                {{-- <textarea class="form-control" id="body" name="body" required>{{ $data['data']->body }}</textarea> --}}
+                                                <textarea class="form-control" id="body" name="body_french" >{{ $data['data']['french'] }}</textarea>
+                                            </div>
+                                        </div>
 
                                         <div class="form-group">
                                             <label>{{ __('admin.Slug') }} <em class="req_text">*</em> </label>

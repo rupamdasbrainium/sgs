@@ -7,13 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Configuration;
 
 class LoginController extends Controller
 {
     public function index()
     {
         $title = trans('title_message.Admin_Login');
-        return view('admin.login', compact('title'));
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
+        return view('admin.login', compact('title','logo'));
     }
 
     public function login(Request $request)
@@ -27,18 +29,20 @@ class LoginController extends Controller
         );
 
         $data= DB::table('admin_users')->where('name', $request->username)->first();
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
         // dd($data);
         if (Hash::check($request->password, $data->password)) {
-           return redirect()->route('admin.dashboard');
+           return redirect()->route('admin.dashboard','logo');
         }
         else{
-           return redirect()->route('admin.login');
+           return redirect()->route('admin.login','logo');
         }
     }
 
     public function dashboard()
     {
-        return view('admin.dashboard');
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
+        return view('admin.dashboard','logo');
     }
 
     public function destroy()
@@ -48,7 +52,8 @@ class LoginController extends Controller
 
     public function profile()
     {
-        return view('admin.profile'); 
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
+        return view('admin.profile','logo'); 
     }
 
     public function updatePassword()

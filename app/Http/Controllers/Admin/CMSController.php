@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\About_us;
 use App\Models\Contact_us;
+use App\Models\Configuration;
 
 class CMSController extends Controller
 {
@@ -15,12 +16,14 @@ class CMSController extends Controller
     public function aboutus()
     {
         $data=DB::table('about_us')->get();
-        return view('admin.aboutUs',['data' => $data]);
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
+        return view('admin.aboutUs',['data' => $data,'logo'=>$logo]);
     }
 
     public function createaboutus()
     {
-        return view('admin.aboutUsForm');
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
+        return view('admin.aboutUsForm',compact('logo'));
     }
 
     public function storeaboutus(Request $request)
@@ -40,7 +43,8 @@ class CMSController extends Controller
     public function editaboutus($id)
     {
         $data=DB::table('about_us')->where('id',$id)->first();
-        return view('admin.editAboutUs',['data' => $data]);
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
+        return view('admin.editAboutUs',['data' => $data,'logo'=>$logo]);
     }
 
     public function updateaboutus(Request $request, $id)
@@ -68,12 +72,14 @@ class CMSController extends Controller
     public function contactus()
     {
         $data=DB::table('contact_us')->get();
-        return view('admin.contactUs',['data' => $data]);
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
+        return view('admin.contactUs',['data' => $data,'logo'=>$logo]);
     }
 
     public function createcontactus()
     {
-        return view('admin.contactUsForm');
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
+        return view('admin.contactUsForm',compact('logo'));
     }
 
     public function storecontactus(Request $request)
@@ -95,7 +101,8 @@ class CMSController extends Controller
     public function editcontactus($id)
     {
         $data=DB::table('contact_us')->where('id',$id)->first();
-        return view('admin.editContactUs',['data' => $data]);
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
+        return view('admin.editContactUs',['data' => $data,$logo]);
     }
 
     public function updatecontactus(Request $request, $id)
@@ -110,7 +117,7 @@ class CMSController extends Controller
         $contactus_data->email=$request->email;
         $contactus_data->comment=$request->comment;
         $contactus_data->save();
-        
+       
         return redirect(route('admin.contact-us'));
     }
    

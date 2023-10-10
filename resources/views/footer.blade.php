@@ -29,7 +29,7 @@
 					</div>
 					<div class="copy_rightinfo ">
 						<div class="footer_logo">
-							<a href="{{ route('homepage',['short_code'=>'CentreDemo']) }}"><img src="{{ asset('public/images/logo.svg') }}" alt=""></a>
+							<a href="{{ route('homepage',['short_code'=>'CentreDemo']) }}"><img src="{{ asset('public/upload/banner/' . $logo->value) }}" style="width: 100px; height:23.11px;" alt=""></a>
 						</div>
 						<p>
 							© 2023 sgs. {{ __('footer.all_right') }}.
