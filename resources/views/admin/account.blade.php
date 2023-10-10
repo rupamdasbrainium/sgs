@@ -69,7 +69,7 @@
                                 
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary" style="background-color: {{$button->value}}">Submit</button>
                             </div>
                         </form>
                     </div>

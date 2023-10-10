@@ -28,9 +28,16 @@
                         </ul>
                     </div>
                     <div class="copy_rightinfo ">
-                        {{-- <div class="footer_logo">
-                            <a href="#"><img src=" {{ asset('public/upload/banner/' . $logo->value) }}" style="width: 186px; height:43px;" alt=""></a>
-                        </div> --}}
+                        <div class="footer_logo">
+                            <a href="#">
+                                @if(isset($logo))
+                                <img src=" {{ asset('public/upload/banner/' . $logo->value) }}" style="width: 100px; height:23.11px;" alt="">
+                                @else
+                                <img src=" {{ asset('public/images/logo.svg') }}"  alt="">
+                                @endif
+
+                            </a>
+                        </div>
                         <p>
                             © 2023 sgs. {{ __('footer.all_right') }}.
                         </p>

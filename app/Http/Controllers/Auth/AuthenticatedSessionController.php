@@ -10,6 +10,7 @@ use App\Providers\RouteServiceProvider;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Session;
+use App\Models\Configuration;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -20,7 +21,8 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-        return view('auth.login');
+        $button = Configuration::where('name','primary_button_color')->first();
+        return view('auth.login','button');
     }
 
     /**

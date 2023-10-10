@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="account_leng_opt_btn">
                                     <div class="def_btnopt2 frombtn">
-                                        <button type="submit" class="btn2" >{{ __('myProfile.Submit') }}</button>
+                                        <button type="submit" class="btn2" style="background-color: {{$button->value}}" >{{ __('myProfile.Submit') }}</button>
                                     </div>
                                 </div>
                             </div>

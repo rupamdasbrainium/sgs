@@ -38,7 +38,7 @@
 							<div class="inp_cont_view noicon_opt">
 								<input type="text" class="form-control" placeholder="JBAF6" value="{{$data['referral']->data->reference_code}}" id="myInput">
 								<div class="def_btnopt2 frombtn" >
-									<button type="button" onclick="myFunction()" class="btn2" >{{ __('referalcode.COPY') }}</button>
+									<button type="button" onclick="myFunction()" class="btn2" style="background-color: {{$button->value}}">{{ __('referalcode.COPY') }}</button>
 								</div>
 							</div>
 						</div>

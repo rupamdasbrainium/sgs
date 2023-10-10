@@ -23,9 +23,13 @@
             <div class="col-md-12">
                 <div class="header_info">
                     <div class="logoinfo ">
-                        {{-- <a href="index.html" class="def_logo">
-                            <img src="{{ asset('public/upload/banner/' . $logo->value) }}" style="width: 186px; height:43px;" alt="">
-                        </a> --}}
+                        <a href="index.html" class="def_logo">
+                            @if(isset($logo))
+								<img src="{{ asset('public/upload/banner/' . $logo->value) }}" style="width: 186px; height:43px;" alt="">
+							@else
+                            <img src="{{ asset('public/images/logo.svg') }}" alt="">
+                            @endif
+                        </a>
                     </div>
                     <div class="header_right_info">
                         <div class="mob_user_icon">

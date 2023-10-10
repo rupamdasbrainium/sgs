@@ -25,6 +25,7 @@ class HomeController extends Controller
         $franchise_id = '';
         $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
         $banner = Configuration::where('name','banner_image')->where('franchise_id',3)->first();
+        $button = Configuration::where('name','primary_button_color')->where('franchise_id',3)->first();
         //find franchise_id
         foreach ($data['franchises']->data as $franchise) {
             //   if($franchise->id == $short_code){
@@ -84,7 +85,8 @@ class HomeController extends Controller
         $data['title'] = trans('title_message.Login');
         $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
         $banner = Configuration::where('name','banner_image')->where('franchise_id',3)->first();
-        return view('login', compact('data','logo','banner'));
+        $button = Configuration::where('name','primary_button_color')->first();
+        return view('login', compact('data','logo','banner','button'));
     }
 
     public function forgotPassword()

@@ -15,7 +15,8 @@ class LoginController extends Controller
     {
         $title = trans('title_message.Admin_Login');
         $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
-        return view('admin.login', compact('title','logo'));
+        $button = Configuration::where('name','primary_button_color')->where('franchise_id',3)->first();
+        return view('admin.login', compact('title','logo','button'));
     }
 
     public function login(Request $request)
@@ -29,20 +30,20 @@ class LoginController extends Controller
         );
 
         $data= DB::table('admin_users')->where('name', $request->username)->first();
-        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
         // dd($data);
         if (Hash::check($request->password, $data->password)) {
-           return redirect()->route('admin.dashboard','logo');
+           return redirect()->route('admin.dashboard');
         }
         else{
-           return redirect()->route('admin.login','logo');
+           return redirect()->route('admin.login');
         }
     }
 
     public function dashboard()
     {
         $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
-        return view('admin.dashboard','logo');
+        $button = Configuration::where('name','primary_button_color')->where('franchise_id',3)->first();
+        return view('admin.dashboard',compact('logo','button'));
     }
 
     public function destroy()
@@ -53,12 +54,15 @@ class LoginController extends Controller
     public function profile()
     {
         $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
-        return view('admin.profile','logo'); 
+        $button = Configuration::where('name','primary_button_color')->where('franchise_id',3)->first();
+        return view('admin.profile',compact('logo','button')); 
     }
 
     public function updatePassword()
     {
-        return view('admin.password');
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
+        $button = Configuration::where('name','primary_button_color')->where('franchise_id',3)->first();
+        return view('admin.password',compact('logo','button'));
     }
 
 
