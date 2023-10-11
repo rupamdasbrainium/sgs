@@ -450,7 +450,7 @@
                                                         </div>
                                                         <div class="inp_row">
                                                             <div class="form-group">
-                                                                <label>{{ __('paymentForm.credit_card_number') }} <em
+                                                                <label>{{ __('paymentForm.CSV') }} <em
                                                                         class="req_text">*</em></label>
                                                                 <div class="inp_cont_view noicon_opt" id="incdec">
 
@@ -527,9 +527,9 @@
 
                                                 <div class="frombtn_wrap">
                                                     <div class="def_btnopt2 frombtn">
-                                                        <button type="submit" value="submit" class="btn2"
+                                                        <button type="submit" value="submit" class="btn2" style="background-color: {{$button->value}}"
                                                             id="myButton"
-                                                            disabled>{{ __('paymentForm.sign_up') }}!</button>
+                                                            disabled >{{ __('paymentForm.sign_up') }}!</button>
                                                         <button type="button"
                                                             class="btn2 backbutton">{{ __('paymentForm.back') }}</button>
                                                     </div>
@@ -628,7 +628,7 @@
                 //     alert("Pan must be between 14 to 16 characters long.");
                 //     return false;
                 // }
-                if (four_digits_number.length != 4) {
+                if (four_digits_number.length != 3) {
                     alert("Card number must be at least 4 characters long.");
                     return false;
                 }

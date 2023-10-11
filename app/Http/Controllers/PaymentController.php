@@ -17,6 +17,9 @@ class PaymentController extends Controller
         $data = array();
         $data['title'] = trans('title_message.Subscription_Form');
         $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
+        $button = Configuration::where('name','primary_button_color')->first();
+        $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',3)->first();
+        $admin_address = Configuration::where('name','admin_address')->where('franchise_id',3)->first();
 
         // https://sgsdev.softsgs.net/Memberships/price-details?subscription_plan_id=18&duration_id=5&installment_id=131&date_begin=Thu21%20Sep%202023%2011%3A34%3A23%20GMT&franchise_id=3&lstOptions=5&lstOptions=9&display_language_id=2
 
@@ -56,7 +59,7 @@ class PaymentController extends Controller
         $card =  APICall("PaymentMethods/accepted_cards", "get", "{}", 'client_app');
         $data['card_types'] = json_decode($card);
 
-        return view('front.paymentform', compact('data','logo'));
+        return view('front.paymentform', compact('data','logo','button','admin_phone','admin_address'));
     }
 
     public function paymentSave(Request $request)
@@ -120,7 +123,6 @@ class PaymentController extends Controller
             $carddata['expire_year'] = $request->expiry_year;
             $carddata['expire_month'] = $request->expiry_month;
             $carddata['owner_name'] = $request->owner_name;
-            $carddata['token'] = $request->token;
             $carddata['type_id'] = $request->type_id;
             $carddata['pan'] = $request->pan;
 
@@ -180,6 +182,8 @@ class PaymentController extends Controller
         $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
         $theme = Configuration::where('name','theme_color')->where('franchise_id',3)->first();
         $button = Configuration::where('name','primary_button_color')->where('franchise_id',3)->first();
+        $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',3)->first();
+        $admin_address = Configuration::where('name','admin_address')->where('franchise_id',3)->first();
         $client = APICall("Clients",'get',"{}");
         if(!$client){
             return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
@@ -195,7 +199,7 @@ class PaymentController extends Controller
         $card =  APICall("PaymentMethods/accepted_cards", "get", "{}", 'client_app');
         $data['card_types'] = json_decode($card);
 
-        return view('front.addPayment', compact('data','logo','theme','button'));
+        return view('front.addPayment', compact('data','logo','theme','button','admin_phone','admin_address'));
     }
 
     public function paymentaddSave(Request $request)

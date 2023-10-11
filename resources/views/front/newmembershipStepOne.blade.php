@@ -9,7 +9,11 @@
 			<h2>{{ $data['title'] }}</h2>
 			<div class="prod_item_wrap" id="home_prod_item">
 
-				@foreach ($data['all_plan_details'] as $values)
+				@foreach ($data['all_plan']->data as $key => $item)
+				@php
+				$values = $data['all_plan_details'][$key];
+				
+				@endphp
 					<div class="prod_item">
 						<div class="action_opt action_opt_title" style="background-color: {{$theme->value}}">
 
@@ -54,7 +58,7 @@
 								{{ __('global.individual_head') }}
 							</div>
 							<div class="individual_des">
-								<ul>
+								{{-- <ul>
 									@if (isset($values->data))
 										@if (isset($values->data->options))
 											@foreach ($values->data->options as $val)
@@ -64,6 +68,9 @@
 											@endforeach
 										@endif
 									@endif
+								</ul> --}}
+								<ul>
+									<li>{{ $item->descr_french }}</li>
 								</ul>
 								<div class="subscribe_btn" >
 									

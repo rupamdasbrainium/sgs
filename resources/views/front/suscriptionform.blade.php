@@ -115,7 +115,7 @@
 								<div class="form-group">
 									<div class="inp_cont_view noicon_opt">
 										<input type="text" value="{{old('phone')}}"
-										name="phone" class="form-control" placeholder="{{ __('suscription.ph') }} *" required>
+										name="phone"  id="phone" class="form-control" placeholder="{{ __('suscription.ph') }} *" required>
 										<p>{{ __('suscription.example') }}: xxx xxx-xxxx</p>
 									</div>
 								</div>
@@ -310,7 +310,7 @@
 							</div>
 							<div class="frombtn_wrap">
 								<div class="def_btnopt2 frombtn frombtn2">
-									<button type="submit" class="btn2" >{{ __('suscription.save') }}</button>
+									<button type="submit" class="btn2" style="background-color: {{$button->value}}">{{ __('suscription.save') }}</button>
 								</div>
 							</div>
 							</form>
