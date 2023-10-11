@@ -22,40 +22,40 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label>{{ __('admin.Body') }}<em class="req_text">*</em> </label>
                                             <div class="inp_cont_view noicon_opt">
                                                 <textarea class="form-control" id="body" name="body" required>{{ $data['data']['body'] }}</textarea>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="form-group">
                                             <label>{{ __('admin.Body') }} [{{ __('admin.English') }}]<em class="req_text">*</em> </label>
                                             <div class="inp_cont_view noicon_opt">
-                                                <textarea class="form-control" id="body" name="body_english" >{{ $data['data']['english'] }}</textarea>
+                                                <textarea class="form-control" id="enbody" name="body_english" >{{ $data['data']['english'] }}</textarea>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>{{ __('admin.Body') }} [{{ __('admin.French') }}]<em class="req_text">*</em> </label>
                                             <div class="inp_cont_view noicon_opt">
-                                                <textarea class="form-control" id="body" name="body_french" >{{ $data['data']['french'] }}</textarea>
+                                                <textarea class="form-control" id="frbody" name="body_french" >{{ $data['data']['french'] }}</textarea>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label>{{ __('admin.Slug') }} <em class="req_text">*</em> </label>
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="text" class="form-control" name="slug" id="slug" placeholder="{{ __('admin.Enter_slug') }}" required value="{{ $data['data']['slug'] }}" readonly>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label>Status <em class="req_text">*</em> </label>
                                             <div class="inp_cont_view noicon_opt">
-                                                <select name="status" id="status" class="form-control" required>
+                                                <select name="status" id="status" class="form-control" required readonly> 
                                                     <option value="1" {{ $data['data']['status'] == 1 ? 'selected' : '' }}>{{ __('admin.Active') }}</option>
                                                     <option value="0" {{ $data['data']['status'] == 0 ? 'selected' : '' }}>{{ __('admin.Inactive') }}</option>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         
                                     </div>
                                     
@@ -82,7 +82,23 @@
 <script src="{{ asset('public/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-  $('#body').summernote({
+//   $('#body').summernote({
+//     height: 400,
+//     callbacks: {
+//         onImageUpload: function(files, editor, welEditable) {
+//             sendFile(files, editor, welEditable, 'body_en');
+//         } 
+//     }
+//   });
+  $('#enbody').summernote({
+    height: 400,
+    callbacks: {
+        onImageUpload: function(files, editor, welEditable) {
+            sendFile(files, editor, welEditable, 'body_en');
+        } 
+    }
+  });
+  $('#frbody').summernote({
     height: 400,
     callbacks: {
         onImageUpload: function(files, editor, welEditable) {

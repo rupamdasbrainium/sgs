@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 use App\Models\AdminUser;
+use App\Models\Content;
 use Illuminate\Support\Facades\Hash;
 
 class AdminLoginRequest extends FormRequest
@@ -57,9 +58,16 @@ class AdminLoginRequest extends FormRequest
 
         if (gettype($resposne) == "object" && property_exists($resposne, "token")) {
             RateLimiter::clear($this->throttleKey());
+            $franchise_id = 3;
             $user_check = AdminUser::where($this->only('email'))->count();
             if($user_check == 0){
-                AdminUser::create(['email'=>$formdata1['email']]);
+                AdminUser::create(['email'=>$formdata1['email'], 'franchise_id'=> $franchise_id]);
+            }
+            $contect_check = Content::where('franchise_id',$franchise_id)->count();
+            
+            if($contect_check == 0){
+                Content::create(['slug'=>'terms','title'=>'Terms & Conditions','body'=>'<p>terms and condition</p>','admin_user_id'=>'1']);
+                Content::create(['slug'=>'privacy','title'=>'Privacy Policy','body'=>'<p>privacy policy</p>','admin_user_id'=>'1']);
             }
             
         } else {

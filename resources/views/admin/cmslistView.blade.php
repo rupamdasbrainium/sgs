@@ -9,9 +9,9 @@
                 <div class="blocktitle">
                     <h2 class="addpadding">{{ __('admin.Content_Management') }}</h2>
                     <div class="frombtn_wrap singcol_btn">
-                        <div class="def_btnopt2 frombtn frombtn2">
+                        {{-- <div class="def_btnopt2 frombtn frombtn2">
                             <a href="{{ route('admin.cmsView') }}"><button type="button" style="background-color: {{$button->value}}" class="btn2">{{ __('admin.Add_Content') }}</button></a>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="fromdes_view ">
                         <div class="fromdes_info">
@@ -46,8 +46,8 @@
                                                                             <tr>
                                                                                 <th style="background-color: {{$theme->value}}">#</th>
                                                                                 <th style="background-color: {{$theme->value}}">{{ __('admin.Title') }}</th>
-                                                                                <th style="background-color: {{$theme->value}}">{{ __('admin.Slug') }}</th>
-                                                                                <th style="background-color: {{$theme->value}}">{{ __('admin.Created_Date') }}</th>{{ __('admin.Content_Management') }}
+                                                                                {{-- <th style="background-color: {{$theme->value}}">{{ __('admin.Slug') }}</th> --}}
+                                                                                <th style="background-color: {{$theme->value}}">{{ __('admin.Created_Date') }}</th>
                                                                                 <th style="background-color: {{$theme->value}}">{{ __('admin.Status') }}</th>
                                                                                 <th style="background-color: {{$theme->value}}">{{ __('admin.Action') }}</th>
                                                                             </tr>
@@ -57,14 +57,14 @@
                                                                             <tr>
                                                                                 <td>{{ $key + 1 }}</td>
                                                                                 <td>{{ $value->title }}</td>
-                                                                                <td>{{ $value->slug }}</td>
+                                                                                {{-- <td>{{ $value->slug }}</td> --}}
                                                                                 <td>{{ $value->created_at->format('d-m-Y') }}</td>
                                                                                 <td>{{ ($value->status) ?  __('admin.Active')  : __('admin.Inactive') }}</td>
                                                                                 <td style="width:200px;">
                                                                                     <a href="{{ route('admin.editcms', $value->id) }}" class="btn btn-primary fas fa-edit">{{ __('admin.Edit') }}</a>
-                                                                                    <?php if (!$value->readable) { ?>
+                                                                                    {{-- <?php if (!$value->readable) { ?>
                                                                                     <a href="{{ route('admin.cmsdelete', $value->id) }}" onclick="return delChk()" class="btn btn-danger btn-del fa fa-trash">{{ __('admin.Delete') }}</a>
-                                                                                    <?php } ?>
+                                                                                    <?php } ?> --}}
                                                                                 </td>
                                                                             </tr>
                                                                             @endforeach
