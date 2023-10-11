@@ -67,7 +67,7 @@
 									</li>
 									@else
 									<li class="nav-item {{ Request::is('login')? 'active':'' }}">
-										<a class="nav-link" href="{{ route('login') }}">{{ __('header.login') }}</a>
+										<a class="nav-link" href="{{ route('login') }}">{{ __('header.Login') }}</a>
 									</li>
 									@endif
 								</ul>

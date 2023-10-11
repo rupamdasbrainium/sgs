@@ -45,7 +45,7 @@
 												@if(isset($data['subscription_plan']) && isset($data['subscription_plan']->data) && count($data['subscription_plan']->data->options))
 													@foreach ($data['subscription_plan']->data->options as $item)
 													<div class="optionitem_add">
-														<h3>{{ __('newMembership.option') }} {{ $loop->iteration }}</h3>
+														<h3 style="background-color: {{$theme->value}}">{{ __('newMembership.option') }} {{ $loop->iteration }}</h3>
 														<div class="optionitem_block">
 															<div class="opt_add">
 																<img src="{{asset('public/images/prod_img1.png')}}" alt="">
@@ -82,7 +82,7 @@
 											</div>
 											<div class="frombtn_wrap">
 												<div class="def_btnopt2 frombtn frombtn2">
-													<button type="submit" class="btn2" >{{ __('newMembership.next') }}</button>
+													<button type="submit" class="btn2" style="background-color: {{$button->value}}">{{ __('newMembership.next') }}</button>
 												</div>
 											</div>
 										

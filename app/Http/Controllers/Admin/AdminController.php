@@ -170,6 +170,13 @@ class AdminController extends Controller
         $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
         $theme = Configuration::where('name','theme_color')->where('franchise_id',3)->first();
         $button = Configuration::where('name','primary_button_color')->where('franchise_id',3)->first();
+        $title = Configuration::where('name','title')->where('franchise_id',3)->first();
+        $subtitle = Configuration::where('name','subtitle')->where('franchise_id',3)->first();
+        $home_title = Configuration::where('name','home_title')->where('franchise_id',3)->first();
+        $home_magicplan = Configuration::where('name','home_magicplan')->where('franchise_id',3)->first();
+        $home_body = Configuration::where('name','home_body')->where('franchise_id',3)->first();
+        $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',3)->first();
+        $admin_address = Configuration::where('name','admin_address')->where('franchise_id',3)->first();
         if (count($result) > 0) {
             $data['data'] = getConfigurationValue($result);
             if (isset($data['data']['banner_image'])) {
@@ -185,7 +192,7 @@ class AdminController extends Controller
         }
         $data['user'] = $user;
         $data['title'] = trans('title_message.Admin_Settings');
-        return view('admin.settings', compact('data','logo','theme','button'));
+        return view('admin.settings', compact('data','logo','theme','button','title','subtitle','home_title','home_magicplan','home_body','admin_address','admin_phone'));
     }
 
 
@@ -193,6 +200,7 @@ class AdminController extends Controller
         $user = Auth::guard('admin')->user();
 
         $input_data = $request->all();
+       
         unset($input_data['_token']);
         unset($input_data['banner_image']);
         unset($input_data['logo_image']);
@@ -248,6 +256,15 @@ class AdminController extends Controller
 
             }
         }
+        // $input_data = Configuration::where('franchise_id',3)->get();
+        $input_data = new Configuration();
+        $input_data->name = $request->title;
+        $input_data->name = $request->subtitle;
+        $input_data->name = $request->home_title;
+        $input_data->name = $request->home_magicplan;
+        $input_data->name = $request->home_body;
+        $input_data->name = $request->admin_phone;
+        $input_data->name = $request->admin_address;
         // return view('header',compact('row_data'));
         $response = array(
             'message' => trans('title_message.Settings_successfully_updated'),

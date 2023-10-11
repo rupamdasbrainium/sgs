@@ -19,8 +19,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="banner_info">
-                                    <h1>{{ __('global.banner_info_h1') }} <span>{{ __('global.banner_info_h1_span') }}</span></h1>
-                                    <h2>{{ __('global.banner_info_h2') }}!</h2>
+                                    <h1>{{ $title->value }}</h1>
+                                    <h2>{{ $subtitle->value}}!</h2>
                                     {{-- <h1>Elevate Your <span>Fitness,</span></h1> --}}
                                     {{-- <h2>Ignite Your Potential!</h2> --}}
                                 </div>
@@ -44,11 +44,11 @@
                             </div>
 
                             <div class="heading_info ">
-                                <h3>{{ __('global.heading_info') }}</h3>
+                                <h3>{{ $home_title->value}}</h3>
                             </div>
-                            <h2>{{ __('global.magic_plan') }}</h2>
+                            <h2>{{ $home_magicplan->value}}</h2>
                             {{-- <p>Transform Your Body, Transform Your Life at Fitness Gym</p> --}}
-                            <p>{{ __('global.welcomesec_info') }}</p>
+                            <p>{{ $home_body->value}}</p>
                         </div>
 
                     </div>
@@ -111,7 +111,7 @@
                                     </div>
                                     <div class="def_btnopt2">
                                         {{-- <button type="button" class="btn2" id="home_continue">Continue</button> --}}
-                                        <button type="button" class="btn2" id="home_continue">{{ __('global.continue') }}</button>
+                                        <button type="button" style="background-color: {{$button->value}}" class="btn2" id="home_continue">{{ __('global.continue') }}</button>
                                     </div>
 
                                 </div>
@@ -120,7 +120,7 @@
                                     {{-- @dd($data['best_four_plan_details']) --}}
                                     @foreach ($data['best_four_plan_details'] as $values)
                                         <div class="prod_item">
-                                            <div class="action_opt action_opt_title">
+                                            <div class="action_opt action_opt_title" style="background-color: {{$theme->value}}">
 
                                                 <div class="action_text">
 
@@ -162,7 +162,7 @@
                                                 <p>{{ __('global.price') }}</p>
                                             </div>
                                             <div class="individual_opt">
-                                                <div class="individual_head">
+                                                <div class="individual_head" style="background-color: {{$theme->value}}">
                                                     {{ __('global.individual_head') }}
                                                 </div>
                                                 <div class="individual_des">
@@ -179,7 +179,7 @@
                                                     </ul>
                                                     <div class="subscribe_btn">
                                                         <a href="{{ route('newMembershipfont', [$values->data->id]) }}"
-                                                            class="sub_btn">{{ __('global.subscribe') }}</a>
+                                                            class="sub_btn" style="background-color: {{$button->value}}" >{{ __('global.subscribe') }}</a>
                                                     </div>
                                                 </div>
                                             </div>

@@ -54,11 +54,11 @@
                                     <ul class="navbar-nav mr-auto">
                                         @if(Auth::guard('admin')->check())
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('admin.logout') }}"> {{ __('header.logout') }}</a>
+                                            <a class="nav-link" href="{{ route('admin.logout') }}"> {{ __('header.Logout') }}</a>
                                         </li>
                                         @else
                                         <li class="nav-item {{ Request::is('login')? 'active':'' }}">
-                                            <a class="nav-link" href="{{ route('admin.login') }}">{{ __('header.login') }}</a>
+                                            <a class="nav-link" href="{{ route('admin.login') }}">{{ __('header.Login') }}</a>
                                         </li>
                                         @endif
                                     </ul>
