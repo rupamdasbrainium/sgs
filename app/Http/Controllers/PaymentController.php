@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\App;
+use App\Models\Configuration;
 
 class PaymentController extends Controller
 {
@@ -15,6 +16,7 @@ class PaymentController extends Controller
         $lang_id = getLocale();
         $data = array();
         $data['title'] = trans('title_message.Subscription_Form');
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
 
         // https://sgsdev.softsgs.net/Memberships/price-details?subscription_plan_id=18&duration_id=5&installment_id=131&date_begin=Thu21%20Sep%202023%2011%3A34%3A23%20GMT&franchise_id=3&lstOptions=5&lstOptions=9&display_language_id=2
 
@@ -54,7 +56,7 @@ class PaymentController extends Controller
         $card =  APICall("PaymentMethods/accepted_cards", "get", "{}", 'client_app');
         $data['card_types'] = json_decode($card);
 
-        return view('front.paymentform', compact('data'));
+        return view('front.paymentform', compact('data','logo'));
     }
 
     public function paymentSave(Request $request)
@@ -175,6 +177,9 @@ class PaymentController extends Controller
     {
         $data = array();
         $data['title'] = trans('title_message.Add_Acoount');
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
+        $theme = Configuration::where('name','theme_color')->where('franchise_id',3)->first();
+        $button = Configuration::where('name','primary_button_color')->where('franchise_id',3)->first();
         $client = APICall("Clients",'get',"{}");
         if(!$client){
             return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
@@ -190,7 +195,7 @@ class PaymentController extends Controller
         $card =  APICall("PaymentMethods/accepted_cards", "get", "{}", 'client_app');
         $data['card_types'] = json_decode($card);
 
-        return view('front.addPayment', compact('data'));
+        return view('front.addPayment', compact('data','logo','theme','button'));
     }
 
     public function paymentaddSave(Request $request)

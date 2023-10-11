@@ -132,7 +132,7 @@
 
                                     </div>
                                     <div class="def_btnopt2 frombtn frombtn2">
-                                        <button type="button" class="btn2">{{ __('paymyoutstandingbalance.Add_Payment_Method') }}</button>
+                                        <button type="button"  style="background-color: {{$button->value}}"class="btn2">{{ __('paymyoutstandingbalance.Add_Payment_Method') }}</button>
                                     </div>
                                 </div>
                                 <div class="aboundopt">
@@ -142,7 +142,7 @@
                                     <div class="def_btnopt2 frombtn frombtn2">
                                         <input type="hidden" name="payment_ids">
                                         <input type="hidden" name="totalAmount">
-                                        <button type="submit" class="btn2">{{ __('paymyoutstandingbalance.Pay_Now') }}</button>
+                                        <button type="submit"  style="background-color: {{$button->value}}" class="btn2">{{ __('paymyoutstandingbalance.Pay_Now') }}</button>
                                     </div>
                                 </div>
                             </div>

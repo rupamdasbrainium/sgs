@@ -8,7 +8,11 @@
         <div class="banner_slider">
             <div class="banner_panel">
                 <div class="banner_img">
+                    @if(isset($banner))
+                    <img src="{{ asset('public/upload/banner/' . $banner->value) }}" style="width: 1349px; height:659.73px;" alt="">
+                    @else
                     <img src="{{ asset('public/images/yoav_banner_img.png') }}" alt="">
+                    @endif
                 </div>
                 <div class="banner_cont">
                     <div class="container">

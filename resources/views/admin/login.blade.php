@@ -60,7 +60,7 @@
                           {!! captcha_img('flat') !!}
                         </div>
                         <div class="reset_capcha_opt">
-                          <button type="button" class="reset_capcha" >
+                          <button type="button" class="reset_capcha" style="background-color: {{$button->value}}" >
                           <img src="{{ asset('public/admin/images/cap_ref_btn.png') }}" alt="">
                           </button>
                         </div>
@@ -86,7 +86,7 @@
                     </div>
                   </div>
                   <div class="def_btnopt2 frombtn">
-                    <button type="submit" class="btn2 fulldidthbtn" >{{ __('login.Login') }}</button>
+                    <button type="submit" class="btn2 fulldidthbtn" style="background-color: {{$button->value}}">{{ __('login.Login') }}</button>
                   </div>
                   
                 </div>

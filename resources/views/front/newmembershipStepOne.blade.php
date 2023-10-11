@@ -11,7 +11,7 @@
 
 				@foreach ($data['all_plan_details'] as $values)
 					<div class="prod_item">
-						<div class="action_opt action_opt_title">
+						<div class="action_opt action_opt_title" style="background-color: {{$theme->value}}">
 
 							<div class="action_text">
 
@@ -50,7 +50,7 @@
 							<p>{{ __('global.price') }}</p>
 						</div>
 						<div class="individual_opt">
-							<div class="individual_head">
+							<div class="individual_head" style="background-color: {{$theme->value}}">
 								{{ __('global.individual_head') }}
 							</div>
 							<div class="individual_des">
@@ -65,10 +65,10 @@
 										@endif
 									@endif
 								</ul>
-								<div class="subscribe_btn">
+								<div class="subscribe_btn" >
 									
 									<a href="{{ route('newMembershipSteptwo', [$values->data->id]) }}"
-										class="sub_btn">{{ __('global.subscribe') }}</a>
+										class="sub_btn"  style="background-color: {{$button->value}}">{{ __('global.subscribe') }}</a>
 								</div>
 							</div>
 						</div>

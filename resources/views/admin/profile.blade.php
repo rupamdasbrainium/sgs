@@ -12,7 +12,7 @@
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800"></h1>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                    class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                    class="fas fa-download fa-sm text-white-50"></i>{{ __('admin.Generate_Report') }}</a>
         </div>
 
         <!-- Content Row -->
@@ -20,7 +20,7 @@
 
             <div class="container col-lg-9">
                 <div class="pull-left text-center">
-                    <h2>Admin Profile</h2>
+                    <h2>{{ __('admin.Admin_Profile') }}</h2>
                 </div>
 
                 <div class="card-body">
@@ -42,8 +42,7 @@
 
                     </div>
                     <div class="d-flex justify-content-center">
-                        <label for="profile_image" role="button" class="btn btn-sm btn-success">Change
-                            Profile Image</label>
+                        <label for="profile_image" role="button" class="btn btn-sm btn-success">{{ __('admin.Change_Profile_Image') }}</label>
                     </div>
 
                     <!--Adding Image Preview-->
@@ -57,7 +56,7 @@
                     </script>
                     <!--End Image Preview-->
                     <div class="form-group mt-5">
-                        <label>Name</label>
+                        <label>{{ __('admin.Name') }}</label>
                         <input class="form-control" type="text" name="name"
                             placeholder="Enter Name" value="">
                             <span class="text-danger">
@@ -67,7 +66,7 @@
                             </span>
                     </div>
                     <div class="form-group">
-                        <label>Email</label>
+                        <label>{{ __('admin.Email') }}</label>
                         <input class="form-control" type="email" name="email"
                             placeholder="Enter Email" value="">
                             <span class="text-danger">
@@ -77,7 +76,7 @@
                             </span>
                     </div>
                     <button class="btn btn-sm btn-primary"
-                        type="submit">Update Account</button>
+                        type="submit">{{ __('admin.Update_Account') }}</button>
 
                 </form>
                 </div>

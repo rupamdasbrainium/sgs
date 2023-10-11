@@ -7,7 +7,7 @@
         <div class="inner_page_des">
             <div class="content_block accountinfo">
                 <div class="blocktitle">
-                    <h2 class="addpadding">Admin Settings</h2>
+                    <h2 class="addpadding">{{ __('admin.Admin_Settings') }}</h2>
                     <div class="fromdes_view ">
                         <div class="admin_des">
                             <div class="fromdes_info">
@@ -16,10 +16,10 @@
                                         @csrf
                                         <div class="inp_row">
                                             <div class="form-group">
-                                                <label>Banner Image </label>
+                                                <label>{{ __('admin.Banner_Image') }} </label>
                                                 <div class="inp_cont_view noicon_opt">
                                                     <div class="adminbanner adhight" style="background: url({{ $data['data']['banner_image'] }})no-repeat center center;">
-                                                        <div class="edit_btn banneredit">
+                                                        <div class="edit_btn banneredit"  style="background-color: {{$button->value}}">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </div>
                                                     </div>
@@ -27,10 +27,10 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label>Logo Image </label>
+                                                <label>{{ __('admin.Logo_Image') }} </label>
                                                 <div class="inp_cont_view noicon_opt">
                                                     <div class="admin_logoadd adhight" style="background: url({{ $data['data']['logo_image'] }})no-repeat center center;">
-                                                        <div class="edit_btn logoedit">
+                                                        <div class="edit_btn logoedit"  style="background-color: {{$button->value}}">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </div>
                                                     </div>
@@ -39,12 +39,12 @@
                                             </div>
                                             
                                             <div class="form-group">
-                                                <label>Color Settings</label>
+                                                <label>{{ __('admin.Color_Settings') }}</label>
                                                 <div class="inp_cont_view noicon_opt">
                                                     <div class="color_Settings">
                                                         <div class="color_opt_block">
                                                             <div class="color_opt_text">
-                                                                Theme Color <span class="req_text">*</span>
+                                                                {{ __('admin.Theme_Color') }} <span class="req_text">*</span>
                                                             </div>
                                                             <div class="color_opt_inp">
                                                                 <!-- <input class="inpcolor_opt" type="color" id="theme_color" name="favcolor" value="#5ADFC2"> -->
@@ -54,7 +54,7 @@
                                                         </div>
                                                         <div class="color_opt_block">
                                                             <div class="color_opt_text">
-                                                                Primary Button Color  <span class="req_text">*</span>
+                                                                {{ __('admin.Primary_Button_Color') }}  <span class="req_text">*</span>
                                                             </div>
                                                             <div class="color_opt_inp">
                                                                 <!-- <input class="inpcolor_opt" type="color" id="pri_btncolor" name="favcolor" value="#1D1D1B"> -->
@@ -64,7 +64,7 @@
                                                         </div>
                                                         <div class="color_opt_block">
                                                             <div class="color_opt_text">
-                                                                Secondary Button Color  <span class="req_text">*</span>
+                                                                {{ __('admin.Secondary_Button_Color') }}  <span class="req_text">*</span>
                                                             </div>
                                                             <div class="color_opt_inp">
                                                                 <!-- <input class="inpcolor_opt" type="color" id="btncolor" name="favcolor" value="#FFB11A"> -->
@@ -74,7 +74,7 @@
                                                         </div>
                                                         <div class="color_opt_block">
                                                             <div class="color_opt_text">
-                                                                Text Color <span class="req_text">*</span>
+                                                                {{ __('admin.Text_Color') }} <span class="req_text">*</span>
                                                             </div>
                                                             <div class="color_opt_inp">
                                                                 <!-- <input class="inpcolor_opt" type="color" id="textcolor" name="favcolor" value="#575757"> -->
@@ -88,7 +88,7 @@
                                         </div>
                                         <div class="frombtn_wrap singcol_btn">
                                             <div class="def_btnopt2 frombtn frombtn2">
-                                                <button type="submit" class="btn2">Save</button>
+                                                <button type="submit" class="btn2" style="background-color: {{$button->value}}">{{ __('admin.Save') }}</button>
                                             </div>
                                         </div>
                                     </form>

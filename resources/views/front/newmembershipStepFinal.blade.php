@@ -543,7 +543,7 @@
 														</div>
 														<div class="frombtn_wrap">
 															<div class="def_btnopt2 frombtn frombtn2">
-																<button type="submit" class="btn2" >{{ __('paymentForm.Pay_Now') }}</button>
+																<button type="submit" class="btn2" style="background-color: {{$button->value}}">{{ __('paymentForm.Pay_Now') }}</button>
 															</div>
 														</div>
 								

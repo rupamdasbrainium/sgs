@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use App\Models\Configuration;
 
 
 class HomeController extends Controller
@@ -22,7 +23,9 @@ class HomeController extends Controller
         $data['franchises'] = json_decode($franchises);
         $data['short_code'] = $short_code;
         $franchise_id = '';
-
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
+        $banner = Configuration::where('name','banner_image')->where('franchise_id',3)->first();
+        $button = Configuration::where('name','primary_button_color')->where('franchise_id',3)->first();
         //find franchise_id
         foreach ($data['franchises']->data as $franchise) {
             //   if($franchise->id == $short_code){
@@ -36,7 +39,7 @@ class HomeController extends Controller
           );
 
         if (!$franchise_id) {
-            return redirect(route('login'))->with($response);
+            return redirect(route('login'),compact('logo','banner'))->with($response);
         }
 
         // foreach($data['franchises']->data as $franchise){
@@ -73,26 +76,32 @@ class HomeController extends Controller
 
         $data['best_four_plan_details'] = $data_plan;
         $best_four_plan_details = $data_plan;
-        return view('front.home', compact('data', 'best_four_plan_details', 'franchise_id'));
+        return view('front.home', compact('data', 'best_four_plan_details', 'franchise_id','logo','banner'));
     }
 
     public function login()
     {
         $data = array();
         $data['title'] = trans('title_message.Login');
-        return view('login', compact('data'));
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
+        $banner = Configuration::where('name','banner_image')->where('franchise_id',3)->first();
+        $button = Configuration::where('name','primary_button_color')->first();
+        return view('login', compact('data','logo','banner','button'));
     }
 
     public function forgotPassword()
     {
         $data = array();
         $data['title'] = trans('title_message.Forgot_Password');
-        return view('forgotpassword', compact('data'));
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
+        return view('forgotpassword', compact('data','logo'));
     }
 
     public function dashboard()
     {
-        return redirect()->route('account');
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
+        $banner = Configuration::where('name','banner_image')->where('franchise_id',3)->first();
+        return redirect()->route('account',compact('logo','banner'));
     }
 
     public function termsAndCondition()
@@ -100,20 +109,25 @@ class HomeController extends Controller
         $data = array();
         $data['title'] = trans('title_message.Terms_Condition');
         $terms = DB::table('contents')->where('franchise_id',3)->where('slug','terms')->where('status',1)->first();
-        return view('front.termsAndCondition', compact('data','terms'));
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
+        $banner = Configuration::where('name','banner_image')->where('franchise_id',3)->first();
+        return view('front.termsAndCondition', compact('data','terms','logo','banner'));
     }
     public function privacyPolicy()
     {
         $data = array();
         $data['title'] = trans('title_message.Privacy_Policy');
         $privacy = DB::table('contents')->where('franchise_id',3)->where('slug','privacy')->where('status',1)->first();
-        return view('front.privacyPolicy', compact('data','privacy'));
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
+        $banner = Configuration::where('name','banner_image')->where('franchise_id',3)->first();
+        return view('front.privacyPolicy', compact('data','privacy','logo','banner'));
     }
     public function law25()
     {
         $data = [];
         $data["title"] = "Law 25";
-        return view('front.law25', compact('data'));
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
+        return view('front.law25', compact('data','logo'));
     }
     public function planType($id)
     {
@@ -122,6 +136,7 @@ class HomeController extends Controller
         $data = json_decode($franchisesPlanType);
         $html = '';
         $li = '';
+        
         if (isset($data)) {
             foreach ($data->data as $value) {
                 $html .= "<option value='" . $value->id . "'>" . $value->name_english . "</option>";

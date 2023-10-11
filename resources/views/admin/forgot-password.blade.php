@@ -1,5 +1,6 @@
 @section('title', 'Admin Forgot Password |')
 <x-admin-guest-layout>
+	@include('admin.header')
 <section class="maincontent_wrap innermain_content">
 	<div class="welcomesection def_padding inner_content_block">
 		<div class="container">
@@ -12,7 +13,7 @@
 					</div>
 					<div class="fromdes_wrap_view">
 						<div class="welcomesec_info inner_heading">
-							<h2>Forgot Your Password</h2>
+							<h2>{{ __('admin.Forgot_Your_Password') }}</h2>
 							<!-- <p>Input your details and password to get started</p> -->
 						</div>
 						<form method="POST" action="{{ route('admin.password.email') }}">
@@ -21,7 +22,7 @@
 								<div class="from_cont_wrap">
 									<div class="inp_row rowopt2">
 										<div class="form-group">
-											<label for="email">Email</label>
+											<label for="email">{{ __('admin.Email') }}</label>
 											<div class="rowopt2_wrap1">
 												
 												<div class="inp_cont_view">
@@ -48,18 +49,18 @@
 															</div>
 														</div>
 														<div class="inp_cont_view cap_inp_block">
-															<input class="form-control inpopt2" type="text" name="captcha" placeholder="Enter the text in the image" id="captcha" required>
+															<input class="form-control inpopt2" type="text" name="captcha" placeholder="{{ __('admin.Enter_the_text') }}" id="captcha" required>
 															@if ($errors->has('captcha'))
-															<div class="text-danger mt-3">Enter valid captcha</div>
+															<div class="text-danger mt-3">{{ __('admin.captcha') }}</div>
 															@endif
 														</div>
 													</div>
 												</div>
 												<div class="def_btnopt2 frombtn">
-													<button type="submit" class="btn2 fulldidthbtn" >Forgot Password</button>
+													<button type="submit" class="btn2 fulldidthbtn" >{{ __('admin.Forgot_Password') }}</button>
 												</div>
 												<div class="forgot_opt text-center mt-3">
-													<a href="{{ route('admin.login') }}">Login</a>
+													<a href="{{ route('admin.login') }}">{{ __('admin.Login') }}</a>
 												</div>
 											</div>
 										</div>

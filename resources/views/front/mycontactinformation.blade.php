@@ -206,7 +206,7 @@
 
                                     <div class="frombtn_wrap">
                                         <div class="def_btnopt2 frombtn frombtn2">
-                                            <button type="submit" class="btn2">{{ __('mycontactinformatiion.Save') }}</button>
+                                            <button type="submit" style="background-color: {{$button->value}}" class="btn2">{{ __('mycontactinformatiion.Save') }}</button>
                                         </div>
                                     </div>
                                 </div>

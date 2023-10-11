@@ -36,7 +36,7 @@
                         </div>
                         <?php } ?>
                         <div class="card-body">
-                            <table id="dtable" class="table table-bordered table-striped">
+                            <table id="dtable" class="table table-bordered table-striped" >
                                 <thead>
                                     <tr>
                                         <th>#</th>
