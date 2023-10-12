@@ -65,16 +65,16 @@
                                                     
                                                 @endphp
                                                 @if (isset($subscription_plan) && isset($subscription_plan->data) && count($subscription_plan->data->options))
-                                                @php
+                                                {{-- @php
                                                 $total = 0;
-                                                @endphp
+                                                @endphp --}}
                                                     @foreach ($subscription_plan->data->options as $item)
                                                     {{-- @dd($subscription_plan); --}}
-                                                    @php
+                                                    {{-- @php
 													$total += $item->price;
-												@endphp
+												@endphp --}}
                                                         <div class="optionitem_add">
-                                                            <h3 style="background-color: {{$theme->value}}">{{ __('upgrademembership.Option') }} </h3>
+                                                            <h3 style="background-color: {{$theme->value}}">{{ __('upgrademembership.Option') }} {{$loop->iteration}} </h3>
                                                             <div class="optionitem_block">
                                                                 <div class="opt_add">
                                                                     <img src="{{ asset('public/images/prod_img1.png') }}"
@@ -85,7 +85,7 @@
                                                                     <div class="price_opt_add">${{ $item->price }}
                                                                     </div>
                                                                     <div class="optionitem_prod">
-                                                                        <span>{{ __('newMembership.training') }}</span>
+                                                                        {{-- <span>{{ __('newMembership.training') }}</span> --}}
                                                                         <span>{{ __('upgrademembership.Quantity') }}:
                                                                             {{ $item->quantity }} X
                                                                             {{ $item->deliverable_quantity }}</span>
@@ -148,7 +148,7 @@
                                                 </div>
                                                 
                                               
-                                                <input type="hidden" name="processed_amount" value="{{ $total }}">
+                                                {{-- <input type="hidden" name="processed_amount" value="{{ $total }}"> --}}
                                             </div>
                                             <div class="frombtn_wrap">
                                                 <div class="def_btnopt2 frombtn frombtn2">

@@ -652,7 +652,7 @@ class AccountController extends Controller
 
             if ($data['membership_with_credit_card']->error != null) {
                 $response = array(
-                    'message' => $data['pay_method_accc']->error->message,
+                    'message' => $data['membership_with_credit_card']->error->message,
                     'message_type' => 'danger'
                 );
                 return redirect()->back()->with($response)->withInput();
