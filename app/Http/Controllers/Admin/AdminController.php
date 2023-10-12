@@ -66,7 +66,7 @@ class AdminController extends Controller
         $data = array();
         $data['user'] = $user;
         $data['id'] = $id;
-        $data['data'] = [ 'title' => '', 'body' => '', 'english' => '', 'french' => '', 'slug' => '', 'status' => '' ];
+        $data['data'] = [ 'title_en' => '', 'title_fr' => '', 'body_en' => '', 'body_fr' => '', 'slug' => '', 'status' => '' ];
         
         $data['title'] = trans('title_message.Admin_CMS');
         $logo = Configuration::where('name','logo_image')->where('franchise_id',$user->franchise_id)->first();
@@ -94,20 +94,22 @@ class AdminController extends Controller
     public function cmsViewPost(Request $request, $id = ''){
         if (!empty($id)) {
             $request->validate([
-                'title' => 'required|unique:contents,title,' . $id,
-                'body' => 'required',
-                'slug' => 'required',
-                'status' => 'required',
+                'entitle' => 'required|unique:contents,title_en,' . $id,
+                'frtitle' => 'required|unique:contents,title_fr,' . $id,
+                'body_english' => 'required',
+                'body_french' => 'required',
+                // 'slug' => 'required',
+                // 'status' => 'required',
             ]);
            
             $row_data = Content::where('deleted', 0)->where('id', $id)->first();
             if (!empty($row_data)) {
-                $row_data->title = $request['title'];
-                $row_data->body = $request['body'];
-                $row_data->english = $request['body_english'];
-                $row_data->french = $request['body_french'];
-                $row_data->slug = $request['slug'];
-                $row_data->status = $request['status'];
+                $row_data->title_en = $request['entitle'];
+                $row_data->title_fr = $request['frtitle'];
+                $row_data->body_en = $request['body_english'];
+                $row_data->body_fr = $request['body_french'];
+                // $row_data->slug = $request['slug'];
+                // $row_data->status = $request['status'];
                 $row_data->save();
                 $response = array(
                     'message' => trans('title_message.CMS_successfully_updated'),
@@ -122,16 +124,18 @@ class AdminController extends Controller
             }
         } else {
             $request->validate([
-                'title' => 'required|unique:contents,title',
-                'body' => 'required',
-                'slug' => 'required',
-                'status' => 'required',
+                'entitle' => 'required|unique:contents,title_en,' . $id,
+                'frtitle' => 'required|unique:contents,title_fr,' . $id,
+                'body_english' => 'required',
+                'body_french' => 'required',
+                // 'slug' => 'required',
+                // 'status' => 'required',
             ]);
             $row_data = new Content();
-            $row_data->title = $request['title'];
-            $row_data->body = $request['body'];
-            $row_data->english = $request['body_english'];
-            $row_data->french = $request['body_french'];
+            $row_data->title_en = $request['entitle'];
+            $row_data->title_fr = $request['frtitle'];
+            $row_data->body_en = $request['body_english'];
+            $row_data->body_fr = $request['body_french'];
             $row_data->slug = $request['slug'];
             $row_data->status = $request['status'];
             $row_data->admin_user_id = Auth::guard('admin')->user()->id;
@@ -152,7 +156,6 @@ class AdminController extends Controller
         $data = array();
         $data['data'] = $result;
         $data['user'] = $user;
-        // $data['id'] = $id;
         $data['title'] = trans('title_message.Content_Management');
         $logo = Configuration::where('name','logo_image')->where('franchise_id',$user->franchise_id)->first();
         $theme = Configuration::where('name','theme_color')->where('franchise_id',$user->franchise_id)->first();

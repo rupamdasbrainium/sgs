@@ -36,11 +36,21 @@
                             <div class="welcomesec_info inner_heading">
                                 <div class="round_opt_btn3">
                                     <img src="images/roundopt2.jpg" alt="">
-                                </div>						
-                                <h2>{{$privacy->title}}</h2>
-                                <p>Effective Date: {{date('Y-m-d',strtotime($privacy->created_at))}}</p>
+                                </div>			
+                                @if ($lang_id == 2)
+                                    <h2>{{$privacy->title_en}}</h2>
+                                @else
+                                    <h2>{{$privacy->title_fr}}</h2>
+                                @endif			
+                                
+                                <p>{{ __('footer.Effective_Date') }}: {{date('Y-m-d',strtotime($privacy->created_at))}}</p>
                             </div>   
-                            {!!$privacy->body!!}
+                                @if ($lang_id == 2)
+                                    {!!$privacy->body_en!!}
+                                @else
+                                    {!!$privacy->body_fr!!}
+                                @endif
+                            
                         </div>
                     
                         

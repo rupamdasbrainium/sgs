@@ -45,10 +45,11 @@
                                                                         <thead >
                                                                             <tr>
                                                                                 <th style="background-color: {{$theme->value}}">#</th>
-                                                                                <th style="background-color: {{$theme->value}}">{{ __('admin.Title') }}</th>
+                                                                                <th style="background-color: {{$theme->value}}">{{ __('admin.Title_en') }}</th>
+                                                                                <th style="background-color: {{$theme->value}}">{{ __('admin.Title_fr') }}</th>
                                                                                 {{-- <th style="background-color: {{$theme->value}}">{{ __('admin.Slug') }}</th> --}}
                                                                                 <th style="background-color: {{$theme->value}}">{{ __('admin.Created_Date') }}</th>
-                                                                                <th style="background-color: {{$theme->value}}">{{ __('admin.Status') }}</th>
+                                                                                {{-- <th style="background-color: {{$theme->value}}">{{ __('admin.Status') }}</th> --}}
                                                                                 <th style="background-color: {{$theme->value}}">{{ __('admin.Action') }}</th>
                                                                             </tr>
                                                                         </thead>
@@ -56,10 +57,11 @@
                                                                             @foreach ($data['data'] as $key => $value)
                                                                             <tr>
                                                                                 <td>{{ $key + 1 }}</td>
-                                                                                <td>{{ $value->title }}</td>
+                                                                                <td>{{ $value->title_en }}</td>
+                                                                                <td>{{ $value->title_fr }}</td>
                                                                                 {{-- <td>{{ $value->slug }}</td> --}}
                                                                                 <td>{{ $value->created_at->format('d-m-Y') }}</td>
-                                                                                <td>{{ ($value->status) ?  __('admin.Active')  : __('admin.Inactive') }}</td>
+                                                                                {{-- <td>{{ ($value->status) ?  __('admin.Active')  : __('admin.Inactive') }}</td> --}}
                                                                                 <td style="width:200px;">
                                                                                     <a href="{{ route('admin.editcms', $value->id) }}" class="btn btn-primary fas fa-edit">{{ __('admin.Edit') }}</a>
                                                                                     {{-- <?php if (!$value->readable) { ?>
