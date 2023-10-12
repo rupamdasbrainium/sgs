@@ -40,7 +40,7 @@
 								@if (isset($values->data))
 									@if (count($values->data->prices_per_durations))
 										@foreach ($values->data->prices_per_durations as $val)
-											${{ $val->price_initial }}<span>/
+											${{ $val->price_recurent }}<span>/
 												{{ $val->duration_unit_display }}</span>
 											@php
 												break;
@@ -51,7 +51,7 @@
 									@endif
 								@endif
 							</div>
-							<p>{{ __('global.price') }}</p>
+							{{-- <p>{{ __('global.price') }}</p> --}}
 						</div>
 						<div class="individual_opt">
 							<div class="individual_head" style="background-color: {{$theme->value}}">
@@ -70,7 +70,7 @@
 									@endif
 								</ul> --}}
 								<ul>
-									<li>{{ $item->descr_french }}</li>
+									<li>{{ $lang_id == 2 ? $item->descr_english : $item->descr_french }}</li>
 								</ul>
 								<div class="subscribe_btn" >
 									

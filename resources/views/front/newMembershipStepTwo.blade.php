@@ -39,7 +39,7 @@
                                                                 <div class="price_opt_add">${{ $item->price }}</div>
                                                                 {{-- <div class="price_opt_add">$3</div> --}}
                                                                 <div class="optionitem_prod">
-                                                                    <span>{{ __('newMembership.training') }}</span>
+                                                                    {{-- <span>{{ __('newMembership.training') }}</span> --}}
                                                                     {{-- <span>{{ __('newMembership.quantity') }}: asd</span> --}}
                                                                     <span>{{ __('newMembership.quantity') }}:
                                                                         {{ $item->quantity }} X

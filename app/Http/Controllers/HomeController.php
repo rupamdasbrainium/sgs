@@ -12,6 +12,11 @@ use App\Models\Configuration;
 
 class HomeController extends Controller
 {
+
+    private function getfranchiseId(){
+        $franchiseId = 3;
+        return $franchiseId;
+    }    
     public function index($short_code)
     {
         $lang_id = getLocale();
@@ -42,6 +47,10 @@ class HomeController extends Controller
                 break;
             }
         }
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',$this->getfranchiseId())->first();
+        $banner = Configuration::where('name','banner_image')->where('franchise_id',$this->getfranchiseId())->first();
+        $button = Configuration::where('name','primary_button_color')->where('franchise_id',$this->getfranchiseId())->first();
+        
         $response = array(
             'message' => trans('title_message.Input_path_wrong'),
           );
@@ -91,8 +100,8 @@ class HomeController extends Controller
     {
         $data = array();
         $data['title'] = trans('title_message.Login');
-        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
-        $banner = Configuration::where('name','banner_image')->where('franchise_id',3)->first();
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',$this->getfranchiseId())->first();
+        $banner = Configuration::where('name','banner_image')->where('franchise_id',$this->getfranchiseId())->first();
         $theme = Configuration::where('name','theme_color')->where('franchise_id',3)->first();
         $button = Configuration::where('name','primary_button_color')->first();
         $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',3)->first();
@@ -104,14 +113,14 @@ class HomeController extends Controller
     {
         $data = array();
         $data['title'] = trans('title_message.Forgot_Password');
-        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',$this->getfranchiseId())->first();
         return view('forgotpassword', compact('data','logo'));
     }
 
     public function dashboard()
     {
-        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
-        $banner = Configuration::where('name','banner_image')->where('franchise_id',3)->first();
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',$this->getfranchiseId())->first();
+        $banner = Configuration::where('name','banner_image')->where('franchise_id',$this->getfranchiseId())->first();
         return redirect()->route('account',compact('logo','banner'));
     }
 
@@ -119,9 +128,9 @@ class HomeController extends Controller
     {
         $data = array();
         $data['title'] = trans('title_message.Terms_Condition');
-        $terms = DB::table('contents')->where('franchise_id',3)->where('slug','terms')->where('status',1)->first();
-        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
-        $banner = Configuration::where('name','banner_image')->where('franchise_id',3)->first();
+        $terms = DB::table('contents')->where('franchise_id',$this->getfranchiseId())->where('slug','terms')->where('status',1)->first();
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',$this->getfranchiseId())->first();
+        $banner = Configuration::where('name','banner_image')->where('franchise_id',$this->getfranchiseId())->first();
         $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',3)->first();
         $admin_address = Configuration::where('name','admin_address')->where('franchise_id',3)->first();
         return view('front.termsAndCondition', compact('data','terms','logo','banner','admin_phone','admin_address'));
@@ -130,9 +139,9 @@ class HomeController extends Controller
     {
         $data = array();
         $data['title'] = trans('title_message.Privacy_Policy');
-        $privacy = DB::table('contents')->where('franchise_id',3)->where('slug','privacy')->where('status',1)->first();
-        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
-        $banner = Configuration::where('name','banner_image')->where('franchise_id',3)->first();
+        $privacy = DB::table('contents')->where('franchise_id',$this->getfranchiseId())->where('slug','privacy')->where('status',1)->first();
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',$this->getfranchiseId())->first();
+        $banner = Configuration::where('name','banner_image')->where('franchise_id',$this->getfranchiseId())->first();
         $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',3)->first();
         $admin_address = Configuration::where('name','admin_address')->where('franchise_id',3)->first();
         return view('front.privacyPolicy', compact('data','privacy','logo','banner','admin_address','admin_phone'));
@@ -141,7 +150,7 @@ class HomeController extends Controller
     {
         $data = [];
         $data["title"] = "Law 25";
-        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',$this->getfranchiseId())->first();
         $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',3)->first();
         $admin_address = Configuration::where('name','admin_address')->where('franchise_id',3)->first();
         return view('front.law25', compact('data','logo','admin_address','admin_phone'));

@@ -26,8 +26,10 @@ class Content extends Authenticatable
         'summary',
         'slug',
         'status',
+        'admin_user_id',
         'deleted',
         'readable',
+        
     ];
 
     /**

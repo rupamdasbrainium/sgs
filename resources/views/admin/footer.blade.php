@@ -16,7 +16,7 @@
                         <ul>
                             <li><a href="terms_conditions.html">{{ __('footer.terms') }}</a></li>
                             <li><a href="javascript:void(0)">{{ __('footer.policy') }}</a></li>
-                            <li><a href="javascript:void(0)">{{ __('footer.law') }} 25</a></li>
+                            <li><a href="{{ route('front.law25') }}">{{ __('footer.law') }} 25</a></li>
                         </ul>
                     </div>
                     <div class="social_media ">

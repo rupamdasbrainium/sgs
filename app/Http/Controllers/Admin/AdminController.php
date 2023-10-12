@@ -24,9 +24,9 @@ class AdminController extends Controller
         $data['user'] = $user;
         $data['data'] = [ 'identifier' => '', 'password' => '', 'gaccountno' => '' ];
         $result = Configuration::where('user_id', $user->id)->where('type', 'configuration')->get();
-        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
-        $theme = Configuration::where('name','theme_color')->where('franchise_id',3)->first();
-        $button = Configuration::where('name','primary_button_color')->where('franchise_id',3)->first();
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',$user->franchise_id)->first();
+        $theme = Configuration::where('name','theme_color')->where('franchise_id',$user->franchise_id)->first();
+        $button = Configuration::where('name','primary_button_color')->where('franchise_id',$user->franchise_id)->first();
         if (count($result) > 0) {
             $data['data'] = getConfigurationValue($result);
         }
@@ -69,11 +69,11 @@ class AdminController extends Controller
         $data['data'] = [ 'title' => '', 'body' => '', 'english' => '', 'french' => '', 'slug' => '', 'status' => '' ];
         
         $data['title'] = trans('title_message.Admin_CMS');
-        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
-        $theme = Configuration::where('name','theme_color')->where('franchise_id',3)->first();
-        $button = Configuration::where('name','primary_button_color')->where('franchise_id',3)->first();
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',$user->franchise_id)->first();
+        $theme = Configuration::where('name','theme_color')->where('franchise_id',$user->franchise_id)->first();
+        $button = Configuration::where('name','primary_button_color')->where('franchise_id',$user->franchise_id)->first();
         if (!empty($id)) {
-            $result = Content::where('deleted', 0)->where('id', $id)->first();
+            $result = Content::where('deleted', 0)->where('id', $id)->where('franchise_id',$user->franchise_id)->first();
             if (empty($result)) {
                 $response = array(
                     'message' => trans('title_message.Content_not_found'),
@@ -154,9 +154,9 @@ class AdminController extends Controller
         $data['user'] = $user;
         // $data['id'] = $id;
         $data['title'] = trans('title_message.Content_Management');
-        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
-        $theme = Configuration::where('name','theme_color')->where('franchise_id',3)->first();
-        $button = Configuration::where('name','primary_button_color')->where('franchise_id',3)->first();
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',$user->franchise_id)->first();
+        $theme = Configuration::where('name','theme_color')->where('franchise_id',$user->franchise_id)->first();
+        $button = Configuration::where('name','primary_button_color')->where('franchise_id',$user->franchise_id)->first();
         $data['form_caption'] = trans('title_message.Content_Management');
         return view('admin.cmslistView', compact('data','logo','theme','button'));
     }
@@ -167,9 +167,9 @@ class AdminController extends Controller
         $data = array();
         $data['data'] = [ 'banner_image' => asset('public/admin/images/adminbanner_add.png'), 'logo_image' => asset('public/admin/images/logo.png'), 'theme_color' => '#5ADFC2', 'primary_button_color' => '#1D1D1B', 'secondary_button_color' => '#FFB11A', 'text_button_color' => '#575757' ];
         $result = Configuration::where('user_id', $user->id)->where('type', 'settings')->get();
-        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
-        $theme = Configuration::where('name','theme_color')->where('franchise_id',3)->first();
-        $button = Configuration::where('name','primary_button_color')->where('franchise_id',3)->first();
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',$user->franchise_id)->first();
+        $theme = Configuration::where('name','theme_color')->where('franchise_id',$user->franchise_id)->first();
+        $button = Configuration::where('name','primary_button_color')->where('franchise_id',$user->franchise_id)->first();
         $title = Configuration::where('name','title')->where('franchise_id',3)->first();
         $subtitle = Configuration::where('name','subtitle')->where('franchise_id',3)->first();
         $home_title = Configuration::where('name','home_title')->where('franchise_id',3)->first();
@@ -279,9 +279,9 @@ class AdminController extends Controller
         $data['data'] = '';
         $data['user'] = $user;
         // $data['id'] = $id;
-        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
-        $theme = Configuration::where('name','theme_color')->where('franchise_id',3)->first();
-        $button = Configuration::where('name','primary_button_color')->where('franchise_id',3)->first();
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',$user->franchise_id)->first();
+        $theme = Configuration::where('name','theme_color')->where('franchise_id',$user->franchise_id)->first();
+        $button = Configuration::where('name','primary_button_color')->where('franchise_id',$user->franchise_id)->first();
         $data['title'] = trans('title_message.Admin_Account');
         $data['form_caption'] = trans('title_message.Account_Information');
         return view('admin.account', compact('data','logo','theme','button'));
@@ -350,9 +350,9 @@ class AdminController extends Controller
         $data['data'] = $result;
         $data['user'] = $user;
         $data['title'] = trans('title_message.Content_Management');
-        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
-        $theme = Configuration::where('name','theme_color')->where('franchise_id',3)->first();
-        $button = Configuration::where('name','primary_button_color')->where('franchise_id',3)->first();
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',$user->franchise_id)->first();
+        $theme = Configuration::where('name','theme_color')->where('franchise_id',$user->franchise_id)->first();
+        $button = Configuration::where('name','primary_button_color')->where('franchise_id',$user->franchise_id)->first();
         $data['form_caption'] = trans('title_message.Content_Management');
         return view('admin.cmslist', compact('data','logo','theme','button'));
     }
@@ -365,9 +365,9 @@ class AdminController extends Controller
         $data['id'] = $id;
         $data['title'] = trans('title_message.CMS_Add');
         $data['form_caption'] = trans('title_message.Add_Form');
-        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
-        $theme = Configuration::where('name','theme_color')->where('franchise_id',3)->first();
-        $button = Configuration::where('name','primary_button_color')->where('franchise_id',3)->first();
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',$user->franchise_id)->first();
+        $theme = Configuration::where('name','theme_color')->where('franchise_id',$user->franchise_id)->first();
+        $button = Configuration::where('name','primary_button_color')->where('franchise_id',$user->franchise_id)->first();
         if (!empty($id)) {
             $result = Content::where('deleted', 0)->where('id', $id)->first();
             if (empty($result)) {
@@ -466,9 +466,9 @@ class AdminController extends Controller
         $data['data'] = $result;
         $data['user'] = $user;
         $data['add_user'] = false;
-        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
-        $theme = Configuration::where('name','theme_color')->where('franchise_id',3)->first();
-        $button = Configuration::where('name','primary_button_color')->where('franchise_id',3)->first();
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',$user->franchise_id)->first();
+        $theme = Configuration::where('name','theme_color')->where('franchise_id',$user->franchise_id)->first();
+        $button = Configuration::where('name','primary_button_color')->where('franchise_id',$user->franchise_id)->first();
         if ($type == 'seller') {
             $data['title'] = trans('title_message.Sellers_List');
             $data['add_user'] = true;
@@ -485,9 +485,9 @@ class AdminController extends Controller
         $data['data'] = '';
         $data['user'] = $user;
         $data['id'] = $id;
-        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
-        $theme = Configuration::where('name','theme_color')->where('franchise_id',3)->first();
-        $button = Configuration::where('name','primary_button_color')->where('franchise_id',3)->first();
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',$user->franchise_id)->first();
+        $theme = Configuration::where('name','theme_color')->where('franchise_id',$user->franchise_id)->first();
+        $button = Configuration::where('name','primary_button_color')->where('franchise_id',$user->franchise_id)->first();
         $result = User::where('id', $id)->first();
         if (empty($result)) {
             $response = array(

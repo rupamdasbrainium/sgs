@@ -477,7 +477,7 @@ class AccountController extends Controller
         foreach ($data['all_plan']->data as $item) {
             $data['all_plan_details'][] = json_decode(APICall("SubscriptionPlans/type/" . $item->id . "?language_id=" . $lang_id, "get", "{}"));
         }
-        return view('front.newmembershipStepOne', compact('data','logo','theme','button','admin_phone','admin_address'));
+        return view('front.newmembershipStepOne', compact('data','logo','theme','button','admin_phone','admin_address','lang_id'));
     }
 
     public function newMembershipSteptwo($id)
