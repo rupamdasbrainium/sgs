@@ -84,7 +84,7 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt adbg">
-                                                <input type="text" class="form-control" name="postal_code"
+                                                <input type="text" class="form-control" name="postal_code" id="postal_code"
                                                     placeholder="1j2 j4j" value="{{ $client->adress->postal_code }}">
                                                 <p>{{ __('mycontactinformatiion.Example') }}: j3B 8k7</p>
                                             </div>
@@ -118,7 +118,7 @@
                                     <div class="inp_row gapadj inp_colm2">
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt adbg">
-                                                <input type="text" class="form-control" name="phone"
+                                                <input type="text" class="form-control" name="phone" id="phone"
                                                     placeholder="Phone Number *" value="{{ $client->phone }}">
                                                 <p>{{ __('mycontactinformatiion.Example') }}: xxx xxx-xxxx</p>
                                             </div>
@@ -141,7 +141,7 @@
                                     <div class="inp_row gapadj inp_colm2">
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
-                                                <input type="text" class="form-control" name="emergency_phone"
+                                                <input type="text" class="form-control" name="emergency_phone" id="emergency_phone"
                                                     placeholder="Emergency Phone Number *"
                                                     value="{{ $client->emergency_phone }}">
                                                 <p>{{ __('mycontactinformatiion.Example') }}: xxx xxx-xxxx</p>
@@ -220,5 +220,42 @@
             </div>
         </div>
     </section>
+    <script>
+        const phoneInput = document.getElementById('phone');
+            phoneInput.addEventListener('input', function(event) {
+                let inputValue = event.target.value;
+                inputValue = inputValue.replace(/\D/g, ''); // Remove non-numeric characters
+                if (inputValue.length > 0) {
+                    inputValue = inputValue.match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+                    inputValue = !inputValue[2] ? inputValue[1] : inputValue[1] + '-' + inputValue[2] + (inputValue[3] ?
+                        '-' + inputValue[3] : '');
+                }
+                event.target.value = inputValue;
+            });
+
+			const emergency_phoneInput = document.getElementById('emergency_phone');
+            emergency_phoneInput.addEventListener('input', function(event) {
+                let inputValue = event.target.value;
+                inputValue = inputValue.replace(/\D/g, ''); // Remove non-numeric characters
+                if (inputValue.length > 0) {
+                    inputValue = inputValue.match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+                    inputValue = !inputValue[2] ? inputValue[1] : inputValue[1] + '-' + inputValue[2] + (inputValue[3] ?
+                        '-' + inputValue[3] : '');
+                }
+                event.target.value = inputValue;
+            });
+
+			const postal_codeInput = document.getElementById('postal_code');
+            postal_codeInput.addEventListener('input', function(event) {
+                let inputValue = event.target.value;
+                inputValue = inputValue.replace(/\D/g, ''); // Remove non-numeric characters
+                if (inputValue.length > 0) {
+                    inputValue = inputValue.match(/(\d{0,3})(\d{0,3})/);
+                    inputValue = !inputValue[2] ? inputValue[1] : inputValue[1] + ' ' + inputValue[2] + (inputValue[3] ?
+                        '-' + inputValue[3] : '');
+                }
+                event.target.value = inputValue;
+            });
+        </script>
     @include('footer')
 </x-app-layout>

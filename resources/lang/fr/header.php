@@ -17,4 +17,5 @@ return [
     'gym' => 'Obtenir une direction/un itinéraire',
     'logout' => 'Se déconnecter',
     'login' => 'se connecter',
+    'Login' => 'Se connecter',
 ];

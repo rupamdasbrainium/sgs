@@ -43,10 +43,11 @@
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
-
+        {{-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> --}}
+        <script src="{{ asset('public/js/jquery.min.js')}}"></script> 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="{{ asset('public/js/select_optiones.js') }}"></script>
+        <script src="{{ asset('public/admin/js/owl.carousel.min.js') }}"></script>
         <script src="{{ asset('public/js/custom.js') }}"></script>
         @stack('scripts')
     </body>

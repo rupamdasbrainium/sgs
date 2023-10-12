@@ -12,7 +12,7 @@
 				@foreach ($data['all_plan']->data as $key => $item)
 				@php
 				$values = $data['all_plan_details'][$key];
-				
+				// @dd($data['all_plan_details'])
 				@endphp
 					<div class="prod_item">
 						<div class="action_opt action_opt_title" style="background-color: {{$theme->value}}">
@@ -40,7 +40,7 @@
 								@if (isset($values->data))
 									@if (count($values->data->prices_per_durations))
 										@foreach ($values->data->prices_per_durations as $val)
-											${{ $val->price_recurent }}<span>/
+											${{ $val->price_recurant }}<span>/
 												{{ $val->duration_unit_display }}</span>
 											@php
 												break;

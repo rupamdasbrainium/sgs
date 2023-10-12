@@ -101,7 +101,7 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
-                                                <input type="text" name="address_postal_code"
+                                                <input type="text" name="address_postal_code" id="address_postal_code"
                                                     value="{{ old('address_postal_code') }}" class="form-control"
                                                     placeholder="{{ __('suscription.pin') }} *" required>
                                                 <p>{{ __('suscription.example') }}: j3B 8k7</p>
@@ -420,6 +420,18 @@
                 if (inputValue.length > 0) {
                     inputValue = inputValue.match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
                     inputValue = !inputValue[2] ? inputValue[1] : inputValue[1] + '-' + inputValue[2] + (inputValue[3] ?
+                        '-' + inputValue[3] : '');
+                }
+                event.target.value = inputValue;
+            });
+
+			const address_postal_codeInput = document.getElementById('address_postal_code');
+            address_postal_codeInput.addEventListener('input', function(event) {
+                let inputValue = event.target.value;
+                inputValue = inputValue.replace(/\D/g, ''); // Remove non-numeric characters
+                if (inputValue.length > 0) {
+                    inputValue = inputValue.match(/(\d{0,3})(\d{0,3})/);
+                    inputValue = !inputValue[2] ? inputValue[1] : inputValue[1] + ' ' + inputValue[2] + (inputValue[3] ?
                         '-' + inputValue[3] : '');
                 }
                 event.target.value = inputValue;

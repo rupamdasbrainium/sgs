@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Models\Configuration;
-
+use PhpParser\Node\Stmt\Continue_;
 
 class HomeController extends Controller
 {
@@ -83,16 +83,28 @@ class HomeController extends Controller
 
         // $data_plan = [];
         //franchise best four plan details
-        $data_plan[$data['best_four_plan']->data->subscriptionPlan1] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan1 . "?language_id=" . $lang_id, "get", "{}"));
+        $data_plan[0] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan1 . "?language_id=" . $lang_id, "get", "{}"));
 
-        $data_plan[$data['best_four_plan']->data->subscriptionPlan2] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan2 . "?language_id=" . $lang_id, "get", "{}"));
+        $data_plan[1] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan2 . "?language_id=" . $lang_id, "get", "{}"));
 
-        $data_plan[$data['best_four_plan']->data->subscriptionPlan3] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan3 . "?language_id=" . $lang_id, "get", "{}"));
+        $data_plan[2] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan3 . "?language_id=" . $lang_id, "get", "{}"));
 
-        $data_plan[$data['best_four_plan']->data->subscriptionPlan4] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan4 . "?language_id=" . $lang_id, "get", "{}"));
+        $data_plan[3] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan4 . "?language_id=" . $lang_id, "get", "{}"));
 
-        $data['best_four_plan_details'] = $data_plan;
+
+        $all_plan = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id, "get", "{}");
+        $data['all_plan'] = json_decode($all_plan);
+
+        //franchise best four plan details
+        foreach ($data['all_plan']->data as $item) {
+            if($item->id == $data['best_four_plan']->data->subscriptionPlan1 || $item->id ==$data['best_four_plan']->data->subscriptionPlan2 || $item->id ==$data['best_four_plan']->data->subscriptionPlan3 || $item->id ==$data['best_four_plan']->data->subscriptionPlan4) {
+             continue;
+            }
+            $data_plan[] = json_decode(APICall("SubscriptionPlans/type/" . $item->id . "?language_id=" . $lang_id, "get", "{}"));
+        }
         $best_four_plan_details = $data_plan;
+        $data['best_four_plan_details'] = $data_plan;
+       
         return view('front.home', compact('data', 'best_four_plan_details', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address'));
     }
 

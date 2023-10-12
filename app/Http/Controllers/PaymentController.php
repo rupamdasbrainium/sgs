@@ -49,10 +49,12 @@ class PaymentController extends Controller
                 $uri .= "&lstOptions=" . $ad_on_id;
             }
         }
+        // dd( $add_ons);
         $uri .=  "&display_language_id=" . $lang_id;
 
         $membership_details = APICall($uri, "get", "{}", 'client_app');
         $data['membership_details'] = json_decode($membership_details);
+       
         $subscription_plan = APICall("SubscriptionPlans/type", "get", "{}");
         $data['subscription_plan'] = json_decode($subscription_plan);
 
@@ -119,26 +121,27 @@ class PaymentController extends Controller
             $carddata = array();
 
 
-            $carddata['four_digits_number'] = substr($request->four_digits_number, 12, 15);
+            $carddata['four_digits_number'] = $request->four_digits_number;
             $carddata['expire_year'] = $request->expiry_year;
             $carddata['expire_month'] = $request->expiry_month;
             $carddata['owner_name'] = $request->owner_name;
             $carddata['type_id'] = $request->type_id;
             $carddata['pan'] = $request->pan;
+            // dd($carddata);
 
 
             if (Session::has('franchise_id')) {
                 $carddata['franchise_id'] = Session::get('franchise_id');
                 $pay_method_accc = APICall('PaymentMethods/card', "post", json_encode($carddata), 'client_app');
                 $data['pay_method_accc'] = json_decode($pay_method_accc);
-
-                if ($data['pay_method_accc']->error != null) {
-                    $response = array(
-                        'message' => $data['pay_method_accc']->error->message,
-                        'message_type' => 'danger'
-                    );
-                    return redirect()->back()->with($response)->withInput();
-                }
+// dd( $data['pay_method_accc']);
+                // if ($data['pay_method_accc']->error != null) {
+                //     $response = array(
+                //         'message' => $data['pay_method_accc']->error->message,
+                //         'message_type' => 'danger'
+                //     );
+                //     return redirect()->back()->with($response)->withInput();
+                // }
 
 
                 $membershipcarddata = array();

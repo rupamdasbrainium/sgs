@@ -115,10 +115,9 @@
                                     </div>
 
                                 </div>
-                                <div class="prod_item_wrap owl-carousel owl-theme" id="home_prod_item">
+                                <div class="prod_item_wrap" id="home_prod_item">
 
                                     {{-- @dd($data['best_four_plan_details']) --}}
-
                                     @foreach ($data['best_four_plan_details'] as $values)
                                         <div class="prod_item">
                                             <div class="action_opt action_opt_title" style="background-color: {{$theme->value}}">
@@ -186,8 +185,8 @@
                                             </div>
                                         </div>
                                     @endforeach
-                                </div>          
-                           
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -231,9 +230,6 @@
             </div>
         </div>
     </section>
-
-
-    {{-- <script src="http://localhost/sgs/public/js/custom.js"></script> --}}
     @include('footer')
 </x-guest-layout>
 
