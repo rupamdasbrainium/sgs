@@ -15,10 +15,18 @@
                                     @csrf
                                     <div class="inp_row">
                                         <div class="form-group">
-                                            <label>{{ __('admin.Title') }}<em class="req_text">*</em> </label>
+                                            <label>{{ __('admin.Title') }}[{{ __('admin.English') }}]<em class="req_text">*</em> </label>
                                             <div class="inp_cont_view noicon_opt">
                                                 {{-- <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" required value="{{ $data['data']->title }}"> --}}
-                                                <input type="text" class="form-control" name="title" id="title" placeholder="{{ __('admin.Enter_Title') }}" required value="{{ $data['data']['title'] }}">
+                                                <input type="text" class="form-control" name="entitle" id="title_en" placeholder="{{ __('admin.Enter_Title') }}" required value="{{ $data['data']['title_en'] }}">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>{{ __('admin.Title') }}[{{ __('admin.French') }}]<em class="req_text">*</em> </label>
+                                            <div class="inp_cont_view noicon_opt">
+                                                {{-- <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" required value="{{ $data['data']->title }}"> --}}
+                                                <input type="text" class="form-control" name="frtitle" id="title_fr" placeholder="{{ __('admin.Enter_Title') }}" required value="{{ $data['data']['title_fr'] }}">
                                             </div>
                                         </div>
 
@@ -31,13 +39,13 @@
                                         <div class="form-group">
                                             <label>{{ __('admin.Body') }} [{{ __('admin.English') }}]<em class="req_text">*</em> </label>
                                             <div class="inp_cont_view noicon_opt">
-                                                <textarea class="form-control" id="enbody" name="body_english" >{{ $data['data']['english'] }}</textarea>
+                                                <textarea class="form-control" id="enbody" name="body_english" >{{ $data['data']['body_en'] }}</textarea>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>{{ __('admin.Body') }} [{{ __('admin.French') }}]<em class="req_text">*</em> </label>
                                             <div class="inp_cont_view noicon_opt">
-                                                <textarea class="form-control" id="frbody" name="body_french" >{{ $data['data']['french'] }}</textarea>
+                                                <textarea class="form-control" id="frbody" name="body_french" >{{ $data['data']['body_fr'] }}</textarea>
                                             </div>
                                         </div>
                                         {{-- <div class="form-group">

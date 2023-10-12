@@ -19,4 +19,5 @@ return [
     'policy' => 'politique de confidentialité',
     'law' => 'Loi',
     'all_right' => 'Tous droits réservés',
+    'Effective_Date' => 'Date effective',
 ];

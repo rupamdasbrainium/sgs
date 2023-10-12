@@ -63,11 +63,28 @@ class AdminLoginRequest extends FormRequest
             if($user_check == 0){
                 AdminUser::create(['email'=>$formdata1['email'], 'franchise_id'=> $franchise_id]);
             }
+            $admin = AdminUser::get(['id']);
+            // if(Auth::guard('admin')->user()->id == $admin){
+            // }
+            // $admin1 = Auth::guard('admin')->user()->id;
+            // dd($admin1);
             $contect_check = Content::where('franchise_id',$franchise_id)->count();
             
             if($contect_check == 0){
-                Content::create(['slug'=>'terms','title'=>'Terms & Conditions','body'=>'<p>terms and condition</p>','admin_user_id'=>'1']);
-                Content::create(['slug'=>'privacy','title'=>'Privacy Policy','body'=>'<p>privacy policy</p>','admin_user_id'=>'1']);
+                Content::create(['slug'=>'terms','title_en'=>'Terms & Conditions','title_fr'=>'termes et conditions','body_en'=>'<p>terms and condition</p>','body_fr'=>'<p>termes et conditions</p>','admin_user_id'=>'1']);
+                Content::create(['slug'=>'privacy','title_en'=>'Privacy Policy','title_fr'=>'politique de confidentialité','body_en'=>'<p>privacy policy</p>','body_fr'=>'<p>politique de confidentialité</p>','admin_user_id'=>'1']);
+
+                // $adminUser = Auth::guard('admin')->user();
+                // dd($adminUser); // Check the admin user object
+
+                // if ($adminUser) {
+                //     $admin1 = $adminUser->id;
+                //     // dd($admin1); // Check the admin user's ID
+
+                //     Content::create(['admin_user_id' => $admin1]);
+                //     // dd('Content created with admin_user_id'); // Check if this block is executed
+                // }
+
             }
             
         } else {

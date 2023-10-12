@@ -19,4 +19,5 @@ return [
     'policy' => 'Privacy Policy',
     'law' => 'Law',
     'all_right' => 'All rights reserved',
+    'Effective_Date' => 'Effective Date',
 ];

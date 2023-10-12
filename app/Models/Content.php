@@ -21,8 +21,10 @@ class Content extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'title',
-        'body',
+        'title_fr',
+        'title_en',
+        'body_en',
+        'body_fr',
         'summary',
         'slug',
         'status',

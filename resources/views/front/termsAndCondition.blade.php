@@ -36,11 +36,23 @@
                             <div class="welcomesec_info inner_heading">
                                 <div class="round_opt_btn3">
                                     <img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
-                                </div>						
-                                <h2>{{$terms->title}}</h2>
-                                <p>Effective Date: {{date('Y-m-d',strtotime($terms->created_at))}}</p>
+                                </div>
+                                @if ($lang_id == 2)
+                                    <h2>{{$terms->title_en}}</h2>
+                                @else
+                                    <h2>{{$terms->title_fr}}</h2>
+                                @endif				
+                                
+                                <p>{{ __('footer.Effective_Date') }}: {{date('Y-m-d',strtotime($terms->created_at))}}</p>
                             </div>
-                            {!!$terms->body!!}
+                            
+                                @if ($lang_id == 2)
+                                    {!!$terms->body_en!!}
+                                @else
+                                    {!!$terms->body_fr!!}
+                                @endif
+                            
+                            
                         </div>
                     
                         
