@@ -10,15 +10,15 @@
                         <h2>{{ __('mybankcards.My_Credit_Card_Bank_Account') }}</h2>
                     </div>
                     <div class="fromdes_view">
-                        <div class="titleopt2">
+                        {{-- <div class="titleopt2">
                             <h3>{{ __('mybankcards.Cards_and_accounts') }}</h3>
-                        </div>
+                        </div> --}}
                         <div class="fromdes_info user_contentblock">
                             <div class="from_cont_wrap">
                                 <div class="cards_des_wrap">
                                     {{-- <div class="cards_des_row"> --}}
                                         <div class="row">
-                                            <h2>Credit Cards:</h2>
+                                            <h3>Credit Cards:</h3>
                                                 @foreach ($data['pay_methods_accc']->data as $value)												
 												<div class="col-md-6">
                                                     <div class="cards_desinfo_item ">
@@ -73,7 +73,7 @@
 												</div>
                                                 @endforeach
                                             
-                                                <h2>Bank Accounts:</h2>
+                                                <h3>Bank Accounts:</h3>
                                             
                                                 @foreach ($data['pay_methods_acc']->data as $values)
 												<div class="col-md-6">
