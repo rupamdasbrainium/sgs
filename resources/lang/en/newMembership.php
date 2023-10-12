@@ -24,4 +24,5 @@ return [
     'initial_fee' => 'Added to initial fee',
     'onetime' => 'one time',
     'next' => 'Next',
+    'Save' => 'Save',
 ];

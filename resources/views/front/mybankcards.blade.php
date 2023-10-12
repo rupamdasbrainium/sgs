@@ -18,7 +18,7 @@
                                 <div class="cards_des_wrap">
                                     {{-- <div class="cards_des_row"> --}}
                                         <div class="row">
-                                          
+                                            <h2>Credit Cards:</h2>
                                                 @foreach ($data['pay_methods_accc']->data as $value)												
 												<div class="col-md-6">
                                                     <div class="cards_desinfo_item ">
@@ -73,7 +73,7 @@
 												</div>
                                                 @endforeach
                                             
-
+                                                <h2>Bank Accounts:</h2>
                                             
                                                 @foreach ($data['pay_methods_acc']->data as $values)
 												<div class="col-md-6">

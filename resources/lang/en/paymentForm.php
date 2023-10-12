@@ -70,4 +70,5 @@ return [
     'Expiry_year' => 'Expiry year must be at least 4 characters long',
     'Amount_to_be_paid' => 'Amount to be paid',
     'Pay_Now' => 'Pay Now',
+    'CSV' => 'CSV'
 ];

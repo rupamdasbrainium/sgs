@@ -16,7 +16,7 @@
                                 <div class="round_opt_btn3 ">
                                     <img src="images/roundopt2.jpg" alt="">
                                 </div>
-
+                                {{-- @dd( $data['membership_details']); --}}
                                 <h2>{{ __('paymentForm.payment') }}</h2>
                             </div>
                             <div class="fromdes_info user_contentblock">
@@ -114,9 +114,18 @@
                                                             <div class="sum_inp_left">
                                                                 {{ __('paymentForm.membership') }}
                                                             </div>
+                                                            @php
+                                                            Session::get('addonname');
+                                                            $addonname =  Session::get('addonname');
+                                                            @endphp
+                                                            {{-- @dd( $addonname) --}}
                                                             <div class="sum_inp_right">
-                                                                {{ __('paymentForm.option') }}
-                                                            </div>
+                                                            @foreach($addonname as $addonName)
+                                                           
+                                                                {{$addonName }}
+                                                            {{$loop->last? '':','}}
+                                                            @endforeach
+                                                        </div>
                                                         </div>
 
                                                     </div>
@@ -159,7 +168,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="summary_content">
+                                                {{-- <div class="summary_content">
                                                     <h3>{{ __('paymentForm.1st_pay') }}</h3>
                                                     <div class="summary_cont_wrap">
                                                         <div class="sum_inp_cont">
@@ -177,7 +186,7 @@
                                                             <div class="sum_inp_right">
                                                                 {{ $data['membership_details']->data->initial_subtotal }}
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
                                                         @php
                                                             $total = $data['membership_details']->data->initial_subtotal;
                                                         @endphp
@@ -185,39 +194,39 @@
                                                             @php
                                                                 $total += $item->amount;
                                                             @endphp
-                                                            <div class="sum_inp_cont">
+                                                            {{-- <div class="sum_inp_cont">
                                                                 <div class="sum_inp_left">
                                                                     {{ $item->legal_name }}
                                                                 </div>
                                                                 <div class="sum_inp_right">
                                                                     {{ $item->amount }}$
                                                                 </div>
-                                                            </div>
+                                                            </div> --}}
                                                         @endforeach
                                                         @foreach ($data['membership_details']->data->recurant_taxes as $item2)
                                                             @php
                                                                 $total += $item2->amount;
                                                             @endphp
-                                                            <div class="sum_inp_cont">
+                                                            {{-- <div class="sum_inp_cont">
                                                                 <div class="sum_inp_left">
                                                                     {{ $item2->legal_name }}
                                                                 </div>
                                                                 <div class="sum_inp_right">
                                                                     {{ $item2->amount }}$
                                                                 </div>
-                                                            </div>
+                                                            </div> --}}
                                                         @endforeach
 
-                                                        <div class="sum_inp_cont">
+                                                        {{-- <div class="sum_inp_cont">
                                                             <div class="sum_inp_left">
                                                                 {{ __('paymentForm.total') }}
                                                             </div>
                                                             <div class="sum_inp_right">
                                                                 {{ $total }}$
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
                                                     </div>
-                                                </div>
+                                                {{-- </div> --}}
 
                                                 <div class="summary_content">
 

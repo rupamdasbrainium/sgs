@@ -70,4 +70,5 @@ return [
     'Expiry_year' => 'L\'année d\'expiration doit comporter au moins 4 caractères',
     'Amount_to_be_paid' => 'Montant à payer',
     'Pay_Now' => 'Payez maintenant',
+    'CSV' => 'CSV'
 ];

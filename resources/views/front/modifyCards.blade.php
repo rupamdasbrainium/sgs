@@ -19,7 +19,7 @@
                                             <div class="content_block paymentinfo">
                                                 <h2 class="head_opt">{{ __('paymentForm.payment_details') }}</h2>
                                             </div>
-                                           
+                                          
                                             <div id="credit_details">
                                                 <div class="inp_row">
                                                     <div class="form-group">
@@ -42,7 +42,7 @@
                                                 </div>
                                                 <div class="inp_row">
                                                     <div class="form-group">
-                                                        <label>{{ __('paymentForm.credit_card_number') }} <em
+                                                        <label>{{ __('paymentForm.PAN') }} <em
                                                                 class="req_text">*</em></label>
                                                         <div class="inp_cont_view noicon_opt" id="incdec">
 
@@ -84,7 +84,7 @@
                                                 </div>
                                             </div>
 
-                                        </div>
+                                        </h2>
                                     </div>
                                 </form>
 

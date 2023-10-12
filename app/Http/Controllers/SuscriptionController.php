@@ -154,7 +154,13 @@ class SuscriptionController extends Controller
       if (Session::has('add_on')) {
         Session::forget('add_on');
       }
-      Session::put('add_on', $request->add_on);
+      foreach($request->add_on as $value){
+     $arrvalue = explode("|",$value);
+     $addon[]=$arrvalue[0];
+     $addonname[]=$arrvalue[1];
+      }
+      Session::put('add_on', $addon);
+      Session::put('addonname', $addonname);
       return redirect()->route('suscriptionform', ['id' => $id]);
     }
 }

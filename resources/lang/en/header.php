@@ -17,5 +17,6 @@ return [
     'gym' => 'Get Direction/Itinerary',
     'logout' => 'Logout',
     'login' => 'Login',
+    'Login' => 'Login',
 
 ];
