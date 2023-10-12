@@ -392,7 +392,11 @@ class AccountController extends Controller
         $banks = json_decode($banks);
         if ($banks->error == null) {
             $data["banks"] = $banks->data;
-            $data["client_id"] = $data["banks"][0]->client_id;
+            if(isset($data["banks"]) && count($data["banks"])){
+                $data["client_id"] = $data["banks"][0]->client_id;
+            }else {
+                $data["client_id"] = '';
+            }
         } else {
             $data["banks"] = null;
         }
@@ -400,7 +404,11 @@ class AccountController extends Controller
         $cards = json_decode($cards);
         if ($cards->error == null) {
             $data["cards"] = $cards->data;
-            $data["client_id"] = $data["cards"][0]->client_id;
+            if(isset($data["cards"]) && count($data["cards"])){
+                $data["client_id"] = $data["cards"][0]->client_id;
+            } else {
+                $data["client_id"] = '';
+            }
         } else {
             $data["cards"] = null;
         }
