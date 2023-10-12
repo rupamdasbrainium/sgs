@@ -92,9 +92,18 @@
 												<div class="sum_inp_left">
 													{{ __('paymentForm.membership') }}
 												</div>
+												@php
+												Session::get('addonname');
+												$addonname =  Session::get('addonname');
+												@endphp
+											   
 												<div class="sum_inp_right">
-													{{ __('paymentForm.option') }}
-												</div>
+												@foreach($addonname as $addonName)
+											   
+													{{$addonName }}
+												{{$loop->last? '':','}}
+												@endforeach
+											</div>
 											</div>
 
 										</div>
@@ -112,27 +121,16 @@
 												</div>
 											</div>
 											<div class="sum_inp_cont">
-												<div class="sum_inp_left">
-													{{ __('paymentForm.membership_opt') }}
-												</div>
-												<div class="sum_inp_right">
-													{{-- @dd($data['subscription_plan']); --}}
-													{{-- @if (isset($data['subscription_plan']) && isset($data['subscription_plan']->data))
-														@foreach ($data['subscription_plan']->data->options as $val)
-															{{ $val->name }}
-														@endforeach
-													@endif --}}
-												</div>
-											</div>
+												
 
-											<div class="sum_inp_cont">
+										
 												<div class="sum_inp_left">
 													{{ __('paymentForm.duration') }}
 												</div>
 												<div class="sum_inp_right">
 													{{ $data['membership_details']->data->duration_unit }}
 												</div>
-											</div>
+											
 
 										</div>
 									</div>
