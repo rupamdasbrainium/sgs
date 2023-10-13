@@ -55,7 +55,7 @@
 						</div>
 						<div class="individual_opt">
 							<div class="individual_head" style="background-color: {{$theme->value}}">
-								{{ __('global.individual_head') }}
+								{{ __('global.age') }} : {{ $lang_id == 2 ? $item->ageLimit_english : $item->ageLimit_french }}
 							</div>
 							<div class="individual_des">
 								{{-- <ul>

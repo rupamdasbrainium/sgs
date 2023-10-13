@@ -71,21 +71,21 @@
                                     <div class="inp_row gapadj inp_colm3">
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
-                                                <input type="text" name="address_civic_number"
+                                                <input type="number" name="address_civic_number" id="autocomplete" autocomplete="address_civic_number"
                                                     value="{{ old('address_civic_number') }}" class="form-control"
                                                     placeholder="{{ __('suscription.sn') }} *" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
-                                                <input type="text" name="address_street"
+                                                <input type="text" name="address_street" id="latitude" autocomplete="address_street"
                                                     value="{{ old('address_street') }}" class="form-control"
                                                     placeholder="{{ __('suscription.street') }} *" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
-                                                <input type="text" name="address_appartment"
+                                                <input type="text" name="address_appartment" id="longitude" autocomplete="address_appartment"
                                                     value="{{ old('address_appartment') }}" class="form-control"
                                                     placeholder="{{ __('suscription.app') }} ">
                                             </div>
@@ -95,7 +95,7 @@
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="text" name="address_city"
-                                                    value="{{ old('address_city') }}" class="form-control"
+                                                    value="{{ old('address_city') }}" class="form-control" autocomplete="address_city"
                                                     placeholder="{{ __('suscription.city') }} *" required>
                                             </div>
                                         </div>
@@ -437,5 +437,33 @@
                 event.target.value = inputValue;
             });
         </script>
+
+        {{-- googleaddress --}}
+          {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>  
+          <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&libraries=places"></script>
+          <script>
+              $(document).ready(function () {
+                  $("#latitudeArea").addClass("d-none");
+                  $("#longtitudeArea").addClass("d-none");
+              });
+          </script>
+          <script>
+              google.maps.event.addDomListener(window, 'load', initialize);
+        
+              function initialize() {
+                  var input = document.getElementById('autocomplete');
+                  var autocomplete = new google.maps.places.Autocomplete(input);
+        
+                  autocomplete.addListener('place_changed', function () {
+                      var place = autocomplete.getPlace();
+                      $('#latitude').val(place.geometry['location'].lat());
+                      $('#longitude').val(place.geometry['location'].lng());
+        
+                      $("#latitudeArea").removeClass("d-none");
+                      $("#longtitudeArea").removeClass("d-none");
+                  });
+              }
+          </script> --}}
     @endpush
 </x-guest-layout>

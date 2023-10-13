@@ -30,7 +30,7 @@ return [
     'ln' => 'Nom de famille',
     'sn' => 'Numéro de rue',
     'street' => 'Rue',
-    'app' => 'Application',
+    'app' => 'Appartement',
     'city' => 'Ville',
     'pin' => 'Code Postal',
     'ph' => 'Numéro de téléphone',

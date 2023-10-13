@@ -416,7 +416,7 @@ function getAddress($data){
     if($data == null){
         return "No Address";
     }else{
-         return $data->civic_number."".$data->street."-".$data->appartment.",".$data->city.",".$data->postal_code;
+         return $data->civic_number." ".$data->street." ".$data->appartment.", ".$data->city.", ".$data->postal_code;
     }
 }
 

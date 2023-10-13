@@ -18,4 +18,5 @@ return [
     'logout' => 'Se déconnecter',
     'login' => 'se connecter',
     'Login' => 'Se connecter',
+    'profile' => 'Profil'
 ];

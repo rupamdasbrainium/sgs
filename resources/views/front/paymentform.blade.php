@@ -118,7 +118,7 @@
                                                             Session::get('addonname');
                                                             $addonname =  Session::get('addonname');
                                                             @endphp
-                                                            {{-- @dd( $addonname) --}}
+                                                           
                                                             <div class="sum_inp_right">
                                                             @foreach($addonname as $addonName)
                                                            
@@ -143,27 +143,22 @@
                                                             </div>
                                                         </div>
                                                         <div class="sum_inp_cont">
-                                                            <div class="sum_inp_left">
-                                                                {{ __('paymentForm.membership_opt') }}
-                                                            </div>
-                                                            <div class="sum_inp_right">
+                                                           
                                                                 {{-- @dd($data['subscription_plan']); --}}
                                                                 @if (isset($data['subscription_plan']) && isset($data['subscription_plan']->data))
                                                                     @foreach ($data['subscription_plan']->data->options as $val)
                                                                         {{ $val->name }}
                                                                     @endforeach
                                                                 @endif
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="sum_inp_cont">
+                                                           
+                                                        
                                                             <div class="sum_inp_left">
                                                                 {{ __('paymentForm.duration') }}
                                                             </div>
                                                             <div class="sum_inp_right">
                                                                 {{ $data['membership_details']->data->duration_unit }}
                                                             </div>
-                                                        </div>
+                                                        
 
                                                     </div>
                                                 </div>
@@ -230,7 +225,7 @@
 
                                                 <div class="summary_content">
 
-                                                    {{-- <div class="content_block paymentinfo">
+                                                    <div class="content_block paymentinfo">
                                                         <h2 class="head_opt">{{ __('paymentForm.payment_details') }}
                                                         </h2>
                                                         <div
@@ -328,7 +323,7 @@
                                                                 </tbody>
                                                             </table>
                                                         </div>
-                                                    </div> --}}
+                                                    </div>
 
                                                     <div class="content_block more_cont_view">
                                                         <h2>{{ __('paymentForm.method_of_payment') }}</h2>

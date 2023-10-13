@@ -4,6 +4,7 @@
     @endphp
     @section('title', $data['title'] . ' |')
     @include('header')
+
     <div class="banner_outer">
         <div class="banner_slider">
             <div class="banner_panel">
@@ -119,7 +120,10 @@
 
                                     {{-- @dd($data['best_four_plan_details']) --}}
 
-                                    @foreach ($data['best_four_plan_details'] as $values)
+                                    @foreach ($data['best_four_plan_details'] as $key => $values)
+                                    @php
+                                        $item = $data['all_plan_data'][$key];
+                                    @endphp
                                         <div class="prod_item">
                                             <div class="action_opt action_opt_title" style="background-color: {{$theme->value}}">
 
@@ -164,11 +168,11 @@
                                             </div>
                                             <div class="individual_opt">
                                                 <div class="individual_head" style="background-color: {{$theme->value}}">
-                                                    {{ __('global.individual_head') }}
+                                                    {{ __('global.age') }} : {{ $lang_id == 2 ? $item['ageLimit_english'] : $item['ageLimit_french'] }}
                                                 </div>
                                                 <div class="individual_des">
                                                     <ul>
-                                                        @if (isset($values->data))
+                                                        {{-- @if (isset($values->data))
                                                             @if (isset($values->data->options))
                                                                 @foreach ($values->data->options as $val)
                                                                     <li><span><i
@@ -176,7 +180,8 @@
                                                                     </li>
                                                                 @endforeach
                                                             @endif
-                                                        @endif
+                                                        @endif --}}
+                                                        <li>{{ $lang_id == 2 ? $item['descr_english'] : $item['descr_french'] }}</li>
                                                     </ul>
                                                     <div class="subscribe_btn">
                                                         <a href="{{ route('newMembershipfont', [$values->data->id]) }}"

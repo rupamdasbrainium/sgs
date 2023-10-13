@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Jorenvh\Share\Share;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Models\Configuration;
 use PhpParser\Node\Stmt\Continue_;
+use Illuminate\Support\Facades\Cookie;
+
 
 class HomeController extends Controller
 {
@@ -23,6 +26,19 @@ class HomeController extends Controller
         // $short_code = 'CentreDemo';
         $data = array();
         $data['title'] = trans('title_message.Home');
+
+        $shareButtons1 = \Share::page(
+            'https://makitweb.com/datatables-ajax-pagination-with-search-and-sort-in-laravel-8/'
+      )
+      ->facebook()
+      ->twitter()
+      ->linkedin()
+      ->telegram()
+      ->reddit();
+
+      Cookie::queue(Cookie::make('driver_route_id', $short_code, 60000));
+      Cookie::get('driver_route_id');
+
         //franchise call
         $franchises = APICall("Franchises", "get", "{}");
         $data['franchises'] = json_decode($franchises);
@@ -59,19 +75,6 @@ class HomeController extends Controller
             return redirect(route('login'),compact('logo','banner','button','theme'))->with($response);
         }
 
-        // foreach($data['franchises']->data as $franchise){
-        //     //   if($franchise->id == $short_code){
-        //         if($franchise->name == $franchise_id){//actual
-        //         $franchise_id = $franchise->id;
-        //         break;
-        //       }
-
-        // if (Session::has('franchise_id')) {
-        //     Session::forget('franchise_id');
-        // }
-        // Session::put('franchise_id',$franchise_id );
-        // dd(Session::get('franchise_id',$franchise_id ));
-
 
         //franchise plan type
         $franchisesPlanType = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id, "get", "{}");
@@ -83,29 +86,59 @@ class HomeController extends Controller
 
         // $data_plan = [];
         //franchise best four plan details
-        $data_plan[0] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan1 . "?language_id=" . $lang_id, "get", "{}"));
+        if($data['best_four_plan']->data->subscriptionPlan1){
+            $data_plan[0] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan1 . "?language_id=" . $lang_id, "get", "{}"));
+            $data['all_plan_data'][0] = '';
+        }
 
-        $data_plan[1] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan2 . "?language_id=" . $lang_id, "get", "{}"));
+        if($data['best_four_plan']->data->subscriptionPlan2){
+            $data_plan[1] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan2 . "?language_id=" . $lang_id, "get", "{}"));
+            $data['all_plan_data'][1] = '';
+        }
 
-        $data_plan[2] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan3 . "?language_id=" . $lang_id, "get", "{}"));
+        if($data['best_four_plan']->data->subscriptionPlan3){
+            $data_plan[2] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan3 . "?language_id=" . $lang_id, "get", "{}"));
+            $data['all_plan_data'][2] = '';
+        }
 
-        $data_plan[3] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan4 . "?language_id=" . $lang_id, "get", "{}"));
-
+        if($data['best_four_plan']->data->subscriptionPlan4){
+            $data_plan[3] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan4 . "?language_id=" . $lang_id, "get", "{}"));
+            $data['all_plan_data'][3] = '';
+        }
 
         $all_plan = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id, "get", "{}");
         $data['all_plan'] = json_decode($all_plan);
 
         //franchise best four plan details
         foreach ($data['all_plan']->data as $item) {
-            if($item->id == $data['best_four_plan']->data->subscriptionPlan1 || $item->id ==$data['best_four_plan']->data->subscriptionPlan2 || $item->id ==$data['best_four_plan']->data->subscriptionPlan3 || $item->id ==$data['best_four_plan']->data->subscriptionPlan4) {
-             continue;
+            $all_plan_data_arr['descr_english'] = $item->descr_english;
+            $all_plan_data_arr['descr_french'] = $item->descr_french;
+            $all_plan_data_arr['ageLimit_english'] = $item->ageLimit_english;
+            $all_plan_data_arr['ageLimit_french'] = $item->ageLimit_french;
+
+            if($item->id == $data['best_four_plan']->data->subscriptionPlan1){
+                $data['all_plan_data'][0] = $all_plan_data_arr;
+                continue;
+            }
+            if($item->id == $data['best_four_plan']->data->subscriptionPlan2){
+                $data['all_plan_data'][1] = $all_plan_data_arr;
+                continue;
+            } 
+            if($item->id == $data['best_four_plan']->data->subscriptionPlan3){
+                $data['all_plan_data'][2] = $all_plan_data_arr;
+                continue;
+            } 
+            if($item->id == $data['best_four_plan']->data->subscriptionPlan4) {
+                $data['all_plan_data'][3] = $all_plan_data_arr;
+                continue;
             }
             $data_plan[] = json_decode(APICall("SubscriptionPlans/type/" . $item->id . "?language_id=" . $lang_id, "get", "{}"));
+            $data['all_plan_data'][] = $all_plan_data_arr;
         }
         $best_four_plan_details = $data_plan;
         $data['best_four_plan_details'] = $data_plan;
        
-        return view('front.home', compact('data', 'best_four_plan_details', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address'));
+        return view('front.home', compact('data', 'best_four_plan_details', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','shareButtons1'));
     }
 
     public function login()
@@ -244,4 +277,23 @@ class HomeController extends Controller
         }
         return $html;
     }
-}
+
+
+            //  public function socialshare(){
+    
+            //        // Share button 1
+            //        $shareButtons1 = \Share::page(
+            //              'https://makitweb.com/datatables-ajax-pagination-with-search-and-sort-in-laravel-8/'
+            //        )
+            //        ->facebook()
+            //        ->twitter()
+            //        ->linkedin()
+            //        ->telegram()
+            //        ->reddit();
+                   
+
+            //        // Load index view
+            //        return view('front.home') ->with('shareButtons1',$shareButtons1 );
+            //  }
+    }
+

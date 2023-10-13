@@ -18,5 +18,5 @@ return [
     'logout' => 'Logout',
     'login' => 'Login',
     'Login' => 'Login',
-
+    'profile' => 'Profile'
 ];
