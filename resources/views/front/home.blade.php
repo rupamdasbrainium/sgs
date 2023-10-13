@@ -164,7 +164,7 @@
                                                         @endif
                                                     @endif
                                                 </div>
-                                                <p>{{ __('global.price') }}</p>
+                                                {{-- <p>{{ __('global.price') }}</p> --}}
                                             </div>
                                             <div class="individual_opt">
                                                 <div class="individual_head" style="background-color: {{$theme->value}}">
