@@ -272,6 +272,10 @@ function APICall($uri, $method, $data, $type='web_app'){
       $token = getWabToken('401');
       return apiCallCurl($uri, $method, $data, $token);
     }else{
+      if(Session::has('clientToken')){
+        Session::forget('clientToken');
+      }
+      return redirect()->route('login');
       $token = getClientToken();
       if($token == 'unauthorised'){
         if(Session::has('clientToken')){

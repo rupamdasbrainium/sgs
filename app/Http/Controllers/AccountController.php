@@ -664,96 +664,57 @@ class AccountController extends Controller
         }
     }
 
-    public function upgradeMembership()
-    {
-        $data = array();
-        $data['title'] = trans('title_message.Upgrade_Membership');
-        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
-        $theme = Configuration::where('name','theme_color')->where('franchise_id',3)->first();
-        $button = Configuration::where('name','primary_button_color')->where('franchise_id',3)->first();
-        $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',3)->first();
-        $admin_address = Configuration::where('name','admin_address')->where('franchise_id',3)->first();
-        $client = APICall("Clients", 'get', "{}", "client_app");
-        if (!$client) {
-            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
-        }
-        $client = json_decode($client)->data;
-        $lang_id = getLocale();
-        $data['title'] = trans('newMembership.memberships') . ' ' . trans('newMembership.option');
-        $membership = APICall('Memberships/client?display_language_id=' . $client->language_id, "get", "{}","client_app");
-        $data['membership'] = json_decode($membership);
+    // public function upgrademembershipsubmit(Request $request)
+    // {
+    //     // $lang_id = getLocale();
+    //     $lang_id = Session::get('language_id');
+    //     if ($request->radio_group_pay == "bank_acc") {
 
-        $franchise_id = 3;
-        //franchise get all plan
-        $all_plan = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id, "get", "{}");
-        $data['all_plan'] = json_decode($all_plan);
+    //         $membershipdata = array();
+    //         $membershipdata['subscription_plan_id'] = $request->subscription_plan_id;
+    //         if (Session::has('duration_id')) {
+    //             $membershipdata['duration_id'] = Session::get('duration_id');
+    //         }
+    //         if (Session::has('installments_id')) {
+    //             $membershipdata['installment_id'] = Session::get('installments_id');
+    //         }
+    //         if (Session::has('add_on')) {
+    //             $add_ons = Session::get('add_on');
+    //             foreach ($add_ons as $ad_on_id) {
+    //                 $membershipcarddata['lstOptions'][] = $ad_on_id;
+    //             }
+    //         }
+    //         $membershipdata['code_promo'] = $request->code_promo;
+    //         $membershipdata['account_id'] = $request->old_acc;
 
-        foreach ($data['all_plan']->data as $item) {
-            $data['subscription_plan'][] = json_decode(APICall("SubscriptionPlans/type/" . $item->id . "?language_id=" . $client->language_id, "get", "{}"));
-        }
+    //         $membership_with_bnk_acc = APICall('Memberships/with-bank-account?display_language_id=' . $lang_id, "post", json_encode($membershipdata), "client_app");
+    //         $data['membership_with_bnk_acc'] = json_decode($membership_with_bnk_acc);
+    //         return redirect()->route('myProfile');
+    //     } else {
+    //         $membershipcarddata = array();
+    //         $membershipcarddata['subscription_plan_id'] = $request->subscription_plan_id;
+    //         if (Session::has('duration_id')) {
+    //             $membershipcarddata['duration_id'] = Session::get('duration_id');
+    //         }
+    //         if (Session::has('installments_id')) {
+    //             $membershipcarddata['installment_id'] = Session::get('installments_id');
+    //         }
+    //         if (Session::has('add_on')) {
+    //             $add_ons = Session::get('add_on');
+    //             foreach ($add_ons as $ad_on_id) {
+    //                 $membershipcarddata['lstOptions'][] = $ad_on_id;
+    //             }
+    //         }
+    //         $membershipcarddata['code_promo'] = $request->code_promo;
+    //         $membershipcarddata['processed_amount'] = $request->processed_amount;
+    //         $membershipcarddata['card_id'] = $request->old_card;
 
+    //         $membership_with_credit_card = APICall('Memberships/with-credit-card?display_language_id=' . $lang_id, "post", json_encode($membershipcarddata), "client_app");
+    //         $data['membership_with_credit_card'] = json_decode($membership_with_credit_card);
 
-        // $subscription_plan = APICall("SubscriptionPlans/type/", "get","{}");
-        // $data['subscription_plan'] = json_decode($subscription_plan);
-
-        $pay_methods_card = APICall('PaymentMethods/cards', "get", "{}", 'client_app');
-        $data['pay_methods_card'] = json_decode($pay_methods_card);
-
-        return view('front.upgrademembership', compact('data','logo','theme','button','admin_phone','admin_address'));
-    }
-
-
-    public function upgrademembershipsubmit(Request $request)
-    {
-        // $lang_id = getLocale();
-        $lang_id = Session::get('language_id');
-        if ($request->radio_group_pay == "bank_acc") {
-
-            $membershipdata = array();
-            $membershipdata['subscription_plan_id'] = $request->subscription_plan_id;
-            if (Session::has('duration_id')) {
-                $membershipdata['duration_id'] = Session::get('duration_id');
-            }
-            if (Session::has('installments_id')) {
-                $membershipdata['installment_id'] = Session::get('installments_id');
-            }
-            if (Session::has('add_on')) {
-                $add_ons = Session::get('add_on');
-                foreach ($add_ons as $ad_on_id) {
-                    $membershipcarddata['lstOptions'][] = $ad_on_id;
-                }
-            }
-            $membershipdata['code_promo'] = $request->code_promo;
-            $membershipdata['account_id'] = $request->old_acc;
-
-            $membership_with_bnk_acc = APICall('Memberships/with-bank-account?display_language_id=' . $lang_id, "post", json_encode($membershipdata), "client_app");
-            $data['membership_with_bnk_acc'] = json_decode($membership_with_bnk_acc);
-            return redirect()->route('myProfile');
-        } else {
-            $membershipcarddata = array();
-            $membershipcarddata['subscription_plan_id'] = $request->subscription_plan_id;
-            if (Session::has('duration_id')) {
-                $membershipcarddata['duration_id'] = Session::get('duration_id');
-            }
-            if (Session::has('installments_id')) {
-                $membershipcarddata['installment_id'] = Session::get('installments_id');
-            }
-            if (Session::has('add_on')) {
-                $add_ons = Session::get('add_on');
-                foreach ($add_ons as $ad_on_id) {
-                    $membershipcarddata['lstOptions'][] = $ad_on_id;
-                }
-            }
-            $membershipcarddata['code_promo'] = $request->code_promo;
-            $membershipcarddata['processed_amount'] = $request->processed_amount;
-            $membershipcarddata['card_id'] = $request->old_card;
-
-            $membership_with_credit_card = APICall('Memberships/with-credit-card?display_language_id=' . $lang_id, "post", json_encode($membershipcarddata), "client_app");
-            $data['membership_with_credit_card'] = json_decode($membership_with_credit_card);
-
-            return redirect()->route('myProfile');
-        }
-    }
+    //         return redirect()->route('myProfile');
+    //     }
+    // }
 
 
     public function referralCode()
@@ -928,30 +889,59 @@ class AccountController extends Controller
         return redirect(route("account"))->with($response);    
     }
 
-    public function upgragemembershipsubmit(Request $request){
+    public function upgradeMembership()
+    {
+        $data = array();
+        $data['title'] = trans('title_message.Upgrade_Membership');
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
+        $theme = Configuration::where('name','theme_color')->where('franchise_id',3)->first();
+        $button = Configuration::where('name','primary_button_color')->where('franchise_id',3)->first();
+        $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',3)->first();
+        $admin_address = Configuration::where('name','admin_address')->where('franchise_id',3)->first();
+        $client = APICall("Clients", 'get', "{}", "client_app");
+        if (!$client) {
+            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
+        }
+        $client = json_decode($client)->data;
+        // dd($client);
+        $lang_id = getLocale();
+        $data['title'] = trans('newMembership.memberships') . ' ' . trans('newMembership.option');
+        $membership = APICall('Memberships/client?display_language_id=' . $client->language_id, "get", "{}","client_app");
+        $data['membership'] = json_decode($membership);
+
+        $franchise_id = 3;
+        //franchise get all plan
+        $all_plan = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id, "get", "{}");
+        $data['all_plan'] = json_decode($all_plan);
+
+        foreach ($data['all_plan']->data as $item) {
+            $data['subscription_plan'][] = json_decode(APICall("SubscriptionPlans/type/" . $item->id . "?language_id=" . $client->language_id, "get", "{}"));
+        }
+
+
+        // $subscription_plan = APICall("SubscriptionPlans/type/", "get","{}");
+        // $data['subscription_plan'] = json_decode($subscription_plan);
+
+        $pay_methods_card = APICall('PaymentMethods/cards', "get", "{}", 'client_app');
+        $data['pay_methods_card'] = json_decode($pay_methods_card);
+
+        $pay_methods_bank = APICall('PaymentMethods/accounts', "get", "{}", 'client_app');
+        $data['pay_methods_bank'] = json_decode($pay_methods_bank);
+
+        return view('front.upgrademembership', compact('data','logo','theme','button','admin_phone','admin_address'));
+    }
+
+    public function upgragemembershipsubmit(Request $request,$membershipId,$card_id){
 
         $lang_id = Session::get('language_id');
-
-        $formdata = array();      
-        $formdata['date_begin'] = $request->date_begin;
-        $formdata['card_id'] = $request->card_id;
-     
-        $formdata['processed_amount'] = $request->processed_amount;
-
-        if (Session::has('installments_id')) {
-            Session::forget('installments_id');
-        }
-        if (Session::has('duration_id')) {
-            Session::forget('duration_id');
-        }   
-        $duration_installments_arr = explode("|", $request->installments);
-        $formdata['installment_id'] = $duration_installments_arr[1];
-        $formdata['duration_id'] = $duration_installments_arr[0];
-        $formdata['subscription_plan_id'] = $request->typeId;
-        $formdata['franchise_id'] = Session::get('franchise_id');
-// dd($formdata);
-        $membership_with_credit_card = APICall('Memberships/with-credit-card?display_language_id='.$lang_id, "post", json_encode($formdata), "client_app");
+        $uri = "Memberships/" . $membershipId . "/card/".$card_id."?display_language_id=".$lang_id;
+        $membership_with_credit_card = APICall($uri, "put", "{}", 'client_app');
         $data['membership_with_credit_card'] = json_decode($membership_with_credit_card);
+
+
+        // $uri1 = "Memberships/" . $membershipId . "/account/".$id."?display_language_id=".$lang_id;
+        // $membership_with_bank = APICall($uri1, "put", "{}", 'client_app');
+        // $data['membership_with_bank'] = json_decode($membership_with_bank);
 
         if(  $data['membership_with_credit_card'] ->error!=null){
             $response = array(
@@ -964,6 +954,25 @@ class AccountController extends Controller
             'message' => 'membership upgraded succesfully',
           );
         return redirect(route("account"))->with($response); 
+    }
 
+    public function upgragemembershipsubmitbank(Request $request,$membershipId,$bank_id){
+
+        $lang_id = Session::get('language_id');
+        $uri = "Memberships/" . $membershipId . "/account/".$bank_id."?display_language_id=".$lang_id;
+        // dd($uri);
+        $membership_with_bank = APICall($uri, "put", "{}", 'client_app');
+        $data['membership_with_bank'] = json_decode($membership_with_bank);
+        if(  $data['membership_with_bank'] ->error!=null){
+            $response = array(
+                      'message' => $data['membership_with_bank'] ->error->message,
+                      'message_type' => 'danger'
+                    );
+                    return redirect()->back()->with($response)->withInput();
+        }
+        $response = array(
+            'message' => 'membership upgraded succesfully',
+          );
+        return redirect(route("account"))->with($response);
     }
 }

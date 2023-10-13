@@ -149,7 +149,7 @@
                                                     @if (isset($values->data))
                                                         @if (count($values->data->prices_per_durations))
                                                             @foreach ($values->data->prices_per_durations as $val)
-                                                                ${{ $val->price_recurent }}<span>/
+                                                                ${{ $val->price_recurant }}<span>/
                                                                     {{ $val->duration_unit_display }}</span>
                                                                 @php
                                                                     break;
