@@ -27,6 +27,14 @@ class HomeController extends Controller
         $data = array();
         $data['title'] = trans('title_message.Home');
 
+    //     $shareButtons1 = \Share::page(
+    //         'https://makitweb.com/datatables-ajax-pagination-with-search-and-sort-in-laravel-8/'
+    //   )
+    //   ->facebook()
+    //   ->twitter()
+    //   ->linkedin()
+    //   ->telegram()
+    //   ->reddit();
 
       Cookie::queue(Cookie::make('driver_route_id', $short_code, 60000));
       Cookie::get('driver_route_id');
