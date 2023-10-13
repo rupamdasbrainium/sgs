@@ -27,14 +27,6 @@ class HomeController extends Controller
         $data = array();
         $data['title'] = trans('title_message.Home');
 
-        $shareButtons1 = \Share::page(
-            'https://makitweb.com/datatables-ajax-pagination-with-search-and-sort-in-laravel-8/'
-      )
-      ->facebook()
-      ->twitter()
-      ->linkedin()
-      ->telegram()
-      ->reddit();
 
       Cookie::queue(Cookie::make('driver_route_id', $short_code, 60000));
       Cookie::get('driver_route_id');
@@ -138,7 +130,7 @@ class HomeController extends Controller
         $best_four_plan_details = $data_plan;
         $data['best_four_plan_details'] = $data_plan;
        
-        return view('front.home', compact('data', 'best_four_plan_details', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','shareButtons1'));
+        return view('front.home', compact('data', 'best_four_plan_details', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id'));
     }
 
     public function login()
