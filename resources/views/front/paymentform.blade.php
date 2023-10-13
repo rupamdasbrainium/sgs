@@ -225,7 +225,7 @@
 
                                                 <div class="summary_content">
 
-                                                    {{-- <div class="content_block paymentinfo">
+                                                    <div class="content_block paymentinfo">
                                                         <h2 class="head_opt">{{ __('paymentForm.payment_details') }}
                                                         </h2>
                                                         <div
@@ -323,7 +323,7 @@
                                                                 </tbody>
                                                             </table>
                                                         </div>
-                                                    </div> --}}
+                                                    </div>
 
                                                     <div class="content_block more_cont_view">
                                                         <h2>{{ __('paymentForm.method_of_payment') }}</h2>

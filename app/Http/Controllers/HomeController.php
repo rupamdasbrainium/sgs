@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Jorenvh\Share\Share;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Models\Configuration;
 use PhpParser\Node\Stmt\Continue_;
+use Illuminate\Support\Facades\Cookie;
+
 
 class HomeController extends Controller
 {
@@ -23,6 +26,19 @@ class HomeController extends Controller
         // $short_code = 'CentreDemo';
         $data = array();
         $data['title'] = trans('title_message.Home');
+
+        $shareButtons1 = \Share::page(
+            'https://makitweb.com/datatables-ajax-pagination-with-search-and-sort-in-laravel-8/'
+      )
+      ->facebook()
+      ->twitter()
+      ->linkedin()
+      ->telegram()
+      ->reddit();
+
+      Cookie::queue(Cookie::make('driver_route_id', $short_code, 60000));
+      Cookie::get('driver_route_id');
+
         //franchise call
         $franchises = APICall("Franchises", "get", "{}");
         $data['franchises'] = json_decode($franchises);
@@ -58,19 +74,6 @@ class HomeController extends Controller
         if (!$franchise_id) {
             return redirect(route('login'),compact('logo','banner','button','theme'))->with($response);
         }
-
-        // foreach($data['franchises']->data as $franchise){
-        //     //   if($franchise->id == $short_code){
-        //         if($franchise->name == $franchise_id){//actual
-        //         $franchise_id = $franchise->id;
-        //         break;
-        //       }
-
-        // if (Session::has('franchise_id')) {
-        //     Session::forget('franchise_id');
-        // }
-        // Session::put('franchise_id',$franchise_id );
-        // dd(Session::get('franchise_id',$franchise_id ));
 
 
         //franchise plan type
@@ -135,7 +138,7 @@ class HomeController extends Controller
         $best_four_plan_details = $data_plan;
         $data['best_four_plan_details'] = $data_plan;
        
-        return view('front.home', compact('data', 'best_four_plan_details', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id'));
+        return view('front.home', compact('data', 'best_four_plan_details', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','shareButtons1'));
     }
 
     public function login()
@@ -274,4 +277,23 @@ class HomeController extends Controller
         }
         return $html;
     }
-}
+
+
+            //  public function socialshare(){
+    
+            //        // Share button 1
+            //        $shareButtons1 = \Share::page(
+            //              'https://makitweb.com/datatables-ajax-pagination-with-search-and-sort-in-laravel-8/'
+            //        )
+            //        ->facebook()
+            //        ->twitter()
+            //        ->linkedin()
+            //        ->telegram()
+            //        ->reddit();
+                   
+
+            //        // Load index view
+            //        return view('front.home') ->with('shareButtons1',$shareButtons1 );
+            //  }
+    }
+

@@ -21,10 +21,12 @@
 					</div>
 					<div class="social_media ">
 						<ul>
-							<li><a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a></li>
-							<li><a href="javascript:void(0)"><i class="fab fa-twitter"></i></a></li>
-							<li><a href="javascript:void(0)"><i class="fab fa-linkedin-in"></i></a></li>
-							<li><a href="javascript:void(0)"><i class="fab fa-youtube"></i></a></li>
+							<li><a href="https://www.facebook.com/sharer/sharer.php?u={{route('homepage',  Cookie::get('driver_route_id'))}}"><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href="https://twitter.com/intent/tweet?text=Default+share+text&url={{route('homepage',  Cookie::get('driver_route_id'))}}"><i class="fab fa-twitter"></i></a></li>
+							<li><a href="https://www.linkedin.com/sharing/share-offsite?mini=true&url={{route('homepage', Cookie::get('driver_route_id'))}}"><i class="fab fa-linkedin-in"></i></a></li>
+							<li><a href="https://telegram.me/share/url?url={{route('homepage',  Cookie::get('driver_route_id'))}}"><i class="fab fa-telegram"></i></a></li>
+							
+							{{-- <li>{!! $shareButtons1 !!}</li> --}}
 						</ul>
 					</div>
 					<div class="copy_rightinfo ">
@@ -58,5 +60,11 @@ $(document).ready(function() {
   $('.left_sidebar .innersidebar_cont ul li a[href="' + cur_url + '"]').parent().addClass('activepage');
 });
 </script>
+
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Share JS -->
+<script src="{{ asset('js/share.js') }}"></script>
 @endpush
 @endif

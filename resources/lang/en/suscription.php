@@ -30,7 +30,7 @@ return [
     'ln' => 'Last Name',
     'sn' => 'Street Number',
     'street' => 'Street',
-    'app' => 'App',
+    'app' => 'Apartment',
     'city' => 'City',
     'pin' => 'Postal Code',
     'ph' => 'Phone Number',

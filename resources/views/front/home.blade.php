@@ -4,6 +4,7 @@
     @endphp
     @section('title', $data['title'] . ' |')
     @include('header')
+
     <div class="banner_outer">
         <div class="banner_slider">
             <div class="banner_panel">
