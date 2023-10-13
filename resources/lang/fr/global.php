@@ -26,6 +26,6 @@ return [
     'sub_text_info' => 'Trouvez une GYM près de chez vous',
     'sub_text_info_p' => `Pour trouver un club, utilisez la barre de recherche, naviguez à l\'aide de la carte ou activez les services de localisation.`,
     "find_gym_placeholder" => "Entrer l'adresse",
-    'age restriction' => `Restriction d'âge`
+    'age' => `Restriction d'âge`
 
 ];
