@@ -18,7 +18,7 @@ class VerifyWebTokenMiddleware
     public function handle(Request $request, Closure $next)
     {
         $token = getClientToken();
-        if ($token == "unauthorised") {
+        if ($token == "unauthorised" || $token==401) {
             return redirect()->route('login')->withErrors(['user', trans('auth.expired')]);
         }
         return $next($request);
