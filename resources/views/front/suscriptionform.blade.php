@@ -59,6 +59,9 @@
                                                     class="form-control" placeholder="{{ __('suscription.fn') }} *"
                                                     required>
                                             </div>
+                                            @error('firstname')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
@@ -66,6 +69,9 @@
                                                     class="form-control" placeholder="{{ __('suscription.ln') }} *"
                                                     required>
                                             </div>
+                                            @error('lastname')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="inp_row gapadj inp_colm3">
@@ -82,6 +88,10 @@
                                                     value="{{ old('address_street') }}" class="form-control"
                                                     placeholder="{{ __('suscription.street') }} *" required>
                                             </div>
+                                            @error('address_street')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
@@ -201,12 +211,16 @@
                                                     class="form-control"
                                                     placeholder="{{ __('suscription.email') }} *" required>
                                             </div>
+                                            
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
-                                                <input type="email" class="form-control"
+                                                <input type="email" class="form-control" name="email_confirmation"
                                                     placeholder="{{ __('suscription.email_con') }} *" required>
                                             </div>
+                                            @error('email_confirmation')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="inp_row gapadj inp_colm2">

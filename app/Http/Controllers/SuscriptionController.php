@@ -49,6 +49,17 @@ class SuscriptionController extends Controller
     }
 
     public function suscriptionformsave(Request $request, $id){
+
+      $request->validate(
+            [
+              'address_street' => 'regex:/^[a-zA-Z]+$/u',
+              'firstname' => 'regex:/^[a-zA-Z]+$/u',
+              'lastname' => 'regex:/^[a-zA-Z]+$/u',
+              'eamil' => 'email',
+              'email_confirmation' => 'confirmed',
+            ]
+        );
+
         $fromdata = array();
         // $data[]
         $fromdata['firstname'] = $request->firstname;
