@@ -124,6 +124,7 @@ class AccountController extends Controller
 
         $message = array(
             'message' => trans('title_message.Language_Changed_succesfully'),
+            'message_type' => 'success',
         );
 
         // return redirect(route("changeLanguage"))->with($response);
