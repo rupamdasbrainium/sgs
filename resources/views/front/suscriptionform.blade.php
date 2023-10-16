@@ -241,7 +241,7 @@
                                             <div class="inp_cont_view noicon_opt">
                                                 <input class="form-control" name="user_name"
                                                     value="{{ old('user_name') }}" type="text"
-                                                    placeholder="{{ __('suscription.user_name') }}">
+                                                    placeholder="{{ __('suscription.user_name') }} *">
                                             </div>
                                         </div>
 

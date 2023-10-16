@@ -21,7 +21,7 @@
                             <div class="col-md-12">
                                 <div class="banner_info">
                                     <h1>{{ $title->value }}</h1>
-                                    <h2>{{ $subtitle->value}}!</h2>
+                                    <h2>{{ $subtitle->value}}</h2>
                                     {{-- <h1>Elevate Your <span>Fitness,</span></h1> --}}
                                     {{-- <h2>Ignite Your Potential!</h2> --}}
                                 </div>

@@ -122,12 +122,12 @@ class AccountController extends Controller
         }
         // app()->setLocale($locale);
 
-        $response = array(
+        $message = array(
             'message' => trans('title_message.Language_Changed_succesfully'),
         );
 
         // return redirect(route("changeLanguage"))->with($response);
-        return redirect('language/'.$locale);
+        return redirect('language/'.$locale)->with($message);
     }
 
 

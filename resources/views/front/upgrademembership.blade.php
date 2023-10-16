@@ -27,7 +27,7 @@
                                         
                                         <label
                                             for="testnum{{ $loop->iteration }}">{{ __('upgrademembership.Act1_Membership_davable') }}
-                                            {{ $itemmain->recurantCharge }} {{ __('upgrademembership.per_Month') }}
+                                            ${{ $itemmain->recurantCharge }} {{ __('upgrademembership.per_Month') }}
                                         </label>
 
                                     </div>
