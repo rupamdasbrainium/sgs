@@ -39,7 +39,7 @@ return [
     'emergency_ph' => 'Emergency Phone Number',
     'dob' => 'Date of birth',
     'email' => 'Email',
-    'email_con' => 'mail Confirmation',
+    'email_con' => 'Email Confirmation',
     'password' => 'Password',
     'password_con' => 'Password confirmation',
     'user_name' => 'User name',
