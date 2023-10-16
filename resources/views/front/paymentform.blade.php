@@ -447,7 +447,7 @@
                                                                 <label>{{ __('paymentForm.PAN') }} <em
                                                                         class="req_text">*</em></label>
                                                                 <div class="inp_cont_view noicon_opt">
-                                                                    <input type="text" name="pan" 
+                                                                    <input type="number" name="pan" 
                                                                         class="form-control" placeholder="" value="{{old('pan')}}">
                                                                 </div>
                                                             </div>
