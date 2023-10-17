@@ -71,11 +71,12 @@
                                             <div class="arrowdown2">
                                                 <i class="far fa-chevron-down"></i>
                                             </div>
+                                            <input type="hidden" id="homeurl" value="{{ route('homepage') }}">
                                             <select class="select_opt" id="franchises_name">
                                                 @isset($data['franchises'])
                                                     @foreach ($data['franchises']->data as $franchise)
-                                                        <option value="{{ $franchise->id }}"
-                                                            {{ $franchise->id == $franchise_id ? 'selected="selected"' : 'disabled="disabled"' }}>
+                                                        <option value="{{ $franchise->shortCode }}"
+                                                            {{ $franchise->id == $franchise_id ? 'selected="selected"' : ($short_code_flag? '':'disabled="disabled"') }}>
                                                             {{ $franchise->name }}</option>
                                                     @endforeach
                                                 @endisset
@@ -85,11 +86,12 @@
                                             <div class="arrowdown2">
                                                 <i class="far fa-chevron-down"></i>
                                             </div>
+                                            {{-- $franchise->address_province_id --}}
                                             <select class="select_opt" id="franchises_address">
                                                 @isset($data['franchises'])
                                                     @foreach ($data['franchises']->data as $franchise)
-                                                        <option value="{{ $franchise->address_province_id }}"
-                                                            {{ $franchise->id == $franchise_id ? 'selected' : 'disabled' }}>
+                                                        <option value="{{ $franchise->shortCode }}"
+                                                            {{ $franchise->id == $franchise_id ? 'selected="selected"' : ($short_code_flag? '':'disabled="disabled"') }}>
                                                             {{ $franchise->address_civic_number }}{{ $franchise->address_street }}{{ $franchise->address_city }}
                                                         </option>
                                                     @endforeach
@@ -152,19 +154,31 @@
 
                                                     @if (isset($values->data))
                                                         @if (count($values->data->prices_per_durations))
-                                                            @foreach ($values->data->prices_per_durations as $val)
-                                                                ${{ $val->price_recurant }}<span>/
-                                                                    {{ $val->duration_unit_display }}</span>
-                                                                @php
-                                                                    break;
-                                                                @endphp
-                                                            @endforeach
+                                                            <div class="selectcont ">
+                                                                <div class="arrowdown2">
+                                                                    <i class="far fa-chevron-down"></i>
+                                                                </div>
+                                                                <select class="select_opt">
+
+                                                                    @foreach ($values->data->prices_per_durations as $val)
+                                                                        {{-- ${{ $val->price_recurant }}<span>/
+                                                                            {{ $val->duration_unit_display }}</span> For {{ $val->frequency }} {{ $val->duration_unit_display }}
+                                                                            @if(!$loop->last)
+                                                                                <br>
+                                                                            @endif --}}
+                                                                        <option>${{ $val->price_recurant }}<span>/
+                                                                            {{ $val->duration_unit_display }}</span> For {{ $val->frequency }} {{ $val->duration_unit_display }}
+                                                                            </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
                                                         @else
                                                             $0
                                                         @endif
                                                     @endif
                                                 </div>
-                                                <p>{{ __('global.price') }}</p>
+                                                {{-- <p>{{ __('global.price') }}</p> --}}
+                                                <p>{{ $lang_id == 2 ? $item['descr_english'] : $item['descr_french'] }}</p>
                                             </div>
                                             <div class="individual_opt">
                                                 <div class="individual_head" style="background-color: {{$theme->value}}">
@@ -172,7 +186,7 @@
                                                 </div>
                                                 <div class="individual_des">
                                                     <ul>
-                                                        {{-- @if (isset($values->data))
+                                                        @if (isset($values->data))
                                                             @if (isset($values->data->options))
                                                                 @foreach ($values->data->options as $val)
                                                                     <li><span><i
@@ -180,8 +194,8 @@
                                                                     </li>
                                                                 @endforeach
                                                             @endif
-                                                        @endif --}}
-                                                        <li>{{ $lang_id == 2 ? $item['descr_english'] : $item['descr_french'] }}</li>
+                                                        @endif
+                                                        {{-- <li>{{ $lang_id == 2 ? $item['descr_english'] : $item['descr_french'] }}</li> --}}
                                                     </ul>
                                                     <div class="subscribe_btn">
                                                         <a href="{{ route('newMembershipfont', [$values->data->id]) }}"
@@ -245,30 +259,40 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $("#franchise_name").on('change', function() {
-                alert("The text has been changed.");
+            $("#franchises_address").on('change', function() {
+                console.log($('#franchises_address').val());
+                var url = '{{ route('homepage') }}';
+                url = url+'/'. $this.val()
+                window.location.href = url;
             });
-            $.ajax({
-                type: "POST",
-                url: searchURI,
-                dataType: "json",
-                data: {
-                    _token: $('meta[name="csrf-token"]').attr("content"),
-                    query: request.term,
-                    date_range: $("#departure_date").val(),
-                },
-                success: function(data) {
-                    if (!data.length) {
-                        var result = [{
-                            label: noMatch,
-                            value: response.term,
-                        }, ];
-                        response(result);
-                    } else {
-                        response(data);
-                    }
-                },
+
+            $('#franchises_name').on('change', function() {
+        console.log($('#franchises_name').val());
+                var url = '{{ route('homepage') }}';
+                url = url+'/'. $(this).attr('rel')
+                window.location.href = url;
             });
+            // $.ajax({
+            //     type: "POST",
+            //     url: searchURI,
+            //     dataType: "json",
+            //     data: {
+            //         _token: $('meta[name="csrf-token"]').attr("content"),
+            //         query: request.term,
+            //         date_range: $("#departure_date").val(),
+            //     },
+            //     success: function(data) {
+            //         if (!data.length) {
+            //             var result = [{
+            //                 label: noMatch,
+            //                 value: response.term,
+            //             }, ];
+            //             response(result);
+            //         } else {
+            //             response(data);
+            //         }
+            //     },
+            // });
         })
     </script>
     <script>
