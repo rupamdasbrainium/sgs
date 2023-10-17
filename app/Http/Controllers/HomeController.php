@@ -20,7 +20,7 @@ class HomeController extends Controller
         $franchiseId = 3;
         return $franchiseId;
     }    
-    public function index($short_code)
+    public function index($short_code=null)
     {
         $lang_id = getLocale();
         // $short_code = 'CentreDemo';
@@ -38,7 +38,6 @@ class HomeController extends Controller
 
       Cookie::queue(Cookie::make('driver_route_id', $short_code, 60000));
       Cookie::get('driver_route_id');
-
         //franchise call
         $franchises = APICall("Franchises", "get", "{}");
         $data['franchises'] = json_decode($franchises);

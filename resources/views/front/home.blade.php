@@ -154,10 +154,10 @@
                                                         @if (count($values->data->prices_per_durations))
                                                             @foreach ($values->data->prices_per_durations as $val)
                                                                 ${{ $val->price_recurant }}<span>/
-                                                                    {{ $val->duration_unit_display }}</span>
-                                                                @php
-                                                                    break;
-                                                                @endphp
+                                                                    {{ $val->duration_unit_display }}</span> For {{ $val->frequency }} {{ $val->duration_unit_display }}
+                                                                    @if(!$loop->last)
+                                                                        <br>
+                                                                    @endif
                                                             @endforeach
                                                         @else
                                                             $0
@@ -165,6 +165,7 @@
                                                     @endif
                                                 </div>
                                                 {{-- <p>{{ __('global.price') }}</p> --}}
+                                                <p>{{ $lang_id == 2 ? $item['descr_english'] : $item['descr_french'] }}</p>
                                             </div>
                                             <div class="individual_opt">
                                                 <div class="individual_head" style="background-color: {{$theme->value}}">
@@ -172,7 +173,7 @@
                                                 </div>
                                                 <div class="individual_des">
                                                     <ul>
-                                                        {{-- @if (isset($values->data))
+                                                        @if (isset($values->data))
                                                             @if (isset($values->data->options))
                                                                 @foreach ($values->data->options as $val)
                                                                     <li><span><i
@@ -180,8 +181,8 @@
                                                                     </li>
                                                                 @endforeach
                                                             @endif
-                                                        @endif --}}
-                                                        <li>{{ $lang_id == 2 ? $item['descr_english'] : $item['descr_french'] }}</li>
+                                                        @endif
+                                                        {{-- <li>{{ $lang_id == 2 ? $item['descr_english'] : $item['descr_french'] }}</li> --}}
                                                     </ul>
                                                     <div class="subscribe_btn">
                                                         <a href="{{ route('newMembershipfont', [$values->data->id]) }}"
