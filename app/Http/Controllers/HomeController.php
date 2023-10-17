@@ -35,6 +35,12 @@ class HomeController extends Controller
     //   ->linkedin()
     //   ->telegram()
     //   ->reddit();
+        //franchise call
+        $franchises = APICall("Franchises", "get", "{}");
+        $data['franchises'] = json_decode($franchises);
+        $data['short_code'] = $short_code;
+        $franchise_id = '';
+        
         //find franchise_id
         $short_code_flag = 0;
         foreach ($data['franchises']->data as $key => $franchise) {
@@ -51,11 +57,7 @@ class HomeController extends Controller
         }
       Cookie::queue(Cookie::make('driver_route_id', $short_code, 60000));
       Cookie::get('driver_route_id');
-        //franchise call
-        $franchises = APICall("Franchises", "get", "{}");
-        $data['franchises'] = json_decode($franchises);
-        $data['short_code'] = $short_code;
-        $franchise_id = '';
+        
         $logo = Configuration::where('name','logo_image')->where('franchise_id',$this->getfranchiseId())->first();
         $banner = Configuration::where('name','banner_image')->where('franchise_id',$this->getfranchiseId())->first();
         $theme = Configuration::where('name','theme_color')->where('franchise_id',$this->getfranchiseId())->first();
