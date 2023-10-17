@@ -90,7 +90,7 @@
                                                 @isset($data['franchises'])
                                                     @foreach ($data['franchises']->data as $franchise)
                                                         <option value="{{ $franchise->shortCode }}"
-                                                            {{ $franchise->id == $franchise_id ? 'selected' : ($short_code_flag? '':'disabled') }}>
+                                                            {{ $franchise->id == $franchise_id ? 'selected="selected"' : ($short_code_flag? '':'disabled="disabled"') }}>
                                                             {{ $franchise->address_civic_number }}{{ $franchise->address_street }}{{ $franchise->address_city }}
                                                         </option>
                                                     @endforeach
@@ -254,38 +254,39 @@
     <script>
         $(document).ready(function() {
             $("#franchises_address").on('change', function() {
+                console.log($('#franchises_address').val());
                 var url = '{{ route('homepage') }}';
                 url = url+'/'. $this.val()
                 window.location.href = url;
             });
 
-            $('#franchises_name').parent().find('.select-options li').on('click', function() {
-	// 	var val = $(this).attr('rel').on('change', function() {
+            $('#franchises_name').on('change', function() {
+        console.log($('#franchises_name').val());
                 var url = '{{ route('homepage') }}';
                 url = url+'/'. $(this).attr('rel')
                 window.location.href = url;
             });
-            $.ajax({
-                type: "POST",
-                url: searchURI,
-                dataType: "json",
-                data: {
-                    _token: $('meta[name="csrf-token"]').attr("content"),
-                    query: request.term,
-                    date_range: $("#departure_date").val(),
-                },
-                success: function(data) {
-                    if (!data.length) {
-                        var result = [{
-                            label: noMatch,
-                            value: response.term,
-                        }, ];
-                        response(result);
-                    } else {
-                        response(data);
-                    }
-                },
-            });
+            // $.ajax({
+            //     type: "POST",
+            //     url: searchURI,
+            //     dataType: "json",
+            //     data: {
+            //         _token: $('meta[name="csrf-token"]').attr("content"),
+            //         query: request.term,
+            //         date_range: $("#departure_date").val(),
+            //     },
+            //     success: function(data) {
+            //         if (!data.length) {
+            //             var result = [{
+            //                 label: noMatch,
+            //                 value: response.term,
+            //             }, ];
+            //             response(result);
+            //         } else {
+            //             response(data);
+            //         }
+            //     },
+            // });
         })
     </script>
     <script>
