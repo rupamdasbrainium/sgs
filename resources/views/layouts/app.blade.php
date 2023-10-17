@@ -34,18 +34,18 @@
         <link rel="stylesheet" href="{{ asset('public/css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('public/css/owl.carousel.min.css') }}">
         <link rel="stylesheet" href="{{ asset('public/css/owl.theme.default.min.css') }}">
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.0/css/all.css">
+        {{-- <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.0/css/all.css"> --}}
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
         @stack('css')
         <!-- Scripts -->
-        <script src="{{ asset('public/js/app.js') }}" defer></script>
+        {{-- <script src="{{ asset('public/js/app.js') }}" defer></script> --}}
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> --}}
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="{{ asset('public/js/select_optiones.js') }}"></script>
 
@@ -54,23 +54,23 @@
         <script src="{{ asset('public/js/custom.js') }}"></script>
         @stack('scripts')
         <script type="text/javascript">
-        @if(Session::has('message'))
-            var type = "{{ Session::get('message_type', 'info') }}";
-            switch (type) {
-                case 'info':
-                    toastr.info("{{ Session::get('message') }}");
-                    break;
-                case 'warning':
-                    toastr.warning("{{ Session::get('message') }}");
-                    break;
-                case 'success':
-                    toastr.success("{{ Session::get('message') }}");
-                    break;
-                case 'error':
-                    toastr.error("{{ Session::get('message') }}");
-                    break;
-            }
-        @endif
+            @if(Session::has('message'))
+                var type = "{{ Session::get('message_type', 'info') }}";
+                switch (type) {
+                    case 'info':
+                        toastr.info("{{ Session::get('message') }}");
+                        break;
+                    case 'warning':
+                        toastr.warning("{{ Session::get('message') }}");
+                        break;
+                    case 'success':
+                        toastr.success("{{ Session::get('message') }}");
+                        break;
+                    case 'error':
+                        toastr.error("{{ Session::get('message') }}");
+                        break;
+                }
+            @endif
         </script>
     </body>
 </html>

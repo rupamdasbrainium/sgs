@@ -188,7 +188,7 @@
                     "visibility": "visible"
                 });
 
-            })
+            });
 
             $(document).on("click", ".checkBox", function() {
 

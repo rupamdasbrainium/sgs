@@ -7,11 +7,12 @@
 		<div class="inner_page_des">
 			<div class="content_block accountinfo">
 				<div class="blocktitle">
-						{{-- @if(Session::has('message'))
+						@if(Session::has('message'))
+						{{-- @dd(Session::has('message')) --}}
 						<div class="alert alert-success">
 							{{Session::get('message')}}
 						</div>
-						@endif --}}
+						@endif
 					<h2 class="addpadding">{{ __('changelanguage.Change_Language') }}</h2>
 					<div class="fromdes_view ">
 						<div class="fromdes_info">
