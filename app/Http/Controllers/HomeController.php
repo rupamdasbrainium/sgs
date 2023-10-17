@@ -288,6 +288,14 @@ class HomeController extends Controller
         return $html;
     }
 
+    public function testhk() {
+        $client = APICall("Clients",'get','{}','client_app');
+        if(!$client){
+            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
+
+        }
+    }
+
 
             //  public function socialshare(){
     

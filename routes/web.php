@@ -143,4 +143,5 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
     });
 });
 
+Route::get('/testhk', [HomeController::class, 'testhk'])->name('testhk');
 Route::get('/{short_code?}', [HomeController::class, 'index'])->name('homepage');
