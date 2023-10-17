@@ -42,12 +42,7 @@
                                                                     <label for="payment_opt1">{{ __('paymentForm.Credit_Card') }}</label>
                                                                 </div>
 
-                                                                <div class="memberships_nam radio">
-                                                                    <input type="radio" id="payment_opt2"
-                                                                        name="radio_group_pay" class="radio2"
-                                                                        value="credit_acc" onclick="showA();">
-                                                                    <label for="payment_opt2">{{ __('paymentForm.Debit_Card') }}</label>
-                                                                </div>
+                                                                
 
                                                                 <div class="memberships_nam radio">
                                                                     <input type="radio" id="payment_opt3"
@@ -155,14 +150,14 @@
                                                     </div>
                                                     <div class="inp_row">
                                                         <div class="form-group">
-                                                            <label>{{ __('paymentForm.credit_card_number') }} <em
-                                                                    class="req_text">*</em></label>
+                                                            <label>{{ __('paymentForm.CSV') }} <em
+                                                                class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt" id="incdec">
 
-                                                                <input type="text" name="four_digits_number"
+                                                                <input type="number" name="four_digits_number"
                                                                     class="form-control" placeholder=""
                                                                     value="">
-                                                                
+
                                                             </div>
                                                         </div>
                                                     </div>

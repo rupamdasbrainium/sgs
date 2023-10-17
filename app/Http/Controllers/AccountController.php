@@ -124,6 +124,7 @@ class AccountController extends Controller
 
         $message = array(
             'message' => trans('title_message.Language_Changed_succesfully'),
+            'message_type' => 'success',
         );
 
         // return redirect(route("changeLanguage"))->with($response);
@@ -485,6 +486,7 @@ class AccountController extends Controller
         foreach ($data['all_plan']->data as $item) {
             $data['all_plan_details'][] = json_decode(APICall("SubscriptionPlans/type/" . $item->id . "?language_id=" . $lang_id, "get", "{}"));
         }
+
         return view('front.newmembershipStepOne', compact('data','logo','theme','button','admin_phone','admin_address','lang_id'));
     }
 
@@ -516,6 +518,9 @@ class AccountController extends Controller
         // return $request->add_on;
         if (Session::has('add_on')) {
             Session::forget('add_on');
+            if(!isset($request->add_on)){
+                return redirect()->route('newMembershipFinal', ['id' => $id]);
+            }
         }
         if(!isset($request->add_on)){
             return redirect()->route('newMembershipFinal', ['id' => $id]);
@@ -661,6 +666,7 @@ class AccountController extends Controller
             $membership_with_credit_card = APICall('Memberships/with-credit-card?display_language_id=' . $lang_id, "post", json_encode($membershipcarddata), "client_app");
             $data['membership_with_credit_card'] = json_decode($membership_with_credit_card);
 
+            // dd($data['membership_with_credit_card']);
             if ($data['membership_with_credit_card']->error != null) {
                 $response = array(
                     'message' => $data['membership_with_credit_card']->error->message,
@@ -669,7 +675,7 @@ class AccountController extends Controller
                 return redirect()->back()->with($response)->withInput();
             }
             $response = array(
-                'message' => 'payment completed succesfully',
+                'message' => trans('title_message.Payment_completed_succesfully'),
             );
             return redirect(route("myProfile"))->with($response);
         }

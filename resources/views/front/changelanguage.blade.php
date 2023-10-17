@@ -8,6 +8,7 @@
 			<div class="content_block accountinfo">
 				<div class="blocktitle">
 						@if(Session::has('message'))
+						{{-- @dd(Session::has('message')) --}}
 						<div class="alert alert-success">
 							{{Session::get('message')}}
 						</div>

@@ -232,7 +232,7 @@ class PaymentController extends Controller
         } else {
             $carddata = array();
 
-            $carddata['four_digits_number'] = substr($request->four_digits_number, 12, 15);
+            $carddata['four_digits_number'] = $request->four_digits_number;
             $carddata['expire_year'] = $request->expiry_year;
             $carddata['expire_month'] = $request->expiry_month;
             $carddata['owner_name'] = $request->owner_name;
