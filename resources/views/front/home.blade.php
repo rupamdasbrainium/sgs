@@ -259,9 +259,10 @@
                 window.location.href = url;
             });
 
-            $("#franchises_name").on('change', function() {
+            $('#franchises_name').parent().find('.select-options li').on('click', function() {
+	// 	var val = $(this).attr('rel').on('change', function() {
                 var url = '{{ route('homepage') }}';
-                url = url+'/'. $this.val()
+                url = url+'/'. $(this).attr('rel')
                 window.location.href = url;
             });
             $.ajax({
