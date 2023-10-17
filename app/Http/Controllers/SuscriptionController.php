@@ -22,11 +22,12 @@ class SuscriptionController extends Controller
         //subscriptionplan type call
         $subscription_plan = APICall("SubscriptionPlans/type/".$id."?language_id=".$lang_id, "get","{}");
         $data['subscription_plan'] = json_decode($subscription_plan);
+        
 
         //reference call
         $opts_references = APICall("Options/references?franchise_id=".$data['subscription_plan']->data->id_frinchise."&language_id=".$lang_id, "get","{}");
         $data['opts_references'] = json_decode($opts_references);
-
+      
         //franchise call
         $franchises = APICall("Franchises", "get","{}");
         $decodefranchises = json_decode($franchises);
@@ -56,7 +57,7 @@ class SuscriptionController extends Controller
               'firstname' => 'regex:/^[a-zA-Z]+$/u',
               'lastname' => 'regex:/^[a-zA-Z]+$/u',
               'eamil' => 'email',
-              'email_confirmation' => 'confirmed',
+              
             ]
         );
 
@@ -165,6 +166,9 @@ class SuscriptionController extends Controller
       if (Session::has('add_on')) {
         Session::forget('add_on');
       }
+  if(!isset($request->add_on)){
+    return redirect()->route('suscriptionform', ['id' => $id]);
+  }
       foreach($request->add_on as $value){
      $arrvalue = explode("|",$value);
      $addon[]=$arrvalue[0];

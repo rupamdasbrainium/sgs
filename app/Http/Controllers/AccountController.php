@@ -517,6 +517,9 @@ class AccountController extends Controller
         if (Session::has('add_on')) {
             Session::forget('add_on');
         }
+        if(!isset($request->add_on)){
+            return redirect()->route('newMembershipFinal', ['id' => $id]);
+          }
         Session::put('add_on', $request->add_on);
         if (Session::has('installments_id')) {
             Session::forget('installments_id');
