@@ -55,8 +55,8 @@ class SuscriptionController extends Controller
               'address_street' => 'required|regex:/^[a-zA-Z]+$/u',
               'firstname' => 'required|regex:/^[a-zA-Z]+$/u',
               'lastname' => 'required|regex:/^[a-zA-Z]+$/u',
-              'eamil' => 'required|email',
-              'email_confirmation' => 'required|confirmed',
+              'eamil' => 'email',
+              // 'email_confirmation' => 'required',
             ]
         );
 

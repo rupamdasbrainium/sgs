@@ -92,6 +92,11 @@
 												<div class="sum_inp_left">
 													{{ __('paymentForm.membership') }}
 												</div>
+												@if(Session::get('addonname')==null)
+                                                       <div class="sum_inp_right">
+                                                        No-addon
+                                                       </div>
+                                                @else
 												@php
 												Session::get('addonname');
 												$addonname =  Session::get('addonname');
@@ -104,6 +109,7 @@
 												{{$loop->last? '':','}}
 												@endforeach
 											</div>
+											@endif
 											</div>
 
 										</div>
@@ -333,10 +339,10 @@
 																<label for="payment_opt1">{{ __('paymentForm.Credit_Card') }}</label>
 															</div>
 													
-															<div class="memberships_nam radio">
+															{{-- <div class="memberships_nam radio">
 																<input type="radio" id="payment_opt2" name="radio-group_pay" value="debit">
 																<label for="payment_opt2">{{ __('paymentForm.Debit_Card') }}</label>
-															</div>
+															</div> --}}
 															
 															<div class="memberships_nam radio">
 																<input type="radio" id="payment_opt3" name="radio-group_pay" value="bank">
@@ -425,14 +431,25 @@
 															</div>
 															<div class="inp_row">
 																<div class="form-group">
-																	<label>{{ __('paymentForm.credit_card_number') }} <em
-																			class="req_text">*</em></label>
+																	<label>{{ __('paymentForm.PAN') }} <em
+                                                                        class="req_text">*</em></label>
+																	<div class="inp_cont_view noicon_opt">
+																		<input type="number" name="pan" 
+																			class="form-control" placeholder="" value="{{old('pan')}}">
+																	</div>
+																</div>
+															</div>
+
+															<div class="inp_row">
+																<div class="form-group">
+																	<label>{{ __('paymentForm.CSV') }} <em
+                                                                        class="req_text">*</em></label>
 																	<div class="inp_cont_view noicon_opt" id="incdec">
-				
-																		<input type="text" name="token"
+
+																		<input type="number" name="four_digits_number"
 																			class="form-control" placeholder=""
-																			value="">
-																		
+																			value="{{old('four_digits_number')}}">
+
 																	</div>
 																</div>
 															</div>
@@ -451,15 +468,6 @@
 																	<label>{{ __('paymentForm.Expiry_Year') }} <em class="req_text">*</em></label>
 																	<div class="inp_cont_view noicon_opt">
 																		<input type="text" name="expiry_year"
-																			class="form-control" placeholder="">
-																	</div>
-																</div>
-															</div>
-															<div class="inp_row">
-																<div class="form-group">
-																	<label>{{ __('paymentForm.CVV') }}<em class="req_text">*</em></label>
-																	<div class="inp_cont_view noicon_opt">
-																		<input type="text" name="four_digits_number"
 																			class="form-control" placeholder="">
 																	</div>
 																</div>
@@ -532,9 +540,9 @@
 																</div>
 								
 															</div>
-															{{-- <div class="def_btnopt2 frombtn frombtn2">
+															<div class="def_btnopt2 frombtn frombtn2">
 																<button type="button" class="btn2" id="add_pay_method" >Add a Payment Method</button>
-															</div> --}}
+															</div>
 														</div>
 														<div class="aboundopt">
 															<p>{{ __('paymentForm.Amount_to_be_paid') }}: ${{ $total }}</p>
