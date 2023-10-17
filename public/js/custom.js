@@ -141,6 +141,20 @@ $(document).ready(function() {
     //         }
     //     });
 	// });
+    $("#franchises_address").on('change', function() {
+        console.log($('#franchises_address').val());
+        var url =  $('#homeurl').val();
+        var shortcode = $('#franchises_address').val();
+        url = url+'/'+shortcode;
+        window.location.href = url;
+    });
+
+    $('#franchises_name').on('change', function() {
+        console.log($('#franchises_name').val());
+        var url = $('#homeurl').val();
+        url = url+'/'+ $('#franchises_name').val()
+        window.location.href = url;
+    });
 });
 
 
