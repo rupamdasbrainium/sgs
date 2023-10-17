@@ -35,7 +35,20 @@ class HomeController extends Controller
     //   ->linkedin()
     //   ->telegram()
     //   ->reddit();
-
+        //find franchise_id
+        $short_code_flag = 0;
+        foreach ($data['franchises']->data as $key => $franchise) {
+            if(!$short_code){
+                $franchise_id = $franchise->id;
+                $short_code = $franchise->shortCode;
+                $short_code_flag = 1;
+                break;
+            }
+            if ($franchise->shortCode == $short_code) { //actual
+                $franchise_id = $franchise->id;
+                break;
+            }
+        }
       Cookie::queue(Cookie::make('driver_route_id', $short_code, 60000));
       Cookie::get('driver_route_id');
         //franchise call
@@ -54,14 +67,7 @@ class HomeController extends Controller
         $home_body = Configuration::where('name','home_body')->where('franchise_id',$this->getfranchiseId())->first();
         $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',$this->getfranchiseId())->first();
         $admin_address = Configuration::where('name','admin_address')->where('franchise_id',$this->getfranchiseId())->first();
-        //find franchise_id
-        foreach ($data['franchises']->data as $franchise) {
-            //   if($franchise->id == $short_code){
-            if ($franchise->shortCode == $short_code) { //actual
-                $franchise_id = $franchise->id;
-                break;
-            }
-        }
+        
         $logo = Configuration::where('name','logo_image')->where('franchise_id',$this->getfranchiseId())->first();
         $banner = Configuration::where('name','banner_image')->where('franchise_id',$this->getfranchiseId())->first();
         $button = Configuration::where('name','primary_button_color')->where('franchise_id',$this->getfranchiseId())->first();
@@ -137,7 +143,7 @@ class HomeController extends Controller
         $best_four_plan_details = $data_plan;
         $data['best_four_plan_details'] = $data_plan;
        
-        return view('front.home', compact('data', 'best_four_plan_details', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id'));
+        return view('front.home', compact('data', 'best_four_plan_details', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag'));
     }
 
     public function login()

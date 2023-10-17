@@ -74,8 +74,8 @@
                                             <select class="select_opt" id="franchises_name">
                                                 @isset($data['franchises'])
                                                     @foreach ($data['franchises']->data as $franchise)
-                                                        <option value="{{ $franchise->id }}"
-                                                            {{ $franchise->id == $franchise_id ? 'selected="selected"' : 'disabled="disabled"' }}>
+                                                        <option value="{{ $franchise->short_code }}"
+                                                            {{ $franchise->id == $franchise_id ? 'selected="selected"' : ($short_code_flag? '':'disabled="disabled"') }}>
                                                             {{ $franchise->name }}</option>
                                                     @endforeach
                                                 @endisset
@@ -85,11 +85,12 @@
                                             <div class="arrowdown2">
                                                 <i class="far fa-chevron-down"></i>
                                             </div>
+                                            {{-- $franchise->address_province_id --}}
                                             <select class="select_opt" id="franchises_address">
                                                 @isset($data['franchises'])
                                                     @foreach ($data['franchises']->data as $franchise)
-                                                        <option value="{{ $franchise->address_province_id }}"
-                                                            {{ $franchise->id == $franchise_id ? 'selected' : 'disabled' }}>
+                                                        <option value="{{ $franchise->short_code }}"
+                                                            {{ $franchise->id == $franchise_id ? 'selected' : ($short_code_flag? '':'disabled') }}>
                                                             {{ $franchise->address_civic_number }}{{ $franchise->address_street }}{{ $franchise->address_city }}
                                                         </option>
                                                     @endforeach
@@ -252,8 +253,16 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $("#franchise_name").on('change', function() {
-                alert("The text has been changed.");
+            $("#franchises_address").on('change', function() {
+                var url = '{{ route('homepage') }}';
+                url = url+'/'. $this.val()
+                window.location.href = url;
+            });
+
+            $("#franchises_name").on('change', function() {
+                var url = '{{ route('homepage') }}';
+                url = url+'/'. $this.val()
+                window.location.href = url;
             });
             $.ajax({
                 type: "POST",
