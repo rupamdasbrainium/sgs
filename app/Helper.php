@@ -267,7 +267,7 @@ function APICall($uri, $method, $data, $type='web_app'){
   // dd($login_responce);
   //login api end
   $response = apiCallCurl($uri, $method, $data, $token);
-  if($response == '401'){
+  if($response == '401'||$response == 'unauthorised'){
     if($type=='web_app'){
       $token = getWabToken('401');
       return apiCallCurl($uri, $method, $data, $token);
@@ -284,7 +284,7 @@ function APICall($uri, $method, $data, $type='web_app'){
         // return '401'
         return redirect()->route('login');
       }
-      return apiCallCurl($uri, $method, $data, $token);
+      // return apiCallCurl($uri, $method, $data, $token);
     }
   }
   return $response;
