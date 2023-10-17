@@ -152,13 +152,19 @@
 
                                                     @if (isset($values->data))
                                                         @if (count($values->data->prices_per_durations))
-                                                            @foreach ($values->data->prices_per_durations as $val)
-                                                                ${{ $val->price_recurant }}<span>/
-                                                                    {{ $val->duration_unit_display }}</span> For {{ $val->frequency }} {{ $val->duration_unit_display }}
-                                                                    @if(!$loop->last)
-                                                                        <br>
-                                                                    @endif
-                                                            @endforeach
+                                                            <select class="select_opt">
+
+                                                                @foreach ($values->data->prices_per_durations as $val)
+                                                                    {{-- ${{ $val->price_recurant }}<span>/
+                                                                        {{ $val->duration_unit_display }}</span> For {{ $val->frequency }} {{ $val->duration_unit_display }}
+                                                                        @if(!$loop->last)
+                                                                            <br>
+                                                                        @endif --}}
+                                                                    <option>${{ $val->price_recurant }}<span>/
+                                                                        {{ $val->duration_unit_display }}</span> For {{ $val->frequency }} {{ $val->duration_unit_display }}
+                                                                        </option>
+                                                                @endforeach
+                                                            </select>
                                                         @else
                                                             $0
                                                         @endif
