@@ -71,6 +71,7 @@
                                             <div class="arrowdown2">
                                                 <i class="far fa-chevron-down"></i>
                                             </div>
+                                            <input type="hidden" id="homeurl" value="{{ route('homepage') }}">
                                             <select class="select_opt" id="franchises_name">
                                                 @isset($data['franchises'])
                                                     @foreach ($data['franchises']->data as $franchise)
