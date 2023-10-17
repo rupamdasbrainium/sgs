@@ -1,51 +1,52 @@
 <x-app-layout>
-	@section('title', $data['title'] . ' |')
-	@include('header')
-	<section class="maincontent_wrap inner_pageouter">
-		<div class="inner_page_wrap">
-			@include('layouts.sidebar')
-			<div class="inner_page_des">
-	
-				{{-- <h2>{{ $data['title'] }}</h2> --}}
-				<div class="prod_item_wrap" id="home_prod_item">
-					
-					{{-- <div class="from_cont_wrap" style="flex: 0 100%;"> --}}
-						<form method="POST" name="myform" action="{{ route('newMembershipFinalsave') }}" onsubmit="return validfunc()">
-							@csrf
-							<div class="fromdes_info">
-								<div class="from_cont_wrap">
-									<div class="inp_row">
-										<div class="form-group">
-											<label for="promocode">{{ __('paymentForm.promo') }} </label>
-											<div class="inp_cont_view noicon_opt">
+    @section('title', $data['title'] . ' |')
+    @include('header')
+    <section class="maincontent_wrap inner_pageouter">
+        <div class="inner_page_wrap">
+            @include('layouts.sidebar')
+            <div class="inner_page_des">
 
-												<input type="text" class="form-control" name="code_promo"
-													id="promocode" placeholder="Promo/Reward Code ">
-											</div>
-										</div>
-									</div>
+                {{-- <h2>{{ $data['title'] }}</h2> --}}
+                <div class="prod_item_wrap" id="home_prod_item">
 
-									<div class="summary_content">
-										<h3>{{ __('paymentForm.summary') }}</h3>
-										<div class="summary_cont_wrap">
-											<div class="sum_inp_cont">
-												<div class="sum_inp_left">
-													{{ __('paymentForm.center') }}
-												</div>
-												<div class="sum_inp_right">
+                    {{-- <div class="from_cont_wrap" style="flex: 0 100%;"> --}}
+                    <form method="POST" name="myform" action="{{ route('newMembershipFinalsave') }}"
+                        onsubmit="return validfunc()">
+                        @csrf
+                        <div class="fromdes_info">
+                            <div class="from_cont_wrap">
+                                <div class="inp_row">
+                                    <div class="form-group">
+                                        <label for="promocode">{{ __('paymentForm.promo') }} </label>
+                                        <div class="inp_cont_view noicon_opt">
 
-													{{ $data['membership_details']->data->franchise }}
-												</div>
-											</div>
-											<div class="sum_inp_cont">
-												<div class="sum_inp_left">
-													{{ __('paymentForm.package_plan_Name') }}
-												</div>
-												<div class="sum_inp_right">
-													
-													{{ $data['membership_details']->data->subscriptionPlan }}
-												</div>
-											</div>
+                                            <input type="text" class="form-control" name="code_promo" id="promocode"
+                                                placeholder="Promo/Reward Code ">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="summary_content">
+                                    <h3>{{ __('paymentForm.summary') }}</h3>
+                                    <div class="summary_cont_wrap">
+                                        <div class="sum_inp_cont">
+                                            <div class="sum_inp_left">
+                                                {{ __('paymentForm.center') }}
+                                            </div>
+                                            <div class="sum_inp_right">
+
+                                                {{ $data['membership_details']->data->franchise }}
+                                            </div>
+                                        </div>
+                                        <div class="sum_inp_cont">
+                                            <div class="sum_inp_left">
+                                                {{ __('paymentForm.package_plan_Name') }}
+                                            </div>
+                                            <div class="sum_inp_right">
+
+                                                {{ $data['membership_details']->data->subscriptionPlan }}
+                                            </div>
+                                        </div>
 
 											<div class="sum_inp_cont">
 												<div class="sum_inp_left">
@@ -92,6 +93,11 @@
 												<div class="sum_inp_left">
 													{{ __('paymentForm.membership') }}
 												</div>
+												@if(Session::get('addonname')==null)
+                                                       <div class="sum_inp_right">
+                                                        No-addon
+                                                       </div>
+                                                @else
 												@php
 												Session::get('addonname');
 												$addonname =  Session::get('addonname');
@@ -104,41 +110,42 @@
 												{{$loop->last? '':','}}
 												@endforeach
 											</div>
+											@endif
 											</div>
 
-										</div>
-									</div>
+                                    </div>
+                                </div>
 
-									<div class="summary_content">
-										<h3>{{ __('paymentForm.period_of_validity') }}</h3>
-										<div class="summary_cont_wrap">
-											<div class="sum_inp_cont">
-												<div class="sum_inp_left">
-													{{ __('paymentForm.package_name') }}
-												</div>
-												<div class="sum_inp_right">
-													{{ $data['membership_details']->data->subscriptionPlan }}
-												</div>
-											</div>
-											<div class="sum_inp_cont">
-												
+                                <div class="summary_content">
+                                    <h3>{{ __('paymentForm.period_of_validity') }}</h3>
+                                    <div class="summary_cont_wrap">
+                                        <div class="sum_inp_cont">
+                                            <div class="sum_inp_left">
+                                                {{ __('paymentForm.package_name') }}
+                                            </div>
+                                            <div class="sum_inp_right">
+                                                {{ $data['membership_details']->data->subscriptionPlan }}
+                                            </div>
+                                        </div>
+                                        <div class="sum_inp_cont">
 
-										
-												<div class="sum_inp_left">
-													{{ __('paymentForm.duration') }}
-												</div>
-												<div class="sum_inp_right">
-													{{ $data['membership_details']->data->duration_unit }}
-												</div>
-											
 
-										</div>
-									</div>
 
-									<div class="summary_content">
-										<h3>{{ __('paymentForm.1st_pay') }}</h3>
-										<div class="summary_cont_wrap">
-											{{-- <div class="sum_inp_cont">
+                                            <div class="sum_inp_left">
+                                                {{ __('paymentForm.duration') }}
+                                            </div>
+                                            <div class="sum_inp_right">
+                                                {{ $data['membership_details']->data->duration_unit }}
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="summary_content">
+                                        <h3>{{ __('paymentForm.1st_pay') }}</h3>
+                                        <div class="summary_cont_wrap">
+                                            {{-- <div class="sum_inp_cont">
 												<div class="sum_inp_left">
 													{{ __('paymentForm.fee') }}
 												</div>
@@ -146,56 +153,56 @@
 													39.99$
 												</div>
 											</div> --}}
-											<div class="sum_inp_cont">
-												<div class="sum_inp_left">
-													{{ __('paymentForm.subtotal') }}
-												</div>
-												<div class="sum_inp_right">
-													{{ $data['membership_details']->data->initial_subtotal }}
-												</div>
-											</div>
-											@php
-												$total = $data['membership_details']->data->initial_subtotal;
-											@endphp
-											@foreach ($data['membership_details']->data->initial_taxes as $item)
-												@php
-													$total += $item->amount;
-												@endphp
-												<div class="sum_inp_cont">
-													<div class="sum_inp_left">
-														{{ $item->legal_name }}
-													</div>
-													<div class="sum_inp_right">
-														{{ $item->amount }}$
-													</div>
-												</div>
-											@endforeach
-											@foreach ($data['membership_details']->data->recurant_taxes as $item2)
-												@php
-													$total += $item2->amount;
-												@endphp
-												<div class="sum_inp_cont">
-													<div class="sum_inp_left">
-														{{ $item2->legal_name }}
-													</div>
-													<div class="sum_inp_right">
-														{{ $item2->amount }}$
-													</div>
-												</div>
-											@endforeach
-											
-											<div class="sum_inp_cont">
-												<div class="sum_inp_left">
-													{{ __('paymentForm.total') }}
-												</div>
-												<div class="sum_inp_right">
-													{{ $total }}$
-												</div>
-											</div>
-										</div>
-									</div>
+                                            <div class="sum_inp_cont">
+                                                <div class="sum_inp_left">
+                                                    {{ __('paymentForm.subtotal') }}
+                                                </div>
+                                                <div class="sum_inp_right">
+                                                    {{ $data['membership_details']->data->initial_subtotal }}
+                                                </div>
+                                            </div>
+                                            @php
+                                                $total = $data['membership_details']->data->initial_subtotal;
+                                            @endphp
+                                            @foreach ($data['membership_details']->data->initial_taxes as $item)
+                                                @php
+                                                    $total += $item->amount;
+                                                @endphp
+                                                <div class="sum_inp_cont">
+                                                    <div class="sum_inp_left">
+                                                        {{ $item->legal_name }}
+                                                    </div>
+                                                    <div class="sum_inp_right">
+                                                        {{ $item->amount }}$
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                            @foreach ($data['membership_details']->data->recurant_taxes as $item2)
+                                                @php
+                                                    $total += $item2->amount;
+                                                @endphp
+                                                <div class="sum_inp_cont">
+                                                    <div class="sum_inp_left">
+                                                        {{ $item2->legal_name }}
+                                                    </div>
+                                                    <div class="sum_inp_right">
+                                                        {{ $item2->amount }}$
+                                                    </div>
+                                                </div>
+                                            @endforeach
 
-									{{-- <div class="summary_content">
+                                            <div class="sum_inp_cont">
+                                                <div class="sum_inp_left">
+                                                    {{ __('paymentForm.total') }}
+                                                </div>
+                                                <div class="sum_inp_right">
+                                                    {{ $total }}$
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {{-- <div class="summary_content">
 
 										<div class="content_block paymentinfo">
 											<h2 class="head_opt">{{ __('paymentForm.payment_details') }}</h2>
@@ -286,9 +293,9 @@
 													</tbody>
 												</table>
 											</div>
-										</div>--}}
+										</div> --}}
 
-										{{-- <div class="content_block more_cont_view">
+                                    {{-- <div class="content_block more_cont_view">
 											<h2>{{ __('paymentForm.method_of_payment') }}</h2>
 											<div class="checkout_optview payment_opt_details payment_opt2">
 												<div class="inp_row">
@@ -333,10 +340,10 @@
 																<label for="payment_opt1">{{ __('paymentForm.Credit_Card') }}</label>
 															</div>
 													
-															<div class="memberships_nam radio">
+															{{-- <div class="memberships_nam radio">
 																<input type="radio" id="payment_opt2" name="radio-group_pay" value="debit">
 																<label for="payment_opt2">{{ __('paymentForm.Debit_Card') }}</label>
-															</div>
+															</div> --}}
 															
 															<div class="memberships_nam radio">
 																<input type="radio" id="payment_opt3" name="radio-group_pay" value="bank">
@@ -345,59 +352,62 @@
 														
 														</div>
 
-														<div id="bank_details">
-															<div class="inp_row">
-																<div class="form-group">
-																	<label>{{ __('paymentForm.Direct_Debit') }}</label>
-																	<div class="card_add">
-																		
-																		<img src="images/voided.png" alt="" />
-																	</div>
-																</div>
-															</div>
-				
-															<div class="inp_row">
-																<div class="form-group">
-																	<label>{{ __('paymentForm.Transit_Number') }} <em class="req_text">*</em></label>
-																	<div class="inp_cont_view noicon_opt" id="incdec">
-				
-																		<input type="text" name="transit_number"
-																			class="form-control" placeholder=""
-																			value="">
-																	</div>
-																</div>
-															</div>
-				
-															<div class="inp_row">
-																<div class="form-group">
-																	<label>{{ __('paymentForm.Branch_Number') }} <em class="req_text">*</em></label>
-																	<div class="inp_cont_view noicon_opt">
-																		<input type="text" name="institution"
-																			class="form-control" placeholder="">
-																	</div>
-																</div>
-															</div>
-															<div class="inp_row">
-																<div class="form-group">
-																	<label>{{ __('paymentForm.Account_Number') }} <em class="req_text">*</em></label>
-																	<div class="inp_cont_view noicon_opt">
-																		<input type="text" name="account_number"
-																			class="form-control" placeholder="">
-																	</div>
-																</div>
-															</div>
-				
-															<div class="inp_row">
-																<div class="form-group">
-																	<label>{{ __('paymentForm.Account_Name_Holder') }} <em
-																			class="req_text">*</em></label>
-																	<div class="inp_cont_view noicon_opt">
-																		<input type="text" name="owner_names"
-																			class="form-control" placeholder="bank">
-																	</div>
-																</div>
-															</div>
-														</div>
+                                                    <div id="bank_details">
+                                                        <div class="inp_row">
+                                                            <div class="form-group">
+                                                                <label>{{ __('paymentForm.Direct_Debit') }}</label>
+                                                                <div class="card_add">
+
+                                                                    <img src="images/voided.png" alt="" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="inp_row">
+                                                            <div class="form-group">
+                                                                <label>{{ __('paymentForm.Transit_Number') }} <em
+                                                                        class="req_text">*</em></label>
+                                                                <div class="inp_cont_view noicon_opt" id="incdec">
+
+                                                                    <input type="text" name="transit_number"
+                                                                        class="form-control" placeholder=""
+                                                                        value="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="inp_row">
+                                                            <div class="form-group">
+                                                                <label>{{ __('paymentForm.Branch_Number') }} <em
+                                                                        class="req_text">*</em></label>
+                                                                <div class="inp_cont_view noicon_opt">
+                                                                    <input type="text" name="institution"
+                                                                        class="form-control" placeholder="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="inp_row">
+                                                            <div class="form-group">
+                                                                <label>{{ __('paymentForm.Account_Number') }} <em
+                                                                        class="req_text">*</em></label>
+                                                                <div class="inp_cont_view noicon_opt">
+                                                                    <input type="text" name="account_number"
+                                                                        class="form-control" placeholder="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="inp_row">
+                                                            <div class="form-group">
+                                                                <label>{{ __('paymentForm.Account_Name_Holder') }} <em
+                                                                        class="req_text">*</em></label>
+                                                                <div class="inp_cont_view noicon_opt">
+                                                                    <input type="text" name="owner_names"
+                                                                        class="form-control" placeholder="bank">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
 														<div id="credit_details">
 															<div class="selectcont ">
@@ -425,14 +435,25 @@
 															</div>
 															<div class="inp_row">
 																<div class="form-group">
-																	<label>{{ __('paymentForm.credit_card_number') }} <em
-																			class="req_text">*</em></label>
+																	<label>{{ __('paymentForm.PAN') }} <em
+                                                                        class="req_text">*</em></label>
+																	<div class="inp_cont_view noicon_opt">
+																		<input type="number" name="pan" 
+																			class="form-control" placeholder="" value="{{old('pan')}}">
+																	</div>
+																</div>
+															</div>
+
+															<div class="inp_row">
+																<div class="form-group">
+																	<label>{{ __('paymentForm.CSV') }} <em
+                                                                        class="req_text">*</em></label>
 																	<div class="inp_cont_view noicon_opt" id="incdec">
-				
-																		<input type="text" name="token"
+
+																		<input type="number" name="four_digits_number"
 																			class="form-control" placeholder=""
-																			value="">
-																		
+																			value="{{old('four_digits_number')}}">
+
 																	</div>
 																</div>
 															</div>
@@ -455,26 +476,22 @@
 																	</div>
 																</div>
 															</div>
-															<div class="inp_row">
-																<div class="form-group">
-																	<label>{{ __('paymentForm.CVV') }}<em class="req_text">*</em></label>
-																	<div class="inp_cont_view noicon_opt">
-																		<input type="text" name="four_digits_number"
-																			class="form-control" placeholder="">
-																	</div>
-																</div>
-															</div>
 				
 														</div>
 
-														<input type="hidden" name="subscription_plan_id" value="{{ $data['membership_details']->data->subscriptionPlan_id }}">
-														<input type="hidden" name="duration_id" value="{{ Session::get('duration_id') }}">
-														<input type="hidden" name="date_begin" value="{{ $data['membership_details']->data->begin }}">
-														<input type="hidden" name="processed_amount" value="{{ $total }}">
-														<input type="hidden" name="new_key" id="new_key" value="0">
-								
+                                                    <input type="hidden" name="subscription_plan_id"
+                                                        value="{{ $data['membership_details']->data->subscriptionPlan_id }}">
+                                                    <input type="hidden" name="duration_id"
+                                                        value="{{ Session::get('duration_id') }}">
+                                                    <input type="hidden" name="date_begin"
+                                                        value="{{ $data['membership_details']->data->begin }}">
+                                                    <input type="hidden" name="processed_amount"
+                                                        value="{{ $total }}">
+                                                    <input type="hidden" name="new_key" id="new_key"
+                                                        value="0">
 
-														{{-- <div class="frombtn_wrap select_optblock">
+
+                                                    {{-- <div class="frombtn_wrap select_optblock">
 															<div class="select_card_opt">
 								
 																<div class="form-group">
@@ -532,9 +549,9 @@
 																</div>
 								
 															</div>
-															{{-- <div class="def_btnopt2 frombtn frombtn2">
+															<div class="def_btnopt2 frombtn frombtn2">
 																<button type="button" class="btn2" id="add_pay_method" >Add a Payment Method</button>
-															</div> --}}
+															</div>
 														</div>
 														<div class="aboundopt">
 															<p>{{ __('paymentForm.Amount_to_be_paid') }}: ${{ $total }}</p>
@@ -555,11 +572,11 @@
 										</form>
 									</div> 
 
-									
 
-									
 
-									{{-- <div class="frombtn_wrap">
+
+
+                                {{-- <div class="frombtn_wrap">
 										<div class="def_btnopt2 frombtn">
 											<button type="submit" value="submit" class="btn2"
 												id="myButton" disabled>{{ __('paymentForm.sign_up') }}!</button>
@@ -567,59 +584,58 @@
 										</div>
 									</div> --}}
 
-								</div>
-							</div>
-						</form>
-						
-					{{-- </div> --}}
-				</div>
-			</div>
-		</div>
-	</section>
-	@include('footer')
-	@push('scripts')
-		<script>
-			$( document ).ready(function() {
-				$('#bank_details').hide();
-				$('#credit_details').hide();
-				$('#old_card').show();
-				$('#old_acc').hide();
+                            </div>
+                        </div>
+                    </form>
 
-				$('#add_pay_method').click(function(){
-					$("#new_key").val(1);
-					let radio_group_pay = $('input[name="radio-group_pay"]:checked').val();
-					if(radio_group_pay=='bank'){
-						$('#bank_details').show();
-						$('#credit_details').hide();
-						$('#old_card').hide();
-						$('#old_acc').hide();
-					} else if(radio_group_pay=='debit' || radio_group_pay=='credit'){
-						$('#bank_details').hide();
-						$('#credit_details').show();
-						$('#old_card').hide();
-						$('#old_acc').hide();
-					} else {
-						console.log('not selected radio'+radio_group_pay);
-					}
-				});
+                    {{-- </div> --}}
+                </div>
+            </div>
+        </div>
+    </section>
+    @include('footer')
+    @push('scripts')
+        <script>
+            $(document).ready(function() {
+                $('#bank_details').hide();
+                $('#credit_details').hide();
+                $('#old_card').show();
+                $('#old_acc').hide();
 
-				$('input[type=radio][name=radio-group_pay]').change(function() {
-					$("#new_key").val(0);
-					if (this.value == 'bank') {
-						$('#bank_details').hide();
-						$('#credit_details').hide();
-						$('#old_card').hide();
-						$('#old_acc').show();
-					}
-					else {
-						$('#bank_details').hide();
-						$('#credit_details').hide();
-						$('#old_card').show();
-						$('#old_acc').hide();
-					}
-				});
-			});
-		</script>
-	@endpush
-	
-	</x-app-layout>
+                $('#add_pay_method').click(function() {
+                    $("#new_key").val(1);
+                    let radio_group_pay = $('input[name="radio-group_pay"]:checked').val();
+                    if (radio_group_pay == 'bank') {
+                        $('#bank_details').show();
+                        $('#credit_details').hide();
+                        $('#old_card').hide();
+                        $('#old_acc').hide();
+                    } else if (radio_group_pay == 'debit' || radio_group_pay == 'credit') {
+                        $('#bank_details').hide();
+                        $('#credit_details').show();
+                        $('#old_card').hide();
+                        $('#old_acc').hide();
+                    } else {
+                        console.log('not selected radio' + radio_group_pay);
+                    }
+                });
+
+                $('input[type=radio][name=radio-group_pay]').change(function() {
+                    $("#new_key").val(0);
+                    if (this.value == 'bank') {
+                        $('#bank_details').hide();
+                        $('#credit_details').hide();
+                        $('#old_card').hide();
+                        $('#old_acc').show();
+                    } else {
+                        $('#bank_details').hide();
+                        $('#credit_details').hide();
+                        $('#old_card').show();
+                        $('#old_acc').hide();
+                    }
+                });
+            });
+        </script>
+    @endpush
+
+</x-app-layout>

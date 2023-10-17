@@ -3771,3 +3771,11 @@ input[type="color"] {
 	font-size: 18px;
 	font-weight: 500;
 }
+
+.memberships_opt {
+    margin-bottom: 15px;
+}
+
+.memberships_nam {
+    width: 35%;
+}

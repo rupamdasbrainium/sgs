@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CMSController;
 use App\Http\Controllers\Admin\LoginController as AdminLoginController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,15 @@ Route::get('language/{locale}', function ($locale) {
         session()->put('language_id', $language_id);
     }
     session()->put('locale', $locale);
+    if(session()->has('message')){
+        // dd(session()->get('message'));
+        $data_array = [];
+        $data_array['message'] = session()->get('message');
+        if(session()->has('message_type')){
+            $data_array['message_type'] = session()->get('message_type');
+        }
+        return redirect()->back()->with($data_array);
+    }
     return redirect()->back();
 });
 
