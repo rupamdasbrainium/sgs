@@ -109,6 +109,7 @@ Route::group(['middleware' => 'verifyToken'], function () {
     Route::get('new-membership-final', 'AccountController@newMembershipFinal')->name('newMembershipFinal');
     Route::post('new-membership-final', 'AccountController@newMembershipFinalSave')->name('newMembershipFinalsave');
     Route::get('renewMembership/{membershipsId}', 'AccountController@renewMembership')->name('renewMembership');
+    Route::get('/testhk', [HomeController::class, 'testhk'])->name('testhk');
 });
 
 Route::get('/reload-captcha', 'Admin\Auth\AuthenticatedSessionController@reloadCaptcha');
@@ -155,5 +156,5 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
     });
 });
 
-Route::get('/testhk', [HomeController::class, 'testhk'])->name('testhk');
+
 Route::get('/{short_code?}', [HomeController::class, 'index'])->name('homepage');
