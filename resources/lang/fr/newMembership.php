@@ -24,6 +24,6 @@ return [
     'initial_fee' => 'Ajouté aux frais initiaux',
     'onetime' => 'une fois',
     'next' => 'Suivant',
-    'Save' => 'Sauvegarder'
-
+    'Save' => 'Sauvegarder',
+    'Saveapaymentmethod'=> 'Enregistrer le paiement'
 ];

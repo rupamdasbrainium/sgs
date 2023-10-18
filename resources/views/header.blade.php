@@ -69,7 +69,7 @@
                                             href="{{ url('/CentreDemo#findGym') }}">{{ __('header.gym') }}</a>
                                     </li>
                                     @if (Session::has('clientToken'))
-                                        <li class="nav-item">
+                                        <li class="nav-item" {{ Session::get('clientToken') }}>
                                             <a class="nav-link" href="{{ route('myProfile') }}">
                                                 {{ __('header.profile') }}</a>
                                         </li>

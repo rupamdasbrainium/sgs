@@ -25,4 +25,5 @@ return [
     'onetime' => 'one time',
     'next' => 'Next',
     'Save' => 'Save',
+    'Saveapaymentmethod'=> 'Save payment'
 ];
