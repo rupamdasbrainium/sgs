@@ -410,10 +410,10 @@
                 $('#datepicker').datepicker();
             });
         </script>
-        <script>
+        {{-- <script>
             var string = ;
             var phone = [string.slice(0, 3), " ", string.slice(3, 7), " ", string.slice(7)].join('');
-        </script>
+        </script> --}}
         <script>
             const phoneInput = document.getElementById('phone');
             phoneInput.addEventListener('input', function(event) {
@@ -439,17 +439,33 @@
                 event.target.value = inputValue;
             });
 
-			const address_postal_codeInput = document.getElementById('address_postal_code');
-            address_postal_codeInput.addEventListener('input', function(event) {
-                let inputValue = event.target.value;
-                inputValue = inputValue.replace(/\D/g, ''); // Remove non-numeric characters
-                if (inputValue.length > 0) {
-                    inputValue = inputValue.match(/(\d{0,3})(\d{0,3})/);
-                    inputValue = !inputValue[2] ? inputValue[1] : inputValue[1] + ' ' + inputValue[2] + (inputValue[3] ?
-                        '-' + inputValue[3] : '');
-                }
-                event.target.value = inputValue;
-            });
+			// const address_postal_codeInput = document.getElementById('address_postal_code');
+            // address_postal_codeInput.addEventListener('input', function(event) {
+            //     let inputValue = event.target.value;
+            //     inputValue = inputValue.replace(/\D/g, ''); // Remove non-numeric characters
+            //     if (inputValue.length > 0) {
+            //         inputValue = inputValue.match(/(\d{0,3})(\d{0,3})/);
+            //         inputValue = !inputValue[2] ? inputValue[1] : inputValue[1] + ' ' + inputValue[2] + (inputValue[3] ?
+            //             '-' + inputValue[3] : '');
+            //     }
+            //     event.target.value = inputValue;
+            // });
+            const address_postal_codeInput = document.getElementById('address_postal_code');
+
+        //     address_postal_codeInput.addEventListener('input', function(event) {
+        //     let inputValue = event.target.value;
+        //     inputValue = inputValue.replace(/[^a-zA-Z0-9]/g, ''); // Remove non-alphanumeric characters
+        //     event.target.value = inputValue;
+        // });
+
+        address_postal_codeInput.addEventListener('input', function(event) {
+            let inputValue = event.target.value;
+            inputValue = inputValue.replace(/[^a-zA-Z0-9]/g, ''); // Remove non-alphanumeric characters
+            console.log(inputValue);
+            inputValue = inputValue.slice(0, 6); // Limit input to maximum 6 characters
+            inputValue = inputValue.replace(/(\w{3})(?=\w)/g, '$1 '); // Add space after every 3 non-alphanumeric characters
+            event.target.value = inputValue;
+        });
         </script>
 
         {{-- googleaddress --}}
