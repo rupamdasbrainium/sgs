@@ -474,8 +474,21 @@ class AccountController extends Controller
         if (Session::has('franchise_id')) {
             Session::forget('franchise_id');
         }
-        Session::put('franchise_id', 3);
-        $franchise_id = 3;
+
+        //franchise call
+        $franchises = APICall("Franchises", "get", "{}");
+        $data['franchises'] = json_decode($franchises);
+        $franchise_id = '';
+        
+        //find franchise_id
+        foreach ($data['franchises']->data as $key => $franchise) {
+            if ($franchise->name == $client->franchise_name) { //actual
+                $franchise_id = $franchise->id;
+                break;
+            }
+        }
+        Session::put('franchise_id', $franchise_id);
+        // $franchise_id = 3;
 
         $lang_id = $client->language_id;
         //franchise get all plan
@@ -516,19 +529,11 @@ class AccountController extends Controller
     public function newMembershipSteptwosubmit(Request $request, $id)
     {
         // return $request->add_on;
-        if (Session::has('add_on')) {
-            Session::forget('add_on');
-            if(!isset($request->add_on)){
-                return redirect()->route('newMembershipFinal', ['id' => $id]);
-            }
-        }
-        if(!isset($request->add_on)){
-            return redirect()->route('newMembershipFinal', ['id' => $id]);
-          }
-        Session::put('add_on', $request->add_on);
-        if (Session::has('installments_id')) {
-            Session::forget('installments_id');
-        }
+        
+        // if(!isset($request->add_on)){
+        //     return redirect()->route('newMembershipFinal', ['id' => $id]);
+        // }
+        
         if (Session::has('duration_id')) {
             Session::forget('duration_id');
         }
@@ -541,6 +546,17 @@ class AccountController extends Controller
             Session::forget('subscription_plan_id');
         }
         Session::put('subscription_plan_id', $id);
+
+        if (Session::has('add_on')) {
+            Session::forget('add_on');
+        }
+        if(!isset($request->add_on)){
+            return redirect()->route('newMembershipFinal', ['id' => $id]);
+        }
+        Session::put('add_on', $request->add_on);
+        if (Session::has('installments_id')) {
+            Session::forget('installments_id');
+        }
 
         return redirect()->route('newMembershipFinal');
     }
