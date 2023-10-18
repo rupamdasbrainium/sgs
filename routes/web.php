@@ -66,6 +66,8 @@ Route::post('paymentSave', 'PaymentController@paymentSave')->name('paymentSave')
 Route::get('addPayment', 'PaymentController@addPayment')->name('front.addPayment');
 Route::post('paymentaddSave', 'PaymentController@paymentaddSave')->name('paymentaddSave');
 
+Route::post('newmembershippaymentSave', 'AccountController@newmembershippaymentSave')->name('newmembershippaymentSave');
+
 Route::middleware('guest')->group(function () {
     // Routes for CustomerController
     Route::get('login', 'HomeController@login')->name('login');
