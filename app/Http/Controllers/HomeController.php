@@ -287,7 +287,7 @@ class HomeController extends Controller
             return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
 
         }
-        dd(json_decode($client));
+        dd($client);
     }
 
 
