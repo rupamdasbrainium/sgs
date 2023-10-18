@@ -591,11 +591,11 @@ class AccountController extends Controller
             }
         }
         $uri .=  "&display_language_id=" . $lang_id;
-        // dd($uri);
 
+        
         $membership_details = APICall($uri, "get", "{}", 'client_app');
         $data['membership_details'] = json_decode($membership_details);
-        // dd($data['membership_details']);
+
 
         $pay_methods_acc = APICall('PaymentMethods/accounts', "get", "{}", 'client_app');
         $data['pay_methods_acc'] = json_decode($pay_methods_acc);
