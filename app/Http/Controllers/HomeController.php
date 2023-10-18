@@ -51,6 +51,9 @@ class HomeController extends Controller
                 break;
             }
         }
+        if(!$franchise_id){
+            return redirect()->route('homepage');
+        }
       Cookie::queue(Cookie::make('driver_route_id', $short_code, 60000));
       Cookie::get('driver_route_id');
         
@@ -74,9 +77,9 @@ class HomeController extends Controller
             'message' => trans('title_message.Input_path_wrong'),
           );
 
-        if (!$franchise_id) {
-            return redirect(route('login'),compact('logo','banner','button','theme'))->with($response);
-        }
+        // if (!$franchise_id) {
+        //     return redirect(route('login'),compact('logo','banner','button','theme'))->with($response);
+        // }
 
 
         //franchise plan type
