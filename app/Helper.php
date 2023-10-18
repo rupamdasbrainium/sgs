@@ -260,7 +260,8 @@ function APICall($uri, $method, $data, $type='web_app'){
         Session::forget('clientToken');
       }
       // return '401';
-      return redirect()->route('login');
+      return '';
+      // return redirect()->route('login');
     }
   }
 
@@ -275,15 +276,15 @@ function APICall($uri, $method, $data, $type='web_app'){
       if(Session::has('clientToken')){
         Session::forget('clientToken');
       }
-      return redirect()->route('login');
-      $token = getClientToken();
-      if($token == 'unauthorised'){
-        if(Session::has('clientToken')){
-          Session::forget('clientToken');
-        }
-        // return '401'
-        return redirect()->route('login');
-      }
+      return '';
+      // $token = getClientToken();
+      // if($token == 'unauthorised'){
+      //   if(Session::has('clientToken')){
+      //     Session::forget('clientToken');
+      //   }
+      //   // return '401'
+      //   return redirect()->route('login');
+      // }
       // return apiCallCurl($uri, $method, $data, $token);
     }
   }

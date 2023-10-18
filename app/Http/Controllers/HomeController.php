@@ -282,11 +282,12 @@ class HomeController extends Controller
 
     public function testhk() {
         $client = APICall("Clients",'get','{}','client_app');
-        dd(json_decode($client));
+        
         if(!$client){
             return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
 
         }
+        dd($client);
     }
 
 
