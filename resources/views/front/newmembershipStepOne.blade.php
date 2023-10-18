@@ -41,7 +41,7 @@
 									@if (count($values->data->prices_per_durations))
 										<div class="selectcont ">
 											<div class="arrowdown2">
-												<i class="far fa-chevron-down"></i>
+												<i class="fal fa-chevron-down"></i>
 											</div>
 											<select class="select_opt">
 												@foreach ($values->data->prices_per_durations as $val)

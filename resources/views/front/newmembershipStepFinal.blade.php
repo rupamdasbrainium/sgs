@@ -35,7 +35,7 @@
                                             </div>
                                             <div class="sum_inp_right">
 
-                                                {{ $data['membership_details']->data->franchise }}
+                                                {{ $data['membership_details']->data->franchise}}
                                             </div>
                                         </div>
                                         <div class="sum_inp_cont">

@@ -537,6 +537,9 @@ class AccountController extends Controller
         if (Session::has('duration_id')) {
             Session::forget('duration_id');
         }
+        if (Session::has('installments_id')) {
+            Session::forget('installments_id');
+        }
 
         $duration_installments_arr = explode("|", $request->installments);
         Session::put('installments_id', $duration_installments_arr[1]);
@@ -545,6 +548,7 @@ class AccountController extends Controller
         if (Session::has('subscription_plan_id')) {
             Session::forget('subscription_plan_id');
         }
+        
         Session::put('subscription_plan_id', $id);
 
         if (Session::has('add_on')) {
@@ -554,9 +558,7 @@ class AccountController extends Controller
             return redirect()->route('newMembershipFinal', ['id' => $id]);
         }
         Session::put('add_on', $request->add_on);
-        if (Session::has('installments_id')) {
-            Session::forget('installments_id');
-        }
+        
 
         return redirect()->route('newMembershipFinal');
     }
@@ -607,7 +609,7 @@ class AccountController extends Controller
             }
         }
         $uri .=  "&display_language_id=" . $lang_id;
-        
+        // dd($uri);
 
         $membership_details = APICall($uri, "get", "{}", 'client_app');
         $data['membership_details'] = json_decode($membership_details);
