@@ -188,7 +188,7 @@ class PaymentController extends Controller
         $button = Configuration::where('name','primary_button_color')->where('franchise_id',3)->first();
         $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',3)->first();
         $admin_address = Configuration::where('name','admin_address')->where('franchise_id',3)->first();
-        $client = APICall("Clients",'get',"{}");
+        $client = APICall("Clients",'get',"{}",'client_app');
         if(!$client){
             return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
 

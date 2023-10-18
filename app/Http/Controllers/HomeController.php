@@ -27,10 +27,6 @@ class HomeController extends Controller
         $data = array();
         $data['title'] = trans('title_message.Home');
 
-
-      Cookie::queue(Cookie::make('driver_route_id', $short_code, 60000));
-      Cookie::get('driver_route_id');
-
         //franchise call
         $franchises = APICall("Franchises", "get", "{}");
         $data['franchises'] = json_decode($franchises);
@@ -282,6 +278,15 @@ class HomeController extends Controller
             }
         }
         return $html;
+    }
+
+    public function testhk() {
+        $client = APICall("Clients",'get','{}','client_app');
+        dd(json_decode($client));
+        if(!$client){
+            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
+
+        }
     }
 
 
