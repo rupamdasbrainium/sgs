@@ -591,6 +591,7 @@ class AccountController extends Controller
             }
         }
         $uri .=  "&display_language_id=" . $lang_id;
+        // dd($uri);
 
         $membership_details = APICall($uri, "get", "{}", 'client_app');
         $data['membership_details'] = json_decode($membership_details);
@@ -991,5 +992,50 @@ class AccountController extends Controller
             'message' => 'membership upgraded succesfully',
           );
         return redirect(route("account"))->with($response);
+    }
+    public function newmembershippaymentSave(Request $request)
+    {
+        if ($request->radio_group_pay == "bank_acc") {
+            $formdata = array();
+            $formdata['transit_number'] = $request->transit_number;
+            $formdata['institution'] = $request->institution;
+            $formdata['account_number'] = $request->account_number;
+            $formdata['owner_name'] = $request->owner_names;
+
+            if (Session::has('franchise_id')) {
+                $formdata['franchise_id'] = Session::get('franchise_id');
+                dd($formdata);
+
+
+            $pay_methode_acc = APICall('PaymentMethods/account', "post", json_encode($formdata), 'client_app');
+            $data['pay_methode_acc'] = json_decode($pay_methode_acc); 
+                } 
+                   
+              $response = array(
+                'message' => trans('title_message.Bank_added_succesfully'),
+              );
+              return redirect(route("newMembershipFinal"))->with($response);
+            
+        } else {
+            $carddata = array();
+
+            $carddata['four_digits_number'] = $request->four_digits_number;
+            $carddata['expire_year'] = $request->expiry_year;
+            $carddata['expire_month'] = $request->expiry_month;
+            $carddata['owner_name'] = $request->owner_name;
+            $carddata['type_id'] = $request->type_id;
+            $carddata['pan'] = $request->pan;
+            if (Session::has('franchise_id')) {
+                $carddata['franchise_id'] = Session::get('franchise_id');
+
+
+                $pay_methods_account = APICall('PaymentMethods/card', "post", json_encode($carddata), 'client_app');
+                $data['pay_methods_account'] = json_decode($pay_methods_account);        
+             }     
+                $response = array(
+                  'message' => trans('title_message.Credit_card_added_succesfully'),
+                );
+                return redirect(route("newMembershipFinal"))->with($response);
+        }
     }
 }
