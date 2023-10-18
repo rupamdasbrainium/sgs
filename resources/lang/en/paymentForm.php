@@ -40,6 +40,7 @@ return [
     'pay' => 'PAYMENT',
     'status' => 'STATUS',
     'paid' => 'Paid',
+    'unpaid' => 'Unpaid',
     'method_of_payment' => 'Method of Payment',
     'Credit_Card' => 'Credit Card',
     'Debit_Card' => 'Debit Card',
