@@ -369,7 +369,7 @@
 
                                                                 <input type="number" name="transit_number"
                                                                     class="form-control" placeholder=""
-                                                                    value="" required>
+                                                                    value="" >
                                                             </div>
                                                         </div>
                                                     </div>
@@ -380,7 +380,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="institution"
-                                                                    class="form-control" placeholder="" required>
+                                                                    class="form-control" placeholder="" >
                                                             </div>
                                                         </div>
                                                     </div>
@@ -390,7 +390,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="account_number"
-                                                                    class="form-control" placeholder="" required>
+                                                                    class="form-control" placeholder="" >
                                                             </div>
                                                         </div>
                                                     </div>
@@ -401,7 +401,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="owner_names"
-                                                                    class="form-control" placeholder="bank" required>
+                                                                    class="form-control" placeholder="bank" >
                                                             </div>
                                                         </div>
                                                     </div>
@@ -427,7 +427,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="owner_name"
-                                                                    class="form-control" placeholder="" required>
+                                                                    class="form-control" placeholder="" >
                                                             </div>
                                                         </div>
                                                     </div>
@@ -438,7 +438,7 @@
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="number" name="pan"
                                                                     class="form-control" placeholder=""
-                                                                    value="{{ old('pan') }}" required>
+                                                                    value="{{ old('pan') }}" >
                                                             </div>
                                                         </div>
                                                     </div>
@@ -451,7 +451,7 @@
 
                                                                 <input type="number" name="four_digits_number"
                                                                     class="form-control" placeholder=""
-                                                                    value="{{ old('four_digits_number') }}" required>
+                                                                    value="{{ old('four_digits_number') }}" >
 
                                                             </div>
                                                         </div>
@@ -463,7 +463,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="number" name="expiry_month"
-                                                                    class="form-control" placeholder="" required>
+                                                                    class="form-control" placeholder="" >
                                                             </div>
                                                         </div>
                                                     </div>
@@ -473,7 +473,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="number" name="expiry_year"
-                                                                    class="form-control" placeholder="" required>
+                                                                    class="form-control" placeholder="" >
                                                             </div>
                                                         </div>
                                                     </div>
@@ -513,7 +513,7 @@
                 </div>
             </div>
         </div>
-		<script>
+		{{-- <script>
 			function validfunc() {
 				var valcheck = null;
 				var ele = document.getElementsByName('radio_group_pay');
@@ -575,7 +575,7 @@
 		
 				}
 			}
-		</script>
+		</script> --}}
     </section>
     @include('footer')
     @push('scripts')
