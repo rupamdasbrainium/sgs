@@ -122,7 +122,7 @@
                                                 <!-- <input type="text" class="form-control" placeholder="AB  " > -->
                                                 <div class="selectcont ">
                                                     <div class="arrowdown2">
-                                                        <i class="far fa-chevron-down"></i>
+                                                        <i class="fal fa-chevron-down"></i>
                                                     </div>
                                                     <select class="select_opt" name="address_province_id">
                                                         @if (isset($data['provinces']))
@@ -190,7 +190,7 @@
                                                 <!-- <input type="text" class="form-control" placeholder="Man " > -->
                                                 <div class="selectcont ">
                                                     <div class="arrowdown2">
-                                                        <i class="far fa-chevron-down"></i>
+                                                        <i class="fal fa-chevron-down"></i>
                                                     </div>
                                                     <select class="select_opt" name="is_male">
                                                         <option value="1"
@@ -363,7 +363,7 @@
                                                 <!-- <input type="email" class="form-control" placeholder="Please choose..." > -->
                                                 <div class="selectcont ">
                                                     <div class="arrowdown2">
-                                                        <i class="far fa-chevron-down"></i>
+                                                        <i class="fal fa-chevron-down"></i>
                                                     </div>
                                                     <select class="select_opt" name="reference_id">
                                                         <option value="" selected>

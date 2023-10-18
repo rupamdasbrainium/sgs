@@ -23,7 +23,7 @@
                                             <div id="credit_details">
                                                 <div class="inp_row">
                                                     <div class="form-group">
-                                                        <label>{{ __('paymentForm.Credit') }}</label>
+                                                        <label>{{ __('paymentForm.Credit_Card') }}</label>
                                                         <div class="card_add">
                                                             <img src="images/voided.png" alt="" />
                                                         </div>
@@ -79,8 +79,8 @@
                                                 <div class="def_btnopt2 frombtn">
                                                     <button type="submit" value="submit" class="btn2"
                                                         id="myButton">{{ __('paymentForm.submit') }}!</button>
-                                                    <button type="button"
-                                                        class="btn2 backbutton">{{ __('paymentForm.back') }}</button>
+                                                    <a href="{{url('my-bank-cards')}}" type="button"
+                                                        class="btn2 backbutton">{{ __('paymentForm.back') }}</a>
                                                 </div>
                                             </div>
 

@@ -607,8 +607,8 @@ class AccountController extends Controller
             }
         }
         $uri .=  "&display_language_id=" . $lang_id;
-
         
+
         $membership_details = APICall($uri, "get", "{}", 'client_app');
         $data['membership_details'] = json_decode($membership_details);
 

@@ -14,7 +14,11 @@
 					<div class="account_des">
 						<span class="acc_des_title">{{ __('account.My_Address') }}: </span>
 						<span class="acc_des_info">{{ getAddress($client->adress) }} </span>
-						<span class="accountedit"><a href="{{ route('myContactInformation') }}">{{ __('account.Edit') }}</a> </span>
+						<span class="accountedit"><a href="{{ route('myContactInformation') }}">{{ __('account.Edit') }}</a> </span><br>
+						@if(!empty($client->communication_ToClient))
+							<span class="acc_des_status">{{ __('myProfile.Message') }}:{{ $client->communication_ToClient}} </span><br>
+						@endif
+						<span class="acc_des_status">{{ __('myProfile.Status') }}:{{ $client->status}} </span>
 					</div>
 					<div class="account_leng">
 						<div class="account_leng_title">{{ __('account.communication_language') }}</div>
@@ -24,7 +28,7 @@
                                 <div class="account_select_opt">
                                     <div class="selectcont ">
                                         <div class="arrowdown2">
-                                            <i class="far fa-chevron-down"></i>
+                                            <i class="fal fa-chevron-down"></i>
                                         </div>
                                         <select class="select_opt" name="language_id">
                                             @foreach ($languages as $item)
@@ -64,7 +68,7 @@
 							<div class="memberships_method_opt">
 								<div class="selectcont ">
 									<div class="arrowdown2">
-										<i class="far fa-chevron-down"></i>
+										<i class="fal fa-chevron-down"></i>
 									</div>
 									<select class="select_opt" >
                                         @if($data["cards"] != null)

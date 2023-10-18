@@ -38,7 +38,7 @@
                                         <div class="memberships_method_opt">
                                             <div class="selectcont ">
                                                 <div class="arrowdown2">
-                                                    <i class="far fa-chevron-down"></i>
+                                                    <i class="fal fa-chevron-down"></i>
                                                 </div>
                                                 <select class="select_opt pid" name="card_id">
                                                     @foreach ($data['pay_methods_card']->data as $card)

@@ -82,8 +82,8 @@
                                                 <div class="def_btnopt2 frombtn">
                                                     <button type="submit" value="submit" class="btn2"
                                                         id="myButton">{{ __('paymentForm.submit') }}!</button>
-                                                    <button type="button"
-                                                        class="btn2 backbutton">{{ __('paymentForm.back') }}</button>
+                                                    <a href="{{url('my-bank-cards')}}" type="button"
+                                                        class="btn2 backbutton">{{ __('paymentForm.back') }}</a>
                                                 </div>
                                             </div>
                                         </div>

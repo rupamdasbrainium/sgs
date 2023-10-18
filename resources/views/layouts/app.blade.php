@@ -34,7 +34,7 @@
         <link rel="stylesheet" href="{{ asset('public/css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('public/css/owl.carousel.min.css') }}">
         <link rel="stylesheet" href="{{ asset('public/css/owl.theme.default.min.css') }}">
-        {{-- <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.0/css/all.css"> --}}
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.0/css/all.css">
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
         @stack('css')
         <!-- Scripts -->

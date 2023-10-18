@@ -99,7 +99,7 @@
                                             <div class="inp_cont_view noicon_opt accountBox">
                                                 <div class="selectcont select-cards">
                                                     <div class="arrowdown2">
-                                                        <i class="far fa-chevron-down"></i>
+                                                        <i class="fal fa-chevron-down"></i>
                                                     </div>
                                                     <select class="select_opt" name="payment_method_id">
                                                         @if ($data['cards'] != null)
@@ -115,7 +115,7 @@
                                                 </div>
                                                 <div class="selectcont select-banks">
                                                     <div class="arrowdown2">
-                                                        <i class="far fa-chevron-down"></i>
+                                                        <i class="fal fa-chevron-down"></i>
                                                     </div>
                                                     <select class="select_opt" name="payment_method_id">
                                                         @if ($data['banks'] != null)

@@ -98,7 +98,7 @@
                                                     <div class="selectcont ">
 
                                                         <div class="arrowdown2">
-                                                            <i class="far fa-chevron-down"></i>
+                                                            <i class="fal fa-chevron-down"></i>
                                                         </div>
                                                         <select class="select_opt" name="province_id">
                                                             @foreach ($province as $pr)

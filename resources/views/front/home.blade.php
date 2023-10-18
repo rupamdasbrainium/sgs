@@ -69,7 +69,8 @@
                                     <div class="selectcont_wrap">
                                         <div class="selectcont">
                                             <div class="arrowdown2">
-                                                <i class="far fa-chevron-down"></i>
+                                                
+                                                <i class="fal fa-chevron-down"></i>
                                             </div>
                                             <input type="hidden" id="homeurl" value="{{ route('homepage') }}">
                                             <select class="select_opt" id="franchises_name">
@@ -84,7 +85,7 @@
                                         </div>
                                         <div class="selectcont ">
                                             <div class="arrowdown2">
-                                                <i class="far fa-chevron-down"></i>
+                                                <i class="fal fa-chevron-down"></i>
                                             </div>
                                             {{-- $franchise->address_province_id --}}
                                             <select class="select_opt" id="franchises_address">
@@ -100,7 +101,7 @@
                                         </div>
                                         <div class="selectcont ">
                                             <div class="arrowdown2">
-                                                <i class="far fa-chevron-down"></i>
+                                                <i class="fal fa-chevron-down"></i>
                                             </div>
                                             <select class="select_opt" id="franchises_type">
 
@@ -156,7 +157,7 @@
                                                         @if (count($values->data->prices_per_durations))
                                                             <div class="selectcont ">
                                                                 <div class="arrowdown2">
-                                                                    <i class="far fa-chevron-down"></i>
+                                                                    <i class="fal fa-chevron-down"></i>
                                                                 </div>
                                                                 <select class="select_opt">
 
