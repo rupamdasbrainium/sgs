@@ -15,9 +15,9 @@
 						<span class="acc_des_info">{{ getAddress($client->adress) }} </span>
 						<span class="accountedit"><a href="{{ route('myContactInformation') }}">{{ __('myProfile.Edit') }}</a> </span><br>
 						@if(empty($client->communication_ToClient))
-							<span class="acc_des_status">{{ __('myProfile.Message') }}:{{ $client->communication_ToClient}} </span><br>
+							<span class="acc_des_status">{{ __('myProfile.Message') }}: {{ $client->communication_ToClient}} </span><br>
 						@endif
-						<span class="acc_des_status">{{ __('myProfile.Status') }}:{{ $client->status}} </span>
+						<span class="acc_des_status">{{ __('myProfile.Status') }}: {{ $client->status}} </span>
 						
 					</div>
 					<div class="account_leng">

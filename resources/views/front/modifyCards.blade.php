@@ -80,7 +80,7 @@
                                                     <button type="submit" value="submit" class="btn2"
                                                         id="myButton">{{ __('paymentForm.submit') }}!</button>
                                                     <button type="button"
-                                                        class="btn2 backbutton">{{ __('paymentForm.back') }}</button>
+                                                        class="btn2 backbutton" onclick="history.back()">{{ __('paymentForm.back') }}</button>
                                                 </div>
                                             </div>
 

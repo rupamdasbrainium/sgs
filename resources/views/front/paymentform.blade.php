@@ -322,6 +322,9 @@
 
                                                             </div>
                                                         </div>
+                                                        @error('transit_number')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                     </div>
 
                                                     <div class="inp_row">
@@ -334,6 +337,9 @@
                                                                     value="{{ old('institution') }}">
                                                             </div>
                                                         </div>
+                                                        @error('institution')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                     </div>
                                                     <div class="inp_row">
                                                         <div class="form-group">
@@ -345,6 +351,9 @@
                                                                     value="{{ old('account_number') }}">
                                                             </div>
                                                         </div>
+                                                        @error('account_number')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                     </div>
 
                                                     <div class="inp_row">
@@ -357,6 +366,9 @@
                                                                     value="{{ old('owner_names') }}">
                                                             </div>
                                                         </div>
+                                                        @error('owner_name')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                     </div>
                                                 </div>
 
@@ -384,6 +396,9 @@
                                                                     value="{{ old('owner_name') }}">
                                                             </div>
                                                         </div>
+                                                        @error('owner_name')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                     </div>
                                                     <div class="inp_row">
                                                         <div class="form-group">
@@ -395,6 +410,9 @@
                                                                     value="{{ old('pan') }}">
                                                             </div>
                                                         </div>
+                                                        @error('pan')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                     </div>
                                                     <div class="inp_row">
                                                         <div class="form-group">
@@ -408,6 +426,9 @@
 
                                                             </div>
                                                         </div>
+                                                        @error('four_digits_number')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                     </div>
 
                                                     <div class="inp_row">
@@ -421,6 +442,9 @@
                                                                     value="{{ old('expiry_month') }}">
                                                             </div>
                                                         </div>
+                                                         @error('expire_month')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                     </div>
                                                     <div class="inp_row">
                                                         <div class="form-group">
@@ -433,6 +457,9 @@
                                                                     value="{{ old('expiry_year') }}">
                                                             </div>
                                                         </div>
+                                                        @error('expire_year')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                     </div>
 
                                                 </div>
@@ -485,7 +512,7 @@
                                                         style="background-color: {{ $button->value }}" id="myButton"
                                                         disabled>{{ __('paymentForm.sign_up') }}!</button>
                                                     <button type="button"
-                                                        class="btn2 backbutton">{{ __('paymentForm.back') }}</button>
+                                                        class="btn2 backbutton" onclick="history.back()">{{ __('paymentForm.back') }}</button>
                                                 </div>
                                             </div>
 

@@ -14,11 +14,6 @@
                             <div class="col-md-12">
                                 <div class="alert alert-danger">
                                     {{ Session::get('message') }}
-                                    {{-- <ul> --}}
-                                    {{-- @foreach ($error as $error) --}}
-                                    {{-- <li>{{ $error->message }}</li> --}}
-                                    {{-- @endforeach --}}
-                                    {{-- </ul> --}}
                                 </div>
                             </div>
                         @endif
@@ -180,7 +175,7 @@
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="date" name="date_of_birth"
-                                                    value="{{ old('date_of_birth') }}" id="datepicker"
+                                                    value="{{ old('date_of_birth') }}" id="datepicker" max=""
                                                     class="form-control" placeholder="{{ __('suscription.dob') }} *"
                                                     required>
                                             </div>
@@ -415,6 +410,7 @@
             var phone = [string.slice(0, 3), " ", string.slice(3, 7), " ", string.slice(7)].join('');
         </script> --}}
         <script>
+
             const phoneInput = document.getElementById('phone');
             phoneInput.addEventListener('input', function(event) {
                 let inputValue = event.target.value;
@@ -452,12 +448,6 @@
             // });
             const address_postal_codeInput = document.getElementById('address_postal_code');
 
-        //     address_postal_codeInput.addEventListener('input', function(event) {
-        //     let inputValue = event.target.value;
-        //     inputValue = inputValue.replace(/[^a-zA-Z0-9]/g, ''); // Remove non-alphanumeric characters
-        //     event.target.value = inputValue;
-        // });
-
         address_postal_codeInput.addEventListener('input', function(event) {
             let inputValue = event.target.value;
             inputValue = inputValue.replace(/[^a-zA-Z0-9]/g, ''); // Remove non-alphanumeric characters
@@ -466,6 +456,10 @@
             inputValue = inputValue.replace(/(\w{3})(?=\w)/g, '$1 '); // Add space after every 3 non-alphanumeric characters
             event.target.value = inputValue;
         });
+
+var today = new Date().toISOString().split('T')[0];
+document.getElementById("datepicker").setAttribute("max",today);
+
         </script>
 
         {{-- googleaddress --}}
