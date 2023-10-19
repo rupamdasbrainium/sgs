@@ -21,4 +21,6 @@ return [
     'Modify' => 'Modify',
     'Bank_acoount_number_ending' => 'Bank acoount number ending with',
     'Add_Payment_Method' => 'Add a Payment Method',
+    'Credit_Cards' => 'Credit Cards',
+    'Bank_Accounts' => 'Bank Accounts',
 ];

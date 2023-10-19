@@ -123,19 +123,19 @@
                 var owner_names = document.myform.owner_names.value;
 
                 if (transit_number.length != 5) {
-                    alert("Transit number must be at least 5 characters long");
+                    alert(trans('paymentForm.Transit_number_5_characters'));
                     return false;
                 }
                 if (institution.length != 6) {
-                    alert("Branchcode must be at least 6 characters long.");
+                    alert(trans('paymentForm.Branchcode_mustbe_6_characters'));
                     return false;
                 }
                 if (account_number.length != 16) {
-                    alert("Account number must be at least 16 characters long.");
+                    alert(trans('paymentForm.Account_number_mustbe_16_characterss'));
                     return false;
                 }
                 if (owner_names == "") {
-                    alert("Account name can't be blank.");
+                    alert(trans('paymentForm.Account_name_blank'));
                     return false;
                 }
             }

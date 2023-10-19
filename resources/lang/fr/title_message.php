@@ -82,4 +82,5 @@ return [
     'Chat_Monitoring' => 'Surveillance des discussions',
     'Transactions' => 'Transactions',
     'Manage_Subscribers' => 'Gérer les abonnés',
+    'membership_upgraded_succesfully' => 'L\'adhésion a été mise à niveau avec succès',
 ];

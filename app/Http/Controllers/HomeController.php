@@ -145,6 +145,9 @@ class HomeController extends Controller
 
     public function login()
     {
+        if(session()->has('clientToken')){
+            return redirect()->back();
+        }
         $data = array();
         $data['title'] = trans('title_message.Login');
         $logo = Configuration::where('name','logo_image')->where('franchise_id',$this->getfranchiseId())->first();
@@ -161,7 +164,9 @@ class HomeController extends Controller
         $data = array();
         $data['title'] = trans('title_message.Forgot_Password');
         $logo = Configuration::where('name','logo_image')->where('franchise_id',$this->getfranchiseId())->first();
-        return view('forgotpassword', compact('data','logo'));
+        $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',$this->getfranchiseId())->first();
+        $admin_address = Configuration::where('name','admin_address')->where('franchise_id',$this->getfranchiseId())->first();
+        return view('forgotpassword', compact('data','logo','admin_address','admin_phone'));
     }
 
     public function dashboard()

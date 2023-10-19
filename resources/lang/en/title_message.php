@@ -82,5 +82,6 @@ return [
     'Chat_Monitoring' => 'Chat Monitoring',
     'Transactions' => 'Transactions',
     'Manage_Subscribers' => 'Manage Subscribers',
+    'membership_upgraded_succesfully' => 'Membership upgraded succesfully',
 
 ];

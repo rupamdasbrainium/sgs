@@ -129,19 +129,19 @@
 
 
                 if (owner_name == "") {
-                    alert("Name can't be blank");
-                    return false;
-                }
-                if (expiry_month.length <3) {
-                    alert("Expiry month must not be greater than 2 characters.");
-                    return false;
-                }
-                if (expiry_year.length != 4) {
-                    alert("Expiry year must be at least 4 characters long.");
+                    alert(trans('paymentForm.Name_blank'));
                     return false;
                 }
                 if (four_digits_number.length != 3) {
-                    alert("CVV must be at least 3 characters long.");
+                    alert(trans('paymentForm.Card_numbe_least_4_characters'));
+                    return false;
+                }
+                if (expiry_month.length <3) {
+                    alert(trans('paymentForm.Expiry_month'));
+                    return false;
+                }
+                if (expiry_year.length != 4) {
+                    alert(trans('paymentForm.Expiry_year'));
                     return false;
                 }
             }

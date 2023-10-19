@@ -583,7 +583,7 @@
                 //     return false;
                 // }
                 if (four_digits_number.length != 3) {
-                    alert("Card number must be at least 4 characters long.");
+                    alert(trans('paymentForm.Card_numbe_least_4_characters'));
                     return false;
                 }
                 // if (expiry_month.value <=12) {

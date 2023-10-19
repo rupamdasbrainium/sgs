@@ -63,7 +63,7 @@ return [
     'submit' => 'submit',
     'Transit_number_5_characters' => 'Transit number must be at least 5 characters long',
     'Branchcode_mustbe_6_characters' => 'Branchcode must be at least 6 characters long',
-    'Account_number_mustbe_12_characters' => 'Account number must be at least 12 characters long',
+    'Account_number_mustbe_16_characters' => 'Account number must be at least 16 characters long',
     'Account_name_blank' => 'Account name can\'t be blank',
     'Name_blank' => 'Name can\'t be blank',
     'Card_number_mustbe_16_characters' => 'Card number must be at least 16 characters long',
@@ -71,5 +71,8 @@ return [
     'Expiry_year' => 'Expiry year must be at least 4 characters long',
     'Amount_to_be_paid' => 'Amount to be paid',
     'Pay_Now' => 'Pay Now',
-    'CSV' => 'CSV'
+    'CSV' => 'CSV',
+    'Add_Payment_Method' => 'Add a Payment Method',
+    'Card_numbe_least_4_characters' => 'Card number must be at least 4 characters long',
+    'No_addon' => 'No-addon',
 ];

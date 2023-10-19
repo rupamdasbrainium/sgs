@@ -1,6 +1,7 @@
 <x-app-layout>
     @section('title', $data['title'] . ' |')
     @include('header')
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <section class="maincontent_wrap inner_pageouter">
         <div class="inner_page_wrap">
             @include('layouts.sidebar')
@@ -167,7 +168,7 @@
                                             </div>
                                             @if (Session::get('addonname') == null)
                                                 <div class="sum_inp_right">
-                                                    No-addon
+                                                    {{ __('paymentForm.No_addon') }}
                                                 </div>
                                             @else
                                                 @php
@@ -346,8 +347,7 @@
 
                                                     </div>
                                                     <div class="def_btnopt2 frombtn frombtn2">
-                                                        <button type="button" class="btn2" id="add_pay_method">Add
-                                                            a Payment Method</button>
+                                                        <button type="button" class="btn2" id="add_pay_method">{{ __('paymentForm.Add_Payment_Method') }}</button>
                                                     </div>
                                                 </div>
                                                 <div id="bank_details">
@@ -561,7 +561,7 @@
 					//     return false;
 					// }
 					if (four_digits_number.length != 3) {
-						alert("Card number must be at least 4 characters long.");
+						alert(trans('paymentForm.Card_numbe_least_4_characters'));
 						return false;
 					}
 					// if (expiry_month.value <=12) {
@@ -578,6 +578,7 @@
 		</script>
     </section>
     @include('footer')
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     @push('scripts')
         <script>
             $(document).ready(function() {

@@ -1,6 +1,7 @@
 <x-app-layout>
     @section('title', $data['title'] . ' |')
     @include('header')
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <section class="maincontent_wrap inner_pageouter">
         <div class="inner_page_wrap">
             @include('layouts.sidebar')
@@ -18,7 +19,7 @@
                                 <div class="cards_des_wrap">
                                     {{-- <div class="cards_des_row"> --}}
                                         <div class="row">
-                                            <h3>Credit Cards:</h3>
+                                            <h3>{{ __('mybankcards.Credit_Cards') }}:</h3>
                                                 @foreach ($data['pay_methods_accc']->data as $value)												
 												<div class="col-md-6">
                                                     <div class="cards_desinfo_item ">
@@ -73,7 +74,7 @@
 												</div>
                                                 @endforeach
                                             
-                                                <h3>Bank Accounts:</h3>
+                                                <h3>{{ __('mybankcards.Bank_Accounts') }}:</h3>
                                             
                                                 @foreach ($data['pay_methods_acc']->data as $values)
 												<div class="col-md-6">
@@ -148,4 +149,5 @@
         </div>
     </section>
     @include('footer')
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 </x-app-layout>

@@ -21,4 +21,6 @@ return [
     'Modify' => 'Modifier',
     'Bank_acoount_number_ending' => 'Numéro de compte bancaire se terminant par',
     'Add_Payment_Method' => 'Ajouter un moyen de paiement',
+    'Credit_Cards' => 'Cartes de crédit',
+    'Bank_Accounts' => 'Comptes bancaires',
 ];

@@ -37,8 +37,8 @@
                                 <div class="round_opt_btn3">
                                     <img src="images/roundopt2.jpg" alt="">
                                 </div>						
-                                <h2>LAW 25</h2>
-                                <p>Effective Date: [Date]</p>
+                                <h2>{{ __('footer.law') }} 25</h2>
+                                <p>{{ __('footer.Effective_Date') }}: [Date]</p>
                             </div>
                             
                             <h3>Heading 1</h3>

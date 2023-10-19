@@ -226,6 +226,7 @@ class PaymentController extends Controller
                    
               $response = array(
                 'message' => trans('title_message.Bank_added_succesfully'),
+                'message_type' => 'success',
               );
               return redirect(route("myBankCards"))->with($response);
             

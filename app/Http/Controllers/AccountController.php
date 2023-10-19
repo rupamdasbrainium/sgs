@@ -144,9 +144,11 @@ class AccountController extends Controller
             } else {
                 $locale = 'fr';
             }
-            // app()->setLocale($locale);
-            // return redirect()->back();
-            return redirect('language/'.$locale);
+            $message = array(
+                'message' => trans('title_message.Language_Changed_succesfully'),
+                'message_type' => 'success',
+            );
+            return redirect('language/'.$locale)->with($message);
         } catch (\Throwable $th) {
             //throw $th;
             return back()->withErrors(["error" => $th->getMessage()]);
@@ -155,7 +157,7 @@ class AccountController extends Controller
     public function changePassword()
     {
         $data = array();
-        $data['title'] = 'Change Password';
+        $data['title'] = trans('title_message.Change_Password');
         $client = APICall("Clients", 'get', "{}");
         $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
         $theme = Configuration::where('name','theme_color')->where('franchise_id',3)->first();
@@ -198,6 +200,7 @@ class AccountController extends Controller
         } else {
             $response = array(
                 'message' => trans('title_message.Password_Changed_succesfully'),
+                'message_type' => 'success',
             );
             return redirect()->back()->with($response);
         }
@@ -351,9 +354,18 @@ class AccountController extends Controller
 
             $response = json_decode($response);
             if (!$response->error) {
-                return redirect()->route('myContactInformation')->with('success', trans('title_message.Contact_information_updated_successfully'));
+            
+                $message = array(
+                    'message' => trans('title_message.Contact_information_updated_successfully'),
+                    'message_type' => 'success',
+                );
+                return redirect()->route('myContactInformation')->with($message);
             } else {
-                return redirect()->route('myContactInformation')->with('failed', trans('title_message.Contact_information_updated_failed'));
+                $message = array(
+                    'message' => trans('title_message.Contact_information_updated_failed'),
+                    'message_type' => 'danger',
+                );
+                return redirect()->route('myContactInformation')->with($message);
             }
         } catch (\Throwable $th) {
 
@@ -448,7 +460,7 @@ class AccountController extends Controller
                 $response = APICall("Payments/client/" . $request->client_id . "/amount/" . $request->totalAmount, "POST", "{}", "client_app");
                 $response = json_decode($response);
                 if ($response->error == null && $response->data) {
-                    return redirect()->route('payMyOutstandingBalance')->with("success", "Payment Successfull");
+                    return redirect()->route('payMyOutstandingBalance')->with("success", "Payment Successful");
                 } else {
                     return redirect()->route('payMyOutstandingBalance')->with("error", $response->error->message);
                 }
@@ -696,6 +708,7 @@ class AccountController extends Controller
             }
             $response = array(
                 'message' => trans('title_message.Payment_completed_succesfully'),
+                'message_type' => 'success',
             );
             return redirect(route("myProfile"))->with($response);
         }
@@ -860,6 +873,7 @@ class AccountController extends Controller
     }
     $response = array(
         'message' => trans('title_message.Bank_updated_succesfully'),
+        'message_type' => 'success',
       );
 
         return redirect(route('myBankCards'))->with($response);
@@ -905,6 +919,7 @@ class AccountController extends Controller
 
         $response = array(
             'message' => trans('title_message.Card_modified_succesfully'),
+            'message_type' => 'success',
         );
 
         return redirect(route('myBankCards'))->with($response);
@@ -925,6 +940,7 @@ class AccountController extends Controller
         }
         $response = array(
             'message' => trans('title_message.membership_renewed_succesfully'),
+            'message_type' => 'success',
           );
         return redirect(route("account"))->with($response);    
     }
@@ -991,7 +1007,8 @@ class AccountController extends Controller
                     return redirect()->back()->with($response)->withInput();
         }
         $response = array(
-            'message' => 'membership upgraded succesfully',
+            'message' => trans('title_message.membership_upgraded_succesfully'),
+            'message_type' => 'success',
           );
         return redirect(route("account"))->with($response); 
     }
@@ -1011,7 +1028,8 @@ class AccountController extends Controller
                     return redirect()->back()->with($response)->withInput();
         }
         $response = array(
-            'message' => 'membership upgraded succesfully',
+            'message' => trans('title_message.membership_upgraded_succesfully'),
+            'message_type' => 'success',
           );
         return redirect(route("account"))->with($response);
     }
