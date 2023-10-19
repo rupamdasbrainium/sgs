@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'continue' => 'continuer',
+    'continue' => 'Continuer',
     'banner_info_h1' => 'Élevez votre',
     'banner_info_h1_span' => 'Aptitude,',
     'banner_info_h2' => 'Allumez votre potentiel',
@@ -22,10 +22,10 @@ return [
     'welcomesec_info' => 'Transformez votre corps, transformez votre vie à la salle de fitness',
     'price' => 'par utilisateur/mois, facturé annuellement',
     'individual_head' => 'Pour les entrepreneurs individuels',
-    'subscribe' => `S\'abonner`,
+    "subscribe" => "S'abonner",
     'sub_text_info' => 'Trouvez une GYM près de chez vous',
     'sub_text_info_p' => `Pour trouver un club, utilisez la barre de recherche, naviguez à l\'aide de la carte ou activez les services de localisation.`,
-    "find_gym_placeholder" => "Entrer l\'adresse",
-    'age' => `Restriction d\'âge`,
+    "find_gym_placeholder" => "Entrer l'adresse",
+    "age" => "Restriction d'âge"
 
 ];

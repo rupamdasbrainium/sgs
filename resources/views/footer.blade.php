@@ -6,9 +6,9 @@
 					<div class="footer_link continfo">
 						<h3>{{ __('footer.contact') }}</h3>
 						<ul>
-							<li><a href="tel:+978 4569877"><span> <i class="far fa-phone-alt"></i></span>{{$admin_phone->value}}</a></li>
-							<li><span><i class="far fa-map-marker-alt"></i></span>{{$admin_address->value}}</li>
-							<li><a href="mailto: contact@beutics.com"><span><i class="far fa-envelope"></i></span>info@domain.com</a></li>
+							<li><a href="tel:+978 4569877"><span> <i class="fa fa-phone-alt"></i></span>{{$admin_phone->value}}</a></li>
+							<li><span><i class="fa fa-map-marker-alt"></i></span>{{$admin_address->value}}</li>
+							<li><a href="mailto: contact@beutics.com"><span><i class="fa fa-envelope"></i></span>info@domain.com</a></li>
 						</ul>
 					</div>
 					<div class="footer_link">

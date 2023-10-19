@@ -53,7 +53,7 @@ class SuscriptionController extends Controller
 
       $request->validate(
             [
-              'address_street' => 'required|regex:/^[a-zA-Z]+$/u',
+              'address_street' => 'required|alpha',
               'firstname' => 'required|regex:/^[a-zA-Z]+$/u',
               'lastname' => 'required|regex:/^[a-zA-Z]+$/u',
               'eamil' => 'email',

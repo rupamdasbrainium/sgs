@@ -60,7 +60,7 @@ return [
     'Expiry_Year' => 'Expiry Year',
     'CVV' => 'CVV',
     'PAN' => 'PAN',
-    'submit' => 'submit',
+    'submit' => 'Submit',
     'Transit_number_5_characters' => 'Transit number must be at least 5 characters long',
     'Branchcode_mustbe_6_characters' => 'Branchcode must be at least 6 characters long',
     'Account_number_mustbe_16_characters' => 'Account number must be at least 16 characters long',

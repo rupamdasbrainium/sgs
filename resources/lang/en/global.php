@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'continue' => 'continue',
+    'continue' => 'Continue',
     'banner_info_h1' => 'Elevate Your',
     'banner_info_h1_span' => 'Fitness,',
     'banner_info_h2' => 'Ignite Your Potential',
@@ -26,7 +26,7 @@ return [
     'sub_text_info' => 'Find a GYM Near you',
     'sub_text_info_p' => 'To find a Club, use the search bar, navigate using the map, or turn on location services',
     "find_gym_placeholder"=>"Enter address",
-    'age' => 'Age restriction',
+    "age" => "Age restriction"
     // 'Subscription plan' => 'New Subscription',
     // 'Subscription plan options' => 'Subscription plan options',
     // 'Subscription plan payments' => 'Payments',

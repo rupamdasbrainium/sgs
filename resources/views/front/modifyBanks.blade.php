@@ -24,9 +24,9 @@
                                                 <div id="bank_details">
                                                     <div class="inp_row">
                                                         <div class="form-group">
-                                                            <label>{{ __('paymentForm.Direct_Debit') }}</label>
+                                                         
                                                             <div class="card_add">
-                                                                <img src="images/voided.png" alt="" />
+                                                                <img src="{{asset('public/images/voided.png')}}" alt="" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -81,9 +81,9 @@
                                             <div class="frombtn_wrap">
                                                 <div class="def_btnopt2 frombtn">
                                                     <button type="submit" value="submit" class="btn2"
-                                                        id="myButton">{{ __('paymentForm.submit') }}!</button>
-                                                    <a href="{{url('my-bank-cards')}}" type="button"
-                                                        class="btn2 backbutton">{{ __('paymentForm.back') }}</a>
+                                                        id="myButton">{{ __('paymentForm.submit') }}</button>
+                                                    <button type="button"
+                                                        class="btn2 backbutton" onclick="history.back()">{{ __('paymentForm.back') }}</button>
                                                 </div>
                                             </div>
                                         </div>

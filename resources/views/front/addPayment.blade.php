@@ -64,9 +64,9 @@
                                                 <div id="bank_details">
                                                     <div class="inp_row">
                                                         <div class="form-group">
-                                                            <label>{{ __('paymentForm.Direct_Debit') }}</label>
+                                                           
                                                             <div class="card_add">
-                                                                <img src="images/voided.png" alt="" />
+                                                                <img src="{{asset('public/images/voided.png')}}" alt="" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -143,7 +143,7 @@
                                                             <label>{{ __('paymentForm.PAN') }} <em
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="text" name="pan" 
+                                                                <input type="number" name="pan" 
                                                                     class="form-control" placeholder="">
                                                             </div>
                                                         </div>
@@ -166,7 +166,7 @@
                                                         <div class="form-group">
                                                             <label>{{ __('paymentForm.Expiry_Month') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="number" name="expiry_month" min="0" max="12"
+                                                                <input type="number" name="expiry_month" min="1" max="12"
                                                                     class="form-control" placeholder="">
                                                             </div>
                                                         </div>
@@ -186,8 +186,8 @@
                                             <div class="frombtn_wrap">
                                                 <div class="def_btnopt2 frombtn">
                                                     <button type="submit" value="submit" style="background-color: {{$button->value}}" class="btn2"
-                                                        id="myButton">{{ __('paymentForm.submit') }}!</button>
-                                                    <button type="button" class="btn2 backbutton">{{ __('paymentForm.back') }}</button>
+                                                        id="myButton">{{ __('paymentForm.submit') }}</button>
+                                                    <button type="button" class="btn2 backbutton" onclick="history.back()">{{ __('paymentForm.back') }}</button>
                                                 </div>
                                             </div>
 

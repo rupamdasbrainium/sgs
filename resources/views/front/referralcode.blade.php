@@ -1,6 +1,11 @@
 <x-app-layout>
 @section('title', $data['title'] . ' |')
 @include('header')
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.0/css/all.css">
 <section class="maincontent_wrap inner_pageouter">
 	<div class="inner_page_wrap">
 		@include('layouts.sidebar')
@@ -72,8 +77,8 @@
 							</div>
 							<div class="tab-pane fade" id="nav-email" >
 								<div class="emailopt">
-									<i class="fal fa-envelope"></i>
-									{{$data['referral']->data->email}}"
+									<i class="far fa-envelope"></i>
+									{{$data['referral']->data->email}}
 								</div>
 							</div>
 							
@@ -96,6 +101,12 @@
   alert("Copied the text: " + copyText.value);
 }
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="js/bootstrap.bundle.min.js"></script> -->
 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="js/select_optiones.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/custom.js"></script>
 @include('footer')
 </x-app-layout>

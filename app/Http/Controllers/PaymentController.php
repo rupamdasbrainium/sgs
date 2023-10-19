@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\App;
 use App\Models\Configuration;
+use Illuminate\Support\Facades\Validator;
 
 class PaymentController extends Controller
 {
@@ -66,6 +67,21 @@ class PaymentController extends Controller
 
     public function paymentSave(Request $request)
     {
+        // $validator = Validator::make($request->all(), [
+        //     "transit_number" => "required|min:3|max:5",
+        //     "institution" => "required|min:3",
+        //     "account_number" => "required|min:5|max:12",
+        //     "owner_name" => "required|alpha",
+        //     "four_digits_number" => "required|min:3|max:4",
+        //     "pan" => "required|min:15|max:16",
+        //     "expire_month" => "required|max:2",
+        //     "owner_name" => "required|alpha",
+        //     "expire_year" => "required"
+          
+        // ]);
+        // if ($validator->fails()) {
+        //     return back()->withErrors($validator);
+        // }else{
         $lang_id = Session::get('language_id');
         if ($request->radio_group_pay == "bank_acc") {
             $formdata = array();
@@ -76,7 +92,7 @@ class PaymentController extends Controller
             $formdata['franchise_id'] = Session::get('franchise_id');
             $pay_methode_acc = APICall('PaymentMethods/account', "post", json_encode($formdata), 'client_app');
             $data['pay_methode_acc'] = json_decode($pay_methode_acc);
-            
+        
             if ($data['pay_methode_acc']->error != null) {
                 $response = array(
                     'message' => $data['pay_methode_acc']->error->message,
@@ -116,12 +132,12 @@ class PaymentController extends Controller
             $response = array(
                 'message' => trans('title_message.Payment_Successfull'),
               );
+            
             return redirect(route("myProfile"))->with($response);
+            
         } else {
 
             $carddata = array();
-
-
             $carddata['four_digits_number'] = $request->four_digits_number;
             $carddata['expire_year'] = $request->expiry_year;
             $carddata['expire_month'] = $request->expiry_month;
@@ -176,6 +192,7 @@ class PaymentController extends Controller
               );
             return redirect(route("myProfile"))->with($response);
         }
+    
     }
 
 
