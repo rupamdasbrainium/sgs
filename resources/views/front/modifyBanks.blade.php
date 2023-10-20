@@ -42,6 +42,9 @@
                                                                     value="{{ $data['bank'][0]->transit }}">
                                                             </div>
                                                         </div>
+                                                        @error('transit_number')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                     </div>
 
                                                     <div class="inp_row">
@@ -53,6 +56,9 @@
                                                                     class="form-control" placeholder=""  value="{{ $data['bank'][0]->institution }}">
                                                             </div>
                                                         </div>
+                                                        @error('institution')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                     </div>
                                                     <div class="inp_row">
                                                         <div class="form-group">
@@ -63,6 +69,9 @@
                                                                     class="form-control" placeholder=""  value="{{ $data['bank'][0]->account_last_digits }}">
                                                             </div>
                                                         </div>
+                                                        @error('account_number')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                     </div>
 
                                                     <div class="inp_row">
@@ -74,6 +83,9 @@
                                                                     class="form-control" placeholder="bank" value="{{ $data['bank'][0]->owner_name }}">
                                                             </div>
                                                         </div>
+                                                        @error('owner_names')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                     </div>
                                                 </div>
                                             </div>

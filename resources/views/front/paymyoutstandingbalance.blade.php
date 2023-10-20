@@ -35,15 +35,17 @@
                                                 <tr class="evenitem">
                                                     <td data-label="TYPE">
                                                         <div class="pay_view_opt">
-                                                            @if(strtotime(Date('Y-m-d'))-strtotime(date('Y-m-d', strtotime($pt->paymentDate)))>0)
-                                                            <div class="checkbox">
-                                                                <input class="styled-checkbox checkBox"
-                                                                    id="Option1{{ $key + 1 }}" data-id ="{{$pt->paymentId}}" type="checkbox"
-                                                                    value="{{ $pt->amount }}" name="payment_checkbox">
-                                                                <label for="Option1{{ $key + 1 }}" class=""
-                                                                    data-value="{{ $pt->amount }}"
-                                                                    onclick="">&nbsp;</label>
-                                                            </div>
+                                                            @if (strtotime(Date('Y-m-d')) - strtotime(date('Y-m-d', strtotime($pt->paymentDate))) > 0)
+                                                                <div class="checkbox">
+                                                                    <input class="styled-checkbox checkBox"
+                                                                        id="Option1{{ $key + 1 }}"
+                                                                        data-id ="{{ $pt->paymentId }}" type="checkbox"
+                                                                        value="{{ $pt->amount }}"
+                                                                        name="payment_checkbox">
+                                                                    <label for="Option1{{ $key + 1 }}"
+                                                                        class="" data-value="{{ $pt->amount }}"
+                                                                        onclick="">&nbsp;</label>
+                                                                </div>
                                                             @endif
                                                             {{ __('paymyoutstandingbalance.Payments') }}
                                                         </div>
@@ -96,7 +98,7 @@
                                     </div>
 
                                 </div>
-
+                                <input type="hidden" name="new_key" id="new_key" value="0">
                                 <div class="frombtn_wrap select_optblock">
                                     <div class="select_card_opt">
 
@@ -144,9 +146,162 @@
                                     </div>
                                     <div class="def_btnopt2 frombtn frombtn2">
                                         <button type="button"
-                                            style="background-color: {{ $button->value }}"class="btn2">{{ __('paymyoutstandingbalance.Add_Payment_Method') }}</button>
+                                            style="background-color: {{ $button->value }}"class="btn2"
+                                            id="add_pay_method">{{ __('paymyoutstandingbalance.Add_Payment_Method') }}</button>
                                     </div>
                                 </div>
+
+                                <div id="bank_details">
+                                    <div class="inp_row">
+                                        <div class="form-group">
+                                            <label>{{ __('paymentForm.Direct_Debit') }}</label>
+                                            <div class="card_add">
+
+                                                <img src="images/voided.png" alt="" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="inp_row">
+                                        <div class="form-group">
+                                            <label>{{ __('paymentForm.Transit_Number') }} <em
+                                                    class="req_text">*</em></label>
+                                            <div class="inp_cont_view noicon_opt" id="incdec">
+                                                <input type="number" name="transit_number" class="form-control"
+                                                    placeholder="" value="{{ old('transit_number') }}">
+                                            </div>                                         
+                                        </div>
+                                        @error('transit_number')
+                                           
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                    </div>
+
+                                    <div class="inp_row">
+                                        <div class="form-group">
+                                            <label>{{ __('paymentForm.Branch_Number') }} <em
+                                                    class="req_text">*</em></label>
+                                            <div class="inp_cont_view noicon_opt">
+                                                <input type="text" name="institution" class="form-control"
+                                                    placeholder="" value="{{ old('institution') }}">
+                                            </div>
+                                        </div>
+                                        @error('institution')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="inp_row">
+                                        <div class="form-group">
+                                            <label>{{ __('paymentForm.Account_Number') }} <em
+                                                    class="req_text">*</em></label>
+                                            <div class="inp_cont_view noicon_opt">
+                                                <input type="text" name="account_number" class="form-control"
+                                                    placeholder=""  value="{{ old('account_number') }}">
+                                            </div>
+                                        </div>
+                                        @error('account_number')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="inp_row">
+                                        <div class="form-group">
+                                            <label>{{ __('paymentForm.Account_Name_Holder') }} <em
+                                                    class="req_text">*</em></label>
+                                            <div class="inp_cont_view noicon_opt">
+                                                <input type="text" name="owner_names" class="form-control"
+                                                    placeholder="" value="{{ old('owner_names') }}">
+                                            </div>
+                                        </div>
+                                        @error('owner_names')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div id="credit_details">
+                                    <div class="selectcont ">
+
+                                        <div class="arrowdown2">
+                                            <i class="far fa-chevron-down"></i>
+                                        </div>
+                                        <select class="select_opt" name="type_id">
+                                            @foreach ($data['card_types'] as $cardtype)
+                                                <option value="{{ $cardtype->id }}">
+                                                    {{ $cardtype->name }}</option>
+                                            @endforeach
+                                        </select>
+
+                                    </div><br>
+                                    <div class="inp_row">
+                                        <div class="form-group">
+                                            <label>{{ __('paymentForm.Account_Name_Holder') }} <em
+                                                    class="req_text">*</em></label>
+                                            <div class="inp_cont_view noicon_opt">
+                                                <input type="text" name="owner_name" class="form-control"
+                                                    placeholder="" value="{{ old('owner_names') }}">
+                                            </div>
+                                        </div>
+                                        @error('owner_name')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="inp_row">
+                                        <div class="form-group">
+                                            <label>{{ __('paymentForm.PAN') }} <em class="req_text">*</em></label>
+                                            <div class="inp_cont_view noicon_opt">
+                                                <input type="number" name="pan" class="form-control"
+                                                    placeholder="" value="{{ old('pan') }}">
+                                            </div>
+                                        </div>
+                                        @error('pan')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="inp_row">
+                                        <div class="form-group">
+                                            <label>{{ __('paymentForm.CSV') }} <em class="req_text">*</em></label>
+                                            <div class="inp_cont_view noicon_opt" id="incdec">
+
+                                                <input type="number" name="four_digits_number" class="form-control"
+                                                    placeholder="" value="{{ old('four_digits_number') }}">
+
+                                            </div>
+                                        </div>
+                                        @error('four_digits_number')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="inp_row">
+                                        <div class="form-group">
+                                            <label>{{ __('paymentForm.Expiry_Month') }} <em
+                                                    class="req_text">*</em></label>
+                                            <div class="inp_cont_view noicon_opt">
+                                                <input type="number" name="expiry_month" class="form-control"
+                                                    placeholder=""  value="{{ old('expiry_month') }}">
+                                            </div>
+                                        </div>
+                                        @error('expiry_month')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="inp_row">
+                                        <div class="form-group">
+                                            <label>{{ __('paymentForm.Expiry_Year') }} <em
+                                                    class="req_text">*</em></label>
+                                            <div class="inp_cont_view noicon_opt">
+                                                <input type="number" name="expiry_year" class="form-control"
+                                                    placeholder="" value="{{ old('expiry_year') }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @error('expiry_year')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
                                 <div class="aboundopt">
                                     <p id="totalAmount">{{ __('paymyoutstandingbalance.Amount_paid') }}: $0</p>
                                 </div>
@@ -157,6 +312,8 @@
                                         <button type="submit" id="paynow"
                                             style="background-color: {{ $button->value }}" class="btn2"
                                             disabled>{{ __('paymyoutstandingbalance.Pay_Now') }}</button>
+                                        <button type="submit" class="btn2" id="btnaccsave"
+                                            style="background-color: {{ $button->value }}">{{ __('newMembership.Saveapaymentmethod') }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -176,32 +333,116 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script>
         $(document).ready(function() {
+            $('#bank_details').hide();
+            $('#credit_details').hide();
+            $('#card_acc_sec').show();
+            $('#btnaccsave').hide();
+            var type = "{{ request()->type }}"
+            if (type == "bank") {
+            $('input[name="payment_type"]:checked').val('bank_account'); 
 
-            $('.select-banks').css({
-                "display": "none",
-                "visibility": "hidden"
-            });
-            $(document).on("click", ".bank", function() {
-                $('.select-cards').css({
-                    "display": "none",
-                    "visibility": "hidden"
-                });
-                $('.select-banks').css({
-                    "display": "grid",
-                    "visibility": "visible"
-                })
-            });
-            $(document).on("click", ".cards", function() {
-                $('.select-banks').css({
-                    "display": "none",
-                    "visibility": "hidden"
-                })
-                $('.select-cards').css({
-                    "display": "grid",
-                    "visibility": "visible"
-                });
+                $('.select-cards').hide();
+                $('.select-banks').show();
+                $('#bank_details').hide();
+            $('#credit_details').hide();
+            $('#card_acc_sec').hide();
+            $('#btnaccsave').hide();
+            }
+            else if (type == "new_card") {
+                $('#card_acc_sec').hide();
+                $('#btnaccsave').show();
+                $('#paynow').hide();
+                $("#new_key").val(1);
+                // $('#bank_details').hide();
+                $('#credit_details').show();
+                $('.select-cards').hide();
+                $('.select-banks').hide();
+            }
+            else if (type == "new_bank") {
+                $('#card_acc_sec').hide();
+                $('#btnaccsave').show();
+                $('#paynow').hide();
+                $("#new_key").val(1);
+                $('#bank_details').show();
+                    // $('#credit_details').hide();
+                    $('.select-cards').hide();
+                    $('.select-banks').hide();
+                    $('input[name="payment_type"]:checked').val('bank_account');
+            }
 
+            else {
+
+                $('.select-cards').show();
+                $('.select-banks').hide();
+            }
+            $('#add_pay_method').click(function() {
+                $('#card_acc_sec').hide();
+                $('#btnaccsave').show();
+                $('#paynow').hide();
+                $("#new_key").val(1);
+                let radio_group_pay = $('input[name="payment_type"]:checked').val();
+                console.log(radio_group_pay);
+                if (radio_group_pay == 'bank_account') {
+                    $('#bank_details').show();
+                    $('#credit_details').hide();
+                    $('.select-cards').hide();
+                    $('.select-banks').hide();
+
+                } else if (radio_group_pay == 'credit_card') {
+                    $('#bank_details').hide();
+                    $('#credit_details').show();
+                    $('.select-cards').hide();
+                    $('.select-banks').hide();
+                } else {
+                    console.log('not selected radio' + radio_group_pay);
+                }
             });
+
+
+            $('input[type=radio][name=payment_type]').change(function() {
+                $('#card_acc_sec').show();
+                $('#btnaccsave').hide();
+                $('#paynow').show();
+                $("#new_key").val(0);
+                if (this.value == 'bank_account') {
+                    $('#bank_details').hide();
+                    $('#credit_details').hide();
+                    $('.select-cards').hide();
+                    $('.select-banks').show();
+                } else {
+                    $('#bank_details').hide();
+                    $('#credit_details').hide();
+                    $('.select-cards').show();
+                    $('.select-banks').hide();
+                }
+            });
+
+
+            // $('.select-banks').css({
+            //     "display": "none",
+            //     "visibility": "hidden"
+            // });
+            // $(document).on("click", ".bank", function() {
+            //     $('.select-cards').css({
+            //         "display": "none",
+            //         "visibility": "hidden"
+            //     });
+            //     $('.select-banks').css({
+            //         "display": "grid",
+            //         "visibility": "visible"
+            //     })
+            // });
+            // $(document).on("click", ".cards", function() {
+            //     $('.select-banks').css({
+            //         "display": "none",
+            //         "visibility": "hidden"
+            //     })
+            //     $('.select-cards').css({
+            //         "display": "grid",
+            //         "visibility": "visible"
+            //     });
+
+            // });
 
             $(document).on("click", ".checkBox", function() {
 

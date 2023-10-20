@@ -78,10 +78,13 @@
 
                                                                 <input type="number" name="transit_number"
                                                                     class="form-control" placeholder=""
-                                                                    value="">
+                                                                    value="{{ old('transit_number') }}">
 
                                                             </div>
                                                         </div>
+                                                        @error('transit_number')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                     </div>
 
                                                     <div class="inp_row">
@@ -89,18 +92,24 @@
                                                             <label>{{ __('paymentForm.Branch_Number') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="number" name="institution"
-                                                                    class="form-control" placeholder="">
+                                                                    class="form-control" placeholder="" value="{{ old('institution') }}">
                                                             </div>
                                                         </div>
+                                                        @error('institution')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                     </div>
                                                     <div class="inp_row">
                                                         <div class="form-group">
                                                             <label>{{ __('paymentForm.Account_Number') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="number" name="account_number"
-                                                                    class="form-control" placeholder="">
+                                                                    class="form-control" placeholder="" value="{{ old('account_number') }}">
                                                             </div>
                                                         </div>
+                                                        @error('account_number')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                     </div>
 
                                                     <div class="inp_row">
@@ -109,9 +118,12 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="owner_names"
-                                                                    class="form-control" placeholder="bank">
+                                                                    class="form-control" placeholder="bank" value="{{ old('owner_names') }}">
                                                             </div>
                                                         </div>
+                                                        @error('owner_names')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                     </div>
                                                 </div>
 
@@ -134,9 +146,12 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="owner_name"
-                                                                    class="form-control" placeholder="">
+                                                                    class="form-control" placeholder="" value="{{ old('owner_name') }}">
                                                             </div>
                                                         </div>
+                                                        @error('owner_name')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                     </div>
                                                     <div class="inp_row">
                                                         <div class="form-group">
@@ -144,9 +159,12 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="number" name="pan" 
-                                                                    class="form-control" placeholder="">
+                                                                    class="form-control" placeholder="" value="{{ old('pan') }}">
                                                             </div>
                                                         </div>
+                                                        @error('pan')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                     </div>
                                                     <div class="inp_row">
                                                         <div class="form-group">
@@ -156,10 +174,13 @@
 
                                                                 <input type="number" name="four_digits_number"
                                                                     class="form-control" placeholder=""
-                                                                    value="">
+                                                                    value="{{ old('four_digits_number') }}">
 
                                                             </div>
                                                         </div>
+                                                        @error('four_digits_number')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                     </div>
 
                                                     <div class="inp_row">
@@ -167,18 +188,24 @@
                                                             <label>{{ __('paymentForm.Expiry_Month') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="number" name="expiry_month" min="1" max="12"
-                                                                    class="form-control" placeholder="">
+                                                                    class="form-control" placeholder=""  value="{{ old('expiry_month') }}">
                                                             </div>
                                                         </div>
+                                                        @error('expiry_month')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                     </div>
                                                     <div class="inp_row">
                                                         <div class="form-group">
                                                             <label>{{ __('paymentForm.Expiry_Year') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="number" name="expiry_year" max="9999" min="2023"
-                                                                    class="form-control" placeholder="">
+                                                                    class="form-control" placeholder="" value="{{ old('expiry_year') }}">
                                                             </div>
                                                         </div>
+                                                        @error('expiry_year')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                     </div>
                                                 </div>
                                             </div>                                     
