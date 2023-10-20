@@ -86,14 +86,14 @@
                                 <div class="form-group">
                                     <div class="memberships_nam radio cards">
                                         <input type="radio" id="payment_opt1" name="payment_type" value="credit_card"
-                                            checked>
+                                            @if(request()->type!= "bank" || request()->type != "new_bank")checked @endif>
                                         <label
                                             for="payment_opt1">{{ __('paymyoutstandingbalance.Credit_Card') }}</label>
                                     </div>
 
                                     <div class="memberships_nam radio bank">
                                         <input type="radio" id="payment_opt3" name="payment_type"
-                                            value="bank_account">
+                                            value="bank_account"  @if(request()->type == "bank" || request()->type == "new_bank")checked @endif>
                                         <label
                                             for="payment_opt3">{{ __('paymyoutstandingbalance.Bank_Account') }}</label>
                                     </div>
@@ -112,7 +112,7 @@
                                                     <select class="select_opt" name="payment_method_card">
                                                         @if ($data['cards'] != null)
                                                             @foreach ($data['cards'] as $card)
-                                                                <option value="{{ $card->id }}">XXXX XXXX XXXX
+                                                                <option value="{{ $card->id }}" {{ (request()->type == 'card' && request()->acc_id == $card->id) ? 'selected':'' }}>XXXX XXXX XXXX
                                                                     {{ $card->four_digits_number }} -
                                                                     {{ __('paymyoutstandingbalance.Card') }}</option>
                                                             @endforeach
@@ -130,7 +130,7 @@
                                                     <select class="select_opt" name="payment_method_id">
                                                         @if ($data['banks'] != null)
                                                             @foreach ($data['banks'] as $bank)
-                                                                <option value="{{ $bank->id }}">XXXX XXXX XXXX
+                                                                <option value="{{ $bank->id }}" {{ (request()->type == 'bank' && request()->acc_id == $bank->id) ? 'selected':'' }}>XXXX XXXX XXXX
                                                                     {{ $bank->account_last_digits }} -
                                                                     {{ __('paymyoutstandingbalance.Bank') }}</option>
                                                             @endforeach
@@ -341,7 +341,7 @@
             $('#btnaccsave').hide();
             var type = "{{ request()->type }}"
             if (type == "bank") {
-            $('input[name="payment_type"]:checked').val('bank_account'); 
+            // $('input[name="payment_type"]:checked').val('bank_account'); 
 
                 $('.select-cards').hide();
                 $('.select-banks').show();
@@ -369,7 +369,7 @@
                     // $('#credit_details').hide();
                     $('.select-cards').hide();
                     $('.select-banks').hide();
-                    $('input[name="payment_type"]:checked').val('bank_account');
+                    // $('input[name="payment_type"]:checked').val('bank_account');
             }
 
             else {

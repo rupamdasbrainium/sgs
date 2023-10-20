@@ -435,61 +435,61 @@ class AccountController extends Controller
     public function payOutstandingPayment(Request $request)
     {
         if ($request->new_key == 0) {
-        $validator = Validator::make($request->all(), [
-            "payment_method_id" => "required",
-            "totalAmount" => "required|min:1",
-            "payment_checkbox" => "required"
-        ]);
-        if ($validator->fails()) {
-            return back()->withErrors($validator);
-        } else {
-
-            //credit card payment
-            //credit card payment
-            if ($request->payment_type == "credit_card") {
-
-                $paymentIds = "[" . $request->payment_method_card . "]";
-                $url = "Payments?credit_card_id=" . $request->payment_method_card . "&amount=" . $request->totalAmount;
-                $response = APICall($url, "post", $paymentIds, "client_app");
-                $response = json_decode($response);
-                if ($response->error == null) {
-                    return redirect()->route('payMyOutstandingBalance')->with("success", trans('title_message.Payment_Successfull'));
-                } else {
-                    return redirect()->route('payMyOutstandingBalance')->with("error", $response->error->message);
-                }
-            }
-            //bank account payment
-            else {
-
-                $response = APICall("Payments/client/" . $request->client_id . "/amount/" . $request->totalAmount, "POST", "{}", "client_app");
-                $response = json_decode($response);
-                if ($response->error == null && $response->data) {
-                    return redirect()->route('payMyOutstandingBalance')->with("success", trans('title_message.Payment_Successfull'));
-                } else {
-                    return redirect()->route('payMyOutstandingBalance')->with("error", $response->error->message);
-                }
-            }
-        }
-    }else{
-        if ($request->payment_type == "bank_account") {
             $validator = Validator::make($request->all(), [
-                "transit_number" => "required|min:3|max:5",
-                "institution" => "required|min:3",
-                "account_number" => "required|min:5|max:12",
-                "owner_names" => "required|alpha",
-
+                "payment_method_id" => "required",
+                "totalAmount" => "required|min:1",
+                "payment_checkbox" => "required"
             ]);
             if ($validator->fails()) {
-                return redirect(route('payMyOutstandingBalance',["type" => "new_bank"]))->withErrors($validator)->withInput();
+                return back()->withErrors($validator);
             } else {
-                $formdata = array();
-                $formdata['transit_number'] = $request->transit_number;
-                $formdata['institution'] = $request->institution;
-                $formdata['account_number'] = $request->account_number;
-                $formdata['owner_name'] = $request->owner_names;
 
-                if (Session::has('franchise_id')) {
-                    $formdata['franchise_id'] = Session::get('franchise_id');
+                //credit card payment
+                //credit card payment
+                if ($request->payment_type == "credit_card") {
+
+                    $paymentIds = "[" . $request->payment_method_card . "]";
+                    $url = "Payments?credit_card_id=" . $request->payment_method_card . "&amount=" . $request->totalAmount;
+                    $response = APICall($url, "post", $paymentIds, "client_app");
+                    $response = json_decode($response);
+                    if ($response->error == null) {
+                        return redirect()->route('payMyOutstandingBalance')->with("success", trans('title_message.Payment_Successfull'));
+                    } else {
+                        return redirect()->route('payMyOutstandingBalance')->with("error", $response->error->message);
+                    }
+                }
+                //bank account payment
+                else {
+
+                    $response = APICall("Payments/client/" . $request->client_id . "/amount/" . $request->totalAmount, "POST", "{}", "client_app");
+                    $response = json_decode($response);
+                    if ($response->error == null && $response->data) {
+                        return redirect()->route('payMyOutstandingBalance')->with("success", trans('title_message.Payment_Successfull'));
+                    } else {
+                        return redirect()->route('payMyOutstandingBalance')->with("error", $response->error->message);
+                    }
+                }
+            }
+        }else{
+            if ($request->payment_type == "bank_account") {
+                $validator = Validator::make($request->all(), [
+                    "transit_number" => "required|min:3|max:5",
+                    "institution" => "required|min:3",
+                    "account_number" => "required|min:5|max:12",
+                    "owner_names" => "required|alpha",
+
+                ]);
+                if ($validator->fails()) {
+                    return redirect(route('payMyOutstandingBalance',["type" => "new_bank"]))->withErrors($validator)->withInput();
+                } else {
+                    $formdata = array();
+                    $formdata['transit_number'] = $request->transit_number;
+                    $formdata['institution'] = $request->institution;
+                    $formdata['account_number'] = $request->account_number;
+                    $formdata['owner_name'] = $request->owner_names;
+
+                    if (Session::has('franchise_id')) {
+                        $formdata['franchise_id'] = Session::get('franchise_id');
 
 
                     $pay_methode_acc = APICall('PaymentMethods/account', "post", json_encode($formdata), 'client_app');
