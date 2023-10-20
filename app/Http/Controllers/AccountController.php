@@ -504,6 +504,7 @@ class AccountController extends Controller
                 }
                 $response = array(
                     'messages' => trans('title_message.Bank_added_succesfully'),
+                    'message_type' => 'success',
                 );
                 return redirect(route("payMyOutstandingBalance", ["type" => "bank", 'acc_id' => $data['pay_methode_acc']->data->id]))->with($response);
             }
@@ -540,6 +541,7 @@ class AccountController extends Controller
                 }
                 $response = array(
                     'messages' => trans('title_message.Credit_card_added_succesfully'),
+                    'message_type' => 'success',
                 );
                 return redirect(route("payMyOutstandingBalance", ["type" => "card", 'acc_id' => $data['pay_methods_account']->data->id]))->with($response);
             }
@@ -826,6 +828,7 @@ class AccountController extends Controller
                     }
                     $response = array(
                         'messages' => trans('title_message.Bank_added_succesfully'),
+                        'message_type' => 'success',
                     );
                     return redirect(route("newMembershipFinal", ["type" => "bank", 'acc_id' => $data['pay_methode_acc']->data->id]))->with($response);
                 }
@@ -862,6 +865,7 @@ class AccountController extends Controller
                     }
                     $response = array(
                         'messages' => trans('title_message.Credit_card_added_succesfully'),
+                        'message_type' => 'success',
                     );
                     return redirect(route("newMembershipFinal", ["type" => "card", 'acc_id' => $data['pay_methods_account']->data->id]))->with($response);
                 }
@@ -1175,6 +1179,7 @@ class AccountController extends Controller
 
             $response = array(
                 'message' => trans('title_message.Bank_added_succesfully'),
+                'message_type' => 'success',
             );
             return redirect(route("newMembershipFinal"))->with($response);
         } else {
@@ -1195,6 +1200,7 @@ class AccountController extends Controller
             }
             $response = array(
                 'message' => trans('title_message.Credit_card_added_succesfully'),
+                'message_type' => 'success',
             );
             return redirect(route("newMembershipFinal"))->with($response);
         }

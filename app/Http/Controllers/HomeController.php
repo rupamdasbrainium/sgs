@@ -71,6 +71,7 @@ class HomeController extends Controller
         
         $response = array(
             'message' => trans('title_message.Input_path_wrong'),
+            'message_type' => 'danger',
           );
 
         // if (!$franchise_id) {

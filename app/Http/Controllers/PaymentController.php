@@ -127,6 +127,7 @@ class PaymentController extends Controller
             $data["title"] = trans('title_message.My_Account'); 
             $response = array(
                 'message' => trans('title_message.Payment_Successfull'),
+                'message_type' => 'success',
               );
             
             return redirect(route("myProfile"))->with($response);
@@ -192,6 +193,7 @@ class PaymentController extends Controller
             }
             $response = array(
                 'message' => trans('title_message.Payment_completed_succesfully'),
+                'message_type' => 'success',
               );
             return redirect(route("myProfile"))->with($response);
         }
@@ -289,6 +291,7 @@ class PaymentController extends Controller
              }     
                 $response = array(
                   'message' => trans('title_message.Credit_card_added_succesfully'),
+                  'message_type' => 'success',
                 );
                 return redirect(route("myBankCards"))->with($response);
         }
