@@ -314,7 +314,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt" id="incdec">
 
-                                                                <input type="text" name="transit_number"
+                                                                <input type="number" name="transit_number"
                                                                     class="form-control" placeholder=""
                                                                     value="{{ old('transit_number') }}">
                                                                 {{-- <i class="fas fa-sort-up" id="up"></i>

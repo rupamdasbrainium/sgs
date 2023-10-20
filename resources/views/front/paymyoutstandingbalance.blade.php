@@ -36,17 +36,14 @@
                                                     <td data-label="TYPE">
                                                         <div class="pay_view_opt">
                                                             @if(strtotime(Date('Y-m-d'))-strtotime(date('Y-m-d', strtotime($pt->paymentDate)))>0)
-                                                            {{-- @if (strtotime(Date('Y-m-d')) - strtotime(date('Y-m-d', strtotime($pt->paymentDate)))) --}}
-                                                                <div class="checkbox">
-                                                                    <input class="styled-checkbox checkBox"
-                                                                        id="Option1{{ $key + 1 }}"
-                                                                        data-id ="{{ $pt->paymentId }}" type="checkbox"
-                                                                        value="{{ $pt->amount }}"
-                                                                        name="payment_checkbox">
-                                                                    <label for="Option1{{ $key + 1 }}"
-                                                                        class="" data-value="{{ $pt->amount }}"
-                                                                        onclick="">&nbsp;</label>
-                                                                </div>
+                                                            <div class="checkbox">
+                                                                <input class="styled-checkbox checkBox"
+                                                                    id="Option1{{ $key + 1 }}" data-id ="{{$pt->paymentId}}" type="checkbox"
+                                                                    value="{{ $pt->amount }}" name="payment_checkbox">
+                                                                <label for="Option1{{ $key + 1 }}" class=""
+                                                                    data-value="{{ $pt->amount }}"
+                                                                    onclick="">&nbsp;</label>
+                                                            </div>
                                                             @endif
                                                             {{ __('paymyoutstandingbalance.Payments') }}
                                                         </div>

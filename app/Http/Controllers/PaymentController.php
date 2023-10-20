@@ -67,23 +67,19 @@ class PaymentController extends Controller
 
     public function paymentSave(Request $request)
     {
-        // $validator = Validator::make($request->all(), [
-        //     "transit_number" => "required|min:3|max:5",
-        //     "institution" => "required|min:3",
-        //     "account_number" => "required|min:5|max:12",
-        //     "owner_name" => "required|alpha",
-        //     "four_digits_number" => "required|min:3|max:4",
-        //     "pan" => "required|min:15|max:16",
-        //     "expire_month" => "required|max:2",
-        //     "owner_name" => "required|alpha",
-        //     "expire_year" => "required"
-          
-        // ]);
-        // if ($validator->fails()) {
-        //     return back()->withErrors($validator);
-        // }else{
-        $lang_id = Session::get('language_id');
         if ($request->radio_group_pay == "bank_acc") {
+        $validator = Validator::make($request->all(), [
+            "transit_number" => "required|min:3|max:5",
+            "institution" => "required|min:3",
+            "account_number" => "required|min:5|max:12",
+            "owner_names" => "required|alpha",
+          
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }else{
+        $lang_id = Session::get('language_id');
+        
             $formdata = array();
             $formdata['transit_number'] = $request->transit_number;
             $formdata['institution'] = $request->institution;
@@ -134,9 +130,19 @@ class PaymentController extends Controller
               );
             
             return redirect(route("myProfile"))->with($response);
-            
+            } 
         } else {
-
+            $validator = Validator::make($request->all(), [
+                "four_digits_number" => "required|min:3|max:4",
+                "pan" => "required|min:15|max:16",
+                "expiry_month" => "required|min:1|max:2",
+                "owner_name" => "required|alpha",
+                "expiry_year" => "required"
+            ]);
+            if ($validator->fails()) {
+                return back()->withErrors($validator);
+            }else{
+                $lang_id = Session::get('language_id');
             $carddata = array();
             $carddata['four_digits_number'] = $request->four_digits_number;
             $carddata['expire_year'] = $request->expiry_year;
@@ -144,14 +150,11 @@ class PaymentController extends Controller
             $carddata['owner_name'] = $request->owner_name;
             $carddata['type_id'] = $request->type_id;
             $carddata['pan'] = $request->pan;
-            // dd($carddata);
-
-
             if (Session::has('franchise_id')) {
                 $carddata['franchise_id'] = Session::get('franchise_id');
                 $pay_method_accc = APICall('PaymentMethods/card', "post", json_encode($carddata), 'client_app');
                 $data['pay_method_accc'] = json_decode($pay_method_accc);
-// dd( $data['pay_method_accc']);
+
                 if ($data['pay_method_accc']->error != null) {
                     $response = array(
                         'message' => $data['pay_method_accc']->error->message,
@@ -192,7 +195,7 @@ class PaymentController extends Controller
               );
             return redirect(route("myProfile"))->with($response);
         }
-    
+        }
     }
 
 
@@ -226,6 +229,16 @@ class PaymentController extends Controller
     public function paymentaddSave(Request $request)
     {
         if ($request->radio_group_pay == "bank_acc") {
+            $validator = Validator::make($request->all(), [
+                "transit_number" => "required|min:3|max:5",
+                "institution" => "required|min:3",
+                "account_number" => "required|min:5|max:12",
+                "owner_names" => "required|alpha",
+              
+            ]);
+            if ($validator->fails()) {
+                return back()->withErrors($validator);
+            }else{
             $formdata = array();
             $formdata['transit_number'] = $request->transit_number;
             $formdata['institution'] = $request->institution;
@@ -246,8 +259,19 @@ class PaymentController extends Controller
                 'message_type' => 'success',
               );
               return redirect(route("myBankCards"))->with($response);
-            
+            }
         } else {
+            $validator = Validator::make($request->all(), [
+                "four_digits_number" => "required|min:3|max:4",
+                "pan" => "required|min:15|max:16",
+                "expiry_month" => "required|min:1|max:2",
+                "owner_name" => "required|alpha",
+                "expiry_year" => "required"
+            ]);
+            if ($validator->fails()) {
+                return back()->withErrors($validator);
+            }else{
+                $lang_id = Session::get('language_id');
             $carddata = array();
 
             $carddata['four_digits_number'] = $request->four_digits_number;
@@ -269,4 +293,5 @@ class PaymentController extends Controller
                 return redirect(route("myBankCards"))->with($response);
         }
     }
+}
 }
