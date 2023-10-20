@@ -111,7 +111,7 @@
                                                     <select class="select_opt" name="payment_method_card">
                                                         @if ($data['cards'] != null)
                                                             @foreach ($data['cards'] as $card)
-                                                                <option value="{{ $card->id }}">XXXX XXXX XXXX
+                                                                <option value="{{ $card->id }}" {{ (request()->type == 'card' && request()->acc_id == $card->id) ? 'selected':'' }}>XXXX XXXX XXXX
                                                                     {{ $card->four_digits_number }} -
                                                                     {{ __('paymyoutstandingbalance.Card') }}</option>
                                                             @endforeach
@@ -129,7 +129,7 @@
                                                     <select class="select_opt" name="payment_method_id">
                                                         @if ($data['banks'] != null)
                                                             @foreach ($data['banks'] as $bank)
-                                                                <option value="{{ $bank->id }}">XXXX XXXX XXXX
+                                                                <option value="{{ $bank->id }}" {{ (request()->type == 'bank' && request()->acc_id == $bank->id) ? 'selected':'' }}>XXXX XXXX XXXX
                                                                     {{ $bank->account_last_digits }} -
                                                                     {{ __('paymyoutstandingbalance.Bank') }}</option>
                                                             @endforeach
