@@ -17,7 +17,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>{{ __('paymyoutstandingbalance.TYPE') }}</th>
+                                        <th class="modify">{{ __('paymyoutstandingbalance.TYPE') }}</th>
                                         <th>{{ __('paymyoutstandingbalance.PAYMENT_DATE') }}</th>
                                         <th>{{ __('paymyoutstandingbalance.PAYMENT') }}</th>
                                         <th>{{ __('paymyoutstandingbalance.STATUS') }}</th>
@@ -35,7 +35,8 @@
                                                 <tr class="evenitem">
                                                     <td data-label="TYPE">
                                                         <div class="pay_view_opt">
-                                                            @if (strtotime(Date('Y-m-d')) - strtotime(date('Y-m-d', strtotime($pt->paymentDate))))
+                                                            @if(strtotime(Date('Y-m-d'))-strtotime(date('Y-m-d', strtotime($pt->paymentDate)))>0)
+                                                            {{-- @if (strtotime(Date('Y-m-d')) - strtotime(date('Y-m-d', strtotime($pt->paymentDate)))) --}}
                                                                 <div class="checkbox">
                                                                     <input class="styled-checkbox checkBox"
                                                                         id="Option1{{ $key + 1 }}"
@@ -108,7 +109,7 @@
                                                     <div class="arrowdown2">
                                                         <i class="fal fa-chevron-down"></i>
                                                     </div>
-                                                    <select class="select_opt" name="payment_method_id">
+                                                    <select class="select_opt" name="payment_method_card">
                                                         @if ($data['cards'] != null)
                                                             @foreach ($data['cards'] as $card)
                                                                 <option value="{{ $card->id }}">XXXX XXXX XXXX

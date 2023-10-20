@@ -125,6 +125,7 @@ class AccountController extends Controller
         $message = array(
             'message' => trans('title_message.Language_Changed_succesfully'),
             'message_type' => 'success',
+            'message_raw' => 'title_message.Language_Changed_succesfully',
         );
 
         // return redirect(route("changeLanguage"))->with($response);
@@ -444,8 +445,8 @@ class AccountController extends Controller
             //credit card payment
             if ($request->payment_type == "credit_card") {
 
-                $paymentIds = "[" . $request->payment_ids . "]";
-                $url = "Payments?credit_card_id=1150" . "&amount=" . $request->totalAmount;
+                $paymentIds = "[" . $request->payment_method_card . "]";
+                $url = "Payments?credit_card_id=".$request->payment_method_card . "&amount=" . $request->totalAmount;
                 $response = APICall($url, "post", $paymentIds, "client_app");
                 $response = json_decode($response);
                 if ($response->error == null) {
@@ -460,7 +461,7 @@ class AccountController extends Controller
                 $response = APICall("Payments/client/" . $request->client_id . "/amount/" . $request->totalAmount, "POST", "{}", "client_app");
                 $response = json_decode($response);
                 if ($response->error == null && $response->data) {
-                    return redirect()->route('payMyOutstandingBalance')->with("success", "Payment Successful");
+                    return redirect()->route('payMyOutstandingBalance')->with("success", trans('title_message.Payment_Successfull'));
                 } else {
                     return redirect()->route('payMyOutstandingBalance')->with("error", $response->error->message);
                 }

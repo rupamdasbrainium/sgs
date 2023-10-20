@@ -44,6 +44,9 @@ Route::get('language/{locale}', function ($locale) {
         if(session()->has('message_type')){
             $data_array['message_type'] = session()->get('message_type');
         }
+        if(session()->has('message_raw')){
+            $data_array['message'] = trans(session()->get('message_raw'));
+        }
         return redirect()->back()->with($data_array);
     }
     return redirect()->back();
