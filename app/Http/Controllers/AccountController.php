@@ -148,6 +148,7 @@ class AccountController extends Controller
             $message = array(
                 'message' => trans('title_message.Language_Changed_succesfully'),
                 'message_type' => 'success',
+                'message_raw' => 'title_message.Language_Changed_succesfully',
             );
             return redirect('language/'.$locale)->with($message);
         } catch (\Throwable $th) {

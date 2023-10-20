@@ -91,7 +91,7 @@
 						</div>
 						<div class="ranew_opt_block">
 							<div class="memberships_method_date">{{ __('myProfile.End_date') }}: {{ date('Y/m/d',strtotime($item->end)) }} </div>
-							<div class="ren_opt"><a href="#">{{ __('myProfile.Renew') }}</a> </div>
+							<div class="ren_opt"><a href="{{route('renewMembership',$item->membershipsId)}}">{{ __('myProfile.Renew') }}</a> </div>
 						</div>
 					</div>
                     @endforeach
