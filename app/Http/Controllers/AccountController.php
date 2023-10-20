@@ -944,7 +944,7 @@ class AccountController extends Controller
             'message' => trans('title_message.membership_renewed_succesfully'),
             'message_type' => 'success',
           );
-        return redirect(route("account"))->with($response);    
+        return redirect()->back()->with($response);    
     }
 
     public function upgradeMembership()
