@@ -435,116 +435,116 @@ class AccountController extends Controller
     public function payOutstandingPayment(Request $request)
     {
         if ($request->new_key == 0) {
-        $validator = Validator::make($request->all(), [
-            "payment_method_id" => "required",
-            "totalAmount" => "required|min:1",
-            "payment_checkbox" => "required"
-        ]);
-        if ($validator->fails()) {
-            return back()->withErrors($validator);
-        } else {
+            $validator = Validator::make($request->all(), [
+                "payment_method_id" => "required",
+                "totalAmount" => "required|min:1",
+                "payment_checkbox" => "required"
+            ]);
+            if ($validator->fails()) {
+                return back()->withErrors($validator);
+            } else {
 
-            //credit card payment
-            //credit card payment
-            if ($request->payment_type == "credit_card") {
+                //credit card payment
+                //credit card payment
+                if ($request->payment_type == "credit_card") {
 
-                $paymentIds = "[" . $request->payment_method_card . "]";
-                $url = "Payments?credit_card_id=" . $request->payment_method_card . "&amount=" . $request->totalAmount;
-                $response = APICall($url, "post", $paymentIds, "client_app");
-                $response = json_decode($response);
-                if ($response->error == null) {
-                    return redirect()->route('payMyOutstandingBalance')->with("success", trans('title_message.Payment_Successfull'));
-                } else {
-                    return redirect()->route('payMyOutstandingBalance')->with("error", $response->error->message);
+                    $paymentIds = "[" . $request->payment_method_card . "]";
+                    $url = "Payments?credit_card_id=" . $request->payment_method_card . "&amount=" . $request->totalAmount;
+                    $response = APICall($url, "post", $paymentIds, "client_app");
+                    $response = json_decode($response);
+                    if ($response->error == null) {
+                        return redirect()->route('payMyOutstandingBalance')->with("success", trans('title_message.Payment_Successfull'));
+                    } else {
+                        return redirect()->route('payMyOutstandingBalance')->with("error", $response->error->message);
+                    }
+                }
+                //bank account payment
+                else {
+
+                    $response = APICall("Payments/client/" . $request->client_id . "/amount/" . $request->totalAmount, "POST", "{}", "client_app");
+                    $response = json_decode($response);
+                    if ($response->error == null && $response->data) {
+                        return redirect()->route('payMyOutstandingBalance')->with("success", trans('title_message.Payment_Successfull'));
+                    } else {
+                        return redirect()->route('payMyOutstandingBalance')->with("error", $response->error->message);
+                    }
                 }
             }
-            //bank account payment
-            else {
+        }else{
+            if ($request->payment_type == "bank_account") {
+                $validator = Validator::make($request->all(), [
+                    "transit_number" => "required|min:3|max:5",
+                    "institution" => "required|min:3",
+                    "account_number" => "required|min:5|max:12",
+                    "owner_names" => "required|alpha",
 
-                $response = APICall("Payments/client/" . $request->client_id . "/amount/" . $request->totalAmount, "POST", "{}", "client_app");
-                $response = json_decode($response);
-                if ($response->error == null && $response->data) {
-                    return redirect()->route('payMyOutstandingBalance')->with("success", trans('title_message.Payment_Successfull'));
+                ]);
+                if ($validator->fails()) {
+                    return redirect(route('payMyOutstandingBalance',["type" => "new_bank"]))->withErrors($validator)->withInput();
                 } else {
-                    return redirect()->route('payMyOutstandingBalance')->with("error", $response->error->message);
+                    $formdata = array();
+                    $formdata['transit_number'] = $request->transit_number;
+                    $formdata['institution'] = $request->institution;
+                    $formdata['account_number'] = $request->account_number;
+                    $formdata['owner_name'] = $request->owner_names;
+
+                    if (Session::has('franchise_id')) {
+                        $formdata['franchise_id'] = Session::get('franchise_id');
+
+
+                        $pay_methode_acc = APICall('PaymentMethods/account', "post", json_encode($formdata), 'client_app');
+                        $data['pay_methode_acc'] = json_decode($pay_methode_acc);
+                    }
+                    if ($data['pay_methode_acc']->error != null) {
+                        $response = array(
+                            'message' => $data['pay_methode_acc']->error->message,
+                            'message_type' => 'danger'
+                        );
+                        return redirect()->back()->with($response)->withInput();
+                    }
+                    $response = array(
+                        'messages' => trans('title_message.Bank_added_succesfully'),
+                    );
+                    return redirect(route("payMyOutstandingBalance", ["type" => "bank", 'acc_id' => $data['pay_methode_acc']->data->id]))->with($response);
+                }
+            } else {
+                $validator = Validator::make($request->all(), [
+                    "four_digits_number" => "required|min:3|max:4",
+                    "pan" => "required|min:15|max:16",
+                    "expiry_month" => "required|min:1|max:2",
+                    "owner_name" => "required|alpha",
+                    "expiry_year" => "required"
+                ]);
+                if ($validator->fails()) {
+                    return redirect(route('payMyOutstandingBalance',["type" => "new_card"]))->withErrors($validator)->withInput();
+                } else {
+                    $carddata = array();
+                    $carddata['four_digits_number'] = $request->four_digits_number;
+                    $carddata['expire_year'] = $request->expiry_year;
+                    $carddata['expire_month'] = $request->expiry_month;
+                    $carddata['owner_name'] = $request->owner_name;
+                    $carddata['type_id'] = $request->type_id;
+                    $carddata['pan'] = $request->pan;
+                    if (Session::has('franchise_id')) {
+                        $carddata['franchise_id'] = Session::get('franchise_id');
+
+                        $pay_methods_account = APICall('PaymentMethods/card', "post", json_encode($carddata), 'client_app');
+                        $data['pay_methods_account'] = json_decode($pay_methods_account);
+                    }
+                    if ($data['pay_methods_account']->error != null) {
+                        $response = array(
+                            'message' => $data['pay_methods_account']->error->message,
+                            'message_type' => 'danger'
+                        );
+                        return redirect(route('payMyOutstandingBalance'))->with($response)->withInput();
+                    }
+                    $response = array(
+                        'messages' => trans('title_message.Credit_card_added_succesfully'),
+                    );
+                    return redirect(route("payMyOutstandingBalance", ["type" => "card", 'acc_id' => $data['pay_methods_account']->data->id]))->with($response);
                 }
             }
         }
-    }else{
-        if ($request->payment_type == "bank_account") {
-            $validator = Validator::make($request->all(), [
-                "transit_number" => "required|min:3|max:5",
-                "institution" => "required|min:3",
-                "account_number" => "required|min:5|max:12",
-                "owner_names" => "required|alpha",
-
-            ]);
-            if ($validator->fails()) {
-                return redirect(route('payMyOutstandingBalance',["type" => "new_bank"]))->withErrors($validator)->withInput();
-            } else {
-                $formdata = array();
-                $formdata['transit_number'] = $request->transit_number;
-                $formdata['institution'] = $request->institution;
-                $formdata['account_number'] = $request->account_number;
-                $formdata['owner_name'] = $request->owner_names;
-
-                if (Session::has('franchise_id')) {
-                    $formdata['franchise_id'] = Session::get('franchise_id');
-
-
-                    $pay_methode_acc = APICall('PaymentMethods/account', "post", json_encode($formdata), 'client_app');
-                    $data['pay_methode_acc'] = json_decode($pay_methode_acc);
-                }
-                if ($data['pay_methode_acc']->error != null) {
-                    $response = array(
-                        'message' => $data['pay_methode_acc']->error->message,
-                        'message_type' => 'danger'
-                    );
-                    return redirect()->back()->with($response)->withInput();
-                }
-                $response = array(
-                    'messages' => trans('title_message.Bank_added_succesfully'),
-                );
-                return redirect(route("payMyOutstandingBalance", ["type" => "bank", 'acc_id' => $data['pay_methode_acc']->data->id]))->with($response);
-            }
-        } else {
-            $validator = Validator::make($request->all(), [
-                "four_digits_number" => "required|min:3|max:4",
-                "pan" => "required|min:15|max:16",
-                "expiry_month" => "required|min:1|max:2",
-                "owner_name" => "required|alpha",
-                "expiry_year" => "required"
-            ]);
-            if ($validator->fails()) {
-                return redirect(route('payMyOutstandingBalance',["type" => "new_card"]))->withErrors($validator)->withInput();
-            } else {
-                $carddata = array();
-                $carddata['four_digits_number'] = $request->four_digits_number;
-                $carddata['expire_year'] = $request->expiry_year;
-                $carddata['expire_month'] = $request->expiry_month;
-                $carddata['owner_name'] = $request->owner_name;
-                $carddata['type_id'] = $request->type_id;
-                $carddata['pan'] = $request->pan;
-                if (Session::has('franchise_id')) {
-                    $carddata['franchise_id'] = Session::get('franchise_id');
-
-                    $pay_methods_account = APICall('PaymentMethods/card', "post", json_encode($carddata), 'client_app');
-                    $data['pay_methods_account'] = json_decode($pay_methods_account);
-                }
-                if ($data['pay_methods_account']->error != null) {
-                    $response = array(
-                        'message' => $data['pay_methods_account']->error->message,
-                        'message_type' => 'danger'
-                    );
-                    return redirect(route('payMyOutstandingBalance'))->with($response)->withInput();
-                }
-                $response = array(
-                    'messages' => trans('title_message.Credit_card_added_succesfully'),
-                );
-                return redirect(route("payMyOutstandingBalance", ["type" => "card", 'acc_id' => $data['pay_methods_account']->data->id]))->with($response);
-            }
-        }
-    }
     }
 
     public function newMembership()
