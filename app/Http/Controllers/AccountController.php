@@ -857,7 +857,16 @@ class AccountController extends Controller
 
     public function modifyBanksUpdate(Request $request)
     {
-
+        $validator = Validator::make($request->all(), [
+            "transit_number" => "required|min:3|max:5",
+            "institution" => "required|min:3",
+            "account_number" => "required|min:5|max:12",
+            "owner_names" => "required|alpha",
+          
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }else{
         $formdata = array();
         $formdata['id'] = $request->bank_id;
         $formdata['transit'] = $request->transit_number;
@@ -878,6 +887,7 @@ class AccountController extends Controller
 
         return redirect(route('myBankCards'))->with($response);
     }
+}
     public function modifyCards($id)
     {
         $data = array();
@@ -906,7 +916,16 @@ class AccountController extends Controller
 
     public function modifyCardsUpdate(Request $request)
     {
-
+        $validator = Validator::make($request->all(), [
+            "four_digits_number" => "required|min:3|max:4",
+            "pan" => "required|min:15|max:16",
+            "expiry_month" => "required|min:1|max:2",
+            "owner_name" => "required|alpha",
+            "expiry_year" => "required"
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }else{
         $formdata = array();
         $formdata['creditID'] = $request->credit_id;
         $formdata['owner_name'] = $request->owner_name;
@@ -924,6 +943,7 @@ class AccountController extends Controller
 
         return redirect(route('myBankCards'))->with($response);
     }
+}
 
     public function renewMembership($membershipId)
     {

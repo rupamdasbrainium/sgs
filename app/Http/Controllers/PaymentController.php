@@ -237,7 +237,7 @@ class PaymentController extends Controller
               
             ]);
             if ($validator->fails()) {
-                return back()->withErrors($validator);
+                return back()->withErrors($validator)->withInput();
             }else{
             $formdata = array();
             $formdata['transit_number'] = $request->transit_number;
@@ -269,9 +269,9 @@ class PaymentController extends Controller
                 "expiry_year" => "required"
             ]);
             if ($validator->fails()) {
-                return back()->withErrors($validator);
+                return back()->withErrors($validator)->withInput();
             }else{
-                $lang_id = Session::get('language_id');
+                
             $carddata = array();
 
             $carddata['four_digits_number'] = $request->four_digits_number;
