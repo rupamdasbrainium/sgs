@@ -258,6 +258,10 @@ ul.navbar-nav li a {
 	padding:20px;
 	position:relative;
 }
+.adj_height{
+	min-height: 175px;
+}
+
 .arrowdown {
 	position: absolute;
     right: 20px;
@@ -351,6 +355,9 @@ ul.navbar-nav li a {
 .prod_item:hover {
 	background:#5ADFC2;
 	/* transform:scale(1.1);*/
+}
+.prod_item:hover  select.select_opt{
+    background: #3e621cd9;
 }
 .prod_item:hover .action_text {
 	color:#fff;
@@ -2627,6 +2634,11 @@ button.reset_capcha img{
     width: 26px;
 }
 
+.modify{
+	text-align: left;
+    padding: 0px 0px 0px 61px !important;
+}
+
 .head_opt span{
 	display: block;
 	font-size: 22px;
@@ -2635,6 +2647,8 @@ button.reset_capcha img{
 .oddoreven_opt table thead tr th {
     padding-top: 15px !important;
     padding-bottom: 15px !important;
+	color: black !important;
+
 }
 /* .oddoreven_opt tbody tr:nth-child(even) td {background-color: #d2fdf3 !important}
 .oddoreven_opt tbody tr:nth-child(odd) td {background-color: #c7f6ec !important} */
@@ -3374,6 +3388,10 @@ input[type="color"] {
 		font-size: 16px !important;
 
 	}
+	.adj_height{
+		min-height: auto;
+	}
+
 	.prod_item {
 		margin: 0px 0px 2%;
 		flex: 0 0 100% !important;

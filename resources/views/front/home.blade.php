@@ -150,7 +150,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="action_opt">
+                                            <div class="action_opt adj_height">
                                                 <div class="price_text">
 
                                                     @if (isset($values->data))

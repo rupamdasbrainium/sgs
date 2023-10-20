@@ -17,7 +17,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>{{ __('paymyoutstandingbalance.TYPE') }}</th>
+                                        <th class="modify">{{ __('paymyoutstandingbalance.TYPE') }}</th>
                                         <th>{{ __('paymyoutstandingbalance.PAYMENT_DATE') }}</th>
                                         <th>{{ __('paymyoutstandingbalance.PAYMENT') }}</th>
                                         <th>{{ __('paymyoutstandingbalance.STATUS') }}</th>
@@ -106,7 +106,7 @@
                                                     <div class="arrowdown2">
                                                         <i class="fal fa-chevron-down"></i>
                                                     </div>
-                                                    <select class="select_opt" name="payment_method_id">
+                                                    <select class="select_opt" name="payment_method_card">
                                                         @if ($data['cards'] != null)
                                                             @foreach ($data['cards'] as $card)
                                                                 <option value="{{ $card->id }}">XXXX XXXX XXXX
