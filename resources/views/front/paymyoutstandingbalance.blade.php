@@ -85,14 +85,14 @@
                                 <div class="form-group">
                                     <div class="memberships_nam radio cards">
                                         <input type="radio" id="payment_opt1" name="payment_type" value="credit_card"
-                                            checked>
+                                            @if(request()->type!= "bank" || request()->type != "new_bank")checked @endif>
                                         <label
                                             for="payment_opt1">{{ __('paymyoutstandingbalance.Credit_Card') }}</label>
                                     </div>
 
                                     <div class="memberships_nam radio bank">
                                         <input type="radio" id="payment_opt3" name="payment_type"
-                                            value="bank_account">
+                                            value="bank_account"  @if(request()->type == "bank" || request()->type == "new_bank")checked @endif>
                                         <label
                                             for="payment_opt3">{{ __('paymyoutstandingbalance.Bank_Account') }}</label>
                                     </div>
@@ -339,7 +339,7 @@
             $('#btnaccsave').hide();
             var type = "{{ request()->type }}"
             if (type == "bank") {
-            $('input[name="payment_type"]:checked').val('bank_account'); 
+            // $('input[name="payment_type"]:checked').val('bank_account'); 
 
                 $('.select-cards').hide();
                 $('.select-banks').show();
@@ -367,7 +367,7 @@
                     // $('#credit_details').hide();
                     $('.select-cards').hide();
                     $('.select-banks').hide();
-                    $('input[name="payment_type"]:checked').val('bank_account');
+                    // $('input[name="payment_type"]:checked').val('bank_account');
             }
 
             else {
