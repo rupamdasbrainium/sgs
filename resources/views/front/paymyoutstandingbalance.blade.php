@@ -96,7 +96,7 @@
                                     </div>
 
                                 </div>
-
+                                <input type="hidden" name="new_key" id="new_key" value="0">
                                 <div class="frombtn_wrap select_optblock">
                                     <div class="select_card_opt">
 
@@ -147,6 +147,136 @@
                                             style="background-color: {{ $button->value }}"class="btn2">{{ __('paymyoutstandingbalance.Add_Payment_Method') }}</button>
                                     </div>
                                 </div>
+
+                                <div id="bank_details">
+                                    <div class="inp_row">
+                                        <div class="form-group">
+                                            <label>{{ __('paymentForm.Direct_Debit') }}</label>
+                                            <div class="card_add">
+
+                                                <img src="images/voided.png" alt="" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="inp_row">
+                                        <div class="form-group">
+                                            <label>{{ __('paymentForm.Transit_Number') }} <em
+                                                    class="req_text">*</em></label>
+                                            <div class="inp_cont_view noicon_opt" id="incdec">
+
+                                                <input type="number" name="transit_number"
+                                                    class="form-control" placeholder=""
+                                                    value="" >
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="inp_row">
+                                        <div class="form-group">
+                                            <label>{{ __('paymentForm.Branch_Number') }} <em
+                                                    class="req_text">*</em></label>
+                                            <div class="inp_cont_view noicon_opt">
+                                                <input type="text" name="institution"
+                                                    class="form-control" placeholder="" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="inp_row">
+                                        <div class="form-group">
+                                            <label>{{ __('paymentForm.Account_Number') }} <em
+                                                    class="req_text">*</em></label>
+                                            <div class="inp_cont_view noicon_opt">
+                                                <input type="text" name="account_number"
+                                                    class="form-control" placeholder="" >
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="inp_row">
+                                        <div class="form-group">
+                                            <label>{{ __('paymentForm.Account_Name_Holder') }} <em
+                                                    class="req_text">*</em></label>
+                                            <div class="inp_cont_view noicon_opt">
+                                                <input type="text" name="owner_names"
+                                                    class="form-control" placeholder="bank" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="credit_details">
+                                    <div class="selectcont ">
+
+                                        <div class="arrowdown2">
+                                            <i class="far fa-chevron-down"></i>
+                                        </div>
+                                        <select class="select_opt" name="type_id">
+                                            @foreach ($data['card_types'] as $cardtype)
+                                                <option value="{{ $cardtype->id }}">
+                                                    {{ $cardtype->name }}</option>
+                                            @endforeach
+                                        </select>
+
+                                    </div><br>
+                                    <div class="inp_row">
+                                        <div class="form-group">
+                                            <label>{{ __('paymentForm.Account_Name_Holder') }} <em
+                                                    class="req_text">*</em></label>
+                                            <div class="inp_cont_view noicon_opt">
+                                                <input type="text" name="owner_name"
+                                                    class="form-control" placeholder="" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="inp_row">
+                                        <div class="form-group">
+                                            <label>{{ __('paymentForm.PAN') }} <em
+                                                    class="req_text">*</em></label>
+                                            <div class="inp_cont_view noicon_opt">
+                                                <input type="number" name="pan"
+                                                    class="form-control" placeholder=""
+                                                    value="{{ old('pan') }}" >
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="inp_row">
+                                        <div class="form-group">
+                                            <label>{{ __('paymentForm.CSV') }} <em
+                                                    class="req_text">*</em></label>
+                                            <div class="inp_cont_view noicon_opt" id="incdec">
+
+                                                <input type="number" name="four_digits_number"
+                                                    class="form-control" placeholder=""
+                                                    value="{{ old('four_digits_number') }}" >
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="inp_row">
+                                        <div class="form-group">
+                                            <label>{{ __('paymentForm.Expiry_Month') }} <em
+                                                    class="req_text">*</em></label>
+                                            <div class="inp_cont_view noicon_opt">
+                                                <input type="number" name="expiry_month"
+                                                    class="form-control" placeholder="" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="inp_row">
+                                        <div class="form-group">
+                                            <label>{{ __('paymentForm.Expiry_Year') }} <em
+                                                    class="req_text">*</em></label>
+                                            <div class="inp_cont_view noicon_opt">
+                                                <input type="number" name="expiry_year"
+                                                    class="form-control" placeholder="" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                 <div class="aboundopt">
                                     <p id="totalAmount">{{ __('paymyoutstandingbalance.Amount_paid') }}: $0</p>
                                 </div>
@@ -157,6 +287,8 @@
                                         <button type="submit" id="paynow"
                                             style="background-color: {{ $button->value }}" class="btn2"
                                             disabled>{{ __('paymyoutstandingbalance.Pay_Now') }}</button>
+                                        <button type="submit" class="btn2" id="btnaccsave"
+                                            style="background-color: {{ $button->value }}">{{ __('newMembership.Saveapaymentmethod') }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -176,32 +308,87 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script>
         $(document).ready(function() {
+            $('#bank_details').hide();
+            $('#credit_details').hide();
+            $('#card_acc_sec').show();
+            $('#btnaccsave').hide();
+            var type = "{{ request()->type }}"
+            if (type == "bank") {
+                
+                $('#old_card').hide();
+                $('.select-banks').show();
+                
+            } else {
+                $('.select-cards').show();
+                $('.select-banks').hide();
+            }
+            $('#add_pay_method').click(function() {
+                $('#card_acc_sec').hide();
+                $('#btnaccsave').show();
+                $('#paynow').hide();
+                $("#new_key").val(1);
+                let radio_group_pay = $('input[name="payment_type"]:checked').val();
+                if (radio_group_pay == 'bank') {
+                    $('#bank_details').show();
+                    $('#credit_details').hide();
+                    $('.select-cards').hide();
+                    $('.select-banks').hide();
 
-            $('.select-banks').css({
-                "display": "none",
-                "visibility": "hidden"
+                } else if (radio_group_pay == 'credit') {
+                    $('#bank_details').hide();
+                    $('#credit_details').show();
+                    $('.select-cards').hide();
+                    $('.select-banks').hide();
+                } else {
+                    console.log('not selected radio' + radio_group_pay);
+                }
             });
-            $(document).on("click", ".bank", function() {
-                $('.select-cards').css({
-                    "display": "none",
-                    "visibility": "hidden"
-                });
-                $('.select-banks').css({
-                    "display": "grid",
-                    "visibility": "visible"
-                })
-            });
-            $(document).on("click", ".cards", function() {
-                $('.select-banks').css({
-                    "display": "none",
-                    "visibility": "hidden"
-                })
-                $('.select-cards').css({
-                    "display": "grid",
-                    "visibility": "visible"
-                });
 
+
+            $('input[type=radio][name=payment_type]').change(function() {
+                $('#card_acc_sec').show();
+                $('#btnaccsave').hide();
+                $('#paynow').show();
+                $("#new_key").val(0);
+                if (this.value == 'bank') {
+                    $('#bank_details').hide();
+                    $('#credit_details').hide();
+                    $('.select-cards').hide();
+                    $('.select-banks').show();
+                } else {
+                    $('#bank_details').hide();
+                    $('#credit_details').hide();
+                    $('.select-cards').show();
+                    $('.select-banks').hide();
+                }
             });
+            
+
+            // $('.select-banks').css({
+            //     "display": "none",
+            //     "visibility": "hidden"
+            // });
+            // $(document).on("click", ".bank", function() {
+            //     $('.select-cards').css({
+            //         "display": "none",
+            //         "visibility": "hidden"
+            //     });
+            //     $('.select-banks').css({
+            //         "display": "grid",
+            //         "visibility": "visible"
+            //     })
+            // });
+            // $(document).on("click", ".cards", function() {
+            //     $('.select-banks').css({
+            //         "display": "none",
+            //         "visibility": "hidden"
+            //     })
+            //     $('.select-cards').css({
+            //         "display": "grid",
+            //         "visibility": "visible"
+            //     });
+
+            // });
 
             $(document).on("click", ".checkBox", function() {
 
