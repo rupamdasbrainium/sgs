@@ -255,6 +255,8 @@
 
     {{-- <script src="http://localhost/sgs/public/js/custom.js"></script> --}}
     @include('footer')
+    
+    @push('scripts')
     <script src="https://maps.googleapis.com/maps/api/js?key={{ config('map.map_api_key') }}&callback=initMap" async defer></script>
     <script>
         function initMap() {
@@ -279,6 +281,7 @@
             });
         }
     </script>
+    @endpush
 </x-guest-layout>
 
 @push('scripts')
