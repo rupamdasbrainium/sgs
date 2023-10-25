@@ -255,6 +255,30 @@
 
     {{-- <script src="http://localhost/sgs/public/js/custom.js"></script> --}}
     @include('footer')
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ config('map.map_api_key') }}&callback=initMap" async defer></script>
+    <script>
+        function initMap() {
+            var geocoder = new google.maps.Geocoder();
+            var address = "{{ $data['franchise_address'] }}";
+
+            geocoder.geocode({ 'address': address }, function(results, status) {
+                if (status === 'OK') {
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        center: results[0].geometry.location,
+                        zoom: 15
+                    });
+
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location,
+                        title: address
+                    });
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+    </script>
 </x-guest-layout>
 
 @push('scripts')
@@ -312,28 +336,5 @@
         }
     });
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ config('map.map_api_key') }}&callback=initMap" async defer></script>
-    <script>
-        function initMap() {
-            var geocoder = new google.maps.Geocoder();
-            var address = "{{ $data['franchise_address'] }}";
-
-            geocoder.geocode({ 'address': address }, function(results, status) {
-                if (status === 'OK') {
-                    var map = new google.maps.Map(document.getElementById('map'), {
-                        center: results[0].geometry.location,
-                        zoom: 15
-                    });
-
-                    var marker = new google.maps.Marker({
-                        map: map,
-                        position: results[0].geometry.location,
-                        title: address
-                    });
-                } else {
-                    alert('Geocode was not successful for the following reason: ' + status);
-                }
-            });
-        }
-    </script>
+    
 @endpush
