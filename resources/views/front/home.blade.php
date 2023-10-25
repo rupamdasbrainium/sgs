@@ -234,11 +234,11 @@
                 </div>
                 <div class="subscribe_map">
                     <!-- <img src="{{ asset('public/images/map.png') }}" alt=""> -->
-                    <div class="mapopt">
-                        <iframe
+                    <div class="mapopt" id="map">
+                        {{-- <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.1220591551264!2d88.43105637416711!3d22.574537732901522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0275af0f72e607%3A0x7b8571e4cca5cae4!2s60%2C%20Street%20Number%2018%2C%20EN%20Block%2C%20Sector%20V%2C%20Bidhannagar%2C%20Kolkata%2C%20West%20Bengal%20700091!5e0!3m2!1sen!2sin!4v1690264798361!5m2!1sen!2sin"
                             width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            referrerpolicy="no-referrer-when-downgrade"></iframe> --}}
                     </div>
                     <div class="round_opt_btn">
                         <img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
@@ -311,5 +311,29 @@
             $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
         }
     });
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ config('map.map_api_key') }}&callback=initMap" async defer></script>
+    <script>
+        function initMap() {
+            var geocoder = new google.maps.Geocoder();
+            var address = "{{ $data['franchise_address'] }}";
+
+            geocoder.geocode({ 'address': address }, function(results, status) {
+                if (status === 'OK') {
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        center: results[0].geometry.location,
+                        zoom: 15
+                    });
+
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location,
+                        title: address
+                    });
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
     </script>
 @endpush

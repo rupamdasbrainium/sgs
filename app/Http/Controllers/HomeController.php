@@ -40,10 +40,12 @@ class HomeController extends Controller
                 $franchise_id = $franchise->id;
                 $short_code = $franchise->shortCode;
                 $short_code_flag = 1;
+                $data['franchise_address'] = $franchise->address_civic_number .' '. $franchise->address_street .' '. $franchise->address_city;
                 break;
             }
             if ($franchise->shortCode == $short_code) { //actual
                 $franchise_id = $franchise->id;
+                $data['franchise_address'] = $franchise->address_civic_number .' '. $franchise->address_street .' '. $franchise->address_city;
                 break;
             }
         }
