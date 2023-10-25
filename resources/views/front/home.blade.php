@@ -260,38 +260,38 @@
     <script src="https://maps.googleapis.com/maps/api/js?key={{ config('map.map_api_key') }}&callback=initMap" async defer></script>
     <script>
         function initMap() {
-            // var geocoder = new google.maps.Geocoder();
-            // var address = "{{ $data['franchise_address'] }}";
+            var geocoder = new google.maps.Geocoder();
+            var address = "{{ $data['franchise_address'] }}";
 
-            // geocoder.geocode({ 'address': address }, function(results, status) {
-            //     if (status === 'OK') {
-            //         var map = new google.maps.Map(document.getElementById('map'), {
-            //             center: results[0].geometry.location,
-            //             zoom: 15
-            //         });
+            geocoder.geocode({ 'address': address }, function(results, status) {
+                if (status === 'OK') {
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        center: results[0].geometry.location,
+                        zoom: 15
+                    });
 
-            //         var marker = new google.maps.Marker({
-            //             map: map,
-            //             position: results[0].geometry.location,
-            //             title: address
-            //         });
-            //     } else {
-            //         alert('Geocode was not successful for the following reason: ' + status);
-            //     }
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location,
+                        title: address
+                    });
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+
+            // // Create a new map centered at a specific location
+            // var map = new google.maps.Map(document.getElementById('map'), {
+            //     center: { lat: 40.7128, lng: -74.0060 }, // New York City coordinates
+            //     zoom: 12
             // });
 
-            // Create a new map centered at a specific location
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 40.7128, lng: -74.0060 }, // New York City coordinates
-                zoom: 12
-            });
-
-            // Create a marker and set its position
-            var marker = new google.maps.Marker({
-                position: { lat: 40.7128, lng: -74.0060 }, // Marker position (New York City)
-                map: map, // Associate the marker with a map
-                title: 'New York City' // Marker tooltip text
-            });
+            // // Create a marker and set its position
+            // var marker = new google.maps.Marker({
+            //     position: { lat: 40.7128, lng: -74.0060 }, // Marker position (New York City)
+            //     map: map, // Associate the marker with a map
+            //     title: 'New York City' // Marker tooltip text
+            // });
         }
     </script>
     @endpush
