@@ -9,6 +9,6 @@ return [
     |
     */
 
-    'map_api_key' => env('map_api_key', 'AIzaSyCw-u9TMmeMX7PGMXy5v51W2PrjwdhoTes'),
+    'map_api_key' => env('map_api_key', 'env'),
 
 ];
