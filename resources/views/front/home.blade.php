@@ -179,11 +179,11 @@
                                                     @endif
                                                 </div>
                                                 {{-- <p>{{ __('global.price') }}</p> --}}
-                                                <p>{{ $lang_id == 2 ? $item['descr_english'] : $item['descr_french'] }}</p>
+                                                {{-- <p>{{ $lang_id == 2 ? $item['descr_english'] : $item['descr_french'] }}</p> --}}
                                             </div>
                                             <div class="individual_opt">
                                                 <div class="individual_head" style="background-color: {{$theme->value}}">
-                                                    {{ __('global.age') }} : {{ $lang_id == 2 ? $item['ageLimit_english'] : $item['ageLimit_french'] }}
+                                                    {{-- {{ __('global.age') }} : {{ $lang_id == 2 ? $item['ageLimit_english'] : $item['ageLimit_french'] }} --}}
                                                 </div>
                                                 <div class="individual_des">
                                                     <ul>
