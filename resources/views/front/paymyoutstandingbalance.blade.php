@@ -91,12 +91,12 @@
                                             for="payment_opt1">{{ __('paymyoutstandingbalance.Credit_Card') }}</label>
                                     </div>
 
-                                    <div class="memberships_nam radio bank">
+                                    {{-- <div class="memberships_nam radio bank">
                                         <input type="radio" id="payment_opt3" name="payment_type"
                                             value="bank_account"  @if(request()->type == "bank" || request()->type == "new_bank")checked @endif>
                                         <label
                                             for="payment_opt3">{{ __('paymyoutstandingbalance.Bank_Account') }}</label>
-                                    </div>
+                                    </div> --}}
 
                                 </div>
                                 <input type="hidden" name="new_key" id="new_key" value="0">
@@ -127,7 +127,7 @@
                                                     <div class="arrowdown2">
                                                         <i class="fal fa-chevron-down"></i>
                                                     </div>
-                                                    <select class="select_opt" name="payment_method_id">
+                                                    {{-- <select class="select_opt" name="payment_method_id">
                                                         @if ($data['banks'] != null)
                                                             @foreach ($data['banks'] as $bank)
                                                                 <option value="{{ $bank->id }}" {{ (request()->type == 'bank' && request()->acc_id == $bank->id) ? 'selected':'' }}>XXXX XXXX XXXX
@@ -139,7 +139,7 @@
                                                                 {{ __('paymyoutstandingbalance.No_Bank_Account_Found') }}
                                                             </option>
                                                         @endif
-                                                    </select>
+                                                    </select> --}}
                                                 </div>
                                             </div>
                                         </div>
