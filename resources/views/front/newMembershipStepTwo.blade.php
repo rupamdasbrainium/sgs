@@ -31,7 +31,8 @@
                                                         {{-- <h3>{{ __('newMembership.option') }} 1</h3> --}}
                                                         <div class="optionitem_block">
                                                             <div class="opt_add">
-                                                                <img src="images/prod_img1.png" alt="">
+                                                                {{-- <img src="images/prod_img1.png" alt=""> --}}
+                                                                {{$item->image}}
                                                             </div>
                                                             <div class="optionitem_des">
                                                                 <p>{{ $item->name }}</p>
