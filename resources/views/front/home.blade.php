@@ -77,7 +77,7 @@
                                                 @isset($data['franchises'])
                                                     @foreach ($data['franchises']->data as $franchise)
                                                         <option value="{{ $franchise->shortCode }}"
-                                                            {{ $franchise->id == $franchise_id ? 'selected="selected"' : ($short_code_flag? '':'disabled="disabled"') }}>
+                                                            {{ $franchise->id == $franchise_id ? 'selected="selected"' : '' }}>
                                                             {{ $franchise->name }}</option>
                                                     @endforeach
                                                 @endisset
@@ -92,7 +92,7 @@
                                                 @isset($data['franchises'])
                                                     @foreach ($data['franchises']->data as $franchise)
                                                         <option value="{{ $franchise->shortCode }}"
-                                                            {{ $franchise->id == $franchise_id ? 'selected="selected"' : ($short_code_flag? '':'disabled="disabled"') }}>
+                                                            {{ $franchise->id == $franchise_id ? 'selected="selected"' : '' }}>
                                                             {{ $franchise->address_civic_number }}{{ $franchise->address_street }}{{ $franchise->address_city }}
                                                         </option>
                                                     @endforeach
