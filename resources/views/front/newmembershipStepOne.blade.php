@@ -25,9 +25,9 @@
 										{{-- <i class="far fa-chevron-down"></i> --}}
 									</div>
 									<select class="select_opt">
-										<option value="{{$values->data->id}}">
+										<option value="{{$values->id}}">
 
-											{{ $values->data->name }}
+											{{ $values->name }}
 
 										</option>
 									</select>
@@ -37,18 +37,18 @@
 						<div class="action_opt">
 							<div class="price_text">
 
-								@if (isset($values->data))
-									@if (count($values->data->prices_per_durations))
+								@if (isset($values))
+									@if (count($values->priceBydurations))
 										<div class="selectcont ">
 											<div class="arrowdown2">
 												<i class="fal fa-chevron-down"></i>
 											</div>
 											<select class="select_opt">
-												@foreach ($values->data->prices_per_durations as $val)
+												@foreach ($values->priceBydurations as $val)
 													{{-- ${{ $val->price_recurant }}<span>/
 														{{ $val->duration_unit_display }}</span> --}}
-														<option>${{ $val->price_recurant }}<span>/
-															{{ $val->duration_unit_display }}</span> For {{ $val->frequency }} {{ $val->duration_unit_display }}
+														<option>${{ $val->price }}<span>/
+															{{ $val->typeDuration }}</span> For {{ $val->frequency }} {{ $val->typeDuration }}
 														</option>
 												@endforeach
 											</select>
@@ -59,30 +59,30 @@
 								@endif
 							</div>
 							{{-- <p>{{ __('global.price') }}</p> --}}
-							<p>{{ $lang_id == 2 ? $item->descr_english : $item->descr_french }}</p>
+							{{-- <p>{{ $lang_id == 2 ? $item->descr_english : $item->descr_french }}</p> --}}
 						</div>
 						<div class="individual_opt">
 							<div class="individual_head" style="background-color: {{$theme->value}}">
-								{{ __('global.age') }} : {{ $lang_id == 2 ? $item->ageLimit_english : $item->ageLimit_french }}
+								{{ __('global.age') }} : {{ $values->ageLimit }}
 							</div>
 							<div class="individual_des">
 								<ul>
-									@if (isset($values->data))
-										@if (isset($values->data->options))
-											@foreach ($values->data->options as $val)
-												<li><span><i
-															class="fal fa-times"></i></span>{{ $val->name }}
-												</li>
-											@endforeach
-										@endif
+									@if (isset($values))
+									@if (isset($values->marketingBools))
+										@foreach ($values->marketingBools as $val)
+											<li><span><i
+														class="fal fa-times"></i></span>{{ $val->description }}
+											</li>
+										@endforeach
 									@endif
+								@endif
 								</ul>
 								{{-- <ul>
 									<li>{{ $lang_id == 2 ? $item->descr_english : $item->descr_french }}</li>
 								</ul> --}}
 								<div class="subscribe_btn" >
 									
-									<a href="{{ route('newMembershipSteptwo', [$values->data->id]) }}"
+									<a href="{{ route('newMembershipSteptwo', [$values->id]) }}"
 										class="sub_btn"  style="background-color: {{$button->value}}">{{ __('global.subscribe') }}</a>
 								</div>
 							</div>

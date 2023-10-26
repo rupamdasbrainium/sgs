@@ -48,7 +48,11 @@
 														<h3 style="background-color: {{$theme->value}}">{{ __('newMembership.option') }} {{ $loop->iteration }}</h3>
 														<div class="optionitem_block">
 															<div class="opt_add">
+																@if($item->image == null)
 																<img src="{{asset('public/images/prod_img1.png')}}" alt="">
+																@else
+																<img src="{{$item->image}}" alt="">
+																@endif
 															</div>
 															<div class="optionitem_des">
 																<p>{{ $item->name }}</p>

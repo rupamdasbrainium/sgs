@@ -73,11 +73,11 @@
                                                 <i class="fal fa-chevron-down"></i>
                                             </div>
                                             <input type="hidden" id="homeurl" value="{{ route('homepage') }}">
-                                            <select class="select_opt" id="franchises_name">
+                                            <select class="select_opt" id="franchises_name" name="franchise_name">
                                                 @isset($data['franchises'])
                                                     @foreach ($data['franchises']->data as $franchise)
                                                         <option value="{{ $franchise->shortCode }}"
-                                                            {{ $franchise->id == $franchise_id ? 'selected="selected"' : ($short_code_flag? '':'disabled="disabled"') }}>
+                                                            {{ $franchise->id == $franchise_id ? 'selected="selected"' : '' }}>
                                                             {{ $franchise->name }}</option>
                                                     @endforeach
                                                 @endisset
@@ -92,7 +92,7 @@
                                                 @isset($data['franchises'])
                                                     @foreach ($data['franchises']->data as $franchise)
                                                         <option value="{{ $franchise->shortCode }}"
-                                                            {{ $franchise->id == $franchise_id ? 'selected="selected"' : ($short_code_flag? '':'disabled="disabled"') }}>
+                                                            {{ $franchise->id == $franchise_id ? 'selected="selected"' : '' }}>
                                                             {{ $franchise->address_civic_number }}{{ $franchise->address_street }}{{ $franchise->address_city }}
                                                         </option>
                                                     @endforeach
@@ -253,7 +253,17 @@
         </div>
     </section>
 
+    <script>
 
+        // $("#home_continue").click(function(){
+        //     console.log("first")
+            document.getElementById("home_continue").addEventListener("click", function() {
+                console.log("first")
+var selected_value = $("select[name= 'franchise_name']").val();
+var url = '{{route("homepage")}}'
+window.location.href = url+"/"+selected_value;
+        })
+    </script>
     {{-- <script src="http://localhost/sgs/public/js/custom.js"></script> --}}
     @include('footer')
     
@@ -456,5 +466,7 @@
         }
     });
     </script>
+
+   
     
 @endpush
