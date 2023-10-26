@@ -585,12 +585,12 @@ class AccountController extends Controller
 
         $lang_id = $client->language_id;
         //franchise get all plan
-        $all_plan = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id, "get", "{}");
+        $all_plan = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id. "&language_id=" . $lang_id, "get", "{}");
         $data['all_plan'] = json_decode($all_plan);
 
         //franchise best four plan details
         foreach ($data['all_plan']->data as $item) {
-            $data['all_plan_details'][] = json_decode(APICall("SubscriptionPlans/type/" . $item->id . "?language_id=" . $lang_id, "get", "{}"));
+            $data['all_plan_details'][] = $item;
         }
 
         return view('front.newmembershipStepOne', compact('data', 'logo', 'theme', 'button', 'admin_phone', 'admin_address', 'lang_id'));
