@@ -106,7 +106,7 @@
                                             <select class="select_opt" id="franchises_type">
 
                                                 @foreach ($data['franchisesPlanType']->data as $value)
-                                                <option value="{{ $value->id }}">{{ $lang_id == 2? $value->name_english :  $value->name_french}}
+                                                <option value="{{ $value->id }}">{{ $value->name }}
                                                     </option>
                                                 @endforeach
 
@@ -123,10 +123,11 @@
 
                                     {{-- @dd($data['best_four_plan_details']) --}}
 
-                                    @foreach ($data['best_four_plan_details'] as $key => $values)
-                                    @php
+                                    {{-- @foreach ($data['best_four_plan_details'] as $key => $values) --}}
+                                    @foreach ($data['all_plan_data'] as $key => $values)
+                                    {{-- @php
                                         $item = $data['all_plan_data'][$key];
-                                    @endphp
+                                    @endphp --}}
                                         <div class="prod_item">
                                             <div class="action_opt action_opt_title" style="background-color: {{$theme->value}}">
 
@@ -138,9 +139,9 @@
                                                             {{-- <i class="far fa-chevron-down"></i> --}}
                                                         </div>
                                                         <select class="select_opt">
-                                                            <option value="{{$values->data->id}}">
+                                                            <option value="{{$values->id}}">
 
-                                                                {{ $values->data->name }}
+                                                                {{ $values->name }}
 
                                                             </option>
                                                             {{-- <option value="Action2">Action 2</option>
@@ -153,22 +154,22 @@
                                             <div class="action_opt adj_height">
                                                 <div class="price_text">
 
-                                                    @if (isset($values->data))
-                                                        @if (count($values->data->prices_per_durations))
+                                                    @if (isset($values))
+                                                        @if (count($values->priceBydurations))
                                                             <div class="selectcont ">
                                                                 <div class="arrowdown2">
                                                                     <i class="fal fa-chevron-down"></i>
                                                                 </div>
                                                                 <select class="select_opt">
 
-                                                                    @foreach ($values->data->prices_per_durations as $val)
+                                                                    @foreach ($values->priceBydurations as $val)
                                                                         {{-- ${{ $val->price_recurant }}<span>/
                                                                             {{ $val->duration_unit_display }}</span> For {{ $val->frequency }} {{ $val->duration_unit_display }}
                                                                             @if(!$loop->last)
                                                                                 <br>
                                                                             @endif --}}
-                                                                        <option>${{ $val->price_recurant }}<span>/
-                                                                            {{ $val->duration_unit_display }}</span> For {{ $val->frequency }} {{ $val->duration_unit_display }}
+                                                                        <option>${{ $val->price }}<span>/
+                                                                            {{ $val->typeDuration }}</span> For {{ $val->frequency }} {{ $val->typeDuration }}
                                                                             </option>
                                                                     @endforeach
                                                                 </select>
@@ -179,19 +180,19 @@
                                                     @endif
                                                 </div>
                                                 {{-- <p>{{ __('global.price') }}</p> --}}
-                                                {{-- <p>{{ $lang_id == 2 ? $item['descr_english'] : $item['descr_french'] }}</p> --}}
+                                                <p>{{ $values->descr }}</p>
                                             </div>
                                             <div class="individual_opt">
                                                 <div class="individual_head" style="background-color: {{$theme->value}}">
-                                                    {{-- {{ __('global.age') }} : {{ $lang_id == 2 ? $item['ageLimit_english'] : $item['ageLimit_french'] }} --}}
+                                                    {{ __('global.age') }} : {{ $values->ageLimit }}
                                                 </div>
                                                 <div class="individual_des">
                                                     <ul>
-                                                        @if (isset($values->data))
-                                                            @if (isset($values->data->options))
-                                                                @foreach ($values->data->options as $val)
+                                                        @if (isset($values))
+                                                            @if (isset($values->marketingBools))
+                                                                @foreach ($values->marketingBools as $val)
                                                                     <li><span><i
-                                                                                class="fal fa-times"></i></span>{{ $val->name }}
+                                                                                class="fal fa-times"></i></span>{{ $val->description }}
                                                                     </li>
                                                                 @endforeach
                                                             @endif
@@ -199,7 +200,7 @@
                                                         {{-- <li>{{ $lang_id == 2 ? $item['descr_english'] : $item['descr_french'] }}</li> --}}
                                                     </ul>
                                                     <div class="subscribe_btn">
-                                                        <a href="{{ route('newMembershipfont', [$values->data->id]) }}"
+                                                        <a href="{{ route('newMembershipfont', [$values->id]) }}"
                                                             class="sub_btn" style="background-color: {{$button->value}}" >{{ __('global.subscribe') }}</a>
                                                     </div>
                                                 </div>

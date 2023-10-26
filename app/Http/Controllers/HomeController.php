@@ -82,8 +82,8 @@ class HomeController extends Controller
 
 
         //franchise plan type
-        $franchisesPlanType = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id, "get", "{}");
-        $data['franchisesPlanType'] = json_decode($franchisesPlanType);
+        $franchisesPlanType = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id. "&language_id=" . $lang_id, "get", "{}");
+        $data['all_plan'] = $data['franchisesPlanType'] = json_decode($franchisesPlanType);
 
         //franchise best four plan
         $best_four_plan = APICall("SubscriptionPlans/franchises/" . $franchise_id, "get", "{}");
@@ -91,59 +91,59 @@ class HomeController extends Controller
 
         // $data_plan = [];
         //franchise best four plan details
-        if($data['best_four_plan']->data->subscriptionPlan1){
-            $data_plan[0] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan1 . "?language_id=" . $lang_id, "get", "{}"));
-            $data['all_plan_data'][0] = '';
-        }
+        // if($data['best_four_plan']->data->subscriptionPlan1){
+        //     $data_plan[0] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan1 . "?language_id=" . $lang_id, "get", "{}"));
+        //     $data['all_plan_data'][0] = '';
+        // }
 
-        if($data['best_four_plan']->data->subscriptionPlan2){
-            $data_plan[1] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan2 . "?language_id=" . $lang_id, "get", "{}"));
-            $data['all_plan_data'][1] = '';
-        }
+        // if($data['best_four_plan']->data->subscriptionPlan2){
+        //     $data_plan[1] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan2 . "?language_id=" . $lang_id, "get", "{}"));
+        //     $data['all_plan_data'][1] = '';
+        // }
 
-        if($data['best_four_plan']->data->subscriptionPlan3){
-            $data_plan[2] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan3 . "?language_id=" . $lang_id, "get", "{}"));
-            $data['all_plan_data'][2] = '';
-        }
+        // if($data['best_four_plan']->data->subscriptionPlan3){
+        //     $data_plan[2] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan3 . "?language_id=" . $lang_id, "get", "{}"));
+        //     $data['all_plan_data'][2] = '';
+        // }
 
-        if($data['best_four_plan']->data->subscriptionPlan4){
-            $data_plan[3] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan4 . "?language_id=" . $lang_id, "get", "{}"));
-            $data['all_plan_data'][3] = '';
-        }
+        // if($data['best_four_plan']->data->subscriptionPlan4){
+        //     $data_plan[3] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan4 . "?language_id=" . $lang_id, "get", "{}"));
+        //     $data['all_plan_data'][3] = '';
+        // }
 
-        $all_plan = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id, "get", "{}");
-        $data['all_plan'] = json_decode($all_plan);
+        // $all_plan = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id, "get", "{}");
+        // $data['all_plan'] = json_decode($all_plan);
 
         //franchise best four plan details
         foreach ($data['all_plan']->data as $item) {
-            $all_plan_data_arr['descr_english'] = $item->descr_english;
-            $all_plan_data_arr['descr_french'] = $item->descr_french;
-            $all_plan_data_arr['ageLimit_english'] = $item->ageLimit_english;
-            $all_plan_data_arr['ageLimit_french'] = $item->ageLimit_french;
+            // $all_plan_data_arr['descr_english'] = $item->descr_english;
+            // $all_plan_data_arr['descr_french'] = $item->descr_french;
+            // $all_plan_data_arr['ageLimit_english'] = $item->ageLimit_english;
+            // $all_plan_data_arr['ageLimit_french'] = $item->ageLimit_french;
 
             if($item->id == $data['best_four_plan']->data->subscriptionPlan1){
-                $data['all_plan_data'][0] = $all_plan_data_arr;
+                $data['all_plan_data'][0] = $item;
                 continue;
             }
             if($item->id == $data['best_four_plan']->data->subscriptionPlan2){
-                $data['all_plan_data'][1] = $all_plan_data_arr;
+                $data['all_plan_data'][1] = $item;
                 continue;
             } 
             if($item->id == $data['best_four_plan']->data->subscriptionPlan3){
-                $data['all_plan_data'][2] = $all_plan_data_arr;
+                $data['all_plan_data'][2] = $item;
                 continue;
             } 
             if($item->id == $data['best_four_plan']->data->subscriptionPlan4) {
-                $data['all_plan_data'][3] = $all_plan_data_arr;
+                $data['all_plan_data'][3] = $item;
                 continue;
             }
-            $data_plan[] = json_decode(APICall("SubscriptionPlans/type/" . $item->id . "?language_id=" . $lang_id, "get", "{}"));
-            $data['all_plan_data'][] = $all_plan_data_arr;
+            // $data_plan[] = json_decode(APICall("SubscriptionPlans/type/" . $item->id . "?language_id=" . $lang_id, "get", "{}"));
+            $data['all_plan_data'][] = $item;
         }
-        $best_four_plan_details = $data_plan;
-        $data['best_four_plan_details'] = $data_plan;
+        // $best_four_plan_details = $data_plan;
+        // $data['best_four_plan_details'] = $data_plan;
        
-        return view('front.home', compact('data', 'best_four_plan_details', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag'));
+        return view('front.home', compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag'));
     }
 
     public function login()
