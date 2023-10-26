@@ -277,6 +277,7 @@
                         position: results[0].geometry.location,
                         title: address
                     });
+                    allowStartingPointSelection(map);
                 } else {
                     alert('Geocode was not successful for the following reason: ' + status);
                 }
@@ -286,7 +287,7 @@
             
             
                     // calculateAndDisplayRoute(directionsService, directionsRenderer);
-                    allowStartingPointSelection(map);
+                    
                 
 
             // // Create a new map centered at a specific location
