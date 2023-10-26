@@ -226,9 +226,9 @@
                     <div class="sub_from">
                         
                         <div class="form-group">
-                            <input type="email" class="form-control" id="email" placeholder="{{ __('global.find_gym_placeholder') }}">
-                            <button type="button" class="searchicon_opt">
-                                <i class="far fa-search"></i>
+                            <input type="email" class="form-control" id="starting_point" placeholder="{{ __('global.find_gym_placeholder') }}">
+                            <button type="button" class="searchicon_opt" id="search_btn">
+                                <i class="fa fa-search"></i>
                             </button>
                         </div>
                     </div>
@@ -263,6 +263,7 @@
         function initMap() {
             var geocoder = new google.maps.Geocoder();
             var address = "{{ $data['franchise_address'] }}";
+            new google.maps.places.Autocomplete(document.getElementById('starting_point'));
 
             geocoder.geocode({ 'address': address }, function(results, status) {
                 if (status === 'OK') {
@@ -281,6 +282,20 @@
                 }
             });
 
+            // Call a function to allow the user to select a starting point
+            
+            document.getElementById("search_btn").addEventListener("click", () => {
+                starting_point = $("#start_point").val();
+                if(starting_point=='')
+                {
+                    alert('Please set starting point first to proceed.');
+                }else{
+                    // calculateAndDisplayRoute(directionsService, directionsRenderer);
+                    allowStartingPointSelection(map);
+                }
+            });
+            
+
             // // Create a new map centered at a specific location
             // var map = new google.maps.Map(document.getElementById('map'), {
             //     center: { lat: 40.7128, lng: -74.0060 }, // New York City coordinates
@@ -294,6 +309,47 @@
             //     title: 'New York City' // Marker tooltip text
             // });
         }
+
+        function allowStartingPointSelection(map) {
+            var directionsService = new google.maps.DirectionsService();
+            var directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+
+            // Listen for click events on the map
+            // google.maps.event.addListener(map, 'click', function(event) {
+                var originAddress = document.getElementById("starting_point").value; // Origin address
+                var destinationAddress = '{{ $data['franchise_address'] }}'; // Destination address
+                // Remove existing markers and directions
+                directionsRenderer.setMap(null);
+
+                // Add a marker for the selected starting point
+                // var startingPointMarker = new google.maps.Marker({
+                //     position: event.latLng,
+                //     map: map,
+                //     title: 'Starting Point Marker'
+                // });
+
+                // Request and display directions from the starting point to the fixed address
+                directionsService.route({
+                    origin: originAddress,
+                    destination: destinationAddress,
+                    travelMode: 'DRIVING'
+                }, function(response, status) {
+                    if (status === 'OK') {
+                        directionsRenderer.setDirections(response);
+                        // Add markers for the origin and destination addresses
+                        var originMarker = new google.maps.Marker({
+                            position: response.routes[0].legs[0].end_location,
+                            map: directionsRenderer.getMap(),
+                            title: destinationAddress
+                        });
+                    } else {
+                        window.alert('Directions request failed due to ' + status);
+                    }
+                });
+            // });
+        }
+
     </script>
     @endpush
 </x-guest-layout>
