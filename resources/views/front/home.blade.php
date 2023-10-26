@@ -258,7 +258,7 @@
     @include('footer')
     
     @push('scripts')
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ config('map.map_api_key') }}&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ config('map.map_api_key') }}&libraries=places&callback=initMap" async defer></script>
     <script>
         function initMap() {
             var geocoder = new google.maps.Geocoder();
