@@ -8,6 +8,15 @@
         <div class="welcomesection def_padding inner_content_block">
             <div class="container">
                 <div class="row">
+                    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
                     {{-- @dump(Session::get('message')); --}}
                     <div class="col-md-12">
                         @if (Session::has('message'))
@@ -94,6 +103,7 @@
                                                     value="{{ old('address_appartment') }}" class="form-control"
                                                     placeholder="{{ __('suscription.app') }} ">
                                             </div>
+                                         
                                         </div>
                                     </div>
                                     <div class="inp_row gapadj inp_colm3">
@@ -171,7 +181,6 @@
                                                     value="{{ old('emergency_contact') }}" class="form-control"
                                                     placeholder="{{ __('suscription.emergency_contact_name') }}*"
                                                     required>
-
                                             </div>
                                             @error('emergency_contact')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -227,6 +236,9 @@
                                                     class="form-control"
                                                     placeholder="{{ __('suscription.email') }} *" required>
                                             </div>
+                                            @error('email')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                             @error('email')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror

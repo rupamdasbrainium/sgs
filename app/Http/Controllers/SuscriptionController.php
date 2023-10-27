@@ -102,7 +102,6 @@ class SuscriptionController extends Controller
         $fromdata['reference_Code'] = $request->reference_Code;
 
 
-
         //clients save type call
         $clients = APICall("Clients?franchise_id=".$request->franchise_id, "POST",json_encode($fromdata));
         $data['clients'] = json_decode($clients);
