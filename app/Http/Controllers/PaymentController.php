@@ -96,8 +96,8 @@ class PaymentController extends Controller
                 );
                 return redirect()->back()->with($response)->withInput();
             }
-            $get_methode_acc = APICall('PaymentMethods/accounts?clients=' . $data['pay_methode_acc']->data->client_id, "get", "{}", "client_app");
-            $data['get_methode_acc'] = json_decode($get_methode_acc);
+            // $get_methode_acc = APICall('PaymentMethods/accounts?clients=' . $data['pay_methode_acc']->data->client_id, "get", "{}", "client_app");
+            // $data['get_methode_acc'] = json_decode($get_methode_acc);
 
             //membership with bank account
             $membershipdata = array();
@@ -119,7 +119,7 @@ class PaymentController extends Controller
                 }
             }
             $membershipdata['code_promo'] = $request->code_promo;
-            $membershipdata['account_id'] = $data['get_methode_acc']->data[0]->id;
+            $membershipdata['account_id'] =  $data['pay_methode_acc']->data->id;
 
             $membership_with_bnk_acc = APICall('Memberships/with-bank-account?display_language_id=' . $lang_id, "post", json_encode($membershipdata), "client_app");
             $data['membership_with_bnk_acc'] = json_decode($membership_with_bnk_acc);
