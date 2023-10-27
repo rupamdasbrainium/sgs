@@ -56,12 +56,20 @@ class SuscriptionController extends Controller
               'address_street' => 'required|alpha | min:1 | max:50',
               'firstname' => 'required | min:1 | max:50',
               'lastname' => 'required | min:1 | max:100',
-              'eamil' => 'required | email | min:10 | max:260',
+              'email' => 'required | email | min:10 | max:260',
+              'email_confirmation' => 'required',
               'emergency_contact' => 'required | min:1 | max:50',
               'address_city' => 'required | min:1 | max:50',
               'user_name' => 'required | min:1 | max:35',
               'password' => 'required | min:8 | max:75',
-              'confirm-password' => 'required | same:password',
+              'confirm_password' => 'required | same:password',
+              'address_postal_code' => 'required',
+              'phone' => 'required',
+              'cellphone' => 'required',
+              'emergency_phone' => 'required',
+              'date_of_birth' => 'required',
+              'installments' => 'required',
+              'reference_id' => 'required',
               
             ]
         );

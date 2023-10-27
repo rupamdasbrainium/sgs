@@ -51,8 +51,8 @@
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="text" name="firstname" id="firstname" value="{{ old('firstname') }}"
-                                                    class="form-control" placeholder="{{ __('suscription.fn') }} *" maxLength={5}
-                                                    required />
+                                                    class="form-control" placeholder="{{ __('suscription.fn') }} *"
+                                                    required>
                                             </div>
                                             @error('firstname')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -103,6 +103,9 @@
                                                     value="{{ old('address_city') }}" class="form-control" autocomplete="address_city"
                                                     placeholder="{{ __('suscription.city') }} *" required>
                                             </div>
+                                            @error('address_city')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
@@ -111,6 +114,9 @@
                                                     placeholder="{{ __('suscription.pin') }} *" required>
                                                 <p>{{ __('suscription.example') }}: j3B 8k7</p>
                                             </div>
+                                            @error('address_postal_code')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
@@ -144,6 +150,9 @@
                                                     placeholder="{{ __('suscription.ph') }} *" required>
                                                 <p>{{ __('suscription.example') }}: xxx xxx-xxxx</p>
                                             </div>
+                                            @error('phone')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
@@ -152,6 +161,9 @@
                                                     required>
                                                 <p>{{ __('suscription.example') }}: xxx xxx-xxxx</p>
                                             </div>
+                                            @error('cellphone')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
@@ -161,6 +173,9 @@
                                                     required>
 
                                             </div>
+                                            @error('emergency_contact')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="inp_row gapadj inp_colm3">
@@ -171,6 +186,9 @@
                                                     placeholder="{{ __('suscription.emergency_ph') }} *" required>
                                                 <p>{{ __('suscription.example') }}: xxx xxx-xxxx</p>
                                             </div>
+                                            @error('emergency_phone')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
@@ -179,6 +197,9 @@
                                                     class="form-control" placeholder="{{ __('suscription.dob') }} *"
                                                     required>
                                             </div>
+                                            @error('date_of_birth')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
@@ -206,7 +227,9 @@
                                                     class="form-control"
                                                     placeholder="{{ __('suscription.email') }} *" required>
                                             </div>
-                                            
+                                            @error('email')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
@@ -228,9 +251,12 @@
                                                 <input class="form-control" type="password" name="password"
                                                     value="{{ old('password') }}"
                                                     placeholder="{{ __('suscription.password') }} *"
-                                                    autocomplete="current-password" required="" id="id_password"
+                                                    autocomplete="current-password" id="id_password"
                                                     required>
                                             </div>
+                                            @error('password')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view  noicon_opt noicon_opt2">
@@ -238,11 +264,14 @@
                                                     <i class="fal fa-eye" id="togglePassword2"
                                                         style="cursor: pointer;"></i>
                                                 </div>
-                                                <input class="form-control" type="password" name="confirm-password"
+                                                <input class="form-control" type="password" name="confirm_password"
                                                     placeholder="{{ __('suscription.password_con') }} *"
-                                                    autocomplete="current-password" required="" id="id_password2"
+                                                    autocomplete="current-password" id="id_password2"
                                                     required>
                                             </div>
+                                            @error('confirm_password')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="inp_row  ">
@@ -250,8 +279,11 @@
                                             <div class="inp_cont_view noicon_opt">
                                                 <input class="form-control" name="user_name"
                                                     value="{{ old('user_name') }}" type="text"
-                                                    placeholder="{{ __('suscription.user_name') }} *">
+                                                    placeholder="{{ __('suscription.user_name') }} *" required>
                                             </div>
+                                            @error('user_name')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
 
                                     </div>
@@ -340,6 +372,9 @@
                                                             @endif
                                                         @endforeach
                                                     @endif
+                                                    @error('installments')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
 
                                                     {{-- <div class="radio">
 												<input type="radio" id="testnum2" name="radio-group">
@@ -373,6 +408,9 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            @error('reference_id')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="frombtn_wrap">
@@ -413,18 +451,6 @@
 
             const phoneInput = document.getElementById('phone');
             phoneInput.addEventListener('input', function(event) {
-                let inputValue = event.target.value;
-                inputValue = inputValue.replace(/\D/g, ''); // Remove non-numeric characters
-                if (inputValue.length > 0) {
-                    inputValue = inputValue.match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
-                    inputValue = !inputValue[2] ? inputValue[1] : inputValue[1] + '-' + inputValue[2] + (inputValue[3] ?
-                        '-' + inputValue[3] : '');
-                }
-                event.target.value = inputValue;
-            });
-
-            const cellInput = document.getElementById('cellphone');
-            cellInput.addEventListener('input', function(event) {
                 let inputValue = event.target.value;
                 inputValue = inputValue.replace(/\D/g, ''); // Remove non-numeric characters
                 if (inputValue.length > 0) {
