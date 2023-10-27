@@ -53,15 +53,15 @@ class SuscriptionController extends Controller
 
       $request->validate(
             [
-              'address_street' => 'required|alpha | min:1 | max:50',
-              'firstname' => 'required | min:1 | max:50',
-              'lastname' => 'required | min:1 | max:100',
-              'eamil' => 'required | email | min:10 | max:260',
-              'emergency_contact' => 'required | min:1 | max:50',
-              'address_city' => 'required | min:1 | max:50',
-              'user_name' => 'required | min:1 | max:35',
-              'password' => 'required | min:8 | max:75',
-              'confirm-password' => 'required | same:password',
+              'address_street' => "required|max:50",
+              'firstname' => "required|max:50",
+              'lastname' => "required|max:100",
+              'email' => "required|email|max:260",
+              'emergency_contact' => "required|max:50",
+              'address_city' => "required|max:50",
+              'user_name' => "required|max:35",
+              'password' => "required|min:8|max:75",
+              'confirm-password' => "required"
               
             ]
         );
@@ -92,7 +92,6 @@ class SuscriptionController extends Controller
         $fromdata['reference_id'] = $request->reference_id;
         $fromdata['sub_reference_id'] = $request->sub_reference_id;
         $fromdata['reference_Code'] = $request->reference_Code;
-
 
 
         //clients save type call

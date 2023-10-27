@@ -8,6 +8,15 @@
         <div class="welcomesection def_padding inner_content_block">
             <div class="container">
                 <div class="row">
+                    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
                     {{-- @dump(Session::get('message')); --}}
                     <div class="col-md-12">
                         @if (Session::has('message'))
@@ -94,6 +103,7 @@
                                                     value="{{ old('address_appartment') }}" class="form-control"
                                                     placeholder="{{ __('suscription.app') }} ">
                                             </div>
+                                         
                                         </div>
                                     </div>
                                     <div class="inp_row gapadj inp_colm3">
@@ -103,6 +113,9 @@
                                                     value="{{ old('address_city') }}" class="form-control" autocomplete="address_city"
                                                     placeholder="{{ __('suscription.city') }} *" required>
                                             </div>
+                                            @error('address_city')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
@@ -159,8 +172,10 @@
                                                     value="{{ old('emergency_contact') }}" class="form-control"
                                                     placeholder="{{ __('suscription.emergency_contact_name') }}*"
                                                     required>
-
                                             </div>
+                                            @error('emergency_contact')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                         </div>
                                     </div>
                                     <div class="inp_row gapadj inp_colm3">
@@ -206,7 +221,9 @@
                                                     class="form-control"
                                                     placeholder="{{ __('suscription.email') }} *" required>
                                             </div>
-                                            
+                                            @error('email')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
@@ -231,6 +248,9 @@
                                                     autocomplete="current-password" required="" id="id_password"
                                                     required>
                                             </div>
+                                            @error('password')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view  noicon_opt noicon_opt2">
@@ -252,6 +272,9 @@
                                                     value="{{ old('user_name') }}" type="text"
                                                     placeholder="{{ __('suscription.user_name') }} *">
                                             </div>
+                                            @error('user_name')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                         </div>
 
                                     </div>
@@ -413,18 +436,6 @@
 
             const phoneInput = document.getElementById('phone');
             phoneInput.addEventListener('input', function(event) {
-                let inputValue = event.target.value;
-                inputValue = inputValue.replace(/\D/g, ''); // Remove non-numeric characters
-                if (inputValue.length > 0) {
-                    inputValue = inputValue.match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
-                    inputValue = !inputValue[2] ? inputValue[1] : inputValue[1] + '-' + inputValue[2] + (inputValue[3] ?
-                        '-' + inputValue[3] : '');
-                }
-                event.target.value = inputValue;
-            });
-
-            const cellInput = document.getElementById('cellphone');
-            cellInput.addEventListener('input', function(event) {
                 let inputValue = event.target.value;
                 inputValue = inputValue.replace(/\D/g, ''); // Remove non-numeric characters
                 if (inputValue.length > 0) {
