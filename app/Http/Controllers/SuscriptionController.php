@@ -53,10 +53,15 @@ class SuscriptionController extends Controller
 
       $request->validate(
             [
-              'address_street' => 'required|alpha',
-              'firstname' => 'required|regex:/^[a-zA-Z]+$/u',
-              'lastname' => 'required|regex:/^[a-zA-Z]+$/u',
-              'eamil' => 'email',
+              'address_street' => 'required|alpha | min:1 | max:50',
+              'firstname' => 'required | min:1 | max:50',
+              'lastname' => 'required | min:1 | max:100',
+              'eamil' => 'required | email | min:10 | max:260',
+              'emergency_contact' => 'required | min:1 | max:50',
+              'address_city' => 'required | min:1 | max:50',
+              'user_name' => 'required | min:1 | max:35',
+              'password' => 'required | min:8 | max:75',
+              'confirm-password' => 'required | same:password',
               
             ]
         );

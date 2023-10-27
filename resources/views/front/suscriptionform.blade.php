@@ -50,9 +50,9 @@
                                     <div class="inp_row gapadj inp_colm2">
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
-                                                <input type="text" name="firstname" value="{{ old('firstname') }}"
-                                                    class="form-control" placeholder="{{ __('suscription.fn') }} *"
-                                                    required>
+                                                <input type="text" name="firstname" id="firstname" value="{{ old('firstname') }}"
+                                                    class="form-control" placeholder="{{ __('suscription.fn') }} *" maxLength={5}
+                                                    required />
                                             </div>
                                             @error('firstname')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -147,7 +147,7 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
-                                                <input type="text" name="cellphone" value="{{ old('cellphone') }}"
+                                                <input type="text" name="cellphone" id="cellphone" value="{{ old('cellphone') }}"
                                                     class="form-control" placeholder="{{ __('suscription.cell') }} *"
                                                     required>
                                                 <p>{{ __('suscription.example') }}: xxx xxx-xxxx</p>
@@ -413,6 +413,18 @@
 
             const phoneInput = document.getElementById('phone');
             phoneInput.addEventListener('input', function(event) {
+                let inputValue = event.target.value;
+                inputValue = inputValue.replace(/\D/g, ''); // Remove non-numeric characters
+                if (inputValue.length > 0) {
+                    inputValue = inputValue.match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+                    inputValue = !inputValue[2] ? inputValue[1] : inputValue[1] + '-' + inputValue[2] + (inputValue[3] ?
+                        '-' + inputValue[3] : '');
+                }
+                event.target.value = inputValue;
+            });
+
+            const cellInput = document.getElementById('cellphone');
+            cellInput.addEventListener('input', function(event) {
                 let inputValue = event.target.value;
                 inputValue = inputValue.replace(/\D/g, ''); // Remove non-numeric characters
                 if (inputValue.length > 0) {
