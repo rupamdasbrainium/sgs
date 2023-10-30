@@ -8,15 +8,7 @@
         <div class="welcomesection def_padding inner_content_block">
             <div class="container">
                 <div class="row">
-                    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+                    
                     {{-- @dump(Session::get('message')); --}}
                     <div class="col-md-12">
                         @if (Session::has('message'))
