@@ -15,7 +15,7 @@ return [
 
     'payment' => 'Paiement',
     'center' => 'Centre',
-    'package' => 'Emballer',
+    'package' => 'Adhésion',
     'promo' => 'Code promotionnel/récompense',
     'summary' => 'Récapitulatif de votre abonnement',
     'center' => 'Centre',

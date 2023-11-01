@@ -63,7 +63,7 @@
                     @foreach ($membership->data as $item)
 
 					<div class="memberships_opt mb-2">
-						<div class="memberships_nam">{{ $item->type }} - {{ __('myProfile.davable') }} ${{ $item->recurantCharge }} {{ __('myProfile.per_Month') }}</div>
+						<div class="memberships_nam">{{ $item->type }} ${{ $item->recurantCharge }} {{ __('myProfile.per_Month') }}</div>
 						<div class="memberships_method_view">
 							<div class="memberships_method">{{ __('myProfile.Method_of_payment') }}:</div>
 							<div class="memberships_method_opt">
