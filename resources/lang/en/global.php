@@ -26,9 +26,17 @@ return [
     'sub_text_info' => 'Find a GYM Near you',
     'sub_text_info_p' => 'To find a Club, use the search bar, navigate using the map, or turn on location services',
     "find_gym_placeholder"=>"Enter address",
-    "age" => "Age restriction"
-    // 'Subscription plan' => 'New Subscription',
-    // 'Subscription plan options' => 'Subscription plan options',
-    // 'Subscription plan payments' => 'Payments',
+    "age" => "Age restriction",
+    "Visit_of_Our_Center" => "Visit of Our Center",
+    "List_of_Categories" => "List of Categories",
+    "Gym_Access" => "Gym Access",
+    "Gym_Access_refers" => "Gym access refers to the permission or privilege granted to individuals to use a
+    gym or fitness facility.",
+    "Private_Training" => "Private Training",
+    "Private_Training_con" => "Private training, in the context of machine learning and artificial intelligence",
+    "Group_Class" => "Group Class",
+    "Group_Class_under" => "These are the functions or behaviors that the objects of the group class can
+    perform.",
+
 
 ];

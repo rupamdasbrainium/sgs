@@ -84,6 +84,7 @@ class HomeController extends Controller
         //franchise plan type
         $franchisesPlanType = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id. "&language_id=" . $lang_id, "get", "{}");
         $data['all_plan'] = $data['franchisesPlanType'] = json_decode($franchisesPlanType);
+        // dd($data['franchisesPlanType']);
 
         //franchise best four plan
         $best_four_plan = APICall("SubscriptionPlans/franchises/" . $franchise_id, "get", "{}");
@@ -144,6 +145,68 @@ class HomeController extends Controller
         // $data['best_four_plan_details'] = $data_plan;
        
         return view('front.home', compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag'));
+    }
+
+    public function index_page_two()
+    {
+        $lang_id = getLocale();
+
+        $data = array();
+        $data['title'] = trans('title_message.Home');
+
+        //franchise call
+        $franchises = APICall("Franchises", "get", "{}");
+        $data['franchises'] = json_decode($franchises);
+        // $data['short_code'] = $short_code;
+        $franchise_id = '';
+        
+        //find franchise_id
+        $short_code_flag = 0;
+        // foreach ($data['franchises']->data as $key => $franchise) {
+        //     if(!$short_code){
+        //         $franchise_id = $franchise->id;
+        //         $short_code = $franchise->shortCode;
+        //         $short_code_flag = 1;
+        //         $data['franchise_address'] = $franchise->address_civic_number .' '. $franchise->address_street .' '. $franchise->address_city;
+        //         break;
+        //     }
+        //     if ($franchise->shortCode == $short_code) { //actual
+        //         $franchise_id = $franchise->id;
+        //         $data['franchise_address'] = $franchise->address_civic_number .' '. $franchise->address_street .' '. $franchise->address_city;
+        //         break;
+        //     }
+        // }
+        foreach ($data['franchises']->data as $key => $franchise) {
+            $franchise_id = $franchise->id;
+        }
+        if(!$franchise_id){
+            return redirect()->route('sechomepage');
+        }
+    //   Cookie::queue(Cookie::make('driver_route_id', $short_code, 60000));
+    //   Cookie::get('driver_route_id');
+        
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',$this->getfranchiseId())->first();
+        $banner = Configuration::where('name','banner_image')->where('franchise_id',$this->getfranchiseId())->first();
+        $theme = Configuration::where('name','theme_color')->where('franchise_id',$this->getfranchiseId())->first();
+        $button = Configuration::where('name','primary_button_color')->where('franchise_id',$this->getfranchiseId())->first();
+        $title = Configuration::where('name','title')->where('franchise_id',$this->getfranchiseId())->first();
+        $subtitle = Configuration::where('name','subtitle')->where('franchise_id',$this->getfranchiseId())->first();  
+        $home_title = Configuration::where('name','home_title')->where('franchise_id',$this->getfranchiseId())->first();
+        $home_magicplan = Configuration::where('name','home_magicplan')->where('franchise_id',$this->getfranchiseId())->first();
+        $home_body = Configuration::where('name','home_body')->where('franchise_id',$this->getfranchiseId())->first();
+        $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',$this->getfranchiseId())->first();
+        $admin_address = Configuration::where('name','admin_address')->where('franchise_id',$this->getfranchiseId())->first();
+        
+        $logo = Configuration::where('name','logo_image')->where('franchise_id',$this->getfranchiseId())->first();
+        $banner = Configuration::where('name','banner_image')->where('franchise_id',$this->getfranchiseId())->first();
+        $button = Configuration::where('name','primary_button_color')->where('franchise_id',$this->getfranchiseId())->first();
+        
+        $response = array(
+            'message' => trans('title_message.Input_path_wrong'),
+            'message_type' => 'danger',
+          );
+        
+        return view('front.homeBasedOnCategory',compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag'));
     }
 
     public function login()

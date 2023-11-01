@@ -26,6 +26,15 @@ return [
     'sub_text_info' => 'Trouvez une GYM près de chez vous',
     'sub_text_info_p' => `Pour trouver un club, utilisez la barre de recherche, naviguez à l\'aide de la carte ou activez les services de localisation.`,
     "find_gym_placeholder" => "Entrer l'adresse",
-    "age" => "Restriction d'âge"
+    "age" => "Restriction d'âge",
+    "Visit_of_Our_Center" => "Visite de Notre Centre",
+    "List_of_Categories" => "Liste des catégories",
+    "Gym_Access" => "Accès au gymnase",
+    "Gym_Access_refers" => "L'accès au gymnase fait référence à la permission ou au privilège accordé aux individus d'utiliser un
+    salle de sport ou centre de remise en forme.",
+    "Private_Training" => "Formation Privée",
+    "Private_Training_con" => "Formation privée, dans le contexte du machine learning et de l'intelligence artificielle",
+    "Group_Class" => "Cours de groupe",
+    "Group_Class_under" => "Ce sont les fonctions ou comportements que les objets de la classe de groupe peuvent exécuter.",
 
 ];

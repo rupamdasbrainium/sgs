@@ -118,6 +118,7 @@
                                         <button type="button" style="background-color: {{$button->value}}" class="btn2" id="home_continue">{{ __('global.continue') }}</button>
                                     </div>
 
+
                                 </div>
                                 <div class="prod_item_wrap owl-carousel owl-theme" id="home_prod_item">
 
