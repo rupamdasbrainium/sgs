@@ -10,15 +10,16 @@
 				<div class="blocktitle">
 					<h2>{{ __('myProfile.My_Profile') }}</h2>
 					<h3 class="subtitle">{{ $client->firstname." ".$client->lastname }}</h3>
-					<p><span>{{ __('myProfile.My_Gym') }}</span></p>
+					{{-- <p><span>{{ __('myProfile.My_Gym') }}</span></p> --}}
 					<div class="account_des">
 						<span class="acc_des_title">{{ __('myProfile.My_Address') }}: </span>
 						<span class="acc_des_info">{{ getAddress($client->adress) }} </span>
 						<span class="accountedit"><a href="{{ route('myContactInformation') }}">{{ __('myProfile.Edit') }}</a> </span><br>
-						@if(!empty($client->communication_ToClient))
+						{{-- @if(!empty($client->communication_ToClient))
 							<span class="acc_des_status">{{ __('myProfile.Message') }}: {{ $client->communication_ToClient}} </span><br>
-						@endif
-						<span class="acc_des_status">{{ __('myProfile.Status') }}: {{ $client->status}} </span>
+						@endif --}}
+						<span class="acc_des_status">{{ __('myProfile.Status') }}: {{ $client->status}} </span><br>
+						<span class="acc_des_status">{{ __('myProfile.Message') }}: {{ $client->communication_ToClient}} </span><br>
 						
 					</div>
 					<div class="account_leng">
@@ -63,7 +64,7 @@
                     @foreach ($membership->data as $item)
 
 					<div class="memberships_opt mb-2">
-						<div class="memberships_nam">{{ $item->type }} - {{ __('myProfile.davable') }} ${{ $item->recurantCharge }} {{ __('myProfile.per_Month') }}</div>
+						<div class="memberships_nam">{{ $item->type }} ${{ $item->recurantCharge }} {{ __('myProfile.per_Month') }}</div>
 						<div class="memberships_method_view">
 							<div class="memberships_method">{{ __('myProfile.Method_of_payment') }}:</div>
 							<div class="memberships_method_opt">

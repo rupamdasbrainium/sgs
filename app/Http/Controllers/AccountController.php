@@ -236,7 +236,9 @@ class AccountController extends Controller
         $payments = APICall('Payments/schedualed/client', "get", "{}", "client_app");
         $payments = json_decode($payments);
         if (!empty($payments->data)) {
-            $payments = $payments->data;
+            $payments = collect($payments->data);
+            $sorted = $payments->sortBy('paymentDate');
+            $payments = $sorted->values()->all();
         } else {
             $payments = "";
         }
@@ -392,7 +394,9 @@ class AccountController extends Controller
         }
         $payments = json_decode($response);
         if ($payments->error == null) {
-            $data["payments"] = $payments->data;
+            $data["payments"] = collect($payments->data);
+            $sorted = $data["payments"]->sortBy('paymentDate');
+            $data["payments"] = $sorted->values()->all();
 
             $data["outstandingAmount"] = 0;
             foreach ((array)$data["payments"] as $v2) {

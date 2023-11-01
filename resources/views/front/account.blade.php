@@ -9,16 +9,17 @@
 				<div class="blocktitle">
 					<h2>{{ __('account.My_Account') }}</h2>
 					<h3 class="subtitle">{{ $client->firstname ." ". $client->lastname }}</h3>
-					<p><span>{{ __('account.My_Gym') }}</span></p>
+					{{-- <p><span>{{ __('account.My_Gym') }}</span></p> --}}
 
 					<div class="account_des">
 						<span class="acc_des_title">{{ __('account.My_Address') }}: </span>
 						<span class="acc_des_info">{{ getAddress($client->adress) }} </span>
 						<span class="accountedit"><a href="{{ route('myContactInformation') }}">{{ __('account.Edit') }}</a> </span><br>
-						@if(!empty($client->communication_ToClient))
+						{{-- @if(!empty($client->communication_ToClient))
 							<span class="acc_des_status">{{ __('myProfile.Message') }}:{{ $client->communication_ToClient}} </span><br>
-						@endif
-						<span class="acc_des_status">{{ __('myProfile.Status') }}:{{ $client->status}} </span>
+						@endif --}}
+						<span class="acc_des_status">{{ __('myProfile.Status') }}:{{ $client->status}} </span><br>
+						<span class="acc_des_status">{{ __('myProfile.Message') }}: {{ $client->communication_ToClient}} </span><br>
 					</div>
 					<div class="account_leng">
 						<div class="account_leng_title">{{ __('account.communication_language') }}</div>

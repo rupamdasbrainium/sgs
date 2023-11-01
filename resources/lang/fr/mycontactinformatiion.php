@@ -16,8 +16,8 @@ return [
     'My_Contact_Information' => 'Mes coordonnées',
     'Change_Of_Informations' => 'Changement d\'informations',
     'Example' => 'Exemple',
-    'Male' => 'Mâle',
-    'Female' => 'Femelle',
+    'Male' => 'Homme',
+    'Female' => 'Femme',
     'Select_Gender' => 'Sélectionnez le sexe',
     'Save' => 'Sauvegarder',
 ];
