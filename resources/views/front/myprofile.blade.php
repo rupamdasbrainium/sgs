@@ -10,7 +10,7 @@
 				<div class="blocktitle">
 					<h2>{{ __('myProfile.My_Profile') }}</h2>
 					<h3 class="subtitle">{{ $client->firstname." ".$client->lastname }}</h3>
-					<p><span>{{ __('myProfile.My_Gym') }}</span></p>
+					{{-- <p><span>{{ __('myProfile.My_Gym') }}</span></p> --}}
 					<div class="account_des">
 						<span class="acc_des_title">{{ __('myProfile.My_Address') }}: </span>
 						<span class="acc_des_info">{{ getAddress($client->adress) }} </span>
