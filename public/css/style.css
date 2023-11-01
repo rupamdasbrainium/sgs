@@ -1920,6 +1920,24 @@ td:last-child {
 	border:0px;
 	border-right:0px;
 }
+
+
+
+.prod_viewsection .owl-prev span {
+    font-size: 40px ;
+    line-height: 40px;
+}
+
+.prod_viewsection .owl-next span {
+    font-size: 40px ;
+    line-height: 40px;
+}
+.owl-theme .owl-nav [class*=owl-]:hover {
+	background: transparent !important;
+    color: #8f8c8c  !important;
+    text-decoration: none;
+}
+
 @media (max-width:991px) {
 	table {
 		border:1px solid transparent;

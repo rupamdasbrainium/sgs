@@ -103,7 +103,7 @@
                                             <div class="arrowdown2">
                                                 <i class="fal fa-chevron-down"></i>
                                             </div>
-                                            <select class="select_opt" id="franchises_type">
+                                            <select class="select_opt" id="franchises_type" name="franchise_plan">
 
                                                 @foreach ($data['franchisesPlanType']->data as $value)
                                                 <option value="{{ $value->id }}">{{ $value->name }}
@@ -139,10 +139,10 @@
                                                         <div class="arrowdown2">
                                                             {{-- <i class="far fa-chevron-down"></i> --}}
                                                         </div>
-                                                        <select class="select_opt">
-                                                            <option value="{{$values->id}}">
+                                                        <select class="select_opt" title=" {{ $values->name }}">
+                                                            <option value="{{$values->id}}" >
 
-                                                                {{ $values->name }}
+                                                                {{ substr($values->name,0,11) }}...
 
                                                             </option>
                                                             {{-- <option value="Action2">Action 2</option>
@@ -260,9 +260,13 @@
         //     console.log("first")
             document.getElementById("home_continue").addEventListener("click", function() {
                 console.log("first")
-var selected_value = $("select[name= 'franchise_name']").val();
+// var selected_value = $("select[name= 'franchise_name']").val();
+// var url = '{{route("homepage")}}'
+// window.location.href = url+"/"+selected_value;
+
+var plan_value = $("select[name= 'franchise_plan']").val();
 var url = '{{route("homepage")}}'
-window.location.href = url+"/"+selected_value;
+window.location.href = url+"/new-membership/"+plan_value;
         })
     </script>
     {{-- <script src="http://localhost/sgs/public/js/custom.js"></script> --}}
