@@ -9,7 +9,7 @@
 				<div class="blocktitle">
 					<h2>{{ __('account.My_Account') }}</h2>
 					<h3 class="subtitle">{{ $client->firstname ." ". $client->lastname }}</h3>
-					<p><span>{{ __('account.My_Gym') }}</span></p>
+					{{-- <p><span>{{ __('account.My_Gym') }}</span></p> --}}
 
 					<div class="account_des">
 						<span class="acc_des_title">{{ __('account.My_Address') }}: </span>
