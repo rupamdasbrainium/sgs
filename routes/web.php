@@ -158,6 +158,9 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
     });
 });
 
-Route::get('/sechomepage', [HomeController::class, 'index_page_two'])->name('sechomepage');
+Route::get('/categoryplan', [HomeController::class, 'categoryplan'])->name('categoryplan');
+
+// Route::get('/sechomepage', [HomeController::class, 'index_page_two'])->name('sechomepage');
+// Route::get('/category/{short_code_sec?}', [HomeController::class, 'index_page_two'])->name('sechomepage');
 Route::get('/{short_code?}', [HomeController::class, 'index'])->name('homepage');
 

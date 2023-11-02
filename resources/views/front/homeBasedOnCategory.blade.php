@@ -73,7 +73,7 @@
                             <h2>{{ __('global.List_of_Categories') }}</h2>
                         </div>
                         <div class="categories_des">
-                            <div class="cat_opt_item">
+                            {{-- <div class="cat_opt_item">
                                 <div class="cat_opt_img">
                                     <a href="#"><img src="{{ asset('public/images/cat_icon1.svg') }}"
                                             alt=""> </a>
@@ -106,7 +106,25 @@
                                     <p>{{ __('global.Group_Class_under') }}<span class="more_content_text">+</span></p>
 
                                 </div>
-                            </div>
+                            </div> --}}
+                            @foreach ($data['category'] as $item)
+                                <div class="cat_opt_item">
+                                    <div class="cat_opt_img">
+                                        @if ($item->logo == null)
+                                        <a href="{{route('categoryplan')}}"> <img src="{{ asset('public/images/cat_icon3.svg') }}" alt=""> </a>
+                                        @else
+                                            <img src="{{ $item->logo }}" alt="">
+                                        @endif
+                                        
+                                    </div>
+                                    <h3><a href="{{route('categoryplan')}}">{{$item->title}}</a></h3>
+                                    <div class="cat_opt_text">
+                                        <p>{{$item->description}}<span class="more_content_text">+</span></p>
+
+                                    </div>
+                                </div>
+                            @endforeach
+                            
                         </div>
                     </div>
                 </div>
