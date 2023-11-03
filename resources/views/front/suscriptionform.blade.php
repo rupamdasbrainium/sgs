@@ -133,6 +133,7 @@
                                                                 <option value="{{ $item->id }}"
                                                                     {{ $item->id == old('address_province_id') ? 'selected' : '' }}>
                                                                     {{ $lang_id == 2 ? strtoupper($item->display_english) : strtoupper($item->display_french) }}
+
                                                                 </option>
                                                             @endforeach
                                                         @endif
