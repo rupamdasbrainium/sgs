@@ -132,7 +132,7 @@
                                                             @foreach ($data['provinces'] as $item)
                                                                 <option value="{{ $item->id }}"
                                                                     {{ $item->id == old('address_province_id') ? 'selected' : '' }}>
-                                                                    {{ $lang_id == 2 ? $item->display_english : $item->display_french }}
+                                                                    {{ $lang_id == 2 ? strtoupper($item->display_english) : strtoupper($item->display_french) }}
                                                                 </option>
                                                             @endforeach
                                                         @endif
@@ -406,7 +406,7 @@
                                                             @foreach ($data['opts_references']->data as $item)
                                                                 <option value="{{ $item->id }}"
                                                                     {{ $item->id == old('reference_id') ? 'selected' : '' }}>
-                                                                    {{ $item->display }}</option>
+                                                                    {{ ucfirst($item->display) }}</option>
                                                             @endforeach
                                                         @endif
                                                     </select>
