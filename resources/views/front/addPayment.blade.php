@@ -38,16 +38,16 @@
                                                                 <div class="memberships_nam radio">
                                                                     <input type="radio" id="payment_opt1"
                                                                         name="radio_group_pay" class="radio1"
-                                                                        value="credit_acc" onclick="showA();">
+                                                                        value="credit_acc" onclick="showA();" {{old('radio_group_pay') == 'credit_acc' ? 'checked' : '' }}>
                                                                     <label for="payment_opt1">{{ __('paymentForm.Credit_Card') }}</label>
                                                                 </div>
 
                                                                 
-
+                                                                
                                                                 <div class="memberships_nam radio">
                                                                     <input type="radio" id="payment_opt3"
                                                                         name="radio_group_pay" onclick="show();"
-                                                                        value="bank_acc" checked>
+                                                                        value="bank_acc"  {{old('radio_group_pay') == 'credit_acc' ? '' : 'checked' }}>
                                                                     <label for="payment_opt3">{{ __('paymentForm.Bank_Account') }}</label>
                                                                 </div>
 
@@ -248,6 +248,13 @@
     @push('scripts')
         <script>
             $("#credit_details").hide()
+            var cred = "{{old('radio_group_pay')}}"
+            if(cred == 'credit_acc'){
+                showA();
+            }
+            else{
+                show();
+            }
 
             function show() {
 

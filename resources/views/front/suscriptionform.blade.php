@@ -132,7 +132,7 @@
                                                             @foreach ($data['provinces'] as $item)
                                                                 <option value="{{ $item->id }}"
                                                                     {{ $item->id == old('address_province_id') ? 'selected' : '' }}>
-                                                                    {{ $lang_id == 2 ? $item->display_english : $item->display_french }}
+                                                                    {{ $lang_id == 2 ? ($item->display_english : $item->display_french) }}
                                                                 </option>
                                                             @endforeach
                                                         @endif
