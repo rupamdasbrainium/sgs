@@ -137,7 +137,7 @@ class PaymentController extends Controller
                 "four_digits_number" => "required|min:3|max:4",
                 "pan" => "required|min:15|max:16",
                 "expiry_month" => "required|min:1|max:2",
-                "owner_name" => "required|alpha",
+                "owner_name" => "required",
                 "expiry_year" => "required"
             ]);
             if ($validator->fails()) {
@@ -267,7 +267,7 @@ class PaymentController extends Controller
                 "four_digits_number" => "required|min:3|max:4",
                 "pan" => "required|min:15|max:16",
                 "expiry_month" => "required|min:1|max:2",
-                "owner_name" => "required|alpha",
+                "owner_name" => "required",
                 "expiry_year" => "required"
             ]);
             if ($validator->fails()) {
