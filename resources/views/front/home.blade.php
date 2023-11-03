@@ -142,7 +142,7 @@
                                                         <select class="select_opt" title=" {{ $values->name }}">
                                                             <option value="{{$values->id}}" >
 
-                                                                {{ $values->name }}
+                                                                {{ substr($values->name,0,14) }}...
 
                                                             </option>
                                                             {{-- <option value="Action2">Action 2</option>
