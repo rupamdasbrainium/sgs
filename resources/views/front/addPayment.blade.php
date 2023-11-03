@@ -118,7 +118,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="owner_names"
-                                                                    class="form-control" placeholder="bank" value="{{ old('owner_names') }}">
+                                                                    class="form-control" placeholder="" value="{{ old('owner_names') }}">
                                                             </div>
                                                         </div>
                                                         @error('owner_names')
