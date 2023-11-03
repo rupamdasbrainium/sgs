@@ -72,7 +72,7 @@ class PaymentController extends Controller
             "transit_number" => "required|min:3|max:5",
             "institution" => "required|min:3",
             "account_number" => "required|min:5|max:12",
-            "owner_names" => "required|alpha",
+            "owner_names" => "required",
           
         ]);
         if ($validator->fails()) {
@@ -235,7 +235,7 @@ class PaymentController extends Controller
                 "transit_number" => "required|min:3|max:5",
                 "institution" => "required|min:3",
                 "account_number" => "required|min:5|max:12",
-                "owner_names" => "required|alpha",
+                "owner_names" => "required",
               
             ]);
             if ($validator->fails()) {
