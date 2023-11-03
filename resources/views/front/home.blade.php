@@ -88,7 +88,7 @@
                                                 <i class="fal fa-chevron-down"></i>
                                             </div>
                                             {{-- $franchise->address_province_id --}}
-                                            <select class="select_opt" id="franchises_address">
+                                            <select class="select_opt" id="franchises_address" title="{{ $franchise->address_civic_number }}{{ $franchise->address_street }}{{ $franchise->address_city }}">
                                                 @isset($data['franchises'])
                                                     @foreach ($data['franchises']->data as $franchise)
                                                         <option value="{{ $franchise->shortCode }}"
