@@ -48,89 +48,88 @@
                                 </div>
                             @endforeach
                         </div>
-                        {{-- @if ($data_plan['categoryPlan']->data == null)
-                            <center><p>No Plan is available</p></center>
-                        @else
-                            @foreach ($data_plan['categoryPlan'] as $plan)
-                                {{$plan->data}}                                
-                            @endforeach
-                        @endif --}}
-                        @if (!empty($planData))
-                            <div class="prod_item_wrap owl-carousel owl-theme" id="home_prod_item">
-                                @foreach ($planData as $plan)
-                                    {{-- @php
-                                    $subscription_plan = APICall("/SubscriptionPlans/type/".$plan."?language_id=2","get",'{}')
-                                @endphp --}}
-                                    <div class="prod_item">
-                                        <div class="action_opt action_opt_title" style="background-color: #ff0000">
 
-                                            <div class="action_text">
+                        <div class="prod_item_wrap owl-carousel owl-theme" id="home_prod_item">
 
-                                                <div class="selectcont ">
+                            @foreach ($data['bestfoursubscriptionplan'] as $key => $values)
+                                <div class="prod_item">
+                                    <div class="action_opt action_opt_title"
+                                        style="background-color: {{ $theme->value }}">
 
-                                                    <div class="arrowdown2">
+                                        <div class="action_text">
 
-                                                    </div>
-                                                    <select class="select_opt" title=" M2Move GYM accès 12 mois">
-                                                        <option value="474">
+                                            <div class="selectcont ">
 
-                                                            M2Move GYM ...
-
-                                                        </option>
-
-                                                    </select>
+                                                <div class="arrowdown2">
+                                                    {{-- <i class="far fa-chevron-down"></i> --}}
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="action_opt adj_height">
-                                            <div class="price_text">
+                                                <select class="select_opt" title=" {{ $values->name }}">
+                                                    <option value="{{ $values->id }}">
 
-                                                <div class="selectcont ">
-                                                    <div class="arrowdown2">
-                                                        <i class="fal fa-chevron-down"></i>
-                                                    </div>
-                                                    <select class="select_opt">
+                                                        {{ substr($values->name, 0, 14) }}...
 
-
-                                                        <option>$23.94/
-                                                            Two weeks For 26 Two weeks
-                                                        </option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <p></p>
-                                        </div>
-                                        <div class="individual_opt">
-                                            <div class="individual_head" style="background-color: #ff0000">
-                                                Age restriction : 0 to 120
-                                            </div>
-                                            <div class="individual_des">
-                                                <ul>
-                                                    <li><span><i class="fal fa-times"></i></span>18/7 access
-                                                    </li>
-                                                    <li><span><i class="fal fa-times"></i></span>30 minutes consultation
-                                                        with a trainer
-                                                    </li>
-                                                    <li><span><i class="fal fa-times"></i></span>Access to Movaxion (20
-                                                        centers in Quebec)
-                                                    </li>
-
-                                                </ul>
-                                                <div class="subscribe_btn">
-                                                    <a href="http://localhost/sgs/new-membership/474" class="sub_btn"
-                                                        style="background-color: #c600e0">Subscribe</a>
-                                                </div>
+                                                    </option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
-                            </div>
-                        @else
-                            <center>
-                                <p>No Plan is available</p>
-                            </center>
-                        @endif
+                                    <div class="action_opt adj_height">
+                                        <div class="price_text">
+
+                                            @if (isset($values))
+                                                @if (count($values->prices_per_durations))
+                                                    <div class="selectcont ">
+                                                        <div class="arrowdown2">
+                                                            <i class="fal fa-chevron-down"></i>
+                                                        </div>
+                                                        <select class="select_opt">
+
+                                                            @foreach ($values->prices_per_durations as $val)
+                                                        
+                                                                <option>${{ $val->price_recurant }}<span>/
+                                                                        {{ $val->duration_unit_display }}</span> For
+                                                                    {{ $val->frequency }}
+                                                                    {{ $val->duration_unit_display }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                @else
+                                                    $0
+                                                @endif
+                                            @endif
+                                        </div>
+                                        {{-- <p>{{ __('global.price') }}</p> --}}
+                                        {{-- <p>{{ $values->descr }}</p> --}}
+                                    </div>
+                                    <div class="individual_opt">
+                                        <div class="individual_head"
+                                            style="background-color: {{ $theme->value }}">
+                                            {{ __('global.age') }} : {{ $values->age_min }} to {{ $values->age_max }}
+                                        </div>
+                                        <div class="individual_des">
+                                            <ul>
+                                                @if (isset($values))
+                                                    @if (isset($values->options))
+                                                        @foreach ($values->options as $val)
+                                                            <li><span><i
+                                                                        class="fal fa-times"></i></span>{{ $val->name }}
+                                                            </li>
+                                                        @endforeach
+                                                    @endif
+                                                @endif
+                                                {{-- <li>{{ $lang_id == 2 ? $item['descr_english'] : $item['descr_french'] }}</li> --}}
+                                            </ul>
+                                            <div class="subscribe_btn">
+                                                <a href="{{ route('newMembershipfont', [$values->id]) }}"
+                                                    class="sub_btn"
+                                                    style="background-color: {{ $button->value }}">{{ __('global.subscribe') }}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
 
                     </div>
                 </div>
