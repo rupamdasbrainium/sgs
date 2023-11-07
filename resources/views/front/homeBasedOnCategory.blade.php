@@ -49,7 +49,7 @@
 
                         <div class="video_btn">
                             <div class="play_btn">
-                                <i class="fas fa-play"></i>
+                                <a href="{{$video->value}}">Video</a>
                             </div>
                         </div>
                         <div class="categories_addblock">

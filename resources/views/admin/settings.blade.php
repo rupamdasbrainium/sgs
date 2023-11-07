@@ -76,6 +76,15 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
+                                                    <label>{{ __('admin.Video') }} <em class="req_text">*</em>
+                                                    </label>
+                                                    <div class="inp_cont_view noicon_opt">
+                                                        <input type="text" class="form-control" name="video"
+                                                            placeholder="{{ __('admin.Video') }}"
+                                                            value="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
                                                     <label>{{ __('admin.Phone') }} <em class="req_text">*</em>
                                                     </label>
                                                     <div class="inp_cont_view noicon_opt">

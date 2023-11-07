@@ -68,6 +68,7 @@ class HomeController extends Controller
         $home_body = Configuration::where('name','home_body')->where('franchise_id',$this->getfranchiseId())->first();
         $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',$this->getfranchiseId())->first();
         $admin_address = Configuration::where('name','admin_address')->where('franchise_id',$this->getfranchiseId())->first();
+        $video = Configuration::where('name','video')->where('franchise_id',$this->getfranchiseId())->first();
         
         $response = array(
             'message' => trans('title_message.Input_path_wrong'),
@@ -110,7 +111,7 @@ class HomeController extends Controller
         {
             $categoryType = APICall("Options/categories?franchise_id=" .$franchise_id."&language_id=" . $lang_id, "get", "{}");
             $data['category'] = json_decode($categoryType)->data;
-            return view('front.homeBasedOnCategory',compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag'));
+            return view('front.homeBasedOnCategory',compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag','video'));
         }
 
         //franchise plan type
