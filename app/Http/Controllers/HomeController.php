@@ -69,7 +69,6 @@ class HomeController extends Controller
         $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',$this->getfranchiseId())->first();
         $admin_address = Configuration::where('name','admin_address')->where('franchise_id',$this->getfranchiseId())->first();
         $video = Configuration::where('name','video')->where('franchise_id',$this->getfranchiseId())->first();
-        
         $response = array(
             'message' => trans('title_message.Input_path_wrong'),
             'message_type' => 'danger',
@@ -313,28 +312,48 @@ class HomeController extends Controller
             $category_id = $category->id;
         }
 
-        // $franchisesPlanType = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id. "&language_id=" . $lang_id, "get", "{}");
-        // $data['all_plan'] = $data['franchisesPlanType'] = json_decode($franchisesPlanType);
+        $franchisesPlanType = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id. "&language_id=" . $lang_id, "get", "{}");
+        $data['all_plan'] = $data['franchisesPlanType'] = json_decode($franchisesPlanType);
 
         $categoryPlan = APICall("SubscriptionPlans/category/". $category_id. "?franchise_id=".$franchise_id,"get", "{}");
         $data['categoryPlan'] = json_decode($categoryPlan);
         // dd($data['all_plan']->data,$data['categoryPlan'],$data['categoryPlan']->data->subscriptionPlan1);
-        $data['bestfoursubscriptionplan'] = [];
-        if($data['categoryPlan']->data->subscriptionPlan1)
-        {
-            $data['bestfoursubscriptionplan'][0] = json_decode(APICall('SubscriptionPlans/type/'.$data['categoryPlan']->data->subscriptionPlan1.'?language_id='.$lang_id, 'get', '{}'))->data;
-        }
-        if($data['categoryPlan']->data->subscriptionPlan2)
-        {
-            $data['bestfoursubscriptionplan'][1] = json_decode(APICall('SubscriptionPlans/type/'.$data['categoryPlan']->data->subscriptionPlan2.'?language_id='.$lang_id, 'get', '{}'))->data;
-        }
-        if($data['categoryPlan']->data->subscriptionPlan3)
-        {
-            $data['bestfoursubscriptionplan'][2] = json_decode(APICall('SubscriptionPlans/type/'.$data['categoryPlan']->data->subscriptionPlan3.'?language_id='.$lang_id, 'get', '{}'))->data;
-        }
-        if($data['categoryPlan']->data->subscriptionPlan4)
-        {
-            $data['bestfoursubscriptionplan'][3] = json_decode(APICall('SubscriptionPlans/type/'.$data['categoryPlan']->data->subscriptionPlan4.'?language_id='.$lang_id, 'get', '{}'))->data;
+        // $data['bestfoursubscriptionplan'] = [];
+        // if($data['categoryPlan']->data->subscriptionPlan1)
+        // {
+        //     $data['bestfoursubscriptionplan'][0] = json_decode(APICall('SubscriptionPlans/type/'.$data['categoryPlan']->data->subscriptionPlan1.'?language_id='.$lang_id, 'get', '{}'))->data;
+        // }
+        // if($data['categoryPlan']->data->subscriptionPlan2)
+        // {
+        //     $data['bestfoursubscriptionplan'][1] = json_decode(APICall('SubscriptionPlans/type/'.$data['categoryPlan']->data->subscriptionPlan2.'?language_id='.$lang_id, 'get', '{}'))->data;
+        // }
+        // if($data['categoryPlan']->data->subscriptionPlan3)
+        // {
+        //     $data['bestfoursubscriptionplan'][2] = json_decode(APICall('SubscriptionPlans/type/'.$data['categoryPlan']->data->subscriptionPlan3.'?language_id='.$lang_id, 'get', '{}'))->data;
+        // }
+        // if($data['categoryPlan']->data->subscriptionPlan4)
+        // {
+        //     $data['bestfoursubscriptionplan'][3] = json_decode(APICall('SubscriptionPlans/type/'.$data['categoryPlan']->data->subscriptionPlan4.'?language_id='.$lang_id, 'get', '{}'))->data;
+        // }
+        foreach ($data['all_plan']->data as $item) {
+            if($item->id == $data['categoryPlan']->data->subscriptionPlan1){
+                $data['all_plan_data'][0] = $item;
+                continue;
+            }
+            if($item->id == $data['categoryPlan']->data->subscriptionPlan2){
+                // dd($item->id,$data['categoryPlan']->data->subscriptionPlan2);
+                $data['all_plan_data'][1] = $item;
+                continue;
+            } 
+            if($item->id == $data['categoryPlan']->data->subscriptionPlan3){
+                $data['all_plan_data'][2] = $item;
+                continue;
+            } 
+            if($item->id == $data['categoryPlan']->data->subscriptionPlan4) {
+                $data['all_plan_data'][3] = $item;
+                continue;
+            }
+            // $data['all_plan_data'][] = $item;
         }
 
         return view('front.categoryPlan',compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag'));

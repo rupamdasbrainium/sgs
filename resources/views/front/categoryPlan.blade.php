@@ -51,7 +51,7 @@
 
                         <div class="prod_item_wrap owl-carousel owl-theme" id="home_prod_item">
 
-                            @foreach ($data['bestfoursubscriptionplan'] as $key => $values)
+                            @foreach ($data['all_plan_data'] as $key => $values)
                                 <div class="prod_item">
                                     <div class="action_opt action_opt_title"
                                         style="background-color: {{ $theme->value }}">
@@ -77,19 +77,19 @@
                                         <div class="price_text">
 
                                             @if (isset($values))
-                                                @if (count($values->prices_per_durations))
+                                                @if (count($values->priceBydurations))
                                                     <div class="selectcont ">
                                                         <div class="arrowdown2">
                                                             <i class="fal fa-chevron-down"></i>
                                                         </div>
                                                         <select class="select_opt">
 
-                                                            @foreach ($values->prices_per_durations as $val)
+                                                            @foreach ($values->priceBydurations as $val)
                                                         
-                                                                <option>${{ $val->price_recurant }}<span>/
-                                                                        {{ $val->duration_unit_display }}</span> For
+                                                                <option>${{ $val->price }}<span>/
+                                                                        {{ $val->typeDuration }}</span> For
                                                                     {{ $val->frequency }}
-                                                                    {{ $val->duration_unit_display }}
+                                                                    {{ $val->typeDuration }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -100,20 +100,20 @@
                                             @endif
                                         </div>
                                         {{-- <p>{{ __('global.price') }}</p> --}}
-                                        {{-- <p>{{ $values->descr }}</p> --}}
+                                        <p>{{ $values->descr }}</p>
                                     </div>
                                     <div class="individual_opt">
                                         <div class="individual_head"
                                             style="background-color: {{ $theme->value }}">
-                                            {{ __('global.age') }} : {{ $values->age_min }} to {{ $values->age_max }}
+                                            {{ __('global.age') }} : {{ $values->ageLimit }}
                                         </div>
                                         <div class="individual_des">
                                             <ul>
                                                 @if (isset($values))
-                                                    @if (isset($values->options))
-                                                        @foreach ($values->options as $val)
+                                                    @if (isset($values->marketingBools))
+                                                        @foreach ($values->marketingBools as $val)
                                                             <li><span><i
-                                                                        class="fal fa-times"></i></span>{{ $val->name }}
+                                                                        class="fal fa-times"></i></span>{{ $val->description }}
                                                             </li>
                                                         @endforeach
                                                     @endif

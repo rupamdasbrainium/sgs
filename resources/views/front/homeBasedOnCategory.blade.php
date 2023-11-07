@@ -47,9 +47,14 @@
                             <img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
                         </div>
 
-                        <div class="video_btn">
+                        {{-- <div class="video_btn">
                             <div class="play_btn">
                                 <a href="{{$video->value}}">Video</a>
+                            </div>
+                        </div> --}}
+                        <div class="video_btn">
+                            <div class="play_btn">
+                                <i class="fas fa-play"></i>
                             </div>
                         </div>
                         <div class="categories_addblock">
@@ -60,6 +65,7 @@
                                 <img src="{{ asset('public/images/videoadd2.png') }}" alt="">
                             </div>
                         </div>
+                        <video height="200px" src="{{$video->value}}"></video>
                     </div>
                 </div>
             </div>
