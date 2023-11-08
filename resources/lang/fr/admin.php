@@ -111,4 +111,10 @@ return [
     'Settings' => 'Paramètres',
     'Profile' => 'Profil',
     'Search_for' => 'Rechercher',
+    'Banner_Title' => 'Titre de la bannière',
+    'Banner_subtitle' => 'Sous-titre de la bannière',
+    'Home_Title' => 'Titre de la maison',
+    'Home_Magic_Plan' => 'Plan Magique pour la Maison',
+    'Home_Body' => 'Accueil Corps',
+    'Video' => 'Vidéo',
 ];

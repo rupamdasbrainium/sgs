@@ -111,4 +111,10 @@ return [
     'Settings' => 'Settings',
     'Profile' => 'Profile',
     'Search_for' => 'Search for',
+    'Banner_Title' => 'Banner Title',
+    'Banner_subtitle' => 'Banner subtitle',
+    'Home_Title' => 'Home Title',
+    'Home_Magic_Plan' => 'Home Magic Plan',
+    'Home_Body' => 'Home Body',
+    'Video' => 'Video',
 ];
