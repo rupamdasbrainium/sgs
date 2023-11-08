@@ -31,7 +31,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>{{ __('admin.Banner Title') }} <em class="req_text">*</em>
+                                                    <label>{{ __('admin.Banner_Title') }} <em class="req_text">*</em>
                                                     </label>
                                                     <div class="inp_cont_view noicon_opt">
                                                         <input type="text" class="form-control" name="title"
@@ -40,38 +40,38 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>{{ __('admin.Banner subtitle') }} <em class="req_text">*</em>
+                                                    <label>{{ __('admin.Banner_subtitle') }} <em class="req_text">*</em>
                                                     </label>
                                                     <div class="inp_cont_view noicon_opt">
                                                         <input type="text" class="form-control" name="subtitle"
-                                                            placeholder="{{ __('admin.Banner_Subtitle') }}"
+                                                            placeholder="{{ __('admin.Banner_subtitle') }}"
                                                             value="{{ $subtitle->value }}">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>{{ __('admin.Home Title') }} <em class="req_text">*</em>
+                                                    <label>{{ __('admin.Home_Title') }} <em class="req_text">*</em>
                                                     </label>
                                                     <div class="inp_cont_view noicon_opt">
                                                         <input type="text" class="form-control" name="home_title"
-                                                            placeholder="{{ __('admin.home_title') }}"
+                                                            placeholder="{{ __('admin.Home_Title') }}"
                                                             value="{{ $home_title->value }}">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>{{ __('admin.Home Magic Plan') }} <em
+                                                    <label>{{ __('admin.Home_Magic_Plan') }} <em
                                                             class="req_text">*</em> </label>
                                                     <div class="inp_cont_view noicon_opt">
                                                         <input type="text" class="form-control" name="home_magicplan"
-                                                            placeholder="{{ __('admin.home_subtitle') }}"
+                                                            placeholder="{{ __('admin.Home_Magic_Plan') }}"
                                                             value="{{ $home_magicplan->value }}">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>{{ __('admin.Home Body') }} <em class="req_text">*</em>
+                                                    <label>{{ __('admin.Home_Body') }} <em class="req_text">*</em>
                                                     </label>
                                                     <div class="inp_cont_view noicon_opt">
                                                         <input type="text" class="form-control" name="home_body"
-                                                            placeholder="{{ __('admin.home_body') }}"
+                                                            placeholder="{{ __('admin.Home_Body') }}"
                                                             value="{{ $home_body->value }}">
                                                     </div>
                                                 </div>
@@ -89,7 +89,7 @@
                                                     </label>
                                                     <div class="inp_cont_view noicon_opt">
                                                         <input type="text" class="form-control" name="admin_phone"
-                                                            placeholder="{{ __('admin.admin_phone') }}"
+                                                            placeholder="{{ __('admin.Phone') }}"
                                                             value="{{ $admin_phone->value }}">
                                                     </div>
                                                 </div>
@@ -98,7 +98,7 @@
                                                     </label>
                                                     <div class="inp_cont_view noicon_opt">
                                                         <input type="text" class="form-control" name="admin_address"
-                                                            placeholder="{{ __('admin.admin_address') }}"
+                                                            placeholder="{{ __('admin.Address') }}"
                                                             value="{{ $admin_address->value }}">
                                                     </div>
                                                 </div>
