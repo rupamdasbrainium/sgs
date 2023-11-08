@@ -3815,3 +3815,13 @@ input[type="color"] {
 .memberships_nam {
     width: 35%;
 }
+
+/* video class add here */
+.videos_css{
+	justify-content: center;
+	display: flex;
+}
+
+.videos_css .categories_addblock{
+flex: 0;
+}

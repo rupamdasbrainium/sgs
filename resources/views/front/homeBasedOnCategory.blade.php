@@ -43,30 +43,30 @@
                         <h2>{{ __('global.Visit_of_Our_Center') }}</h2>
                     </div>
                     @if(isset($video))
-                    <div class="categories_video_wrap">
-                        <div class="round_opt1">
+                    <div class="videos_css">
+                        {{-- <div class="round_opt1">
                             <img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
-                        </div>
+                        </div> --}}
 
                         {{-- <div class="video_btn">
                             <div class="play_btn">
                                 <a href="{{$video->value}}">Video</a>
                             </div>
                         </div> --}}
-                        <div class="video_btn">
+                        {{-- <div class="video_btn">
                             <div class="play_btn">
                                 <i class="fas fa-play"></i>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="categories_addblock">
                             <div class="add_video activevideo">
-                                <img src="{{ asset('public/images/videoadd1.png') }}" alt="">
+                                <iframe width="412.28" height="300.30" src="{{$video->value}}" >
+                                    {{-- <source  type="video/mp4"> --}}
+                                </iframe>
                             </div>
-                            <div class="add_video">
-                                <img src="{{ asset('public/images/videoadd2.png') }}" alt="">
-                            </div>
+                          
                         </div>
-                        <video height="200px" src="{{$video->value}}"></video>
+                      
                     </div>
                     @else
                     <div class="categories_video_wrap">
@@ -76,7 +76,7 @@
 
                         <div class="video_btn">
                             <div class="play_btn">
-                                <a href="{{$video->value}}">Video</a>
+                                <a href="">Video</a>
                             </div>
                         </div>
                         <div class="categories_addblock">
