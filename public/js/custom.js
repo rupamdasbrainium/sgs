@@ -62,11 +62,18 @@ $(document).ready(function() {
     });
 
     $(".menu-btn").on("click", function() {
-        $(this).parent().toggleClass("activemenu");
+        
+            if($(this).parent().find(".navbar-collapse").is(".show")){
+                $(this).parent().removeClass("activemenu");
+            }else{
+                $(this).parent().addClass("activemenu");
+            }     
+       
     });
 
     $(".closeicon").click(function() {
-        $(this).parent().parent().parent().toggleClass("activemenu");
+        $(".menu-btn").trigger("click");
+        // $(this).parent().parent().parent().removeClass("activemenu");
     });
 
     $(".mob_user_icon").on("click", function() {

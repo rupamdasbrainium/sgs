@@ -42,6 +42,7 @@
                     <div class="heading_title">
                         <h2>{{ __('global.Visit_of_Our_Center') }}</h2>
                     </div>
+                    @if(isset($video))
                     <div class="categories_video_wrap">
                         <div class="round_opt1">
                             <img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
@@ -61,6 +62,27 @@
                             </div>
                         </div>
                     </div>
+                    @else
+                    <div class="categories_video_wrap">
+                        <div class="round_opt1">
+                            <img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
+                        </div>
+
+                        <div class="video_btn">
+                            <div class="play_btn">
+                                <a href="{{$video->value}}">Video</a>
+                            </div>
+                        </div>
+                        <div class="categories_addblock">
+                            <div class="add_video activevideo">
+                                <img src="{{ asset('public/images/videoadd1.png') }}" alt="">
+                            </div>
+                            <div class="add_video">
+                                <img src="{{ asset('public/images/videoadd2.png') }}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
