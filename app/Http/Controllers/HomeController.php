@@ -353,7 +353,6 @@ class HomeController extends Controller
                 $data['all_plan_data'][3] = $item;
                 continue;
             }
-            // $data['all_plan_data'][] = $item;
         }
 
         return view('front.categoryPlan',compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag'));
