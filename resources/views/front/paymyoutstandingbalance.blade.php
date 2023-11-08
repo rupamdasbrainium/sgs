@@ -4,9 +4,15 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <section class="maincontent_wrap inner_pageouter">
         <div class="inner_page_wrap">
+       
             @include('layouts.sidebar')
 
             <div class="inner_page_des">
+                @if(Session::has('errors'))
+                <div class="alert alert-danger">
+                    {{Session::get('errors')}}
+                </div>
+                    @endif
                 <form action="{{ route('payMyOutstandingBalance.post') }}" method="post">
                     @csrf
                     <input type="hidden" name="client_id" value="{{ $data['client_id'] }}">

@@ -42,6 +42,33 @@
                     <div class="heading_title">
                         <h2>{{ __('global.Visit_of_Our_Center') }}</h2>
                     </div>
+                    @if(isset($video))
+                    <div class="videos_css">
+                        {{-- <div class="round_opt1">
+                            <img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
+                        </div> --}}
+
+                        {{-- <div class="video_btn">
+                            <div class="play_btn">
+                                <a href="{{$video->value}}">Video</a>
+                            </div>
+                        </div> --}}
+                        {{-- <div class="video_btn">
+                            <div class="play_btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div> --}}
+                        <div class="categories_addblock">
+                            <div class="add_video activevideo">
+                                <iframe width="412.28" height="300.30" src="{{$video->value}}" >
+                                    {{-- <source  type="video/mp4"> --}}
+                                </iframe>
+                            </div>
+                          
+                        </div>
+                      
+                    </div>
+                    @else
                     <div class="categories_video_wrap">
                         <div class="round_opt1">
                             <img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
@@ -49,7 +76,7 @@
 
                         <div class="video_btn">
                             <div class="play_btn">
-                                <i class="fas fa-play"></i>
+                                <a href="">Video</a>
                             </div>
                         </div>
                         <div class="categories_addblock">
@@ -61,6 +88,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

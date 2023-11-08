@@ -440,7 +440,7 @@ class AccountController extends Controller
     {
         if ($request->new_key == 0) {
             $validator = Validator::make($request->all(), [
-                "payment_method_id" => "required",
+                // "payment_method_id" => "required",
                 "totalAmount" => "required|min:1",
                 "payment_checkbox" => "required"
             ]);
@@ -454,13 +454,27 @@ class AccountController extends Controller
 
                     $paymentIds = "[" . $request->payment_method_card . "]";
                     $url = "Payments?credit_card_id=" . $request->payment_method_card . "&amount=" . $request->totalAmount;
-                    $response = APICall($url, "post", $paymentIds, "client_app");
-                    $response = json_decode($response);
-                    if ($response->error == null) {
-                        return redirect()->route('payMyOutstandingBalance')->with("success", trans('title_message.Payment_Successfull'));
+                    $responses = APICall($url, "post", $paymentIds, "client_app");
+                    $responses = json_decode($responses);
+                    if ($responses->error != null) {
+                        $response = array(
+                            'message' => trans('title_message.Payment_denied'),
+                            'message_type' => 'danger'
+                        );
+                        return redirect()->back()->with($response);
                     } else {
-                        return redirect()->route('payMyOutstandingBalance')->with("error", $response->error->message);
+                        $response = array(
+                            'message' => trans('title_message.Payment_Successfull'),
+                            'message_type' => 'success',
+                        );
+                        return redirect()->back()->with($response);
                     }
+
+                    // if ($response->error == null) {
+                    //     return redirect()->route('payMyOutstandingBalance')->with("success", trans('title_message.Payment_Successfull'));
+                    // } else {
+                    //     return redirect()->route('payMyOutstandingBalance')->with("error", $response->error->message);
+                    // }
                 }
                 //bank account payment
                 else {

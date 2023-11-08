@@ -35,10 +35,10 @@
                         <div class="mob_user_icon">
                             <span class="accountinfo" ><img src="{{ asset('public/admin/images/icon1.svg') }}" alt="" ></span>
                             
-                            <span class="close_info" ><i class="far fa-times"></i></span>
+                            <span class="close_info" ><i class="fa fa-times"></i></span>
                         </div>    
                             <nav class="navbar navbar-expand-lg ">
-                                <button class="navbar-toggler menu-btn" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <button class="navbar-toggler menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                                 </button>
                                 <div class="collapse navbar-collapse menucont" id="navbarSupportedContent">
@@ -48,7 +48,7 @@
                                             <a href="javascript:void(0)"><img src="{{ asset('public/images/logo.svg') }}" alt=""></a>
                                         </div>
                                         <div class="closeicon">
-                                            <i class="far fa-times"></i>
+                                            <i class="fa fa-times"></i>
                                         </div>
                                     </div>
                                     <ul class="navbar-nav mr-auto">
