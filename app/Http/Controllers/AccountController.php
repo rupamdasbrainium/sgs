@@ -217,6 +217,7 @@ class AccountController extends Controller
         $data['title'] = trans('myProfile.My_Profile');
         $logo = Configuration::where('name', 'logo_image')->where('franchise_id', 3)->first();
         $theme = Configuration::where('name', 'theme_color')->where('franchise_id', 3)->first();
+        $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id', 3)->first();
         $button = Configuration::where('name', 'primary_button_color')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
@@ -573,6 +574,7 @@ class AccountController extends Controller
         $data['title'] = trans('newMembership.memberships');
         $logo = Configuration::where('name', 'logo_image')->where('franchise_id', 3)->first();
         $theme = Configuration::where('name', 'theme_color')->where('franchise_id', 3)->first();
+        $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id', 3)->first();
         $button = Configuration::where('name', 'primary_button_color')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
@@ -611,7 +613,7 @@ class AccountController extends Controller
             $data['all_plan_details'][] = $item;
         }
 
-        return view('front.newmembershipStepOne', compact('data', 'logo', 'theme', 'button', 'admin_phone', 'admin_address', 'lang_id'));
+        return view('front.newmembershipStepOne', compact('data', 'logo', 'theme', 'button', 'admin_phone', 'admin_address', 'lang_id','theme_color_hover'));
     }
 
     public function newMembershipSteptwo($id)

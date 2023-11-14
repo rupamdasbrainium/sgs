@@ -352,13 +352,14 @@ ul.navbar-nav li a {
 	border-radius:6px;
 	transition:0.3s;
 }
+
 .prod_item:hover {
-	background:#5ADFC2;
+	background:var(--hover_bg, #df5a94);
 	/* transform:scale(1.1);*/
 }
-.prod_item:hover  select.select_opt{
+/* .prod_item:hover  select.select_opt{
     background: #3e621cd9;
-}
+} */
 .prod_item:hover .action_text {
 	color:#fff;
 }
@@ -841,7 +842,7 @@ select.select_opt {
 	width:100%;
 	border:0px;
 	padding:15px;
-	background:#ddf8f1;
+	background:var(--secondary_theme,#ddf8f1);
 	border-radius:10px 10px 10px 0;
 	appearance: none;
 }

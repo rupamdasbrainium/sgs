@@ -61,6 +61,7 @@ class HomeController extends Controller
         $banner = Configuration::where('name','banner_image')->where('franchise_id',$this->getfranchiseId())->first();
         $theme = Configuration::where('name','theme_color')->where('franchise_id',$this->getfranchiseId())->first();
         $button = Configuration::where('name','primary_button_color')->where('franchise_id',$this->getfranchiseId())->first();
+        $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id',$this->getfranchiseId())->first();
         $title = Configuration::where('name','title')->where('franchise_id',$this->getfranchiseId())->first();
         $subtitle = Configuration::where('name','subtitle')->where('franchise_id',$this->getfranchiseId())->first();  
         $home_title = Configuration::where('name','home_title')->where('franchise_id',$this->getfranchiseId())->first();
@@ -104,7 +105,7 @@ class HomeController extends Controller
                 }
                 $data['all_plan_data'][] = $item;
             }
-            return view('front.home', compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag'));
+            return view('front.home', compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag','theme_color_hover'));
         }
         else
         {
@@ -261,32 +262,19 @@ class HomeController extends Controller
         
         //find franchise_id
         $short_code_flag = 0;
-        // foreach ($data['franchises']->data as $key => $franchise) {
-        //     if(!$short_code_sec){
-        //         $franchise_id = $franchise->id;
-        //         $short_code_sec = $franchise->shortCode;
-        //         $short_code_flag = 1;
-        //         $data['franchise_address'] = $franchise->address_civic_number .' '. $franchise->address_street .' '. $franchise->address_city;
-        //         break;
-        //     }
-        //     if ($franchise->shortCode == $short_code_sec) { //actual
-        //         $franchise_id = $franchise->id;
-        //         $data['franchise_address'] = $franchise->address_civic_number .' '. $franchise->address_street .' '. $franchise->address_city;
-        //         break;
-        //     }
-        // }
+       
         foreach ($data['franchises']->data as $key => $franchise) {
             $franchise_id = $franchise->id;
         }
         if(!$franchise_id){
             return redirect()->route('sechomepage');
         }
-    //   Cookie::queue(Cookie::make('driver_route_id', $short_code_sec, 60000));
-    //   Cookie::get('driver_route_id');
+
         
         $logo = Configuration::where('name','logo_image')->where('franchise_id',$this->getfranchiseId())->first();
         $banner = Configuration::where('name','banner_image')->where('franchise_id',$this->getfranchiseId())->first();
         $theme = Configuration::where('name','theme_color')->where('franchise_id',$this->getfranchiseId())->first();
+        $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id',$this->getfranchiseId())->first();
         $button = Configuration::where('name','primary_button_color')->where('franchise_id',$this->getfranchiseId())->first();
         $title = Configuration::where('name','title')->where('franchise_id',$this->getfranchiseId())->first();
         $subtitle = Configuration::where('name','subtitle')->where('franchise_id',$this->getfranchiseId())->first();  
@@ -355,7 +343,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('front.categoryPlan',compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag'));
+        return view('front.categoryPlan',compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag','theme_color_hover'));
     }
 
     public function login()

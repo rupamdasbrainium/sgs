@@ -20,6 +20,7 @@ return [
     'Logo_Image' => 'Logo Image',
     'Color_Settings' => 'Color Settings',
     'Theme_Color' => 'Theme Color',
+    'theme_color_hover' => 'Theme Hover Color',
     'Primary_Button_Color' => ' Primary Button Color',
     'Secondary_Button_Color' => 'Secondary Button Color',
     'Text_Color' => 'Text Color',

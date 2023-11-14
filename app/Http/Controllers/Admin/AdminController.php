@@ -11,6 +11,7 @@ use App\Models\AdminUser;
 use App\Models\User;
 use App\Models\Content;
 use App\Models\Configuration;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -168,10 +169,11 @@ class AdminController extends Controller
     public function settings () {
         $user = Auth::guard('admin')->user();
         $data = array();
-        $data['data'] = [ 'banner_image' => asset('public/admin/images/adminbanner_add.png'), 'logo_image' => asset('public/admin/images/logo.png'), 'theme_color' => '#5ADFC2', 'primary_button_color' => '#1D1D1B', 'secondary_button_color' => '#FFB11A', 'text_button_color' => '#575757' ];
+        $data['data'] = [ 'banner_image' => asset('public/admin/images/adminbanner_add.png'), 'logo_image' => asset('public/admin/images/logo.png'), 'theme_color' => '#5ADFC2','theme_color_hover' => '#5ADFC2', 'primary_button_color' => '#1D1D1B', 'secondary_button_color' => '#FFB11A', 'text_button_color' => '#575757' ];
         $result = Configuration::where('user_id', $user->id)->where('type', 'settings')->get();
         $logo = Configuration::where('name','logo_image')->where('franchise_id',$user->franchise_id)->first();
         $theme = Configuration::where('name','theme_color')->where('franchise_id',$user->franchise_id)->first();
+        $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id',$user->franchise_id)->first();
         $button = Configuration::where('name','primary_button_color')->where('franchise_id',$user->franchise_id)->first();
         $title = Configuration::where('name','title')->where('franchise_id',3)->first();
         $subtitle = Configuration::where('name','subtitle')->where('franchise_id',3)->first();
@@ -180,6 +182,7 @@ class AdminController extends Controller
         $home_body = Configuration::where('name','home_body')->where('franchise_id',3)->first();
         $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',3)->first();
         $admin_address = Configuration::where('name','admin_address')->where('franchise_id',3)->first();
+        $video = Configuration::where('name','video')->where('franchise_id',3)->first();
         if (count($result) > 0) {
             $data['data'] = getConfigurationValue($result);
             if (isset($data['data']['banner_image'])) {
@@ -195,13 +198,18 @@ class AdminController extends Controller
         }
         $data['user'] = $user;
         $data['title'] = trans('title_message.Admin_Settings');
-        return view('admin.settings', compact('data','logo','theme','button','title','subtitle','home_title','home_magicplan','home_body','admin_address','admin_phone'));
+        return view('admin.settings', compact('data','logo','theme','button','title','subtitle','home_title','home_magicplan','home_body','admin_address','admin_phone','video'));
     }
 
 
     public function settingsStore (Request $request) {
         $user = Auth::guard('admin')->user();
-
+            $validator = Validator::make($request->all(), [
+                'logo_image'=>'mimes:jpg,png,jpeg,gif'
+              ]);
+              if ($validator->fails()) {
+                return back()->withErrors($validator);
+            }else{
         $input_data = $request->all();
        
         unset($input_data['_token']);
@@ -219,8 +227,15 @@ class AdminController extends Controller
             );
            
         }
+    }
 
         if ($request->hasFile('banner_image')) {
+            $validator = Validator::make($request->all(), [
+                'banner_image'=>'mimes:jpg,png,jpeg,gif'
+              ]);
+              if ($validator->fails()) {
+                return back()->withErrors($validator);
+            }else{
             $allowedfileExtension = ['jpeg','jpg','png', 'gif'];
             $file = $request->file('banner_image');
             $file_type = $file->extension();
@@ -236,7 +251,8 @@ class AdminController extends Controller
                 Configuration::updateOrCreate(
                     ['name' => 'banner_image'], $row_data
                 );
-            } 
+            }
+        } 
            
         }
 
