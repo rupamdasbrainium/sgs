@@ -20,6 +20,7 @@ return [
     'Logo_Image' => 'Image logo',
     'Color_Settings' => 'Paramètres de couleur',
     'Theme_Color' => 'Couleur du thème',
+    'theme_color_hover' => 'Couleur de survol du thème',
     'Primary_Button_Color' => 'Couleur du bouton principal',
     'Secondary_Button_Color' => 'Couleur du bouton secondaire',
     'Text_Color' => 'Couleur du texte',

@@ -56,12 +56,12 @@
                     </div>
                 </div>
             </div>
-            <div class="prod_viewsection_outer">
+            <div class="prod_viewsection_outer" >
                 <div class="round_opt1">
                     <img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
                 </div>
 
-                <div class="prod_viewsection">
+                <div class="prod_viewsection" style="--hover_bg: {{$theme_color_hover->value}};"  >
 
                     <div class="container">
                         <div class="row">
@@ -105,6 +105,7 @@
                                             <div class="arrowdown2">
                                                 <i class="fal fa-chevron-down"></i>
                                             </div>
+                                          
                                             <select class="select_opt" id="franchises_type" name="franchise_plan">
 
                                                 @foreach ($data['franchisesPlanType']->data as $value)
@@ -143,7 +144,7 @@
                                                         <div class="arrowdown2">
                                                             {{-- <i class="far fa-chevron-down"></i> --}}
                                                         </div>
-                                                        <select class="select_opt" title=" {{ $values->name }}">
+                                                        <select class="select_opt" title=" {{ $values->name }}"  >
                                                             <option value="{{ $values->id }}">
 
                                                                 {{ substr($values->name, 0, 14) }}...
@@ -165,7 +166,7 @@
                                                                 <div class="arrowdown2">
                                                                     <i class="fal fa-chevron-down"></i>
                                                                 </div>
-                                                                <select class="select_opt">
+                                                                <select class="select_opt"  style="--secondary_theme: {{$theme->value}}">
 
                                                                     @foreach ($values->priceBydurations as $val)
                                                                         {{-- ${{ $val->price_recurant }}<span>/

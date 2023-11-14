@@ -52,18 +52,18 @@
                         <div class="prod_item_wrap owl-carousel owl-theme" id="home_prod_item">
 
                             @foreach ($data['all_plan_data'] as $key => $values)
-                                <div class="prod_item">
+                                <div class="prod_item" style="--hover_bg: {{$theme_color_hover->value}}">
                                     <div class="action_opt action_opt_title"
                                         style="background-color: {{ $theme->value }}">
 
                                         <div class="action_text">
 
-                                            <div class="selectcont ">
+                                            <div class="selectcont" style="background-color: {{ $theme->value }}">
 
                                                 <div class="arrowdown2">
                                                     {{-- <i class="far fa-chevron-down"></i> --}}
                                                 </div>
-                                                <select class="select_opt" title=" {{ $values->name }}">
+                                                <select class="select_opt"   title=" {{ $values->name }}">
                                                     <option value="{{ $values->id }}">
 
                                                         {{ substr($values->name, 0, 14) }}...
@@ -82,7 +82,7 @@
                                                         <div class="arrowdown2">
                                                             <i class="fal fa-chevron-down"></i>
                                                         </div>
-                                                        <select class="select_opt">
+                                                        <select class="select_opt" style="--secondary_theme: {{$theme->value}}">
 
                                                             @foreach ($values->priceBydurations as $val)
                                                         

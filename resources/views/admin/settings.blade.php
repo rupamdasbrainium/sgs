@@ -29,6 +29,9 @@
                                                         <input type="file" name="banner_image" id="banner_image"
                                                             class="hidden" accept="image/*">
                                                     </div>
+                                                    @error('banner_image')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label>{{ __('admin.Banner_Title') }} <em class="req_text">*</em>
@@ -81,7 +84,7 @@
                                                     <div class="inp_cont_view noicon_opt">
                                                         <input type="text" class="form-control" name="video"
                                                             placeholder="{{ __('admin.Video') }}"
-                                                            value="">
+                                                            value="{{$video->value}}">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -115,6 +118,9 @@
                                                         <input type="file" name="logo_image" id="logo_image"
                                                             class="hidden" accept="image/*">
                                                     </div>
+                                                    @error('logo_image')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
                                                 </div>
 
                                                 <div class="form-group">
@@ -138,6 +144,21 @@
                                                             </div>
                                                             <div class="color_opt_block">
                                                                 <div class="color_opt_text">
+                                                                    {{ __('admin.theme_color_hover') }} <span
+                                                                        class="req_text">*</span>
+                                                                </div>
+                                                                <div class="color_opt_inp">
+                                                                    <!-- <input class="inpcolor_opt" type="color" id="theme_color" name="favcolor" value="#5ADFC2"> -->
+                                                                    <input type="color" name="theme_color_hover"
+                                                                        class="inpcolor_opt" id="theme_color_hover"
+                                                                        value="{{ $data['data']['theme_color_hover'] }}">
+                                                                    <input readonly type="text"
+                                                                        class="inpcolor_opt inpres" id="theme_color_hover_res"
+                                                                        value="#5ADFC2">
+                                                                </div>
+                                                            </div>
+                                                            <div class="color_opt_block">
+                                                                <div class="color_opt_text">
                                                                     {{ __('admin.Primary_Button_Color') }} <span
                                                                         class="req_text">*</span>
                                                                 </div>
@@ -151,7 +172,7 @@
                                                                         id="pri_btncolor_res" value="#5ADFC2">
                                                                 </div>
                                                             </div>
-                                                            <div class="color_opt_block">
+                                                            {{-- <div class="color_opt_block">
                                                                 <div class="color_opt_text">
                                                                     {{ __('admin.Secondary_Button_Color') }} <span
                                                                         class="req_text">*</span>
@@ -166,7 +187,7 @@
                                                                         class="inpcolor_opt inpres"
                                                                         id="sec_btncolor_res" value="#FFB11A">
                                                                 </div>
-                                                            </div>
+                                                            </div> --}}
                                                             <div class="color_opt_block">
                                                                 <div class="color_opt_text">
                                                                     {{ __('admin.Text_Color') }} <span

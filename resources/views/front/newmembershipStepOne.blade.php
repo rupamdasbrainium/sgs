@@ -14,7 +14,7 @@
 				$values = $data['all_plan_details'][$key];
 				// @dd($data['all_plan_details'])
 				@endphp
-					<div class="prod_item">
+					<div class="prod_item" style="--hover_bg: {{$theme_color_hover->value}}">
 						<div class="action_opt action_opt_title" style="background-color: {{$theme->value}}">
 
 							<div class="action_text">
@@ -43,7 +43,7 @@
 											<div class="arrowdown2">
 												<i class="fal fa-chevron-down"></i>
 											</div>
-											<select class="select_opt">
+											<select class="select_opt" style="--secondary_theme: {{$theme->value}}">
 												@foreach ($values->priceBydurations as $val)
 													{{-- ${{ $val->price_recurant }}<span>/
 														{{ $val->duration_unit_display }}</span> --}}
