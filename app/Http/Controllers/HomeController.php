@@ -245,7 +245,7 @@ class HomeController extends Controller
     //     return view('front.homeBasedOnCategory',compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag'));
     // }
 
-    public function categoryplan()
+    public function categoryplan($id)
     {
         $lang_id = getLocale();
 
@@ -293,18 +293,19 @@ class HomeController extends Controller
             'message_type' => 'danger',
           );
 
-        $categoryType = APICall("Options/categories?franchise_id=" .$franchise_id."&language_id=" . $lang_id, "get", "{}");
-        $data['category'] = json_decode($categoryType)->data;
+        // $categoryType = APICall("Options/categories?franchise_id=" .$franchise_id."&language_id=" . $lang_id, "get", "{}");
+        // $data['category'] = json_decode($categoryType)->data;
 
-        foreach ($data['category'] as $key => $category) {
-            $category_id = $category->id;
-        }
+        // foreach ($data['category'] as $key => $category) {
+        //     $category_id = $category->id;
+        // }
 
         $franchisesPlanType = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id. "&language_id=" . $lang_id, "get", "{}");
         $data['all_plan'] = $data['franchisesPlanType'] = json_decode($franchisesPlanType);
 
-        $categoryPlan = APICall("SubscriptionPlans/category/". $category_id. "?franchise_id=".$franchise_id,"get", "{}");
+        $categoryPlan = APICall("SubscriptionPlans/category/". $id. "?franchise_id=".$franchise_id,"get", "{}");
         $data['categoryPlan'] = json_decode($categoryPlan);
+        $category_name = request()->name;
         // dd($data['all_plan']->data,$data['categoryPlan'],$data['categoryPlan']->data->subscriptionPlan1);
         // $data['bestfoursubscriptionplan'] = [];
         // if($data['categoryPlan']->data->subscriptionPlan1)
@@ -343,7 +344,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('front.categoryPlan',compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag','theme_color_hover'));
+        return view('front.categoryPlan',compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag','theme_color_hover','category_name'));
     }
 
     public function login()
