@@ -46,11 +46,11 @@
                     <div class="col-md-12">
                         <div class="heading_title">
 
-                            @foreach ($data['category'] as $item)
+                            {{-- @foreach ($data['category'] as $item) --}}
                                 <div class="cat_opt_item">
-                                    <h3>{{ $item->title }}</h3>
+                                    <h3>{{ $category_name }}</h3>
                                 </div>
-                            @endforeach
+                            {{-- @endforeach --}}
                         </div>
 
                         <div class="prod_item_wrap owl-carousel owl-theme" id="home_prod_item">

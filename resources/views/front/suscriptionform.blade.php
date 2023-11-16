@@ -11,13 +11,13 @@
                     
                     {{-- @dump(Session::get('message')); --}}
                     <div class="col-md-12">
-                        @if (Session::has('message'))
+                        {{-- @if (Session::has('message'))
                             <div class="col-md-12">
                                 <div class="alert alert-danger">
                                     {{ Session::get('message') }}
                                 </div>
                             </div>
-                        @endif
+                        @endif --}}
                         <div class="welcomesec_info inner_heading">
                             <div class="round_opt_btn3 modfround1">
                                 <img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
@@ -52,7 +52,7 @@
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="text" name="firstname" id="firstname" value="{{ old('firstname') }}"
-                                                    class="form-control" placeholder="{{ __('suscription.fn') }} *"
+                                                    class="form-control" placeholder="{{ __('suscription.fn') }} *" maxlength="50"
                                                     required>
                                             </div>
                                             @error('firstname')
@@ -62,7 +62,7 @@
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="text" name="lastname" value="{{ old('lastname') }}"
-                                                    class="form-control" placeholder="{{ __('suscription.ln') }} *"
+                                                    class="form-control" placeholder="{{ __('suscription.ln') }} *" maxlength="100"
                                                     required>
                                             </div>
                                             @error('lastname')
@@ -82,7 +82,7 @@
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="text" name="address_street" id="latitude" autocomplete="address_street"
                                                     value="{{ old('address_street') }}" class="form-control"
-                                                    placeholder="{{ __('suscription.street') }} *" required>
+                                                    placeholder="{{ __('suscription.street') }} *" maxlength="50" oninput="validateNumericInput(this)" required>
                                             </div>
                                             @error('address_street')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -103,7 +103,7 @@
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="text" name="address_city"
                                                     value="{{ old('address_city') }}" class="form-control" autocomplete="address_city"
-                                                    placeholder="{{ __('suscription.city') }} *" required>
+                                                    placeholder="{{ __('suscription.city') }} *" maxlength="50" required>
                                             </div>
                                             @error('address_city')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -172,7 +172,7 @@
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="text" name="emergency_contact"
                                                     value="{{ old('emergency_contact') }}" class="form-control"
-                                                    placeholder="{{ __('suscription.emergency_contact_name') }}*"
+                                                    placeholder="{{ __('suscription.emergency_contact_name') }}*" maxlength="50"
                                                     required>
                                             </div>
                                             @error('emergency_contact')
@@ -227,7 +227,7 @@
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="email" name="email" value="{{ old('email') }}"
                                                     class="form-control"
-                                                    placeholder="{{ __('suscription.email') }} *" required>
+                                                    placeholder="{{ __('suscription.email') }} *" maxlength="260" required>
                                             </div>
                                             @error('email')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -256,7 +256,7 @@
                                                 <input class="form-control" type="password" name="password"
                                                     value="{{ old('password') }}"
                                                     placeholder="{{ __('suscription.password') }} *"
-                                                    autocomplete="current-password" id="id_password"
+                                                    autocomplete="current-password" id="id_password" minlength="9" maxlength="75"
                                                     required>
                                             </div>
                                             @error('password')
@@ -284,7 +284,7 @@
                                             <div class="inp_cont_view noicon_opt">
                                                 <input class="form-control" name="user_name"
                                                     value="{{ old('user_name') }}" type="text"
-                                                    placeholder="{{ __('suscription.user_name') }} *" required>
+                                                    placeholder="{{ __('suscription.user_name') }} *" maxlength="35" required>
                                             </div>
                                             @error('user_name')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -478,6 +478,18 @@
                 event.target.value = inputValue;
             });
 
+            const cellphoneInput = document.getElementById('cellphone');
+            cellphoneInput.addEventListener('input', function(event) {
+                let inputValue = event.target.value;
+                inputValue = inputValue.replace(/\D/g, ''); // Remove non-numeric characters
+                if (inputValue.length > 0) {
+                    inputValue = inputValue.match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+                    inputValue = !inputValue[2] ? inputValue[1] : inputValue[1] + '-' + inputValue[2] + (inputValue[3] ?
+                        '-' + inputValue[3] : '');
+                }
+                event.target.value = inputValue;
+            });
+
 			// const address_postal_codeInput = document.getElementById('address_postal_code');
             // address_postal_codeInput.addEventListener('input', function(event) {
             //     let inputValue = event.target.value;
@@ -503,7 +515,12 @@
 var today = new Date().toISOString().split('T')[0];
 document.getElementById("datepicker").setAttribute("max",today);
 
+function validateNumericInput(input) {
+            input.value = input.value.replace(/[^a-zA-Z\\.]+/g, '');
+        }
+
         </script>
+       
 
         {{-- googleaddress --}}
           {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
