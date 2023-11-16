@@ -141,15 +141,25 @@
                             </div> --}}
                             @foreach ($data['category'] as $item)
                                 <div class="cat_opt_item">
-                                    <div class="cat_opt_img">
+                                    <a href="{{ route('categoryplan', ['category_id'=>$item->id,'name'=>$item->title]) }}">
+                                        <div class="cat_opt_img">
+                                            @if ($item->logo == null)
+                                                <img src="{{ asset('public/images/cat_icon3.svg') }}" alt=""> 
+                                            @else
+                                                <img src="{{ $item->logo }}" alt="">
+                                            @endif
+                                        
+                                        </div> 
+                                    </a> 
+                                    {{-- <div class="cat_opt_img">
                                         @if ($item->logo == null)
-                                        <a href="{{route('categoryplan')}}"> <img src="{{ asset('public/images/cat_icon3.svg') }}" alt=""> </a>
+                                        <a href="{{ route('categoryplan', ['category_id'=>$item->id,'name'=>$item->title]) }}"> <img src="{{ asset('public/images/cat_icon3.svg') }}" alt=""> </a>
                                         @else
-                                            <img src="{{ $item->logo }}" alt="">
+                                            <a href="{{ route('categoryplan', ['category_id'=>$item->id,'name'=>$item->title]) }}"> <img src="{{ $item->logo }}" alt=""> </a>
                                         @endif
                                         
-                                    </div>
-                                    <h3><a href="{{route('categoryplan')}}">{{$item->title}}</a></h3>
+                                    </div> --}}
+                                    <h3><a href="{{route('categoryplan', ['category_id'=>$item->id,'name'=>$item->title])}}">{{$item->title}}</a></h3>
                                     <div class="cat_opt_text">
                                         <p>{{$item->description}}<span class="more_content_text">+</span></p>
 
