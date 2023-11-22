@@ -38,7 +38,7 @@
                                                             <div class="inp_cont_view noicon_opt" id="incdec">
 
                                                                 <input type="text" name="transit_number"
-                                                                    class="form-control" placeholder=""
+                                                                    class="form-control" placeholder="" oninput="onlynumshow(event)" maxlength="5"
                                                                     value="{{ $data['bank'][0]->transit }}">
                                                             </div>
                                                         </div>
@@ -52,7 +52,7 @@
                                                             <label>{{ __('paymentForm.Branch_Number') }} <em
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="text" name="institution"
+                                                                <input type="text" name="institution" oninput="onlynumshow(event)" maxlength="3"
                                                                     class="form-control" placeholder=""  value="{{ $data['bank'][0]->institution }}">
                                                             </div>
                                                         </div>
@@ -66,7 +66,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="account_number"
-                                                                    class="form-control" placeholder=""  value="{{ $data['bank'][0]->account_last_digits }}">
+                                                                    class="form-control" placeholder="" oninput="onlynumshow(event)" maxlength="12" value="{{ $data['bank'][0]->account_last_digits }}">
                                                             </div>
                                                         </div>
                                                         @error('account_number')
@@ -153,6 +153,14 @@
             }
 
         }
+
+        function onlynumshow(event){
+
+let inputvalue = event.target.value;
+inputvalue = inputvalue.replace(/\D/g, ''); // Remove non-numeric characters
+
+event.target.value = inputvalue;
+}
     </script>
 
 

@@ -667,11 +667,20 @@ class AccountController extends Controller
         if (Session::has('add_on')) {
             Session::forget('add_on');
         }
+        if (Session::has('addonname')) {
+            Session::forget('addonname');
+        }
         if (!isset($request->add_on)) {
             return redirect()->route('newMembershipFinal', ['id' => $id]);
         }
-        Session::put('add_on', $request->add_on);
-
+        
+        foreach($request->add_on as $value){
+            $arrvalue = explode("|",$value);
+            $addon[]=$arrvalue[0];
+            $addonname[]=$arrvalue[1];
+             }
+             Session::put('add_on', $addon);
+             Session::put('addonname', $addonname);
 
         return redirect()->route('newMembershipFinal');
     }

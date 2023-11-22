@@ -46,7 +46,7 @@
                                                                 class="req_text">*</em></label>
                                                         <div class="inp_cont_view noicon_opt" id="incdec">
 
-                                                            <input type="text" name="four_digits_number" class="form-control"
+                                                            <input type="text" name="four_digits_number" class="form-control" 
                                                                 placeholder="" value="{{$data["card"][0]->four_digits_number}}">
 
                                                         </div>
@@ -58,7 +58,7 @@
                                                         <label>{{ __('paymentForm.Expiry_Month') }} <em
                                                                 class="req_text">*</em></label>
                                                         <div class="inp_cont_view noicon_opt">
-                                                            <input type="text" name="expiry_month"
+                                                            <input type="text" name="expiry_month" oninput="onlynumshow(event)" maxlength="2"
                                                                 class="form-control" placeholder="" value="{{$data["card"][0]->expire_month}}">
                                                         </div>
                                                     </div>
@@ -68,7 +68,7 @@
                                                         <label>{{ __('paymentForm.Expiry_Year') }} <em
                                                                 class="req_text">*</em></label>
                                                         <div class="inp_cont_view noicon_opt">
-                                                            <input type="text" name="expiry_year"
+                                                            <input type="text" name="expiry_year" oninput="onlynumshow(event)" maxlength="4"
                                                                 class="form-control" placeholder="" value="{{$data["card"][0]->expire_year}}">
                                                         </div>
                                                     </div>

@@ -377,7 +377,7 @@ class HomeController extends Controller
     {
         $logo = Configuration::where('name','logo_image')->where('franchise_id',$this->getfranchiseId())->first();
         $banner = Configuration::where('name','banner_image')->where('franchise_id',$this->getfranchiseId())->first();
-        return redirect()->route('account',compact('logo','banner'));
+        return redirect()->route('myProfile',compact('logo','banner'));
     }
 
     public function termsAndCondition()
