@@ -18,3 +18,4 @@ yarn-error.log
 /Files
 composer.lock
 .log
+.htaccess

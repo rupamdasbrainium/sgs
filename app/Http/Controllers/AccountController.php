@@ -288,7 +288,7 @@ class AccountController extends Controller
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $client = APICall("Clients", "get", "{}");
-        if ($client == "unauthorised") {
+        if ($client == "unauthorised" || !$client) {
             return redirect()->route('login', compact('logo'))->with('user', trans('title_message.login_token_expired'));
         }
 
