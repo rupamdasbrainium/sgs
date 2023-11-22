@@ -103,6 +103,7 @@
                                             <div class="sum_inp_left">
                                                 {{ __('paymentForm.membership') }}
                                             </div>
+                                           
                                             @if (Session::get('addonname') == null)
                                                 <div class="sum_inp_right">
                                                     No-addon
@@ -121,69 +122,7 @@
                                                 </div>
                                             @endif
                                         </div>
-                                        <div class="sum_inp_cont">
-                                            <div class="sum_inp_left">
-                                                {{ __('paymentForm.package') }}
-                                            </div>
-                                            <div class="sum_inp_right">
-                                                {{ $data['membership_details']->data->initial_subtotal }} $
-                                            </div>
-                                        </div>
-                                        <div class="sum_inp_cont">
-                                            <div class="sum_inp_left">
-                                                {{ __('paymentForm.number_of_payments') }}
-                                            </div>
-                                            <div class="sum_inp_right">
-                                                {{ $data['membership_details']->data->number_of_payments }}
-                                                {{ __('paymentForm.payments') }}
-                                            </div>
-                                        </div>
-                                        <div class="sum_inp_cont">
-                                            <div class="sum_inp_left">
-                                                {{ __('paymentForm.begin_of_the_contract') }}
-                                            </div>
-                                            <div class="sum_inp_right">
-                                                {{ date('Y-m-d', strtotime($data['membership_details']->data->begin)) }}
-                                            </div>
-                                        </div>
-                                        <div class="sum_inp_cont">
-                                            <div class="sum_inp_left">
-                                                {{ __('paymentForm.end_of_the_contract') }}
-                                            </div>
-                                            <div class="sum_inp_right">
-                                                {{ date('Y-m-d', strtotime($data['membership_details']->data->end)) }}
-                                            </div>
-                                        </div>
-                                        <div class="sum_inp_cont">
-                                            <div class="sum_inp_left">
-                                                {{ __('paymentForm.duration') }}
-                                            </div>
-                                            <div class="sum_inp_right">
-                                                {{ $data['membership_details']->data->duration_unit }}
-                                            </div>
-                                        </div>
-                                        <div class="sum_inp_cont">
-                                            <div class="sum_inp_left">
-                                                {{ __('paymentForm.membership') }}
-                                            </div>
-                                            @if (Session::get('addonname') == null)
-                                                <div class="sum_inp_right">
-                                                    {{ __('paymentForm.No_addon') }}
-                                                </div>
-                                            @else
-                                                @php
-                                                    Session::get('addonname');
-                                                    $addonname = Session::get('addonname');
-                                                @endphp
-
-                                                <div class="sum_inp_right">
-                                                    @foreach ($addonname as $addonName)
-                                                        {{ $addonName }}
-                                                        {{ $loop->last ? '' : ',' }}
-                                                    @endforeach
-                                                </div>
-                                            @endif
-                                        </div>
+                                       
 
                                     </div>
                                 </div>
@@ -509,11 +448,45 @@
                                                     <p>{{ __('paymentForm.Amount_to_be_paid') }}:
                                                         ${{ $total }}</p>
                                                 </div>
+                                                <div class="form-group">
+                                                    <div class="checkbox_block">
+                                                        <div class="inp_row remember_opt">
+                                                            <div class="form-group">
+                                                                <div class="checkbox">
+                                                                    <!-- <label><input type="checkbox"> Remember me</label> -->
+        
+                                                                    <input class="styled-checkbox" type="checkbox"
+                                                                        name="check1" id="checkbox1" value="value1"
+                                                                        onclick="checksignup()">
+                                                                    <label for="checkbox1">{{ __('paymentForm.accept') }} <a
+                                                                            target="_blank"
+                                                                            href="{{ route('front.terms') }}">{{ __('paymentForm.terms') }}</a></label>
+                                                                </div>
+        
+                                                            </div>
+        
+                                                            <div class="form-group">
+                                                                <div class="checkbox">
+                                                                    <!-- <label><input type="checkbox"> Remember me</label> -->
+        
+                                                                    <input class="styled-checkbox" type="checkbox"
+                                                                        name="check2" id="checkbox2" value="value2"
+                                                                        onclick="checksignup()">
+                                                                    <label for="checkbox2">{{ __('paymentForm.accept') }} <a
+                                                                            target="_blank"
+                                                                            href="{{ route('front.privacy') }}">{{ __('paymentForm.suitability') }}</a></label>
+                                                                </div>
+        
+                                                            </div>
+                                                        </div>
+        
+                                                    </div>
 
+                                                </div>
                                                 <div class="frombtn_wrap">
                                                     <div class="def_btnopt2 frombtn frombtn2">
                                                         <button type="submit" class="btn2" id="btnformsave"
-                                                            style="background-color: {{ $button->value }}">{{ __('newMembership.Save') }}</button>
+                                                            style="background-color: {{ $button->value }}" disabled>{{ __('newMembership.Save') }}</button>
                                                         <button type="submit" class="btn2" id="btnaccsave"
                                                             style="background-color: {{ $button->value }}">{{ __('newMembership.Saveapaymentmethod') }}</button>
                                                     </div>
@@ -664,6 +637,16 @@
                     }
                 });
             });
+
+            function checksignup() {
+            var checkbox1 = document.getElementById("checkbox1").checked;
+            var checkbox2 = document.getElementById("checkbox2").checked;
+            if (checkbox1 && checkbox2) {
+                document.getElementById("btnformsave").disabled = false;
+            } else {
+                document.getElementById("btnformsave").disabled = true;
+            }
+        }
         </script>
 
 

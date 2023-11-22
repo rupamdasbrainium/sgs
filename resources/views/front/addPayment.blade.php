@@ -76,7 +76,7 @@
                                                             <label>{{ __('paymentForm.Transit_Number') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt" id="incdec">
 
-                                                                <input type="number" name="transit_number"
+                                                                <input type="text" name="transit_number" oninput="onlynumshow(event)" maxlength="5"
                                                                     class="form-control" placeholder=""
                                                                     value="{{ old('transit_number') }}">
 
@@ -91,7 +91,7 @@
                                                         <div class="form-group">
                                                             <label>{{ __('paymentForm.Branch_Number') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="number" name="institution"
+                                                                <input type="text" name="institution" oninput="onlynumshow(event)" maxlength="3"
                                                                     class="form-control" placeholder="" value="{{ old('institution') }}">
                                                             </div>
                                                         </div>
@@ -103,7 +103,7 @@
                                                         <div class="form-group">
                                                             <label>{{ __('paymentForm.Account_Number') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="number" name="account_number"
+                                                                <input type="text" name="account_number" oninput="onlynumshow(event)" maxlength="12"
                                                                     class="form-control" placeholder="" value="{{ old('account_number') }}">
                                                             </div>
                                                         </div>
@@ -158,7 +158,7 @@
                                                             <label>{{ __('paymentForm.PAN') }} <em
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="number" name="pan" 
+                                                                <input type="text" name="pan" oninput="onlynumshow(event)" maxlength="16"
                                                                     class="form-control" placeholder="" value="{{ old('pan') }}">
                                                             </div>
                                                         </div>
@@ -172,7 +172,7 @@
                                                                 class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt" id="incdec">
 
-                                                                <input type="number" name="four_digits_number"
+                                                                <input type="text" name="four_digits_number" oninput="onlynumshow(event)" maxlength="4"
                                                                     class="form-control" placeholder=""
                                                                     value="{{ old('four_digits_number') }}">
 
@@ -187,7 +187,7 @@
                                                         <div class="form-group">
                                                             <label>{{ __('paymentForm.Expiry_Month') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="number" name="expiry_month" min="1" max="12"
+                                                                <input type="text" name="expiry_month" min="1" max="12" oninput="onlynumshow(event)" maxlength="2"
                                                                     class="form-control" placeholder=""  value="{{ old('expiry_month') }}">
                                                             </div>
                                                         </div>
@@ -199,7 +199,7 @@
                                                         <div class="form-group">
                                                             <label>{{ __('paymentForm.Expiry_Year') }} <em class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="number" name="expiry_year" max="9999" min="2023"
+                                                                <input type="text" name="expiry_year" max="9999" min="2023" oninput="onlynumshow(event)" maxlength="4"
                                                                     class="form-control" placeholder="" value="{{ old('expiry_year') }}">
                                                             </div>
                                                         </div>
@@ -330,6 +330,15 @@
                 }
             }
         }
+
+function onlynumshow(event){
+
+                let inputvalue = event.target.value;
+                inputvalue = inputvalue.replace(/\D/g, ''); // Remove non-numeric characters
+
+                event.target.value = inputvalue;
+}
+
     </script>
 
 

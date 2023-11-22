@@ -3826,3 +3826,7 @@ input[type="color"] {
 .videos_css .categories_addblock{
 flex: 0;
 }
+
+.optionclass{
+	font-size: 12.2px;
+}

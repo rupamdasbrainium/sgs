@@ -24,7 +24,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th class="modify">{{ __('paymyoutstandingbalance.TYPE') }}</th>
+                                        <th class="modify"></th>
                                         <th>{{ __('paymyoutstandingbalance.PAYMENT_DATE') }}</th>
                                         <th>{{ __('paymyoutstandingbalance.PAYMENT') }}</th>
                                         <th>{{ __('paymyoutstandingbalance.STATUS') }}</th>
