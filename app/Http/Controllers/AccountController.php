@@ -178,14 +178,24 @@ class AccountController extends Controller
     public function changePasswordUser(Request $request)
     {
 
-        $validator = Validator::make($request->all(), [
-            'old_password' => 'required|string',
-            'new_password' => 'required|string',
-            'con_password' => 'required|string|same:new_password',
-        ]);
-        if ($validator->fails()) {
-            return back()->with('errors', $validator->messages()->all());
-        }
+        // $validator = Validator::make($request->all(), [
+        //     'old_password' => 'required|string',
+        //     'new_password' => 'required|string| min:8',
+        //     'confirm_password' => 'required|string|same:new_password',
+        // ]);
+        // if ($validator->fails()) {
+        //     return back()->with('errors', $validator->messages()->all());
+        // }
+
+            $validate = $request->validate([
+                'old_password' => 'required|string',
+                'new_password' => 'required|string| min:8',
+                'confirm_password' => 'required|string|same:new_password',
+            ]);
+            if ($validate->fails()) {
+                    return back()->with('errors', $validator->messages()->all());
+                }
+
         $data = array();
         $data['oldPassword'] = $request->old_password;
         $data['newPassword'] = $request->new_password;

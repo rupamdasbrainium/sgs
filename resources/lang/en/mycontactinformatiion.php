@@ -16,8 +16,8 @@ return [
     'My_Contact_Information' => 'My Contact Information',
     'Change_Of_Informations' => 'Change Of Informations',
     'Example' => 'Example',
-    'Male' => 'Male',
-    'Female' => 'Female',
+    'Male' => 'Man',
+    'Female' => 'Woman',
     'Select_Gender' => 'Select Gender',
     'Save' => 'Save',
 ];

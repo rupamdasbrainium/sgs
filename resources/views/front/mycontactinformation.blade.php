@@ -26,19 +26,19 @@
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt nobg">
                                                 <input type="text" class="form-control" name="firstname" readonly
-                                                    placeholder="Nancy" value="{{ $client->firstname }}">
+                                                    placeholder="Nancy" value="{{ $client->firstname }}" maxlength="50">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt nobg">
                                                 <input type="text" class="form-control" readonly name="lastname"
-                                                    placeholder="Boudreault" value="{{ $client->lastname }}">
+                                                    placeholder="Boudreault" value="{{ $client->lastname }}" maxlength="100">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt nobg">
                                                 <input type="email" class="form-control" name="email" readonly
-                                                    placeholder="nancy@isma.ca" value="{{ $client->email }}">
+                                                    placeholder="nancy@isma.ca" value="{{ $client->email }}" maxlength="260">
                                             </div>
                                         </div>
                                     </div>
@@ -47,7 +47,7 @@
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt adbg">
                                                 <input type="text" class="form-control" name="civic_number"
-                                                    placeholder="246" value="{{ $client->adress->civic_number }}">
+                                                    placeholder="246" value="{{ $client->adress->civic_number }}" oninput="onlynumshow(event)" >
                                             </div>
                                             @if ($errors->has('civic_number'))
                                                 <div class="text-danger mt-3">{{ $errors->first('civic_number') }}</div>
@@ -56,7 +56,7 @@
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt adbg">
                                                 <input type="text" class="form-control" name="street"
-                                                    placeholder="st-jacques " value="{{ $client->adress->street }}">
+                                                    placeholder="st-jacques " value="{{ $client->adress->street }}" maxlength="50" oninput="validateNumericInput(this)">
                                             </div>
                                             @if ($errors->has('street'))
                                                 <div class="text-danger mt-3">{{ $errors->first('street') }}</div>
@@ -65,7 +65,7 @@
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt adbg">
                                                 <input type="text" class="form-control" name="appartment"
-                                                    placeholder="App" value="{{ $client->adress->appartment }}">
+                                                    placeholder="{{ __('suscription.app') }}" value="{{ $client->adress->appartment }}">
                                             </div>
                                             @if ($errors->has('appartment'))
                                                 <div class="text-danger mt-3">{{ $errors->first('appartment') }}</div>
@@ -76,7 +76,7 @@
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt adbg">
                                                 <input type="text" class="form-control" name="city"
-                                                    placeholder="saint-jean" value="{{ $client->adress->city }}">
+                                                    placeholder="saint-jean" value="{{ $client->adress->city }}" maxlength="50">
                                             </div>
                                             @if ($errors->has('city'))
                                                 <div class="text-danger mt-3">{{ $errors->first('city') }}</div>
@@ -120,7 +120,7 @@
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt adbg">
                                                 <input type="text" class="form-control" name="phone" id="phone"
-                                                    placeholder="Phone Number *" value="{{ $client->phone }}">
+                                                    placeholder="{{ __('suscription.ph') }} *" value="{{ $client->phone }}">
                                                 <p>{{ __('mycontactinformatiion.Example') }}: xxx xxx-xxxx</p>
                                             </div>
                                             @if ($errors->has('phone'))
@@ -129,8 +129,8 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt adbg">
-                                                <input type="text" class="form-control" name="cellphone"
-                                                    placeholder="Cell *" value="{{ $client->cellphone }}">
+                                                <input type="text" class="form-control" name="cellphone" id="cellphone"
+                                                    placeholder="{{ __('suscription.secondary_phone_number') }} *" value="{{ $client->cellphone }}">
                                                 <p>{{ __('mycontactinformatiion.Example') }}: xxx xxx-xxxx</p>
                                                 @if ($errors->has('cellphone'))
                                                     <div class="text-danger mt-3">{{ $errors->first('cellphone') }}
@@ -143,7 +143,7 @@
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="text" class="form-control" name="emergency_phone" id="emergency_phone"
-                                                    placeholder="Emergency Phone Number *"
+                                                    placeholder="{{ __('suscription.emergency_ph') }} *"
                                                     value="{{ $client->emergency_phone }}">
                                                 <p>{{ __('mycontactinformatiion.Example') }}: xxx xxx-xxxx</p>
                                             </div>
@@ -163,11 +163,11 @@
                                         </div>
                                     </div>
                                     <div class="inp_row gapadj inp_colm2">
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="text" class="form-control" name="emergency_contact"
-                                                    placeholder="Emergency contact"
-                                                    value="{{ $client->emergency_contact }}">
+                                                    placeholder="{{ __('suscription.emergency_contact') }}"
+                                                    value="{{ $client->emergency_contact }}" maxlength="50">
 
                                             </div>
                                             @if ($errors->has('emergency_contact'))
@@ -175,7 +175,7 @@
                                             </div>
                                              @endif
 
-                                        </div>
+                                        </div> --}}
                                         <div class="form-group">
                                             <!-- <div class="inp_cont_view noicon_opt">
             <input type="text" class="form-control" placeholder="Select Gender " >
@@ -202,6 +202,25 @@
                                         <div class="form-group">
                                             <input type="hidden" name="franchise_name"
                                                 value="{{ $client->franchise_name }}">
+                                        </div>
+                                    </div>
+                                    <div class="titleopt2">
+                                        {{-- <h3>{{ __('mycontactinformatiion.Change_Of_Informations') }}</h3> --}}
+                                        <h3>{{ __('suscription.emergency_contact') }}</h3>
+                                    </div>
+                                    <div  class="inp_row gapadj inp_colm2">
+                                        <div class="form-group">
+                                            <div class="inp_cont_view noicon_opt">
+                                                <input type="text" class="form-control" name="emergency_contact"
+                                                    placeholder="{{ __('suscription.emergency_contact') }}"
+                                                    value="{{ $client->emergency_contact }}" maxlength="50">
+    
+                                            </div>
+                                            @if ($errors->has('emergency_contact'))
+                                            <div class="text-danger mt-3">{{ $errors->first('emergency_contact') }}
+                                            </div>
+                                             @endif
+    
                                         </div>
                                     </div>
 
@@ -249,14 +268,31 @@
 			const postal_codeInput = document.getElementById('postal_code');
             postal_codeInput.addEventListener('input', function(event) {
                 let inputValue = event.target.value;
+            inputValue = inputValue.replace(/[^a-zA-Z0-9]/g, ''); // Remove non-alphanumeric characters
+            console.log(inputValue);
+            inputValue = inputValue.slice(0, 6); // Limit input to maximum 6 characters
+            inputValue = inputValue.replace(/(\w{3})(?=\w)/g, '$1 '); // Add space after every 3 non-alphanumeric characters
+            event.target.value = inputValue;
+            });
+
+            const cellphoneInput = document.getElementById('cellphone');
+            cellphoneInput.addEventListener('input', function(event) {
+                let inputValue = event.target.value;
                 inputValue = inputValue.replace(/\D/g, ''); // Remove non-numeric characters
                 if (inputValue.length > 0) {
-                    inputValue = inputValue.match(/(\d{0,3})(\d{0,3})/);
-                    inputValue = !inputValue[2] ? inputValue[1] : inputValue[1] + ' ' + inputValue[2] + (inputValue[3] ?
+                    inputValue = inputValue.match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+                    inputValue = !inputValue[2] ? inputValue[1] : inputValue[1] + '-' + inputValue[2] + (inputValue[3] ?
                         '-' + inputValue[3] : '');
                 }
                 event.target.value = inputValue;
             });
+
+            function onlynumshow(event)
+            {
+                let inputvalue = event.target.value;
+                inputvalue = inputvalue.replace(/\D/g, ''); // Remove non-numeric characters
+                event.target.value = inputvalue;
+            }
         </script>
     @include('footer')
     
