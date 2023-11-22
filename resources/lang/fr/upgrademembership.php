@@ -14,7 +14,7 @@ return [
     */
 
     'Memberships' => 'Adhésions',
-    'Act1_Membership_davable' => 'Adhésion à Act1 - davable',
+    'Act1_Membership_davable' => 'Adhésion à Act1 -Frais de',
     'per_Month' => 'par mois',
     'Method_of_payment' => 'Moyen de paiement',
     'End_date' => 'Date de fin',

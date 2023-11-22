@@ -9,7 +9,7 @@
 			<div class="content_block accountinfo">
 				<div class="blocktitle">
 
-					@if(Session::has('errors'))				
+					{{-- @if(Session::has('errors'))				
 						<div class="alert alert-danger">
 							@foreach(Session::get('errors') as $error) 
 							<span>
@@ -18,7 +18,7 @@
 							</span>
 							@endforeach
 						</div>
-						@endif
+					@endif --}}
 
 					<h2 class="addpadding">{{ __('changepassword.Change_Password') }}</h2>
 					<div class="fromdes_view ">
@@ -35,6 +35,9 @@
 											</div>
 											<input class="form-control" type="password" name="old_password" placeholder="**************" autocomplete="current-password" required="" id="id_password">
 										</div>
+										@error('old_password')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
 									</div>
 									
 									<div class="form-group">
@@ -45,6 +48,9 @@
 											</div>
 											<input class="form-control" type="password" name="new_password" placeholder="**************" autocomplete="current-password" required="" id="id_password2">
 										</div>
+										@error('new_password')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
 									</div>
 									<div class="form-group">
 										<label ><em class="req_text">*</em> {{ __('changepassword.Confirm_Password') }}</label>
@@ -52,8 +58,11 @@
 											<div class="icon_opt">
 												<i class="fal fa-eye" id="togglePassword3" style="cursor: pointer;"></i>
 											</div>
-											<input class="form-control" type="password" name="con_password" placeholder="**************" autocomplete="current-password" required="" id="id_password3">
+											<input class="form-control" type="password" name="confirm_password" placeholder="**************" autocomplete="current-password" required="" id="id_password3">
 										</div>
+										@error('confirm_password')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
 									</div>
 								</div>
 								

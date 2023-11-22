@@ -19,7 +19,7 @@ return [
     'Edit' => 'Modifier',
     'communication_language' => 'Langue de communication préférée',
     'Submit' => 'Soumettre',
-    'Memberships' => 'Adhésions',
+    'Memberships' => 'Adhésion',
     'No_Membership' => 'Aucune adhésion trouvée',
     'davable' => 'davable',
     'per_Month' => 'par mois',

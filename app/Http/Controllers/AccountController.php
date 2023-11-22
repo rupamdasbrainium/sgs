@@ -178,14 +178,24 @@ class AccountController extends Controller
     public function changePasswordUser(Request $request)
     {
 
-        $validator = Validator::make($request->all(), [
-            'old_password' => 'required|string',
-            'new_password' => 'required|string',
-            'con_password' => 'required|string|same:new_password',
-        ]);
-        if ($validator->fails()) {
-            return back()->with('errors', $validator->messages()->all());
-        }
+        // $validator = Validator::make($request->all(), [
+        //     'old_password' => 'required|string',
+        //     'new_password' => 'required|string| min:8',
+        //     'confirm_password' => 'required|string|same:new_password',
+        // ]);
+        // if ($validator->fails()) {
+        //     return back()->with('errors', $validator->messages()->all());
+        // }
+
+            $validate = $request->validate([
+                'old_password' => 'required|string',
+                'new_password' => 'required|string| min:8',
+                'confirm_password' => 'required|string|same:new_password',
+            ]);
+            if ($validate->fails()) {
+                    return back()->with('errors', $validator->messages()->all());
+                }
+
         $data = array();
         $data['oldPassword'] = $request->old_password;
         $data['newPassword'] = $request->new_password;
@@ -667,11 +677,20 @@ class AccountController extends Controller
         if (Session::has('add_on')) {
             Session::forget('add_on');
         }
+        if (Session::has('addonname')) {
+            Session::forget('addonname');
+        }
         if (!isset($request->add_on)) {
             return redirect()->route('newMembershipFinal', ['id' => $id]);
         }
-        Session::put('add_on', $request->add_on);
-
+        
+        foreach($request->add_on as $value){
+            $arrvalue = explode("|",$value);
+            $addon[]=$arrvalue[0];
+            $addonname[]=$arrvalue[1];
+             }
+             Session::put('add_on', $addon);
+             Session::put('addonname', $addonname);
 
         return redirect()->route('newMembershipFinal');
     }

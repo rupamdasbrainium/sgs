@@ -8,7 +8,7 @@
         <div class="welcomesection def_padding inner_content_block">
             <div class="container">
                 <div class="row">
-                    
+
                     {{-- @dump(Session::get('message')); --}}
                     <div class="col-md-12">
                         {{-- @if (Session::has('message'))
@@ -51,9 +51,9 @@
                                     <div class="inp_row gapadj inp_colm2">
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
-                                                <input type="text" name="firstname" id="firstname" value="{{ old('firstname') }}"
-                                                    class="form-control" placeholder="{{ __('suscription.fn') }} *" maxlength="50"
-                                                    required>
+                                                <input type="text" name="firstname" id="firstname"
+                                                    value="{{ old('firstname') }}" class="form-control"
+                                                    placeholder="{{ __('suscription.fn') }} *" maxlength="50" required>
                                             </div>
                                             @error('firstname')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -62,8 +62,8 @@
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="text" name="lastname" value="{{ old('lastname') }}"
-                                                    class="form-control" placeholder="{{ __('suscription.ln') }} *" maxlength="100"
-                                                    required>
+                                                    class="form-control" placeholder="{{ __('suscription.ln') }} *"
+                                                    maxlength="100" required>
                                             </div>
                                             @error('lastname')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -73,16 +73,19 @@
                                     <div class="inp_row gapadj inp_colm3">
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
-                                                <input type="number" name="address_civic_number" id="autocomplete" autocomplete="address_civic_number"
+                                                <input type="text" name="address_civic_number" id="address_civic_number"
+                                                    autocomplete="address_civic_number"
                                                     value="{{ old('address_civic_number') }}" class="form-control"
-                                                    placeholder="{{ __('suscription.sn') }} *" required>
+                                                    placeholder="{{ __('suscription.sn') }} *"
+                                                    required>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
-                                                <input type="text" name="address_street" id="latitude" autocomplete="address_street"
-                                                    value="{{ old('address_street') }}" class="form-control"
-                                                    placeholder="{{ __('suscription.street') }} *" maxlength="50" oninput="validateNumericInput(this)" required>
+                                                <input type="text" name="address_street" id="latitude"
+                                                    autocomplete="address_street" value="{{ old('address_street') }}"
+                                                    class="form-control" placeholder="{{ __('suscription.street') }} *"
+                                                    maxlength="50" oninput="validateNumericInput(this)" required>
                                             </div>
                                             @error('address_street')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -91,19 +94,22 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
-                                                <input type="text" name="address_appartment" id="longitude" autocomplete="address_appartment"
+                                                <input type="text" name="address_appartment" id="longitude"
+                                                    autocomplete="address_appartment"
                                                     value="{{ old('address_appartment') }}" class="form-control"
                                                     placeholder="{{ __('suscription.app') }} ">
                                             </div>
-                                         
+
                                         </div>
                                     </div>
                                     <div class="inp_row gapadj inp_colm3">
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="text" name="address_city"
-                                                    value="{{ old('address_city') }}" class="form-control" autocomplete="address_city"
-                                                    placeholder="{{ __('suscription.city') }} *" maxlength="50" required>
+                                                    value="{{ old('address_city') }}" class="form-control"
+                                                    autocomplete="address_city"
+                                                    placeholder="{{ __('suscription.city') }} *" maxlength="50"
+                                                    required>
                                             </div>
                                             @error('address_city')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -111,9 +117,10 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
-                                                <input type="text" name="address_postal_code" id="address_postal_code"
-                                                    value="{{ old('address_postal_code') }}" class="form-control"
-                                                    placeholder="{{ __('suscription.pin') }} *" required>
+                                                <input type="text" name="address_postal_code"
+                                                    id="address_postal_code" value="{{ old('address_postal_code') }}"
+                                                    class="form-control" placeholder="{{ __('suscription.pin') }} *"
+                                                    required>
                                                 <p>{{ __('suscription.example') }}: j3B 8k7</p>
                                             </div>
                                             @error('address_postal_code')
@@ -159,9 +166,9 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
-                                                <input type="text" name="cellphone" id="cellphone" value="{{ old('cellphone') }}"
-                                                    class="form-control" placeholder="{{ __('suscription.cell') }} *"
-                                                    required>
+                                                <input type="text" name="cellphone" id="cellphone"
+                                                    value="{{ old('cellphone') }}" class="form-control"
+                                                    placeholder="{{ __('suscription.cell') }} *" required>
                                                 <p>{{ __('suscription.example') }}: xxx xxx-xxxx</p>
                                             </div>
                                             @error('cellphone')
@@ -172,8 +179,8 @@
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="text" name="emergency_contact"
                                                     value="{{ old('emergency_contact') }}" class="form-control"
-                                                    placeholder="{{ __('suscription.emergency_contact_name') }}*" maxlength="50"
-                                                    required>
+                                                    placeholder="{{ __('suscription.emergency_contact_name') }}*"
+                                                    maxlength="50" required>
                                             </div>
                                             @error('emergency_contact')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -195,9 +202,9 @@
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="date" name="date_of_birth"
-                                                    value="{{ old('date_of_birth') }}" id="datepicker" max=""
-                                                    class="form-control" placeholder="{{ __('suscription.dob') }} *"
-                                                    required>
+                                                    value="{{ old('date_of_birth') }}" id="datepicker"
+                                                    max="" class="form-control"
+                                                    placeholder="{{ __('suscription.dob') }} *" required>
                                             </div>
                                             @error('date_of_birth')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -227,7 +234,8 @@
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="email" name="email" value="{{ old('email') }}"
                                                     class="form-control"
-                                                    placeholder="{{ __('suscription.email') }} *" maxlength="260" required>
+                                                    placeholder="{{ __('suscription.email') }} *" maxlength="260"
+                                                    required>
                                             </div>
                                             @error('email')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -256,8 +264,8 @@
                                                 <input class="form-control" type="password" name="password"
                                                     value="{{ old('password') }}"
                                                     placeholder="{{ __('suscription.password') }} *"
-                                                    autocomplete="current-password" id="id_password" minlength="9" maxlength="75"
-                                                    required>
+                                                    autocomplete="current-password" id="id_password" minlength="9"
+                                                    maxlength="75" required>
                                             </div>
                                             @error('password')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -271,8 +279,7 @@
                                                 </div>
                                                 <input class="form-control" type="password" name="confirm_password"
                                                     placeholder="{{ __('suscription.password_con') }} *"
-                                                    autocomplete="current-password" id="id_password2"
-                                                    required>
+                                                    autocomplete="current-password" id="id_password2" required>
                                             </div>
                                             @error('confirm_password')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -284,7 +291,8 @@
                                             <div class="inp_cont_view noicon_opt">
                                                 <input class="form-control" name="user_name"
                                                     value="{{ old('user_name') }}" type="text"
-                                                    placeholder="{{ __('suscription.user_name') }} *" maxlength="35" required>
+                                                    placeholder="{{ __('suscription.user_name') }} *" maxlength="35"
+                                                    required>
                                             </div>
                                             @error('user_name')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -453,6 +461,13 @@
             var phone = [string.slice(0, 3), " ", string.slice(3, 7), " ", string.slice(7)].join('');
         </script> --}}
         <script>
+            const address_civic_numberInput = document.getElementById('address_civic_number');
+            address_civic_numberInput.addEventListener('input', function(event) {
+                let inputvalue = event.target.value;
+                inputvalue = inputvalue.replace(/\D/g, ''); // Remove non-numeric characters
+
+                event.target.value = inputvalue;
+            });
 
             const phoneInput = document.getElementById('phone');
             phoneInput.addEventListener('input', function(event) {
@@ -466,7 +481,7 @@
                 event.target.value = inputValue;
             });
 
-			const emergency_phoneInput = document.getElementById('emergency_phone');
+            const emergency_phoneInput = document.getElementById('emergency_phone');
             emergency_phoneInput.addEventListener('input', function(event) {
                 let inputValue = event.target.value;
                 inputValue = inputValue.replace(/\D/g, ''); // Remove non-numeric characters
@@ -490,7 +505,7 @@
                 event.target.value = inputValue;
             });
 
-			// const address_postal_codeInput = document.getElementById('address_postal_code');
+            // const address_postal_codeInput = document.getElementById('address_postal_code');
             // address_postal_codeInput.addEventListener('input', function(event) {
             //     let inputValue = event.target.value;
             //     inputValue = inputValue.replace(/\D/g, ''); // Remove non-numeric characters
@@ -503,27 +518,27 @@
             // });
             const address_postal_codeInput = document.getElementById('address_postal_code');
 
-        address_postal_codeInput.addEventListener('input', function(event) {
-            let inputValue = event.target.value;
-            inputValue = inputValue.replace(/[^a-zA-Z0-9]/g, ''); // Remove non-alphanumeric characters
-            console.log(inputValue);
-            inputValue = inputValue.slice(0, 6); // Limit input to maximum 6 characters
-            inputValue = inputValue.replace(/(\w{3})(?=\w)/g, '$1 '); // Add space after every 3 non-alphanumeric characters
-            event.target.value = inputValue;
-        });
+            address_postal_codeInput.addEventListener('input', function(event) {
+                let inputValue = event.target.value;
+                inputValue = inputValue.replace(/[^a-zA-Z0-9]/g, ''); // Remove non-alphanumeric characters
+                console.log(inputValue);
+                inputValue = inputValue.slice(0, 6); // Limit input to maximum 6 characters
+                inputValue = inputValue.replace(/(\w{3})(?=\w)/g,
+                '$1 '); // Add space after every 3 non-alphanumeric characters
+                event.target.value = inputValue;
+            });
 
-var today = new Date().toISOString().split('T')[0];
-document.getElementById("datepicker").setAttribute("max",today);
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById("datepicker").setAttribute("max", today);
 
-function validateNumericInput(input) {
-            input.value = input.value.replace(/[^a-zA-Z\\.]+/g, '');
-        }
-
+            function validateNumericInput(input) {
+                input.value = input.value.replace(/[^a-zA-Z\\.]+/g, '');
+            }
         </script>
-       
+
 
         {{-- googleaddress --}}
-          {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
           <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>  
           <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&libraries=places"></script>
           <script>

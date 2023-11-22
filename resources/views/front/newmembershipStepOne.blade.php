@@ -24,10 +24,10 @@
 									<div class="arrowdown2">
 										{{-- <i class="far fa-chevron-down"></i> --}}
 									</div>
-									<select class="select_opt">
-										<option value="{{$values->id}}">
-
-											{{ $values->name }}
+									<select class="select_opt" title=" {{ $values->name }}">
+										<option value="{{$values->id}}"  >
+											
+											{{ substr($values->name, 0, 13) }}...
 
 										</option>
 									</select>
@@ -43,7 +43,7 @@
 											<div class="arrowdown2">
 												<i class="fal fa-chevron-down"></i>
 											</div>
-											<select class="select_opt" style="--secondary_theme: {{$theme->value}}">
+											<select class="select_opt optionclass" style="--secondary_theme: {{$theme->value}}">
 												@foreach ($values->priceBydurations as $val)
 													{{-- ${{ $val->price_recurant }}<span>/
 														{{ $val->duration_unit_display }}</span> --}}

@@ -58,7 +58,7 @@
                                                                             <input name="add_on[]"
                                                                                 class="styled-checkbox2"
                                                                                 id="Option{{ $loop->iteration }}"
-                                                                                value="{{ $item->id }}"
+                                                                                value="{{ $item->id }}|{{ $item->name }}"
                                                                                 type="checkbox">
                                                                             <label for="Option{{ $loop->iteration }}">
                                                                                 @if ($item->is_initial)
