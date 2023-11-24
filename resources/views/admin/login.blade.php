@@ -24,7 +24,7 @@
                 <div class="from_cont_wrap">
                   <div class="inp_row">
                     <div class="form-group">
-                      <label for="email">{{ __('login.Email') }}</label>
+                      <label for="email">{{ __('login.Admin_login') }}</label>
                       <div class="inp_cont_view">
                         <div class="icon_opt">
                           <i class="fal fa-envelope"></i>

@@ -56,6 +56,7 @@ class SuscriptionController extends Controller
             [
               'address_street' => 'required|alpha | max:50',
               'firstname' => 'required | max:50',
+              'address_civic_number' => 'required',
               'lastname' => 'required | max:100',
               'email' => 'required | email | max:260',
               'email_confirmation' => 'required',

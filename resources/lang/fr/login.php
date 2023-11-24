@@ -22,5 +22,6 @@ return [
     'Remember_me' => 'Souviens-toi de moi',
     'Forgot_Password' => 'Mot de passe oublié?',
     'Email' => 'E-mail',
+    'Admin_login' => 'Usager administrateur',
     'Password' => 'Mot de passe',
 ];

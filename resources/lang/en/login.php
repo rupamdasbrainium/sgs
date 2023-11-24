@@ -22,5 +22,6 @@ return [
     'Remember_me' => 'Remember me',
     'Forgot_Password' => 'Forgot Password?',
     'Email' => 'Email',
+    'Admin_login' => 'Admin login',
     'Password' => 'Password',
 ];

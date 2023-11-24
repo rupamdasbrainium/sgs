@@ -158,6 +158,15 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
     });
 });
 
+Route::get('/test', function () {
+    $message = array(
+        'message' => trans('auth.expired'),
+        'message_type' => 'danger',
+    );
+    return redirect()->route('login')->with($message);
+});
+
+
 Route::get('/categoryplan/{category_id}', [HomeController::class, 'categoryplan'])->name('categoryplan');
 
 // Route::get('/sechomepage', [HomeController::class, 'index_page_two'])->name('sechomepage');

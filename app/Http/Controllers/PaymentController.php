@@ -212,7 +212,12 @@ class PaymentController extends Controller
         $admin_address = Configuration::where('name','admin_address')->where('franchise_id',3)->first();
         $client = APICall("Clients",'get',"{}",'client_app');
         if(!$client){
-            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
+            $message = array(
+                'message' => trans('title_message.login_token_expired'),
+                'message_type' => 'error',
+            );
+            return redirect()->route('login')->with($message);
+            // return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
 
         }
 
@@ -230,6 +235,15 @@ class PaymentController extends Controller
 
     public function paymentaddSave(Request $request)
     {
+        $client = APICall("Clients", 'get', "{}");
+        if (!$client) {
+            $message = array(
+                'message' => trans('title_message.login_token_expired'),
+                'message_type' => 'error',
+            );
+            return redirect()->route('login')->with($message);
+        }
+        
         if ($request->radio_group_pay == "bank_acc") {
             $validator = Validator::make($request->all(), [
                 "transit_number" => "required|min:3|max:5",
