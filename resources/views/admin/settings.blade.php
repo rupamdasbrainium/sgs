@@ -43,12 +43,30 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
+                                                    <label>{{ __('admin.Banner_Title_fr') }} <em class="req_text">*</em>
+                                                    </label>
+                                                    <div class="inp_cont_view noicon_opt">
+                                                        <input type="text" class="form-control" name="title_fr"
+                                                            placeholder="{{ __('admin.Banner_Title_fr') }}"
+                                                            value="{{ $title_fr->value}}">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
                                                     <label>{{ __('admin.Banner_subtitle') }} <em class="req_text">*</em>
                                                     </label>
                                                     <div class="inp_cont_view noicon_opt">
                                                         <input type="text" class="form-control" name="subtitle"
                                                             placeholder="{{ __('admin.Banner_subtitle') }}"
                                                             value="{{ $subtitle->value }}">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>{{ __('admin.Banner_subtitle_fr') }} <em class="req_text">*</em>
+                                                    </label>
+                                                    <div class="inp_cont_view noicon_opt">
+                                                        <input type="text" class="form-control" name="subtitle_fr"
+                                                            placeholder="{{ __('admin.Banner_subtitle_fr') }}"
+                                                            value="{{ $subtitle_fr->value }}">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -61,6 +79,15 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
+                                                    <label>{{ __('admin.Home_Title_fr') }} <em class="req_text">*</em>
+                                                    </label>
+                                                    <div class="inp_cont_view noicon_opt">
+                                                        <input type="text" class="form-control" name="home_title_fr"
+                                                            placeholder="{{ __('admin.Home_Title_fr') }}"
+                                                            value="{{ $home_title_fr->value }}">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
                                                     <label>{{ __('admin.Home_Magic_Plan') }} <em
                                                             class="req_text">*</em> </label>
                                                     <div class="inp_cont_view noicon_opt">
@@ -70,12 +97,30 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
+                                                    <label>{{ __('admin.Home_Magic_Plan_fr') }} <em
+                                                            class="req_text">*</em> </label>
+                                                    <div class="inp_cont_view noicon_opt">
+                                                        <input type="text" class="form-control" name="home_magicplan_fr"
+                                                            placeholder="{{ __('admin.Home_Magic_Plan_fr') }}"
+                                                            value="{{ $home_magicplan_fr->value }}">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
                                                     <label>{{ __('admin.Home_Body') }} <em class="req_text">*</em>
                                                     </label>
                                                     <div class="inp_cont_view noicon_opt">
                                                         <input type="text" class="form-control" name="home_body"
                                                             placeholder="{{ __('admin.Home_Body') }}"
                                                             value="{{ $home_body->value }}">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>{{ __('admin.Home_Body_fr') }} <em class="req_text">*</em>
+                                                    </label>
+                                                    <div class="inp_cont_view noicon_opt">
+                                                        <input type="text" class="form-control" name="home_body"
+                                                            placeholder="{{ __('admin.Home_Body_fr') }}"
+                                                            value="{{ $home_body_fr->value }}">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">

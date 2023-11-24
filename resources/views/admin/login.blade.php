@@ -27,9 +27,9 @@
                       <label for="email">{{ __('login.Email') }}</label>
                       <div class="inp_cont_view">
                         <div class="icon_opt">
-                          <i class="fal fa-envelope"></i>
+                          <i class="fal fa-key"></i>
                         </div>
-                        <input type="text" class="form-control" name="email" id="email" placeholder="jhon.deo@gmail.com" value="{{old('email')}}" required>
+                        <input type="text" class="form-control" name="email" id="email" placeholder="" value="{{old('email')}}" required>
                         @if ($errors->has('email'))
                         <div class="text-danger mt-3">{{ $errors->first('email') }}</div>
                         @endif

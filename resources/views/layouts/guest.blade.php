@@ -50,5 +50,24 @@
         <script src="{{ asset('public/admin/js/owl.carousel.min.js') }}"></script>
         <script src="{{ asset('public/js/custom.js') }}"></script>
         @stack('scripts')
+        <script type="text/javascript">
+            @if(Session::has('message'))
+                var type = "{{ Session::get('message_type', 'info') }}";
+                switch (type) {
+                    case 'info':
+                        toastr.info("{{ Session::get('message') }}");
+                        break;
+                    case 'warning':
+                        toastr.warning("{{ Session::get('message') }}");
+                        break;
+                    case 'success':
+                        toastr.success("{{ Session::get('message') }}");
+                        break;
+                    case 'error':
+                        toastr.error("{{ Session::get('message') }}");
+                        break;
+                }
+            @endif
+        </script>
     </body>
 </html>

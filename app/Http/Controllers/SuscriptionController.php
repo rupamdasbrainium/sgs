@@ -54,7 +54,7 @@ class SuscriptionController extends Controller
 
       $request->validate(
             [
-              'address_street' => 'required|alpha | max:50',
+              'address_street' => 'required| max:50',
               'firstname' => 'required | max:50',
               'lastname' => 'required | max:100',
               'email' => 'required | email | max:260',

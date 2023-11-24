@@ -85,7 +85,8 @@
                                                 <input type="text" name="address_street" id="latitude"
                                                     autocomplete="address_street" value="{{ old('address_street') }}"
                                                     class="form-control" placeholder="{{ __('suscription.street') }} *"
-                                                    maxlength="50" oninput="validateNumericInput(this)" required>
+                                                    maxlength="50"  required>
+                                                    {{-- oninput="validateNumericInput(this)"> --}}
                                             </div>
                                             @error('address_street')
                                                 <div class="text-danger">{{ $message }}</div>

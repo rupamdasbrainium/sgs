@@ -70,6 +70,11 @@ class HomeController extends Controller
         $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',$this->getfranchiseId())->first();
         $admin_address = Configuration::where('name','admin_address')->where('franchise_id',$this->getfranchiseId())->first();
         $video = Configuration::where('name','video')->where('franchise_id',$this->getfranchiseId())->first();
+        $title_fr = Configuration::where('name','title_fr')->where('franchise_id',3)->first();
+        $subtitle_fr = Configuration::where('name','subtitle_fr')->where('franchise_id',3)->first();
+        $home_title_fr = Configuration::where('name','home_title_fr')->where('franchise_id',3)->first();
+        $home_magicplan_fr = Configuration::where('name','home_magicplan_fr')->where('franchise_id',3)->first();
+        $home_body_fr = Configuration::where('name','home_body_fr')->where('franchise_id',3)->first();
         $response = array(
             'message' => trans('title_message.Input_path_wrong'),
             'message_type' => 'danger',
@@ -105,13 +110,13 @@ class HomeController extends Controller
                 }
                 $data['all_plan_data'][] = $item;
             }
-            return view('front.home', compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag','theme_color_hover'));
+            return view('front.home', compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag','theme_color_hover','title_fr','subtitle_fr','home_title_fr','home_magicplan_fr','home_body_fr'));
         }
         else
         {
             $categoryType = APICall("Options/categories?franchise_id=" .$franchise_id."&language_id=" . $lang_id, "get", "{}");
             $data['category'] = json_decode($categoryType)->data;
-            return view('front.homeBasedOnCategory',compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag','video'));
+            return view('front.homeBasedOnCategory',compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag','video','title_fr','subtitle_fr','home_title_fr','home_magicplan_fr','home_body_fr'));
         }
 
         //franchise plan type
@@ -287,6 +292,11 @@ class HomeController extends Controller
         $logo = Configuration::where('name','logo_image')->where('franchise_id',$this->getfranchiseId())->first();
         $banner = Configuration::where('name','banner_image')->where('franchise_id',$this->getfranchiseId())->first();
         $button = Configuration::where('name','primary_button_color')->where('franchise_id',$this->getfranchiseId())->first();
+        $title_fr = Configuration::where('name','title_fr')->where('franchise_id',3)->first();
+        $subtitle_fr = Configuration::where('name','subtitle_fr')->where('franchise_id',3)->first();
+        $home_title_fr = Configuration::where('name','home_title_fr')->where('franchise_id',3)->first();
+        $home_magicplan_fr = Configuration::where('name','home_magicplan_fr')->where('franchise_id',3)->first();
+        $home_body_fr = Configuration::where('name','home_body_fr')->where('franchise_id',3)->first();
         
         $response = array(
             'message' => trans('title_message.Input_path_wrong'),
@@ -344,7 +354,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('front.categoryPlan',compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag','theme_color_hover','category_name'));
+        return view('front.categoryPlan',compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag','theme_color_hover','category_name','title_fr','subtitle_fr','home_title_fr','home_magicplan_fr','home_body_fr'));
     }
 
     public function login()

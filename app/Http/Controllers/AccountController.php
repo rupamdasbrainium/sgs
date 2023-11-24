@@ -235,8 +235,20 @@ class AccountController extends Controller
         if (!$client) {
             return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
         }
-
         $client = json_decode($client)->data;
+
+        
+        $franchises = APICall("Franchises", "get", "{}");
+        $data['franchises'] = json_decode($franchises);
+        Session::put('language_id', $client->language_id);
+
+
+        foreach ($data['franchises']->data as $franchise) {
+            if ($franchise->name ==  $client->franchise_name) {
+                $franchise_id = $franchise->id;
+                Session::put('franchise_id', $franchise_id);
+            }
+        }
 
         $membership = APICall('Memberships/client?display_language_id=' . $client->language_id, "get", "{}", "client_app");
         $membership = json_decode($membership);
@@ -312,7 +324,7 @@ class AccountController extends Controller
                 'is_male' => 'required',
                 "civic_number" => 'required|string',
                 "street" => 'required|string',
-                "appartment" => 'required|string',
+               
                 "city" => 'required|string',
                 'postal_code' => 'required|string',
                 "province_id" => "required|string",
@@ -344,12 +356,13 @@ class AccountController extends Controller
             $address = [
                 "civic_number" => $request->civic_number,
                 "street" => $request->street,
-                "appartment" => $request->appartment,
+                "appartment" => $request->appartment??"",
                 "city" => $request->city,
                 "postal_code" => $request->postal_code,
                 "province_id" => $request->province_id,
-
+               
             ];
+            
             $data = [
                 "firstname" => $request->firstname,
                 "lastname" => $request->lastname,
@@ -363,7 +376,6 @@ class AccountController extends Controller
                 "occupation" => $clients->nativeRef_number ? $clients->nativeRef_number :  "",
                 "nativeRef_number" => $clients->nativeRef_number ? $clients->nativeRef_number :  "",
             ];
-
             $response = APICall("Clients/" . $franchise_id, "put", json_encode($data));
 
             $response = json_decode($response);
@@ -1002,8 +1014,8 @@ class AccountController extends Controller
         $validator = Validator::make($request->all(), [
             "transit_number" => "required|min:3|max:5",
             "institution" => "required|min:3",
-            "account_number" => "required|min:5|max:12",
-            "owner_names" => "required|alpha",
+            "account_number" => "required",
+            "owner_names" => "required",
 
         ]);
         if ($validator->fails()) {
@@ -1015,7 +1027,7 @@ class AccountController extends Controller
             $formdata['institution'] = $request->institution;
             $formdata['account_number'] = $request->account_number;
             $formdata['owner_name'] = $request->owner_names;
-
+dd($formdata);
             if (Session::has('franchise_id')) {
                 $carddata['franchise_id'] = Session::get('franchise_id');
 
@@ -1059,12 +1071,12 @@ class AccountController extends Controller
     public function modifyCardsUpdate(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            "four_digits_number" => "required|min:3|max:4",
-            "pan" => "required|min:15|max:16",
-            "expiry_month" => "required|min:1|max:2",
-            "owner_name" => "required|alpha",
+            "four_digits_number" => "required|min:3|max:4",           
+            "expiry_month" => "required|max:2",
+            "owner_name" => "required",
             "expiry_year" => "required"
         ]);
+        
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         } else {
@@ -1074,10 +1086,19 @@ class AccountController extends Controller
             $formdata['number_card'] = $request->four_digits_number;
             $formdata['expire_month'] = $request->expiry_month;
             $formdata['expire_year'] = $request->expiry_year;
-
+         
             $response = APICall("PaymentMethods/card", "put", json_encode($formdata), 'client_app');
             $response = json_decode($response);
 
+if($response->error)
+{
+    $response = array(
+        'message' => $response->error->message,
+        'message_type' => 'error',
+    );
+    return redirect()->back()->with($response);
+}
+else{
             $response = array(
                 'message' => trans('title_message.Card_modified_succesfully'),
                 'message_type' => 'success',
@@ -1085,6 +1106,7 @@ class AccountController extends Controller
 
             return redirect(route('myBankCards'))->with($response);
         }
+    }
     }
 
     public function renewMembership($membershipId)

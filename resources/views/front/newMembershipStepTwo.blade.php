@@ -34,7 +34,7 @@
                                                                 @if($item->image == null)
 																<img src="{{asset('public/images/prod_img1.png')}}" alt="">
 																@else
-																<img src="{{$item->image}}" alt="">
+																<img src="data:image/png;base64,{{$item->image}}" alt="">
 																@endif
                                                             </div>
                                                             <div class="optionitem_des">
