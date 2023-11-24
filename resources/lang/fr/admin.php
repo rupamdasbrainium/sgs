@@ -118,4 +118,9 @@ return [
     'Home_Magic_Plan' => 'Plan Magique pour la Maison',
     'Home_Body' => 'Accueil Corps',
     'Video' => 'Vidéo',
+    'Banner_Title_fr' => 'Titre de la bannière(Français)',
+    'Banner_subtitle_fr' => 'Sous-titre de la bannière(Français)',
+    'Home_Title_fr' => 'Titre de la maison(Français)',
+    'Home_Magic_Plan_fr' => 'Plan Magique pour la Maison(Français)',
+    'Home_Body_fr' => 'Accueil Corps(Français)'
 ];
