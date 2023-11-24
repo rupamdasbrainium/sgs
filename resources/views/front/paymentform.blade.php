@@ -252,7 +252,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td data-label="PAYMENT DATE"> {{ date('Y-m-d', strtotime($data['membership_details']->data->begin)) }}</td>
-                                                                    <td data-label="PAYMENT"> ${{ $data['membership_details']->data->initial_subtotal }}</td>
+                                                                    <td data-label="PAYMENT"> {{ $data['membership_details']->data->initial_subtotal }}$</td>
                                                                     <td data-label="STATUS">
                                                                         {{ __('paymentForm.unpaid') }}</td>
                                                                 </tr>

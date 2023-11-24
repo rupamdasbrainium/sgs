@@ -61,7 +61,7 @@
                                                                             <img src="{{ asset('public/images/prod_img1.png') }}"
                                                                                 alt="">
                                                                         @else
-                                                                            <img src="{{ $item->image }}"
+                                                                            <img src="data:image/png;base64,{{ $item->image }}"
                                                                                 alt="">
                                                                         @endif
                                                                     </div>

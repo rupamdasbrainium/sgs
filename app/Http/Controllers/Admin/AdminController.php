@@ -183,6 +183,11 @@ class AdminController extends Controller
         $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',3)->first();
         $admin_address = Configuration::where('name','admin_address')->where('franchise_id',3)->first();
         $video = Configuration::where('name','video')->where('franchise_id',3)->first();
+        $title_fr = Configuration::where('name','title_fr')->where('franchise_id',3)->first();
+        $subtitle_fr = Configuration::where('name','subtitle_fr')->where('franchise_id',3)->first();
+        $home_title_fr = Configuration::where('name','home_title_fr')->where('franchise_id',3)->first();
+        $home_magicplan_fr = Configuration::where('name','home_magicplan_fr')->where('franchise_id',3)->first();
+        $home_body_fr = Configuration::where('name','home_body_fr')->where('franchise_id',3)->first();
         if (count($result) > 0) {
             $data['data'] = getConfigurationValue($result);
             if (isset($data['data']['banner_image'])) {
@@ -198,7 +203,7 @@ class AdminController extends Controller
         }
         $data['user'] = $user;
         $data['title'] = trans('title_message.Admin_Settings');
-        return view('admin.settings', compact('data','logo','theme','button','title','subtitle','home_title','home_magicplan','home_body','admin_address','admin_phone','video'));
+        return view('admin.settings', compact('data','logo','theme','button','title','subtitle','home_title','home_magicplan','home_body','admin_address','admin_phone','video','title_fr','subtitle_fr','home_title_fr','home_magicplan_fr','home_body_fr'));
     }
 
 
@@ -278,10 +283,15 @@ class AdminController extends Controller
         // $input_data = Configuration::where('franchise_id',3)->get();
         $input_data = new Configuration();
         $input_data->name = $request->title;
+        $input_data->name = $request->title_fr;
         $input_data->name = $request->subtitle;
+        $input_data->name = $request->subtitle_fr;
         $input_data->name = $request->home_title;
+        $input_data->name = $request->home_title_fr;
         $input_data->name = $request->home_magicplan;
+        $input_data->name = $request->home_magicplan_fr;
         $input_data->name = $request->home_body;
+        $input_data->name = $request->home_body_fr;
         $input_data->name = $request->admin_phone;
         $input_data->name = $request->admin_address;
         // return view('header',compact('row_data'));

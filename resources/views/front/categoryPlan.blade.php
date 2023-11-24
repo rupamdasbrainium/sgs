@@ -91,7 +91,7 @@
                                                             @foreach ($values->priceBydurations as $val)
                                                         
                                                                 <option>${{ $val->price }}<span>/
-                                                                        {{ $val->typeDuration }}</span> For
+                                                                        {{ $val->typeDuration }}</span> {{ __('global.For') }}
                                                                     {{ $val->frequency }}
                                                                     {{ $val->typeDuration }}
                                                                 </option>

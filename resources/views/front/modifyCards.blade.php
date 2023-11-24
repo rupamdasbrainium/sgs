@@ -1,6 +1,7 @@
-<x-guest-layout>
+<x-app-layout>
     @section('title', $data['title'] . ' |')
     @include('header')
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <section class="maincontent_wrap innermain_content payment_content">
         <div class="welcomesection def_padding inner_content_block">
             <div class="container">
@@ -36,7 +37,7 @@
                                                                 class="req_text">*</em></label>
                                                         <div class="inp_cont_view noicon_opt">
                                                             <input type="text" name="owner_name" class="form-control"
-                                                                placeholder=""value="{{ $data["card"][0]->owner_name}}">
+                                                                placeholder="" oninput="onlyletterhow(event)" value="{{ $data["card"][0]->owner_name}}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -146,7 +147,14 @@
                 }
             }
         }
+        function onlyletterhow(event){
+
+let inputvalue = event.target.value;
+inputvalue = inputvalue.replace(/[^a-z A-Z\\.]+/g, ''); // Remove non-numeric characters
+
+event.target.value = inputvalue;
+}
     </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
-
-</x-guest-layout>
+</x-app-layout>

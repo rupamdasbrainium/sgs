@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'info' => 'informations de l\'utilisateur',
+    'info' => 'Informations de l’utilisateur',
     'contact_info' => 'Veuillez fournir vos coordonnées',
     'center' => 'Centre',
     'address' => 'Adresse',
@@ -40,8 +40,8 @@ return [
     'emergency_contact' => 'Personne à contacter en cas d\'urgence',
     'emergency_ph' => 'Numéro de téléphone d\'urgence',
     'dob' => 'Date de naissance',
-    'email' => 'E-mail',
-    'email_con' => 'confirmation de l\'Courriel',
+    'email' => 'Courriel',
+    'email_con' => 'Confirmation du courriel',
     'password' => 'Mot de passe',
     'password_con' => 'Confirmation mot de passe',
     'user_name' => 'Nom d\'utilisateur',

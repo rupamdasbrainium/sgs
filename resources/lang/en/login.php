@@ -21,6 +21,7 @@ return [
     'validcaptcha' => 'Enter valid captcha',
     'Remember_me' => 'Remember me',
     'Forgot_Password' => 'Forgot Password?',
-    'Email' => 'Email',
+    'Email' => 'Secret Key',
+    'Admin_login' => 'Admin login',
     'Password' => 'Password',
 ];

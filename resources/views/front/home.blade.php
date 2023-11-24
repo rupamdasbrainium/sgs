@@ -21,8 +21,13 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="banner_info">
+                                    @if($lang_id == 2)
                                     <h1>{{ $title->value }}</h1>
                                     <h2>{{ $subtitle->value }}</h2>
+                                    @else
+                                    <h1>{{ $title_fr->value }}</h1>
+                                    <h2>{{ $subtitle_fr->value }}</h2>
+                                    @endif
                                     {{-- <h1>Elevate Your <span>Fitness,</span></h1> --}}
                                     {{-- <h2>Ignite Your Potential!</h2> --}}
                                 </div>
@@ -46,11 +51,19 @@
                             </div>
 
                             <div class="heading_info ">
+                                @if($lang_id == 2)
                                 <h3>{{ $home_title->value }}</h3>
+                                @else
+                                <h3>{{ $home_title_fr->value }}</h3>
+                                @endif
                             </div>
+                            @if($lang_id == 2)
                             <h2>{{ $home_magicplan->value }}</h2>
-                            {{-- <p>Transform Your Body, Transform Your Life at Fitness Gym</p> --}}
                             <p>{{ $home_body->value }}</p>
+                            @else
+                            <h2>{{ $home_magicplan_fr->value }}</h2>
+                            <p>{{ $home_body_fr->value }}</p>
+                            @endif
                         </div>
 
                     </div>
@@ -175,7 +188,7 @@
                                                                                 <br>
                                                                             @endif --}}
                                                                         <option>${{ $val->price }}<span>/
-                                                                                {{ $val->typeDuration }}</span> For
+                                                                                {{ $val->typeDuration }}</span> {{ __('global.For') }}
                                                                             {{ $val->frequency }}
                                                                             {{ $val->typeDuration }}
                                                                         </option>

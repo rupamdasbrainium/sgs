@@ -21,9 +21,13 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="banner_info">
-                                    <h1>{{ __('global.banner_info_h1') }}
-                                        <span>{{ __('global.banner_info_h1_span') }}</span></h1>
-                                    <h2>{{ __('global.banner_info_h2') }}!</h2>
+                                    @if($lang_id == 2)
+                                    <h1>{{ $title->value }}</h1>
+                                    <h2>{{ $subtitle->value }}</h2>
+                                    @else
+                                    <h1>{{ $title_fr->value }}</h1>
+                                    <h2>{{ $subtitle_fr->value }}</h2>
+                                    @endif
                                 </div>
                             </div>
                         </div>
