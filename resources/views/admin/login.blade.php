@@ -13,12 +13,12 @@
           </div>
           <div class="fromdes_wrap_view">
             <div class="welcomesec_info inner_heading">
-              <h2>{{ __('login.Login') }}</h2>
+              <h2>{{ __('login.Admin_login') }}</h2>
 						  <p>{{ __('login.Input_your_details') }}</p>
             </div>
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
-            <form method="POST" action="{{ route('admin.adminlogin') }}">
+            <form method="POST" action="{{ route('admin.login') }}">
               @csrf
               <div class="fromdes_info">
                 <div class="from_cont_wrap">

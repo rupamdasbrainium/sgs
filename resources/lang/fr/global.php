@@ -36,5 +36,6 @@ return [
     "Private_Training_con" => "Formation privée, dans le contexte du machine learning et de l'intelligence artificielle",
     "Group_Class" => "Cours de groupe",
     "Group_Class_under" => "Ce sont les fonctions ou comportements que les objets de la classe de groupe peuvent exécuter.",
+    "For" => "pour",
 
 ];

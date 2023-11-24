@@ -37,6 +37,6 @@ return [
     "Group_Class" => "Group Class",
     "Group_Class_under" => "These are the functions or behaviors that the objects of the group class can
     perform.",
-
+    "For" => "For",
 
 ];

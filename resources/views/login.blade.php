@@ -1,6 +1,7 @@
 <x-guest-layout>
 @section('title', $data['title'] . ' |')
 @include('header')
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 <div class="banner_outer inner_banner">
 	<div class="banner_slider">
 		<div class="banner_panel">
@@ -10,11 +11,11 @@
 			<div class="banner_cont">
 				<div class="container">
 					<div class="row">
-						@if(Session::has('message'))
+						{{-- @if(Session::has('message'))
 						<div class="alert alert-danger">
 							{{Session::get('message')}}
 						</div>
-							@endif
+							@endif --}}
 						<div class="col-md-12">
 							<!-- <div class="banner_info">
 													<h1>Elevate Your <span>Fitness,</span></h1>
@@ -128,4 +129,5 @@
 	</div>
 </section>
 @include('footer')
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 </x-guest-layout>

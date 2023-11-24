@@ -81,6 +81,20 @@ class AccountController extends Controller
 
     public function changeLanguage()
     {
+        // $test = null;
+        // if (!$test) {
+        //     // dd("hi");
+        //     if(Session::has('clientToken')){
+        //         Session::forget('clientToken');
+        //       }
+        //     $message = array(
+        //         'message' => trans('auth.expired'),
+        //         'message_type' => 'error',
+        //     );
+        //     return redirect()->route('login')->with($message);
+        //     // return redirect()->route('login')->withErrors(['user', trans('auth.expired')]);
+        // }
+
         $data = array();
         $data['title'] = trans('title_message.Change_Language');
         $logo = Configuration::where('name', 'logo_image')->where('franchise_id', 3)->first();
@@ -89,8 +103,14 @@ class AccountController extends Controller
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $client = APICall("Clients", 'get', "{}");
+
         if (!$client) {
-            return redirect()->route('login')->withErrors(['user', trans('auth.expired')]);
+            $message = array(
+                'message' => trans('auth.expired'),
+                'message_type' => 'error',
+            );
+            return redirect()->route('login')->with($message);
+            // return redirect()->route('login')->withErrors(['user', trans('auth.expired')]);
         }
 
         $client = json_decode($client)->data;
@@ -106,7 +126,12 @@ class AccountController extends Controller
         $data['title'] = trans('title_message.Change_Language');
         $client = APICall("Clients", 'get', "{}");
         if (!$client) {
-            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
+            $message = array(
+                'message' => trans('title_message.login_token_expired'),
+                'message_type' => 'error',
+            );
+            return redirect()->route('login')->with($message);
+            // return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
         }
 
         $client = json_decode($client)->data;
@@ -168,7 +193,12 @@ class AccountController extends Controller
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         if (!$client) {
-            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
+            $message = array(
+                'message' => trans('title_message.login_token_expired'),
+                'message_type' => 'error',
+            );
+            return redirect()->route('login')->with($message);
+            // return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
         }
 
         $client = json_decode($client)->data;
@@ -186,6 +216,14 @@ class AccountController extends Controller
         // if ($validator->fails()) {
         //     return back()->with('errors', $validator->messages()->all());
         // }
+        $client = APICall("Clients", 'get', "{}");
+        if (!$client) {
+            $message = array(
+                'message' => trans('title_message.login_token_expired'),
+                'message_type' => 'error',
+            );
+            return redirect()->route('login')->with($message);
+        }
 
             $validate = $request->validate([
                 'old_password' => 'required|string',
@@ -233,7 +271,12 @@ class AccountController extends Controller
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $client = APICall("Clients", 'get', "{}", 'client_app');
         if (!$client) {
-            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
+            $message = array(
+                'message' => trans('title_message.login_token_expired'),
+                'message_type' => 'error',
+            );
+            return redirect()->route('login')->with($message);
+            // return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
         }
         $client = json_decode($client)->data;
 
@@ -301,7 +344,12 @@ class AccountController extends Controller
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $client = APICall("Clients", "get", "{}");
         if ($client == "unauthorised" || !$client) {
-            return redirect()->route('login', compact('logo'))->with('user', trans('title_message.login_token_expired'));
+            $message = array(
+                'message' => trans('title_message.login_token_expired'),
+                'message_type' => 'error',
+            );
+            return redirect()->route('login', compact('logo'))->with($message);
+            // return redirect()->route('login', compact('logo'))->with('user', trans('title_message.login_token_expired'));
         }
 
         $client = json_decode($client)->data;
@@ -338,6 +386,15 @@ class AccountController extends Controller
             if ($validator->fails()) {
                 return back()->withErrors($validator)
                     ->withInput();;
+            }
+
+            $client = APICall("Clients", 'get', "{}");
+            if (!$client) {
+                $message = array(
+                    'message' => trans('title_message.login_token_expired'),
+                    'message_type' => 'error',
+                );
+                return redirect()->route('login')->with($message);
             }
 
             $franchises = APICall('Franchises', "get", "{}");
@@ -413,7 +470,12 @@ class AccountController extends Controller
 
         $response =  APICall('Payments/schedualed/client', "get", "{}");
         if ($response == "") {
-            return redirect()->route('login')->withErrors(["user" => trans('title_message.Session_Expired')]);
+            $message = array(
+                'message' => trans('title_message.Session_Expired'),
+                'message_type' => 'error',
+            );
+            return redirect()->route('login')->with($message);
+            // return redirect()->route('login')->withErrors(["user" => trans('title_message.Session_Expired')]);
         }
         $payments = json_decode($response);
         if ($payments->error == null) {
@@ -461,6 +523,15 @@ class AccountController extends Controller
 
     public function payOutstandingPayment(Request $request)
     {
+        $client = APICall("Clients", 'get', "{}");
+        if (!$client) {
+            $message = array(
+                'message' => trans('title_message.login_token_expired'),
+                'message_type' => 'error',
+            );
+            return redirect()->route('login')->with($message);
+        }
+
         if ($request->new_key == 0) {
             $validator = Validator::make($request->all(), [
                 // "payment_method_id" => "required",
@@ -602,7 +673,12 @@ class AccountController extends Controller
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $client = APICall("Clients", 'get', "{}");
         if (!$client) {
-            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
+            $message = array(
+                'message' => trans('title_message.login_token_expired'),
+                'message_type' => 'error',
+            );
+            return redirect()->route('login')->with($message);
+            // return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
         }
 
         $client = json_decode($client)->data;
@@ -649,7 +725,12 @@ class AccountController extends Controller
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $client = APICall("Clients", 'get', "{}");
         if (!$client) {
-            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
+            $message = array(
+                'message' => trans('title_message.login_token_expired'),
+                'message_type' => 'error',
+            );
+            return redirect()->route('login')->with($message);
+            // return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
         }
 
         $client = json_decode($client)->data;
@@ -668,6 +749,14 @@ class AccountController extends Controller
         // if(!isset($request->add_on)){
         //     return redirect()->route('newMembershipFinal', ['id' => $id]);
         // }
+        $client = APICall("Clients", 'get', "{}");
+        if (!$client) {
+            $message = array(
+                'message' => trans('title_message.login_token_expired'),
+                'message_type' => 'error',
+            );
+            return redirect()->route('login')->with($message);
+        }
 
         if (Session::has('duration_id')) {
             Session::forget('duration_id');
@@ -720,7 +809,12 @@ class AccountController extends Controller
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $client = APICall("Clients", 'get', "{}");
         if (!$client) {
-            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
+            $message = array(
+                'message' => trans('title_message.login_token_expired'),
+                'message_type' => 'error',
+            );
+            return redirect()->route('login')->with($message);
+            // return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
         }
 
         $client = json_decode($client)->data;
@@ -935,7 +1029,12 @@ class AccountController extends Controller
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $client = APICall("Clients", 'get', "{}");
         if (!$client) {
-            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
+            $message = array(
+                'message' => trans('title_message.login_token_expired'),
+                'message_type' => 'error',
+            );
+            return redirect()->route('login')->with($message);
+            // return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
         }
         $client = json_decode($client)->data;
         $referral = APICall('Clients', "get", "{}", 'client_app');
@@ -955,7 +1054,12 @@ class AccountController extends Controller
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $client = APICall("Clients", 'get', "{}");
         if (!$client) {
-            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
+            $message = array(
+                'message' => trans('title_message.login_token_expired'),
+                'message_type' => 'error',
+            );
+            return redirect()->route('login')->with($message);
+            // return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
         }
 
         $client = json_decode($client)->data;
@@ -991,7 +1095,12 @@ class AccountController extends Controller
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $client = APICall("Clients", 'get', "{}");
         if (!$client) {
-            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
+            $message = array(
+                'message' => trans('title_message.login_token_expired'),
+                'message_type' => 'error',
+            );
+            return redirect()->route('login')->with($message);
+            // return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
         }
         $client = json_decode($client)->data;
 
@@ -1011,6 +1120,15 @@ class AccountController extends Controller
 
     public function modifyBanksUpdate(Request $request)
     {
+        $client = APICall("Clients", 'get', "{}");
+        if (!$client) {
+            $message = array(
+                'message' => trans('title_message.login_token_expired'),
+                'message_type' => 'error',
+            );
+            return redirect()->route('login')->with($message);
+        }
+
         $validator = Validator::make($request->all(), [
             "transit_number" => "required|min:3|max:5",
             "institution" => "required|min:3",
@@ -1053,6 +1171,16 @@ dd($formdata);
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $pay_methods_accc = APICall('PaymentMethods/Cards', "get", "{}", 'client_app');
         $data['pay_methods_accc'] = json_decode($pay_methods_accc);
+        $client = APICall("Clients", 'get', "{}");
+        if (!$client) {
+            $message = array(
+                'message' => trans('title_message.login_token_expired'),
+                'message_type' => 'error',
+            );
+            return redirect()->route('login')->with($message);
+            // return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
+        }
+        $client = json_decode($client)->data;
 
         $card =  APICall("PaymentMethods/accepted_cards", "get", "{}", 'client_app');
         $data['card_types'] = json_decode($card);
@@ -1070,6 +1198,15 @@ dd($formdata);
 
     public function modifyCardsUpdate(Request $request)
     {
+        $client = APICall("Clients", 'get', "{}");
+        if (!$client) {
+            $message = array(
+                'message' => trans('title_message.login_token_expired'),
+                'message_type' => 'error',
+            );
+            return redirect()->route('login')->with($message);
+        }
+
         $validator = Validator::make($request->all(), [
             "four_digits_number" => "required|min:3|max:4",           
             "expiry_month" => "required|max:2",
@@ -1140,7 +1277,12 @@ else{
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $client = APICall("Clients", 'get', "{}", "client_app");
         if (!$client) {
-            return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
+            $message = array(
+                'message' => trans('title_message.login_token_expired'),
+                'message_type' => 'error',
+            );
+            return redirect()->route('login')->with($message);
+            // return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
         }
         $client = json_decode($client)->data;
         // dd($client);
@@ -1173,6 +1315,14 @@ else{
 
     public function upgragemembershipsubmit(Request $request, $membershipId, $card_id)
     {
+        $client = APICall("Clients", 'get', "{}");
+        if (!$client) {
+            $message = array(
+                'message' => trans('title_message.login_token_expired'),
+                'message_type' => 'error',
+            );
+            return redirect()->route('login')->with($message);
+        }
 
         $lang_id = Session::get('language_id');
         $uri = "Memberships/" . $membershipId . "/card/" . $card_id . "?display_language_id=" . $lang_id;
@@ -1200,6 +1350,14 @@ else{
 
     public function upgragemembershipsubmitbank(Request $request, $membershipId, $bank_id)
     {
+        $client = APICall("Clients", 'get', "{}");
+        if (!$client) {
+            $message = array(
+                'message' => trans('title_message.login_token_expired'),
+                'message_type' => 'error',
+            );
+            return redirect()->route('login')->with($message);
+        }
 
         $lang_id = Session::get('language_id');
         $uri = "Memberships/" . $membershipId . "/account/" . $bank_id . "?display_language_id=" . $lang_id;
@@ -1222,6 +1380,15 @@ else{
 
     public function newmembershippaymentSave(Request $request)
     {
+        $client = APICall("Clients", 'get', "{}");
+        if (!$client) {
+            $message = array(
+                'message' => trans('title_message.login_token_expired'),
+                'message_type' => 'error',
+            );
+            return redirect()->route('login')->with($message);
+        }
+
         if ($request->radio_group_pay == "bank_acc") {
             $formdata = array();
             $formdata['transit_number'] = $request->transit_number;

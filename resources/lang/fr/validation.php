@@ -250,6 +250,17 @@ return array(
     |
     */
 
-    'attributes' => array(),
+    // 'attributes' => array(),
+    'attributes' => array(
+        'address_postal_code' => 'code postale',
+        'address_civic_number' => 'numéro civique',
+        'address_city' => 'ville',
+        'phone' => 'numéro de téléphone',
+        'cellphone' => 'cellulaire',
+        'emergency_phone' => 'numéro de téléphone d’urgence',
+        'emergency_contact' => 'personne à contacter en cas d’urgence',
+        'postal_code' => 'code postale',
+        
+    ),
 
 );

@@ -53,7 +53,7 @@
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="text" name="firstname" id="firstname"
                                                     value="{{ old('firstname') }}" class="form-control"
-                                                    placeholder="{{ __('suscription.fn') }} *" maxlength="50" required>
+                                                    placeholder="{{ __('suscription.fn') }} *" maxlength="50">
                                             </div>
                                             @error('firstname')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -63,7 +63,7 @@
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="text" name="lastname" value="{{ old('lastname') }}"
                                                     class="form-control" placeholder="{{ __('suscription.ln') }} *"
-                                                    maxlength="100" required>
+                                                    maxlength="100">
                                             </div>
                                             @error('lastname')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -77,16 +77,19 @@
                                                     autocomplete="address_civic_number"
                                                     value="{{ old('address_civic_number') }}" class="form-control"
                                                     placeholder="{{ __('suscription.sn') }} *"
-                                                    required>
+                                                    >
                                             </div>
+                                            @error('address_civic_number')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                            
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="text" name="address_street" id="latitude"
                                                     autocomplete="address_street" value="{{ old('address_street') }}"
                                                     class="form-control" placeholder="{{ __('suscription.street') }} *"
-                                                    maxlength="50"  required>
-                                                    {{-- oninput="validateNumericInput(this)"> --}}
+                                                    maxlength="50" oninput="validateNumericInput(this)">
                                             </div>
                                             @error('address_street')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -110,7 +113,7 @@
                                                     value="{{ old('address_city') }}" class="form-control"
                                                     autocomplete="address_city"
                                                     placeholder="{{ __('suscription.city') }} *" maxlength="50"
-                                                    required>
+                                                    >
                                             </div>
                                             @error('address_city')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -121,7 +124,7 @@
                                                 <input type="text" name="address_postal_code"
                                                     id="address_postal_code" value="{{ old('address_postal_code') }}"
                                                     class="form-control" placeholder="{{ __('suscription.pin') }} *"
-                                                    required>
+                                                    >
                                                 <p>{{ __('suscription.example') }}: j3B 8k7</p>
                                             </div>
                                             @error('address_postal_code')
@@ -140,7 +143,7 @@
                                                             @foreach ($data['provinces'] as $item)
                                                                 <option value="{{ $item->id }}"
                                                                     {{ $item->id == old('address_province_id') ? 'selected' : '' }}>
-                                                                    {{ $lang_id == 2 ? strtoupper($item->display_english) : strtoupper($item->display_french) }}
+                                                                    {{ $lang_id == 2 ? mb_strtoupper($item->display_english, "UTF-8") : mb_strtoupper($item->display_french, "UTF-8") }}
 
                                                                 </option>
                                                             @endforeach
@@ -158,7 +161,7 @@
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="text" value="{{ old('phone') }}" name="phone"
                                                     id="phone" class="form-control"
-                                                    placeholder="{{ __('suscription.ph') }} *" required>
+                                                    placeholder="{{ __('suscription.ph') }} *" >
                                                 <p>{{ __('suscription.example') }}: xxx xxx-xxxx</p>
                                             </div>
                                             @error('phone')
@@ -169,7 +172,7 @@
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="text" name="cellphone" id="cellphone"
                                                     value="{{ old('cellphone') }}" class="form-control"
-                                                    placeholder="{{ __('suscription.cell') }} *" required>
+                                                    placeholder="{{ __('suscription.cell') }} *" >
                                                 <p>{{ __('suscription.example') }}: xxx xxx-xxxx</p>
                                             </div>
                                             @error('cellphone')
@@ -181,7 +184,7 @@
                                                 <input type="text" name="emergency_contact"
                                                     value="{{ old('emergency_contact') }}" class="form-control"
                                                     placeholder="{{ __('suscription.emergency_contact_name') }}*"
-                                                    maxlength="50" required>
+                                                    maxlength="50" >
                                             </div>
                                             @error('emergency_contact')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -193,7 +196,7 @@
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="text" value="{{ old('emergency_phone') }}"
                                                     name="emergency_phone" id="emergency_phone" class="form-control"
-                                                    placeholder="{{ __('suscription.emergency_ph') }} *" required>
+                                                    placeholder="{{ __('suscription.emergency_ph') }} *" >
                                                 <p>{{ __('suscription.example') }}: xxx xxx-xxxx</p>
                                             </div>
                                             @error('emergency_phone')
@@ -205,7 +208,7 @@
                                                 <input type="date" name="date_of_birth"
                                                     value="{{ old('date_of_birth') }}" id="datepicker"
                                                     max="" class="form-control"
-                                                    placeholder="{{ __('suscription.dob') }} *" required>
+                                                    placeholder="{{ __('suscription.dob') }} *" >
                                             </div>
                                             @error('date_of_birth')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -236,7 +239,7 @@
                                                 <input type="email" name="email" value="{{ old('email') }}"
                                                     class="form-control"
                                                     placeholder="{{ __('suscription.email') }} *" maxlength="260"
-                                                    required>
+                                                    >
                                             </div>
                                             @error('email')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -248,7 +251,7 @@
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="email" class="form-control" name="email_confirmation"
-                                                    placeholder="{{ __('suscription.email_con') }} *" required>
+                                                    placeholder="{{ __('suscription.email_con') }} *" >
                                             </div>
                                             @error('email_confirmation')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -266,7 +269,7 @@
                                                     value="{{ old('password') }}"
                                                     placeholder="{{ __('suscription.password') }} *"
                                                     autocomplete="current-password" id="id_password" minlength="9"
-                                                    maxlength="75" required>
+                                                    maxlength="75" >
                                             </div>
                                             @error('password')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -280,7 +283,7 @@
                                                 </div>
                                                 <input class="form-control" type="password" name="confirm_password"
                                                     placeholder="{{ __('suscription.password_con') }} *"
-                                                    autocomplete="current-password" id="id_password2" required>
+                                                    autocomplete="current-password" id="id_password2" >
                                             </div>
                                             @error('confirm_password')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -293,7 +296,7 @@
                                                 <input class="form-control" name="user_name"
                                                     value="{{ old('user_name') }}" type="text"
                                                     placeholder="{{ __('suscription.user_name') }} *" maxlength="35"
-                                                    required>
+                                                    >
                                             </div>
                                             @error('user_name')
                                                 <div class="text-danger">{{ $message }}</div>
@@ -377,7 +380,7 @@
                                                                             id="{{ $val->id }}"
                                                                             name="installments"
                                                                             value="{{ $item->duration_id }}|{{ $val->id }}"
-                                                                            {{ $loop->index == 0 ? 'required' : '' }}>
+                                                                            {{ $loop->index == 0 ? '' : '' }}>
                                                                         <label
                                                                             for="{{ $val->id }}">{{ $val->number_of_payments }}
                                                                             {{ __('suscription.payments') }}</label>

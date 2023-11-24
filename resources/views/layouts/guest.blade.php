@@ -35,6 +35,7 @@
         <link rel="stylesheet" href="{{ asset('public/css/owl.carousel.min.css') }}">
         <link rel="stylesheet" href="{{ asset('public/css/owl.theme.default.min.css') }}">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.0/css/all.css">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
         @stack('css')
         <!-- Scripts -->
         <script src="{{ asset('public/js/app.js') }}" defer></script>
@@ -45,6 +46,7 @@
         </div>
         {{-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> --}}
         <script src="{{ asset('public/js/jquery.min.js')}}"></script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="{{ asset('public/js/select_optiones.js') }}"></script>
         <script src="{{ asset('public/admin/js/owl.carousel.min.js') }}"></script>
