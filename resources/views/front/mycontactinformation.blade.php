@@ -56,7 +56,7 @@
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt adbg">
                                                 <input type="text" class="form-control" name="street"
-                                                    placeholder="st-jacques " value="{{ $client->adress->street }}" maxlength="50" oninput="validateNumericInput(this)">
+                                                    placeholder="st-jacques " value="{{ $client->adress->street }}" maxlength="50" >
                                             </div>
                                             @if ($errors->has('street'))
                                                 <div class="text-danger mt-3">{{ $errors->first('street') }}</div>

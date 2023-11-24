@@ -118,4 +118,9 @@ return [
     'Home_Magic_Plan' => 'Home Magic Plan',
     'Home_Body' => 'Home Body',
     'Video' => 'Video',
+    'Banner_Title_fr' => 'Banner Title(French)',
+    'Banner_subtitle_fr' => 'Banner Subtitle(French)',
+    'Home_Title_fr' => 'Home Title(French)',
+    'Home_Magic_Plan_fr' => 'Home Magic Plan(French)',
+    'Home_Body_fr' => 'Home Body(French)'
 ];
