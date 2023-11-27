@@ -153,7 +153,7 @@
                                     </div>
                                     <div class="def_btnopt2 frombtn frombtn2">
                                         <button type="button"
-                                            style="background-color: {{ $button->value }}"class="btn2"
+                                            style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{ $button->value }}"class="btn2"
                                             id="add_pay_method">{{ __('paymyoutstandingbalance.Add_Payment_Method') }}</button>
                                     </div>
                                 </div>
@@ -317,10 +317,10 @@
                                         <input type="hidden" name="payment_ids">
                                         <input type="hidden" name="totalAmount">
                                         <button type="submit" id="paynow"
-                                            style="background-color: {{ $button->value }}" class="btn2"
+                                            style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{ $button->value }}" class="btn2"
                                             disabled>{{ __('paymyoutstandingbalance.Pay_Now') }}</button>
                                         <button type="submit" class="btn2" id="btnaccsave"
-                                            style="background-color: {{ $button->value }}">{{ __('newMembership.Saveapaymentmethod') }}</button>
+                                            style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{ $button->value }}">{{ __('newMembership.Saveapaymentmethod') }}</button>
                                     </div>
                                 </div>
                             </div>

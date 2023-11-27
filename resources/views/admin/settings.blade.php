@@ -283,7 +283,7 @@
                                             <div class="frombtn_wrap singcol_btn">
                                                 <div class="def_btnopt2 frombtn frombtn2">
                                                     <button type="submit" class="btn2"
-                                                        style="background-color: {{ $button->value }}">{{ __('admin.Save') }}</button>
+                                                        style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{ $button->value }}">{{ __('admin.Save') }}</button>
                                                 </div>
                                             </div>
                                         </form>

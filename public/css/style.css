@@ -3830,3 +3830,35 @@ flex: 0;
 .optionclass{
 	font-size: 12.2px;
 }
+
+.fullWidth, html .fullWidth.container{
+	max-width: 100% !important;
+	padding-left: 0;
+}
+
+.fullWidth .left_sidebar{
+	flex: 0 27%;
+}
+
+html .prod_item:hover .action_opt_title {
+    background: var(--sushover-bg,#138269)  !important;
+}
+
+
+button.btn2:hover {
+    background-color: var(--hover-bg) !important;
+}
+
+.fromdes_info {
+    max-width: 100%;
+    margin: 0px auto;
+    padding-bottom: 80px;
+}
+
+.prod_item_wrap >*{
+	flex: 1;
+}
+
+.sub_btn:hover{
+	background-color: var(--sub_btnhover-bg) !important;
+}

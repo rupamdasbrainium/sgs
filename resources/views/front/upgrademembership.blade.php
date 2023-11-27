@@ -160,12 +160,12 @@
                                         <div class="frombtn_wrap">
                                             <div class="def_btnopt2 frombtn frombtn2">
                                                 @if (count($data['pay_methods_card']->data))
-                                                <a href="{{route('upgragemembershipsubmit',[$itemmain->membershipsId,$data['pay_methods_card']->data[0]->id])}}" class="btn2" id="submit_{{$itemmain->membershipsId}}"
-                                                    style="background-color: {{ $button->value }}">{{ __('upgrademembership.Pay_Now') }}
+                                                <a href="{{route('upgragemembershipsubmit',[$itemmain->membershipsId,$data['pay_methods_card']->data[0]->id])}}" class="sub_btn" id="submit_{{$itemmain->membershipsId}}"
+                                                    style="--sub_btnhover-bg:{{ $primary_button_color_hover->value }}; background-color: {{ $button->value }}">{{ __('upgrademembership.Pay_Now') }}
                                                 </a>
                                                 @else
-                                                <a href="{{route('upgragemembershipsubmitbank',[$itemmain->membershipsId,$data['pay_methods_bank']->data[0]->id])}}" class="btn2" id="submit_{{$itemmain->membershipsId}}"
-                                                    style="background-color: {{ $button->value }}">{{ __('upgrademembership.Pay_Now') }}
+                                                <a href="{{route('upgragemembershipsubmitbank',[$itemmain->membershipsId,$data['pay_methods_bank']->data[0]->id])}}" class="sub_btn" id="submit_{{$itemmain->membershipsId}}"
+                                                    style="--sub_btnhover-bg:{{ $primary_button_color_hover->value }}; background-color: {{ $button->value }}">{{ __('upgrademembership.Pay_Now') }}
                                                 </a>
                                                 @endif
                                                 

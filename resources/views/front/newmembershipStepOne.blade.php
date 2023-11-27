@@ -15,7 +15,7 @@
 				// @dd($data['all_plan_details'])
 				@endphp
 					<div class="prod_item" style="--hover_bg: {{$theme_color_hover->value}}">
-						<div class="action_opt action_opt_title" style="background-color: {{$theme->value}}">
+						<div class="action_opt action_opt_title" style="--sushover-bg:{{ $secondary_theme_color_hover->value }}; background-color: {{$theme->value}}">
 
 							<div class="action_text">
 
@@ -83,7 +83,7 @@
 								<div class="subscribe_btn" >
 									
 									<a href="{{ route('newMembershipSteptwo', [$values->id]) }}"
-										class="sub_btn"  style="background-color: {{$button->value}}">{{ __('global.subscribe') }}</a>
+										class="sub_btn"  style="--sub_btnhover-bg:{{ $primary_button_color_hover->value }}; background-color: {{$button->value}}">{{ __('global.subscribe') }}</a>
 								</div>
 							</div>
 						</div>

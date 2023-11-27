@@ -286,7 +286,7 @@
 
                                                     </div>
                                                     <div class="def_btnopt2 frombtn frombtn2">
-                                                        <button type="button" class="btn2" id="add_pay_method">{{ __('paymentForm.Add_Payment_Method') }}</button>
+                                                        <button type="button" class="btn2" id="add_pay_method" style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{ $button->value }}">{{ __('paymentForm.Add_Payment_Method') }}</button>
                                                     </div>
                                                 </div>
                                                 <div id="bank_details">
@@ -486,9 +486,9 @@
                                                 <div class="frombtn_wrap">
                                                     <div class="def_btnopt2 frombtn frombtn2">
                                                         <button type="submit" class="btn2" id="btnformsave"
-                                                            style="background-color: {{ $button->value }}" disabled>{{ __('newMembership.Save') }}</button>
+                                                            style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{ $button->value }}" disabled>{{ __('newMembership.Save') }}</button>
                                                         <button type="submit" class="btn2" id="btnaccsave"
-                                                            style="background-color: {{ $button->value }}">{{ __('newMembership.Saveapaymentmethod') }}</button>
+                                                            style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{ $button->value }}">{{ __('newMembership.Saveapaymentmethod') }}</button>
                                                     </div>
                                                 </div>
 
