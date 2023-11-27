@@ -36,7 +36,7 @@
 								
 								<div class="frombtn_wrap addmag_top">
 									<div class="def_btnopt2 frombtn frombtn2">
-										<button type="submit" class="btn2" style="background-color: {{$button->value}}">{{ __('changelanguage.Save') }}</button>
+										<button type="submit" class="btn2" style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{$button->value}}">{{ __('changelanguage.Save') }}</button>
 									</div>
 								</div>
 							</div>

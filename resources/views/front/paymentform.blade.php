@@ -314,8 +314,8 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt" id="incdec">
 
-                                                                <input type="number" name="transit_number"
-                                                                    class="form-control" placeholder=""
+                                                                <input type="text" name="transit_number" oninput="onlynumshow(event)"
+                                                                    class="form-control" placeholder="" maxlength="5"
                                                                     value="{{ old('transit_number') }}">
                                                                 {{-- <i class="fas fa-sort-up" id="up"></i>
                                                                 <i class="fas fa-sort-down" id="down"></i> --}}
@@ -333,7 +333,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="institution"
-                                                                    class="form-control" placeholder=""
+                                                                    class="form-control" placeholder="" oninput="onlynumshow(event)" maxlength="3"
                                                                     value="{{ old('institution') }}">
                                                             </div>
                                                         </div>
@@ -347,7 +347,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="account_number"
-                                                                    class="form-control" placeholder=""
+                                                                    class="form-control" placeholder="" oninput="onlynumshow(event)" maxlength="12"
                                                                     value="{{ old('account_number') }}">
                                                             </div>
                                                         </div>
@@ -362,7 +362,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="owner_names"
-                                                                    class="form-control" placeholder=""
+                                                                    class="form-control" placeholder="" oninput="onlyletterhow(event)"
                                                                     value="{{ old('owner_names') }}">
                                                             </div>
                                                         </div>
@@ -392,7 +392,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="owner_name"
-                                                                    class="form-control" placeholder=""
+                                                                    class="form-control" placeholder="" oninput="onlyletterhow(event)"
                                                                     value="{{ old('owner_name') }}">
                                                             </div>
                                                         </div>
@@ -405,8 +405,8 @@
                                                             <label>{{ __('paymentForm.PAN') }} <em
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="number" name="pan"
-                                                                    class="form-control" placeholder=""
+                                                                <input type="text" name="pan"
+                                                                    class="form-control" placeholder="" oninput="onlynumshow(event)" maxlength="16"
                                                                     value="{{ old('pan') }}">
                                                             </div>
                                                         </div>
@@ -420,8 +420,8 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt" id="incdec">
 
-                                                                <input type="number" name="four_digits_number"
-                                                                    class="form-control" placeholder=""
+                                                                <input type="text" name="four_digits_number"
+                                                                    class="form-control" placeholder="" oninput="onlynumshow(event)" maxlength="4"
                                                                     value="{{ old('four_digits_number') }}">
 
                                                             </div>
@@ -436,9 +436,9 @@
                                                             <label>{{ __('paymentForm.Expiry_Month') }} <em
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="number" name="expiry_month"
+                                                                <input type="text" name="expiry_month"
                                                                     min="0" max="12"
-                                                                    class="form-control" placeholder=""
+                                                                    class="form-control" placeholder="" oninput="onlynumshow(event)" maxlength="2"
                                                                     value="{{ old('expiry_month') }}">
                                                             </div>
                                                         </div>
@@ -451,9 +451,9 @@
                                                             <label>{{ __('paymentForm.Expiry_Year') }} <em
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="number" name="expiry_year"
+                                                                <input type="text" name="expiry_year"
                                                                     max="9999" min="2023"
-                                                                    class="form-control" placeholder=""
+                                                                    class="form-control" placeholder="" oninput="onlynumshow(event)" maxlength="4"
                                                                     value="{{ old('expiry_year') }}">
                                                             </div>
                                                         </div>
@@ -635,6 +635,22 @@
                 document.getElementById("myButton").disabled = true;
             }
         }
+    </script>
+    <script>
+        function onlyletterhow(event){
+
+let inputvalue = event.target.value;
+inputvalue = inputvalue.replace(/[^a-z A-Z\\.]+/g, ''); // Remove non-numeric characters
+
+event.target.value = inputvalue;
+}
+function onlynumshow(event){
+
+let inputvalue = event.target.value;
+inputvalue = inputvalue.replace(/\D/g, ''); // Remove non-numeric characters
+
+event.target.value = inputvalue;
+}
     </script>
 
 </x-guest-layout>

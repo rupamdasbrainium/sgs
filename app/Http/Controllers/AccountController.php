@@ -100,6 +100,7 @@ class AccountController extends Controller
         $logo = Configuration::where('name', 'logo_image')->where('franchise_id', 3)->first();
         $theme = Configuration::where('name', 'theme_color')->where('franchise_id', 3)->first();
         $button = Configuration::where('name', 'primary_button_color')->where('franchise_id', 3)->first();
+        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $client = APICall("Clients", 'get', "{}");
@@ -117,7 +118,7 @@ class AccountController extends Controller
         $language = APICall('Options/languages', "get", "{}");
         $data['language'] = json_decode($language);
 
-        return view('front.changelanguage', compact('data', 'client', 'logo', 'theme', 'button', 'admin_phone', 'admin_address'));
+        return view('front.changelanguage', compact('data', 'client', 'logo', 'theme', 'button','primary_button_color_hover', 'admin_phone', 'admin_address'));
     }
 
     public function mylanguagechange(Request $request)
@@ -147,7 +148,13 @@ class AccountController extends Controller
             $locale = 'fr';
         }
         // app()->setLocale($locale);
-
+        if ($data['language']->error !== null) {
+            $response = array(
+                'message' => trans('title_message.Password_not_change'),
+                'message_type' => 'danger'
+            );
+            return redirect()->back()->with($response);
+        } else {
         $message = array(
             'message' => trans('title_message.Language_Changed_succesfully'),
             'message_type' => 'success',
@@ -157,7 +164,7 @@ class AccountController extends Controller
         // return redirect(route("changeLanguage"))->with($response);
         return redirect('language/' . $locale)->with($message);
     }
-
+    }
 
     public function languageUpdate(Request $request)
     {
@@ -190,6 +197,7 @@ class AccountController extends Controller
         $logo = Configuration::where('name', 'logo_image')->where('franchise_id', 3)->first();
         $theme = Configuration::where('name', 'theme_color')->where('franchise_id', 3)->first();
         $button = Configuration::where('name', 'primary_button_color')->where('franchise_id', 3)->first();
+        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         if (!$client) {
@@ -202,21 +210,14 @@ class AccountController extends Controller
         }
 
         $client = json_decode($client)->data;
-        return view('front.changepassword', compact('data', 'logo', 'theme', 'button', 'admin_phone', 'admin_address'));
+        return view('front.changepassword', compact('data', 'logo', 'theme', 'button','primary_button_color_hover', 'admin_phone', 'admin_address'));
     }
 
     public function changePasswordUser(Request $request)
     {
 
-        // $validator = Validator::make($request->all(), [
-        //     'old_password' => 'required|string',
-        //     'new_password' => 'required|string| min:8',
-        //     'confirm_password' => 'required|string|same:new_password',
-        // ]);
-        // if ($validator->fails()) {
-        //     return back()->with('errors', $validator->messages()->all());
-        // }
-        $client = APICall("Clients", 'get', "{}");
+      
+        $client = APICall("Clients", 'get', "{}" ,"client_app");
         if (!$client) {
             $message = array(
                 'message' => trans('title_message.login_token_expired'),
@@ -225,14 +226,12 @@ class AccountController extends Controller
             return redirect()->route('login')->with($message);
         }
 
-            $validate = $request->validate([
+            $request->validate([
                 'old_password' => 'required|string',
                 'new_password' => 'required|string| min:8',
                 'confirm_password' => 'required|string|same:new_password',
             ]);
-            if ($validate->fails()) {
-                    return back()->with('errors', $validator->messages()->all());
-                }
+            
 
         $data = array();
         $data['oldPassword'] = $request->old_password;
@@ -267,6 +266,7 @@ class AccountController extends Controller
         $theme = Configuration::where('name', 'theme_color')->where('franchise_id', 3)->first();
         $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id', 3)->first();
         $button = Configuration::where('name', 'primary_button_color')->where('franchise_id', 3)->first();
+        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $client = APICall("Clients", 'get', "{}", 'client_app');
@@ -329,7 +329,7 @@ class AccountController extends Controller
         }
         $languages = APICall('Options/languages', "get", "{}", "client_app");
         $languages = json_decode($languages);
-        return view('front.myprofile', compact('data', 'client', 'payments', 'languages', 'membership', 'logo', 'theme', 'button', 'admin_phone', 'admin_address'));
+        return view('front.myprofile', compact('data', 'client', 'payments', 'languages', 'membership', 'logo', 'theme', 'button','primary_button_color_hover', 'admin_phone', 'admin_address'));
     }
 
     public function myContactInformation()
@@ -340,6 +340,7 @@ class AccountController extends Controller
         $logo = Configuration::where('name', 'logo_image')->where('franchise_id', 3)->first();
         $theme = Configuration::where('name', 'theme_color')->where('franchise_id', 3)->first();
         $button = Configuration::where('name', 'primary_button_color')->where('franchise_id', 3)->first();
+        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $client = APICall("Clients", "get", "{}");
@@ -359,7 +360,7 @@ class AccountController extends Controller
         }
         $province = json_decode($province);
         // dd($client);
-        return view('front.mycontactinformation', compact('data', 'client', 'province', 'logo', 'theme', 'button', 'admin_phone', 'admin_address'));
+        return view('front.mycontactinformation', compact('data', 'client', 'province', 'logo', 'theme', 'button','primary_button_color_hover', 'admin_phone', 'admin_address'));
     }
     public function updateContactInformation(Request $request)
     {
@@ -465,6 +466,7 @@ class AccountController extends Controller
         $logo = Configuration::where('name', 'logo_image')->where('franchise_id', 3)->first();
         $theme = Configuration::where('name', 'theme_color')->where('franchise_id', 3)->first();
         $button = Configuration::where('name', 'primary_button_color')->where('franchise_id', 3)->first();
+        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
 
@@ -518,7 +520,7 @@ class AccountController extends Controller
         }
         $card =  APICall("PaymentMethods/accepted_cards", "get", "{}", 'client_app');
         $data['card_types'] = json_decode($card);
-        return view('front.paymyoutstandingbalance', compact('data', 'logo', 'theme', 'button', 'admin_phone', 'admin_address'));
+        return view('front.paymyoutstandingbalance', compact('data', 'logo', 'theme', 'button','primary_button_color_hover', 'admin_phone', 'admin_address'));
     }
 
     public function payOutstandingPayment(Request $request)
@@ -588,7 +590,7 @@ class AccountController extends Controller
                     "transit_number" => "required|min:3|max:5",
                     "institution" => "required|min:3",
                     "account_number" => "required|min:5|max:12",
-                    "owner_names" => "required|alpha",
+                    "owner_names" => "required",
 
                 ]);
                 if ($validator->fails()) {
@@ -625,7 +627,7 @@ class AccountController extends Controller
                 "four_digits_number" => "required|min:3|max:4",
                 "pan" => "required|min:15|max:16",
                 "expiry_month" => "required|min:1|max:2",
-                "owner_name" => "required|alpha",
+                "owner_name" => "required",
                 "expiry_year" => "required"
             ]);
             if ($validator->fails()) {
@@ -668,7 +670,9 @@ class AccountController extends Controller
         $logo = Configuration::where('name', 'logo_image')->where('franchise_id', 3)->first();
         $theme = Configuration::where('name', 'theme_color')->where('franchise_id', 3)->first();
         $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id', 3)->first();
+        $secondary_theme_color_hover = Configuration::where('name','secondary_theme_color_hover')->where('franchise_id', 3)->first();
         $button = Configuration::where('name', 'primary_button_color')->where('franchise_id', 3)->first();
+        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $client = APICall("Clients", 'get', "{}");
@@ -711,7 +715,7 @@ class AccountController extends Controller
             $data['all_plan_details'][] = $item;
         }
 
-        return view('front.newmembershipStepOne', compact('data', 'logo', 'theme', 'button', 'admin_phone', 'admin_address', 'lang_id','theme_color_hover'));
+        return view('front.newmembershipStepOne', compact('data', 'logo', 'theme', 'button', 'primary_button_color_hover', 'admin_phone', 'admin_address', 'lang_id','theme_color_hover','secondary_theme_color_hover'));
     }
 
     public function newMembershipSteptwo($id)
@@ -721,6 +725,7 @@ class AccountController extends Controller
         $logo = Configuration::where('name', 'logo_image')->where('franchise_id', 3)->first();
         $theme = Configuration::where('name', 'theme_color')->where('franchise_id', 3)->first();
         $button = Configuration::where('name', 'primary_button_color')->where('franchise_id', 3)->first();
+        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $client = APICall("Clients", 'get', "{}");
@@ -739,7 +744,7 @@ class AccountController extends Controller
         $subscription_plan = APICall("SubscriptionPlans/type/" . $id . "?language_id=" . $lang_id, "get", "{}");
         $data['subscription_plan'] = json_decode($subscription_plan);
 
-        return view('front.newMembershipStepTwo', compact('data', 'logo', 'theme', 'button', 'admin_phone', 'admin_address'));
+        return view('front.newMembershipStepTwo', compact('data', 'logo', 'theme', 'button','primary_button_color_hover', 'admin_phone', 'admin_address'));
     }
 
     public function newMembershipSteptwosubmit(Request $request, $id)
@@ -805,15 +810,18 @@ class AccountController extends Controller
         $logo = Configuration::where('name', 'logo_image')->where('franchise_id', 3)->first();
         $theme = Configuration::where('name', 'theme_color')->where('franchise_id', 3)->first();
         $button = Configuration::where('name', 'primary_button_color')->where('franchise_id', 3)->first();
+        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
-        $client = APICall("Clients", 'get', "{}");
+        $client = APICall("Clients", 'get', "{}", "client_app");
+        
         if (!$client) {
             $message = array(
                 'message' => trans('title_message.login_token_expired'),
                 'message_type' => 'error',
             );
             return redirect()->route('login')->with($message);
+            
             // return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
         }
 
@@ -862,7 +870,7 @@ class AccountController extends Controller
         $card =  APICall("PaymentMethods/accepted_cards", "get", "{}", 'client_app');
         $data['card_types'] = json_decode($card);
 
-        return view('front.newmembershipStepFinal', compact('data', 'logo', 'theme', 'button', 'admin_phone', 'admin_address'));
+        return view('front.newmembershipStepFinal', compact('data', 'logo', 'theme', 'button','primary_button_color_hover', 'admin_phone', 'admin_address'));
     }
 
     public function newMembershipFinalSave(Request $request)
@@ -945,10 +953,11 @@ class AccountController extends Controller
                     "transit_number" => "required|min:3|max:5",
                     "institution" => "required|min:3",
                     "account_number" => "required|min:5|max:12",
-                    "owner_names" => "required|alpha",
+                    "owner_names" => "required",
 
                 ]);
                 if ($validator->fails()) {
+                    
                     return back()->withErrors($validator)->withInput();
                 } else {
                     $formdata = array();
@@ -956,10 +965,9 @@ class AccountController extends Controller
                     $formdata['institution'] = $request->institution;
                     $formdata['account_number'] = $request->account_number;
                     $formdata['owner_name'] = $request->owner_names;
-
+      
                     if (Session::has('franchise_id')) {
                         $formdata['franchise_id'] = Session::get('franchise_id');
-
 
                         $pay_methode_acc = APICall('PaymentMethods/account', "post", json_encode($formdata), 'client_app');
                         $data['pay_methode_acc'] = json_decode($pay_methode_acc);
@@ -982,7 +990,7 @@ class AccountController extends Controller
                     "four_digits_number" => "required|min:3|max:4",
                     "pan" => "required|min:15|max:16",
                     "expiry_month" => "required|min:1|max:2",
-                    "owner_name" => "required|alpha",
+                    "owner_name" => "required",
                     "expiry_year" => "required"
                 ]);
                 if ($validator->fails()) {
@@ -1025,6 +1033,7 @@ class AccountController extends Controller
         $logo = Configuration::where('name', 'logo_image')->where('franchise_id', 3)->first();
         $theme = Configuration::where('name', 'theme_color')->where('franchise_id', 3)->first();
         $button = Configuration::where('name', 'primary_button_color')->where('franchise_id', 3)->first();
+        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $client = APICall("Clients", 'get', "{}");
@@ -1040,7 +1049,7 @@ class AccountController extends Controller
         $referral = APICall('Clients', "get", "{}", 'client_app');
         $data['referral'] = json_decode($referral);
 
-        return view('front.referralcode', compact('data', 'logo', 'theme', 'button', 'admin_phone', 'admin_address'));
+        return view('front.referralcode', compact('data', 'logo', 'theme', 'button','primary_button_color_hover', 'admin_phone', 'admin_address'));
     }
 
     public function myBankCards()
@@ -1050,6 +1059,7 @@ class AccountController extends Controller
         $logo = Configuration::where('name', 'logo_image')->where('franchise_id', 3)->first();
         $theme = Configuration::where('name', 'theme_color')->where('franchise_id', 3)->first();
         $button = Configuration::where('name', 'primary_button_color')->where('franchise_id', 3)->first();
+        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $client = APICall("Clients", 'get', "{}");
@@ -1081,7 +1091,7 @@ class AccountController extends Controller
         $pay_methods_accc = APICall('PaymentMethods/cards', "get", "{}", 'client_app');
         $data['pay_methods_accc'] = json_decode($pay_methods_accc);
 
-        return view('front.mybankcards', compact('data', 'logo', 'theme', 'button', 'admin_phone', 'admin_address'));
+        return view('front.mybankcards', compact('data', 'logo', 'theme', 'button','primary_button_color_hover', 'admin_phone', 'admin_address'));
     }
 
     public function modifyBanks($id)
@@ -1091,6 +1101,7 @@ class AccountController extends Controller
         $logo = Configuration::where('name', 'logo_image')->where('franchise_id', 3)->first();
         $theme = Configuration::where('name', 'theme_color')->where('franchise_id', 3)->first();
         $button = Configuration::where('name', 'primary_button_color')->where('franchise_id', 3)->first();
+        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $client = APICall("Clients", 'get', "{}");
@@ -1115,7 +1126,7 @@ class AccountController extends Controller
         }, (array)$data['pay_methods_acc']->data);
         $data["bank"] = array_filter($data["bank"]);
         $data["bank"] = array_values($data["bank"]);
-        return view('front.modifyBanks', compact('data', 'logo', 'theme', 'button', 'admin_phone', 'admin_address'));
+        return view('front.modifyBanks', compact('data', 'logo', 'theme', 'button','primary_button_color_hover', 'admin_phone', 'admin_address'));
     }
 
     public function modifyBanksUpdate(Request $request)
@@ -1145,13 +1156,22 @@ class AccountController extends Controller
             $formdata['institution'] = $request->institution;
             $formdata['account_number'] = $request->account_number;
             $formdata['owner_name'] = $request->owner_names;
-dd($formdata);
             if (Session::has('franchise_id')) {
                 $carddata['franchise_id'] = Session::get('franchise_id');
 
                 $response = APICall("PaymentMethods/account", "put", json_encode($formdata), 'client_app');
                 $response = json_decode($response);
+                
             }
+            if($response->error)
+{
+    $response = array(
+        'message' => $response->error->message,
+        'message_type' => 'error',
+    );
+    return redirect()->back()->with($response);
+}
+else{
             $response = array(
                 'message' => trans('title_message.Bank_updated_succesfully'),
                 'message_type' => 'success',
@@ -1160,6 +1180,7 @@ dd($formdata);
             return redirect(route('myBankCards'))->with($response);
         }
     }
+    }
     public function modifyCards($id)
     {
         $data = array();
@@ -1167,6 +1188,7 @@ dd($formdata);
         $logo = Configuration::where('name', 'logo_image')->where('franchise_id', 3)->first();
         $theme = Configuration::where('name', 'theme_color')->where('franchise_id', 3)->first();
         $button = Configuration::where('name', 'primary_button_color')->where('franchise_id', 3)->first();
+        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $pay_methods_accc = APICall('PaymentMethods/Cards', "get", "{}", 'client_app');
@@ -1193,7 +1215,7 @@ dd($formdata);
         $data["card"] = array_filter($data["card"]);
         $data["card"] = array_values($data["card"]);
 
-        return view('front.modifyCards', compact('data', 'logo', 'theme', 'button', 'admin_phone', 'admin_address'));
+        return view('front.modifyCards', compact('data', 'logo', 'theme', 'button','primary_button_color_hover', 'admin_phone', 'admin_address'));
     }
 
     public function modifyCardsUpdate(Request $request)
@@ -1364,6 +1386,7 @@ else{
         // dd($uri);
         $membership_with_bank = APICall($uri, "put", "{}", 'client_app');
         $data['membership_with_bank'] = json_decode($membership_with_bank);
+
         if ($data['membership_with_bank']->error != null) {
             $response = array(
                 'message' => $data['membership_with_bank']->error->message,
@@ -1397,19 +1420,24 @@ else{
             $formdata['owner_name'] = $request->owner_names;
 
             if (Session::has('franchise_id')) {
-                $formdata['franchise_id'] = Session::get('franchise_id');
-                dd($formdata);
-
+                $formdata['franchise_id'] = Session::get('franchise_id');            
 
                 $pay_methode_acc = APICall('PaymentMethods/account', "post", json_encode($formdata), 'client_app');
                 $data['pay_methode_acc'] = json_decode($pay_methode_acc);
             }
-
+            if ( $data['pay_methode_acc']->error != null) {
+                $response = array(
+                    'message' => $data['pay_methode_acc']->error->message,
+                    'message_type' => 'danger'
+                );
+                return redirect()->back()->with($response)->withInput();
+            }else{
             $response = array(
                 'message' => trans('title_message.Bank_added_succesfully'),
                 'message_type' => 'success',
             );
             return redirect(route("newMembershipFinal"))->with($response);
+        }
         } else {
             $carddata = array();
 
@@ -1426,6 +1454,13 @@ else{
                 $pay_methods_account = APICall('PaymentMethods/card', "post", json_encode($carddata), 'client_app');
                 $data['pay_methods_account'] = json_decode($pay_methods_account);
             }
+            if ($data['pay_methods_account']->error != null) {
+                $response = array(
+                    'message' => $data['pay_methods_account']->error->message,
+                    'message_type' => 'danger'
+                );
+                return redirect()->back()->with($response)->withInput();
+            }else{
             $response = array(
                 'message' => trans('title_message.Credit_card_added_succesfully'),
                 'message_type' => 'success',
@@ -1433,4 +1468,5 @@ else{
             return redirect(route("newMembershipFinal"))->with($response);
         }
     }
+}
 }

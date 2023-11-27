@@ -64,7 +64,7 @@
                                                                         </div>
                                                                     </div>
 																	<div class="def_btnopt2 frombtn frombtn2" >
-																		<a href="{{route('modifyCards', $value->id)}}" type="button" style="background-color: {{$button->value}}" class="btn2">{{ __('mybankcards.Modify') }}</a>
+																		<a href="{{route('modifyCards', $value->id)}}" type="button" style="--sub_btnhover-bg:{{ $primary_button_color_hover->value }}; background-color: {{$button->value}}" class="sub_btn">{{ __('mybankcards.Modify') }}</a>
 																	</div>
                                                                 </div>
 
@@ -121,7 +121,7 @@
                                                                         </div>
                                                                     </div>
 																	<div class="def_btnopt2 frombtn frombtn2">
-																		<a href="{{route('modifyBanks', $values->id)}}" type="button" style="background-color: {{$button->value}}" class="btn2">{{ __('mybankcards.Modify') }}</a>
+																		<a href="{{route('modifyBanks', $values->id)}}" type="button" style="--sub_btnhover-bg:{{ $primary_button_color_hover->value }}; background-color: {{$button->value}}" class="sub_btn">{{ __('mybankcards.Modify') }}</a>
 																	</div>
                                                                 </div>
 
@@ -137,7 +137,7 @@
  
                                 <div class="frombtn_wrap">
                                     <div class="def_btnopt2 frombtn frombtn2">
-                                        <a href="{{ route('front.addPayment') }}" type="button" style="background-color: {{$button->value}}" class="btn2">{{ __('mybankcards.Add_Payment_Method') }}
+                                        <a href="{{ route('front.addPayment') }}" type="button" style="--sub_btnhover-bg:{{ $primary_button_color_hover->value }}; background-color: {{$button->value}}" class="sub_btn">{{ __('mybankcards.Add_Payment_Method') }}
                                         </a>
                                     </div>
                                 </div>

@@ -193,13 +193,26 @@
                                                                         class="req_text">*</span>
                                                                 </div>
                                                                 <div class="color_opt_inp">
-                                                                    <!-- <input class="inpcolor_opt" type="color" id="theme_color" name="favcolor" value="#5ADFC2"> -->
                                                                     <input type="color" name="theme_color_hover"
                                                                         class="inpcolor_opt" id="theme_color_hover"
                                                                         value="{{ $data['data']['theme_color_hover'] }}">
                                                                     <input readonly type="text"
                                                                         class="inpcolor_opt inpres" id="theme_color_hover_res"
                                                                         value="#5ADFC2">
+                                                                </div>
+                                                            </div>
+                                                            <div class="color_opt_block">
+                                                                <div class="color_opt_text">
+                                                                    {{ __('admin.secondary_theme_color_hover') }} <span
+                                                                        class="req_text">*</span>
+                                                                </div>
+                                                                <div class="color_opt_inp">
+                                                                    <input type="color" name="secondary_theme_color_hover"
+                                                                        class="inpcolor_opt" id="secondary_theme_color_hover"
+                                                                        value="{{ $data['data']['secondary_theme_color_hover'] }}">
+                                                                    <input readonly type="text"
+                                                                        class="inpcolor_opt inpres" id="secondary_theme_color_hover"
+                                                                        value="#1D1D1B">
                                                                 </div>
                                                             </div>
                                                             <div class="color_opt_block">
@@ -215,6 +228,21 @@
                                                                     <input readonly type="text"
                                                                         class="inpcolor_opt inpres"
                                                                         id="pri_btncolor_res" value="#5ADFC2">
+                                                                </div>
+                                                            </div>
+                                                            <div class="color_opt_block">
+                                                                <div class="color_opt_text">
+                                                                    {{ __('admin.Primary_Button_Color_hover') }} <span
+                                                                        class="req_text">*</span>
+                                                                </div>
+                                                                <div class="color_opt_inp">
+                                                                    <!-- <input class="inpcolor_opt" type="color" id="pri_btncolor" name="favcolor" value="#1D1D1B"> -->
+                                                                    <input name="primary_button_color_hover" type="color"
+                                                                        class="inpcolor_opt" id="primary_button_color_hover"
+                                                                        value="{{ $data['data']['primary_button_color_hover'] }}">
+                                                                    <input readonly type="text"
+                                                                        class="inpcolor_opt inpres"
+                                                                        id="primary_button_color_hover" value="#1D1D1B">
                                                                 </div>
                                                             </div>
                                                             {{-- <div class="color_opt_block">
@@ -255,7 +283,7 @@
                                             <div class="frombtn_wrap singcol_btn">
                                                 <div class="def_btnopt2 frombtn frombtn2">
                                                     <button type="submit" class="btn2"
-                                                        style="background-color: {{ $button->value }}">{{ __('admin.Save') }}</button>
+                                                        style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{ $button->value }}">{{ __('admin.Save') }}</button>
                                                 </div>
                                             </div>
                                         </form>

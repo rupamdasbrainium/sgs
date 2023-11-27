@@ -16,7 +16,8 @@ class LoginController extends Controller
         $title = trans('title_message.Admin_Login');
         $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
         $button = Configuration::where('name','primary_button_color')->where('franchise_id',3)->first();
-        return view('admin.login', compact('title','logo','button'));
+        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
+        return view('admin.login', compact('title','logo','button','primary_button_color_hover'));
     }
 
     public function login(Request $request)

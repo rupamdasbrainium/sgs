@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <section class="maincontent_wrap innermain_content payment_content">
         <div class="welcomesection def_padding inner_content_block">
-            <div class="container">
+            <div class="container fullWidth">
                 <div class="row">
                     <div class="col-md-12">
 
@@ -46,8 +46,8 @@
                                                         <label>{{ __('paymentForm.PAN') }} <em
                                                                 class="req_text">*</em></label>
                                                         <div class="inp_cont_view noicon_opt" id="incdec">
-
-                                                            <input type="text" name="four_digits_number" class="form-control" 
+ 
+                                                            <input type="text" name="four_digits_number" class="form-control" oninput="onlynumshow(event)" maxlength="16"
                                                                 placeholder="" value="{{$data["card"][0]->four_digits_number}}">
 
                                                         </div>
@@ -78,10 +78,10 @@
 
                                             <div class="frombtn_wrap">
                                                 <div class="def_btnopt2 frombtn">
-                                                    <button type="submit" value="submit" class="btn2"
-                                                        id="myButton">{{ __('paymentForm.submit') }}!</button>
+                                                    <button type="submit" value="submit" class="btn2" style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{$button->value}}"
+                                                        id="myButton">{{ __('paymentForm.submit') }}</button>
                                                     <button type="button"
-                                                        class="btn2 backbutton" onclick="history.back()">{{ __('paymentForm.back') }}</button>
+                                                        class="btn2 backbutton" style="--hover-bg:{{ $primary_button_color_hover->value }}" onclick="history.back()">{{ __('paymentForm.back') }}</button>
                                                 </div>
                                             </div>
 

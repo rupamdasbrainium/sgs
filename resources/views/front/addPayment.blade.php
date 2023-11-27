@@ -3,7 +3,7 @@
     @include('header')
     <section class="maincontent_wrap innermain_content payment_content">
         <div class="welcomesection def_padding inner_content_block">
-            <div class="container">
+            <div class="container fullWidth">
                 <div class="row">
                     @if(Session::has('message'))
                     <div class="alert alert-danger">
@@ -118,7 +118,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="owner_names"
-                                                                    class="form-control" placeholder="" value="{{ old('owner_names') }}">
+                                                                    class="form-control" placeholder="" oninput="onlyletterhow(event)" value="{{ old('owner_names') }}">
                                                             </div>
                                                         </div>
                                                         @error('owner_names')
@@ -146,7 +146,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="owner_name"
-                                                                    class="form-control" placeholder="" value="{{ old('owner_name') }}">
+                                                                    class="form-control" oninput="onlyletterhow(event)" placeholder="" value="{{ old('owner_name') }}">
                                                             </div>
                                                         </div>
                                                         @error('owner_name')
@@ -212,9 +212,9 @@
 
                                             <div class="frombtn_wrap">
                                                 <div class="def_btnopt2 frombtn">
-                                                    <button type="submit" value="submit" style="background-color: {{$button->value}}" class="btn2"
+                                                    <button type="submit" value="submit" style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{$button->value}}" class="btn2"
                                                         id="myButton">{{ __('paymentForm.submit') }}</button>
-                                                    <button type="button" class="btn2 backbutton" onclick="history.back()">{{ __('paymentForm.back') }}</button>
+                                                    <button type="button" class="btn2 backbutton" style="--hover-bg:{{ $primary_button_color_hover->value }}; onclick="history.back()">{{ __('paymentForm.back') }}</button>
                                                 </div>
                                             </div>
 
@@ -338,7 +338,13 @@ function onlynumshow(event){
 
                 event.target.value = inputvalue;
 }
+function onlyletterhow(event){
 
+let inputvalue = event.target.value;
+inputvalue = inputvalue.replace(/[^a-z A-Z\\.]+/g, ''); // Remove non-numeric characters
+
+event.target.value = inputvalue;
+}
     </script>
 
 

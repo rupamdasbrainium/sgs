@@ -286,7 +286,7 @@
 
                                                     </div>
                                                     <div class="def_btnopt2 frombtn frombtn2">
-                                                        <button type="button" class="btn2" id="add_pay_method">{{ __('paymentForm.Add_Payment_Method') }}</button>
+                                                        <button type="button" class="btn2" id="add_pay_method" style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{ $button->value }}">{{ __('paymentForm.Add_Payment_Method') }}</button>
                                                     </div>
                                                 </div>
                                                 <div id="bank_details">
@@ -306,8 +306,8 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt" id="incdec">
 
-                                                                <input type="number" name="transit_number"
-                                                                    class="form-control" placeholder=""
+                                                                <input type="text" name="transit_number"
+                                                                    class="form-control" placeholder="" oninput="onlynumshow(event)" maxlength="5"
                                                                     value="{{ old('transit_number') }}">
                                                             </div>
                                                         </div>
@@ -322,7 +322,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="institution"
-                                                                    class="form-control" placeholder="" value="{{ old('institution') }}">
+                                                                    class="form-control" placeholder="" oninput="onlynumshow(event)" maxlength="3" value="{{ old('institution') }}">
                                                             </div>
                                                         </div>
                                                         @error('institution')
@@ -335,7 +335,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="account_number"
-                                                                    class="form-control" placeholder="" value="{{ old('account_number') }}">
+                                                                    class="form-control" placeholder="" oninput="onlynumshow(event)" maxlength="12" value="{{ old('account_number') }}">
                                                             </div>
                                                         </div>
                                                         @error('account_number')
@@ -349,7 +349,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="owner_names"
-                                                                    class="form-control" placeholder="bank" value="{{ old('owner_names')}}">
+                                                                    class="form-control" placeholder="" oninput="onlyletterhow(event)" value="{{ old('owner_names')}}">
                                                             </div>
                                                         </div>
                                                         @error('owner_names')
@@ -378,7 +378,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="owner_name"
-                                                                    class="form-control" placeholder="" value="{{ old('owner_name')}}">
+                                                                    class="form-control" placeholder="" oninput="onlyletterhow(event)" value="{{ old('owner_name')}}">
                                                             </div>
                                                         </div>
                                                         @error('owner_name')
@@ -390,8 +390,8 @@
                                                             <label>{{ __('paymentForm.PAN') }} <em
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="number" name="pan"
-                                                                    class="form-control" placeholder=""
+                                                                <input type="text" name="pan"
+                                                                    class="form-control" placeholder="" oninput="onlynumshow(event)" maxlength="16"
                                                                     value="{{ old('pan') }}" >
                                                             </div>
                                                         </div>
@@ -406,8 +406,8 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt" id="incdec">
 
-                                                                <input type="number" name="four_digits_number"
-                                                                    class="form-control" placeholder=""
+                                                                <input type="text" name="four_digits_number"
+                                                                    class="form-control" placeholder="" oninput="onlynumshow(event)" maxlength="4"
                                                                     value="{{ old('four_digits_number') }}" >
 
                                                             </div>
@@ -422,8 +422,8 @@
                                                             <label>{{ __('paymentForm.Expiry_Month') }} <em
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="number" name="expiry_month"
-                                                                    class="form-control" placeholder="" value="{{ old('expiry_month')}}">
+                                                                <input type="text" name="expiry_month"
+                                                                    class="form-control" placeholder="" oninput="onlynumshow(event)" maxlength="2" value="{{ old('expiry_month')}}">
                                                             </div>
                                                         </div>
                                                         @error('expiry_month')
@@ -435,8 +435,8 @@
                                                             <label>{{ __('paymentForm.Expiry_Year') }} <em
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
-                                                                <input type="number" name="expiry_year"
-                                                                    class="form-control" placeholder="" value="{{ old('expiry_year')}}">
+                                                                <input type="text" name="expiry_year"
+                                                                    class="form-control" placeholder="" oninput="onlynumshow(event)" maxlength="4" value="{{ old('expiry_year')}}">
                                                             </div>
                                                         </div>
                                                         @error('expiry_year')
@@ -446,7 +446,7 @@
                                                 </div>
                                                 <div class="aboundopt">
                                                     <p>{{ __('paymentForm.Amount_to_be_paid') }}:
-                                                        ${{ $total }}</p>
+                                                        {{ $total }}$</p>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="checkbox_block">
@@ -486,9 +486,9 @@
                                                 <div class="frombtn_wrap">
                                                     <div class="def_btnopt2 frombtn frombtn2">
                                                         <button type="submit" class="btn2" id="btnformsave"
-                                                            style="background-color: {{ $button->value }}" disabled>{{ __('newMembership.Save') }}</button>
+                                                            style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{ $button->value }}" disabled>{{ __('newMembership.Save') }}</button>
                                                         <button type="submit" class="btn2" id="btnaccsave"
-                                                            style="background-color: {{ $button->value }}">{{ __('newMembership.Saveapaymentmethod') }}</button>
+                                                            style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{ $button->value }}">{{ __('newMembership.Saveapaymentmethod') }}</button>
                                                     </div>
                                                 </div>
 
@@ -647,6 +647,21 @@
                 document.getElementById("btnformsave").disabled = true;
             }
         }
+
+        function onlyletterhow(event){
+
+let inputvalue = event.target.value;
+inputvalue = inputvalue.replace(/[^a-z A-Z\\.]+/g, ''); // Remove non-numeric characters
+
+event.target.value = inputvalue;
+}
+function onlynumshow(event){
+
+let inputvalue = event.target.value;
+inputvalue = inputvalue.replace(/\D/g, ''); // Remove non-numeric characters
+
+event.target.value = inputvalue;
+}
         </script>
 
 

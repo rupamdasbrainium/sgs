@@ -43,7 +43,7 @@
 							<div class="inp_cont_view noicon_opt">
 								<input type="text" class="form-control" placeholder="JBAF6" value="{{$data['referral']->data->reference_code}}" id="myInput">
 								<div class="def_btnopt2 frombtn" >
-									<button type="button" onclick="myFunction()" class="btn2" style="background-color: {{$button->value}}">{{ __('referalcode.COPY') }}</button>
+									<button type="button" onclick="myFunction()" class="btn2" style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{$button->value}}">{{ __('referalcode.COPY') }}</button>
 								</div>
 							</div>
 						</div>
@@ -68,10 +68,18 @@
 							<div class="tab-pane fade active show" id="nav-social">
 								<div class="social_media ">
 									<ul>
-										<li><a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a></li>
-										<li><a href="javascript:void(0)"><i class="fab fa-twitter"></i></a></li>
-										<li><a href="javascript:void(0)"><i class="fab fa-linkedin-in"></i></a></li>
-										<li><a href="javascript:void(0)"><i class="fab fa-youtube"></i></a></li>
+										@php
+							$short_code =  'CentreDemo';
+							if(Cookie::has('driver_route_id')){
+
+								$short_code = Cookie::get('driver_route_id');
+							}
+							@endphp
+							<li><a href="https://www.facebook.com/sharer/sharer.php?u={{route('homepage',  $short_code)}}"><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href="https://twitter.com/intent/tweet?text=Default+share+text&url={{route('homepage',  $short_code)}}"><i class="fab fa-twitter"></i></a></li>
+							<li><a href="https://www.linkedin.com/sharing/share-offsite?mini=true&url={{route('homepage', $short_code)}}"><i class="fab fa-linkedin-in"></i></a></li>
+							<li><a href="https://telegram.me/share/url?url={{route('homepage',  $short_code)}}"><i class="fab fa-telegram"></i></a></li>
+							
 									</ul>
 								</div>
 							</div>

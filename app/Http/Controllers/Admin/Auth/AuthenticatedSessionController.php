@@ -21,7 +21,8 @@ class AuthenticatedSessionController extends Controller
     {
         // return view('admin.auth.login');
         $button = Configuration::where('name','primary_button_color')->first();
-        return view('admin.login',compact('button'));
+        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
+        return view('admin.login',compact('button','primary_button_color_hover'));
     }
 
     /**
