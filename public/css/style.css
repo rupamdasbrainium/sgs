@@ -3849,7 +3849,7 @@ button.btn2:hover {
     background-color: var(--hover-bg) !important;
 }
 
-.fromdes_info {
+.prod_item_wrap form .fromdes_info {
     max-width: 100%;
     margin: 0px auto;
     padding-bottom: 80px;
