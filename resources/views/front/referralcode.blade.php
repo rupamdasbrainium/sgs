@@ -68,10 +68,18 @@
 							<div class="tab-pane fade active show" id="nav-social">
 								<div class="social_media ">
 									<ul>
-										<li><a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a></li>
-										<li><a href="javascript:void(0)"><i class="fab fa-twitter"></i></a></li>
-										<li><a href="javascript:void(0)"><i class="fab fa-linkedin-in"></i></a></li>
-										<li><a href="javascript:void(0)"><i class="fab fa-youtube"></i></a></li>
+										@php
+							$short_code =  'CentreDemo';
+							if(Cookie::has('driver_route_id')){
+
+								$short_code = Cookie::get('driver_route_id');
+							}
+							@endphp
+							<li><a href="https://www.facebook.com/sharer/sharer.php?u={{route('homepage',  $short_code)}}"><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href="https://twitter.com/intent/tweet?text=Default+share+text&url={{route('homepage',  $short_code)}}"><i class="fab fa-twitter"></i></a></li>
+							<li><a href="https://www.linkedin.com/sharing/share-offsite?mini=true&url={{route('homepage', $short_code)}}"><i class="fab fa-linkedin-in"></i></a></li>
+							<li><a href="https://telegram.me/share/url?url={{route('homepage',  $short_code)}}"><i class="fab fa-telegram"></i></a></li>
+							
 									</ul>
 								</div>
 							</div>

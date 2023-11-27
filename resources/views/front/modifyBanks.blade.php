@@ -93,9 +93,9 @@
 
                                             <div class="frombtn_wrap">
                                                 <div class="def_btnopt2 frombtn">
-                                                    <button type="submit" value="submit" class="btn2"
+                                                    <button type="submit" value="submit" class="btn2" style="background-color: {{$button->value}}"
                                                         id="myButton">{{ __('paymentForm.submit') }}</button>
-                                                    <button type="button"
+                                                    <button type="button" style="background-color: {{$button->value}}"
                                                         class="btn2 backbutton" onclick="history.back()">{{ __('paymentForm.back') }}</button>
                                                 </div>
                                             </div>

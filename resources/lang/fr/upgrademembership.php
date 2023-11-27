@@ -24,4 +24,5 @@ return [
     'Quantity' => 'Quantité',
     'Price' => 'Prix',
     'Pay_Now' => 'Payez maintenant',
+    'no_data_available' => 'Pas de données disponibles'
 ];

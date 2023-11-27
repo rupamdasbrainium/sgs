@@ -214,15 +214,8 @@ class AccountController extends Controller
     public function changePasswordUser(Request $request)
     {
 
-        // $validator = Validator::make($request->all(), [
-        //     'old_password' => 'required|string',
-        //     'new_password' => 'required|string| min:8',
-        //     'confirm_password' => 'required|string|same:new_password',
-        // ]);
-        // if ($validator->fails()) {
-        //     return back()->with('errors', $validator->messages()->all());
-        // }
-        $client = APICall("Clients", 'get', "{}");
+      
+        $client = APICall("Clients", 'get', "{}" ,"client_app");
         if (!$client) {
             $message = array(
                 'message' => trans('title_message.login_token_expired'),
@@ -231,14 +224,12 @@ class AccountController extends Controller
             return redirect()->route('login')->with($message);
         }
 
-            $validate = $request->validate([
+            $request->validate([
                 'old_password' => 'required|string',
                 'new_password' => 'required|string| min:8',
                 'confirm_password' => 'required|string|same:new_password',
             ]);
-            if ($validate->fails()) {
-                    return back()->with('errors', $validator->messages()->all());
-                }
+            
 
         $data = array();
         $data['oldPassword'] = $request->old_password;
@@ -594,7 +585,7 @@ class AccountController extends Controller
                     "transit_number" => "required|min:3|max:5",
                     "institution" => "required|min:3",
                     "account_number" => "required|min:5|max:12",
-                    "owner_names" => "required|alpha",
+                    "owner_names" => "required",
 
                 ]);
                 if ($validator->fails()) {
@@ -631,7 +622,7 @@ class AccountController extends Controller
                 "four_digits_number" => "required|min:3|max:4",
                 "pan" => "required|min:15|max:16",
                 "expiry_month" => "required|min:1|max:2",
-                "owner_name" => "required|alpha",
+                "owner_name" => "required",
                 "expiry_year" => "required"
             ]);
             if ($validator->fails()) {
@@ -813,13 +804,15 @@ class AccountController extends Controller
         $button = Configuration::where('name', 'primary_button_color')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
-        $client = APICall("Clients", 'get', "{}");
+        $client = APICall("Clients", 'get', "{}", "client_app");
+        
         if (!$client) {
             $message = array(
                 'message' => trans('title_message.login_token_expired'),
                 'message_type' => 'error',
             );
             return redirect()->route('login')->with($message);
+            
             // return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
         }
 
@@ -951,10 +944,11 @@ class AccountController extends Controller
                     "transit_number" => "required|min:3|max:5",
                     "institution" => "required|min:3",
                     "account_number" => "required|min:5|max:12",
-                    "owner_names" => "required|alpha",
+                    "owner_names" => "required",
 
                 ]);
                 if ($validator->fails()) {
+                    
                     return back()->withErrors($validator)->withInput();
                 } else {
                     $formdata = array();
@@ -962,10 +956,9 @@ class AccountController extends Controller
                     $formdata['institution'] = $request->institution;
                     $formdata['account_number'] = $request->account_number;
                     $formdata['owner_name'] = $request->owner_names;
-
+      
                     if (Session::has('franchise_id')) {
                         $formdata['franchise_id'] = Session::get('franchise_id');
-
 
                         $pay_methode_acc = APICall('PaymentMethods/account', "post", json_encode($formdata), 'client_app');
                         $data['pay_methode_acc'] = json_decode($pay_methode_acc);
@@ -988,7 +981,7 @@ class AccountController extends Controller
                     "four_digits_number" => "required|min:3|max:4",
                     "pan" => "required|min:15|max:16",
                     "expiry_month" => "required|min:1|max:2",
-                    "owner_name" => "required|alpha",
+                    "owner_name" => "required",
                     "expiry_year" => "required"
                 ]);
                 if ($validator->fails()) {
