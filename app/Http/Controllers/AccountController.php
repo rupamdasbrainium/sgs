@@ -147,7 +147,13 @@ class AccountController extends Controller
             $locale = 'fr';
         }
         // app()->setLocale($locale);
-
+        if ($data['language']->error !== null) {
+            $response = array(
+                'message' => trans('title_message.Password_not_change'),
+                'message_type' => 'danger'
+            );
+            return redirect()->back()->with($response);
+        } else {
         $message = array(
             'message' => trans('title_message.Language_Changed_succesfully'),
             'message_type' => 'success',
@@ -157,7 +163,7 @@ class AccountController extends Controller
         // return redirect(route("changeLanguage"))->with($response);
         return redirect('language/' . $locale)->with($message);
     }
-
+    }
 
     public function languageUpdate(Request $request)
     {
@@ -1145,13 +1151,22 @@ class AccountController extends Controller
             $formdata['institution'] = $request->institution;
             $formdata['account_number'] = $request->account_number;
             $formdata['owner_name'] = $request->owner_names;
-dd($formdata);
             if (Session::has('franchise_id')) {
                 $carddata['franchise_id'] = Session::get('franchise_id');
 
                 $response = APICall("PaymentMethods/account", "put", json_encode($formdata), 'client_app');
                 $response = json_decode($response);
+                
             }
+            if($response->error)
+{
+    $response = array(
+        'message' => $response->error->message,
+        'message_type' => 'error',
+    );
+    return redirect()->back()->with($response);
+}
+else{
             $response = array(
                 'message' => trans('title_message.Bank_updated_succesfully'),
                 'message_type' => 'success',
@@ -1159,6 +1174,7 @@ dd($formdata);
 
             return redirect(route('myBankCards'))->with($response);
         }
+    }
     }
     public function modifyCards($id)
     {
@@ -1364,6 +1380,7 @@ else{
         // dd($uri);
         $membership_with_bank = APICall($uri, "put", "{}", 'client_app');
         $data['membership_with_bank'] = json_decode($membership_with_bank);
+
         if ($data['membership_with_bank']->error != null) {
             $response = array(
                 'message' => $data['membership_with_bank']->error->message,
@@ -1397,19 +1414,24 @@ else{
             $formdata['owner_name'] = $request->owner_names;
 
             if (Session::has('franchise_id')) {
-                $formdata['franchise_id'] = Session::get('franchise_id');
-                dd($formdata);
-
+                $formdata['franchise_id'] = Session::get('franchise_id');            
 
                 $pay_methode_acc = APICall('PaymentMethods/account', "post", json_encode($formdata), 'client_app');
                 $data['pay_methode_acc'] = json_decode($pay_methode_acc);
             }
-
+            if ( $data['pay_methode_acc']->error != null) {
+                $response = array(
+                    'message' => $data['pay_methode_acc']->error->message,
+                    'message_type' => 'danger'
+                );
+                return redirect()->back()->with($response)->withInput();
+            }else{
             $response = array(
                 'message' => trans('title_message.Bank_added_succesfully'),
                 'message_type' => 'success',
             );
             return redirect(route("newMembershipFinal"))->with($response);
+        }
         } else {
             $carddata = array();
 
@@ -1426,6 +1448,13 @@ else{
                 $pay_methods_account = APICall('PaymentMethods/card', "post", json_encode($carddata), 'client_app');
                 $data['pay_methods_account'] = json_decode($pay_methods_account);
             }
+            if ($data['pay_methods_account']->error != null) {
+                $response = array(
+                    'message' => $data['pay_methods_account']->error->message,
+                    'message_type' => 'danger'
+                );
+                return redirect()->back()->with($response)->withInput();
+            }else{
             $response = array(
                 'message' => trans('title_message.Credit_card_added_succesfully'),
                 'message_type' => 'success',
@@ -1433,4 +1462,5 @@ else{
             return redirect(route("newMembershipFinal"))->with($response);
         }
     }
+}
 }

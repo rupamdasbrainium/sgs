@@ -269,13 +269,20 @@ class PaymentController extends Controller
             $pay_methode_acc = APICall('PaymentMethods/account', "post", json_encode($formdata), 'client_app');
             $data['pay_methode_acc'] = json_decode($pay_methode_acc); 
                 } 
-                   
+                if ( $data['pay_methode_acc']->error != null) {
+                    $response = array(
+                        'message' =>  $data['pay_methode_acc']->error->message,
+                        'message_type' => 'danger'
+                    );
+                    return redirect()->back()->with($response)->withInput();
+                }else{
               $response = array(
                 'message' => trans('title_message.Bank_added_succesfully'),
                 'message_type' => 'success',
               );
               return redirect(route("myBankCards"))->with($response);
             }
+        }
         } else {
             $validator = Validator::make($request->all(), [
                 "four_digits_number" => "required|min:3|max:4",
@@ -302,9 +309,15 @@ class PaymentController extends Controller
 
 
                 $pay_methods_account = APICall('PaymentMethods/card', "post", json_encode($carddata), 'client_app');
-                $data['pay_methods_account'] = json_decode($pay_methods_account);    
-             
+                $data['pay_methods_account'] = json_decode($pay_methods_account);                 
              }     
+             if ($data['pay_methods_account']->error != null) {
+                $response = array(
+                    'message' =>  $data['pay_methods_account']->error->message,
+                    'message_type' => 'danger'
+                );
+                return redirect()->back()->with($response)->withInput();
+            }else{
                 $response = array(
                   'message' => trans('title_message.Credit_card_added_succesfully'),
                   'message_type' => 'success',
@@ -312,5 +325,6 @@ class PaymentController extends Controller
                 return redirect(route("myBankCards"))->with($response);
         }
     }
+}
 }
 }

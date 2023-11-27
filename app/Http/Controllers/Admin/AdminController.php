@@ -169,12 +169,14 @@ class AdminController extends Controller
     public function settings () {
         $user = Auth::guard('admin')->user();
         $data = array();
-        $data['data'] = [ 'banner_image' => asset('public/admin/images/adminbanner_add.png'), 'logo_image' => asset('public/admin/images/logo.png'), 'theme_color' => '#5ADFC2','theme_color_hover' => '#5ADFC2', 'primary_button_color' => '#1D1D1B', 'secondary_button_color' => '#FFB11A', 'text_button_color' => '#575757' ];
+        $data['data'] = [ 'banner_image' => asset('public/admin/images/adminbanner_add.png'), 'logo_image' => asset('public/admin/images/logo.png'), 'theme_color' => '#5ADFC2','theme_color_hover' => '#5ADFC2','secondary_theme_color_hover' => '#1D1D1B','primary_button_color_hover' => '#1D1D1B', 'primary_button_color' => '#1D1D1B', 'secondary_button_color' => '#FFB11A', 'text_button_color' => '#575757' ];
         $result = Configuration::where('user_id', $user->id)->where('type', 'settings')->get();
         $logo = Configuration::where('name','logo_image')->where('franchise_id',$user->franchise_id)->first();
         $theme = Configuration::where('name','theme_color')->where('franchise_id',$user->franchise_id)->first();
         $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id',$user->franchise_id)->first();
+        $secondary_theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id',$user->franchise_id)->first();
         $button = Configuration::where('name','primary_button_color')->where('franchise_id',$user->franchise_id)->first();
+        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id',$user->franchise_id)->first();
         $title = Configuration::where('name','title')->where('franchise_id',3)->first();
         $subtitle = Configuration::where('name','subtitle')->where('franchise_id',3)->first();
         $home_title = Configuration::where('name','home_title')->where('franchise_id',3)->first();
@@ -203,7 +205,7 @@ class AdminController extends Controller
         }
         $data['user'] = $user;
         $data['title'] = trans('title_message.Admin_Settings');
-        return view('admin.settings', compact('data','logo','theme','button','title','subtitle','home_title','home_magicplan','home_body','admin_address','admin_phone','video','title_fr','subtitle_fr','home_title_fr','home_magicplan_fr','home_body_fr'));
+        return view('admin.settings', compact('data','logo','theme','button','title','subtitle','home_title','home_magicplan','home_body','admin_address','admin_phone','video','title_fr','subtitle_fr','home_title_fr','home_magicplan_fr','home_body_fr','secondary_theme_color_hover'));
     }
 
 
