@@ -60,7 +60,7 @@
                                                     </td>
                                                     <td data-label="PAYMENT DATE">
                                                         {{ date('Y-m-d', strtotime($pt->paymentDate)) }}</td>
-                                                    <td data-label="PAYMENT">${{ $pt->remainingAmount }}</td>
+                                                    <td data-label="PAYMENT">{{ $pt->remainingAmount }}$</td>
                                                     <td data-label="STATUS">{{ __('paymyoutstandingbalance.Unpaid') }}
                                                     </td>
                                                 </tr>
@@ -73,7 +73,7 @@
                                                     </td>
                                                     <td data-label="PAYMENT DATE">
                                                         {{ date('Y-m-d', strtotime($pt->paymentDate)) }}</td>
-                                                    <td data-label="PAYMENT">${{ $pt->amount }}</td>
+                                                    <td data-label="PAYMENT">{{ $pt->amount }}$</td>
                                                     <td data-label="STATUS">{{ __('paymyoutstandingbalance.Paid') }}
                                                     </td>
                                                 </tr>
@@ -158,7 +158,7 @@
                                     </div>
                                 </div>
 
-                                <div id="bank_details">
+                                {{-- <div id="bank_details">
                                     <div class="inp_row">
                                         <div class="form-group">
                                             <label>{{ __('paymentForm.Direct_Debit') }}</label>
@@ -224,7 +224,7 @@
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div id="credit_details">
                                     <div class="selectcont ">
@@ -257,7 +257,7 @@
                                         <div class="form-group">
                                             <label>{{ __('paymentForm.PAN') }} <em class="req_text">*</em></label>
                                             <div class="inp_cont_view noicon_opt">
-                                                <input type="number" name="pan" class="form-control"
+                                                <input type="text" name="pan" class="form-control" maxlength="16" oninput="onlynumshow(event)"
                                                     placeholder="" value="{{ old('pan') }}">
                                             </div>
                                         </div>
@@ -271,7 +271,7 @@
                                             <label>{{ __('paymentForm.CSV') }} <em class="req_text">*</em></label>
                                             <div class="inp_cont_view noicon_opt" id="incdec">
 
-                                                <input type="number" name="four_digits_number" class="form-control"
+                                                <input type="text" name="four_digits_number" class="form-control" oninput="onlynumshow(event)" maxlength="4"
                                                     placeholder="" value="{{ old('four_digits_number') }}">
 
                                             </div>
@@ -286,7 +286,7 @@
                                             <label>{{ __('paymentForm.Expiry_Month') }} <em
                                                     class="req_text">*</em></label>
                                             <div class="inp_cont_view noicon_opt">
-                                                <input type="number" name="expiry_month" class="form-control"
+                                                <input type="text" name="expiry_month" class="form-control" oninput="onlynumshow(event)" maxlength="2"
                                                     placeholder=""  value="{{ old('expiry_month') }}">
                                             </div>
                                         </div>
@@ -299,7 +299,7 @@
                                             <label>{{ __('paymentForm.Expiry_Year') }} <em
                                                     class="req_text">*</em></label>
                                             <div class="inp_cont_view noicon_opt">
-                                                <input type="number" name="expiry_year" class="form-control"
+                                                <input type="number" name="expiry_year" class="form-control" oninput="onlynumshow(event)" maxlength="4"
                                                     placeholder="" value="{{ old('expiry_year') }}">
                                             </div>
                                         </div>
@@ -491,6 +491,13 @@
 
 let inputvalue = event.target.value;
 inputvalue = inputvalue.replace(/[^a-z A-Z\\.]+/g, ''); // Remove non-numeric characters
+
+event.target.value = inputvalue;
+}
+function onlynumshow(event){
+
+let inputvalue = event.target.value;
+inputvalue = inputvalue.replace(/\D/g, ''); // Remove non-numeric characters
 
 event.target.value = inputvalue;
 }

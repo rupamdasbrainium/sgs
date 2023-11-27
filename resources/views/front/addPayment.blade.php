@@ -118,7 +118,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="owner_names"
-                                                                    class="form-control" placeholder="" value="{{ old('owner_names') }}">
+                                                                    class="form-control" placeholder="" oninput="onlyletterhow(event)" value="{{ old('owner_names') }}">
                                                             </div>
                                                         </div>
                                                         @error('owner_names')
@@ -146,7 +146,7 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="owner_name"
-                                                                    class="form-control" placeholder="" value="{{ old('owner_name') }}">
+                                                                    class="form-control" oninput="onlyletterhow(event)" placeholder="" value="{{ old('owner_name') }}">
                                                             </div>
                                                         </div>
                                                         @error('owner_name')
@@ -338,7 +338,13 @@ function onlynumshow(event){
 
                 event.target.value = inputvalue;
 }
+function onlyletterhow(event){
 
+let inputvalue = event.target.value;
+inputvalue = inputvalue.replace(/[^a-z A-Z\\.]+/g, ''); // Remove non-numeric characters
+
+event.target.value = inputvalue;
+}
     </script>
 
 

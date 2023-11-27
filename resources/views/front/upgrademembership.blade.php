@@ -10,6 +10,11 @@
                     <h2>{{ __('upgrademembership.Memberships') }}</h2>
                     {{-- <form method="POST" name="myform" action="{{ route("upgragemembershipsubmit") }}"> --}}
                     {{-- @csrf --}}
+                    @if($data['membership']->data == null)
+                    <div class="memberships_content" >
+                      <center>  {{ __('upgrademembership.no_data_available') }}</center>
+                    </div>
+                    @else
                     <div class="memberships_content memberships2">
                         @foreach ($data['membership']->data as $itemmain)
                         <div class="memberships_item_block @if($loop->index == 0) activecheckopt @endif">
@@ -176,6 +181,7 @@
                             </div>
                         @endforeach
                     </div>
+                    @endif
                     {{-- </form> --}}
                 </div>
 
