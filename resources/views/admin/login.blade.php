@@ -86,7 +86,7 @@
                     </div>
                   </div>
                   <div class="def_btnopt2 frombtn">
-                    <button type="submit" class="btn2 fulldidthbtn" style="background-color: {{$button->value}}">{{ __('login.Login') }}</button>
+                    <button type="submit" class="btn2 fulldidthbtn" style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{$button->value}}">{{ __('login.Login') }}</button>
                   </div>
                   
                 </div>

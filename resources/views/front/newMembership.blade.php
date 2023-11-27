@@ -109,7 +109,7 @@
                                                 <div class="frombtn_wrap">
                                                     <div class="def_btnopt2 frombtn frombtn2">
                                                         <button type="submit" class="btn2"
-                                                            style="background-color: {{ $button->value }}">{{ __('newMembership.next') }}</button>
+                                                            style="--hover-bg:{{ $primary_button_color_hover->value ?? ''}}; background-color: {{ $button->value }}">{{ __('newMembership.next') }}</button>
                                                     </div>
                                                 </div>
 

@@ -3,7 +3,7 @@
     @include('header')
     <section class="maincontent_wrap innermain_content payment_content">
         <div class="welcomesection def_padding inner_content_block">
-            <div class="container">
+            <div class="container fullWidth">
                 <div class="row">
                     @if(Session::has('message'))
                     <div class="alert alert-danger">
@@ -212,9 +212,9 @@
 
                                             <div class="frombtn_wrap">
                                                 <div class="def_btnopt2 frombtn">
-                                                    <button type="submit" value="submit" style="background-color: {{$button->value}}" class="btn2"
+                                                    <button type="submit" value="submit" style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{$button->value}}" class="btn2"
                                                         id="myButton">{{ __('paymentForm.submit') }}</button>
-                                                    <button type="button" class="btn2 backbutton" onclick="history.back()">{{ __('paymentForm.back') }}</button>
+                                                    <button type="button" class="btn2 backbutton" style="--hover-bg:{{ $primary_button_color_hover->value }}; onclick="history.back()">{{ __('paymentForm.back') }}</button>
                                                 </div>
                                             </div>
 

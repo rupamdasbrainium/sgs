@@ -280,7 +280,9 @@ class HomeController extends Controller
         $banner = Configuration::where('name','banner_image')->where('franchise_id',$this->getfranchiseId())->first();
         $theme = Configuration::where('name','theme_color')->where('franchise_id',$this->getfranchiseId())->first();
         $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id',$this->getfranchiseId())->first();
+        $secondary_theme_color_hover = Configuration::where('name','secondary_theme_color_hover')->where('franchise_id',$this->getfranchiseId())->first();
         $button = Configuration::where('name','primary_button_color')->where('franchise_id',$this->getfranchiseId())->first();
+        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id',$this->getfranchiseId())->first();
         $title = Configuration::where('name','title')->where('franchise_id',$this->getfranchiseId())->first();
         $subtitle = Configuration::where('name','subtitle')->where('franchise_id',$this->getfranchiseId())->first();  
         $home_title = Configuration::where('name','home_title')->where('franchise_id',$this->getfranchiseId())->first();
@@ -354,7 +356,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('front.categoryPlan',compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag','theme_color_hover','category_name','title_fr','subtitle_fr','home_title_fr','home_magicplan_fr','home_body_fr'));
+        return view('front.categoryPlan',compact('data', 'franchise_id','logo','banner','button','primary_button_color_hover', 'theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag','theme_color_hover','secondary_theme_color_hover', 'category_name','title_fr','subtitle_fr','home_title_fr','home_magicplan_fr','home_body_fr'));
     }
 
     public function login()
@@ -368,9 +370,10 @@ class HomeController extends Controller
         $banner = Configuration::where('name','banner_image')->where('franchise_id',$this->getfranchiseId())->first();
         $theme = Configuration::where('name','theme_color')->where('franchise_id',$this->getfranchiseId())->first();
         $button = Configuration::where('name','primary_button_color')->first();
+        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id',$this->getfranchiseId())->first();
         $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',$this->getfranchiseId())->first();
         $admin_address = Configuration::where('name','admin_address')->where('franchise_id',$this->getfranchiseId())->first();
-        return view('login', compact('data','logo','banner','button','theme','admin_address','admin_phone'));
+        return view('login', compact('data','logo','banner','button','primary_button_color_hover','theme','admin_address','admin_phone'));
     }
 
     public function forgotPassword()

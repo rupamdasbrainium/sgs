@@ -18,6 +18,8 @@ class SuscriptionController extends Controller
         $banner = Configuration::where('name','banner_image')->where('franchise_id',3)->first();
         $theme = Configuration::where('name','theme_color')->where('franchise_id',3)->first();
         $button = Configuration::where('name','primary_button_color')->first();
+        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
+
         $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',3)->first();
         $admin_address = Configuration::where('name','admin_address')->where('franchise_id',3)->first();
         //subscriptionplan type call
@@ -47,7 +49,7 @@ class SuscriptionController extends Controller
         $Provinces = APICall("Options/ProvincesAndStates", "get","{}");
         $data['provinces'] = json_decode($Provinces);
 
-        return view('front.suscriptionform', compact('data','logo','banner','theme','button','admin_address','admin_phone'));
+        return view('front.suscriptionform', compact('data','logo','banner','theme','button','primary_button_color_hover', 'admin_address','admin_phone'));
     }
 
     public function suscriptionformsave(Request $request, $id){
@@ -153,6 +155,7 @@ class SuscriptionController extends Controller
         $banner = Configuration::where('name','banner_image')->where('franchise_id',3)->first();
         $theme = Configuration::where('name','theme_color')->where('franchise_id',3)->first();
         $button = Configuration::where('name','primary_button_color')->first();
+        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',3)->first();
         $admin_address = Configuration::where('name','admin_address')->where('franchise_id',3)->first();
        
@@ -173,7 +176,7 @@ class SuscriptionController extends Controller
           }
         }
         $data['franchise'] = $franchise_data;
-        return view('front.newMembership', compact('data','logo','banner','theme','button','admin_address','admin_phone'));
+        return view('front.newMembership', compact('data','logo','banner','theme','button','primary_button_color_hover', 'admin_address','admin_phone'));
     }
 
     function new_membership_save(Request $request, $id){

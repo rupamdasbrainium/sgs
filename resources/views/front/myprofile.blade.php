@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="account_leng_opt_btn">
                                     <div class="def_btnopt2 frombtn">
-                                        <button type="submit" class="btn2" style="background-color: {{$button->value}}" >{{ __('myProfile.Submit') }}</button>
+                                        <button type="submit" class="btn2" style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{$button->value}}" >{{ __('myProfile.Submit') }}</button>
                                     </div>
                                 </div>
                             </div>

@@ -3735,4 +3735,8 @@ input[type="color"] {
 }
 }
 
+button.btn2:hover {
+    background-color: var(--hover-bg) !important;
+}
+
 
