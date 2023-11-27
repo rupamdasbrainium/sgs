@@ -86,7 +86,7 @@
 												{!! captcha_img('flat') !!}
 											</div>
 											<div class="reset_capcha_opt">
-												<button type="button" class="reset_capcha" style="background-color: {{$button->value}}">
+												<button type="button" class="reset_capcha btn2" style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{$button->value}}">
 												<img src="{{ asset('public/images/cap_ref_btn.png') }}" alt="">
 												</button>
 											</div>
