@@ -4,7 +4,7 @@
         <span class="close_info" ><i class="fa fa-times"></i></span>
     </div>
     <div class="innersidebar_cont">
-        <ul>
+        <ul style="--hovers-bg:{{ $theme_color_hover->value }}">
             {{-- <li>
                 <a href="{{ route('account') }}">
                     <span><img src="{{ asset('public/images/icon1.svg') }}" alt="" ></span>
@@ -15,7 +15,7 @@
             <li >
                 <a href="{{ route('myProfile') }}">
                     <span><img src="{{ asset('public/images/icon2.svg') }}" alt="" ></span>
-                    <em>{{ __('sidebar.My_Profile') }}</em>
+                    <em> {{ __('sidebar.My_Profile') }}</em>
                     <strong class="arroright_opt"><i class="fas fa-long-arrow-alt-right"></i></strong>
                 </a>
             </li>

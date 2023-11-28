@@ -116,7 +116,7 @@ class HomeController extends Controller
         {
             $categoryType = APICall("Options/categories?franchise_id=" .$franchise_id."&language_id=" . $lang_id, "get", "{}");
             $data['category'] = json_decode($categoryType)->data;
-            return view('front.homeBasedOnCategory',compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag','video','title_fr','subtitle_fr','home_title_fr','home_magicplan_fr','home_body_fr'));
+            return view('front.homeBasedOnCategory',compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag','theme_color_hover','video','title_fr','subtitle_fr','home_title_fr','home_magicplan_fr','home_body_fr'));
         }
 
         //franchise plan type

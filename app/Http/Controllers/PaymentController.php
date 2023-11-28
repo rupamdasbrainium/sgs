@@ -19,6 +19,7 @@ class PaymentController extends Controller
         $data['title'] = trans('title_message.Subscription_Form');
         $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
         $button = Configuration::where('name','primary_button_color')->first();
+        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',3)->first();
         $admin_address = Configuration::where('name','admin_address')->where('franchise_id',3)->first();
 
@@ -62,7 +63,7 @@ class PaymentController extends Controller
         $card =  APICall("PaymentMethods/accepted_cards", "get", "{}", 'client_app');
         $data['card_types'] = json_decode($card);
 
-        return view('front.paymentform', compact('data','logo','button','admin_phone','admin_address'));
+        return view('front.paymentform', compact('data','logo','button','admin_phone','admin_address','primary_button_color_hover'));
     }
 
     public function paymentSave(Request $request)
