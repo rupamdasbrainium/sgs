@@ -186,15 +186,24 @@
                                                         <div class="arrowdown2">
                                                             <i class="far fa-chevron-down"></i>
                                                         </div>
-                                                        <input type="hidden" value="{{ $client->is_male }}"
-                                                            name="is_male">
-                                                        <select class="select_opt" disabled>
-                                                            <option value="1" disabled
+                                                        {{-- <input value="{{ $client->is_male }}"
+                                                            name="is_male"> --}}
+                                                        <select class="select_opt" name="is_male">
+                                                            <option value="1" 
                                                                 {{ $client->is_male ? 'selected' : '' }}>{{ __('mycontactinformatiion.Male') }}</option>
-                                                            <option value="0" disabled
-                                                                {{ !$client->is_male ? 'selected' : '' }}>{{ __('mycontactinformatiion.Female') }}</option>
-                                                            <option value="" disabled>{{ __('mycontactinformatiion.Select_Gender') }} </option>
+                                                            <option value="0"
+                                                                {{ $client->is_male ? '' : 'selected' }}>{{ __('mycontactinformatiion.Female') }}</option>
+                                                           
+                                                            
                                                         </select>
+                                                        {{-- <select class="select_opt" name="is_male">
+                                                            <option value="1"
+                                                                {{ $item->id = old('is_male') == 1 ? 'selected' : '' }}>
+                                                                {{ __('suscription.male') }}</option>
+                                                            <option value="0"
+                                                                {{ $item->id = old('is_male') == 0 ? 'selected' : '' }}>
+                                                                {{ __('suscription.female') }}</option>
+                                                        </select> --}}
                                                     </div>
                                                 </div>
                                             </div>

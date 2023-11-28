@@ -256,7 +256,7 @@ return array(
         'address_civic_number' => 'numéro civique',
         'address_city' => 'ville',
         'phone' => 'numéro de téléphone',
-        'cellphone' => 'cellulaire',
+        'cellphone' => 'Numéro de téléphone secondaire',
         'emergency_phone' => 'numéro de téléphone d’urgence',
         'emergency_contact' => 'personne à contacter en cas d’urgence',
         'postal_code' => 'code postale',

@@ -19,6 +19,7 @@ class PaymentController extends Controller
         $data['title'] = trans('title_message.Subscription_Form');
         $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
         $button = Configuration::where('name','primary_button_color')->first();
+        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',3)->first();
         $admin_address = Configuration::where('name','admin_address')->where('franchise_id',3)->first();
 
@@ -62,15 +63,15 @@ class PaymentController extends Controller
         $card =  APICall("PaymentMethods/accepted_cards", "get", "{}", 'client_app');
         $data['card_types'] = json_decode($card);
 
-        return view('front.paymentform', compact('data','logo','button','admin_phone','admin_address'));
+        return view('front.paymentform', compact('data','logo','button','admin_phone','admin_address','primary_button_color_hover'));
     }
 
     public function paymentSave(Request $request)
     {
         if ($request->radio_group_pay == "bank_acc") {
         $validator = Validator::make($request->all(), [
-            "transit_number" => "required|min:3|max:5",
-            "institution" => "required|min:3",
+            "transit_number" => "required|min:3|max:5|numeric",
+            "institution" => "required|min:3|numeric",
             "account_number" => "required|min:5|max:12",
             "owner_names" => "required",
           
@@ -134,11 +135,11 @@ class PaymentController extends Controller
             } 
         } else {
             $validator = Validator::make($request->all(), [
-                "four_digits_number" => "required|min:3|max:4",
-                "pan" => "required|min:15|max:16",
+                "four_digits_number" => "required|min:3|max:4|numeric",
+                "pan" => "required|min:15|max:16|numeric",
                 "expiry_month" => "required|min:1|max:2",
                 "owner_name" => "required",
-                "expiry_year" => "required"
+                "expiry_year" => "required|integer|min:2023|numeric"
             ]);
             if ($validator->fails()) {
                 return back()->withErrors($validator);
@@ -247,9 +248,9 @@ class PaymentController extends Controller
         
         if ($request->radio_group_pay == "bank_acc") {
             $validator = Validator::make($request->all(), [
-                "transit_number" => "required|min:3|max:5",
-                "institution" => "required|min:3",
-                "account_number" => "required|min:5|max:12",
+                "transit_number" => "required|min:3|max:5|numeric",
+                "institution" => "required|min:3|numeric",
+                "account_number" => "required|min:5|max:12|numeric",
                 "owner_names" => "required",
               
             ]);
@@ -286,8 +287,8 @@ class PaymentController extends Controller
         }
         } else {
             $validator = Validator::make($request->all(), [
-                "four_digits_number" => "required|min:3|max:4",
-                "pan" => "required|min:15|max:16",
+                "four_digits_number" => "required|min:3|max:4|numeric",
+                "pan" => "required|min:15|max:16|numeric",
                 "expiry_month" => "required|min:1|max:2",
                 "owner_name" => "required",
                 "expiry_year" => "required"

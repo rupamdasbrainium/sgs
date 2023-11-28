@@ -34,7 +34,7 @@ return [
     'city' => 'Ville',
     'pin' => 'Code Postal',
     'ph' => 'Numéro de téléphone',
-    'cell' => 'Cellulaire',
+    'cell' => 'Numéro de téléphone secondaire',
     'secondary_phone_number' => 'Numéro de téléphone secondaire',
     'emergency_contact_name' => 'Nom à contacter en cas d\'urgence',
     'emergency_contact' => 'Personne à contacter en cas d\'urgence',

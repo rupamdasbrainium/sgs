@@ -47,14 +47,14 @@
 												@foreach ($values->priceBydurations as $val)
 													{{-- ${{ $val->price_recurant }}<span>/
 														{{ $val->duration_unit_display }}</span> --}}
-														<option>${{ $val->price }}<span>/
+														<option>{{ $val->price }}$<span>/
 															{{ $val->typeDuration }}</span> For {{ $val->frequency }} {{ $val->typeDuration }}
 														</option>
 												@endforeach
 											</select>
 										</div>
 									@else
-										$0
+										0$
 									@endif
 								@endif
 							</div>

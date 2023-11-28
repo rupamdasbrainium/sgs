@@ -39,6 +39,7 @@ return [
     'pay_date' => 'DATE DE PAIEMENT',
     'pay' => 'PAIEMENT',
     'status' => 'STATUT',
+    'First_Payment' => 'Premier paiement',
     'paid' => 'Payé',
     'unpaid' => 'Non payé',
     'method_of_payment' => 'Moyen de paiement',

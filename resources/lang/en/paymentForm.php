@@ -38,6 +38,7 @@ return [
     'type' => 'TYPE',
     'pay_date' => 'PAYMENT DATE',
     'pay' => 'PAYMENT',
+    'First_Payment' => 'First Payment',
     'status' => 'STATUS',
     'paid' => 'Paid',
     'unpaid' => 'Unpaid',

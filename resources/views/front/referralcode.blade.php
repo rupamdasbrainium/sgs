@@ -25,8 +25,8 @@
 							<div class="referral_img referral_img2">
 								<img src="{{ asset('public/images/referral2.png') }}" alt="" />
 							</div>
-							<h4>{{ __('referalcode.You_receive') }} $25</h4>
-							<p>{{ __('referalcode.friend_signup') }} $25</p>
+							<h4>{{ __('referalcode.You_receive') }} 25$</h4>
+							<p>{{ __('referalcode.friend_signup') }} 25$</p>
 						</div>
 					</div>
 					
