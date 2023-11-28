@@ -18,7 +18,7 @@
                     <input type="hidden" name="client_id" value="{{ $data['client_id'] }}">
                     <div class="content_block paymentinfo">
                         <h2 class="head_opt"><span>{{ __('paymyoutstandingbalance.Total_outstanding_balance') }}:
-                                ${{ $data['outstandingAmount'] }}</span>{{ __('paymyoutstandingbalance.Payment_Details') }}
+                                {{ $data['outstandingAmount'] }}$</span>{{ __('paymyoutstandingbalance.Payment_Details') }}
                         </h2>
                         <div class="table_description_view oddoreven_opt">
                             <table class="table">
@@ -310,7 +310,7 @@
                                 </div>
 
                                 <div class="aboundopt">
-                                    <p id="totalAmount">{{ __('paymyoutstandingbalance.Amount_paid') }}: $0</p>
+                                    <p id="totalAmount">{{ __('paymyoutstandingbalance.Amount_paid') }}: 0$</p>
                                 </div>
                                 <div class="frombtn_wrap">
                                     <div class="def_btnopt2 frombtn frombtn2">

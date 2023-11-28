@@ -5,6 +5,8 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\App;
 
 class VerifyWebTokenMiddleware
 {
@@ -20,6 +22,9 @@ class VerifyWebTokenMiddleware
         $token = getClientToken();
         if ($token == "unauthorised" || $token==401) {
             return redirect()->route('login')->withErrors(['user', trans('auth.expired')]);
+        }
+        if (Session::has('locale')) {
+            App::setLocale(Session::get('locale'));
         }
         return $next($request);
     }

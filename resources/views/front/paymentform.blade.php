@@ -442,7 +442,7 @@
                                                                     value="{{ old('expiry_month') }}">
                                                             </div>
                                                         </div>
-                                                         @error('expire_month')
+                                                         @error('expiry_month')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
                                                     </div>
@@ -452,12 +452,12 @@
                                                                     class="req_text">*</em></label>
                                                             <div class="inp_cont_view noicon_opt">
                                                                 <input type="text" name="expiry_year"
-                                                                    max="9999" min="2023"
+                                                                    max="9999" min="2023" 
                                                                     class="form-control" placeholder="" oninput="onlynumshow(event)" maxlength="4"
                                                                     value="{{ old('expiry_year') }}">
                                                             </div>
                                                         </div>
-                                                        @error('expire_year')
+                                                        @error('expiry_year')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
                                                     </div>

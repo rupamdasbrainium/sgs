@@ -90,7 +90,7 @@
 
                                                             @foreach ($values->priceBydurations as $val)
                                                         
-                                                                <option>${{ $val->price }}<span>/
+                                                                <option>{{ $val->price }}$<span>/
                                                                         {{ $val->typeDuration }}</span> {{ __('global.For') }}
                                                                     {{ $val->frequency }}
                                                                     {{ $val->typeDuration }}
@@ -99,7 +99,7 @@
                                                         </select>
                                                     </div>
                                                 @else
-                                                    $0
+                                                    0$
                                                 @endif
                                             @endif
                                         </div>

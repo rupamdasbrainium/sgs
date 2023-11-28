@@ -34,7 +34,7 @@ return [
     'city' => 'City',
     'pin' => 'Postal Code',
     'ph' => 'Phone Number',
-    'cell' => 'Cell',
+    'cell' => 'Secondary phone number',
     'secondary_phone_number' => 'Secondary phone number',
     'emergency_contact_name' => 'Emergency Contact Name',
     'emergency_contact' => 'Emergency Contact',
