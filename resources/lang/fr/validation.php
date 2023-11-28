@@ -237,7 +237,26 @@ return array(
     |
     */
 
-    'custom' => array(),
+    'custom' => array(
+        'expiry_year' => [
+            'min' => "La valeur de :attribute doit être inférieure à :min.",               
+        ],
+        'four_digits_number' => [
+            'min' => "La valeur de :attribute doit être inférieure à :min nombres",
+        ],
+        'pan' => [
+            'min' => "La valeur de :attribute doit être inférieure à :min nombres",
+        ],
+        'transit_number' => [
+            'min' => "La valeur de :attribute doit être inférieure à :min nombres",
+        ],
+        'institution' => [
+            'min' => "La valeur de :attribute doit être inférieure à :min nombres",
+        ],
+        'account_number' => [
+            'min' => "La valeur de :attribute doit être inférieure à :min nombres",
+        ],
+    ),
 
     /*
     |--------------------------------------------------------------------------

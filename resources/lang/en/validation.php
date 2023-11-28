@@ -145,6 +145,21 @@ return [
         'expiry_year' => [
             'min' => 'The :attribute must be at least :min.',               
         ],
+        'four_digits_number' => [
+            'min' => 'The :attribute must be at least :min numbers.',
+        ],
+        'pan' => [
+            'min' => 'The :attribute must be at least :min numbers.',
+        ],
+        'transit_number' => [
+            'min' => 'The :attribute must be at least :min numbers.',
+        ],
+        'institution' => [
+            'min' => 'The :attribute must be at least :min numbers.',
+        ],
+        'account_number' => [
+            'min' => 'The :attribute must be at least :min numbers.',
+        ],
     ],
 
     /*
@@ -160,12 +175,8 @@ return [
 
     'attributes' => [
         'cellphone' => 'Secondary phone number',
+
     ],
 
-    // 'custom' => [
-    //     'email' => [
-    //         'required' => 'We need to know your e-mail address!',
-    //     ],
-    // ],
 
 ];

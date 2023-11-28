@@ -40,7 +40,7 @@
                                                             <div class="optionitem_des">
                                                                 <p>{{ $item->name }}</p>
                                                                 {{-- <p>name </p> --}}
-                                                                <div class="price_opt_add">${{ $item->price }}</div>
+                                                                <div class="price_opt_add">{{ $item->price }}$</div>
                                                                 {{-- <div class="price_opt_add">$3</div> --}}
                                                                 <div class="optionitem_prod">
                                                                     {{-- <span>{{ __('newMembership.training') }}</span> --}}
@@ -50,7 +50,7 @@
                                                                         {{ $item->deliverable_quantity }}</span>
                                                                     {{-- <span>{{ __('newMembership.price') }}: $5</span> --}}
                                                                     <span>{{ __('newMembership.price') }}:
-                                                                        ${{ $item->price }}</span>
+                                                                        {{ $item->price }}$</span>
                                                                 </div>
                                                                 <div class="optionitem_checkopt">
                                                                     <div class="form-group">
