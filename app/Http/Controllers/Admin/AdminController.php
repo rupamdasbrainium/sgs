@@ -27,13 +27,14 @@ class AdminController extends Controller
         $result = Configuration::where('user_id', $user->id)->where('type', 'configuration')->get();
         $logo = Configuration::where('name','logo_image')->where('franchise_id',$user->franchise_id)->first();
         $theme = Configuration::where('name','theme_color')->where('franchise_id',$user->franchise_id)->first();
+        $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id', $user->franchise_id)->first();
         $button = Configuration::where('name','primary_button_color')->where('franchise_id',$user->franchise_id)->first();
-        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
+        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', $user->franchise_id)->first();
         if (count($result) > 0) {
             $data['data'] = getConfigurationValue($result);
         }
         $data['title'] = trans('title_message.Admin_Configuration');
-        return view('admin.configuration', compact('data','logo','theme','button','primary_button_color_hover'));
+        return view('admin.configuration', compact('data','logo','theme','theme_color_hover', 'button','primary_button_color_hover'));
     }
 
     public function configurationStore (Request $request) {
@@ -73,6 +74,7 @@ class AdminController extends Controller
         $data['title'] = trans('title_message.Admin_CMS');
         $logo = Configuration::where('name','logo_image')->where('franchise_id',$user->franchise_id)->first();
         $theme = Configuration::where('name','theme_color')->where('franchise_id',$user->franchise_id)->first();
+        $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id', 3)->first();
         $button = Configuration::where('name','primary_button_color')->where('franchise_id',$user->franchise_id)->first();
         $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         if (!empty($id)) {
@@ -89,7 +91,7 @@ class AdminController extends Controller
             $data['form_caption'] = trans('title_message.Edit_Form');
             return view('admin.editcms', compact('data','logo','theme','button','primary_button_color_hover'));
         } else {
-            return view('admin.cmsadd', compact('data','logo','theme','button','primary_button_color_hover'));
+            return view('admin.cmsadd', compact('data','logo','theme','theme_color_hover', 'button','primary_button_color_hover'));
         }
             
     }
@@ -162,10 +164,11 @@ class AdminController extends Controller
         $data['title'] = trans('title_message.Content_Management');
         $logo = Configuration::where('name','logo_image')->where('franchise_id',$user->franchise_id)->first();
         $theme = Configuration::where('name','theme_color')->where('franchise_id',$user->franchise_id)->first();
+        $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id', 3)->first();
         $button = Configuration::where('name','primary_button_color')->where('franchise_id',$user->franchise_id)->first();
         $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $data['form_caption'] = trans('title_message.Content_Management');
-        return view('admin.cmslistView', compact('data','logo','theme','button','primary_button_color_hover'));
+        return view('admin.cmslistView', compact('data','logo','theme','theme_color_hover', 'button','primary_button_color_hover'));
     }
 
 
@@ -208,7 +211,7 @@ class AdminController extends Controller
         }
         $data['user'] = $user;
         $data['title'] = trans('title_message.Admin_Settings');
-        return view('admin.settings', compact('data','logo','theme','button','primary_button_color_hover', 'title','subtitle','home_title','home_magicplan','home_body','admin_address','admin_phone','video','title_fr','subtitle_fr','home_title_fr','home_magicplan_fr','home_body_fr','secondary_theme_color_hover'));
+        return view('admin.settings', compact('data','logo','theme','theme_color_hover', 'button','primary_button_color_hover', 'title','subtitle','home_title','home_magicplan','home_body','admin_address','admin_phone','video','title_fr','subtitle_fr','home_title_fr','home_magicplan_fr','home_body_fr','secondary_theme_color_hover'));
     }
 
 
@@ -315,10 +318,11 @@ class AdminController extends Controller
         // $data['id'] = $id;
         $logo = Configuration::where('name','logo_image')->where('franchise_id',$user->franchise_id)->first();
         $theme = Configuration::where('name','theme_color')->where('franchise_id',$user->franchise_id)->first();
+        $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id', 3)->first();
         $button = Configuration::where('name','primary_button_color')->where('franchise_id',$user->franchise_id)->first();
         $data['title'] = trans('title_message.Admin_Account');
         $data['form_caption'] = trans('title_message.Account_Information');
-        return view('admin.account', compact('data','logo','theme','button'));
+        return view('admin.account', compact('data','logo','theme','theme_color_hover', 'button'));
     }
 
     public function accountPassword () {
@@ -386,9 +390,10 @@ class AdminController extends Controller
         $data['title'] = trans('title_message.Content_Management');
         $logo = Configuration::where('name','logo_image')->where('franchise_id',$user->franchise_id)->first();
         $theme = Configuration::where('name','theme_color')->where('franchise_id',$user->franchise_id)->first();
+        $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id', 3)->first();
         $button = Configuration::where('name','primary_button_color')->where('franchise_id',$user->franchise_id)->first();
         $data['form_caption'] = trans('title_message.Content_Management');
-        return view('admin.cmslist', compact('data','logo','theme','button'));
+        return view('admin.cmslist', compact('data','logo','theme','theme_color_hover', 'button'));
     }
 
     public function cmsAdd ($id = '') {
@@ -401,6 +406,7 @@ class AdminController extends Controller
         $data['form_caption'] = trans('title_message.Add_Form');
         $logo = Configuration::where('name','logo_image')->where('franchise_id',$user->franchise_id)->first();
         $theme = Configuration::where('name','theme_color')->where('franchise_id',$user->franchise_id)->first();
+        $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id', 3)->first();
         $button = Configuration::where('name','primary_button_color')->where('franchise_id',$user->franchise_id)->first();
         $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         if (!empty($id)) {
@@ -416,9 +422,9 @@ class AdminController extends Controller
             $data['title'] = 'CMS Edit';
             $data['form_caption'] = 'Edit Form';
            
-            return view('admin.cmsadd2', compact('data','logo','theme','button','primary_button_color_hover'));
+            return view('admin.cmsadd2', compact('data','logo','theme','theme_color_hover', 'button','primary_button_color_hover'));
         } else {
-            return view('admin.cmsadd', compact('data','logo','theme','button','primary_button_color_hover'));
+            return view('admin.cmsadd', compact('data','logo','theme','theme_color_hover', 'button','primary_button_color_hover'));
         }
     }
 
@@ -503,6 +509,7 @@ class AdminController extends Controller
         $data['add_user'] = false;
         $logo = Configuration::where('name','logo_image')->where('franchise_id',$user->franchise_id)->first();
         $theme = Configuration::where('name','theme_color')->where('franchise_id',$user->franchise_id)->first();
+        $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id', 3)->first();
         $button = Configuration::where('name','primary_button_color')->where('franchise_id',$user->franchise_id)->first();
         $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         if ($type == 'seller') {
@@ -512,7 +519,7 @@ class AdminController extends Controller
             $data['title'] = trans('title_message.Buyers_List');
         }
         $data['form_caption'] = trans('title_message.Edit_Form');
-        return view('admin.userlist', compact('data','logo','theme','button','primary_button_color_hover'));
+        return view('admin.userlist', compact('data','logo','theme','theme_color_hover', 'button','primary_button_color_hover'));
     }
 
     public function userEdit ($id) {
@@ -523,6 +530,7 @@ class AdminController extends Controller
         $data['id'] = $id;
         $logo = Configuration::where('name','logo_image')->where('franchise_id',$user->franchise_id)->first();
         $theme = Configuration::where('name','theme_color')->where('franchise_id',$user->franchise_id)->first();
+        $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id', 3)->first();
         $button = Configuration::where('name','primary_button_color')->where('franchise_id',$user->franchise_id)->first();
         $result = User::where('id', $id)->first();
         if (empty($result)) {
@@ -531,12 +539,12 @@ class AdminController extends Controller
                 'message_type' => 'danger'
             );
             $ref = basename($_SERVER['HTTP_REFERER']);
-            return redirect()->action('Admin\AdminController@userlist', $ref,compact('logo','theme','button'))->with($response);
+            return redirect()->action('Admin\AdminController@userlist', $ref,compact('logo','theme','button','theme_color_hover'))->with($response);
         }
         $data['data'] = $result;
         $data['title'] = trans('title_message.User_Edit');
         $data['form_caption'] = trans('title_message.Edit_Form');
-        return view('admin.useredit', compact('data','logo','theme'));
+        return view('admin.useredit', compact('data','logo','theme','theme_color_hover'));
     }
 
     public function userEditPost (Request $request, $id) {

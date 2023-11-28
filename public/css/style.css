@@ -3862,3 +3862,11 @@ button.btn2:hover {
 .sub_btn:hover{
 	background-color: var(--sub_btnhover-bg) !important;
 }
+
+.innersidebar_cont ul li:hover{
+	background-color: var(--hovers-bg) !important;
+}
+
+/* .innersidebar_cont ul li strong:hover{
+	background-color: var(--hovers-bg) !important;
+} */

@@ -77,6 +77,33 @@
                                                             $
                                                         </div>
                                                     </div>
+                                                    @php
+                                                        $total = $data['membership_details']->data->initial_subtotal;
+                                                    @endphp
+                                                    @foreach ($data['membership_details']->data->initial_taxes as $initial_tax)
+                                                        <div class="sum_inp_cont">
+                                                            <div class="sum_inp_left">
+                                                                {{ $initial_tax->legal_name }}
+                                                            </div>
+                                                            <div class="sum_inp_right">
+                                                                {{ $initial_tax->amount }}$
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        @php
+                                                            $total += $initial_tax->amount;
+                                                        @endphp
+                                                    @endforeach
+                                                    <div class="sum_inp_cont">
+                                                        <div class="sum_inp_left">
+                                                            {{ __('paymentForm.First_Payment') }}
+                                                        </div>
+                                                        <div class="sum_inp_right">
+                                                            {{ $total }}$
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    
                                                     <div class="sum_inp_cont">
                                                         <div class="sum_inp_left">
                                                             {{ __('paymentForm.number_of_payments') }}
@@ -245,7 +272,7 @@
                                                             </thead>
                                                             <tbody>
 
-                                                                <tr class="activeitem">
+                                                                {{-- <tr class="activeitem">
                                                                     <td data-label="TYPE">
                                                                         <div class="pay_view_opt">
                                                                             {{ __('paymentForm.payments') }}
@@ -255,8 +282,21 @@
                                                                     <td data-label="PAYMENT"> {{ $data['membership_details']->data->initial_subtotal }}$</td>
                                                                     <td data-label="STATUS">
                                                                         {{ __('paymentForm.unpaid') }}</td>
-                                                                </tr>
-                                                              
+                                                                </tr> --}}
+                                                              @foreach ($data['membership_details']->data->payment_details as $payment_detail)
+                                                              <tr class="activeitem">
+                                                                <td data-label="TYPE">
+                                                                    <div class="pay_view_opt">
+                                                                        {{ $payment_detail->type }}
+                                                                    </div>
+                                                                </td>
+                                                                <td data-label="PAYMENT DATE">{{ date('Y-m-d', strtotime($payment_detail->date)) }}</td>
+                                                                <td data-label="PAYMENT">{{ $payment_detail->amount }}$</td>
+                                                                <td data-label="STATUS">
+                                                                    {{ $payment_detail->isPaid ? trans('paymentForm.paid') : trans('paymentForm.unpaid')}}</td>
+                                                            </tr>
+                                                              @endforeach
+                                                                
                                                                 
 
                                                             </tbody>
@@ -509,10 +549,10 @@
                                             <div class="frombtn_wrap">
                                                 <div class="def_btnopt2 frombtn">
                                                     <button type="submit" value="submit" class="btn2"
-                                                        style="background-color: {{ $button->value }}" id="myButton"
-                                                        disabled>{{ __('paymentForm.sign_up') }}!</button>
+                                                        style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{ $button->value }}" id="myButton"
+                                                        disabled>{{ __('paymentForm.sign_up') }}</button>
                                                     <button type="button"
-                                                        class="btn2 backbutton" onclick="history.back()">{{ __('paymentForm.back') }}</button>
+                                                        class="btn2 backbutton" style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{$button->value}}" onclick="history.back()">{{ __('paymentForm.back') }}</button>
                                                 </div>
                                             </div>
 

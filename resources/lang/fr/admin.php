@@ -23,7 +23,7 @@ return [
     'theme_color_hover' => 'Couleur de survol du thème',
     'secondary_theme_color_hover' => 'Couleur de survol du thème secondaire',
     'Primary_Button_Color' => 'Couleur du bouton principal',
-    'Primary_Button_Color_hover' => 'Couleur du bouton secondaire',
+    'Primary_Button_Color_hover' => 'Survol de la couleur du bouton principal',
     'Text_Color' => 'Couleur du texte',
     'Save' => 'Sauvegarder',
     'Identifier' => 'Identifiant',

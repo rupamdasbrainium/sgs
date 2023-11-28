@@ -261,7 +261,7 @@
                                                                         id="sec_btncolor_res" value="#FFB11A">
                                                                 </div>
                                                             </div> --}}
-                                                            <div class="color_opt_block">
+                                                            {{-- <div class="color_opt_block">
                                                                 <div class="color_opt_text">
                                                                     {{ __('admin.Text_Color') }} <span
                                                                         class="req_text">*</span>
@@ -275,7 +275,7 @@
                                                                         class="inpcolor_opt inpres" id="textcolor_res"
                                                                         value="#575757">
                                                                 </div>
-                                                            </div>
+                                                            </div> --}}
                                                         </div>
                                                     </div>
                                                 </div>

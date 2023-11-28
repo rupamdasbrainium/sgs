@@ -3739,4 +3739,12 @@ button.btn2:hover {
     background-color: var(--hover-bg) !important;
 }
 
+.innersidebar_cont ul li:hover, .innersidebar_cont ul li.activepage{
+	background-color: var(--hovers-bg) !important;
+}
+
+.innersidebar_cont ul li{
+	margin-bottom: 5px;
+}
+
 
