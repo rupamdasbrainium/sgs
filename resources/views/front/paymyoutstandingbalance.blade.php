@@ -8,11 +8,11 @@
             @include('layouts.sidebar')
 
             <div class="inner_page_des">
-                @if(Session::has('errors'))
+                {{-- @if(Session::has('errors'))
                 <div class="alert alert-danger">
                     {{Session::get('errors')}}
                 </div>
-                    @endif
+                    @endif --}}
                 <form action="{{ route('payMyOutstandingBalance.post') }}" method="post">
                     @csrf
                     <input type="hidden" name="client_id" value="{{ $data['client_id'] }}">
