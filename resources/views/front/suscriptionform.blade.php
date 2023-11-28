@@ -244,9 +244,7 @@
                                             @error('email')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
-                                            @error('email')
-                                                <div class="text-danger">{{ $message }}</div>
-                                            @enderror
+                                          
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
