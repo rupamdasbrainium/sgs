@@ -70,8 +70,8 @@ class PaymentController extends Controller
     {
         if ($request->radio_group_pay == "bank_acc") {
         $validator = Validator::make($request->all(), [
-            "transit_number" => "required|min:3|max:5|numeric",
-            "institution" => "required|min:3|numeric",
+            "transit_number" => "required|min:3|max:5",
+            "institution" => "required|min:3",
             "account_number" => "required|min:5|max:12",
             "owner_names" => "required",
           
@@ -135,8 +135,8 @@ class PaymentController extends Controller
             } 
         } else {
             $validator = Validator::make($request->all(), [
-                "four_digits_number" => "required|min:3|max:4|numeric",
-                "pan" => "required|min:15|max:16|numeric",
+                "four_digits_number" => "required|min:3|max:4",
+                "pan" => "required|min:15|max:16",
                 "expiry_month" => "required|min:1|max:2",
                 "owner_name" => "required",
                 "expiry_year" => "required|integer|min:2023|numeric"
@@ -248,9 +248,9 @@ class PaymentController extends Controller
         
         if ($request->radio_group_pay == "bank_acc") {
             $validator = Validator::make($request->all(), [
-                "transit_number" => "required|min:3|max:5|numeric",
-                "institution" => "required|min:3|numeric",
-                "account_number" => "required|min:5|max:12|numeric",
+                "transit_number" => "required|min:3|max:5",
+                "institution" => "required|min:3",
+                "account_number" => "required|min:5|max:12",
                 "owner_names" => "required",
               
             ]);
@@ -287,11 +287,11 @@ class PaymentController extends Controller
         }
         } else {
             $validator = Validator::make($request->all(), [
-                "four_digits_number" => "required|min:3|max:4|numeric",
-                "pan" => "required|min:15|max:16|numeric",
+                "four_digits_number" => "required|min:3|max:4",
+                "pan" => "required|min:15|max:16",
                 "expiry_month" => "required|min:1|max:2",
                 "owner_name" => "required",
-                "expiry_year" => "required"
+                "expiry_year" => "required|integer|min:2023|numeric"
             ]);
             if ($validator->fails()) {
                 return back()->withErrors($validator)->withInput();

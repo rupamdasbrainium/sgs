@@ -470,7 +470,7 @@
                 console.log(payemntIds);
                 amount = parseFloat(amount).toFixed(2);
                 $('.aboundopt').empty()
-                $('.aboundopt').append(`<p id="totalAmount">Amount to be paid: $${amount}</p>`);
+                $('.aboundopt').append(`<p id="totalAmount">Amount to be paid: ${amount}$</p>`);
                 $('input[name="totalAmount"]').val(amount);
                 $('input[name="payment_ids"]').val(payemntIds);
             });
