@@ -150,7 +150,7 @@
                                             @if ($item->logo == null)
                                                 <img src="{{ asset('public/images/cat_icon3.svg') }}" alt=""> 
                                             @else
-                                                <img src="{{ $item->logo }}" alt="">
+                                                <img src="data:image/png;base64,{{ $item->logo }}" alt="">
                                             @endif
                                         
                                         </div> 
