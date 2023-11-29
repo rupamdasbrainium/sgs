@@ -31,7 +31,7 @@
                                         <div class="inp_cont_view noicon_opt">
 
                                             <input type="text" class="form-control" name="code_promo" id="promocode"
-                                                placeholder="Promo/Reward Code ">
+                                                placeholder="{{ __('paymentForm.promo') }} ">
                                         </div>
                                     </div>
                                 </div>
@@ -188,7 +188,7 @@
                                                     </div>
                                                 </div>
                                             @endforeach
-                                            @foreach ($data['membership_details']->data->recurant_taxes as $item2)
+                                            {{-- @foreach ($data['membership_details']->data->recurant_taxes as $item2)
                                                 @php
                                                     $total += $item2->amount;
                                                 @endphp
@@ -200,7 +200,7 @@
                                                         {{ $item2->amount }}$
                                                     </div>
                                                 </div>
-                                            @endforeach
+                                            @endforeach --}}
 
                                             <div class="sum_inp_cont">
                                                 <div class="sum_inp_left">
@@ -448,7 +448,7 @@
                                                     <p>{{ __('paymentForm.Amount_to_be_paid') }}:
                                                         {{ $total }}$</p>
                                                 </div>
-                                                <div class="form-group">
+                                                <div class="form-group" id="checkboxtermssuitablity">
                                                     <div class="checkbox_block">
                                                         <div class="inp_row remember_opt">
                                                             <div class="form-group">
@@ -600,6 +600,7 @@
                     $('#card_acc_sec').hide();
                     $('#btnaccsave').show();
                     $('#btnformsave').hide();
+                    $('#checkboxtermssuitablity').hide();
                     $("#new_key").val(1);
                     let radio_group_pay = $('input[name="radio_group_pay"]:checked').val();
                     if (radio_group_pay == 'bank') {
@@ -620,6 +621,7 @@
 
 
                 $('input[type=radio][name=radio_group_pay]').change(function() {
+                    $('#checkboxtermssuitablity').show();
                     $('#card_acc_sec').show();
                     $('#btnaccsave').hide();
                     $('#btnformsave').show();

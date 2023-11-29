@@ -633,7 +633,7 @@ class AccountController extends Controller
             $validator = Validator::make($request->all(), [
                 "four_digits_number" => "required|min:3|max:4",
                 "pan" => "required|min:15|max:16",
-                "expiry_month" => "required|min:1|max:2",
+                "expiry_month" => "required|min:1|max:12|numeric",
                 "owner_name" => "required",
                 "expiry_year" => "required|integer|min:2023|numeric"
             ]);
@@ -998,7 +998,7 @@ class AccountController extends Controller
                 $validator = Validator::make($request->all(), [
                     "four_digits_number" => "required|min:3|max:4",
                     "pan" => "required|min:15|max:16",
-                    "expiry_month" => "required|min:1|max:2",
+                    "expiry_month" => "required|min:1|max:12|numeric",
                     "owner_name" => "required",
                     "expiry_year" => "required|integer|min:2023|numeric"
                 ]);
@@ -1244,7 +1244,7 @@ else{
 
         $validator = Validator::make($request->all(), [
             "four_digits_number" => "required|min:3|max:4",           
-            "expiry_month" => "required|max:2",
+            "expiry_month" => "required|min:1|max:12|numeric",
             "owner_name" => "required",
             "expiry_year" => "required|integer|min:2023|numeric"
         ]);

@@ -174,7 +174,11 @@ return [
     */
 
     'attributes' => [
-        'cellphone' => 'Secondary phone number',
+        'cellphone' => 'secondary phone number',
+        'phone' => 'phone number',
+        'institution' => 'branch number',
+        'owner_name' => 'account name holder',
+        'four_digits_number' => 'CSV',
 
     ],
 

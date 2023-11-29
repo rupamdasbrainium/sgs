@@ -25,5 +25,5 @@ return [
     'onetime' => 'une fois',
     'next' => 'Suivant',
     'Save' => 'Sauvegarder',
-    'Saveapaymentmethod'=> 'Enregistrer le paiement'
+    'Saveapaymentmethod'=> 'Enregistrer le Paiement'
 ];

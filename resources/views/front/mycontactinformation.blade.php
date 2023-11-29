@@ -47,7 +47,7 @@
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt adbg">
                                                 <input type="text" class="form-control" name="civic_number"
-                                                    placeholder="246" value="{{ $client->adress->civic_number }}" oninput="onlynumshow(event)" >
+                                                    placeholder="{{ __('suscription.sn') }} *" value="{{ $client->adress->civic_number }}" oninput="onlynumshow(event)" >
                                             </div>
                                             @if ($errors->has('civic_number'))
                                                 <div class="text-danger mt-3">{{ $errors->first('civic_number') }}</div>
@@ -56,7 +56,7 @@
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt adbg">
                                                 <input type="text" class="form-control" name="street"
-                                                    placeholder="st-jacques " value="{{ $client->adress->street }}" maxlength="50" >
+                                                    placeholder="{{ __('suscription.street') }} *" value="{{ $client->adress->street }}" maxlength="50" >
                                             </div>
                                             @if ($errors->has('street'))
                                                 <div class="text-danger mt-3">{{ $errors->first('street') }}</div>
@@ -76,7 +76,7 @@
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt adbg">
                                                 <input type="text" class="form-control" name="city"
-                                                    placeholder="saint-jean" value="{{ $client->adress->city }}" maxlength="50">
+                                                    placeholder="{{ __('suscription.city') }} *" value="{{ $client->adress->city }}" maxlength="50">
                                             </div>
                                             @if ($errors->has('city'))
                                                 <div class="text-danger mt-3">{{ $errors->first('city') }}</div>
@@ -86,7 +86,7 @@
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt adbg">
                                                 <input type="text" class="form-control" name="postal_code" id="postal_code"
-                                                    placeholder="1j2 j4j" value="{{ $client->adress->postal_code }}">
+                                                    placeholder="{{ __('suscription.pin') }} *" value="{{ $client->adress->postal_code }}">
                                                 <p>{{ __('mycontactinformatiion.Example') }}: j3B 8k7</p>
                                             </div>
                                             @if ($errors->has('postal_code'))
