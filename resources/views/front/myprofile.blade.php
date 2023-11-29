@@ -125,7 +125,7 @@
 								<td data-label="TYPE">{{ __('myProfile.Payments') }}</td>
 								<td data-label="PAYMENT DATE">{{ date('Y-m-d',strtotime($pt->paymentDate)) }}</td>
 								<td data-label="PAYMENT">{{ $pt->amount }}$</td>
-								<td data-label="STATUS">{{ $pt->is_paid ? "Paid" :"Unpaid" }}</td>
+								<td data-label="STATUS">{{ $pt->is_paid ? __('myProfile.Paid') :__('myProfile.Unpaid') }}</td>
 							</tr>
                             @endforeach
                             @endif
