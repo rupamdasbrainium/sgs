@@ -367,11 +367,12 @@ class HomeController extends Controller
         $logo = Configuration::where('name', 'logo_image')->where('franchise_id', $this->getfranchiseId())->first();
         $banner = Configuration::where('name', 'banner_image')->where('franchise_id', $this->getfranchiseId())->first();
         $theme = Configuration::where('name', 'theme_color')->where('franchise_id', $this->getfranchiseId())->first();
+        $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id', 3)->first();
         $button = Configuration::where('name', 'primary_button_color')->first();
         $primary_button_color_hover = Configuration::where('name', 'primary_button_color_hover')->where('franchise_id', $this->getfranchiseId())->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', $this->getfranchiseId())->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', $this->getfranchiseId())->first();
-        return view('login', compact('data', 'logo', 'banner', 'button', 'primary_button_color_hover', 'theme', 'admin_address', 'admin_phone'));
+        return view('login', compact('data', 'logo', 'banner', 'button', 'primary_button_color_hover', 'theme','theme_color_hover', 'admin_address', 'admin_phone'));
     }
 
     public function forgotPassword()
