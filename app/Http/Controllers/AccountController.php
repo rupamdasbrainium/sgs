@@ -26,7 +26,7 @@ class AccountController extends Controller
         $button = Configuration::where('name', 'primary_button_color')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
-        $client = APICall("Clients", 'get', "{}");
+        $client = APICall("Clients", 'get', "{}" ,"client_app");
         if (!$client) {
             return redirect()->route('login')->withErrors(['user', trans('auth.expired')]);
         }
@@ -35,7 +35,7 @@ class AccountController extends Controller
 
         $franchises = APICall("Franchises", "get", "{}");
         $data['franchises'] = json_decode($franchises);
-        $clients = APICall("Clients", "get", "{}");
+        $clients = APICall("Clients", "get", "{}","client_app");
         $data['clients'] = json_decode($clients);
         Session::put('language_id', $data['clients']->data->language_id);
 
@@ -105,7 +105,7 @@ class AccountController extends Controller
         $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
-        $client = APICall("Clients", 'get', "{}");
+        $client = APICall("Clients", 'get', "{}","client_app");
 
         if (!$client) {
             $message = array(
@@ -196,7 +196,7 @@ class AccountController extends Controller
     {
         $data = array();
         $data['title'] = trans('title_message.Change_Password');
-        $client = APICall("Clients", 'get', "{}");
+        $client = APICall("Clients", 'get', "{}" ,"client_app");
         $logo = Configuration::where('name', 'logo_image')->where('franchise_id', 3)->first();
         $theme = Configuration::where('name', 'theme_color')->where('franchise_id', 3)->first();
         $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id', 3)->first();
@@ -273,7 +273,7 @@ class AccountController extends Controller
         $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
-        $client = APICall("Clients", 'get', "{}", 'client_app');
+        $client = APICall("Clients", 'get', "{}", "client_app");
         if (!$client) {
             $message = array(
                 'message' => trans('title_message.login_token_expired'),
@@ -348,7 +348,7 @@ class AccountController extends Controller
         $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
-        $client = APICall("Clients", "get", "{}");
+        $client = APICall("Clients", "get", "{}","client_app");
         if ($client == "unauthorised" || !$client) {
             $message = array(
                 'message' => trans('title_message.login_token_expired'),
@@ -394,7 +394,7 @@ class AccountController extends Controller
                     ->withInput();
             }
 
-            $client = APICall("Clients", 'get', "{}");
+            $client = APICall("Clients", 'get', "{}","client_app");
             if (!$client) {
                 $message = array(
                     'message' => trans('title_message.login_token_expired'),
@@ -413,7 +413,7 @@ class AccountController extends Controller
                     $franchise_id = $fr->id;
                 }
             }
-            $clients = APICall("Clients", "get", "{}");
+            $clients = APICall("Clients", "get", "{}","client_app");
 
             $clients = json_decode($clients)->data;
             $address = [
@@ -532,7 +532,7 @@ class AccountController extends Controller
 
     public function payOutstandingPayment(Request $request)
     {
-        $client = APICall("Clients", 'get', "{}");
+        $client = APICall("Clients", 'get', "{}","client_app");
         if (!$client) {
             $message = array(
                 'message' => trans('title_message.login_token_expired'),
@@ -682,7 +682,7 @@ class AccountController extends Controller
         $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
-        $client = APICall("Clients", 'get', "{}");
+        $client = APICall("Clients", 'get', "{}","client_app");
         if (!$client) {
             $message = array(
                 'message' => trans('title_message.login_token_expired'),
@@ -736,7 +736,7 @@ class AccountController extends Controller
         $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
-        $client = APICall("Clients", 'get', "{}");
+        $client = APICall("Clients", 'get', "{}","client_app");
         if (!$client) {
             $message = array(
                 'message' => trans('title_message.login_token_expired'),
@@ -762,7 +762,7 @@ class AccountController extends Controller
         // if(!isset($request->add_on)){
         //     return redirect()->route('newMembershipFinal', ['id' => $id]);
         // }
-        $client = APICall("Clients", 'get', "{}");
+        $client = APICall("Clients", 'get', "{}","client_app");
         if (!$client) {
             $message = array(
                 'message' => trans('title_message.login_token_expired'),
@@ -1046,7 +1046,7 @@ class AccountController extends Controller
         $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
-        $client = APICall("Clients", 'get', "{}");
+        $client = APICall("Clients", 'get', "{}","client_app");
         if (!$client) {
             $message = array(
                 'message' => trans('title_message.login_token_expired'),
@@ -1073,7 +1073,7 @@ class AccountController extends Controller
         $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
-        $client = APICall("Clients", 'get', "{}");
+        $client = APICall("Clients", 'get', "{}","client_app");
         if (!$client) {
             $message = array(
                 'message' => trans('title_message.login_token_expired'),
@@ -1116,7 +1116,7 @@ class AccountController extends Controller
         $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
-        $client = APICall("Clients", 'get', "{}");
+        $client = APICall("Clients", 'get', "{}","client_app");
         if (!$client) {
             $message = array(
                 'message' => trans('title_message.login_token_expired'),
@@ -1143,7 +1143,7 @@ class AccountController extends Controller
 
     public function modifyBanksUpdate(Request $request)
     {
-        $client = APICall("Clients", 'get', "{}");
+        $client = APICall("Clients", 'get', "{}","client_app");
         if (!$client) {
             $message = array(
                 'message' => trans('title_message.login_token_expired'),
@@ -1206,7 +1206,7 @@ else{
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $pay_methods_accc = APICall('PaymentMethods/Cards', "get", "{}", 'client_app');
         $data['pay_methods_accc'] = json_decode($pay_methods_accc);
-        $client = APICall("Clients", 'get', "{}");
+        $client = APICall("Clients", 'get', "{}","client_app");
         if (!$client) {
             $message = array(
                 'message' => trans('title_message.login_token_expired'),
@@ -1233,7 +1233,7 @@ else{
 
     public function modifyCardsUpdate(Request $request)
     {
-        $client = APICall("Clients", 'get', "{}");
+        $client = APICall("Clients", 'get', "{}","client_app");
         if (!$client) {
             $message = array(
                 'message' => trans('title_message.login_token_expired'),
@@ -1333,7 +1333,7 @@ else{
         $data['all_plan'] = json_decode($all_plan);
 
         foreach ($data['all_plan']->data as $item) {
-            $data['subscription_plan'][] = json_decode(APICall("SubscriptionPlans/type/" . $item->id . "?language_id=" . $client->language_id, "get", "{}"));
+            $data['subscription_plan'][] = json_decode(APICall("SubscriptionPlans/type/" . $item->id . "?language_id=" . $client->language_id, "get", "{}","client_app"));
         }
 
 
@@ -1351,7 +1351,7 @@ else{
 
     public function upgragemembershipsubmit(Request $request, $membershipId, $card_id)
     {
-        $client = APICall("Clients", 'get', "{}");
+        $client = APICall("Clients", 'get', "{}","client_app");
         if (!$client) {
             $message = array(
                 'message' => trans('title_message.login_token_expired'),
@@ -1386,7 +1386,7 @@ else{
 
     public function upgragemembershipsubmitbank(Request $request, $membershipId, $bank_id)
     {
-        $client = APICall("Clients", 'get', "{}");
+        $client = APICall("Clients", 'get', "{}","client_app");
         if (!$client) {
             $message = array(
                 'message' => trans('title_message.login_token_expired'),
@@ -1417,7 +1417,7 @@ else{
 
     public function newmembershippaymentSave(Request $request)
     {
-        $client = APICall("Clients", 'get', "{}");
+        $client = APICall("Clients", 'get', "{}","client_app");
         if (!$client) {
             $message = array(
                 'message' => trans('title_message.login_token_expired'),
