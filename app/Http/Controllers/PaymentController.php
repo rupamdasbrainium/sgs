@@ -208,6 +208,7 @@ class PaymentController extends Controller
         $data['title'] = trans('title_message.Add_Acoount');
         $logo = Configuration::where('name','logo_image')->where('franchise_id',3)->first();
         $theme = Configuration::where('name','theme_color')->where('franchise_id',3)->first();
+        $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id', 3)->first();
         $button = Configuration::where('name','primary_button_color')->where('franchise_id',3)->first();
         $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',3)->first();
@@ -232,7 +233,7 @@ class PaymentController extends Controller
         $card =  APICall("PaymentMethods/accepted_cards", "get", "{}", 'client_app');
         $data['card_types'] = json_decode($card);
 
-        return view('front.addPayment', compact('data','logo','theme','button','primary_button_color_hover', 'admin_phone','admin_address'));
+        return view('front.addPayment', compact('data','logo','theme','theme_color_hover', 'button','primary_button_color_hover', 'admin_phone','admin_address'));
     }
 
     public function paymentaddSave(Request $request)
