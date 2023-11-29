@@ -31,7 +31,7 @@
                                         <div class="inp_cont_view noicon_opt">
 
                                             <input type="text" class="form-control" name="code_promo" id="promocode"
-                                                placeholder="Promo/Reward Code ">
+                                                placeholder="{{ __('paymentForm.promo') }} ">
                                         </div>
                                     </div>
                                 </div>
@@ -188,7 +188,7 @@
                                                     </div>
                                                 </div>
                                             @endforeach
-                                            @foreach ($data['membership_details']->data->recurant_taxes as $item2)
+                                            {{-- @foreach ($data['membership_details']->data->recurant_taxes as $item2)
                                                 @php
                                                     $total += $item2->amount;
                                                 @endphp
@@ -200,7 +200,7 @@
                                                         {{ $item2->amount }}$
                                                     </div>
                                                 </div>
-                                            @endforeach
+                                            @endforeach --}}
 
                                             <div class="sum_inp_cont">
                                                 <div class="sum_inp_left">
