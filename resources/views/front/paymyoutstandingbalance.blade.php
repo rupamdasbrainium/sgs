@@ -47,10 +47,10 @@
                                                                     <input class="styled-checkbox checkBox"
                                                                         id="Option1{{ $key + 1 }}"
                                                                         data-id ="{{ $pt->paymentId }}" type="checkbox"
-                                                                        value="{{ $pt->amount }}"
+                                                                        value="{{ $pt->remainingAmount }}"
                                                                         name="payment_checkbox">
                                                                     <label for="Option1{{ $key + 1 }}"
-                                                                        class="" data-value="{{ $pt->amount }}"
+                                                                        class="" data-value="{{ $pt->remainingAmount }}"
                                                                         onclick="">&nbsp;</label>
                                                                 </div>
                                                             @endif

@@ -279,6 +279,17 @@ return array(
         'emergency_phone' => 'numéro de téléphone d’urgence',
         'emergency_contact' => 'personne à contacter en cas d’urgence',
         'postal_code' => 'code postale',
+        'civic_number' => 'numéro civique',
+        'street' => 'rue',
+        'transit_number' => 'numéro de transit',
+        'institution' => 'numéro de la succursale',
+        'account_number' => 'numéro de compte',
+        'owner_names' => 'noms des propriétaires',
+        'owner_name' => 'titulaire du nom de compte',
+        'pan' => 'poêle',
+        'four_digits_number' => 'CSV',
+        'expiry_month' => 'mois d\'expiration',
+        'expiry_year' => 'année d\'expiration',
         
     ),
 
