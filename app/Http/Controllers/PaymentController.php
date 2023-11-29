@@ -238,7 +238,7 @@ class PaymentController extends Controller
 
     public function paymentaddSave(Request $request)
     {
-        $client = APICall("Clients", 'get', "{}");
+        $client = APICall("Clients", 'get', "{}","client_app");
         if (!$client) {
             $message = array(
                 'message' => trans('title_message.login_token_expired'),
