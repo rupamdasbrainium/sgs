@@ -39,6 +39,9 @@
                                                             <input type="text" name="owner_name" class="form-control"
                                                                 placeholder="" oninput="onlyletterhow(event)" value="{{ $data["card"][0]->owner_name}}">
                                                         </div>
+                                                        @error('owner_name')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
                                                     </div>
                                                 </div>
                                                 <div class="inp_row">
@@ -52,6 +55,9 @@
 
                                                         </div>
                                                     </div>
+                                                    @error('pan')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
                                                 </div>
 
                                                 <div class="inp_row">
@@ -63,6 +69,9 @@
                                                                 class="form-control" placeholder="" value="{{$data["card"][0]->expire_month}}">
                                                         </div>
                                                     </div>
+                                                    @error('expiry_month')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
                                                 </div>
                                                 <div class="inp_row">
                                                     <div class="form-group">
@@ -73,6 +82,9 @@
                                                                 class="form-control" placeholder="" value="{{$data["card"][0]->expire_year}}">
                                                         </div>
                                                     </div>
+                                                    @error('expiry_year')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
                                                 </div>
                                             </div>
 

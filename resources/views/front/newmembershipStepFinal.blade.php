@@ -169,7 +169,7 @@
                                                     {{ __('paymentForm.subtotal') }}
                                                 </div>
                                                 <div class="sum_inp_right">
-                                                    {{ $data['membership_details']->data->initial_subtotal }}
+                                                    {{ $data['membership_details']->data->initial_subtotal }}$
                                                 </div>
                                             </div>
                                             @php
