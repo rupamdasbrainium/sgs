@@ -282,11 +282,12 @@ ul.navbar-nav li a {
 
 }
 .prod_item:hover .action_opt_title{
-    background: #138269 !important;
+    /* background: #138269 !important; */
+	background: var(--theme-bg,#138269);
 
 }
 .prod_item:hover .action_opt_title .arrowdown{
-    background: transparent !important;
+    background: var(--theme-bg,#5ADFC2);
     color: #fff;
 }
 .action_text {
@@ -417,7 +418,7 @@ ul.navbar-nav li a {
 	padding-top:15px;
 }
 .sub_btn {
-	background:#5ADFC2;
+	background:var(--sub_btn-bg,#5ADFC2);
 	color:#fff;
 	padding:15px 15px;
 	display:block;
@@ -428,7 +429,7 @@ ul.navbar-nav li a {
 	font-size:18px;
 }
 .prod_item:hover .sub_btn {
-	background:#575757;
+	/* background:var(--sub_btnhover-bg,#5ADFC2); */
 	color:#fff;
 }
 .subscribe_content {
@@ -2022,7 +2023,8 @@ td:last-child {
 
 
 .action_opt.action_opt_title {
-    background: #575757;
+    /* background: #575757; */
+	background: var(--theme-bg,#5ADFC2);
 }
 .customNextBtn:hover, .customPreviousBtn:hover{
 	opacity: 1;
@@ -2184,6 +2186,7 @@ div#nav-tab {
 }
 
 .action_text .selectcont {
+	/* background:var(--theme-bg,#5ADFC2); */
     background: transparent !important;
 }
 .action_text select.select_opt {
@@ -3875,4 +3878,8 @@ button.btn2:hover {
 
 .inp_cont_view {
     flex: 1 1 100%;
+}
+
+html .prod_item:hover .action_text .selectcont {
+    background: var(--sushover-bg,#138269) !important;
 }

@@ -3,6 +3,7 @@
         $lang_id = getLocale();
     @endphp
     @section('title', $data['title'] . ' |')
+    @section('style', '--sub_btnhover-bg: '.$primary_button_color_hover->value .';--sub_btn-bg: '.$button->value. ';--hover_bg:' .$theme_color_hover->value. ';--sushover-bg:' .$secondary_theme_color_hover->value. ';--theme-bg:' .$theme->value.';--secondary_theme:' .$theme->value)
     @include('header')
     <div class="banner_outer">
         <div class="banner_slider shadowremove">
@@ -56,13 +57,13 @@
                         <div class="prod_item_wrap owl-carousel owl-theme" id="home_prod_item">
 
                             @foreach ($data['all_plan_data'] as $key => $values)
-                                <div class="prod_item" style="--hover_bg: {{$theme_color_hover->value}}">
+                                <div class="prod_item">
                                     <div class="action_opt action_opt_title"
-                                        style="--sushover-bg:{{ $secondary_theme_color_hover->value }}; background-color: {{ $theme->value }}">
+                                        >
 
                                         <div class="action_text">
 
-                                            <div class="selectcont" style="background-color: {{ $theme->value }}">
+                                            <div class="selectcont" >
 
                                                 <div class="arrowdown2">
                                                     {{-- <i class="far fa-chevron-down"></i> --}}
@@ -86,7 +87,7 @@
                                                         <div class="arrowdown2">
                                                             <i class="fal fa-chevron-down"></i>
                                                         </div>
-                                                        <select class="select_opt" style="--secondary_theme: {{$theme->value}}">
+                                                        <select class="select_opt">
 
                                                             @foreach ($values->priceBydurations as $val)
                                                         
@@ -127,7 +128,7 @@
                                             <div class="subscribe_btn">
                                                 <a href="{{ route('newMembershipfont', [$values->id]) }}"
                                                     class="sub_btn"
-                                                    style="--sub_btnhover-bg:{{ $primary_button_color_hover->value }}; background-color: {{ $button->value }}">{{ __('global.subscribe') }}</a>
+                                                    >{{ __('global.subscribe') }}</a>
                                             </div>
                                         </div>
                                     </div>
