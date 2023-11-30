@@ -2262,6 +2262,9 @@ div#nav-tab {
     height: 200px;
     padding: 62px;
     margin: 0px auto 15px;
+	display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .cat_opt_item p{
 	line-height: 24px;
@@ -3869,3 +3872,7 @@ button.btn2:hover {
 /* .innersidebar_cont ul li strong:hover{
 	background-color: var(--hovers-bg) !important;
 } */
+
+.inp_cont_view {
+    flex: 1 1 100%;
+}
