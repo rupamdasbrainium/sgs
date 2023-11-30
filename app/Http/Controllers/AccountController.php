@@ -299,9 +299,9 @@ class AccountController extends Controller
 
         $membership = APICall('Memberships/client?display_language_id=' . $client->language_id, "get", "{}", "client_app");
         $membership = json_decode($membership);
-        if ($membership->error != null && $membership->data == null) {
-            $membership = "";
-        }
+        // if ($membership->error != null && $membership->data == null) {
+        //     $membership = "";
+        // }
         // dd($membership);
         $payments = APICall('Payments/schedualed/client', "get", "{}", "client_app");
         $payments = json_decode($payments);
@@ -1243,7 +1243,7 @@ else{
         }
 
         $validator = Validator::make($request->all(), [
-            "four_digits_number" => "required|min:3|max:4",           
+            "pan" => "required|min:15|max:16",      
             "expiry_month" => "required|min:1|max:12|numeric",
             "owner_name" => "required",
             "expiry_year" => "required|integer|min:2023|numeric"
@@ -1255,9 +1255,10 @@ else{
             $formdata = array();
             $formdata['creditID'] = $request->credit_id;
             $formdata['owner_name'] = $request->owner_name;
-            $formdata['number_card'] = $request->four_digits_number;
-            $formdata['expire_month'] = $request->expiry_month;
+            $formdata['number_card'] = $request->pan;
             $formdata['expire_year'] = $request->expiry_year;
+            $formdata['expire_month'] = $request->expiry_month;
+    
          
             $response = APICall("PaymentMethods/card", "put", json_encode($formdata), 'client_app');
             $response = json_decode($response);
