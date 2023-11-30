@@ -33,7 +33,7 @@ class AccountController extends Controller
         $client = json_decode($client)->data;
 
 
-        $franchises = APICall("Franchises", "get", "{}");
+        $franchises = APICall("Franchises", "get", "{}","client_app");
         $data['franchises'] = json_decode($franchises);
         $clients = APICall("Clients", "get", "{}","client_app");
         $data['clients'] = json_decode($clients);
@@ -47,7 +47,7 @@ class AccountController extends Controller
             }
         }
 
-        $membership = APICall('Memberships/client?display_language_id=' . $client->language_id, "get", "{}");
+        $membership = APICall('Memberships/client?display_language_id=' . $client->language_id, "get", "{}","client_app");
         $membership = json_decode($membership);
         if ($membership->data == null) {
             $membership = "";
@@ -55,7 +55,7 @@ class AccountController extends Controller
 
         //getting cards
 
-        $response = APICall('PaymentMethods/cards', "get", "{}");
+        $response = APICall('PaymentMethods/cards', "get", "{}","client_app");
         $cards = json_decode($response);
 
         if (!$cards->error && $cards->data) {
@@ -65,7 +65,7 @@ class AccountController extends Controller
         }
 
         //gettting bank accounts;
-        $response = APICall('PaymentMethods/accounts', "get", "{}");
+        $response = APICall('PaymentMethods/accounts', "get", "{}","client_app");
         $bank = json_decode($response);
 
         if (!$bank->error && $bank->data) {
@@ -75,7 +75,7 @@ class AccountController extends Controller
             $data['banks'] = null;
         }
 
-        $languages = APICall('Options/languages', "get", "{}");
+        $languages = APICall('Options/languages', "get", "{}","client_app");
         $languages = json_decode($languages);
         return view('front.account', compact('data', 'client', 'languages', 'membership', 'logo', 'theme','theme_color_hover', 'button', 'admin_phone', 'admin_address'));
     }
@@ -117,7 +117,7 @@ class AccountController extends Controller
         }
 
         $client = json_decode($client)->data;
-        $language = APICall('Options/languages', "get", "{}");
+        $language = APICall('Options/languages', "get", "{}","client_app");
         $data['language'] = json_decode($language);
 
         return view('front.changelanguage', compact('data', 'client', 'logo', 'theme','theme_color_hover', 'button','primary_button_color_hover', 'admin_phone', 'admin_address'));
@@ -127,7 +127,7 @@ class AccountController extends Controller
     {
         $data = array();
         $data['title'] = trans('title_message.Change_Language');
-        $client = APICall("Clients", 'get', "{}");
+        $client = APICall("Clients", 'get', "{}","client_app");
         if (!$client) {
             $message = array(
                 'message' => trans('title_message.login_token_expired'),
@@ -285,7 +285,7 @@ class AccountController extends Controller
         $client = json_decode($client)->data;
 
         
-        $franchises = APICall("Franchises", "get", "{}");
+        $franchises = APICall("Franchises", "get", "{}","client_app");
         $data['franchises'] = json_decode($franchises);
         Session::put('language_id', $client->language_id);
 
@@ -359,7 +359,7 @@ class AccountController extends Controller
         }
 
         $client = json_decode($client)->data;
-        $province = APICall('Options/ProvincesAndStates', "get", "{}");
+        $province = APICall('Options/ProvincesAndStates', "get", "{}","client_app");
         if ($province == "unauthorised") {
             return redirect()->route('login')->with('user', trans('title_message.login_token_expired'));
         }
@@ -403,7 +403,7 @@ class AccountController extends Controller
                 return redirect()->route('login')->with($message);
             }
 
-            $franchises = APICall('Franchises', "get", "{}");
+            $franchises = APICall('Franchises', "get", "{}","client_app");
 
             $franchises = json_decode($franchises);
             $franchise_id = 0;
@@ -439,7 +439,7 @@ class AccountController extends Controller
                 "occupation" => $clients->nativeRef_number ? $clients->nativeRef_number :  "",
                 "nativeRef_number" => $clients->nativeRef_number ? $clients->nativeRef_number :  "",
             ];
-            $response = APICall("Clients/" . $franchise_id, "put", json_encode($data));
+            $response = APICall("Clients/" . $franchise_id, "put", json_encode($data),"client_app");
 
             $response = json_decode($response);
 
@@ -477,7 +477,7 @@ class AccountController extends Controller
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
 
-        $response =  APICall('Payments/schedualed/client', "get", "{}");
+        $response =  APICall('Payments/schedualed/client', "get", "{}","client_app");
         if ($response == "") {
             $message = array(
                 'message' => trans('title_message.Session_Expired'),
@@ -501,7 +501,7 @@ class AccountController extends Controller
         } else {
             $data["payments"] = null;
         }
-        $banks = APICall("PaymentMethods/accounts", "GET", "{}");
+        $banks = APICall("PaymentMethods/accounts", "GET", "{}","client_app");
         $banks = json_decode($banks);
         if ($banks->error == null) {
             $data["banks"] = $banks->data;
@@ -513,7 +513,7 @@ class AccountController extends Controller
         } else {
             $data["banks"] = null;
         }
-        $cards = APICall("PaymentMethods/cards", "GET", "{}");
+        $cards = APICall("PaymentMethods/cards", "GET", "{}","client_app");
         $cards = json_decode($cards);
         if ($cards->error == null) {
             $data["cards"] = $cards->data;
@@ -698,7 +698,7 @@ class AccountController extends Controller
         }
 
         //franchise call
-        $franchises = APICall("Franchises", "get", "{}");
+        $franchises = APICall("Franchises", "get", "{}","client_app");
         $data['franchises'] = json_decode($franchises);
         $franchise_id = '';
 
@@ -714,7 +714,7 @@ class AccountController extends Controller
 
         $lang_id = $client->language_id;
         //franchise get all plan
-        $all_plan = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id. "&language_id=" . $lang_id, "get", "{}");
+        $all_plan = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id. "&language_id=" . $lang_id, "get", "{}","client_app");
         $data['all_plan'] = json_decode($all_plan);
 
         //franchise best four plan details
@@ -749,7 +749,7 @@ class AccountController extends Controller
         $client = json_decode($client)->data;
         $lang_id = $client->language_id;
         //subscriptionplan type call
-        $subscription_plan = APICall("SubscriptionPlans/type/" . $id . "?language_id=" . $lang_id, "get", "{}");
+        $subscription_plan = APICall("SubscriptionPlans/type/" . $id . "?language_id=" . $lang_id, "get", "{}","client_app");
         $data['subscription_plan'] = json_decode($subscription_plan);
 
         return view('front.newMembershipStepTwo', compact('data', 'logo', 'theme','theme_color_hover', 'button','primary_button_color_hover', 'admin_phone', 'admin_address'));
@@ -1329,7 +1329,7 @@ else{
 
         $franchise_id = 3;
         //franchise get all plan
-        $all_plan = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id, "get", "{}");
+        $all_plan = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id, "get", "{}","client_app");
         $data['all_plan'] = json_decode($all_plan);
 
         foreach ($data['all_plan']->data as $item) {
