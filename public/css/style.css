@@ -1918,7 +1918,6 @@ td {
 	border-right:1px solid #d1d1d175;
 }
 td:last-child {
-	border:0px;
 	border-right:0px;
 }
 
