@@ -47,7 +47,7 @@
                                                                 class="req_text">*</em></label>
                                                         <div class="inp_cont_view noicon_opt" id="incdec">
  
-                                                            <input type="text" name="four_digits_number" class="form-control" oninput="onlynumshow(event)" maxlength="16"
+                                                            <input type="text" name="pan" class="form-control" oninput="onlynumshow(event)" maxlength="16"
                                                                 placeholder="" value="{{$data["card"][0]->four_digits_number}}">
 
                                                         </div>
