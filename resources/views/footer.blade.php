@@ -69,9 +69,9 @@ $(document).ready(function() {
 </script>
 
 <!-- jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
 
 <!-- Share JS -->
-<script src="{{ asset('js/share.js') }}"></script>
+{{-- <script src="{{ asset('js/share.js') }}"></script> --}}
 @endpush
 @endif
