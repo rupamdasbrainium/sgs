@@ -38,7 +38,7 @@
                                     <img src="images/roundopt2.jpg" alt="">
                                 </div>						
                                 <h2>{{ __('footer.law') }} 25</h2>
-                                <p>{{ __('footer.Effective_Date') }}: [Date]</p>
+                                <p>{{ __('footer.Effective_Date') }}:  {{date('Y-m-d',strtotime($law->created_at))}}</p>
                             </div>
                             
                             <h3>Heading 1</h3>

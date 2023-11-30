@@ -431,10 +431,11 @@ class HomeController extends Controller
     {
         $data = [];
         $data["title"] = "Law 25";
+        $law = DB::table('contents')->where('franchise_id', $this->getfranchiseId())->where('slug', 'law')->where('status', 1)->first();
         $logo = Configuration::where('name', 'logo_image')->where('franchise_id', $this->getfranchiseId())->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', $this->getfranchiseId())->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', $this->getfranchiseId())->first();
-        return view('front.law25', compact('data', 'logo', 'admin_address', 'admin_phone'));
+        return view('front.law25', compact('data', 'logo','law', 'admin_address', 'admin_phone'));
     }
     public function planType($id)
     {
