@@ -1,5 +1,6 @@
 <x-guest-layout>
 @section('title', $data['title'] . ' |')
+@section('style', ';--sub_btn-bg: '.$button->value. ';--sub_btnhover-bg:' .$primary_button_color_hover->value)
 @include('header')
 <div class="banner_outer inner_banner">
 	<div class="banner_slider">

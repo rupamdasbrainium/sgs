@@ -380,9 +380,11 @@ class HomeController extends Controller
         $data = array();
         $data['title'] = trans('title_message.Forgot_Password');
         $logo = Configuration::where('name', 'logo_image')->where('franchise_id', $this->getfranchiseId())->first();
+        $button = Configuration::where('name', 'primary_button_color')->first();
+        $primary_button_color_hover = Configuration::where('name', 'primary_button_color_hover')->where('franchise_id', $this->getfranchiseId())->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', $this->getfranchiseId())->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', $this->getfranchiseId())->first();
-        return view('forgotpassword', compact('data', 'logo', 'admin_address', 'admin_phone'));
+        return view('forgotpassword', compact('data', 'logo', 'admin_address', 'admin_phone','button','primary_button_color_hover'));
     }
 
     public function dashboard()
