@@ -89,7 +89,7 @@ class AdminController extends Controller
             $data['data'] = $result;
             $data['title'] = trans('title_message.Content_not_found');
             $data['form_caption'] = trans('title_message.Edit_Form');
-            return view('admin.editcms', compact('data','logo','theme','button','primary_button_color_hover'));
+            return view('admin.editcms', compact('data','logo','theme','button','theme_color_hover','primary_button_color_hover'));
         } else {
             return view('admin.cmsadd', compact('data','logo','theme','theme_color_hover', 'button','primary_button_color_hover'));
         }
