@@ -1,5 +1,7 @@
 <x-guest-layout>
 @section('title', $data['title'] . ' |')
+@section('style', ';--sub_btn-bg: '.$button->value. ';--sub_btnhover-bg:' .$primary_button_color_hover->value)
+
 @include('header')
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 <div class="banner_outer inner_banner">
@@ -86,7 +88,7 @@
 												{!! captcha_img('flat') !!}
 											</div>
 											<div class="reset_capcha_opt">
-												<button type="button" class="reset_capcha btn2" style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{$button->value}}">
+												<button type="button" class="reset_capcha btn2">
 												<img src="{{ asset('public/images/cap_ref_btn.png') }}" alt="">
 												</button>
 											</div>
@@ -113,7 +115,7 @@
 									</div>
 								</div>
 								<div class="def_btnopt2 frombtn">
-									<button type="submit" class="btn2 fulldidthbtn" style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{$button->value}}">{{ __('login.Login') }}</button>
+									<button type="submit" class="btn2 fulldidthbtn">{{ __('login.Login') }}</button>
 								</div>
 							</div>
 						</form>

@@ -633,7 +633,8 @@ button.searchicon_opt {
 	justify-content:center;
 }
 .btn2 {
-	background:#5ADFC2;
+	/* background:#5ADFC2; */
+	background:var(--sub_btn-bg,#5ADFC2);
 	color:#fff;
 	padding:10px 15px;
 	border:0px;
@@ -650,7 +651,8 @@ button.searchicon_opt {
 	transition:0.3s;
 }
 .btn2:hover {
-	background:#575757;
+	/* background:#575757; */
+	background:var(--sub_btnhover-bg, #575757) !important;
 	color:#fff;
 }
 .selectcont_wrap {
@@ -1278,7 +1280,8 @@ span.prog_bar_opt {
 	color:#575757 !important;
 }
 .backbutton:hover {
-	background:#575757 !important;
+	/* background:#575757 !important; */
+	background:var(--sub_btnhover-bg, #575757) !important;
 	color:#fff !important;
 }
 #incdec #up {
@@ -2639,7 +2642,8 @@ label.dd-selected-text {
 }
 
 button.reset_capcha {
-    background: #5ADFC2;
+    /* background: #5ADFC2; */
+	background: var(--sub_btn-bg,#5ADFC2) !important;
     color: #fff;
     padding: 10px 25px;
     border: 0px;
@@ -2740,7 +2744,8 @@ button.reset_capcha img{
 	display: block;
 }
 .optionitem_add h3 {
-    background: #3dc7a6;
+    /* background: #3dc7a6; */
+	background: var(--theme-bg,#138269);
     padding: 10px 15px;
     color: #fff;
     font-size: 17px;
@@ -3850,9 +3855,9 @@ html .prod_item:hover .action_opt_title {
 }
 
 
-button.btn2:hover {
+/* button.btn2:hover {
     background-color: var(--hover-bg) !important;
-}
+} */
 
 .prod_item_wrap form .fromdes_info {
     max-width: 100%;

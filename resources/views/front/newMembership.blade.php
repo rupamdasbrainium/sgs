@@ -1,5 +1,6 @@
 <x-guest-layout>
     @section('title', $data['title'] . ' |')
+    @section('style', ';--sub_btn-bg: '.$button->value. ';--theme-bg:' .$theme->value.';--secondary_theme:' .$theme->value. ';--sub_btnhover-bg:' .$primary_button_color_hover->value)
     @include('header')
     <section class="maincontent_wrap innermain_content user_information">
         <div class="welcomesection def_padding inner_content_block">
@@ -52,7 +53,7 @@
                                                             count($data['subscription_plan']->data->options))
                                                         @foreach ($data['subscription_plan']->data->options as $item)
                                                             <div class="optionitem_add">
-                                                                <h3 style="background-color: {{ $theme->value }}">
+                                                                <h3>
                                                                     {{ __('newMembership.option') }}
                                                                     {{ $loop->iteration }}</h3>
                                                                 <div class="optionitem_block">
@@ -109,7 +110,7 @@
                                                 <div class="frombtn_wrap">
                                                     <div class="def_btnopt2 frombtn frombtn2">
                                                         <button type="submit" class="btn2"
-                                                            style="--hover-bg:{{ $primary_button_color_hover->value ?? ''}}; background-color: {{ $button->value }}">{{ __('newMembership.next') }}</button>
+                                                            >{{ __('newMembership.next') }}</button>
                                                     </div>
                                                 </div>
 

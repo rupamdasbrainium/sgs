@@ -3,6 +3,7 @@
         $lang_id = getLocale();
     @endphp
     @section('title', $data['title'] . ' |')
+    @section('style', ';--sub_btn-bg: '.$button->value. ';--theme-bg:' .$theme->value. ';--sub_btnhover-bg:' .$primary_button_color_hover->value)
     @include('header')
     <section class="maincontent_wrap innermain_content user_information">
         <div class="welcomesection def_padding inner_content_block">
@@ -431,7 +432,7 @@
                                     <div class="frombtn_wrap">
                                         <div class="def_btnopt2 frombtn frombtn2">
                                             <button type="submit" class="btn2"
-                                                style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{ $button->value }}">{{ __('suscription.save') }}</button>
+                                                >{{ __('suscription.save') }}</button>
                                         </div>
                                     </div>
                                 </form>
