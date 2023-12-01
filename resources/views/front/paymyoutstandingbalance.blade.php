@@ -1,5 +1,7 @@
 <x-app-layout>
     @section('title', $data['title'] . ' |')
+    @section('style', ';--sub_btn-bg: '.$button->value. ';--sub_btnhover-bg:' .$primary_button_color_hover->value)
+
     @include('header')
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <section class="maincontent_wrap inner_pageouter">
@@ -153,7 +155,7 @@
                                     </div>
                                     <div class="def_btnopt2 frombtn frombtn2">
                                         <button type="button"
-                                            style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{ $button->value }}"class="btn2"
+                                            class="btn2"
                                             id="add_pay_method">{{ __('paymyoutstandingbalance.Add_Payment_Method') }}</button>
                                     </div>
                                 </div>
@@ -317,10 +319,9 @@
                                         <input type="hidden" name="payment_ids">
                                         <input type="hidden" name="totalAmount">
                                         <button type="submit" id="paynow"
-                                            style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{ $button->value }}" class="btn2"
+                                            class="btn2"
                                             disabled>{{ __('paymyoutstandingbalance.Pay_Now') }}</button>
-                                        <button type="submit" class="btn2" id="btnaccsave"
-                                            style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{ $button->value }}">{{ __('newMembership.Saveapaymentmethod') }}</button>
+                                        <button type="submit" class="btn2" id="btnaccsave">{{ __('newMembership.Saveapaymentmethod') }}</button>
                                     </div>
                                 </div>
                             </div>

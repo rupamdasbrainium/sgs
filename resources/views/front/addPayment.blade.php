@@ -1,5 +1,7 @@
 <x-guest-layout>
     @section('title', $data['title'] . ' |')
+    @section('style', ';--sub_btn-bg: '.$button->value. ';--sub_btnhover-bg:' .$primary_button_color_hover->value)
+
     @include('header')
     <section class="maincontent_wrap innermain_content payment_content">
         <div class="welcomesection def_padding inner_content_block">
@@ -212,9 +214,9 @@
 
                                             <div class="frombtn_wrap">
                                                 <div class="def_btnopt2 frombtn">
-                                                    <button type="submit" value="submit" style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{$button->value}}" class="btn2"
+                                                    <button type="submit" value="submit" class="btn2"
                                                         id="myButton">{{ __('paymentForm.submit') }}</button>
-                                                    <button type="button" class="btn2 backbutton" style="--hover-bg:{{ $primary_button_color_hover->value }};" onclick="history.back()">{{ __('paymentForm.back') }}</button>
+                                                    <button type="button" class="btn2 backbutton" onclick="history.back()">{{ __('paymentForm.back') }}</button>
                                                 </div>
                                             </div>
 

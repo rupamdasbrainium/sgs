@@ -1,5 +1,7 @@
 <x-app-layout>
     @section('title', $data['title'] . ' |')
+    @section('style', ';--sub_btn-bg: '.$button->value. ';--sub_btnhover-bg:' .$primary_button_color_hover->value)
+
     @include('header')
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <section class="maincontent_wrap inner_pageouter">
@@ -286,7 +288,7 @@
 
                                                     </div>
                                                     <div class="def_btnopt2 frombtn frombtn2">
-                                                        <button type="button" class="btn2" id="add_pay_method" style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{ $button->value }}">{{ __('paymentForm.Add_Payment_Method') }}</button>
+                                                        <button type="button" class="btn2" id="add_pay_method">{{ __('paymentForm.Add_Payment_Method') }}</button>
                                                     </div>
                                                 </div>
                                                 <div id="bank_details">
@@ -486,9 +488,8 @@
                                                 <div class="frombtn_wrap">
                                                     <div class="def_btnopt2 frombtn frombtn2">
                                                         <button type="submit" class="btn2" id="btnformsave"
-                                                            style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{ $button->value }}" disabled>{{ __('newMembership.Save') }}</button>
-                                                        <button type="submit" class="btn2" id="btnaccsave"
-                                                            style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{ $button->value }}">{{ __('newMembership.Saveapaymentmethod') }}</button>
+                                                            disabled>{{ __('newMembership.Save') }}</button>
+                                                        <button type="submit" class="btn2" id="btnaccsave">{{ __('newMembership.Saveapaymentmethod') }}</button>
                                                     </div>
                                                 </div>
 

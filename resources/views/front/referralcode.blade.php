@@ -1,5 +1,7 @@
 <x-app-layout>
 @section('title', $data['title'] . ' |')
+@section('style', ';--sub_btn-bg: '.$button->value. ';--sub_btnhover-bg:' .$primary_button_color_hover->value)
+
 @include('header')
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
@@ -43,7 +45,7 @@
 							<div class="inp_cont_view noicon_opt">
 								<input type="text" class="form-control" placeholder="JBAF6" value="{{$data['referral']->data->reference_code}}" id="myInput">
 								<div class="def_btnopt2 frombtn" >
-									<button type="button" onclick="myFunction()" class="btn2" style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{$button->value}}">{{ __('referalcode.COPY') }}</button>
+									<button type="button" onclick="myFunction()" class="btn2">{{ __('referalcode.COPY') }}</button>
 								</div>
 							</div>
 						</div>

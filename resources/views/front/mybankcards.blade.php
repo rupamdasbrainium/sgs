@@ -1,5 +1,7 @@
 <x-app-layout>
     @section('title', $data['title'] . ' |')
+    @section('style', ';--sub_btn-bg: '.$button->value. ';--sub_btnhover-bg:' .$primary_button_color_hover->value)
+
     @include('header')
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <section class="maincontent_wrap inner_pageouter">
@@ -64,7 +66,7 @@
                                                                         </div>
                                                                     </div>
 																	<div class="def_btnopt2 frombtn frombtn2" >
-																		<a href="{{route('modifyCards', $value->id)}}" type="button" style="--sub_btnhover-bg:{{ $primary_button_color_hover->value }}; background-color: {{$button->value}}" class="sub_btn">{{ __('mybankcards.Modify') }}</a>
+																		<a href="{{route('modifyCards', $value->id)}}" type="button" class="sub_btn">{{ __('mybankcards.Modify') }}</a>
 																	</div>
                                                                 </div>
 
@@ -121,7 +123,7 @@
                                                                         </div>
                                                                     </div>
 																	<div class="def_btnopt2 frombtn frombtn2">
-																		<a href="{{route('modifyBanks', $values->id)}}" type="button" style="--sub_btnhover-bg:{{ $primary_button_color_hover->value }}; background-color: {{$button->value}}" class="sub_btn">{{ __('mybankcards.Modify') }}</a>
+																		<a href="{{route('modifyBanks', $values->id)}}" type="button" class="sub_btn">{{ __('mybankcards.Modify') }}</a>
 																	</div>
                                                                 </div>
 
@@ -137,7 +139,7 @@
  
                                 <div class="frombtn_wrap">
                                     <div class="def_btnopt2 frombtn frombtn2">
-                                        <a href="{{ route('front.addPayment') }}" type="button" style="--sub_btnhover-bg:{{ $primary_button_color_hover->value }}; background-color: {{$button->value}}" class="sub_btn">{{ __('mybankcards.Add_Payment_Method') }}
+                                        <a href="{{ route('front.addPayment') }}" type="button" class="sub_btn">{{ __('mybankcards.Add_Payment_Method') }}
                                         </a>
                                     </div>
                                 </div>

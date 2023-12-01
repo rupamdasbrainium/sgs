@@ -1310,6 +1310,7 @@ else{
         $theme = Configuration::where('name', 'theme_color')->where('franchise_id', 3)->first();
         $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id', 3)->first();
         $button = Configuration::where('name', 'primary_button_color')->where('franchise_id', 3)->first();
+        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $client = APICall("Clients", 'get', "{}", "client_app");
@@ -1347,7 +1348,7 @@ else{
         $pay_methods_bank = APICall('PaymentMethods/accounts', "get", "{}", 'client_app');
         $data['pay_methods_bank'] = json_decode($pay_methods_bank);
 
-        return view('front.upgrademembership', compact('data', 'logo', 'theme','theme_color_hover', 'button', 'admin_phone', 'admin_address'));
+        return view('front.upgrademembership', compact('data', 'logo', 'theme','theme_color_hover', 'button','primary_button_color_hover', 'admin_phone', 'admin_address'));
     }
 
     public function upgragemembershipsubmit(Request $request, $membershipId, $card_id)

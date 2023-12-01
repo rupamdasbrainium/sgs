@@ -1,5 +1,7 @@
 <x-app-layout>
     @section('title', $data['title'] . ' |')
+    @section('style', ';--sub_btn-bg: '.$button->value. ';--sub_btnhover-bg:' .$primary_button_color_hover->value)
+
     @include('header')
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
@@ -48,8 +50,7 @@
                                     </div>
                                     <div class="account_leng_opt_btn">
                                         <div class="def_btnopt2 frombtn">
-                                            <button type="submit" class="btn2"
-                                                style="--hover-bg:{{ $primary_button_color_hover->value }}; background-color: {{ $button->value }}">{{ __('myProfile.Submit') }}</button>
+                                            <button type="submit" class="btn2">{{ __('myProfile.Submit') }}</button>
                                         </div>
                                     </div>
                                 </div>
