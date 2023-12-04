@@ -114,7 +114,7 @@ class HomeController extends Controller
         } else {
             $categoryType = APICall("Options/categories?franchise_id=" . $franchise_id . "&language_id=" . $lang_id, "get", "{}");
             $data['category'] = json_decode($categoryType)->data;
-            return view('front.homeBasedOnCategory',compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag','theme_color_hover','video','title_fr','subtitle_fr','home_title_fr','home_magicplan_fr','home_body_fr'));
+            return view('front.homeBasedOnCategory', compact('data', 'franchise_id', 'logo', 'banner', 'button', 'theme', 'title', 'subtitle', 'home_magicplan', 'home_body', 'home_title', 'admin_phone', 'admin_address', 'lang_id', 'short_code_flag', 'theme_color_hover', 'video', 'title_fr', 'subtitle_fr', 'home_title_fr', 'home_magicplan_fr', 'home_body_fr'));
         }
 
         //franchise plan type
@@ -348,12 +348,12 @@ class HomeController extends Controller
         $logo = Configuration::where('name', 'logo_image')->where('franchise_id', $this->getfranchiseId())->first();
         $banner = Configuration::where('name', 'banner_image')->where('franchise_id', $this->getfranchiseId())->first();
         $theme = Configuration::where('name', 'theme_color')->where('franchise_id', $this->getfranchiseId())->first();
-        $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id', 3)->first();
+        $theme_color_hover = Configuration::where('name', 'theme_color_hover')->where('franchise_id', 3)->first();
         $button = Configuration::where('name', 'primary_button_color')->first();
         $primary_button_color_hover = Configuration::where('name', 'primary_button_color_hover')->where('franchise_id', $this->getfranchiseId())->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', $this->getfranchiseId())->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', $this->getfranchiseId())->first();
-        return view('login', compact('data', 'logo', 'banner', 'button', 'primary_button_color_hover', 'theme','theme_color_hover', 'admin_address', 'admin_phone'));
+        return view('login', compact('data', 'logo', 'banner', 'button', 'primary_button_color_hover', 'theme', 'theme_color_hover', 'admin_address', 'admin_phone'));
     }
 
     public function forgotPassword()
@@ -365,7 +365,74 @@ class HomeController extends Controller
         $primary_button_color_hover = Configuration::where('name', 'primary_button_color_hover')->where('franchise_id', $this->getfranchiseId())->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', $this->getfranchiseId())->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', $this->getfranchiseId())->first();
-        return view('forgotpassword', compact('data', 'logo', 'admin_address', 'admin_phone','button','primary_button_color_hover'));
+        return view('forgotpassword', compact('data', 'logo', 'admin_address', 'admin_phone', 'button', 'primary_button_color_hover'));
+    }
+
+    public function forgotPasswordsendmail(Request $request)
+    {
+        $user_name = $request->user_name;
+        $wait_response = "true";
+        $forgotPassword = APICall('Users/lost_password?user_name=' . $user_name . '&wait_response=' . $wait_response, "post", "{}");
+        $data['forgotPassword'] = json_decode($forgotPassword);
+
+        if ($data['forgotPassword']->error == null) {
+            $response = array(
+                'message' => trans('title_message.code_message'),
+                'message_type' => 'success'
+            );
+            return redirect(route('new_password_from_code'))->with($response);
+        } else {
+            $response = array(
+                'message' => $data['forgotPassword']->error->message,
+                'message_type' => 'danger'
+            );
+            return redirect()->back()->with($response);
+        }
+    }
+    public function new_password_from_code()
+    {
+        $data = array();
+        $data['title'] = trans('title_message.Forgot_Password');
+        $logo = Configuration::where('name', 'logo_image')->where('franchise_id', $this->getfranchiseId())->first();
+        $button = Configuration::where('name', 'primary_button_color')->first();
+        $primary_button_color_hover = Configuration::where('name', 'primary_button_color_hover')->where('franchise_id', $this->getfranchiseId())->first();
+        $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', $this->getfranchiseId())->first();
+        $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', $this->getfranchiseId())->first();
+        return view('new_password_from_code', compact('data', 'logo', 'admin_address', 'admin_phone', 'button', 'primary_button_color_hover'));
+    }
+
+    public function update_password_from_mail(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'userName' => 'required|string',
+            'tempCode' => 'required|string',
+            'newPassword' => 'required|min:8',
+
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator)
+                ->withInput();
+        }
+        $userName = $request->userName;
+        $tempCode = $request->tempCode;
+        $newPassword = $request->newPassword;
+
+        $updatePassword = APICall("Users/new_password_from_code?userName=" . $userName . "&tempCode=" . $tempCode .  "newPassword=" . $newPassword, "put", "{}");
+        $data['updatePassword'] = json_decode($updatePassword);
+
+        if ($data['updatePassword']->error == null) {
+            $response = array(
+                'message' => trans('title_message.code_message_update'),
+                'message_type' => 'success'
+            );
+            return redirect(route('myProfile'))->with($response);
+        } else {
+            $response = array(
+                'message' => $data['forgotPassword']->error->message,
+                'message_type' => 'danger'
+            );
+            return redirect()->back()->with($response);
+        }
     }
 
     public function dashboard()
@@ -374,14 +441,14 @@ class HomeController extends Controller
         $banner = Configuration::where('name', 'banner_image')->where('franchise_id', $this->getfranchiseId())->first();
         $client = APICall("Clients", 'get', "{}", "client_app");
         $client = json_decode($client);
-        session()->put('language_id',$client->data->language_id);
-        
+        session()->put('language_id', $client->data->language_id);
+
         // if (session()->has('clientToken')) {
-            if ($client->data->language_id == 2) {
-                $locale = 'en';
-            } else {
-                $locale = 'fr';
-            }
+        if ($client->data->language_id == 2) {
+            $locale = 'en';
+        } else {
+            $locale = 'fr';
+        }
         // }
         app()->setLocale($locale);
         session()->put('locale', $locale);
@@ -418,7 +485,7 @@ class HomeController extends Controller
         $logo = Configuration::where('name', 'logo_image')->where('franchise_id', $this->getfranchiseId())->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', $this->getfranchiseId())->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', $this->getfranchiseId())->first();
-        return view('front.law25', compact('data', 'logo','law', 'admin_address', 'admin_phone'));
+        return view('front.law25', compact('data', 'logo', 'law', 'admin_address', 'admin_phone'));
     }
     public function planType($id)
     {

@@ -35,23 +35,24 @@
 							<img  src="{{ asset('public/images/logo.svg') }}" alt="">
 						</div>
 						<h2>{{ __('forgetpassword.Forgot_Your_Password') }}</h2>
-						<p>{{ __('forgetpassword.Fear_not') }}<a href="#">{{ __('forgetpassword.account_recovery') }}</a> </p>
+						<p>{{ __('forgetpassword.Fear_not_msg') }}</p>
+						{{-- <p>{{ __('forgetpassword.Fear_not') }}<a href="#">{{ __('forgetpassword.account_recovery') }}</a> </p> --}}
 					</div>
 					<div class="fromdes_info">
-						<form method="POST" action="{{ route('password.email') }}">
+						<form method="POST" action="{{ route('forgotPasswordsendmail') }}">
 							@csrf
 							<div class="from_cont_wrap">
 								<div class="inp_row rowopt2">
 									<div class="form-group">
-										<label for="email">{{ __('forgetpassword.Email') }}</label>
+										<label for="user_name">{{ __('forgetpassword.Email') }}</label>
 										<div class="rowopt2_wrap1">
 											<div class="inp_cont_view">
 												<div class="icon_opt">
-													<i class="fal fa-envelope"></i>
+													<i class="fal fa-user"></i>
 												</div>
-												<input type="email" class="form-control" name="email" id="email" placeholder="jhon.deo@gmail.com" required>
-												@if ($errors->has('email'))
-												<div class="text-danger mt-3">{{ $errors->first('email') }}</div>
+												<input type="text" class="form-control" name="user_name" id="user_name" placeholder="" required>
+												@if ($errors->has('user_name'))
+												<div class="text-danger mt-3">{{ $errors->first('user_name') }}</div>
 												@endif
 											</div>
 											<div class="inp_row capchacode_opt">
