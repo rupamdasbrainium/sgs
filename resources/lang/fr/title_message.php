@@ -83,4 +83,6 @@ return [
     'Transactions' => 'Transactions',
     'Manage_Subscribers' => 'Gérer les abonnés',
     'membership_upgraded_succesfully' => 'L\'adhésion a été mise à niveau avec succès',
+    'code_message' => 'Un code temporaire a été envoyé à votre adresse email',
+    'code_message_update' => 'Le mot de passe a été changé avec succès',
 ];
