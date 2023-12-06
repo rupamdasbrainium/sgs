@@ -6,6 +6,11 @@
     @include('header')
 
     <div class="banner_outer">
+        @if (Session::has('message'))
+        <div class="alert alert-danger">
+            {{ Session::get('message') }}
+        </div>
+    @endif
         <div class="banner_slider shadowremove">
             <div class="banner_panel">
                 <div class="banner_img">

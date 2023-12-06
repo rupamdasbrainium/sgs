@@ -85,4 +85,5 @@ return [
     'membership_upgraded_succesfully' => 'L\'adhésion a été mise à niveau avec succès',
     'code_message' => 'Un code temporaire a été envoyé à votre adresse email',
     'code_message_update' => 'Le mot de passe a été changé avec succès',
+    'choose_plan_first' => 'Veuillez d\'abord choisir un plan d\'abonnement',
 ];
