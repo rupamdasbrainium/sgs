@@ -86,7 +86,11 @@ class PaymentController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator);
         }else{
+            if(Session::has('language_id')){
         $lang_id = Session::get('language_id');
+            }else{
+                $lang_id = getLocale();
+            }
         
             $formdata = array();
             $formdata['transit_number'] = $request->transit_number;
@@ -128,9 +132,20 @@ class PaymentController extends Controller
             }
             $membershipdata['code_promo'] = $request->code_promo;
             $membershipdata['account_id'] =  $data['pay_methode_acc']->data->id;
+            
 
             $membership_with_bnk_acc = APICall('Memberships/with-bank-account?display_language_id=' . $lang_id, "post", json_encode($membershipdata), "client_app");
             $data['membership_with_bnk_acc'] = json_decode($membership_with_bnk_acc);
+            // dd($data['membership_with_bnk_acc'],$data['pay_methode_acc'],$membershipdata,$lang_id);
+            // Log::info("message");
+            
+            if ($data['membership_with_bnk_acc']!= null && $data['membership_with_bnk_acc']->error != null) {
+                $response = array(
+                    'message' => $data['membership_with_bnk_acc']->error->message,
+                    'message_type' => 'danger'
+                );
+                return redirect()->back()->with($response)->withInput();
+            }
 
             $data["title"] = trans('title_message.My_Account'); 
             $response = array(
@@ -138,7 +153,7 @@ class PaymentController extends Controller
                 'message_type' => 'success',
               );
             
-            return redirect(route("myProfile"))->with($response);
+            return redirect()->route("myProfile")->with($response);
             } 
         } else {
             $validator = Validator::make($request->all(), [
@@ -203,7 +218,7 @@ class PaymentController extends Controller
                 'message' => trans('title_message.Payment_completed_succesfully'),
                 'message_type' => 'success',
               );
-            return redirect(route("myProfile"))->with($response);
+            return redirect()->route("myProfile")->with($response);
         }
         }
     }

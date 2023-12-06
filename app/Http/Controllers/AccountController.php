@@ -887,7 +887,7 @@ class AccountController extends Controller
         if ($request->new_key == 0) {
             // $lang_id = getLocale();
             $lang_id = Session::get('language_id');
-            if ($request->radio_group_pay == "bank_acc") {
+            if ($request->radio_group_pay == "bank") {
                 //membership with bank account
                 $membershipdata = array();
                 $membershipdata['subscription_plan_id'] = $request->subscription_plan_id;
@@ -913,7 +913,8 @@ class AccountController extends Controller
 
                 $membership_with_bnk_acc = APICall('Memberships/with-bank-account?display_language_id=' . $lang_id, "post", json_encode($membershipdata), "client_app");
                 $data['membership_with_bnk_acc'] = json_decode($membership_with_bnk_acc);
-                Session::put('display_language_id', $data['membership_with_bnk_acc']->display_language_id);
+                // dd($data['membership_with_bnk_acc']);
+                Session::put('display_language_id', $lang_id);
                 return redirect()->route('myProfile');
             } else {
                 $membershipcarddata = array();
