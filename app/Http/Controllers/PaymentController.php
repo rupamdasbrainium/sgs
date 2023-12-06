@@ -75,6 +75,11 @@ class PaymentController extends Controller
 
     public function paymentSave(Request $request)
     {
+        if(Session::has('language_id')){
+            $lang_id = Session::get('language_id');
+        }else{
+            $lang_id = getLocale();
+        }
         if ($request->radio_group_pay == "bank_acc") {
         $validator = Validator::make($request->all(), [
             "transit_number" => "required|min:3|max:5",
@@ -86,11 +91,7 @@ class PaymentController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator);
         }else{
-            if(Session::has('language_id')){
-        $lang_id = Session::get('language_id');
-            }else{
-                $lang_id = getLocale();
-            }
+            
         
             $formdata = array();
             $formdata['transit_number'] = $request->transit_number;
@@ -166,7 +167,7 @@ class PaymentController extends Controller
             if ($validator->fails()) {
                 return back()->withErrors($validator);
             }else{
-                $lang_id = Session::get('language_id');
+                
             $carddata = array();
             $carddata['four_digits_number'] = $request->four_digits_number;
             $carddata['expire_year'] = $request->expiry_year;
