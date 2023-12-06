@@ -39,6 +39,13 @@ class PaymentController extends Controller
         if (Session::has('franchise_id')) {
             $uri .= "&franchise_id=" . Session::get('franchise_id');
         }
+        else{
+            $message = array(
+                'message' => trans('title_message.choose_plan_first'),
+                'message_type' => 'danger',
+              );
+            return redirect()->route('homepage')->with($message);
+        }
         if (Session::has('reference_Code')) {
             $uri .= "&reference_Code=" . Session::get('reference_Code');
         }

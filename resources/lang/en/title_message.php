@@ -84,5 +84,6 @@ return [
     'Manage_Subscribers' => 'Manage Subscribers',
     'membership_upgraded_succesfully' => 'Membership upgraded successfully',
     'code_message' => 'A temporary code has been sent to your email address',
-    'code_message_update' => 'Password changed successfully'
+    'code_message_update' => 'Password changed successfully',
+    'choose_plan_first' => 'Please choose a subscription plan first',
 ];
