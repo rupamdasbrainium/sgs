@@ -26,14 +26,11 @@
         <title>@yield('title') {{ config('app.name', 'SGS') }}</title>
         <style>:root{ @yield('style') }</style>
         <!-- Fonts -->
-        <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"> -->
         <!-- Styles -->
         {{-- <link rel="stylesheet" href="{{ asset('public/css/app.css') }}"> --}}
         <!-- custom css -->
-        {{-- <link rel="stylesheet" href="{{ asset('public/css/compress_css.css') }}"> --}}
         <link rel="icon" type="image/png" href="{{ asset('public/images/favicon.png') }}"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
         <link rel="stylesheet" href="{{ asset('public/css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('public/css/owl.carousel.min.css') }}">
         <link rel="stylesheet" href="{{ asset('public/css/owl.theme.default.min.css') }}">
@@ -51,10 +48,8 @@
         <script src="{{ asset('public/js/jquery.min.js')}}"></script> 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        {{-- <script src="{{ asset('public/js/select_optiones.js') }}"></script> --}}
         <script src="{{ asset('public/admin/js/owl.carousel.min.js') }}"></script>
         <script src="{{ asset('public/js/custom.js') }}"></script>
-        {{-- <script src="{{ asset('public/js/compress_js.js') }}" defer></script> --}}
         <script defer>
             (function() {
                 var cssFa = document.createElement('link');

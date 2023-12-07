@@ -3,8 +3,6 @@
     @section('style', ';--sub_btn-bg: '.$button->value. ';--sub_btnhover-bg:' .$primary_button_color_hover->value)
 
     @include('header')
-    {{-- <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"> --}}
     <section class="maincontent_wrap inner_pageouter">
         <div class="inner_page_wrap">
             @include('layouts.sidebar')
@@ -13,16 +11,12 @@
                     <div class="blocktitle">
                         <h2>{{ __('myProfile.My_Profile') }}</h2>
                         <h3 class="subtitle">{{ $client->firstname . ' ' . $client->lastname }}</h3>
-                        {{-- <p><span>{{ __('myProfile.My_Gym') }}</span></p> --}}
                         <div class="account_des">
                             <span class="acc_des_title">{{ __('myProfile.My_Address') }}: </span>
                             <span class="acc_des_info">{{ getAddress($client->adress) }} </span>
                             <span class="accountedit"><a
                                     href="{{ route('myContactInformation') }}">{{ __('myProfile.Edit') }}</a>
                             </span><br>
-                            {{-- @if (!empty($client->communication_ToClient))
-							<span class="acc_des_status">{{ __('myProfile.Message') }}: {{ $client->communication_ToClient}} </span><br>
-						@endif --}}
                             <span class="acc_des_status">{{ __('myProfile.Status') }}: {{ $client->status }} </span><br>
                             <span class="acc_des_status">{{ __('myProfile.Message') }}:
                                 {{ $client->communication_ToClient }} </span><br>
@@ -157,5 +151,4 @@
         </div>
     </section>
     @include('footer')
-    {{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script> --}}
 </x-app-layout>

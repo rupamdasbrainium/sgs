@@ -3,7 +3,6 @@
     @section('style', ';--sub_btn-bg: '.$button->value. ';--sub_btnhover-bg:' .$primary_button_color_hover->value)
 
     @include('header')
-    {{-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"> --}}
     <section class="maincontent_wrap inner_pageouter">
         <div class="inner_page_wrap">
             @include('layouts.sidebar')
@@ -13,13 +12,9 @@
                         <h2>{{ __('mybankcards.My_Credit_Card_Bank_Account') }}</h2>
                     </div>
                     <div class="fromdes_view">
-                        {{-- <div class="titleopt2">
-                            <h3>{{ __('mybankcards.Cards_and_accounts') }}</h3>
-                        </div> --}}
                         <div class="fromdes_info user_contentblock">
                             <div class="from_cont_wrap">
                                 <div class="cards_des_wrap">
-                                    {{-- <div class="cards_des_row"> --}}
                                         <div class="row">
                                             <h3>{{ __('mybankcards.Credit_Cards') }}:</h3>
                                                 @foreach ($data['pay_methods_accc']->data as $value)												
@@ -134,7 +129,6 @@
                                                 @endforeach
                                             
                                         </div>
-                                    {{-- </div> --}}
                                 </div>
  
                                 <div class="frombtn_wrap">
@@ -151,5 +145,4 @@
         </div>
     </section>
     @include('footer')
-    {{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script> --}}
 </x-app-layout>

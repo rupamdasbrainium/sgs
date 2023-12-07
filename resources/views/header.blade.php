@@ -1,5 +1,3 @@
-{{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
-{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" /> --}}
 @php
     $locale = app()->currentLocale();
     if (session()->has('locale')) {
@@ -37,8 +35,6 @@
                         <div class="mob_user_icon">
                             <span class="accountinfo"><img src="{{ asset('public/images/icon1.svg') }}"
                                     alt=""></span>
-                            <!-- <span class="accountinfo" ><i class="far fa-ellipsis-v"></i></span> -->
-
                             <span class="close_info"><i class="fa fa-times"></i></span>
                         </div>
 
@@ -76,7 +72,6 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{ route('userLogout') }}">
                                                 {{ __('header.logout') }}</a>
-                                            {{-- <a class="nav-link" href="{{ route('logout') }}">{{ __('header.logout') }}</a> --}}
                                         </li>
                                     @else
                                         <li class="nav-item {{ Request::is('login') ? 'active' : '' }}">
@@ -91,8 +86,6 @@
                                     </div>
 
                                     <div class="cont_leng">
-                                        {{-- <a href="{{url('language/en')}}" class="active_leng">En</a>
-										<a href="{{url('language/fr')}}">Fr</a> --}}
                                         <a href="{{ url('language/en') }}"
                                             class="{{ $locale == 'en' ? 'active_leng' : '' }}">En</a>
                                         <a href="{{ url('language/fr') }}"

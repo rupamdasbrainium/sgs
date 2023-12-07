@@ -17,15 +17,9 @@
 							<div class="sidebar_content">
 								<div class="sidebar_info">
 									<p>{{ __('paymentForm.center') }}: 
-										{{-- @dd($data['membership_details']); --}}
 										<span>{{ $data['membership_details']->data->franchise}}</span></p>
-									{{-- <p>Address: 
-										<span>{{ $data['franchise']->address_civic_number}} {{ $data['franchise']->address_street}} {{ $data['franchise']->address_city }} {{ $data['franchise']->address_postal_code }}</span> --}}
-								</p>
+									</p>
 								<p>{{ __('paymentForm.package') }}: <span>
-									{{-- @if(isset($data['subscription_plan']) && isset($data['subscription_plan']->data))
-									{{ $data['subscription_plan']->data->name }}
-									@endif --}}
 									{{ $data['membership_details']->data->subscriptionPlan}}
 								</span></p>
 							</div>
@@ -54,7 +48,6 @@
 												</div>
 												<div class="sum_inp_right">
 													
-													{{-- {{ $data['franchise']->name}} --}}
 													{{ $data['membership_details']->data->franchise}}
 												</div>
 											</div>
@@ -63,9 +56,6 @@
 													{{ __('paymentForm.package_plan_Name') }}
 												</div>
 												<div class="sum_inp_right">
-													{{-- @if(isset($data['subscription_plan']) && isset($data['subscription_plan']->data))
-														{{ $data['subscription_plan']->data->name }}
-													@endif --}}
 													{{ $data['membership_details']->data->subscriptionPlan}}
 												</div>
 											</div>
@@ -137,13 +127,7 @@
 												<div class="sum_inp_left">
 													{{ __('paymentForm.membership_opt') }}
 												</div>
-												<div class="sum_inp_right">
-													{{-- @dd($data['subscription_plan']); --}}
-														{{-- @if(isset($data['subscription_plan']) && isset($data['subscription_plan']->data))
-														@foreach( $data['subscription_plan']->data->options as $val)
-														{{$val->name}}
-														@endforeach
-													@endif --}}{{ __('paymentForm.option') }}
+												<div class="sum_inp_right">{{ __('paymentForm.option') }}
 												</div>
 											</div>
 											
@@ -207,22 +191,6 @@
 												</div>
 											</div>
 											@endforeach
-											{{-- <div class="sum_inp_cont">
-												<div class="sum_inp_left">
-													TPS 12345RT0010
-												</div>
-												<div class="sum_inp_right">
-													2.00$
-												</div>
-											</div> --}}
-											{{-- <div class="sum_inp_cont">
-												<div class="sum_inp_left">
-													TVQKI255887
-												</div>
-												<div class="sum_inp_right">
-													3.99$
-												</div>
-											</div> --}}
 											
 											<div class="sum_inp_cont">
 												<div class="sum_inp_left">
@@ -286,10 +254,6 @@
 														<tr>
 															<td data-label="TYPE">
 																<div class="pay_view_opt">
-																	<!-- <div class="checkbox">
-																				<input class="styled-checkbox" id="Option1" type="checkbox" value="value1">
-																				<label for="Option1">&nbsp;</label>
-																	</div>  -->
 																	{{ __('paymentForm.payments') }}
 																</div>
 															</td>
@@ -411,21 +375,17 @@
 												</div>
 											</div>
 										</div>
-										{{-- @dd( $data['membership_details']); --}}
 										<input type="hidden" name="subscription_plan_id" value="{{ $data['membership_details']->data->subscriptionPlan_id }}">
 										<input type="hidden" name="duration_id" value="{{ Session::get('duration_id')}}">
 										<input type="hidden" name="date_begin" value="{{ $data['membership_details']->data->begin}}">
 										
-										{{-- <input type="hidden" name="subscription_plan_id" value="{{ $data['membership_details']->data->subscriptionPlan_id }}">
-										<input type="hidden" name="subscription_plan_id" value="{{ $data['membership_details']->data->subscriptionPlan_id }}"> --}}
-									</div>
+										</div>
 									
 									
 									<div class="checkbox_block">
 										<div class="inp_row remember_opt">
 											<div class="form-group">
 												<div class="checkbox">
-													<!-- <label><input type="checkbox"> Remember me</label> -->
 													
 													<input class="styled-checkbox" type="checkbox" value="value2">
 													<label >{{ __('paymentForm.accept') }}  <a href="#">{{ __('paymentForm.terms') }}</a></label>
@@ -435,7 +395,6 @@
 											
 											<div class="form-group">
 												<div class="checkbox">
-													<!-- <label><input type="checkbox"> Remember me</label> -->
 													
 													<input class="styled-checkbox" type="checkbox" value="value2">
 													<label >{{ __('paymentForm.accept') }}  <a href="#">{{ __('paymentForm.suitability') }}</a></label>

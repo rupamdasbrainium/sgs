@@ -38,7 +38,6 @@ Route::get('language/{locale}', function ($locale) {
     }
     session()->put('locale', $locale);
     if(session()->has('message')){
-        // dd(session()->get('message'));
         $data_array = [];
         $data_array['message'] = session()->get('message');
         if(session()->has('message_type')){
@@ -52,9 +51,6 @@ Route::get('language/{locale}', function ($locale) {
     return redirect()->back();
 });
 
-// Route::get('/',[HomeController::class,'index'])->name('homepage');
-// Route::get('suscription-form', 'SuscriptionController@suscriptionform')->name('suscriptionform');
-// Route::get('payment', 'PaymentController@payment')->name('payment');
 Route::get('/planType/{id}', [HomeController::class, 'planType']);
 Route::get('/planTypeDetails/{id}', [HomeController::class, 'planTypeDetails']);
 Route::get('/terms-and-condition', [HomeController::class, 'termsAndCondition'])->name('front.terms');
@@ -83,7 +79,6 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::group(['middleware' => 'verifyToken'], function () {
-    // Route::get('/', 'HomeController@index')->name('homepage');
     Route::get('dashboard', 'HomeController@dashboard')->name('dashboard');
     Route::get('account', 'AccountController@account')->name('account');
     Route::get('change-language', 'AccountController@changeLanguage')->name('changeLanguage');
@@ -148,12 +143,6 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('account', 'AdminController@accountpost')->name('adminpostaccount');
         Route::get('accountpassword', 'AdminController@accountpassword')->name('accountpassword');
         Route::post('accountpassword', 'AdminController@accountpasswordpost')->name('accountpasswordpost');
-        // Route::get('cms', 'AdminController@cmslist')->name('cms');
-        // Route::get('cmsadd', 'AdminController@cmsadd')->name('cmsadd');
-        // Route::get('cmsadd/{id}', 'AdminController@cmsadd')->name('cmsadd2');
-        // Route::post('cmsaddpost', 'AdminController@cmsaddpost')->name('cmsaddpost');
-        // Route::post('cmsaddpost/{id}', 'AdminController@cmsaddpost')->name('cmsaddpost');
-        // Route::get('cmsdelete/{id}', 'AdminController@cmsdelete')->name('cmsdelete');
         Route::get('user/{type}', 'AdminController@userlist')->name('userlist');
         Route::get('useredit/{id}', 'AdminController@useredit')->name('useredit');
         Route::post('usereditpost/{id}', 'AdminController@usereditpost')->name('usereditpost');
@@ -172,7 +161,5 @@ Route::get('/test', function () {
 
 Route::get('/categoryplan/{category_id}', [HomeController::class, 'categoryplan'])->name('categoryplan');
 
-// Route::get('/sechomepage', [HomeController::class, 'index_page_two'])->name('sechomepage');
-// Route::get('/category/{short_code_sec?}', [HomeController::class, 'index_page_two'])->name('sechomepage');
 Route::get('/{short_code?}', [HomeController::class, 'index'])->name('homepage');
 

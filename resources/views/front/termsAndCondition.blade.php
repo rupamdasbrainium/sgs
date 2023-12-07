@@ -14,10 +14,6 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                <!-- <div class="banner_info">
-                                    <h1>Elevate Your <span>Fitness,</span></h1>
-                                    <h2>Ignite Your Potential!</h2>
-                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -69,10 +65,6 @@
         <div class="round_opt_btn rount_opt3">
             <img src="images/roundopt2.jpg" alt="">
         </div>
-    <!-- 	
-        <div class="round_opt_btn">
-            <img src="images/roundopt2.jpg" alt="">
-        </div> -->
     
     </section>
     @include('footer')

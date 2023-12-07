@@ -9,16 +9,7 @@
         <div class="welcomesection def_padding inner_content_block">
             <div class="container">
                 <div class="row">
-
-                    {{-- @dump(Session::get('message')); --}}
                     <div class="col-md-12">
-                        {{-- @if (Session::has('message'))
-                            <div class="col-md-12">
-                                <div class="alert alert-danger">
-                                    {{ Session::get('message') }}
-                                </div>
-                            </div>
-                        @endif --}}
                         <div class="welcomesec_info inner_heading">
                             <div class="round_opt_btn3 modfround1">
                                 <img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
@@ -46,7 +37,6 @@
                             <div class="from_cont_wrap">
                                 <form method="post"
                                     action="{{ route('suscriptionformSave', ['id' => $data['subscription_plan']->data->id]) }}">
-                                    {{-- <form method="post" action="{{ route('suscriptionformSave',['id'=>18]) }}" > --}}
                                     @csrf
                                     <input type="hidden" name="franchise_id" value="{{ $data['franchise']->id }}">
                                     <div class="inp_row gapadj inp_colm2">
@@ -134,7 +124,6 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
-                                                <!-- <input type="text" class="form-control" placeholder="AB  " > -->
                                                 <div class="selectcont ">
                                                     <div class="arrowdown2">
                                                         <i class="fal fa-chevron-down"></i>
@@ -149,9 +138,6 @@
                                                                 </option>
                                                             @endforeach
                                                         @endif
-                                                        {{-- <option value="AB" >AB</option>
-												<option value="AB"  >AB</option>
-												<option value="AB"  >AB</option> --}}
                                                     </select>
                                                 </div>
                                             </div>
@@ -217,7 +203,6 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
-                                                <!-- <input type="text" class="form-control" placeholder="Man " > -->
                                                 <div class="selectcont ">
                                                     <div class="arrowdown2">
                                                         <i class="fal fa-chevron-down"></i>
@@ -314,66 +299,16 @@
 
                                     </div>
                                     <div class="more_cont_view">
-                                        <!-- <h4>Membership Options/ Add-ons</h4>
-        <div class="checkout_optview">
-          <div class="inp_row checkoutmore_info">
-            <div class="form-group">
-              <div class="checkbox">
-                <input class="styled-checkbox" id="Option1" type="checkbox" value="value1">
-                <label for="Option1">Option1</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="checkbox">
-                <input class="styled-checkbox" id="Option2" type="checkbox" value="value2">
-                <label for="Option2">Option2</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="checkbox">
-                <input class="styled-checkbox" id="Option3" type="checkbox" value="value3">
-                <label for="Option3">Option3</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="checkbox">
-                <input class="styled-checkbox" id="Option4" type="checkbox" value="value4">
-                <label for="Option4">Option4</label>
-              </div>
-            </div>
-            
-          </div>
-        </div> -->
                                         <div class="payment_opt_view">
-                                            <!-- <div class="payment_block">
-           <h4>Method of Payment</h4>
-           <div class="payment_contentblock">
-             <div class="radio">
-               <input type="radio" id="test1" name="radio-group">
-               <label for="test1">Credit Card</label>
-             </div>
-             
-             <div class="radio">
-               <input type="radio" id="test2" name="radio-group">
-               <label for="test2">Direct Debit</label>
-             </div>
-             <div class="radio">
-               <input type="radio" id="test3" name="radio-group">
-               <label for="test3">Prepaid Account</label>
-             </div>
-           </div>
-         </div> -->
                                             <div class="payment_block">
                                                 <h4>{{ __('suscription.nop') }} *</h4>
                                                 <div class="payment_contentblock">
-                                                    {{-- @dump($data['subscription_plan']); --}}
                                                     @if (isset($data['subscription_plan']) &&
                                                             isset($data['subscription_plan']->data) &&
                                                             count($data['subscription_plan']->data->prices_per_durations))
                                                         @foreach ($data['subscription_plan']->data->prices_per_durations as $item)
                                                             @if (count($item->installments))
                                                                 @foreach ($item->installments as $val)
-                                                                    {{-- @dump( $item->duration_id,$val->id); --}}
                                                                     <div class="radio">
                                                                         <input type="radio"
                                                                             id="{{ $val->id }}"
@@ -391,11 +326,6 @@
                                                     @error('installments')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
-
-                                                    {{-- <div class="radio">
-												<input type="radio" id="testnum2" name="radio-group">
-												<label for="testnum2">26 Payments</label>
-											</div> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -406,7 +336,6 @@
                                         <div class="form-group">
                                             <label>{{ __('suscription.hear_about_us') }}? *</label>
                                             <div class="inp_cont_view noicon_opt">
-                                                <!-- <input type="email" class="form-control" placeholder="Please choose..." > -->
                                                 <div class="selectcont ">
                                                     <div class="arrowdown2">
                                                         <i class="fal fa-chevron-down"></i>
@@ -459,10 +388,6 @@
                 $('#datepicker').datepicker();
             });
         </script>
-        {{-- <script>
-            var string = ;
-            var phone = [string.slice(0, 3), " ", string.slice(3, 7), " ", string.slice(7)].join('');
-        </script> --}}
         <script>
             const address_civic_numberInput = document.getElementById('address_civic_number');
             address_civic_numberInput.addEventListener('input', function(event) {
@@ -507,18 +432,6 @@
                 }
                 event.target.value = inputValue;
             });
-
-            // const address_postal_codeInput = document.getElementById('address_postal_code');
-            // address_postal_codeInput.addEventListener('input', function(event) {
-            //     let inputValue = event.target.value;
-            //     inputValue = inputValue.replace(/\D/g, ''); // Remove non-numeric characters
-            //     if (inputValue.length > 0) {
-            //         inputValue = inputValue.match(/(\d{0,3})(\d{0,3})/);
-            //         inputValue = !inputValue[2] ? inputValue[1] : inputValue[1] + ' ' + inputValue[2] + (inputValue[3] ?
-            //             '-' + inputValue[3] : '');
-            //     }
-            //     event.target.value = inputValue;
-            // });
             const address_postal_codeInput = document.getElementById('address_postal_code');
 
             address_postal_codeInput.addEventListener('input', function(event) {
@@ -538,34 +451,5 @@
                 input.value = input.value.replace(/[^a-zA-Z\\.]+/g, '');
             }
         </script>
-
-
-        {{-- googleaddress --}}
-        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>  
-          <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&libraries=places"></script>
-          <script>
-              $(document).ready(function () {
-                  $("#latitudeArea").addClass("d-none");
-                  $("#longtitudeArea").addClass("d-none");
-              });
-          </script>
-          <script>
-              google.maps.event.addDomListener(window, 'load', initialize);
-        
-              function initialize() {
-                  var input = document.getElementById('autocomplete');
-                  var autocomplete = new google.maps.places.Autocomplete(input);
-        
-                  autocomplete.addListener('place_changed', function () {
-                      var place = autocomplete.getPlace();
-                      $('#latitude').val(place.geometry['location'].lat());
-                      $('#longitude').val(place.geometry['location'].lng());
-        
-                      $("#latitudeArea").removeClass("d-none");
-                      $("#longtitudeArea").removeClass("d-none");
-                  });
-              }
-          </script> --}}
     @endpush
 </x-guest-layout>

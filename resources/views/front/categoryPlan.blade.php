@@ -47,11 +47,9 @@
                     <div class="col-md-12">
                         <div class="heading_title">
 
-                            {{-- @foreach ($data['category'] as $item) --}}
                                 <div class="cat_opt_item">
                                     <h3>{{ $category_name }}</h3>
                                 </div>
-                            {{-- @endforeach --}}
                         </div>
 
                         <div class="prod_item_wrap owl-carousel owl-theme" id="home_prod_item">
@@ -66,7 +64,6 @@
                                             <div class="selectcont" >
 
                                                 <div class="arrowdown2">
-                                                    {{-- <i class="far fa-chevron-down"></i> --}}
                                                 </div>
                                                 <select class="select_opt"   title=" {{ $values->name }}">
                                                     <option value="{{ $values->id }}">
@@ -104,7 +101,6 @@
                                                 @endif
                                             @endif
                                         </div>
-                                        {{-- <p>{{ __('global.price') }}</p> --}}
                                         <p>{{ $values->descr }}</p>
                                     </div>
                                     <div class="individual_opt">
@@ -123,7 +119,6 @@
                                                         @endforeach
                                                     @endif
                                                 @endif
-                                                {{-- <li>{{ $lang_id == 2 ? $item['descr_english'] : $item['descr_french'] }}</li> --}}
                                             </ul>
                                             <div class="subscribe_btn">
                                                 <a href="{{ route('newMembershipfont', [$values->id]) }}"
@@ -145,12 +140,4 @@
 
 
     @include('footer')
-    {{-- <!-- <script src="js/bootstrap.min.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- <script src="js/bootstrap.bundle.min.js"></script> -->
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> --}}
-    {{-- <script src="js/select_optiones.js"></script>
-
-    <script src="js/custom.js"></script> --}}
 </x-guest-layout>

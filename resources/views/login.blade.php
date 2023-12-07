@@ -3,7 +3,6 @@
 @section('style', ';--sub_btn-bg: '.$button->value. ';--sub_btnhover-bg:' .$primary_button_color_hover->value)
 
 @include('header')
-{{-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"> --}}
 <div class="banner_outer inner_banner">
 	<div class="banner_slider">
 		<div class="banner_panel">
@@ -13,16 +12,7 @@
 			<div class="banner_cont">
 				<div class="container">
 					<div class="row">
-						{{-- @if(Session::has('message'))
-						<div class="alert alert-danger">
-							{{Session::get('message')}}
-						</div>
-							@endif --}}
 						<div class="col-md-12">
-							<!-- <div class="banner_info">
-													<h1>Elevate Your <span>Fitness,</span></h1>
-													<h2>Ignite Your Potential!</h2>
-							</div> -->
 						</div>
 					</div>
 				</div>
@@ -105,7 +95,6 @@
 								<div class="inp_row remember_opt">
 									<div class="form-group">
 										<div class="checkbox">
-											<!-- <label><input type="checkbox"> Remember me</label> -->
 											<input class="styled-checkbox" id="styled-checkbox-2" type="checkbox" value="value2">
 											<label for="styled-checkbox-2">{{ __('login.Remember_me') }}</label>
 										</div>
@@ -131,5 +120,4 @@
 	</div>
 </section>
 @include('footer')
-{{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script> --}}
 </x-guest-layout>

@@ -15,7 +15,6 @@
                         <form
                             action="{{ route('newMembershipSteptwosave', ['id' => $data['subscription_plan']->data->id]) }}"
                             method="post">
-                            {{-- <form action="{{ route('suscriptionformSave',['id'=>18]) }}" method="post"> --}}
                             @csrf
                             <div class="fromdes_info2">
                                 <div class="content_block packge_des newsub_opt">
@@ -30,7 +29,6 @@
                                                 @foreach ($data['subscription_plan']->data->options as $item)
                                                     <div class="optionitem_add">
                                                         <h3>{{ __('newMembership.option') }} {{ $loop->iteration }}</h3>
-                                                        {{-- <h3>{{ __('newMembership.option') }} 1</h3> --}}
                                                         <div class="optionitem_block">
                                                             <div class="opt_add">
                                                                 @if($item->image == null)
@@ -41,16 +39,11 @@
                                                             </div>
                                                             <div class="optionitem_des">
                                                                 <p>{{ $item->name }}</p>
-                                                                {{-- <p>name </p> --}}
                                                                 <div class="price_opt_add">{{ $item->price }}$</div>
-                                                                {{-- <div class="price_opt_add">$3</div> --}}
                                                                 <div class="optionitem_prod">
-                                                                    {{-- <span>{{ __('newMembership.training') }}</span> --}}
-                                                                    {{-- <span>{{ __('newMembership.quantity') }}: asd</span> --}}
                                                                     <span>{{ __('newMembership.quantity') }}:
                                                                         {{ $item->quantity }} X
                                                                         {{ $item->deliverable_quantity }}</span>
-                                                                    {{-- <span>{{ __('newMembership.price') }}: $5</span> --}}
                                                                     <span>{{ __('newMembership.price') }}:
                                                                         {{ $item->price }}$</span>
                                                                 </div>
@@ -103,15 +96,6 @@
                                                         @endif
                                                     @endforeach
                                                 @endif
-
-                                                {{-- <div class="radio">
-													<input type="radio" id="testnum2" name="radio-group">
-													<label for="testnum2">26 Payments</label>
-												</div>
-												<div class="radio">
-													<input type="radio" id="testnum2" name="radio-group">
-													<label for="testnum2">26 Payments</label>
-												</div> --}}
                                             </div>
                                         </div>
                                         <div class="frombtn_wrap">
@@ -134,38 +118,3 @@
     </section>
     @include('footer')
 </x-app-layout>
-{{-- <x-guest-layout>
-@section('title', $data['title'] . ' |')
-@include('header')
-<section class="maincontent_wrap innermain_content user_information">
-	<div class="welcomesection def_padding inner_content_block">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="welcomesec_info inner_heading">
-						<!-- <div class="round_opt_btn3 modfround1">
-							<img src="images/roundopt2.jpg" alt="">
-						</div>						 -->
-						<!-- <h2>User Information</h2>
-						<p>Please provide your contact information</p> -->
-					</div>
-					
-					
-				</div>
-			</div>
-		</div>
-		
-
-	</div>
-	
-</div>
-<div class="round_opt_btn rount_opt2">
-	<img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
-</div>
-<div class="round_opt_btn rount_opt3">
-	<img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
-</div>
-</section>
-@include('footer')
-
-</x-guest-layout> --}}

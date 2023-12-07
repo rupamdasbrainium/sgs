@@ -6,7 +6,6 @@
     @section('style', ';--sub_btn-bg: '.$button->value. ';--sub_btnhover-bg:' .$primary_button_color_hover->value)
 
     @include('header')
-    {{-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"> --}}
     <section class="maincontent_wrap inner_pageouter">
         <div class="inner_page_wrap">
             @include('layouts.sidebar')
@@ -165,31 +164,13 @@
                                         </div>
                                     </div>
                                     <div class="inp_row gapadj inp_colm2">
-                                        {{-- <div class="form-group">
-                                            <div class="inp_cont_view noicon_opt">
-                                                <input type="text" class="form-control" name="emergency_contact"
-                                                    placeholder="{{ __('suscription.emergency_contact') }}"
-                                                    value="{{ $client->emergency_contact }}" maxlength="50">
-
-                                            </div>
-                                            @if ($errors->has('emergency_contact'))
-                                            <div class="text-danger mt-3">{{ $errors->first('emergency_contact') }}
-                                            </div>
-                                             @endif
-
-                                        </div> --}}
                                         <div class="form-group">
-                                            <!-- <div class="inp_cont_view noicon_opt">
-            <input type="text" class="form-control" placeholder="Select Gender " >
-          </div> -->
                                             <div class="inp_cont_view noicon_opt">
                                                 <div class="inp_cont_view noicon_opt adbg def-select2">
                                                     <div class="selectcont ">
                                                         <div class="arrowdown2">
                                                             <i class="far fa-chevron-down"></i>
                                                         </div>
-                                                        {{-- <input value="{{ $client->is_male }}"
-                                                            name="is_male"> --}}
                                                         <select class="select_opt" name="is_male">
                                                             <option value="1" 
                                                                 {{ $client->is_male ? 'selected' : '' }}>{{ __('mycontactinformatiion.Male') }}</option>
@@ -198,14 +179,6 @@
                                                            
                                                             
                                                         </select>
-                                                        {{-- <select class="select_opt" name="is_male">
-                                                            <option value="1"
-                                                                {{ $item->id = old('is_male') == 1 ? 'selected' : '' }}>
-                                                                {{ __('suscription.male') }}</option>
-                                                            <option value="0"
-                                                                {{ $item->id = old('is_male') == 0 ? 'selected' : '' }}>
-                                                                {{ __('suscription.female') }}</option>
-                                                        </select> --}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -216,7 +189,6 @@
                                         </div>
                                     </div>
                                     <div class="titleopt2">
-                                        {{-- <h3>{{ __('mycontactinformatiion.Change_Of_Informations') }}</h3> --}}
                                         <h3>{{ __('suscription.emergency_contact') }}</h3>
                                     </div>
                                     <div  class="inp_row gapadj inp_colm2">
@@ -307,5 +279,4 @@
         </script>
     @include('footer')
     
-	{{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script> --}}
 </x-app-layout>

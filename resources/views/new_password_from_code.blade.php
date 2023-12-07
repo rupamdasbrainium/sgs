@@ -36,7 +36,6 @@
                             </div>
                             <h2>{{ __('forgetpassword.Set_newPassword') }}</h2>
                             <p>{{ __('forgetpassword.Fear_not_msg') }}</p>
-                            {{-- <p>{{ __('forgetpassword.Fear_not') }}<a href="#">{{ __('forgetpassword.account_recovery') }}</a> </p> --}}
                         </div>
                         <div class="fromdes_info">
                             <form method="POST" action="{{ route('update_password_from_mail') }}">
@@ -59,10 +58,7 @@
                                                         <i class="fal fa-user"></i>
                                                     </div>
                                                     <input type="text" class="form-control" name="tempCode"  placeholder="" required>
-                                                    {{-- @if ($errors->has('user_name'))
-                                                    <div class="text-danger mt-3">{{ $errors->first('user_name') }}</div>
-                                                    @endif --}}
-                                                </div>
+                                                    </div>
                                                 <label for="user_name">{{ __('forgetpassword.newpassword') }}</label>
                                                 <div class="rowopt2_wrap1">
                                                     <div class="inp_cont_view">

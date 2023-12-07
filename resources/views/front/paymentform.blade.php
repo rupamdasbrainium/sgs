@@ -18,7 +18,6 @@
                             <div class="round_opt_btn3 ">
                                 <img src="images/roundopt2.jpg" alt="">
                             </div>
-                            {{-- @dd( $data['membership_details']); --}}
                             <h2>{{ __('paymentForm.payment') }}</h2>
                         </div>
                         <div class="fromdes_info user_contentblock">
@@ -166,56 +165,6 @@
                                             </div>
 
                                             <div class="summary_content">
-                                                {{-- <h3>{{ __('paymentForm.period_of_validity') }}</h3>
-                                                <div class="summary_cont_wrap">
-                                                    <div class="sum_inp_cont">
-                                                        <div class="sum_inp_left">
-                                                            {{ __('paymentForm.package_name') }}
-                                                        </div>
-                                                        <div class="sum_inp_right">
-                                                            {{ $data['membership_details']->data->subscriptionPlan }}
-                                                        </div>
-                                                    </div>
-                                                    <div class="sum_inp_cont"> --}}
-
-                                                        {{-- @dd($data['subscription_plan']); --}}
-                                                        {{-- @if (isset($data['subscription_plan']) && isset($data['subscription_plan']->data))
-                                                            @foreach ($data['subscription_plan']->data->options as $val)
-                                                                {{ $val->name }}
-                                                            @endforeach
-                                                        @endif
-
-
-                                                        <div class="sum_inp_left">
-                                                            {{ __('paymentForm.duration') }}
-                                                        </div>
-                                                        <div class="sum_inp_right">
-                                                            {{ $data['membership_details']->data->duration_unit }}
-                                                        </div>
-
-
-                                                    </div>
-                                                </div> --}}
-
-                                                {{-- <div class="summary_content">
-                                                    <h3>{{ __('paymentForm.1st_pay') }}</h3>
-                                                    <div class="summary_cont_wrap">
-                                                        <div class="sum_inp_cont">
-                                                            <div class="sum_inp_left">
-                                                                {{ __('paymentForm.fee') }}
-                                                            </div>
-                                                            <div class="sum_inp_right">
-                                                                39.99$
-                                                            </div>
-                                                        </div>
-                                                        <div class="sum_inp_cont">
-                                                            <div class="sum_inp_left">
-                                                                {{ __('paymentForm.subtotal') }}
-                                                            </div>
-                                                            <div class="sum_inp_right">
-                                                                {{ $data['membership_details']->data->initial_subtotal }}
-                                                            </div>
-                                                        </div> --}}
                                                 @php
                                                     $total = $data['membership_details']->data->initial_subtotal;
                                                 @endphp
@@ -223,39 +172,13 @@
                                                     @php
                                                         $total += $item->amount;
                                                     @endphp
-                                                    {{-- <div class="sum_inp_cont">
-                                                                <div class="sum_inp_left">
-                                                                    {{ $item->legal_name }}
-                                                                </div>
-                                                                <div class="sum_inp_right">
-                                                                    {{ $item->amount }}$
-                                                                </div>
-                                                            </div> --}}
                                                 @endforeach
                                                 @foreach ($data['membership_details']->data->recurant_taxes as $item2)
                                                     @php
                                                         $total += $item2->amount;
                                                     @endphp
-                                                    {{-- <div class="sum_inp_cont">
-                                                                <div class="sum_inp_left">
-                                                                    {{ $item2->legal_name }}
-                                                                </div>
-                                                                <div class="sum_inp_right">
-                                                                    {{ $item2->amount }}$
-                                                                </div>
-                                                            </div> --}}
                                                 @endforeach
-
-                                                {{-- <div class="sum_inp_cont">
-                                                            <div class="sum_inp_left">
-                                                                {{ __('paymentForm.total') }}
-                                                            </div>
-                                                            <div class="sum_inp_right">
-                                                                {{ $total }}$
-                                                            </div>
-                                                        </div> --}}
                                             </div>
-                                            {{-- </div> --}}
 
                                             <div class="summary_content">
 
@@ -273,34 +196,19 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-
-                                                                {{-- <tr class="activeitem">
+                                                                @foreach ($data['membership_details']->data->payment_details as $payment_detail)
+                                                                <tr class="activeitem">
                                                                     <td data-label="TYPE">
                                                                         <div class="pay_view_opt">
-                                                                            {{ __('paymentForm.payments') }}
+                                                                            {{ $payment_detail->type }}
                                                                         </div>
                                                                     </td>
-                                                                    <td data-label="PAYMENT DATE"> {{ date('Y-m-d', strtotime($data['membership_details']->data->begin)) }}</td>
-                                                                    <td data-label="PAYMENT"> {{ $data['membership_details']->data->initial_subtotal }}$</td>
+                                                                    <td data-label="PAYMENT DATE">{{ date('Y-m-d', strtotime($payment_detail->date)) }}</td>
+                                                                    <td data-label="PAYMENT">{{ $payment_detail->amount }}$</td>
                                                                     <td data-label="STATUS">
-                                                                        {{ __('paymentForm.unpaid') }}</td>
-                                                                </tr> --}}
-                                                              @foreach ($data['membership_details']->data->payment_details as $payment_detail)
-                                                              <tr class="activeitem">
-                                                                <td data-label="TYPE">
-                                                                    <div class="pay_view_opt">
-                                                                        {{ $payment_detail->type }}
-                                                                    </div>
-                                                                </td>
-                                                                <td data-label="PAYMENT DATE">{{ date('Y-m-d', strtotime($payment_detail->date)) }}</td>
-                                                                <td data-label="PAYMENT">{{ $payment_detail->amount }}$</td>
-                                                                <td data-label="STATUS">
-                                                                    {{ $payment_detail->isPaid ? trans('paymentForm.paid') : trans('paymentForm.unpaid')}}</td>
-                                                            </tr>
-                                                              @endforeach
-                                                                
-                                                                
-
+                                                                        {{ $payment_detail->isPaid ? trans('paymentForm.paid') : trans('paymentForm.unpaid')}}</td>
+                                                                </tr>
+                                                                @endforeach
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -343,8 +251,6 @@
                                                         <div class="form-group">
                                                             <label>{{ __('paymentForm.Direct_Debit') }}</label>
                                                             <div class="card_add">
-                                                                {{-- <input name="payCard" value="payCard"
-                                                                    type="hidden" /> --}}
                                                                 <img src="images/voided.png" alt="" />
                                                             </div>
                                                         </div>
@@ -359,8 +265,6 @@
                                                                 <input type="text" name="transit_number" oninput="onlynumshow(event)"
                                                                     class="form-control" placeholder="" maxlength="5"
                                                                     value="{{ old('transit_number') }}">
-                                                                {{-- <i class="fas fa-sort-up" id="up"></i>
-                                                                <i class="fas fa-sort-down" id="down"></i> --}}
 
                                                             </div>
                                                         </div>
@@ -519,7 +423,6 @@
                                                 <div class="inp_row remember_opt">
                                                     <div class="form-group">
                                                         <div class="checkbox">
-                                                            <!-- <label><input type="checkbox"> Remember me</label> -->
 
                                                             <input class="styled-checkbox" type="checkbox"
                                                                 name="check1" id="checkbox1" value="value1"
@@ -533,7 +436,6 @@
 
                                                     <div class="form-group">
                                                         <div class="checkbox">
-                                                            <!-- <label><input type="checkbox"> Remember me</label> -->
 
                                                             <input class="styled-checkbox" type="checkbox"
                                                                 name="check2" id="checkbox2" value="value2"
@@ -626,10 +528,6 @@
                     alert(trans('paymentForm.Branchcode_mustbe_6_characters'));
                     return false;
                 }
-                // if (account_number.length != 12) {
-                //     alert("Account number must be at least 12 characters long.");
-                //     return false;
-                // }
                 if (owner_names == "") {
                     alert(trans('paymentForm.Account_name_blank'));
                     return false;
@@ -647,18 +545,10 @@
                     alert(trans('paymentForm.Name_blank'));
                     return false;
                 }
-                // if (pan.length >=14 && pan.length <=16 ) {
-                //     alert("Pan must be between 14 to 16 characters long.");
-                //     return false;
-                // }
                 if (four_digits_number.length != 3) {
                     alert(trans('paymentForm.Card_numbe_least_4_characters'));
                     return false;
                 }
-                // if (expiry_month.value <=12) {
-                //     alert("Expiry month must not be greater than 2 characters.");
-                //     return false;
-                // }
                 if (expiry_year.length != 4) {
                     alert(trans('paymentForm.Expiry_year'));
                     return false;

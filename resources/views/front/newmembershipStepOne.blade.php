@@ -12,7 +12,6 @@
 				@foreach ($data['all_plan']->data as $key => $item)
 				@php
 				$values = $data['all_plan_details'][$key];
-				// @dd($data['all_plan_details'])
 				@endphp
 					<div class="prod_item" style="--hover_bg: {{$theme_color_hover->value}}">
 						<div class="action_opt action_opt_title" style="--sushover-bg:{{ $secondary_theme_color_hover->value }}; background-color: {{$theme->value}}">
@@ -22,7 +21,6 @@
 								<div class="selectcont ">
 									
 									<div class="arrowdown2">
-										{{-- <i class="far fa-chevron-down"></i> --}}
 									</div>
 									<select class="select_opt" title=" {{ $values->name }}">
 										<option value="{{$values->id}}"  >
@@ -45,8 +43,6 @@
 											</div>
 											<select class="select_opt optionclass" style="--secondary_theme: {{$theme->value}}">
 												@foreach ($values->priceBydurations as $val)
-													{{-- ${{ $val->price_recurant }}<span>/
-														{{ $val->duration_unit_display }}</span> --}}
 														<option>{{ $val->price }}$<span>/
 															{{ $val->typeDuration }}</span> For {{ $val->frequency }} {{ $val->typeDuration }}
 														</option>
@@ -58,8 +54,6 @@
 									@endif
 								@endif
 							</div>
-							{{-- <p>{{ __('global.price') }}</p> --}}
-							{{-- <p>{{ $lang_id == 2 ? $item->descr_english : $item->descr_french }}</p> --}}
 						</div>
 						<div class="individual_opt">
 							<div class="individual_head" style="background-color: {{$theme->value}}">
@@ -77,9 +71,6 @@
 									@endif
 								@endif
 								</ul>
-								{{-- <ul>
-									<li>{{ $lang_id == 2 ? $item->descr_english : $item->descr_french }}</li>
-								</ul> --}}
 								<div class="subscribe_btn" >
 									
 									<a href="{{ route('newMembershipSteptwo', [$values->id]) }}"

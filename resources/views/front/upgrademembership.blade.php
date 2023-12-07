@@ -8,8 +8,6 @@
 
                 <div class="content_block memberships">
                     <h2>{{ __('upgrademembership.Memberships') }}</h2>
-                    {{-- <form method="POST" name="myform" action="{{ route("upgragemembershipsubmit") }}"> --}}
-                    {{-- @csrf --}}
                     @if($data['membership']->data == null)
                     <div class="memberships_content" >
                       <center>  {{ __('upgrademembership.no_data_available') }}</center>
@@ -25,8 +23,6 @@
                                         <input type="hidden" name="date_begin" value="{{ $itemmain->begin }}">
                                         <input type="hidden" name="membershipid"
                                             value="{{ $itemmain->membershipsId }}">
-                                        {{-- <input type="hidden" name="duration_id" value="{{ Session::get('duration_id') }}"> --}}
-
 
                                         <input type="radio" id="testnum{{ $loop->iteration }}" name="radio-group">
                                         
@@ -62,10 +58,8 @@
                                         <div class="memberships_method_date">
                                             {{ __('upgrademembership.End_date') }}:
                                             {{ date('Y-m-d', strtotime($itemmain->end)) }}</div>
-                                        {{-- <div class="ren_opt"><button
-                                                    href="{{route("upgragemembershipsubmit")}}">{{ __('upgrademembership.Upgrade') }}</button> </div> --}}
+                                        </div>
                                     </div>
-                                </div>
 
                                 <div class="more_content_block ">
                                     <div class="content_block more_cont_view">
@@ -76,14 +70,7 @@
 
                                             @endphp
                                             @if (isset($subscription_plan) && isset($subscription_plan->data) && count($subscription_plan->data->options))
-                                                {{-- @php
-                                                $total = 0;
-                                                @endphp --}}
                                                 @foreach ($subscription_plan->data->options as $item)
-                                                    {{-- @dd($subscription_plan); --}}
-                                                    {{-- @php
-													$total += $item->price;
-												@endphp --}}
                                                     <div class="optionitem_add">
                                                         <h3 style="background-color: {{ $theme->value }}">
                                                             {{ __('upgrademembership.Option') }}
@@ -98,7 +85,6 @@
                                                                 <div class="price_opt_add">${{ $item->price }}
                                                                 </div>
                                                                 <div class="optionitem_prod">
-                                                                    {{-- <span>{{ __('newMembership.training') }}</span> --}}
                                                                     <span>{{ __('upgrademembership.Quantity') }}:
                                                                         {{ $item->quantity }} X
                                                                         {{ $item->deliverable_quantity }}</span>
@@ -131,36 +117,15 @@
                                             @endif
                                         </div>
                                         <div class="payment_block">
-                                            {{-- <h4>{{ __('suscription.nop') }} *</h4> --}}
                                             <div class="payment_contentblock">
 
                                                 @if (isset($subscription_plan) &&
                                                         isset($subscription_plan->data) &&
                                                         count($subscription_plan->data->prices_per_durations))
-                                                    {{-- @foreach ($subscription_plan->data->prices_per_durations as $item1)
-                                                            @if (count($item1->installments))
-                                                                @foreach ($item1->installments as $val)
-                                                                    <div class="radio">
-                                                                        <input type="radio"
-                                                                            id="{{ $itemmain->membershipsId }}{{ $val->id }}"
-                                                                            name="installments"
-                                                                            value="{{ $item1->duration_id }}|{{ $val->id }}"
-                                                                            {{ $loop->index == 0 ? 'required' : '' }}>
-                                                                        <label
-                                                                            for="{{ $itemmain->membershipsId }}{{ $val->id }}">{{ $val->number_of_payments }}
-                                                                            {{ __('suscription.payments') }}</label>
-                                                                            
-                                                                    </div>
-                                                                @endforeach
-                                                             
-                                                            @endif
-                                                          
-                                                        @endforeach --}}
                                                 @endif
                                             </div>
 
 
-                                            {{-- <input type="hidden" name="processed_amount" value="{{ $total }}"> --}}
                                         </div>
                                         <div class="frombtn_wrap">
                                             <div class="def_btnopt2 frombtn frombtn2">
@@ -182,7 +147,6 @@
                         @endforeach
                     </div>
                     @endif
-                    {{-- </form> --}}
                 </div>
 
             </div>
@@ -199,7 +163,6 @@
                 $(this).on('change','.pid', function(){
                     var pay_id = $(this).val();
                     var data_arr = pay_id.split("|");
-                    // var url = $('#submit_'+data_arr[0]).attr('href');
                     var url = "{{route('dashboard')}}";
                     var ret = url.replace('dashboard','');
                     if(data_arr[1]=="card"){
@@ -208,7 +171,6 @@
                     else{
                         $('#submit_'+data_arr[0]).attr('href',ret+'upgragemembershipsubmit/account/'+data_arr[0]+'/'+data_arr[2]);
                     }
-                    // alert(data_arr[2]);
                 });
             });
 

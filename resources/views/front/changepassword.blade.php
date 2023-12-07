@@ -3,24 +3,12 @@
 @section('style', ';--sub_btn-bg: '.$button->value. ';--sub_btnhover-bg:' .$primary_button_color_hover->value)
 
 @include('header')
-{{-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"> --}}
 <section class="maincontent_wrap inner_pageouter">
 	<div class="inner_page_wrap">
 		@include('layouts.sidebar')
 		<div class="inner_page_des">
 			<div class="content_block accountinfo">
 				<div class="blocktitle">
-
-					{{-- @if(Session::has('errors'))				
-						<div class="alert alert-danger">
-							@foreach(Session::get('errors') as $error) 
-							<span>
-							
-								{{$error}}
-							</span>
-							@endforeach
-						</div>
-					@endif --}}
 
 					<h2 class="addpadding">{{ __('changepassword.Change_Password') }}</h2>
 					<div class="fromdes_view ">
@@ -83,5 +71,4 @@
 	</div>
 </section>
 @include('footer')
-{{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script> --}}
 </x-app-layout>

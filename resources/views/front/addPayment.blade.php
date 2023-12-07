@@ -295,10 +295,6 @@
                     alert(trans('paymentForm.Branchcode_mustbe_6_characters'));
                     return false;
                 }
-                // if (account_number.length < 13) {
-                //     alert(trans('paymentForm.Account_number_mustbe_12_characters'));
-                //     return false;
-                // }
                 if (owner_names == "") {
                     alert(trans('paymentForm.Account_name_blank'));
                     return false;
