@@ -3,7 +3,6 @@
     if (session()->has('locale')) {
         $locale = session()->get('locale');
     }
-
     if (Session::has('clientToken')) {
         if (Session::has('language_id')) {
             $language_id = Session::get('language_id');
@@ -37,7 +36,6 @@
                                     alt=""></span>
                             <span class="close_info"><i class="fa fa-times"></i></span>
                         </div>
-
                         <nav class="navbar navbar-expand-lg ">
                             <button class="navbar-toggler menu-btn" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -45,7 +43,6 @@
                                 <span class="navbar-toggler-icon"></span>
                             </button>
                             <div class="collapse navbar-collapse menucont" id="navbarSupportedContent">
-
                                 <div class="mobileheader">
                                     <div class="mob_logo_add logoinfo">
                                         <a href="javascript:void(0)"><img src="{{ asset('public/images/logo.svg') }}"

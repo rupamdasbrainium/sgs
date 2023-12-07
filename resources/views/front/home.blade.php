@@ -4,7 +4,6 @@
     @endphp
     @section('title', $data['title'] . ' |')
     @include('header')
-
     <div class="banner_outer">
         <div class="banner_slider">
             <div class="banner_panel">
@@ -21,12 +20,12 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="banner_info">
-                                    @if($lang_id == 2)
-                                    <h1>{{ $title->value }}</h1>
-                                    <h2>{{ $subtitle->value }}</h2>
+                                    @if ($lang_id == 2)
+                                        <h1>{{ $title->value }}</h1>
+                                        <h2>{{ $subtitle->value }}</h2>
                                     @else
-                                    <h1>{{ $title_fr->value }}</h1>
-                                    <h2>{{ $subtitle_fr->value }}</h2>
+                                        <h1>{{ $title_fr->value }}</h1>
+                                        <h2>{{ $subtitle_fr->value }}</h2>
                                     @endif
                                 </div>
                             </div>
@@ -47,33 +46,29 @@
                             <div class="round_opt_btn3">
                                 <img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
                             </div>
-
                             <div class="heading_info ">
-                                @if($lang_id == 2)
-                                <h3>{{ $home_title->value }}</h3>
+                                @if ($lang_id == 2)
+                                    <h3>{{ $home_title->value }}</h3>
                                 @else
-                                <h3>{{ $home_title_fr->value }}</h3>
+                                    <h3>{{ $home_title_fr->value }}</h3>
                                 @endif
                             </div>
-                            @if($lang_id == 2)
-                            <h2>{{ $home_magicplan->value }}</h2>
-                            <p>{{ $home_body->value }}</p>
+                            @if ($lang_id == 2)
+                                <h2>{{ $home_magicplan->value }}</h2>
+                                <p>{{ $home_body->value }}</p>
                             @else
-                            <h2>{{ $home_magicplan_fr->value }}</h2>
-                            <p>{{ $home_body_fr->value }}</p>
+                                <h2>{{ $home_magicplan_fr->value }}</h2>
+                                <p>{{ $home_body_fr->value }}</p>
                             @endif
                         </div>
-
                     </div>
                 </div>
             </div>
-            <div class="prod_viewsection_outer" >
+            <div class="prod_viewsection_outer">
                 <div class="round_opt1">
                     <img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
                 </div>
-
-                <div class="prod_viewsection" style="--hover_bg: {{$theme_color_hover->value}};"  >
-
+                <div class="prod_viewsection" style="--hover_bg: {{ $theme_color_hover->value }};">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
@@ -81,7 +76,6 @@
                                     <div class="selectcont_wrap">
                                         <div class="selectcont">
                                             <div class="arrowdown2">
-
                                                 <i class="fal fa-chevron-down"></i>
                                             </div>
                                             <input type="hidden" id="homeurl" value="{{ route('homepage') }}">
@@ -115,14 +109,11 @@
                                             <div class="arrowdown2">
                                                 <i class="fal fa-chevron-down"></i>
                                             </div>
-                                          
                                             <select class="select_opt" id="franchises_type" name="franchise_plan">
-
                                                 @foreach ($data['franchisesPlanType']->data as $value)
                                                     <option value="{{ $value->id }}">{{ $value->name }}
                                                     </option>
                                                 @endforeach
-
                                             </select>
                                         </div>
                                     </div>
@@ -130,26 +121,19 @@
                                         <button type="button" style="background-color: {{ $button->value }}"
                                             class="btn2" id="home_continue">{{ __('global.continue') }}</button>
                                     </div>
-
-
                                 </div>
                                 <div class="prod_item_wrap owl-carousel owl-theme" id="home_prod_item">
                                     @foreach ($data['all_plan_data'] as $key => $values)
                                         <div class="prod_item">
                                             <div class="action_opt action_opt_title"
                                                 style="background-color: {{ $theme->value }}">
-
                                                 <div class="action_text">
-
                                                     <div class="selectcont ">
-
                                                         <div class="arrowdown2">
                                                         </div>
-                                                        <select class="select_opt" title=" {{ $values->name }}"  >
+                                                        <select class="select_opt" title=" {{ $values->name }}">
                                                             <option value="{{ $values->id }}">
-
                                                                 {{ substr($values->name, 0, 14) }}...
-
                                                             </option>
                                                         </select>
                                                     </div>
@@ -157,18 +141,18 @@
                                             </div>
                                             <div class="action_opt adj_height">
                                                 <div class="price_text">
-
                                                     @if (isset($values))
                                                         @if (count($values->priceBydurations))
                                                             <div class="selectcont ">
                                                                 <div class="arrowdown2">
                                                                     <i class="fal fa-chevron-down"></i>
                                                                 </div>
-                                                                <select class="select_opt"  style="--secondary_theme: {{$theme->value}}">
-
+                                                                <select class="select_opt"
+                                                                    style="--secondary_theme: {{ $theme->value }}">
                                                                     @foreach ($values->priceBydurations as $val)
                                                                         <option>${{ $val->price }}<span>/
-                                                                                {{ $val->typeDuration }}</span> {{ __('global.For') }}
+                                                                                {{ $val->typeDuration }}</span>
+                                                                            {{ __('global.For') }}
                                                                             {{ $val->frequency }}
                                                                             {{ $val->typeDuration }}
                                                                         </option>
@@ -209,13 +193,11 @@
                                         </div>
                                     @endforeach
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="subscribe_content">
                 <div class="outer_shape1">
                 </div>
@@ -225,7 +207,6 @@
                         <p>{{ __('global.sub_text_info_p') }}.
                         </p>
                         <div class="sub_from">
-
                             <div class="form-group">
                                 <input type="email" class="form-control" id="starting_point"
                                     placeholder="{{ __('global.find_gym_placeholder') }}">
@@ -236,13 +217,11 @@
                         </div>
                     </div>
                     <div class="subscribe_map">
-                        <!-- <img src="{{ asset('public/images/map.png') }}" alt=""> -->
                         <div class="mapopt" id="map" style="height: 400px;">
                         </div>
                         <div class="round_opt_btn">
                             <img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
                         </div>
-
                         <div class="round_opt_btn2">
                             <img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
                         </div>
@@ -250,18 +229,15 @@
                 </div>
             </div>
     </section>
-
     <script>
         document.getElementById("home_continue").addEventListener("click", function() {
             console.log("first")
-
             var plan_value = $("select[name= 'franchise_plan']").val();
             var url = '{{ route('homepage') }}'
             window.location.href = url + "/new-membership/" + plan_value;
         })
     </script>
     @include('footer')
-
     @push('scripts')
         <script
             src="https://maps.googleapis.com/maps/api/js?key={{ config('map.map_api_key') }}&libraries=places&callback=initMap"
@@ -274,7 +250,6 @@
                 var map
                 var directionsService = new google.maps.DirectionsService();
                 var directionsRenderer = new google.maps.DirectionsRenderer();
-
                 geocoder.geocode({
                     'address': address
                 }, function(results, status) {
@@ -283,7 +258,6 @@
                             center: results[0].geometry.location,
                             zoom: 15
                         });
-
                         var marker = new google.maps.Marker({
                             map: map,
                             position: results[0].geometry.location,
@@ -294,7 +268,6 @@
                         alert('Geocode was not successful for the following reason: ' + status);
                     }
                 });
-
                 document.getElementById("search_btn").addEventListener("click", () => {
                     starting_point = $("#start_point").val();
                     if (starting_point == '') {
@@ -304,7 +277,6 @@
                         var destinationAddress = '{{ $data['franchise_address'] }}'; // Destination address
                         // Remove existing markers and directions
                         directionsRenderer.setMap(null);
-
                         // Request and display directions from the starting point to the fixed address
                         directionsService.route({
                             origin: originAddress,
@@ -329,7 +301,6 @@
         </script>
     @endpush
 </x-guest-layout>
-
 @push('scripts')
     <script>
         $(document).ready(function() {
@@ -339,7 +310,6 @@
                 url = url + '/'.$this.val()
                 window.location.href = url;
             });
-
             $('#franchises_name').on('change', function() {
                 console.log($('#franchises_name').val());
                 var url = '{{ route('homepage') }}';
@@ -355,7 +325,6 @@
                 next = $(this).siblings(':first');
             }
             next.children(':first-child').clone().attr("aria-hidden", "true").appendTo($(this));
-
             if (next.next().length > 0) {
                 next.next().children(':first-child').clone().attr("aria-hidden", "true").appendTo($(this));
             } else {

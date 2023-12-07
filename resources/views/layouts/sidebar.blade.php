@@ -38,7 +38,6 @@
                     <span><img src="{{ asset('public/images/icon5.svg') }}" alt="" ></span>
                     <em>{{ __('sidebar.New_Membership') }}</em>
                     <strong class="arroright_opt"><i class="fas fa-long-arrow-alt-right"></i></strong>
-                    
                 </a>
             </li>
             <li>

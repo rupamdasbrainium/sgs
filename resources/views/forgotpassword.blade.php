@@ -30,13 +30,11 @@
 						<div class="round_opt_btn3">
 							<img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
 						</div>
-						
 						<div class="heading_info sublogo ">
 							<img  src="{{ asset('public/images/logo.svg') }}" alt="">
 						</div>
 						<h2>{{ __('forgetpassword.Forgot_Your_Password') }}</h2>
 						<p>{{ __('forgetpassword.Fear_not_msg') }}</p>
-						{{-- <p>{{ __('forgetpassword.Fear_not') }}<a href="#">{{ __('forgetpassword.account_recovery') }}</a> </p> --}}
 					</div>
 					<div class="fromdes_info">
 						<form method="POST" action="{{ route('forgotPasswordsendmail') }}">
@@ -75,7 +73,6 @@
 													</div>
 												</div>
 											</div>
-											
 											<div class="def_btnopt2 frombtn">
 												<button type="submit" class="btn2" >{{ __('forgetpassword.Reset_Password') }}</button>
 											</div>
@@ -88,7 +85,6 @@
 							</div>
 						</form>
 					</div>
-					
 				</div>
 			</div>
 		</div>

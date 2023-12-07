@@ -32,39 +32,31 @@
                             <div class="welcomesec_info inner_heading">
                                 <div class="round_opt_btn3">
                                     <img src="images/roundopt2.jpg" alt="">
-                                </div>			
+                                </div>
                                 @if ($lang_id == 2)
-                                    <h2>{{$privacy->title_en}}</h2>
+                                    <h2>{{ $privacy->title_en }}</h2>
                                 @else
-                                    <h2>{{$privacy->title_fr}}</h2>
-                                @endif			
-                                
-                                <p>{{ __('footer.Effective_Date') }}: {{date('Y-m-d',strtotime($privacy->created_at))}}</p>
-                            </div>   
-                                @if ($lang_id == 2)
-                                    {!!$privacy->body_en!!}
-                                @else
-                                    {!!$privacy->body_fr!!}
+                                    <h2>{{ $privacy->title_fr }}</h2>
                                 @endif
-                            
+                                <p>{{ __('footer.Effective_Date') }}:
+                                    {{ date('Y-m-d', strtotime($privacy->created_at)) }}</p>
+                            </div>
+                            @if ($lang_id == 2)
+                                {!! $privacy->body_en !!}
+                            @else
+                                {!! $privacy->body_fr !!}
+                            @endif
                         </div>
-                    
-                        
                     </div>
                 </div>
             </div>
-            
-    
         </div>
-    
         <div class="round_opt_btn rount_opt2">
             <img src="images/roundopt2.jpg" alt="">
         </div>
         <div class="round_opt_btn rount_opt3">
             <img src="images/roundopt2.jpg" alt="">
         </div>
-    
     </section>
     @include('footer')
 </x-guest-layout>
-

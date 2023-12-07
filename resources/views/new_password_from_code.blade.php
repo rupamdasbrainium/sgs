@@ -30,7 +30,6 @@
                             <div class="round_opt_btn3">
                                 <img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
                             </div>
-                            
                             <div class="heading_info sublogo ">
                                 <img  src="{{ asset('public/images/logo.svg') }}" alt="">
                             </div>
@@ -76,7 +75,6 @@
                                 </div>
                             </form>
                         </div>
-                        
                     </div>
                 </div>
             </div>

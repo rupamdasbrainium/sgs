@@ -1,16 +1,13 @@
 <x-app-layout>
     @section('title', $data['title'] . ' |')
     @section('style', '--sub_btnhover-bg: '.$primary_button_color_hover->value .';--sub_btn-bg: '.$button->value. ';--theme-bg:' .$theme->value.';--secondary_theme:' .$theme->value)
-
     @include('header')
     <section class="maincontent_wrap inner_pageouter">
         <div class="inner_page_wrap">
             @include('layouts.sidebar')
             <div class="inner_page_des">
-
                 <h2>{{ $data['title'] }}</h2>
                 <div class="prod_item_wrap" id="home_prod_item">
-
                     <div class="from_cont_wrap" style="flex: 0 100%;">
                         <form
                             action="{{ route('newMembershipSteptwosave', ['id' => $data['subscription_plan']->data->id]) }}"
@@ -18,10 +15,7 @@
                             @csrf
                             <div class="fromdes_info2">
                                 <div class="content_block packge_des newsub_opt">
-
                                     <div class="packge_wrap_opt prod_view">
-
-
                                         <div class="optionwrap_block">
                                             @if (isset($data['subscription_plan']) &&
                                                     isset($data['subscription_plan']->data) &&
@@ -62,17 +56,14 @@
                                                                                         {{ __('newMembership.onetime') }})</em>
                                                                                 @endif
                                                                             </label>
-
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-
                                                     </div>
                                                 @endforeach
                                             @endif
-
                                         </div>
                                         <div class="payment_block">
                                             <h4>{{ __('suscription.nop') }} *</h4>
@@ -104,13 +95,10 @@
                                                     class="btn2">{{ __('newMembership.next') }}</button>
                                             </div>
                                         </div>
-
-
                                     </div>
                                 </div>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>

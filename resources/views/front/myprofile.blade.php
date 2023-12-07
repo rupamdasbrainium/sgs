@@ -1,7 +1,6 @@
 <x-app-layout>
     @section('title', $data['title'] . ' |')
-    @section('style', ';--sub_btn-bg: '.$button->value. ';--sub_btnhover-bg:' .$primary_button_color_hover->value)
-
+    @section('style', ';--sub_btn-bg: ' . $button->value . ';--sub_btnhover-bg:' . $primary_button_color_hover->value)
     @include('header')
     <section class="maincontent_wrap inner_pageouter">
         <div class="inner_page_wrap">
@@ -20,7 +19,6 @@
                             <span class="acc_des_status">{{ __('myProfile.Status') }}: {{ $client->status }} </span><br>
                             <span class="acc_des_status">{{ __('myProfile.Message') }}:
                                 {{ $client->communication_ToClient }} </span><br>
-
                         </div>
                         <div class="account_leng">
                             <div class="account_leng_title">{{ __('myProfile.communication_language') }}</div>
@@ -38,7 +36,6 @@
                                                         {{ $client->language_id == $item->id ? 'selected' : '' }}>
                                                         {{ $item->display }}</option>
                                                 @endforeach
-
                                             </select>
                                         </div>
                                     </div>
@@ -51,12 +48,9 @@
                             </form>
                         </div>
                     </div>
-
                 </div>
-
                 <div class="content_block memberships">
                     <h2>{{ __('myProfile.Memberships') }}</h2>
-
                     @if ($membership->data == null)
                         <div class="memberships_content">
                             {{ __('myProfile.No_Membership') }}
@@ -91,8 +85,6 @@
                                                                 {{ __('myProfile.Bank') }}</option>
                                                         @endforeach
                                                     @endif
-
-
                                                 </select>
                                             </div>
                                         </div>
@@ -101,53 +93,51 @@
                                         <div class="memberships_method_date">{{ __('myProfile.End_date') }}:
                                             {{ date('Y/m/d', strtotime($item->end)) }} </div>
                                         <div class="ren_opt">
-                                            @if($item->isRenewable)                                            
-                                               <a href="{{ route('renewMembership', $item->membershipsId) }}">{{ __('myProfile.Renew') }}</a>
-                            @endif
+                                            @if ($item->isRenewable)
+                                                <a
+                                                    href="{{ route('renewMembership', $item->membershipsId) }}">{{ __('myProfile.Renew') }}</a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
+                    @endif
+                </div>
+                <div class="content_block paymentinfo">
+                    <h2>{{ __('myProfile.Payment_Details') }}</h2>
+                    <div class="table_description_view">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>{{ __('myProfile.TYPE') }}</th>
+                                    <th>{{ __('myProfile.PAYMENT_DATE') }}</th>
+                                    <th>{{ __('myProfile.PAYMENT') }}</th>
+                                    <th>{{ __('myProfile.STATUS') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if ($payments == '')
+                                    <tr>
+                                        <td colspan="5"> {{ __('myProfile.No_payments_available') }}</td>
+                                    </tr>
+                                @else
+                                    @foreach ($payments as $pt)
+                                        <tr>
+                                            <td data-label="TYPE">{{ __('myProfile.Payments') }}</td>
+                                            <td data-label="PAYMENT DATE">
+                                                {{ date('Y-m-d', strtotime($pt->paymentDate)) }}</td>
+                                            <td data-label="PAYMENT">{{ $pt->amount }}$</td>
+                                            <td data-label="STATUS">
+                                                {{ $pt->is_paid ? __('myProfile.Paid') : __('myProfile.Unpaid') }}</td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            @endforeach
-
-        </div>
-        @endif
-        </div>
-        <div class="content_block paymentinfo">
-            <h2>{{ __('myProfile.Payment_Details') }}</h2>
-            <div class="table_description_view">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>{{ __('myProfile.TYPE') }}</th>
-                            <th>{{ __('myProfile.PAYMENT_DATE') }}</th>
-                            <th>{{ __('myProfile.PAYMENT') }}</th>
-                            <th>{{ __('myProfile.STATUS') }}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        @if ($payments == '')
-                            <tr>
-                                <td colspan="5"> {{ __('myProfile.No_payments_available') }}</td>
-                            </tr>
-                        @else
-                            @foreach ($payments as $pt)
-                                <tr>
-                                    <td data-label="TYPE">{{ __('myProfile.Payments') }}</td>
-                                    <td data-label="PAYMENT DATE">{{ date('Y-m-d', strtotime($pt->paymentDate)) }}</td>
-                                    <td data-label="PAYMENT">{{ $pt->amount }}$</td>
-                                    <td data-label="STATUS">
-                                        {{ $pt->is_paid ? __('myProfile.Paid') : __('myProfile.Unpaid') }}</td>
-                                </tr>
-                            @endforeach
-                        @endif
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        </div>
         </div>
     </section>
     @include('footer')
