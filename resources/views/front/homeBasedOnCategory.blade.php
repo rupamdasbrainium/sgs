@@ -57,24 +57,9 @@
                     </div>
                     @if(isset($video))
                     <div class="videos_css">
-                        {{-- <div class="round_opt1">
-                            <img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
-                        </div> --}}
-
-                        {{-- <div class="video_btn">
-                            <div class="play_btn">
-                                <a href="{{$video->value}}">Video</a>
-                            </div>
-                        </div> --}}
-                        {{-- <div class="video_btn">
-                            <div class="play_btn">
-                                <i class="fas fa-play"></i>
-                            </div>
-                        </div> --}}
                         <div class="categories_addblock">
                             <div class="add_video activevideo">
                                 <iframe width="412.28" height="300.30" src="{{$video->value}}" >
-                                    {{-- <source  type="video/mp4"> --}}
                                 </iframe>
                             </div>
                           
@@ -114,40 +99,7 @@
                             <h2>{{ __('global.List_of_Categories') }}</h2>
                         </div>
                         <div class="categories_des">
-                            {{-- <div class="cat_opt_item">
-                                <div class="cat_opt_img">
-                                    <a href="#"><img src="{{ asset('public/images/cat_icon1.svg') }}"
-                                            alt=""> </a>
-                                </div>
-                                <h3><a href="#">{{ __('global.Gym_Access') }}</a></h3>
-                                <div class="cat_opt_text">
-                                    <p>{{ __('global.Gym_Access_refers') }} <span class="more_content_text">+</span></p>
-
-                                </div>
-                            </div>
-                            <div class="cat_opt_item">
-                                <div class="cat_opt_img">
-                                    <a href="#"><img src="{{ asset('public/images/cat_icon2.svg') }}"
-                                            alt=""> </a>
-                                </div>
-                                <h3><a href="#">{{ __('global.Private_Training') }}</a></h3>
-                                <div class="cat_opt_text">
-                                    <p>{{ __('global.Private_Training_con') }}
-                                        <span class="more_content_text">+</span></p>
-
-                                </div>
-                            </div>
-                            <div class="cat_opt_item">
-                                <div class="cat_opt_img">
-                                    <a href="#"><img src="{{ asset('public/images/cat_icon3.svg') }}"
-                                            alt=""> </a>
-                                </div>
-                                <h3><a href="#">{{ __('global.Group_Class') }}</a></h3>
-                                <div class="cat_opt_text">
-                                    <p>{{ __('global.Group_Class_under') }}<span class="more_content_text">+</span></p>
-
-                                </div>
-                            </div> --}}
+                            
                             @foreach ($data['category'] as $item)
                                 <div class="cat_opt_item">
                                     <a href="{{ route('categoryplan', ['category_id'=>$item->id,'name'=>$item->title]) }}">
@@ -160,14 +112,7 @@
                                         
                                         </div> 
                                     </a> 
-                                    {{-- <div class="cat_opt_img">
-                                        @if ($item->logo == null)
-                                        <a href="{{ route('categoryplan', ['category_id'=>$item->id,'name'=>$item->title]) }}"> <img src="{{ asset('public/images/cat_icon3.svg') }}" alt=""> </a>
-                                        @else
-                                            <a href="{{ route('categoryplan', ['category_id'=>$item->id,'name'=>$item->title]) }}"> <img src="{{ $item->logo }}" alt=""> </a>
-                                        @endif
-                                        
-                                    </div> --}}
+                                    
                                     <h3><a href="{{route('categoryplan', ['category_id'=>$item->id,'name'=>$item->title])}}">{{$item->title}}</a></h3>
                                     <div class="cat_opt_text">
                                         <p>{{$item->description}}<span class="more_content_text">+</span></p>
@@ -186,12 +131,4 @@
 
 
     @include('footer')
-    {{-- <!-- <script src="js/bootstrap.min.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- <script src="js/bootstrap.bundle.min.js"></script> -->
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="js/select_optiones.js"></script>
-
-    <script src="js/custom.js"></script> --}}
 </x-guest-layout>
