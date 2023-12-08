@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use PhpParser\Node\Stmt\TryCatch;
 use Illuminate\Support\Facades\Session;
-use App\Models\Configuration;
+use App\Models\{
+    Configuration,Content
+    };
 
 class AccountController extends Controller
 {
@@ -1052,7 +1054,7 @@ class AccountController extends Controller
         $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
-        $referral_amount = Configuration::where('name','referral')->where('franchise_id',3)->first();
+        $referral_amount = Content::where('slug','referral')->where('franchise_id',3)->first();
         $client = APICall("Clients", 'get', "{}","client_app");
         if (!$client) {
             $message = array(

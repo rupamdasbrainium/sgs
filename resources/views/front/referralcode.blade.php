@@ -1,3 +1,6 @@
+@php
+    $lang_id = getLocale();
+@endphp
 <x-app-layout>
     @section('title', $data['title'] . ' |')
     @section('style', ';--sub_btn-bg: ' . $button->value . ';--sub_btnhover-bg:' . $primary_button_color_hover->value)
@@ -25,8 +28,13 @@
                                 <div class="referral_img referral_img2">
                                     <img src="{{ asset('public/images/referral2.png') }}" alt="" />
                                 </div>
-                                <h4>{{ __('referalcode.You_receive') }} {{ $referral_amount->value }}$</h4>
-                                <p>{{ __('referalcode.friend_signup') }} {{ $referral_amount->value }}$</p>
+                                @if ($lang_id=2)
+                                    <h4>{{ $referral_amount->title_en }}</h4>
+                                    {{ $referral_amount->body_en }}
+                                @else
+                                    <h4>{{ $referral_amount->title_fr }}</h4>
+                                    {{ $referral_amount->body_fr }}
+                                @endif
                             </div>
                         </div>
                     </div>
