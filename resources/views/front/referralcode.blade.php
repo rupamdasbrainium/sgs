@@ -30,10 +30,10 @@
                                 </div>
                                 @if ($lang_id=2)
                                     <h4>{{ $referral_amount->title_en }}</h4>
-                                    {{ $referral_amount->body_en }}
+                                    {!! $referral_amount->body_en !!}
                                 @else
                                     <h4>{{ $referral_amount->title_fr }}</h4>
-                                    {{ $referral_amount->body_fr }}
+                                    {!! $referral_amount->body_fr !!}
                                 @endif
                             </div>
                         </div>
