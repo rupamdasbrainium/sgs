@@ -14,10 +14,6 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                <!-- <div class="banner_info">
-                                    <h1>Elevate Your <span>Fitness,</span></h1>
-                                    <h2>Ignite Your Potential!</h2>
-                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -38,43 +34,29 @@
                                     <img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
                                 </div>
                                 @if ($lang_id == 2)
-                                    <h2>{{$terms->title_en}}</h2>
+                                    <h2>{{ $terms->title_en }}</h2>
                                 @else
-                                    <h2>{{$terms->title_fr}}</h2>
-                                @endif				
-                                
-                                <p>{{ __('footer.Effective_Date') }}: {{date('Y-m-d',strtotime($terms->created_at))}}</p>
-                            </div>
-                            
-                                @if ($lang_id == 2)
-                                    {!!$terms->body_en!!}
-                                @else
-                                    {!!$terms->body_fr!!}
+                                    <h2>{{ $terms->title_fr }}</h2>
                                 @endif
-                            
-                            
+                                <p>{{ __('footer.Effective_Date') }}: {{ date('Y-m-d', strtotime($terms->created_at)) }}
+                                </p>
+                            </div>
+                            @if ($lang_id == 2)
+                                {!! $terms->body_en !!}
+                            @else
+                                {!! $terms->body_fr !!}
+                            @endif
                         </div>
-                    
-                        
                     </div>
                 </div>
             </div>
-            
-    
         </div>
-    
         <div class="round_opt_btn rount_opt2">
             <img src="images/roundopt2.jpg" alt="">
         </div>
         <div class="round_opt_btn rount_opt3">
             <img src="images/roundopt2.jpg" alt="">
         </div>
-    <!-- 	
-        <div class="round_opt_btn">
-            <img src="images/roundopt2.jpg" alt="">
-        </div> -->
-    
     </section>
     @include('footer')
 </x-guest-layout>
-

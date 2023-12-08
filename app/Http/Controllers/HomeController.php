@@ -24,7 +24,6 @@ class HomeController extends Controller
     public function index($short_code = null)
     {
         $lang_id = getLocale();
-        // $short_code = 'CentreDemo';
         $data = array();
         $data['title'] = trans('title_message.Home');
 
@@ -84,7 +83,6 @@ class HomeController extends Controller
         if ($categoryHomePage == false) {
             $franchisesPlanType = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id . "&language_id=" . $lang_id, "get", "{}");
             $data['all_plan'] = $data['franchisesPlanType'] = json_decode($franchisesPlanType);
-            // dd($data['franchisesPlanType']);
 
             //franchise best four plan
             $best_four_plan = APICall("SubscriptionPlans/franchises/" . $franchise_id, "get", "{}");
@@ -116,151 +114,17 @@ class HomeController extends Controller
             $data['category'] = json_decode($categoryType)->data;
             return view('front.homeBasedOnCategory', compact('data', 'franchise_id', 'logo', 'banner', 'button', 'theme', 'title', 'subtitle', 'home_magicplan', 'home_body', 'home_title', 'admin_phone', 'admin_address', 'lang_id', 'short_code_flag', 'theme_color_hover', 'video', 'title_fr', 'subtitle_fr', 'home_title_fr', 'home_magicplan_fr', 'home_body_fr'));
         }
-
-        //franchise plan type
-        // $franchisesPlanType = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id. "&language_id=" . $lang_id, "get", "{}");
-        // $data['all_plan'] = $data['franchisesPlanType'] = json_decode($franchisesPlanType);
-        // // dd($data['franchisesPlanType']);
-
-        // //franchise best four plan
-        // $best_four_plan = APICall("SubscriptionPlans/franchises/" . $franchise_id, "get", "{}");
-        // $data['best_four_plan'] = json_decode($best_four_plan);
-
-        // // $data_plan = [];
-        // //franchise best four plan details
-        // // if($data['best_four_plan']->data->subscriptionPlan1){
-        // //     $data_plan[0] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan1 . "?language_id=" . $lang_id, "get", "{}"));
-        // //     $data['all_plan_data'][0] = '';
-        // // }
-
-        // // if($data['best_four_plan']->data->subscriptionPlan2){
-        // //     $data_plan[1] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan2 . "?language_id=" . $lang_id, "get", "{}"));
-        // //     $data['all_plan_data'][1] = '';
-        // // }
-
-        // // if($data['best_four_plan']->data->subscriptionPlan3){
-        // //     $data_plan[2] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan3 . "?language_id=" . $lang_id, "get", "{}"));
-        // //     $data['all_plan_data'][2] = '';
-        // // }
-
-        // // if($data['best_four_plan']->data->subscriptionPlan4){
-        // //     $data_plan[3] = json_decode(APICall("SubscriptionPlans/type/" . $data['best_four_plan']->data->subscriptionPlan4 . "?language_id=" . $lang_id, "get", "{}"));
-        // //     $data['all_plan_data'][3] = '';
-        // // }
-
-        // // $all_plan = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id, "get", "{}");
-        // // $data['all_plan'] = json_decode($all_plan);
-
-        // //franchise best four plan details
-        // foreach ($data['all_plan']->data as $item) {
-        //     // $all_plan_data_arr['descr_english'] = $item->descr_english;
-        //     // $all_plan_data_arr['descr_french'] = $item->descr_french;
-        //     // $all_plan_data_arr['ageLimit_english'] = $item->ageLimit_english;
-        //     // $all_plan_data_arr['ageLimit_french'] = $item->ageLimit_french;
-
-        //     if($item->id == $data['best_four_plan']->data->subscriptionPlan1){
-        //         $data['all_plan_data'][0] = $item;
-        //         continue;
-        //     }
-        //     if($item->id == $data['best_four_plan']->data->subscriptionPlan2){
-        //         $data['all_plan_data'][1] = $item;
-        //         continue;
-        //     } 
-        //     if($item->id == $data['best_four_plan']->data->subscriptionPlan3){
-        //         $data['all_plan_data'][2] = $item;
-        //         continue;
-        //     } 
-        //     if($item->id == $data['best_four_plan']->data->subscriptionPlan4) {
-        //         $data['all_plan_data'][3] = $item;
-        //         continue;
-        //     }
-        //     // $data_plan[] = json_decode(APICall("SubscriptionPlans/type/" . $item->id . "?language_id=" . $lang_id, "get", "{}"));
-        //     $data['all_plan_data'][] = $item;
-        // }
-        // // $best_four_plan_details = $data_plan;
-        // // $data['best_four_plan_details'] = $data_plan;
-
-        // return view('front.home', compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag'));
     }
-
-    // public function index_page_two($short_code_sec=null)
-    // {
-    //     $lang_id = getLocale();
-
-    //     $data = array();
-    //     $data['title'] = trans('title_message.Home');
-
-    //     //franchise call
-    //     $franchises = APICall("Franchises", "get", "{}");
-    //     $data['franchises'] = json_decode($franchises);
-    //     $data['short_code'] = $short_code_sec;
-    //     $franchise_id = '';
-
-    //     //find franchise_id
-    //     $short_code_flag = 0;
-    //     foreach ($data['franchises']->data as $key => $franchise) {
-    //         if(!$short_code_sec){
-    //             $franchise_id = $franchise->id;
-    //             $short_code_sec = $franchise->shortCode;
-    //             $short_code_flag = 1;
-    //             $data['franchise_address'] = $franchise->address_civic_number .' '. $franchise->address_street .' '. $franchise->address_city;
-    //             break;
-    //         }
-    //         if ($franchise->shortCode == $short_code_sec) { //actual
-    //             $franchise_id = $franchise->id;
-    //             $data['franchise_address'] = $franchise->address_civic_number .' '. $franchise->address_street .' '. $franchise->address_city;
-    //             break;
-    //         }
-    //     }
-    //     // foreach ($data['franchises']->data as $key => $franchise) {
-    //     //     $franchise_id = $franchise->id;
-    //     // }
-    //     if(!$franchise_id){
-    //         return redirect()->route('sechomepage');
-    //     }
-    //   Cookie::queue(Cookie::make('driver_route_id', $short_code_sec, 60000));
-    //   Cookie::get('driver_route_id');
-
-    //     $logo = Configuration::where('name','logo_image')->where('franchise_id',$this->getfranchiseId())->first();
-    //     $banner = Configuration::where('name','banner_image')->where('franchise_id',$this->getfranchiseId())->first();
-    //     $theme = Configuration::where('name','theme_color')->where('franchise_id',$this->getfranchiseId())->first();
-    //     $button = Configuration::where('name','primary_button_color')->where('franchise_id',$this->getfranchiseId())->first();
-    //     $title = Configuration::where('name','title')->where('franchise_id',$this->getfranchiseId())->first();
-    //     $subtitle = Configuration::where('name','subtitle')->where('franchise_id',$this->getfranchiseId())->first();  
-    //     $home_title = Configuration::where('name','home_title')->where('franchise_id',$this->getfranchiseId())->first();
-    //     $home_magicplan = Configuration::where('name','home_magicplan')->where('franchise_id',$this->getfranchiseId())->first();
-    //     $home_body = Configuration::where('name','home_body')->where('franchise_id',$this->getfranchiseId())->first();
-    //     $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',$this->getfranchiseId())->first();
-    //     $admin_address = Configuration::where('name','admin_address')->where('franchise_id',$this->getfranchiseId())->first();
-
-    //     $logo = Configuration::where('name','logo_image')->where('franchise_id',$this->getfranchiseId())->first();
-    //     $banner = Configuration::where('name','banner_image')->where('franchise_id',$this->getfranchiseId())->first();
-    //     $button = Configuration::where('name','primary_button_color')->where('franchise_id',$this->getfranchiseId())->first();
-
-    //     $response = array(
-    //         'message' => trans('title_message.Input_path_wrong'),
-    //         'message_type' => 'danger',
-    //       );
-
-    //     $categoryType = APICall("Options/categories?franchise_id=" .$franchise_id."&language_id=" . $lang_id, "get", "{}");
-    //     $data['category'] = json_decode($categoryType)->data;
-
-    //     return view('front.homeBasedOnCategory',compact('data', 'franchise_id','logo','banner','button','theme','title','subtitle','home_magicplan','home_body','home_title','admin_phone','admin_address','lang_id','short_code_flag'));
-    // }
 
     public function categoryplan($id)
     {
         $lang_id = getLocale();
-
-        // $planData = [474, 475, 476, 477];
-
         $data = array();
         $data['title'] = trans('title_message.Home');
 
         //franchise call
         $franchises = APICall("Franchises", "get", "{}");
         $data['franchises'] = json_decode($franchises);
-        // $data['short_code'] = $short_code_sec;
         $franchise_id = '';
 
         //find franchise_id
@@ -302,39 +166,11 @@ class HomeController extends Controller
             'message' => trans('title_message.Input_path_wrong'),
             'message_type' => 'danger',
         );
-
-        // $franchisesPlanType = APICall("SubscriptionPlans/types?franchise_id=" . $franchise_id . "&language_id=" . $lang_id, "get", "{}");
-        // $data['all_plan'] = $data['franchisesPlanType'] = json_decode($franchisesPlanType);
-
-        // $categoryPlan = APICall("SubscriptionPlans/category/" . $id . "?franchise_id=" . $franchise_id, "get", "{}");
-        // $data['categoryPlan'] = json_decode($categoryPlan);
-
+        
         $categoryPlan = APICall("SubscriptionPlans/types/byCategories/" . $id . "?franchise_id=" . $franchise_id . "&language_id=" . $lang_id, "get", "{}");
         $data['all_plan_data'] = json_decode($categoryPlan)->data;
 
         $category_name = request()->name;
-        // dd($data['all_plan']->data,$data['categoryPlan'],$data['categoryPlan']->data->subscriptionPlan1);
-
-        // foreach ($data['all_plan']->data as $item) {
-        //     if ($item->id == $data['categoryPlan']->data->subscriptionPlan1) {
-        //         $data['all_plan_data'][0] = $item;
-        //         continue;
-        //     }
-        //     if ($item->id == $data['categoryPlan']->data->subscriptionPlan2) {
-        //         // dd($item->id,$data['categoryPlan']->data->subscriptionPlan2);
-        //         $data['all_plan_data'][1] = $item;
-        //         continue;
-        //     }
-        //     if ($item->id == $data['categoryPlan']->data->subscriptionPlan3) {
-        //         $data['all_plan_data'][2] = $item;
-        //         continue;
-        //     }
-        //     if ($item->id == $data['categoryPlan']->data->subscriptionPlan4) {
-        //         $data['all_plan_data'][3] = $item;
-        //         continue;
-        //     }
-        // }
-
         return view('front.categoryPlan', compact('data', 'franchise_id', 'logo', 'banner', 'button', 'primary_button_color_hover', 'theme', 'title', 'subtitle', 'home_magicplan', 'home_body', 'home_title', 'admin_phone', 'admin_address', 'lang_id', 'short_code_flag', 'theme_color_hover', 'secondary_theme_color_hover', 'category_name', 'title_fr', 'subtitle_fr', 'home_title_fr', 'home_magicplan_fr', 'home_body_fr'));
     }
 
@@ -443,13 +279,11 @@ class HomeController extends Controller
         $client = json_decode($client);
         session()->put('language_id', $client->data->language_id);
 
-        // if (session()->has('clientToken')) {
         if ($client->data->language_id == 2) {
             $locale = 'en';
         } else {
             $locale = 'fr';
         }
-        // }
         app()->setLocale($locale);
         session()->put('locale', $locale);
         return redirect()->route('myProfile', compact('logo', 'banner'));
@@ -489,7 +323,6 @@ class HomeController extends Controller
     }
     public function planType($id)
     {
-        // $franchisesPlanType = '{ "error": null, "isErrorConnString": false, "data": [ { "id": 6, "name_english": "10 passages adulte", "name_french": "10 passages adulte" }, { "id": 12, "name_english": "6 mois Adulte", "name_french": "12 mois reg" }, { "id": 18, "name_english": "3 mois Adulte", "name_french": "3 mois" }]}';
         $franchisesPlanType = APICall("SubscriptionPlans/types/" . $id, "get", "{}");
         $data = json_decode($franchisesPlanType);
         $html = '';
@@ -573,22 +406,4 @@ class HomeController extends Controller
             return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
         }
     }
-
-
-    //  public function socialshare(){
-
-    //        // Share button 1
-    //        $shareButtons1 = \Share::page(
-    //              'https://makitweb.com/datatables-ajax-pagination-with-search-and-sort-in-laravel-8/'
-    //        )
-    //        ->facebook()
-    //        ->twitter()
-    //        ->linkedin()
-    //        ->telegram()
-    //        ->reddit();
-
-
-    //        // Load index view
-    //        return view('front.home') ->with('shareButtons1',$shareButtons1 );
-    //  }
 }

@@ -23,8 +23,6 @@ class PaymentController extends Controller
         $admin_phone = Configuration::where('name','admin_phone')->where('franchise_id',3)->first();
         $admin_address = Configuration::where('name','admin_address')->where('franchise_id',3)->first();
 
-        // https://sgsdev.softsgs.net/Memberships/price-details?subscription_plan_id=18&duration_id=5&installment_id=131&date_begin=Thu21%20Sep%202023%2011%3A34%3A23%20GMT&franchise_id=3&lstOptions=5&lstOptions=9&display_language_id=2
-
         $uri = "Memberships/price-details?";
         if (Session::has('subscription_plan_id')) {
             $uri .= "subscription_plan_id=" . Session::get('subscription_plan_id');
@@ -58,7 +56,6 @@ class PaymentController extends Controller
                 $uri .= "&lstOptions=" . $ad_on_id;
             }
         }
-        // dd( $add_ons);
         $uri .=  "&display_language_id=" . $lang_id;
 
         $membership_details = APICall($uri, "get", "{}", 'client_app');
@@ -75,6 +72,11 @@ class PaymentController extends Controller
 
     public function paymentSave(Request $request)
     {
+        if(Session::has('language_id')){
+            $lang_id = Session::get('language_id');
+        }else{
+            $lang_id = getLocale();
+        }
         if ($request->radio_group_pay == "bank_acc") {
         $validator = Validator::make($request->all(), [
             "transit_number" => "required|min:3|max:5",
@@ -86,11 +88,7 @@ class PaymentController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator);
         }else{
-            if(Session::has('language_id')){
-        $lang_id = Session::get('language_id');
-            }else{
-                $lang_id = getLocale();
-            }
+            
         
             $formdata = array();
             $formdata['transit_number'] = $request->transit_number;
@@ -108,8 +106,6 @@ class PaymentController extends Controller
                 );
                 return redirect()->back()->with($response)->withInput();
             }
-            // $get_methode_acc = APICall('PaymentMethods/accounts?clients=' . $data['pay_methode_acc']->data->client_id, "get", "{}", "client_app");
-            // $data['get_methode_acc'] = json_decode($get_methode_acc);
 
             //membership with bank account
             $membershipdata = array();
@@ -136,8 +132,6 @@ class PaymentController extends Controller
 
             $membership_with_bnk_acc = APICall('Memberships/with-bank-account?display_language_id=' . $lang_id, "post", json_encode($membershipdata), "client_app");
             $data['membership_with_bnk_acc'] = json_decode($membership_with_bnk_acc);
-            // dd($data['membership_with_bnk_acc'],$data['pay_methode_acc'],$membershipdata,$lang_id);
-            // Log::info("message");
             
             if ($data['membership_with_bnk_acc']!= null && $data['membership_with_bnk_acc']->error != null) {
                 $response = array(
@@ -213,11 +207,18 @@ class PaymentController extends Controller
                 }
                 $membershipcarddata['code_promo'] = $request->code_promo;
                 $membershipcarddata['processed_amount'] = $request->processed_amount;
-                // dd($data['pay_method_accc']);
                 $membershipcarddata['card_id'] = $data['pay_method_accc']->data->id;
 
                 $membership_with_credit_card = APICall('Memberships/with-credit-card?display_language_id=' . $lang_id, "post", json_encode($membershipcarddata), "client_app");
                 $data['membership_with_credit_card'] = json_decode($membership_with_credit_card);
+
+                if ($data['membership_with_credit_card']!= null && $data['membership_with_credit_card']->error != null) {
+                    $response = array(
+                        'message' => $data['membership_with_credit_card']->error->message,
+                        'message_type' => 'danger'
+                    );
+                    return redirect()->back()->with($response)->withInput();
+                }
             }
             $response = array(
                 'message' => trans('title_message.Payment_completed_succesfully'),
@@ -247,7 +248,6 @@ class PaymentController extends Controller
                 'message_type' => 'error',
             );
             return redirect()->route('login')->with($message);
-            // return redirect()->route('login')->with('email', trans('title_message.login_token_expired'));
 
         }
 
@@ -333,7 +333,6 @@ class PaymentController extends Controller
             $carddata['owner_name'] = $request->owner_name;
             $carddata['type_id'] = $request->type_id;
             $carddata['pan'] = $request->pan;
-            // dd($carddata);
             if (Session::has('franchise_id')) {
                 $carddata['franchise_id'] = Session::get('franchise_id');
 
