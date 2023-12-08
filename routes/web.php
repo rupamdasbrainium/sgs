@@ -110,6 +110,7 @@ Route::group(['middleware' => 'verifyToken'], function () {
     Route::get('new-membership-final', 'AccountController@newMembershipFinal')->name('newMembershipFinal');
     Route::post('new-membership-final', 'AccountController@newMembershipFinalSave')->name('newMembershipFinalsave');
     Route::get('renewMembership/{membershipsId}', 'AccountController@renewMembership')->name('renewMembership');
+    // Route::get('renewMembership/{membershipsId}/{bank_id}', 'AccountController@renewMembershipbank')->name('renewMembershipbank');
 });
 
 Route::get('/reload-captcha', 'Admin\Auth\AuthenticatedSessionController@reloadCaptcha');

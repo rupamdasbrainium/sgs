@@ -123,5 +123,6 @@ return [
     'Banner_subtitle_fr' => 'Sous-titre de la bannière(Français)',
     'Home_Title_fr' => 'Titre de la maison(Français)',
     'Home_Magic_Plan_fr' => 'Plan Magique pour la Maison(Français)',
-    'Home_Body_fr' => 'Accueil Corps(Français)'
+    'Home_Body_fr' => 'Accueil Corps(Français)',
+    'Referral' => 'Référence',
 ];

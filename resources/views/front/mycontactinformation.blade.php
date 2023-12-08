@@ -37,8 +37,8 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt nobg">
-                                                <input type="email" class="form-control" name="email" readonly
-                                                    placeholder="nancy@isma.ca" value="{{ $client->email }}"
+                                                <input type="email" class="form-control" name="email"
+                                                    placeholder="nancy@isma.ca *" value="{{ $client->email }}"
                                                     maxlength="260">
                                             </div>
                                         </div>

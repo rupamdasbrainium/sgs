@@ -68,10 +68,10 @@
                                                 <div class="arrowdown2">
                                                     <i class="fal fa-chevron-down"></i>
                                                 </div>
-                                                <select class="select_opt">
+                                                <select class="select_opt paymethod" id="paymethods">
                                                     @if ($data['cards'] != null)
                                                         @foreach ($data['cards'] as $card)
-                                                            <option value="{{ $card->id }}"
+                                                            <option value="{{ $card->id }}" data-type="card" data-membershipsid="{{$item->membershipsId}}"
                                                                 {{ $item->creditCardId && $item->creditCardId == $card->id ? 'selected' : '' }}>
                                                                 xxx xxx xxxx {{ $card->four_digits_number }}
                                                                 {{ __('myProfile.Card') }}</option>
@@ -79,7 +79,7 @@
                                                     @endif
                                                     @if ($data['banks'] != null)
                                                         @foreach ($data['banks'] as $bank)
-                                                            <option value="{{ $bank->id }}"
+                                                            <option value="{{ $bank->id }}" data-type="bank" data-membershipsid="{{$item->membershipsId}}"
                                                                 {{ $item->bancAccountId && $item->bancAccountId == $bank->id ? 'selected' : '' }}>
                                                                 xxx xxx xxxx {{ $bank->account_last_digits }}
                                                                 {{ __('myProfile.Bank') }}</option>
@@ -92,10 +92,16 @@
                                     <div class="ranew_opt_block">
                                         <div class="memberships_method_date">{{ __('myProfile.End_date') }}:
                                             {{ date('Y/m/d', strtotime($item->end)) }} </div>
-                                        <div class="ren_opt">
+                                        <div class="ren_opt" id="renew">
                                             @if ($item->isRenewable)
-                                                <a
-                                                    href="{{ route('renewMembership', $item->membershipsId) }}">{{ __('myProfile.Renew') }}</a>
+                                                @if ($item->creditCardId)
+                                                    <a id="link_{{$item->membershipsId}}" href="{{ route('renewMembership', [$item->membershipsId,'card'=>$item->creditCardId ]) }}">{{ __('myProfile.Renew') }}</a>
+                                                @elseif ($item->bancAccountId)
+                                                    <a id="link_{{$item->membershipsId}}" href="{{ route('renewMembership', [$item->membershipsId,'bank'=>$item->bancAccountId]) }}">{{ __('myProfile.Renew') }}</a>
+                                                @else
+                                                    <a id="link_{{$item->membershipsId}}" href="{{ route('renewMembership', $item->membershipsId) }}">{{ __('myProfile.Renew') }}</a>
+                                                @endif
+                                                
                                             @endif
                                         </div>
                                     </div>
@@ -141,4 +147,22 @@
         </div>
     </section>
     @include('footer')
+    @push('scripts')
+        <script>
+            $(document).ready(function(){
+                $(this).on('change','.paymethod', function(){
+                    var type = $(this).find(':selected').data('type')
+                    var membershipsid = $(this).find(':selected').data('membershipsid')
+                    if(type == 'bank'){
+                        var uri = "bank="+$(this).val()
+                    }
+                    else{
+                        var uri = "card="+$(this).val()
+                    }
+                    $('#link_'+membershipsid).attr('href',"{{ url('renewMembership') }}/"+membershipsid+"?"+uri)
+                    console.log(type,membershipsid,uri)
+                });
+            });
+        </script>
+    @endpush
 </x-app-layout>

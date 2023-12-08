@@ -340,7 +340,7 @@ class AccountController extends Controller
                 'is_male' => 'required',
                 "civic_number" => 'required|string',
                 "street" => 'required|string',
-               
+                "email" => 'required|string|email',
                 "city" => 'required|string',
                 'postal_code' => 'required|string',
                 "province_id" => "required|string",
@@ -1000,6 +1000,7 @@ class AccountController extends Controller
         $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
+        $referral_amount = Configuration::where('name','referral')->where('franchise_id',3)->first();
         $client = APICall("Clients", 'get', "{}","client_app");
         if (!$client) {
             $message = array(
@@ -1012,7 +1013,7 @@ class AccountController extends Controller
         $referral = APICall('Clients', "get", "{}", 'client_app');
         $data['referral'] = json_decode($referral);
 
-        return view('front.referralcode', compact('data', 'logo', 'theme','theme_color_hover', 'button','primary_button_color_hover', 'admin_phone', 'admin_address'));
+        return view('front.referralcode', compact('data', 'logo', 'theme','theme_color_hover', 'button','primary_button_color_hover', 'admin_phone', 'admin_address','referral_amount'));
     }
 
     public function myBankCards()
@@ -1232,25 +1233,72 @@ else{
     }
     }
 
-    public function renewMembership($membershipId)
+    public function renewMembership(Request $req, $membershipId)
     {
+        
+        if(request()->bank){
+            // return 'bank';
+            $lang_id = Session::get('language_id');
+            $uri = "Memberships/" . $membershipId . "/account/" . $req->bank . "?display_language_id=" . $lang_id;
+            $membership_with_bank = APICall($uri, "put", "{}", 'client_app');
+            $data['membership_with_bank'] = json_decode($membership_with_bank);
 
-        $response = APICall("Memberships/" . $membershipId . "/renew?display_language_id=2", "put", "{}", 'client_app');
-        $response = json_decode($response);
-
-        if ($response->error != null) {
+            if ($data['membership_with_bank']->error != null) {
+                $response = array(
+                    'message' => $data['membership_with_bank']->error->message,
+                    'message_type' => 'danger'
+                );
+                return redirect()->back()->with($response)->withInput();
+            }
             $response = array(
-                'message' => $response->error->message,
-                'message_type' => 'danger'
+                'message' => trans('title_message.membership_upgraded_succesfully'),
+                'message_type' => 'success',
             );
-            return redirect()->back()->with($response)->withInput();
+            return redirect()->back()->with($response);
         }
-        $response = array(
-            'message' => trans('title_message.membership_renewed_succesfully'),
-            'message_type' => 'success',
-          );
-        return redirect()->back()->with($response);    
+        else{
+            // return 'card';
+            $lang_id = Session::get('language_id');
+            $uri = "Memberships/" . $membershipId . "/card/" . $req->card . "?display_language_id=" . $lang_id;
+            $membership_with_credit_card = APICall($uri, "put", "{}", 'client_app');
+            $data['membership_with_credit_card'] = json_decode($membership_with_credit_card);
+
+            if ($data['membership_with_credit_card']->error != null) {
+                $response = array(
+                    'message' => $data['membership_with_credit_card']->error->message,
+                    'message_type' => 'danger'
+                );
+                return redirect()->back()->with($response)->withInput();
+            }
+            $response = array(
+                'message' => trans('title_message.membership_upgraded_succesfully'),
+                'message_type' => 'success',
+            );
+            return redirect()->back()->with($response);
+        }
+        
     }
+
+    // public function renewMembershipbank($membershipId,$bank_id)
+    // {
+    //     $lang_id = Session::get('language_id');
+    //     $uri = "Memberships/" . $membershipId . "/account/" . $bank_id . "?display_language_id=" . $lang_id;
+    //     $membership_with_bank = APICall($uri, "put", "{}", 'client_app');
+    //     $data['membership_with_bank'] = json_decode($membership_with_bank);
+
+    //     if ($data['membership_with_bank']->error != null) {
+    //         $response = array(
+    //             'message' => $data['membership_with_bank']->error->message,
+    //             'message_type' => 'danger'
+    //         );
+    //         return redirect()->back()->with($response)->withInput();
+    //     }
+    //     $response = array(
+    //         'message' => trans('title_message.membership_upgraded_succesfully'),
+    //         'message_type' => 'success',
+    //     );
+    //     return redirect()->back()->with($response);
+    // }
 
     public function upgradeMembership()
     {

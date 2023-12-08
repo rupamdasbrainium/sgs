@@ -123,5 +123,6 @@ return [
     'Banner_subtitle_fr' => 'Banner Subtitle(French)',
     'Home_Title_fr' => 'Home Title(French)',
     'Home_Magic_Plan_fr' => 'Home Magic Plan(French)',
-    'Home_Body_fr' => 'Home Body(French)'
+    'Home_Body_fr' => 'Home Body(French)',
+    'Referral' => 'Referral',
 ];

@@ -196,6 +196,7 @@ class AdminController extends Controller
         $home_title_fr = Configuration::where('name','home_title_fr')->where('franchise_id',3)->first();
         $home_magicplan_fr = Configuration::where('name','home_magicplan_fr')->where('franchise_id',3)->first();
         $home_body_fr = Configuration::where('name','home_body_fr')->where('franchise_id',3)->first();
+        $referral = Configuration::where('name','referral')->where('franchise_id',3)->first();
         if (count($result) > 0) {
             $data['data'] = getConfigurationValue($result);
             if (isset($data['data']['banner_image'])) {
@@ -211,7 +212,7 @@ class AdminController extends Controller
         }
         $data['user'] = $user;
         $data['title'] = trans('title_message.Admin_Settings');
-        return view('admin.settings', compact('data','logo','theme','theme_color_hover', 'button','primary_button_color_hover', 'title','subtitle','home_title','home_magicplan','home_body','admin_address','admin_phone','video','title_fr','subtitle_fr','home_title_fr','home_magicplan_fr','home_body_fr','secondary_theme_color_hover'));
+        return view('admin.settings', compact('data','logo','theme','theme_color_hover', 'button','primary_button_color_hover', 'title','subtitle','home_title','home_magicplan','home_body','admin_address','admin_phone','video','title_fr','subtitle_fr','home_title_fr','home_magicplan_fr','home_body_fr','secondary_theme_color_hover','referral'));
     }
 
 
@@ -302,6 +303,7 @@ class AdminController extends Controller
         $input_data->name = $request->home_body_fr;
         $input_data->name = $request->admin_phone;
         $input_data->name = $request->admin_address;
+        $input_data->name = $request->referral;
         // return view('header',compact('row_data'));
         $response = array(
             'message' => trans('title_message.Settings_successfully_updated'),

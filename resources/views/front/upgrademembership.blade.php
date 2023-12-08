@@ -39,13 +39,13 @@
                                                             <option
                                                                 value="{{ $itemmain->membershipsId }}|card|{{ $card->id }}">
                                                                 XXX XXX XXXX
-                                                                {{ $card->four_digits_number }}</option>
+                                                                {{ $card->four_digits_number }}{{ __('myProfile.Card') }}</option>
                                                         @endforeach
                                                         @foreach ($data['pay_methods_bank']->data as $bank)
                                                             <option
                                                                 value="{{ $itemmain->membershipsId }}|account|{{ $bank->id }}">
                                                                 XXX XXX XXXX
-                                                                {{ $bank->account_last_digits }}</option>
+                                                                {{ $bank->account_last_digits }}{{ __('myProfile.Bank') }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
