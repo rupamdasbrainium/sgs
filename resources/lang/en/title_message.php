@@ -86,4 +86,5 @@ return [
     'code_message' => 'A temporary code has been sent to your email address',
     'code_message_update' => 'Password changed successfully',
     'choose_plan_first' => 'Please choose a subscription plan first',
+    'email_change' => 'Email changed successfully'
 ];

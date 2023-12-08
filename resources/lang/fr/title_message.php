@@ -86,4 +86,5 @@ return [
     'code_message' => 'Un code temporaire a été envoyé à votre adresse email',
     'code_message_update' => 'Le mot de passe a été changé avec succès',
     'choose_plan_first' => 'Veuillez d\'abord choisir un plan d\'abonnement',
+    'email_change' => "L\'e-mail a été modifié avec succès"
 ];

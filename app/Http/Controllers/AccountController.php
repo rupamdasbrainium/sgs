@@ -336,6 +336,7 @@ class AccountController extends Controller
 
             $validator = Validator::make($request->all(), [
                 'firstname' => 'required|string',
+                'email' => 'required|string',
                 'lastname' => 'required|string',
                 'is_male' => 'required',
                 "civic_number" => 'required|string',
@@ -390,6 +391,7 @@ class AccountController extends Controller
             
             $data = [
                 "firstname" => $request->firstname,
+                "email" => $request->email,
                 "lastname" => $request->lastname,
                 "is_male" => $request->is_male,
                 "phone" => $request->phone,
@@ -402,8 +404,7 @@ class AccountController extends Controller
                 "nativeRef_number" => $clients->nativeRef_number ? $clients->nativeRef_number :  "",
             ];
             $response = APICall("Clients/" . $franchise_id, "put", json_encode($data),"client_app");
-
-            $response = json_decode($response);
+           
 
             if (!$response->error) {
 
@@ -424,7 +425,56 @@ class AccountController extends Controller
             return redirect()->route('myContactInformation')->with('failed', $th->getMessage());
         }
     }
+    public function changemail_view()
+    {
+        $data = array();
+        $data['title'] = trans('title_message.My_Contact_Information');
+        $logo = Configuration::where('name', 'logo_image')->where('franchise_id', 3)->first();
+        $theme = Configuration::where('name', 'theme_color')->where('franchise_id', 3)->first();
+        $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id', 3)->first();
+        $button = Configuration::where('name', 'primary_button_color')->where('franchise_id', 3)->first();
+        $primary_button_color_hover = Configuration::where('name','primary_button_color_hover')->where('franchise_id', 3)->first();
+        $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
+        $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
 
+        $client = APICall("Clients", "get", "{}","client_app");
+        $client = json_decode($client)->data;
+
+         return view('front.changemail', compact('data', 'client','logo', 'theme','theme_color_hover', 'button','primary_button_color_hover','admin_phone','admin_address'));
+    }
+    public function changemail(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'oldEmail' => 'required|string',
+            'newEmail' => 'required|string',
+           
+
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator)
+                ->withInput();
+        }
+        $oldEmail = $request->oldEmail;
+        $newEmail = $request->newEmail;
+
+        $response = APICall("Clients/email?oldEmail=" . $oldEmail. "&newEmail=" . $newEmail,  "put", "{}", "client_app");
+        $response = json_decode($response);
+        if ( $response->error == null) {
+            $response = array(
+                'message' => trans('title_message.email_change'),
+                'message_type' => 'success'
+            );
+            return redirect(route('myContactInformation'))->with($response);
+        } else {
+            $response = array(
+                'message' =>  $response->error->message,
+                'message_type' => 'danger'
+            );
+            return redirect()->back()->with($response);
+        }
+
+    }
 
 
     public function payMyOutstandingBalance()
@@ -488,6 +538,8 @@ class AccountController extends Controller
         }
         $card =  APICall("PaymentMethods/accepted_cards", "get", "{}", 'client_app');
         $data['card_types'] = json_decode($card);
+        $total_balance =  APICall("Payments/balance", "get", "{}", 'client_app');
+        $data['total_balance'] = json_decode( $total_balance);
         return view('front.paymyoutstandingbalance', compact('data', 'logo', 'theme','theme_color_hover', 'button','primary_button_color_hover', 'admin_phone', 'admin_address'));
     }
 

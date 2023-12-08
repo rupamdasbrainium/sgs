@@ -11,7 +11,7 @@
                     <input type="hidden" name="client_id" value="{{ $data['client_id'] }}">
                     <div class="content_block paymentinfo">
                         <h2 class="head_opt"><span>{{ __('paymyoutstandingbalance.Total_outstanding_balance') }}:
-                                {{ $data['outstandingAmount'] }}$</span>{{ __('paymyoutstandingbalance.Payment_Details') }}
+                                {{ $data['total_balance']->data }}$</span>{{ __('paymyoutstandingbalance.Payment_Details') }}
                         </h2>
                         <div class="table_description_view oddoreven_opt">
                             <table class="table">

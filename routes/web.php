@@ -90,6 +90,8 @@ Route::group(['middleware' => 'verifyToken'], function () {
 
     Route::get('myprofile', 'AccountController@myProfile')->name('myProfile');
     Route::get('my-contact-information', 'AccountController@myContactInformation')->name('myContactInformation');
+    Route::get('changemail_view', 'AccountController@changemail_view')->name('changemail_view');
+    Route::post('changemail', 'AccountController@changemail')->name('changemail');
     Route::post('my-contact-information', "AccountController@updateContactInformation")->name('user.update');
     Route::get('my-bank-cards', 'AccountController@myBankCards')->name('myBankCards');
     Route::get('modify-bank/{id}', 'AccountController@modifyBanks')->name('modifyBanks');
