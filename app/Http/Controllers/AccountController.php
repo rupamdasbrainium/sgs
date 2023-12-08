@@ -1384,7 +1384,7 @@ else{
             'message' => trans('title_message.membership_upgraded_succesfully'),
             'message_type' => 'success',
         );
-        return redirect(route("account"))->with($response);
+        return redirect(route("myProfile"))->with($response);
     }
 
     public function upgragemembershipsubmitbank(Request $request, $membershipId, $bank_id)
@@ -1415,7 +1415,7 @@ else{
             'message' => trans('title_message.membership_upgraded_succesfully'),
             'message_type' => 'success',
         );
-        return redirect(route("account"))->with($response);
+        return redirect(route("myProfile"))->with($response);
     }
 
     public function newmembershippaymentSave(Request $request)

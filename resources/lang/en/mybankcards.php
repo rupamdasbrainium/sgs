@@ -19,7 +19,7 @@ return [
     'Platinum_Mastercard_BNC' => 'Platinum Mastercard BNC',
     'Credit_card_ending' => 'Credit card ending with',
     'Modify' => 'Modify',
-    'Bank_acoount_number_ending' => 'Bank acoount number ending with',
+    'Bank_acoount_number_ending' => 'Bank account number ending with',
     'Add_Payment_Method' => 'Add a Payment Method',
     'Credit_Cards' => 'Credit Cards',
     'Bank_Accounts' => 'Bank Accounts',
