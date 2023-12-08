@@ -160,7 +160,12 @@ class PaymentController extends Controller
             if ($validator->fails()) {
                 return back()->withErrors($validator);
             }else{
-                
+                if(Session::has('language_id')){
+                    $lang_id = Session::get('language_id');
+                        }else{
+                            $lang_id = getLocale();
+                        }
+                $lang_id = Session::get('language_id');
             $carddata = array();
             $carddata['four_digits_number'] = $request->four_digits_number;
             $carddata['expire_year'] = $request->expiry_year;

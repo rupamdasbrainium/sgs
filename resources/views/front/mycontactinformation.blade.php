@@ -10,8 +10,11 @@
             @include('layouts.sidebar')
             <div class="inner_page_des">
                 <div class="content_block accountinfo">
-                    <div class="blocktitle2">
+                    <div class="d-flex d-inline justify-content-between">
                         <h2>{{ __('mycontactinformatiion.My_Contact_Information') }}</h2>
+                        <div>
+                            <a href="{{ route('changemail_view') }}" class="btn2">{{ __('mycontactinformatiion.email_change') }}</a>
+                        </div>
                     </div>
                     <div class="fromdes_view">
                         <div class="titleopt2">
@@ -53,7 +56,8 @@
                                                     oninput="onlynumshow(event)">
                                             </div>
                                             @if ($errors->has('civic_number'))
-                                                <div class="text-danger mt-3">{{ $errors->first('civic_number') }}</div>
+                                                <div class="text-danger mt-3">{{ $errors->first('civic_number') }}
+                                                </div>
                                             @endif
                                         </div>
                                         <div class="form-group">
@@ -125,8 +129,8 @@
                                     <div class="inp_row gapadj inp_colm2">
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt adbg">
-                                                <input type="text" class="form-control" name="phone" id="phone"
-                                                    placeholder="{{ __('suscription.ph') }} *"
+                                                <input type="text" class="form-control" name="phone"
+                                                    id="phone" placeholder="{{ __('suscription.ph') }} *"
                                                     value="{{ $client->phone }}">
                                                 <p>{{ __('mycontactinformatiion.Example') }}: xxx xxx-xxxx</p>
                                             </div>
@@ -258,7 +262,7 @@
             console.log(inputValue);
             inputValue = inputValue.slice(0, 6); // Limit input to maximum 6 characters
             inputValue = inputValue.replace(/(\w{3})(?=\w)/g,
-            '$1 '); // Add space after every 3 non-alphanumeric characters
+                '$1 '); // Add space after every 3 non-alphanumeric characters
             event.target.value = inputValue;
         });
         const cellphoneInput = document.getElementById('cellphone');
@@ -272,6 +276,7 @@
             }
             event.target.value = inputValue;
         });
+
         function onlynumshow(event) {
             let inputvalue = event.target.value;
             inputvalue = inputvalue.replace(/\D/g, ''); // Remove non-numeric characters

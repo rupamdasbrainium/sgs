@@ -20,4 +20,8 @@ return [
     'Female' => 'Woman',
     'Select_Gender' => 'Select Gender',
     'Save' => 'Save',
+    'newmail' => 'New email',
+    'oldmail' => 'Old email',
+    'email_change' => 'Email change',
+    'email_change' => 'Change email'
 ];

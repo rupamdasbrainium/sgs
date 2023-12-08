@@ -42,7 +42,7 @@ return [
     'Action' => 'Action',
     'Subscription_Form' => 'Subscription Form',
     'Payment_completed_succesfully' => 'Payment completed successfully',
-    'Add_Acoount' => 'Add Acoount',
+    'Add_Acoount' => 'Add Account',
     'Bank_added_succesfully' => 'Bank added successfully',
     'Credit_card_added_succesfully' => 'Credit card added successfully',
     'Memberships' => 'Memberships',
@@ -86,4 +86,5 @@ return [
     'code_message' => 'A temporary code has been sent to your email address',
     'code_message_update' => 'Password changed successfully',
     'choose_plan_first' => 'Please choose a subscription plan first',
+    'email_change' => 'Email changed successfully'
 ];
