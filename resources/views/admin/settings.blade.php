@@ -150,15 +150,7 @@
                                                             value="{{ $admin_address->value }}">
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label>{{ __('admin.Referral') }} <em class="req_text"></em>
-                                                    </label>
-                                                    <div class="inp_cont_view noicon_opt">
-                                                        <input type="text" class="form-control" name="referral"
-                                                            placeholder="{{ __('admin.Referral') }}"
-                                                            value="{{ $referral->value }}">
-                                                    </div>
-                                                </div>
+                                                
                                                 <div class="form-group">
                                                     <label>{{ __('admin.Logo_Image') }} </label>
                                                     <div class="inp_cont_view noicon_opt">
