@@ -129,7 +129,9 @@ class PaymentController extends Controller
             $membershipdata['code_promo'] = $request->code_promo;
             $membershipdata['account_id'] =  $data['pay_methode_acc']->data->id;
             
-
+            if($lang_id == null){
+                $lang_id = getLocale();
+            }
             $membership_with_bnk_acc = APICall('Memberships/with-bank-account?display_language_id=' . $lang_id, "post", json_encode($membershipdata), "client_app");
             $data['membership_with_bnk_acc'] = json_decode($membership_with_bnk_acc);
             
@@ -175,6 +177,7 @@ class PaymentController extends Controller
             $carddata['pan'] = $request->pan;
             if (Session::has('franchise_id')) {
                 $carddata['franchise_id'] = Session::get('franchise_id');
+                
                 $pay_method_accc = APICall('PaymentMethods/card', "post", json_encode($carddata), 'client_app');
                 $data['pay_method_accc'] = json_decode($pay_method_accc);
 
@@ -208,6 +211,10 @@ class PaymentController extends Controller
                 $membershipcarddata['code_promo'] = $request->code_promo;
                 $membershipcarddata['processed_amount'] = $request->processed_amount;
                 $membershipcarddata['card_id'] = $data['pay_method_accc']->data->id;
+
+                if($lang_id == null){
+                    $lang_id = getLocale();
+                }
 
                 $membership_with_credit_card = APICall('Memberships/with-credit-card?display_language_id=' . $lang_id, "post", json_encode($membershipcarddata), "client_app");
                 $data['membership_with_credit_card'] = json_decode($membership_with_credit_card);
