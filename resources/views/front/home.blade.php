@@ -139,16 +139,16 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="action_opt adj_height">
+                                            <div class="action_opt adj_height"  style="--secondary_theme: {{ $theme->value }}">
                                                 <div class="price_text">
                                                     @if (isset($values))
                                                         @if (count($values->priceBydurations))
                                                             <div class="selectcont ">
-                                                                <div class="arrowdown2">
+                                                                <div class="arrowdown2 d-none">
                                                                     <i class="fal fa-chevron-down"></i>
                                                                 </div>
-                                                                <select class="select_opt"
-                                                                    style="--secondary_theme: {{ $theme->value }}">
+                                                                <select class="js-example-basic-single"
+                                                                   >
                                                                     @foreach ($values->priceBydurations as $val)
                                                                         <option>${{ $val->price }}<span>/
                                                                                 {{ $val->typeDuration }}</span>
