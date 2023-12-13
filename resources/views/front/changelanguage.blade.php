@@ -7,7 +7,7 @@
             @include('layouts.sidebar')
             <div class="inner_page_des">
                 <div class="content_block accountinfo">
-                    <div class="blocktitle">dding">{{ __('changelanguage.Change_Language') }}</h2>
+                    <div class="blocktitle">{{ __('changelanguage.Change_Language') }}</h2>
                         <div class="fromdes_view ">
                             <div class="fromdes_info">
                                 <form method="POST" name="myforms" action="{{ route('mylanguagechange') }}">

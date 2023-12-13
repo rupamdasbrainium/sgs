@@ -108,7 +108,11 @@
                                             href="{{ route('categoryplan', ['category_id' => $item->id, 'name' => $item->title]) }}">{{ $item->title }}</a>
                                     </h3>
                                     <div class="cat_opt_text">
+                                        @if($item->description)
                                         <p>{{ $item->description }}<span class="more_content_text">+</span></p>
+                                        @else
+                                        <p></p>
+                                        @endif
                                     </div>
                                 </div>
                             @endforeach

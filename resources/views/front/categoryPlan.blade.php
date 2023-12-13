@@ -59,7 +59,7 @@
                                                     </div>
                                                     <select class="select_opt" title=" {{ $values->name }}">
                                                         <option value="{{ $values->id }}">
-                                                            {{ substr($values->name, 0, 14) }}...
+                                                            {{ substr($values->name, 0, 13) }}...
                                                         </option>
                                                     </select>
                                                 </div>

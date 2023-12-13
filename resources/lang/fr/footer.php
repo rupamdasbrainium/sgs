@@ -14,9 +14,9 @@ return [
     */
 
     'contact' => 'Coordonnées',
-    'terms' => 'termes et conditions',
+    'terms' => 'Termes et conditions',
     'links' => 'Liens',
-    'policy' => 'politique de confidentialité',
+    'policy' => 'Politique de confidentialité',
     'law' => 'Loi',
     'all_right' => 'Tous droits réservés',
     'Effective_Date' => 'Date effective',
