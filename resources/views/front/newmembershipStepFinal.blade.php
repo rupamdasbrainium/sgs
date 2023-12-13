@@ -22,6 +22,12 @@
                         @csrf
                         <div class="fromdes_info">
                             <div class="from_cont_wrap">
+                                <p>{{ __('paymentForm.center') }}:
+                                    <span>{{ $data['membership_details']->data->franchise }}</span>
+                                </p>
+                                <p>{{ __('paymentForm.package') }}: <span>
+                                    {{ $data['membership_details']->data->subscriptionPlan }}
+                                </span></p>
                                 <div class="inp_row">
                                     <div class="form-group">
                                         <label for="promocode">{{ __('paymentForm.promo') }} </label>
