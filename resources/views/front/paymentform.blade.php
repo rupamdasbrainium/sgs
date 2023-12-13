@@ -137,7 +137,7 @@
                                                         </div>
                                                         @if (Session::get('addonname') == null)
                                                             <div class="sum_inp_right">
-                                                                No-addon
+                                                                {{ __('paymentForm.none') }}
                                                             </div>
                                                         @else
                                                             @php

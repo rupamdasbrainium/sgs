@@ -76,4 +76,5 @@ return [
     'Add_Payment_Method' => 'Ajouter un moyen de paiement',
     'Card_numbe_least_4_characters' => 'Le numéro de carte doit comporter au moins 4 caractères',
     'No_addon' => 'Sans module complémentaire',
+    'none' => 'Aucun'
 ];

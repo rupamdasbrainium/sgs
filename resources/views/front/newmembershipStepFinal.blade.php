@@ -56,7 +56,33 @@
                                                 {{ __('paymentForm.package') }}
                                             </div>
                                             <div class="sum_inp_right">
-                                                {{ $data['membership_details']->data->initial_subtotal }} $
+                                                {{ $data['membership_details']->data->initial_subtotal }}
+                                                $
+                                            </div>
+                                        </div>
+                                        @php
+                                            $total = $data['membership_details']->data->initial_subtotal;
+                                        @endphp
+                                        @foreach ($data['membership_details']->data->initial_taxes as $initial_tax)
+                                            <div class="sum_inp_cont">
+                                                <div class="sum_inp_left">
+                                                    {{ $initial_tax->legal_name }}
+                                                </div>
+                                                <div class="sum_inp_right">
+                                                    {{ $initial_tax->amount }}$
+
+                                                </div>
+                                            </div>
+                                            @php
+                                                $total += $initial_tax->amount;
+                                            @endphp
+                                        @endforeach
+                                        <div class="sum_inp_cont">
+                                            <div class="sum_inp_left">
+                                                {{ __('paymentForm.First_Payment') }}
+                                            </div>
+                                            <div class="sum_inp_right">
+                                                {{ $total }}$
                                             </div>
                                         </div>
                                         <div class="sum_inp_cont">
@@ -98,7 +124,7 @@
                                             </div>
                                             @if (Session::get('addonname') == null)
                                                 <div class="sum_inp_right">
-                                                    No-addon
+                                                    {{ __('paymentForm.none') }}
                                                 </div>
                                             @else
                                                 @php
@@ -116,25 +142,7 @@
                                     </div>
                                 </div>
                                 <div class="summary_content">
-                                    <h3>{{ __('paymentForm.period_of_validity') }}</h3>
-                                    <div class="summary_cont_wrap">
-                                        <div class="sum_inp_cont">
-                                            <div class="sum_inp_left">
-                                                {{ __('paymentForm.package_name') }}
-                                            </div>
-                                            <div class="sum_inp_right">
-                                                {{ $data['membership_details']->data->subscriptionPlan }}
-                                            </div>
-                                        </div>
-                                        <div class="sum_inp_cont">
-                                            <div class="sum_inp_left">
-                                                {{ __('paymentForm.duration') }}
-                                            </div>
-                                            <div class="sum_inp_right">
-                                                {{ $data['membership_details']->data->duration_unit }}
-                                            </div>
-                                        </div>
-                                    </div>
+                                   
                                     <div class="summary_content">
                                         <h3>{{ __('paymentForm.1st_pay') }}</h3>
                                         <div class="summary_cont_wrap">
@@ -170,6 +178,41 @@
                                                     {{ $total }}$
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="content_block paymentinfo">
+                                        <h2 class="head_opt">{{ __('paymentForm.payment_details') }}
+                                        </h2>
+                                        <div class="table_description_view oddoreven_opt oddoreven_opt2">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>{{ __('paymentForm.type') }}</th>
+                                                        <th>{{ __('paymentForm.pay_date') }}</th>
+                                                        <th>{{ __('paymentForm.pay') }}</th>
+                                                        <th>{{ __('paymentForm.status') }}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($data['membership_details']->data->payment_details as $payment_detail)
+                                                        <tr class="activeitem">
+                                                            <td data-label="TYPE">
+                                                                <div class="pay_view_opt">
+                                                                    {{ $payment_detail->type }}
+                                                                </div>
+                                                            </td>
+                                                            <td data-label="PAYMENT DATE">
+                                                                {{ date('Y-m-d', strtotime($payment_detail->date)) }}
+                                                            </td>
+                                                            <td data-label="PAYMENT">
+                                                                {{ $payment_detail->amount }}$</td>
+                                                            <td data-label="STATUS">
+                                                                {{ $payment_detail->isPaid ? trans('paymentForm.paid') : trans('paymentForm.unpaid') }}
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                     <div class="content_block more_cont_view">
@@ -505,6 +548,7 @@
                     }
                 });
             });
+
             function checksignup() {
                 var checkbox1 = document.getElementById("checkbox1").checked;
                 var checkbox2 = document.getElementById("checkbox2").checked;
@@ -514,11 +558,13 @@
                     document.getElementById("btnformsave").disabled = true;
                 }
             }
+
             function onlyletterhow(event) {
                 let inputvalue = event.target.value;
                 inputvalue = inputvalue.replace(/[^a-z A-Z\\.]+/g, ''); // Remove non-numeric characters
                 event.target.value = inputvalue;
             }
+
             function onlynumshow(event) {
                 let inputvalue = event.target.value;
                 inputvalue = inputvalue.replace(/\D/g, ''); // Remove non-numeric characters

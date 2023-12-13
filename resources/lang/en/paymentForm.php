@@ -76,4 +76,5 @@ return [
     'Add_Payment_Method' => 'Add a Payment Method',
     'Card_numbe_least_4_characters' => 'Card number must be at least 4 characters long',
     'No_addon' => 'No-addon',
+    'none' => 'None'
 ];
