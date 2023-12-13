@@ -16,7 +16,7 @@
                         {{ Session::get('messages') }}
                     </div>
                 @endif
-                <h2 style="align-content: center">{{ __('paymentForm.payment') }}</h2>
+                <h2>{{ __('paymentForm.payment') }}</h2>
                 <div class="prod_item_wrap" id="home_prod_item">
                     <form method="POST" name="myform" action="{{ route('newMembershipFinalsave') }}" id="mainform"
                         onsubmit="return validfunc()">

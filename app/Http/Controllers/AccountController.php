@@ -257,7 +257,7 @@ class AccountController extends Controller
         
         $franchises = APICall("Franchises", "get", "{}","client_app");
         $data['franchises'] = json_decode($franchises);
-        Session::put('language_id', $client->language_id);
+        Session::put('language_id', $client->language_id?? 1);
 
 
         foreach ($data['franchises']->data as $franchise) {
