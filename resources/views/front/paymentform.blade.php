@@ -19,7 +19,7 @@
                             <h2>{{ __('paymentForm.payment') }}</h2>
                         </div>
                         <div class="fromdes_info user_contentblock">
-                            <div class="sidebar_content">
+                            {{-- <div class="sidebar_content">
                                 <div class="sidebar_info">
                                     <p>{{ __('paymentForm.center') }}:
                                         <span>{{ $data['membership_details']->data->franchise }}</span>
@@ -29,13 +29,21 @@
                                             {{ $data['membership_details']->data->subscriptionPlan }}
                                         </span></p>
                                 </div>
-                            </div>
-                            <div class="from_cont_wrap">
+                            </div> --}}
+                            <div class="from_cont_wrap" style="flex: 0 100%">
                                 <form method="POST" name="myform" action="{{ route('paymentSave') }}"
                                     onsubmit="return validfunc()">
                                     @csrf
                                     <div class="fromdes_info">
                                         <div class="from_cont_wrap">
+                                            {{-- <div class="sidebar_info"> --}}
+                                            <p>{{ __('paymentForm.center') }}:
+                                                <span>{{ $data['membership_details']->data->franchise }}</span>
+                                            </p>
+                                            <p>{{ __('paymentForm.package') }}: <span>
+                                                {{ $data['membership_details']->data->subscriptionPlan }}
+                                            </span></p>
+                                        {{-- </div> --}}
                                             <div class="inp_row">
                                                 <div class="form-group">
                                                     <label for="promocode">{{ __('paymentForm.promo') }} </label>
