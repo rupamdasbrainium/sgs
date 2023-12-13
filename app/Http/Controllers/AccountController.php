@@ -870,6 +870,13 @@ class AccountController extends Controller
         $uri .=  "&display_language_id=" . $lang_id;
         $membership_details = APICall($uri, "get", "{}", 'client_app');
         $data['membership_details'] = json_decode($membership_details);
+        if($data['membership_details']->data == null){
+            $message = array(
+                'message' => $data['membership_details']->error->message,
+                'message_type' => 'danger',
+              );
+            return redirect()->route('homepage')->with($message);
+        }
 
 
         $pay_methods_acc = APICall('PaymentMethods/accounts', "get", "{}", 'client_app');
