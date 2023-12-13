@@ -94,6 +94,8 @@
                                                                     </div>
                                                                 </div>
                                                             @endforeach
+                                                            @else
+                                                            <p>{{ __('newMembership.No_addon_available') }}</p>
                                                         @endif
                                                     </div>
                                                     <div class="frombtn_wrap">

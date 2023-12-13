@@ -25,5 +25,6 @@ return [
     'onetime' => 'one time',
     'next' => 'Next',
     'Save' => 'Save',
-    'Saveapaymentmethod'=> 'Save Payment'
+    'Saveapaymentmethod'=> 'Save Payment',
+    'No_addon_available' => 'No add-on available'
 ];

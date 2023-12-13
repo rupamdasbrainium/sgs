@@ -45,10 +45,10 @@
                                             <label for="email">{{ __('login.Username') }}</label>
                                             <div class="inp_cont_view">
                                                 <div class="icon_opt">
-                                                    <i class="fal fa-envelope"></i>
+                                                    <i class="fal fa-user"></i>
                                                 </div>
-                                                <input type="text" class="form-control" name="user" id="email"
-                                                    placeholder="jhon.deo@gmail.com" required>
+                                                <input type="text" class="form-control" name="user" id=""
+                                                    placeholder="johndoe" required>
                                                 @if ($errors->has('user'))
                                                     <div class="text-danger mt-3">{{ $errors->first('user') }}</div>
                                                 @endif

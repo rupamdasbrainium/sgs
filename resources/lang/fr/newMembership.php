@@ -25,5 +25,6 @@ return [
     'onetime' => 'une fois',
     'next' => 'Suivant',
     'Save' => 'Sauvegarder',
-    'Saveapaymentmethod'=> 'Enregistrer le Paiement'
+    'Saveapaymentmethod'=> 'Enregistrer le Paiement',
+    'No_addon_available' => 'Aucun module complémentaire disponible'
 ];
