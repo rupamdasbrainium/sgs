@@ -26,7 +26,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="action_opt">
+                            <div class="action_opt"  style="--secondary_theme: {{ $theme->value }}">
                                 <div class="price_text">
                                     @if (isset($values))
                                         @if (count($values->priceBydurations))
@@ -35,7 +35,7 @@
                                                     <i class="fal fa-chevron-down"></i>
                                                 </div>
                                                 <select class="js-example-basic-single optionclass"
-                                                    style="--secondary_theme: {{ $theme->value }}">
+                                                   >
                                                     @foreach ($values->priceBydurations as $val)
                                                         <option>{{ $val->price }}$<span>/
                                                                 {{ $val->typeDuration }}</span> For
