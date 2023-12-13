@@ -61,7 +61,11 @@
                                                                             @endif
                                                                         </div>
                                                                         <div class="optionitem_des">
+                                                                            @if( $item->name )
                                                                             <p>{{ $item->name }}</p>
+                                                                            @else
+                                                                            <p>&nbsp;</p>
+                                                                            @endif
                                                                             <div class="price_opt_add">{{ $item->price }}$
                                                                             </div>
                                                                             <div class="optionitem_prod">

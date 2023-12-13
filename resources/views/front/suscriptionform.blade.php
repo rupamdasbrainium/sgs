@@ -113,7 +113,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <div class="inp_cont_view noicon_opt">
-                                                    <input type="text" name="address_postal_code"
+                                                    <input type="text" name="address_postal_code" min="6"
                                                         id="address_postal_code" value="{{ old('address_postal_code') }}"
                                                         class="form-control" placeholder="{{ __('suscription.pin') }} *">
                                                     <p>{{ __('suscription.example') }}: j3B 8k7</p>

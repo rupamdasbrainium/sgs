@@ -27,6 +27,7 @@
             @yield('style')
         }
     </style>
+     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="icon" type="image/png" href="{{ asset('public/images/favicon.png') }}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('public/css/style.css') }}">
@@ -47,6 +48,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('public/admin/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('public/js/custom.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$('.js-example-basic-single').select2();
+	});
+	</script>
     <script defer>
         (function() {
             var cssFa = document.createElement('link');

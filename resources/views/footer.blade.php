@@ -37,7 +37,7 @@
 						<div class="footer_logo">
 							<a href="{{ route('homepage',['short_code'=>$short_code]) }}">
 								@if(isset($logo))
-                                <img src=" {{ asset('public/upload/banner/' . $logo->value) }}" style="width: 100px; height:23.11px;" alt="">
+                                <img src=" {{ asset('public/upload/banner/' . $logo->value) }}" alt="">
                                 @else
                                 <img src=" {{ asset('public/images/logo.svg') }}"  alt="">
                                 @endif
@@ -64,5 +64,6 @@ $(document).ready(function() {
   $('.left_sidebar .innersidebar_cont ul li a[href="' + cur_url + '"]').parent().addClass('activepage');
 });
 </script>
+
 @endpush
 @endif

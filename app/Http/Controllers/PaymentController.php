@@ -60,6 +60,13 @@ class PaymentController extends Controller
 
         $membership_details = APICall($uri, "get", "{}", 'client_app');
         $data['membership_details'] = json_decode($membership_details);
+        if($data['membership_details']->data == null){
+            $message = array(
+                'message' => $data['membership_details']->error->message,
+                'message_type' => 'danger',
+              );
+            return redirect()->route('homepage')->with($message);
+        }
        
         $subscription_plan = APICall("SubscriptionPlans/type", "get", "{}");
         $data['subscription_plan'] = json_decode($subscription_plan);

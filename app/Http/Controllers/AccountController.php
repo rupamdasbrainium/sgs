@@ -345,7 +345,7 @@ class AccountController extends Controller
                 "street" => 'required|string',
                 "email" => 'required|string|email',
                 "city" => 'required|string',
-                'postal_code' => 'required|string',
+                'postal_code' => 'required|string|min:7|max:7',
                 "province_id" => "required|string",
                 "phone" => "required|string",
                 "cellphone" => "required|string",

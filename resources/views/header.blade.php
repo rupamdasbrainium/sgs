@@ -24,7 +24,7 @@
                         <a href="{{ route('homepage', ['short_code' => 'CentreDemo']) }}" class="def_logo">
                             @if (isset($logo))
                                 <img src="{{ asset('public/upload/banner/' . $logo->value) }}"
-                                    style="width: 186px; height:43px;" alt="">
+                                     alt="">
                             @else
                                 <img src="{{ asset('public/images/logo.svg') }}" alt="">
                             @endif

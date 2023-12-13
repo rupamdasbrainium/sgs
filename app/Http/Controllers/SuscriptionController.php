@@ -61,6 +61,7 @@ class SuscriptionController extends Controller
               'firstname' => 'required | max:50',
               'address_civic_number' => 'required',
               'lastname' => 'required | max:100',
+              
               'email' => 'required | email | max:260',
               'email_confirmation' => 'required',
               'emergency_contact' => 'required | max:50',
@@ -68,7 +69,7 @@ class SuscriptionController extends Controller
               'user_name' => 'required | max:35',
               'password' => 'required | min:8 | max:75',
               'confirm_password' => 'required | same:password',
-              'address_postal_code' => 'required',
+              'address_postal_code' => 'required | min:7 | max:7',
               'phone' => 'required',
               'cellphone' => 'required',
               'emergency_phone' => 'required',

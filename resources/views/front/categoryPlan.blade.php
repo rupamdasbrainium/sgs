@@ -70,10 +70,10 @@
                                                 @if (isset($values))
                                                     @if (count($values->priceBydurations))
                                                         <div class="selectcont ">
-                                                            <div class="arrowdown2">
+                                                            <div class="arrowdown2 d-none">
                                                                 <i class="fal fa-chevron-down"></i>
                                                             </div>
-                                                            <select class="select_opt">
+                                                            <select class=" js-example-basic-single">
                                                                 @foreach ($values->priceBydurations as $val)
                                                                     <option>{{ $val->price }}$<span>/
                                                                             {{ $val->typeDuration }}</span>
@@ -121,5 +121,7 @@
                 </div>
             </div>
         </section>
+      
     @include('footer')
+   
     </x-guest-layout>

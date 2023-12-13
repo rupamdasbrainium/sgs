@@ -256,6 +256,12 @@ return array(
         'account_number' => [
             'min' => "La valeur de :attribute doit être inférieure à :min nombres",
         ],
+        'address_postal_code' => [
+            'min' => "La valeur de :attribute doit contenir 6 caractères.",
+        ],
+        'postal_code' => [
+            'min' => "La valeur de :attribute doit contenir 6 caractères.",
+        ],
     ),
 
     /*

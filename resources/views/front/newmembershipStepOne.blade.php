@@ -31,10 +31,10 @@
                                     @if (isset($values))
                                         @if (count($values->priceBydurations))
                                             <div class="selectcont ">
-                                                <div class="arrowdown2">
+                                                <div class="arrowdown2 d-none">
                                                     <i class="fal fa-chevron-down"></i>
                                                 </div>
-                                                <select class="select_opt optionclass"
+                                                <select class="js-example-basic-single optionclass"
                                                     style="--secondary_theme: {{ $theme->value }}">
                                                     @foreach ($values->priceBydurations as $val)
                                                         <option>{{ $val->price }}$<span>/

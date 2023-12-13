@@ -160,6 +160,12 @@ return [
         'account_number' => [
             'min' => 'The :attribute must be at least :min numbers.',
         ],
+        'address_postal_code' => [
+            'min' => 'The :attribute must be 6 characters.',
+        ],
+        'postal_code' => [
+            'min' => 'The :attribute must be 6 characters.',
+        ],
     ],
 
     /*
@@ -179,6 +185,7 @@ return [
         'institution' => 'branch number',
         'owner_name' => 'account name holder',
         'four_digits_number' => 'CSV',
+        'address_postal_code' => 'Postal code'
 
     ],
 
