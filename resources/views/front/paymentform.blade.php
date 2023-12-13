@@ -241,7 +241,7 @@
                                                 <div id="bank_details">
                                                     <div class="inp_row">
                                                         <div class="form-group">
-                                                            <label>{{ __('paymentForm.Direct_Debit') }}</label>
+                                                           
                                                             <div class="card_add">
                                                                 <img src="images/voided.png" alt="" />
                                                             </div>
