@@ -54,31 +54,34 @@
                                                     placeholder="{{ __('suscription.sn') }} *"
                                                     value="{{ $client->adress->civic_number }}"
                                                     oninput="onlynumshow(event)">
+                                                    @if ($errors->has('civic_number'))
+                                                    <div class="text-danger">{{ $errors->first('civic_number') }}
+                                                    </div>
+                                                @endif
                                             </div>
-                                            @if ($errors->has('civic_number'))
-                                                <div class="text-danger mt-3">{{ $errors->first('civic_number') }}
-                                                </div>
-                                            @endif
+                                           
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt adbg">
                                                 <input type="text" class="form-control" name="street"
                                                     placeholder="{{ __('suscription.street') }} *"
                                                     value="{{ $client->adress->street }}" maxlength="50">
+                                                    @if ($errors->has('street'))
+                                                    <div class="text-danger">{{ $errors->first('street') }}</div>
+                                                @endif
                                             </div>
-                                            @if ($errors->has('street'))
-                                                <div class="text-danger mt-3">{{ $errors->first('street') }}</div>
-                                            @endif
+                                          
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt adbg">
                                                 <input type="text" class="form-control" name="appartment"
                                                     placeholder="{{ __('suscription.app') }}"
                                                     value="{{ $client->adress->appartment }}">
+                                                    @if ($errors->has('appartment'))
+                                                    <div class="text-danger">{{ $errors->first('appartment') }}</div>
+                                                @endif
                                             </div>
-                                            @if ($errors->has('appartment'))
-                                                <div class="text-danger mt-3">{{ $errors->first('appartment') }}</div>
-                                            @endif
+                                          
                                         </div>
                                     </div>
                                     <div class="inp_row gapadj inp_colm3">
@@ -87,10 +90,11 @@
                                                 <input type="text" class="form-control" name="city"
                                                     placeholder="{{ __('suscription.city') }} *"
                                                     value="{{ $client->adress->city }}" maxlength="50">
+                                                    @if ($errors->has('city'))
+                                                    <div class="text-danger">{{ $errors->first('city') }}</div>
+                                                @endif
                                             </div>
-                                            @if ($errors->has('city'))
-                                                <div class="text-danger mt-3">{{ $errors->first('city') }}</div>
-                                            @endif
+                                          
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt adbg">
@@ -98,10 +102,11 @@
                                                     id="postal_code" placeholder="{{ __('suscription.pin') }} *"
                                                     value="{{ $client->adress->postal_code }}">
                                                 <p>{{ __('mycontactinformatiion.Example') }}: j3B 8k7</p>
-                                            </div>
-                                            @if ($errors->has('postal_code'))
-                                                <div class="text-danger mt-3">{{ $errors->first('postal_code') }}</div>
+                                                @if ($errors->has('postal_code'))
+                                                <div class="text-danger">{{ $errors->first('postal_code') }}</div>
                                             @endif
+                                            </div>
+                                           
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
@@ -133,10 +138,11 @@
                                                     id="phone" placeholder="{{ __('suscription.ph') }} *"
                                                     value="{{ $client->phone }}">
                                                 <p>{{ __('mycontactinformatiion.Example') }}: xxx xxx-xxxx</p>
-                                            </div>
-                                            @if ($errors->has('phone'))
-                                                <div class="text-danger mt-3">{{ $errors->first('phone') }}</div>
+                                                @if ($errors->has('phone'))
+                                                <div class="text-danger">{{ $errors->first('phone') }}</div>
                                             @endif
+                                            </div>
+                                          
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt adbg">
@@ -146,7 +152,7 @@
                                                     value="{{ $client->cellphone }}">
                                                 <p>{{ __('mycontactinformatiion.Example') }}: xxx xxx-xxxx</p>
                                                 @if ($errors->has('cellphone'))
-                                                    <div class="text-danger mt-3">{{ $errors->first('cellphone') }}
+                                                    <div class="text-danger">{{ $errors->first('cellphone') }}
                                                     </div>
                                                 @endif
                                             </div>
@@ -160,11 +166,12 @@
                                                     placeholder="{{ __('suscription.emergency_ph') }} *"
                                                     value="{{ $client->emergency_phone }}">
                                                 <p>{{ __('mycontactinformatiion.Example') }}: xxx xxx-xxxx</p>
-                                            </div>
-                                            @if ($errors->has('emergency_phone'))
-                                                <div class="text-danger mt-3">{{ $errors->first('emergency_phone') }}
+                                                @if ($errors->has('emergency_phone'))
+                                                <div class="text-danger">{{ $errors->first('emergency_phone') }}
                                                 </div>
                                             @endif
+                                            </div>
+                                          
                                         </div>
                                         <div class="form-group">
                                             <div class="inp_cont_view noicon_opt">
@@ -210,12 +217,13 @@
                                                 <input type="text" class="form-control" name="emergency_contact"
                                                     placeholder="{{ __('suscription.emergency_contact') }}"
                                                     value="{{ $client->emergency_contact }}" maxlength="50">
+                                                    @if ($errors->has('emergency_contact'))
+                                                    <div class="text-danger">
+                                                        {{ $errors->first('emergency_contact') }}
+                                                    </div>
+                                                @endif
                                             </div>
-                                            @if ($errors->has('emergency_contact'))
-                                                <div class="text-danger mt-3">
-                                                    {{ $errors->first('emergency_contact') }}
-                                                </div>
-                                            @endif
+                                          
                                         </div>
                                     </div>
                                     <div class="frombtn_wrap">
