@@ -259,6 +259,23 @@ class AccountController extends Controller
         
         $franchises = APICall("Franchises", "get", "{}","client_app");
         $data['franchises'] = json_decode($franchises);
+        //debug null check
+        if(is_null($client)){
+            Log::debug('client data is null.');
+        }
+        if(is_null($client->franchise_name) || is_null($client->language_id)){
+            Log::debug(json_encode($client));
+            $client = APICall("Clients", 'get', "{}", "client_app");
+            if (!$client) {
+                $message = array(
+                    'message' => trans('title_message.login_token_expired'),
+                    'message_type' => 'error',
+                );
+                return redirect()->route('login')->with($message);
+            }
+            $client = json_decode($client)->data;
+        }
+        //debug stop
         Session::put('language_id', $client->language_id?? 1);
 
 
