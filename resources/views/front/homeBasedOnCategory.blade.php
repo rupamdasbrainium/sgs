@@ -109,7 +109,7 @@
                                     </h3>
                                     <div class="cat_opt_text">
                                         @if($item->description)
-                                        <p>{{ $item->description }}<span class="more_content_text">+</span></p>
+                                        <p>{{ $item->description }}</p>
                                         @else
                                         <p></p>
                                         @endif

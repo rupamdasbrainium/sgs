@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 use App\Models\Configuration;
 use PhpParser\Node\Stmt\Continue_;
 use Illuminate\Support\Facades\Cookie;
+use Validator;
 
 
 class HomeController extends Controller
@@ -253,7 +254,7 @@ class HomeController extends Controller
         $tempCode = $request->tempCode;
         $newPassword = $request->newPassword;
 
-        $updatePassword = APICall("Users/new_password_from_code?userName=" . $userName . "&tempCode=" . $tempCode .  "newPassword=" . $newPassword, "put", "{}");
+        $updatePassword = APICall("Users/new_password_from_code?userName=" . $userName . "&tempCode=" . $tempCode .  "&newPassword=" . $newPassword, "put", "{}");
         $data['updatePassword'] = json_decode($updatePassword);
 
         if ($data['updatePassword']->error == null) {
