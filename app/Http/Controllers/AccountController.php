@@ -246,7 +246,7 @@ class AccountController extends Controller
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $client = APICall("Clients", 'get', "{}", "client_app");
-        Log::debug('An informational message.');
+       
         if (!$client) {
             $message = array(
                 'message' => trans('title_message.login_token_expired'),
@@ -271,8 +271,10 @@ class AccountController extends Controller
 
         $membership = APICall('Memberships/client?display_language_id=' . $client->language_id, "get", "{}", "client_app");
         $membership = json_decode($membership);
+        
         $payments = APICall('Payments/schedualed/client', "get", "{}", "client_app");
         $payments = json_decode($payments);
+
         if (!empty($payments->data)) {
             $payments = collect($payments->data);
             $sorted = $payments->sortBy('paymentDate');
@@ -959,6 +961,7 @@ class AccountController extends Controller
                 $membership_with_credit_card = APICall('Memberships/with-credit-card?display_language_id=' . $lang_id, "post", json_encode($membershipcarddata), "client_app");
                 $data['membership_with_credit_card'] = json_decode($membership_with_credit_card);
 
+                
                 if ($data['membership_with_credit_card']->error != null) {
                     $response = array(
                         'message' => $data['membership_with_credit_card']->error->message,

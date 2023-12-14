@@ -51,7 +51,9 @@
                 </div>
                 <div class="content_block memberships">
                     <h2>{{ __('myProfile.Memberships') }}</h2>
+                    
                     @if ($membership->data == null)
+                  
                         <div class="memberships_content">
                             {{ __('myProfile.No_Membership') }}
                         </div>
