@@ -942,6 +942,7 @@ class AccountController extends Controller
 
                 $membership_with_bnk_acc = APICall('Memberships/with-bank-account?display_language_id=' . $lang_id, "post", json_encode($membershipdata), "client_app");
                 $data['membership_with_bnk_acc'] = json_decode($membership_with_bnk_acc);
+              
                 if ($data['membership_with_bnk_acc']!= null && $data['membership_with_bnk_acc']->error != null) {
                     $response = array(
                         'message' => $data['membership_with_bnk_acc']->error->message,
@@ -951,7 +952,11 @@ class AccountController extends Controller
                 }
 
                 Session::put('display_language_id', $lang_id);
-                return redirect()->route('myProfile');
+                $response = array(
+                    'message' => trans('title_message.Payment_completed_succesfully'),
+                    'message_type' => 'success',
+                );
+                return redirect()->route('myProfile')->with($response);
             } else {
                 $membershipcarddata = array();
                 $membershipcarddata['subscription_plan_id'] = $request->subscription_plan_id;
@@ -977,7 +982,7 @@ class AccountController extends Controller
 
                 $membership_with_credit_card = APICall('Memberships/with-credit-card?display_language_id=' . $lang_id, "post", json_encode($membershipcarddata), "client_app");
                 $data['membership_with_credit_card'] = json_decode($membership_with_credit_card);
-
+                
                 
                 if ($data['membership_with_credit_card']->error != null) {
                     $response = array(

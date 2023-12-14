@@ -14,7 +14,7 @@ return [
     */
 
     'Memberships' => 'Memberships',
-    'Act1_Membership_davable' => 'Act1 Membership - Fees of',
+    'Act1_Membership_davable' => 'Add Membership - Fees of',
     'per_Month' => 'per Month',
     'Method_of_payment' => 'Method of payment',
     'End_date' => 'End date',
