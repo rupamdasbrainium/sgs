@@ -185,7 +185,10 @@ return [
         'institution' => 'branch number',
         'owner_name' => 'account name holder',
         'four_digits_number' => 'CSV',
-        'address_postal_code' => 'Postal code'
+        'address_postal_code' => 'Postal code',
+        'firstname' => 'First name',
+        'lastname' => 'Last name',
+        'address_civic_number' =>  'Street Number'
 
     ],
 

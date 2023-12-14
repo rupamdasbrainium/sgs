@@ -280,6 +280,7 @@ return array(
         'address_postal_code' => 'code postale',
         'address_civic_number' => 'numéro civique',
         'address_city' => 'ville',
+        'address_street' => "Rue d'adresse",
         'phone' => 'numéro de téléphone',
         'cellphone' => 'Numéro de téléphone secondaire',
         'emergency_phone' => 'numéro de téléphone d’urgence',
@@ -296,6 +297,10 @@ return array(
         'four_digits_number' => 'CSV',
         'expiry_month' => 'mois d\'expiration',
         'expiry_year' => 'année d\'expiration',
+        'firstname' => 'Prénom',
+        'lastname' => 'Nom de famille'
+        
+
         
     ),
 
