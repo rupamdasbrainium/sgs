@@ -6,6 +6,15 @@
 	box-sizing:border-box;
 	font-family: 'Montserrat',sans-serif;
 }
+.memberships_method_opt select.select_opt , .account_select_opt select.select_opt{
+	padding-right: 35px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	border-radius: 10px;
+}
+.memberships_method_opt .selectcont , .account_select_opt .selectcont{
+	height: auto !important;
+}
 strong {
 	font-weight:500;
 }
