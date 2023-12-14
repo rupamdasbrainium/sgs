@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Session;
 use App\Models\{
     Configuration,Content
     };
+use Illuminate\Support\Facades\Log;
 
 class AccountController extends Controller
 {
@@ -245,6 +246,7 @@ class AccountController extends Controller
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', 3)->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', 3)->first();
         $client = APICall("Clients", 'get', "{}", "client_app");
+        Log::debug('An informational message.');
         if (!$client) {
             $message = array(
                 'message' => trans('title_message.login_token_expired'),
