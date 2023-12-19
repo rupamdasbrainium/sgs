@@ -6,7 +6,7 @@
         <div class="inner_page_wrap">
             @include('layouts.sidebar')
             <div class="inner_page_des">
-                <h2>{{ $data['title'] }}</h2>
+                <h2>{{__('newMembership.memberships') }}</h2>
                 <div class="prod_item_wrap" id="home_prod_item">
                     <div class="from_cont_wrap" style="flex: 0 100%;">
                         <form
