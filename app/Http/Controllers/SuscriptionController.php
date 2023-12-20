@@ -97,7 +97,7 @@ class SuscriptionController extends Controller
         $fromdata['emergency_phone'] = $request->emergency_phone;
         $fromdata['date_of_birth'] = $request->date_of_birth;
         $fromdata['email'] = $request->email;
-        $fromdata['language_id'] = 2;
+        $fromdata['language_id'] = getLocale();
         $fromdata['user_name'] = $request->user_name;
         $fromdata['password'] = $request->password;
         $fromdata['driver_license'] = $request->driver_license;
