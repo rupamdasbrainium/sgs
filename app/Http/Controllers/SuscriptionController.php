@@ -143,7 +143,7 @@ class SuscriptionController extends Controller
         } else {
           $response = array(
             'message' => $data['clients']->error->message,
-            'message_type' => 'danger'
+            'message_type' => 'error'
           );
           return redirect()->back()->with($response)->withInput();
         }
