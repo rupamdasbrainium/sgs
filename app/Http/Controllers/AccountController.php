@@ -1321,6 +1321,13 @@ else{
     }
     }
 
+    public function byDefault($id)
+    {
+        $lang_id = Session::get('language_id');
+        $response = APICall("default_card/" . $id. "?display_language_id=" . $lang_id, "put", "{}", 'client_app');
+
+    }
+
     public function renewMembership(Request $req, $membershipId)
     {
         

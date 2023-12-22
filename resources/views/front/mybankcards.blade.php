@@ -29,7 +29,7 @@
                                                                         <h4>{{ $value->owner_name }}</h4>
                                                                         <div class="def_card">
                                                                             <a
-                                                                                href="#">{{ __('mybankcards.By_Default') }}</a>
+                                                                                href="{{ route('byDefault', $value->id) }}">{{ __('mybankcards.By_Default') }}</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>

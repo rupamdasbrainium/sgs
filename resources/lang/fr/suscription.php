@@ -46,4 +46,5 @@ return [
     'password_con' => 'Confirmation mot de passe',
     'user_name' => 'Nom d\'utilisateur',
     'rc' => 'Code de Parrainage',
+    'Birthday' => 'Date de naissance',
 ];

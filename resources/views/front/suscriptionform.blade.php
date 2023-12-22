@@ -201,6 +201,7 @@
                                                         value="{{ old('date_of_birth') }}" id="datepicker"
                                                         max="" class="form-control"
                                                         placeholder="{{ __('suscription.dob') }} *">
+                                                        <p>{{ __('suscription.Birthday') }}</p>
                                                         @error('date_of_birth')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
@@ -239,7 +240,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <div class="inp_cont_view noicon_opt">
-                                                    <input type="email" class="form-control" name="email_confirmation"
+                                                    <input type="email" class="form-control" name="email_confirmation" value="{{ old('email_confirmation') }}"
                                                         placeholder="{{ __('suscription.email_con') }} *">
                                                         @error('email_confirmation')
                                                         <div class="text-danger">{{ $message }}</div>
@@ -256,7 +257,7 @@
                                                             style="cursor: pointer;"></i>
                                                     </div>
                                                     <input class="form-control" type="password" name="password"
-                                                        value="{{ old('password') }}"
+                                                    value="{{ old('password') }}"
                                                         placeholder="{{ __('suscription.password') }} *"
                                                         autocomplete="current-password" id="id_password" minlength="9"
                                                         maxlength="75">
@@ -272,7 +273,7 @@
                                                         <i class="fal fa-eye" id="togglePassword2"
                                                             style="cursor: pointer;"></i>
                                                     </div>
-                                                    <input class="form-control" type="password" name="confirm_password"
+                                                    <input class="form-control" type="password" name="confirm_password" value="{{ old('confirm_password') }}"
                                                         placeholder="{{ __('suscription.password_con') }} *"
                                                         autocomplete="current-password" id="id_password2">
                                                         @error('confirm_password')
@@ -318,8 +319,8 @@
                                                                         <div class="radio">
                                                                             <input type="radio"
                                                                                 id="{{ $val->id }}"
-                                                                                name="installments"
-                                                                                value="{{ $item->duration_id }}|{{ $val->id }}"
+                                                                                name="installments" 
+                                                                                value="{{ $item->duration_id }}|{{ $val->id }}" checked
                                                                                 {{ $loop->index == 0 ? '' : '' }}>
                                                                             <label
                                                                                 for="{{ $val->id }}">{{ $val->number_of_payments }}
