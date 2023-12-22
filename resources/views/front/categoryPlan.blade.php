@@ -108,8 +108,13 @@
                                                     @endif
                                                 </ul>
                                                 <div class="subscribe_btn">
-                                                    <a href="{{ route('newMembershipfont', [$values->id]) }}"
-                                                        class="sub_btn">{{ __('global.subscribe') }}</a>
+                                                       @if (session()->has('clientToken'))
+                                                            <a href="{{ route('newMembershipSteptwo', [$values->id]) }}"
+                                                                class="sub_btn">{{ __('global.subscribe') }}</a>
+                                                       @else
+                                                            <a href="{{ route('newMembershipfont', [$values->id]) }}"
+                                                                class="sub_btn">{{ __('global.subscribe') }}</a>
+                                                        @endif
                                                 </div>
                                             </div>
                                         </div>

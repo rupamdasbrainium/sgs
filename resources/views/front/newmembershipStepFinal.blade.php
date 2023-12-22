@@ -460,7 +460,7 @@
                                                                         name="check1" id="checkbox1" value="value1"
                                                                         onclick="checksignup()">
                                                                     <label
-                                                                        for="checkbox1">{{ __('paymentForm.accept') }}
+                                                                        for="checkbox1">
                                                                         <a target="_blank"
                                                                             href="{{ route('front.terms') }}">{{ __('paymentForm.terms') }}</a></label>
                                                                 </div>
@@ -471,7 +471,7 @@
                                                                         name="check2" id="checkbox2" value="value2"
                                                                         onclick="checksignup()">
                                                                     <label
-                                                                        for="checkbox2">{{ __('paymentForm.accept') }}
+                                                                        for="checkbox2">
                                                                         <a target="_blank"
                                                                             href="{{ route('front.privacy') }}">{{ __('paymentForm.suitability') }}</a></label>
                                                                 </div>
@@ -523,11 +523,13 @@
                     $("#new_key").val(1);
                     let radio_group_pay = $('input[name="radio_group_pay"]:checked').val();
                     if (radio_group_pay == 'bank') {
+                        $('#add_pay_method').hide();
                         $('#bank_details').show();
                         $('#credit_details').hide();
                         $('#old_card').hide();
                         $('#old_acc').hide();
                     } else if (radio_group_pay == 'credit') {
+                        $('#add_pay_method').hide();
                         $('#bank_details').hide();
                         $('#credit_details').show();
                         $('#old_card').hide();
@@ -538,6 +540,7 @@
                 });
                 $('input[type=radio][name=radio_group_pay]').change(function() {
                     $('#checkboxtermssuitablity').show();
+                    $('#add_pay_method').show();
                     $('#card_acc_sec').show();
                     $('#btnaccsave').hide();
                     $('#btnformsave').show();

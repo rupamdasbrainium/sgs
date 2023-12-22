@@ -1321,10 +1321,49 @@ else{
     }
     }
 
-    public function byDefault($id)
+    public function byDefaultCard($cardId)
     {
         $lang_id = Session::get('language_id');
-        $response = APICall("default_card/" . $id. "?display_language_id=" . $lang_id, "put", "{}", 'client_app');
+        $bydefault_card = APICall("default_card/" . $cardId. "?display_language_id=" . $lang_id, "put", "{}", 'client_app');
+        $data['bydefault_card'] = json_decode($bydefault_card);
+
+        if($data['bydefault_card']->error !=null)
+        {
+            $response = array(
+                'message' => $data['bydefault_card']->error->message,
+                'message_type' => 'danger'
+            );
+            return redirect()->back()->with($response)->withInput();
+        }
+
+        $response = array(
+            'message' => trans('title_message.defaultcard'),
+            'message_type' => 'success',
+        );
+        return redirect()->back()->with($response);
+
+    }
+
+    public function byDefaultBank($bankId)
+    {
+        $lang_id = Session::get('language_id');
+        $bydefault_bank = APICall("default_account/" . $bankId. "?display_language_id=" . $lang_id, "put", "{}", 'client_app');
+        $data['bydefault_bank'] = json_decode($bydefault_bank);
+
+        if($data['bydefault_bank']->error !=null)
+        {
+            $response = array(
+                'message' => $data['bydefault_bank']->error->message,
+                'message_type' => 'danger'
+            );
+            return redirect()->back()->with($response)->withInput();
+        }
+
+        $response = array(
+            'message' => trans('title_message.defaultbank'),
+            'message_type' => 'success',
+        );
+        return redirect()->back()->with($response);
 
     }
 

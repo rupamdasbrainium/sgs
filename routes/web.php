@@ -112,7 +112,8 @@ Route::group(['middleware' => 'verifyToken'], function () {
     Route::get('new-membership-final', 'AccountController@newMembershipFinal')->name('newMembershipFinal');
     Route::post('new-membership-final', 'AccountController@newMembershipFinalSave')->name('newMembershipFinalsave');
     Route::get('renewMembership/{membershipsId}', 'AccountController@renewMembership')->name('renewMembership');
-    Route::post('byDefault/{id}','AccountController@byDefault')->name('byDefault');
+    Route::get('byDefaultCard/{cardId}','AccountController@byDefaultCard')->name('byDefaultCard');
+    Route::get('byDefaultBank/{bankId}','AccountController@byDefaultBank')->name('byDefaultBank');
     // Route::get('renewMembership/{membershipsId}/{bank_id}', 'AccountController@renewMembershipbank')->name('renewMembershipbank');
 });
 
