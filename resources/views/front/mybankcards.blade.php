@@ -33,10 +33,10 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="card_name_opt">
+                                                                {{-- <div class="card_name_opt">
                                                                     <h5>{{ __('mybankcards.Platinum_Mastercard_BNC') }}
                                                                     </h5>
-                                                                </div>
+                                                                </div> --}}
                                                                 <div class="card_optblock">
                                                                     <div class="card_icon_text">
                                                                         <span
@@ -45,10 +45,10 @@
                                                                         <span
                                                                             class="card_opt_pass">{{ $value->four_digits_number }}</span>
                                                                     </div>
-                                                                    <div class="card_icon">
+                                                                    {{-- <div class="card_icon">
                                                                         <img src="{{ asset('public/images/card.png') }}"
                                                                             alt="">
-                                                                    </div>
+                                                                    </div> --}}
                                                                 </div>
                                                                 <div class="exp_info">
                                                                     <div class="exp_text">
@@ -87,7 +87,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="card_name_opt">
-                                                                    <h5>{{ __('mybankcards.Platinum_Mastercard_BNC') }}
+                                                                    <h5>
                                                                     </h5>
                                                                 </div>
                                                                 <div class="card_optblock">
@@ -100,7 +100,7 @@
                                                                             class="card_opt_pass">{{ $values->account_last_digits }}</span>
                                                                     </div>
                                                                     <div class="card_icon">
-                                                                        <img src="{{ asset('public/images/card.png') }}"
+                                                                        <img src=""
                                                                             alt="">
                                                                     </div>
                                                                 </div>
