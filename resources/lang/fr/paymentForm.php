@@ -56,7 +56,7 @@ return [
     'suitability' => 'J’ai lu et accepte la politique de confidentialité',
     'sign_up' => 'S\'inscrire',
     'back' => 'Annuler',
-    'credit_card_number' => 'Numéro de Carte de Crédit',
+    'credit_card_number' => 'Numéro de la carte de crédit',
     'Expiry_Month' => 'Mois d\'expiration',
     'Expiry_Year' => 'Année d\'expiration',
     'CVV' => 'CVV',

@@ -155,7 +155,7 @@
                                     </div>
                                     <div class="inp_row">
                                         <div class="form-group">
-                                            <label>{{ __('paymentForm.PAN') }} <em class="req_text">*</em></label>
+                                            <label>{{ __('paymentForm.credit_card_number') }} <em class="req_text">*</em></label>
                                             <div class="inp_cont_view noicon_opt">
                                                 <input type="text" name="pan" class="form-control" maxlength="16"
                                                     oninput="onlynumshow(event)" placeholder=""
@@ -168,7 +168,7 @@
                                     </div>
                                     <div class="inp_row">
                                         <div class="form-group">
-                                            <label>{{ __('paymentForm.CSV') }} <em class="req_text">*</em></label>
+                                            <label>{{ __('paymentForm.CVV') }} <em class="req_text">*</em></label>
                                             <div class="inp_cont_view noicon_opt" id="incdec">
                                                 <input type="text" name="four_digits_number" class="form-control"
                                                     oninput="onlynumshow(event)" maxlength="4" placeholder=""

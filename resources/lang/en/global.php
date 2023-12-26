@@ -28,7 +28,7 @@ return [
     "find_gym_placeholder"=>"Enter address",
     "age" => "Age restriction",
     "Visit_of_Our_Center" => "Visit of Our Center",
-    "List_of_Categories" => "List of Categories",
+    "List_of_Categories" => "Categories",
     "Gym_Access" => "Gym Access",
     "Gym_Access_refers" => "Gym access refers to the permission or privilege granted to individuals to use a
     gym or fitness facility.",
