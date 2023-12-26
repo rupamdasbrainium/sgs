@@ -46,4 +46,5 @@ return [
     'password_con' => 'Password confirmation',
     'user_name' => 'User name',
     'rc' => 'Referral Code',
+    'Birthday' => 'Date of birth',
 ];

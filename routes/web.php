@@ -72,8 +72,9 @@ Route::middleware('guest')->group(function () {
     Route::get('login', 'HomeController@login')->name('login');
     Route::post('login', 'Auth\AuthenticatedSessionController@store')->name('userLogin');
     Route::get('forgot-password', 'HomeController@forgotPassword')->name('forgotpassword');
+    Route::get('forgotPasswordMessage', 'HomeController@forgotPasswordMessage')->name('forgotPasswordMessage');
     Route::post('forgotPasswordsendmail', 'HomeController@forgotPasswordsendmail')->name('forgotPasswordsendmail');
-    Route::get('new_password_from_code', 'HomeController@new_password_from_code')->name('new_password_from_code');
+    Route::get('new_password_from_code/{code}', 'HomeController@new_password_from_code')->name('new_password_from_code');
     Route::post('update_password_from_mail', 'HomeController@update_password_from_mail')->name('update_password_from_mail');
     Route::get('logout', 'Auth\AuthenticatedSessionController@destroy')->name('userLogout');
 });
@@ -112,6 +113,8 @@ Route::group(['middleware' => 'verifyToken'], function () {
     Route::get('new-membership-final', 'AccountController@newMembershipFinal')->name('newMembershipFinal');
     Route::post('new-membership-final', 'AccountController@newMembershipFinalSave')->name('newMembershipFinalsave');
     Route::get('renewMembership/{membershipsId}', 'AccountController@renewMembership')->name('renewMembership');
+    Route::get('byDefaultCard/{cardId}','AccountController@byDefaultCard')->name('byDefaultCard');
+    Route::get('byDefaultBank/{bankId}','AccountController@byDefaultBank')->name('byDefaultBank');
     // Route::get('renewMembership/{membershipsId}/{bank_id}', 'AccountController@renewMembershipbank')->name('renewMembershipbank');
 });
 

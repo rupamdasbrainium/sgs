@@ -28,8 +28,7 @@
                                                                     <div class="card_item_head">
                                                                         <h4>{{ $value->owner_name }}</h4>
                                                                         <div class="def_card">
-                                                                            <a
-                                                                                href="#">{{ __('mybankcards.By_Default') }}</a>
+                                                                            <a href="{{ route('byDefaultCard', $value->id) }}">{{ __('mybankcards.By_Default') }}</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -82,7 +81,7 @@
                                                                         <h4>{{ $values->owner_name }}</h4>
                                                                         <div class="def_card">
                                                                             <a
-                                                                                href="#">{{ __('mybankcards.By_Default') }}</a>
+                                                                                href="{{ route('byDefaultBank', $values->id) }}">{{ __('mybankcards.By_Default') }}</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>

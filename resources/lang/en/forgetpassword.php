@@ -24,5 +24,7 @@ return [
     'Enter_the_text' => 'Enter the text in the image',
     'tempCode' => 'Temporary code',
     'newpassword' => 'New password',
-    'Set_newPassword' => 'Set new password'
+    'Set_newPassword' => 'Set new password',
+    'Set_newPassword1' => 'Please check your mail for change password.',
+    'Fear_not_msg1' => 'You have 5 minutes to log in and change your new permanent password',
 ];

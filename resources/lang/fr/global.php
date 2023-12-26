@@ -28,7 +28,7 @@ return [
     "find_gym_placeholder" => "Entrer l'adresse",
     "age" => "Restriction d'âge",
     "Visit_of_Our_Center" => "Visite de Notre Centre",
-    "List_of_Categories" => "Liste des catégories",
+    "List_of_Categories" => "Catégories",
     "Gym_Access" => "Accès au gymnase",
     "Gym_Access_refers" => "L'accès au gymnase fait référence à la permission ou au privilège accordé aux individus d'utiliser un
     salle de sport ou centre de remise en forme.",

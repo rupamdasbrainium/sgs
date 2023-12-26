@@ -24,5 +24,7 @@ return [
     'Enter_the_text' => 'Entrez le texte dans l\'image',
     'tempCode' => 'Code temporaire',
     'newpassword' => 'Nouveau mot de passe',
-    'Set_newPassword' => 'Definir un nouveau mot de passe'
+    'Set_newPassword' => 'Definir un nouveau mot de passe',
+    'Set_newPassword1' => 'Veuillez vérifier votre courrier pour changer de mot de passe.',
+    'Fear_not_msg1' => 'Vous disposez de 5 minutes pour vous connecter et modifier votre nouveau mot de passe permanent',
 ];

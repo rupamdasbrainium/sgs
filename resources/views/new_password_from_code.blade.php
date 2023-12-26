@@ -50,14 +50,15 @@
                                                     </div>
                                             <input type="text" class="form-control" name="userName"  placeholder="" required>
                                                 </div>
-                                            <label for="user_name">{{ __('forgetpassword.tempCode') }}</label>
-                                            <div class="rowopt2_wrap1">
+                                            <!-- <label for="user_name">{{ __('forgetpassword.tempCode') }}</label> -->
+                                            <!-- <div class="rowopt2_wrap1">
                                                 <div class="inp_cont_view">
                                                     <div class="icon_opt">
                                                         <i class="fal fa-user"></i>
                                                     </div>
                                                     <input type="text" class="form-control" name="tempCode"  placeholder="" required>
-                                                    </div>
+                                                    </div> -->
+                                            <input type="hidden" name="tempCode" value="{{ $code }}">
                                                 <label for="user_name">{{ __('forgetpassword.newpassword') }}</label>
                                                 <div class="rowopt2_wrap1">
                                                     <div class="inp_cont_view">
