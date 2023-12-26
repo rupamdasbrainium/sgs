@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+// use Illuminate\Session\TokenMismatchException;
 
 class Handler extends ExceptionHandler
 {
@@ -38,4 +39,19 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    // public function render($request, Throwable $exception)
+    // {
+    //     if ($exception instanceof TokenMismatchException) {
+    //         // Customize the response for CSRF token mismatch
+    //         // return response()->json(['message' => 'CSRF token mismatch. Please refresh the page.'], 419);
+    //         $message = array(
+    //             'message' => 'CSRF token mismatch. Please refresh the page.',
+    //             'message_type' => 'error',
+    //           );
+    //         return redirect()->back()->with($message);
+    //     }
+
+    //     return parent::render($request, $exception);
+    // }
 }
