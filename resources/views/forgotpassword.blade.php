@@ -37,7 +37,7 @@
 						<p>{{ __('forgetpassword.Fear_not_msg') }}</p>
 					</div>
 					<div class="fromdes_info">
-						<form method="POST" action="{{ route('forgotPasswordsendmail') }}">
+						<form method="post" action="{{ route('forgotPasswordsendmail') }}">
 							@csrf
 							<div class="from_cont_wrap">
 								<div class="inp_row rowopt2">

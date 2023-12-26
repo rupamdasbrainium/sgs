@@ -523,12 +523,14 @@
                     $("#new_key").val(1);
                     let radio_group_pay = $('input[name="radio_group_pay"]:checked').val();
                     if (radio_group_pay == 'bank') {
+                        $('#btnaccsave').text("{{ trans('newMembership.save_acc') }}");
                         $('#add_pay_method').hide();
                         $('#bank_details').show();
                         $('#credit_details').hide();
                         $('#old_card').hide();
                         $('#old_acc').hide();
                     } else if (radio_group_pay == 'credit') {
+                        $('#btnaccsave').text("{{ trans('newMembership.save_credit') }}");
                         $('#add_pay_method').hide();
                         $('#bank_details').hide();
                         $('#credit_details').show();

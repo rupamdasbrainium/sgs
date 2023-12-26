@@ -205,6 +205,18 @@ class HomeController extends Controller
         return view('forgotpassword', compact('data', 'logo', 'admin_address', 'admin_phone', 'button', 'primary_button_color_hover'));
     }
 
+    public function forgotPasswordMessage()
+    {
+        $data = array();
+        $data['title'] = trans('title_message.Forgot_Password');
+        $logo = Configuration::where('name', 'logo_image')->where('franchise_id', $this->getfranchiseId())->first();
+        $button = Configuration::where('name', 'primary_button_color')->first();
+        $primary_button_color_hover = Configuration::where('name', 'primary_button_color_hover')->where('franchise_id', $this->getfranchiseId())->first();
+        $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', $this->getfranchiseId())->first();
+        $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', $this->getfranchiseId())->first();
+        return view('forgot_password_message', compact('data', 'logo', 'admin_address', 'admin_phone', 'button', 'primary_button_color_hover'));
+    }
+
     public function forgotPasswordsendmail(Request $request)
     {
         $user_name = $request->user_name;
@@ -217,7 +229,7 @@ class HomeController extends Controller
                 'message' => trans('title_message.code_message'),
                 'message_type' => 'success'
             );
-            return redirect(route('new_password_from_code'))->with($response);
+            return redirect(route('forgotPasswordMessage'))->with($response);
         } else {
             $response = array(
                 'message' => $data['forgotPassword']->error->message,
@@ -226,7 +238,7 @@ class HomeController extends Controller
             return redirect()->back()->with($response);
         }
     }
-    public function new_password_from_code()
+    public function new_password_from_code($code)
     {
         $data = array();
         $data['title'] = trans('title_message.Forgot_Password');
@@ -235,7 +247,7 @@ class HomeController extends Controller
         $primary_button_color_hover = Configuration::where('name', 'primary_button_color_hover')->where('franchise_id', $this->getfranchiseId())->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', $this->getfranchiseId())->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', $this->getfranchiseId())->first();
-        return view('new_password_from_code', compact('data', 'logo', 'admin_address', 'admin_phone', 'button', 'primary_button_color_hover'));
+        return view('new_password_from_code', compact('data', 'logo', 'admin_address', 'admin_phone', 'button', 'primary_button_color_hover','code'));
     }
 
     public function update_password_from_mail(Request $request)

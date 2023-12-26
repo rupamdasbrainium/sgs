@@ -27,5 +27,7 @@ return [
     'next' => 'Next',
     'Save' => 'Save',
     'Saveapaymentmethod'=> 'Save Payment',
-    'No_addon_available' => 'No add-on available'
+    'No_addon_available' => 'No add-on available',
+    'save_acc'=> 'Save Account',
+    'save_credit'=> 'Save Credit card',
 ];

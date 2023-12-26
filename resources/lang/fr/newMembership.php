@@ -27,5 +27,7 @@ return [
     'next' => 'Suivant',
     'Save' => 'Sauvegarder',
     'Saveapaymentmethod'=> 'Enregistrer le Paiement',
-    'No_addon_available' => 'Aucun module complémentaire disponible'
+    'No_addon_available' => 'Aucun module complémentaire disponible',
+    'save_acc'=> 'Enregistrer le compte',
+    'save_credit'=> 'Enregistrer la carte de crédit',
 ];

@@ -256,8 +256,7 @@
                                                         <i class="fal fa-eye" id="togglePassword"
                                                             style="cursor: pointer;"></i>
                                                     </div>
-                                                    <input class="form-control" type="password" name="password"
-                                                    value="{{ old('password') }}"
+                                                    <input class="form-control" type="password" name="password" value="{{ old('password') }}"
                                                         placeholder="{{ __('suscription.password') }} *"
                                                         autocomplete="current-password" id="id_password" minlength="9"
                                                         maxlength="75">
@@ -320,8 +319,8 @@
                                                                             <input type="radio"
                                                                                 id="{{ $val->id }}"
                                                                                 name="installments" 
-                                                                                value="{{ $item->duration_id }}|{{ $val->id }}" checked
-                                                                                {{ $loop->index == 0 ? '' : '' }}>
+                                                                                value="{{ $item->duration_id }}|{{ $val->id }}" 
+                                                                                {{ old('installments') ==  $item->duration_id. "|" .$val->id ? 'checked' : '' }}>
                                                                             <label
                                                                                 for="{{ $val->id }}">{{ $val->number_of_payments }}
                                                                                 {{ __('suscription.payments') }}</label>
