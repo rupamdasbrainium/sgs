@@ -109,7 +109,8 @@ class HomeController extends Controller
                 }
                 $data['all_plan_data'][] = $item;
             }
-            return view('front.home', compact('data', 'franchise_id', 'logo', 'banner', 'button', 'theme', 'title', 'subtitle', 'home_magicplan', 'home_body', 'home_title', 'admin_phone', 'admin_address', 'lang_id', 'short_code_flag', 'theme_color_hover', 'title_fr', 'subtitle_fr', 'home_title_fr', 'home_magicplan_fr', 'home_body_fr'));
+            $isShowDirectionMenu = true;
+            return view('front.home', compact('isShowDirectionMenu','data', 'franchise_id', 'logo', 'banner', 'button', 'theme', 'title', 'subtitle', 'home_magicplan', 'home_body', 'home_title', 'admin_phone', 'admin_address', 'lang_id', 'short_code_flag', 'theme_color_hover', 'title_fr', 'subtitle_fr', 'home_title_fr', 'home_magicplan_fr', 'home_body_fr'));
         } else {
             $categoryType = APICall("Options/categories?franchise_id=" . $franchise_id . "&language_id=" . $lang_id, "get", "{}");
             $data['category'] = json_decode($categoryType)->data;
@@ -277,7 +278,7 @@ class HomeController extends Controller
             return redirect(route('myProfile'))->with($response);
         } else {
             $response = array(
-                'message' => $data['forgotPassword']->error->message,
+                'message' => $data['updatePassword']->error->message,
                 'message_type' => 'danger'
             );
             return redirect()->back()->with($response);
