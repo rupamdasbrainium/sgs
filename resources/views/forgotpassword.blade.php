@@ -42,7 +42,7 @@
 							<div class="from_cont_wrap">
 								<div class="inp_row rowopt2">
 									<div class="form-group">
-										<label for="user_name">{{ __('forgetpassword.Email') }}</label>
+										<label for="user_name">{{ __('suscription.email') }}</label>
 										<div class="rowopt2_wrap1">
 											<div class="inp_cont_view">
 												<div class="icon_opt">
