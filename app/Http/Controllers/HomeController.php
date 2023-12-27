@@ -275,7 +275,7 @@ class HomeController extends Controller
                 'message' => trans('title_message.code_message_update'),
                 'message_type' => 'success'
             );
-            return redirect(route('myProfile'))->with($response);
+            return redirect(route('login'))->with($response);
         } else {
             $response = array(
                 'message' => $data['updatePassword']->error->message,
