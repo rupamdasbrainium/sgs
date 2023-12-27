@@ -48,7 +48,7 @@
                                                     <i class="fal fa-user"></i>
                                                 </div>
                                                 <input type="text" class="form-control" name="user" id=""
-                                                    placeholder="johndoe" required>
+                                                    placeholder="johndoe@gmail.com" required>
                                                 @if ($errors->has('user'))
                                                     <div class="text-danger mt-3">{{ $errors->first('user') }}</div>
                                                 @endif
