@@ -55,12 +55,18 @@
                                 <ul class="navbar-nav mr-auto">
                                     <li class="nav-item {{ Request::is('CentreDemo') ? 'active' : '' }}">
                                         <a class="nav-link"
-                                            href="{{ route('homepage', ['short_code' => 'CentreDemo']) }}">{{ __('header.memberships') }}</a>
+                                            href="{{ route('homepage') }}">{{ __('header.memberships') }}</a>
                                     </li>
-                                    <li class="nav-item {{ Request::is('CentreDemo#findGym') ? 'active' : '' }}">
+                                    @if ($isShowDirectionMenu) 
+                                        <li class="nav-item {{ Request::is(request()->currentUrl. '#findGym') ? 'active' : '' }}">
+                                            <a class="nav-link"
+                                            href="{{ request()->currentUrl. '#findGym' }}">{{ __('header.gym') }}</a>
+                                        </li>
+                                    @endif
+                                    <!-- <li class="nav-item {{ Request::is('CentreDemo#findGym') ? 'active' : '' }}">
                                         <a class="nav-link"
                                             href="{{ url('/CentreDemo#findGym') }}">{{ __('header.gym') }}</a>
-                                    </li>
+                                    </li> -->
                                     @if (Session::has('clientToken'))
                                         <li class="nav-item" {{ Session::get('clientToken') }}>
                                             <a class="nav-link" href="{{ route('myProfile') }}">

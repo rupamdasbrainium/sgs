@@ -42,7 +42,7 @@
                                 <div class="from_cont_wrap">
                                     <div class="inp_row">
                                         <div class="form-group">
-                                            <label for="email">{{ __('login.Username') }}</label>
+                                            <label for="email">{{ __('suscription.email') }}</label>
                                             <div class="inp_cont_view">
                                                 <div class="icon_opt">
                                                     <i class="fal fa-user"></i>
