@@ -282,7 +282,7 @@
                                                
                                             </div>
                                         </div>
-                                        <div class="inp_row  ">
+                                        <!-- <div class="inp_row  ">
                                             <div class="form-group">
                                                 <div class="inp_cont_view noicon_opt">
                                                     <input class="form-control" name="user_name"
@@ -294,7 +294,7 @@
                                                 </div>
                                                
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="inp_row  ">
                                             <div class="form-group">
                                                 <div class="inp_cont_view noicon_opt">
