@@ -66,7 +66,7 @@ class SuscriptionController extends Controller
               'email_confirmation' => 'required',
               'emergency_contact' => 'required | max:50',
               'address_city' => 'required | max:50',
-              'user_name' => 'required | max:35',
+              // 'user_name' => 'required | max:35',
               'password' => 'required | min:8 | max:75',
               'confirm_password' => 'required | same:password',
               'address_postal_code' => 'required | min:7 | max:7',
@@ -98,7 +98,7 @@ class SuscriptionController extends Controller
         $fromdata['date_of_birth'] = $request->date_of_birth;
         $fromdata['email'] = $request->email;
         $fromdata['language_id'] = getLocale();
-        $fromdata['user_name'] = $request->user_name;
+        $fromdata['user_name'] = $request->email;
         $fromdata['password'] = $request->password;
         $fromdata['driver_license'] = $request->driver_license;
         $fromdata['occupation'] = $request->occupation;
