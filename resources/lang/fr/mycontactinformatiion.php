@@ -22,6 +22,5 @@ return [
     'Save' => 'Sauvegarder',
     'newmail' => 'Nouveau courriel',
     'oldmail' => 'Ancien e-mail',
-    'email_change' => "Changement d\'e-mail",
-    'email_change' => "Changer l'e-mail"
+    'email_change' => "Changer le courriel"
 ];

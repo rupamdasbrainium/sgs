@@ -180,6 +180,7 @@
                                                     value="{{ date('d/m/Y', strtotime($client->date_of_birth)) }}"
                                                     id="" class="form-control" placeholder="Date of birth *"
                                                     required>
+                                                    <p>{{ __('suscription.Birthday') }}</p>
                                             </div>
                                         </div>
                                     </div>

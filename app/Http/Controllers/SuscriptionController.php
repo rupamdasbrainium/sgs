@@ -111,7 +111,7 @@ class SuscriptionController extends Controller
         //clients save type call
         $clients = APICall("Clients?franchise_id=".$request->franchise_id, "POST",json_encode($fromdata));
         $data['clients'] = json_decode($clients);
-
+// dd($data['clients']);
         if($data['clients']->error==null){
           if (Session::has('installments_id')) {
             Session::forget('installments_id');

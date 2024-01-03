@@ -60,11 +60,14 @@ class PaymentController extends Controller
 
         $membership_details = APICall($uri, "get", "{}", 'client_app');
         $data['membership_details'] = json_decode($membership_details);
-        if ($data['membership_details']->data == null) {
+        if ($data['membership_details']->data == null) {       
             $message = array(
                 'message' => $data['membership_details']->error->message,
                 'message_type' => 'danger',
             );
+            if (Session::has('clientToken')) {
+                Session::forget('clientToken');
+            }
             return redirect()->route('homepage')->with($message);
         }
 
