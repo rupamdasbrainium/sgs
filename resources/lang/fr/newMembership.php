@@ -16,7 +16,7 @@ return [
     'center' => 'Centre',
     'address' => 'Adresse',
     'package' => 'Adhésion',
-    'memberships' => "Options d’adhésion",
+    'memberships' => "Modules complémentaires/Options d’adhésion",
     'mem' => "Adhésions",
     'option' => 'Option',
     'training' => '6 formations privées',
