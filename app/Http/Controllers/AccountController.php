@@ -1384,6 +1384,18 @@ else{
                 );
                 return redirect()->back()->with($response)->withInput();
             }
+
+            $renewMembership = APICall("Memberships/".$membershipId. "/renew", "put", "{}", 'client_app');
+            $data['renew_membership'] = json_decode($renewMembership);
+
+            if ($data['renew_membership']->error != null) {
+                $response_renew = array(
+                    'message' => $data['renew_membership']->error->message,
+                    'message_type' => 'danger'
+                );
+                return redirect()->back()->with($response_renew)->withInput();
+            }
+
             $response = array(
                 'message' => trans('title_message.membership_upgraded_succesfully'),
                 'message_type' => 'success',
@@ -1404,6 +1416,18 @@ else{
                 );
                 return redirect()->back()->with($response)->withInput();
             }
+
+            $renewMembership = APICall("Memberships/".$membershipId. "/renew", "put", "{}", 'client_app');
+            $data['renew_membership'] = json_decode($renewMembership);
+
+            if ($data['renew_membership']->error != null) {
+                $response_renew = array(
+                    'message' => $data['renew_membership']->error->message,
+                    'message_type' => 'danger'
+                );
+                return redirect()->back()->with($response_renew)->withInput();
+            }
+            
             $response = array(
                 'message' => trans('title_message.membership_upgraded_succesfully'),
                 'message_type' => 'success',
