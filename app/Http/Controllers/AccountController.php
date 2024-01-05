@@ -779,9 +779,14 @@ class AccountController extends Controller
             );
             return redirect()->route('login')->with($message);
         }
-
+      
         $client = json_decode($client)->data;
-        $lang_id = $client->language_id;
+        if($client){
+        $lang_id = $client->language_id?? 1;
+        }else{
+            $lang_id = 1;
+        }
+
         //subscriptionplan type call
         $subscription_plan = APICall("SubscriptionPlans/type/" . $id . "?language_id=" . $lang_id, "get", "{}","client_app");
         $data['subscription_plan'] = json_decode($subscription_plan);
@@ -1367,55 +1372,9 @@ else{
 
     }
 
-    public function renewMembership(Request $req, $membershipId)
+    public function renewMembership($membershipId)
     {
-        
-        if(request()->bank){
-            // return 'bank';
             $lang_id = Session::get('language_id');
-            $uri = "Memberships/" . $membershipId . "/account/" . $req->bank . "?display_language_id=" . $lang_id;
-            $membership_with_bank = APICall($uri, "put", "{}", 'client_app');
-            $data['membership_with_bank'] = json_decode($membership_with_bank);
-
-            if ($data['membership_with_bank']->error != null) {
-                $response = array(
-                    'message' => $data['membership_with_bank']->error->message,
-                    'message_type' => 'danger'
-                );
-                return redirect()->back()->with($response)->withInput();
-            }
-
-            $renewMembership = APICall("Memberships/".$membershipId. "/renew", "put", "{}", 'client_app');
-            $data['renew_membership'] = json_decode($renewMembership);
-
-            if ($data['renew_membership']->error != null) {
-                $response_renew = array(
-                    'message' => $data['renew_membership']->error->message,
-                    'message_type' => 'danger'
-                );
-                return redirect()->back()->with($response_renew)->withInput();
-            }
-
-            $response = array(
-                'message' => trans('title_message.membership_upgraded_succesfully'),
-                'message_type' => 'success',
-            );
-            return redirect()->back()->with($response);
-        }
-        else{
-            // return 'card';
-            $lang_id = Session::get('language_id');
-            $uri = "Memberships/" . $membershipId . "/card/" . $req->card . "?display_language_id=" . $lang_id;
-            $membership_with_credit_card = APICall($uri, "put", "{}", 'client_app');
-            $data['membership_with_credit_card'] = json_decode($membership_with_credit_card);
-
-            if ($data['membership_with_credit_card']->error != null) {
-                $response = array(
-                    'message' => $data['membership_with_credit_card']->error->message,
-                    'message_type' => 'danger'
-                );
-                return redirect()->back()->with($response)->withInput();
-            }
 
             $renewMembership = APICall("Memberships/".$membershipId. "/renew", "put", "{}", 'client_app');
             $data['renew_membership'] = json_decode($renewMembership);
@@ -1435,7 +1394,52 @@ else{
             return redirect()->back()->with($response);
         }
         
-    }
+
+ public function onchangecardbank(Request $req)
+    {
+        $membershipId = $req->membershipsid;
+        if(request()->type=="bank"){
+            // return 'bank';
+            $lang_id = Session::get('language_id');
+            $uri = "Memberships/" . $membershipId . "/account/" . $req->value . "?display_language_id=" . $lang_id;
+            $membership_with_bank = APICall($uri, "put", "{}", 'client_app');
+            $data['membership_with_bank'] = json_decode($membership_with_bank);
+
+            if ($data['membership_with_bank']->error != null) {
+                $response = array(
+                    'message' => $data['membership_with_bank']->error->message,
+                    'message_type' => 'danger'
+                );
+                return response()->json($response);
+            }
+
+            $response = array(
+                'message' => trans('title_message.bank_changed_successfully'),
+                'message_type' => 'success',
+            );
+            return response()->json($response);
+        }
+        else{
+            // return 'card';
+            $lang_id = Session::get('language_id');
+            $uri = "Memberships/" . $membershipId . "/card/" . $req->value . "?display_language_id=" . $lang_id;
+            $membership_with_credit_card = APICall($uri, "put", "{}", 'client_app');
+            $data['membership_with_credit_card'] = json_decode($membership_with_credit_card);
+
+            if ($data['membership_with_credit_card']->error != null) {
+                $response = array(
+                    'message' => $data['membership_with_credit_card']->error->message,
+                    'message_type' => 'danger'
+                );
+                return response()->json($response);
+            }
+            $response = array(
+                'message' => trans('title_message.card_changed_successfully'),
+                'message_type' => 'success',
+            );
+            return response()->json($response);
+        }       
+    }    
 
     // public function renewMembershipbank($membershipId,$bank_id)
     // {

@@ -88,5 +88,7 @@ return [
     'choose_plan_first' => 'Please choose a subscription plan first',
     'email_change' => 'Email changed successfully',
     'defaultcard' => 'Default card updated successfully',
+    'bank_changed_successfully' => "Bank changed successfully",
+    'card_changed_successfully' => "Card changed successfully",
     'defaultbank' => 'Default bank updated successfully',
 ];

@@ -65,9 +65,6 @@ class PaymentController extends Controller
                 'message' => $data['membership_details']->error->message,
                 'message_type' => 'danger',
             );
-            if (Session::has('clientToken')) {
-                Session::forget('clientToken');
-            }
             return redirect()->route('homepage')->with($message);
         }
 
