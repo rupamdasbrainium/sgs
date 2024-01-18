@@ -948,12 +948,16 @@ class AccountController extends Controller
                 $membership_with_bnk_acc = APICall('Memberships/with-bank-account?display_language_id=' . $lang_id, "post", json_encode($membershipdata), "client_app");
                 $data['membership_with_bnk_acc'] = json_decode($membership_with_bnk_acc);
               
-                if ($data['membership_with_bnk_acc']!= null && $data['membership_with_bnk_acc']->error != null) {
-                    $response = array(
-                        'message' => $data['membership_with_bnk_acc']->error->message,
-                        'message_type' => 'danger'
-                    );
-                    return redirect()->back()->with($response)->withInput();
+                if ($data['membership_with_bnk_acc']!= null ){
+                    if (property_exists($data['membership_with_bnk_acc'], 'error')) {
+                        if($data['membership_with_bnk_acc']->error != null) {
+                            $response = array(
+                                'message' => $data['membership_with_bnk_acc']->error->message,
+                                'message_type' => 'danger'
+                            );
+                            return redirect()->back()->with($response)->withInput();
+                        }
+                    }
                 }
 
                 Session::put('display_language_id', $lang_id);
