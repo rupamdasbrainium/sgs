@@ -143,7 +143,7 @@ return [
 
     'custom' => [
         'expiry_year' => [
-            'min' => 'The :attribute must be at least :min.',               
+            'min' => 'The expiration year must be equal to or greater than the current year.',               
         ],
         'four_digits_number' => [
             'min' => 'The :attribute must be at least :min numbers.',

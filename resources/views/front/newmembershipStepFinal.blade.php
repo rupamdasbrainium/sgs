@@ -194,7 +194,7 @@
                                             <table class="table">
                                                 <thead>
                                                     <tr>
-                                                        <th>{{ __('paymentForm.type') }}</th>
+                                                        <th></th>
                                                         <th>{{ __('paymentForm.pay_date') }}</th>
                                                         <th>{{ __('paymentForm.pay') }}</th>
                                                         <th>{{ __('paymentForm.status') }}</th>

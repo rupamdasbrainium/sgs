@@ -239,7 +239,7 @@ return array(
 
     'custom' => array(
         'expiry_year' => [
-            'min' => "La valeur de :attribute doit être inférieure à :min.",               
+            'min' => "L'année d'expiration doit être égale ou supérieure à l'année en cours.",               
         ],
         'four_digits_number' => [
             'min' => "La valeur de :attribute doit être inférieure à :min nombres",
@@ -254,7 +254,7 @@ return array(
             'min' => "La valeur de :attribute doit être inférieure à :min nombres",
         ],
         'account_number' => [
-            'min' => "La valeur de :attribute doit être inférieure à :min nombres",
+            'min' => "Le numéro de compte doit avoir au minimum une longueur de 5 chiffres.",
         ],
         'address_postal_code' => [
             'min' => "La valeur de :attribute doit contenir 6 caractères.",

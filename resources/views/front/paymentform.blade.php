@@ -185,7 +185,7 @@
                                                         <table class="table">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>{{ __('paymentForm.type') }}</th>
+                                                                    <th></th>
                                                                     <th>{{ __('paymentForm.pay_date') }}</th>
                                                                     <th>{{ __('paymentForm.pay') }}</th>
                                                                     <th>{{ __('paymentForm.status') }}</th>
@@ -413,7 +413,7 @@
                                                         <div class="checkbox">
                                                             <input class="styled-checkbox" type="checkbox"
                                                                 name="check1" id="checkbox1" value="value1"
-                                                                onclick="checksignup()">
+                                                                >
                                                             <label for="checkbox1"> <a
                                                                     target="_blank"
                                                                     href="{{ route('front.terms') }}">{{ __('paymentForm.terms') }}</a></label>
@@ -423,7 +423,7 @@
                                                         <div class="checkbox">
                                                             <input class="styled-checkbox" type="checkbox"
                                                                 name="check2" id="checkbox2" value="value2"
-                                                                onclick="checksignup()">
+                                                                >
                                                             <label for="checkbox2"> <a
                                                                     target="_blank"
                                                                     href="{{ route('front.privacy') }}">{{ __('paymentForm.suitability') }}</a></label>
@@ -434,8 +434,8 @@
                                             <div class="frombtn_wrap">
                                                 <div class="def_btnopt2 frombtn">
                                                     <button type="submit" value="submit" class="btn2"
-                                                        id="myButton"
-                                                        disabled>{{ __('paymentForm.sign_up') }}</button>
+                                                        id="myButton" 
+                                                        >{{ __('paymentForm.sign_up') }}</button>
                                                     <button type="button" class="btn2 backbutton"
                                                         onclick="history.back()">{{ __('paymentForm.back') }}</button>
                                                 </div>
@@ -474,62 +474,26 @@
     @endpush
     <script>
         function validfunc() {
+
             var valcheck = null;
             var ele = document.getElementsByName('radio_group_pay');
             for (i = 0; i < ele.length; i++) {
                 if (ele[i].checked)
                     valcheck = ele[i].value;
             }
-            if (valcheck == "bank_acc") {
-                var transit_number = document.myform.transit_number.value;
-                var institution = document.myform.institution.value;
-                var account_number = document.myform.account_number.value;
-                var owner_names = document.myform.owner_names.value;
-                if (transit_number.length != 5) {
-                    alert(trans('paymentForm.Transit_number_5_characters'));
-                    return false;
-                }
-                if (institution.length != 6) {
-                    alert(trans('paymentForm.Branchcode_mustbe_6_characters'));
-                    return false;
-                }
-                if (owner_names == "") {
-                    alert(trans('paymentForm.Account_name_blank'));
-                    return false;
-                }
-            }
-            if (valcheck == "credit_acc") {
-                var owner_name = document.myform.owner_name.value;
-                var expiry_month = document.myform.expiry_month.value;
-                var expiry_year = document.myform.expiry_year.value;
-                var four_digits_number = document.myform.four_digits_number.value;
-                var pan = document.myform.pan.value;
-                if (owner_name == "") {
-                    alert(trans('paymentForm.Name_blank'));
-                    return false;
-                }
-                if (four_digits_number.length != 3) {
-                    alert(trans('paymentForm.Card_numbe_least_4_characters'));
-                    return false;
-                }
-                if (expiry_year.length != 4) {
-                    alert(trans('paymentForm.Expiry_year'));
-                    return false;
-                }
-            }
-        }
-    </script>
-    <script>
-        function checksignup() {
+
             var checkbox1 = document.getElementById("checkbox1").checked;
             var checkbox2 = document.getElementById("checkbox2").checked;
-            if (checkbox1 && checkbox2) {
-                document.getElementById("myButton").disabled = false;
-            } else {
-                document.getElementById("myButton").disabled = true;
+            if (checkbox1 && checkbox2) {           
+               
+            } else {  
+                alert('please select both terms & condition and physical activity')   
+                return false;                        
+             
             }
         }
     </script>
+      
     <script>
         function onlyletterhow(event) {
             let inputvalue = event.target.value;
