@@ -33,7 +33,7 @@ return [
     '1st_pay' => '1st Payment (1x)',
     'fee' => 'Fee per Payment',
     'subtotal' => 'Subtotal',
-    'total' => 'Total',
+    'total' => 'Total amount',
     'payment_details' => 'Payment Details',
     'type' => 'TYPE',
     'pay_date' => 'PAYMENT DATE',

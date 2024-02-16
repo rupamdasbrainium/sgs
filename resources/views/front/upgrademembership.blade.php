@@ -22,7 +22,7 @@
                                             <input type="hidden" name="membershipid" value="{{ $itemmain->membershipsId }}">
                                             <input type="radio" id="testnum{{ $loop->iteration }}" name="radio-group">
                                             <label
-                                                for="testnum{{ $loop->iteration }}">{{ __('upgrademembership.Act1_Membership_davable') }}
+                                                for="testnum{{ $loop->iteration }}">{{ $itemmain->type }}
                                                 {{ $itemmain->recurantCharge }}$ {{ __('upgrademembership.per_Month') }}
                                             </label>
                                         </div>
@@ -166,3 +166,5 @@
         </script>
     @endpush
 </x-app-layout>
+
+{{-- {{ $itemmain->type }} --}}

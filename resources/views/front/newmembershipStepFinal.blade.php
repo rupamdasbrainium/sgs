@@ -482,7 +482,7 @@
                                                 <div class="frombtn_wrap">
                                                     <div class="def_btnopt2 frombtn frombtn2">
                                                         <button type="submit" class="btn2" id="btnformsave"
-                                                            disabled>{{ __('newMembership.Save') }}</button>
+                                                            disabled>{{ __('paymyoutstandingbalance.Pay_Now') }}</button>
                                                         <button type="submit" class="btn2"
                                                             id="btnaccsave">{{ __('newMembership.Saveapaymentmethod') }}</button>
                                                     </div>

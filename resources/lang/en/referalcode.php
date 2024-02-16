@@ -25,4 +25,5 @@ return [
     'send_invites' => 'How would you like to send invites?',
     'Social' => 'Social',
     'Email' => 'Email',
+    'Socialemail' => 'Invite Friends using email',
 ];

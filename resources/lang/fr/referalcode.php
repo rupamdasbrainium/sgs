@@ -25,4 +25,5 @@ return [
     'send_invites' => 'Comment souhaitez-vous envoyer des invitations ?',
     'Social' => 'Social',
     'Email' => 'E-mail',
+    'Socialemail' => 'Inviter des amis par e-mail',
 ];

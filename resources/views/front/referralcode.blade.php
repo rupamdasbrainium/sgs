@@ -28,7 +28,7 @@
                                 <div class="referral_img referral_img2">
                                     <img src="{{ asset('public/images/referral2.png') }}" alt="" />
                                 </div>
-                                @if ($lang_id=2)
+                                @if ($lang_id = 2)
                                     <h4>{{ $referral_amount->title_en }}</h4>
                                     {!! $referral_amount->body_en !!}
                                 @else
@@ -91,16 +91,16 @@
                                             <li><a
                                                     href="https://www.linkedin.com/sharing/share-offsite?mini=true&url={{ route('homepage', $short_code) }}"><i
                                                         class="fab fa-linkedin-in"></i></a></li>
-                                            <li><a
-                                                    href="https://telegram.me/share/url?url={{ route('homepage', $short_code) }}"><i
-                                                        class="fab fa-telegram"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="nav-email">
                                     <div class="emailopt">
                                         <i class="far fa-envelope"></i>
-                                        {{ $data['referral']->data->email }}
+                                        <a href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site {{ route('homepage', $short_code) }}."
+                                            title="Share by Email">
+                                            {{ __('referalcode.Socialemail') }}  
+                                        </a>
                                     </div>
                                 </div>
                             </div>

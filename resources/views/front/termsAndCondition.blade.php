@@ -7,9 +7,6 @@
     <div class="banner_outer inner_banner">
         <div class="banner_slider">
             <div class="banner_panel">
-                <div class="banner_img">
-                    <img src="{{ asset('public/images/terms_conditions.png') }}" alt="">
-                </div>
                 <div class="banner_cont">
                     <div class="container">
                         <div class="row">
