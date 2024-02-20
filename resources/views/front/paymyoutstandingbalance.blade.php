@@ -33,7 +33,7 @@
                                         @foreach ($data['payments'] as $key => $pt)
                                             @if (!$pt->is_paid)
                                                 <tr class="evenitem">
-                                                    <td data-label="TYPE">
+                                                    <td data-label="{{ __('paymyoutstandingbalance.TYPE') }}">
                                                         <div class="pay_view_opt">
                                                             @if (strtotime(Date('Y-m-d')) - strtotime(date('Y-m-d', strtotime($pt->paymentDate))) > 0)
                                                                 <div class="checkbox">
@@ -51,23 +51,23 @@
                                                             {{ __('paymyoutstandingbalance.Payments') }}
                                                         </div>
                                                     </td>
-                                                    <td data-label="PAYMENT DATE">
+                                                    <td data-label="{{ __('paymyoutstandingbalance.PAYMENT_DATE') }}">
                                                         {{ date('Y-m-d', strtotime($pt->paymentDate)) }}</td>
-                                                    <td data-label="PAYMENT">{{ $pt->remainingAmount }}$</td>
-                                                    <td data-label="STATUS">{{ __('paymyoutstandingbalance.Unpaid') }}
+                                                    <td data-label="{{__('paymyoutstandingbalance.PAYMENT') }}">{{ $pt->remainingAmount }}$</td>
+                                                    <td data-label="{{ __('paymyoutstandingbalance.STATUS') }}">{{ __('paymyoutstandingbalance.Unpaid') }}
                                                     </td>
                                                 </tr>
                                             @else
                                                 <tr>
-                                                    <td data-label="TYPE">
+                                                    <td data-label="{{ __('paymyoutstandingbalance.TYPE') }}">
                                                         <div class="pay_view_opt">
                                                             {{ __('paymyoutstandingbalance.Payments') }}
                                                         </div>
                                                     </td>
-                                                    <td data-label="PAYMENT DATE">
+                                                    <td data-label="{{ __('paymyoutstandingbalance.PAYMENT_DATE') }}">
                                                         {{ date('Y-m-d', strtotime($pt->paymentDate)) }}</td>
-                                                    <td data-label="PAYMENT">{{ $pt->amount }}$</td>
-                                                    <td data-label="STATUS">{{ __('paymyoutstandingbalance.Paid') }}
+                                                    <td data-label="{{__('paymyoutstandingbalance.PAYMENT') }}">{{ $pt->amount }}$</td>
+                                                    <td data-label="{{ __('paymyoutstandingbalance.STATUS') }}">{{ __('paymyoutstandingbalance.Paid') }}
                                                     </td>
                                                 </tr>
                                             @endif
