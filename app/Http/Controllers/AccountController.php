@@ -49,6 +49,12 @@ class AccountController extends Controller
                 Session::put('franchise_id', $franchise_id);
             }
         }
+        if (Session::has('add_on')) {
+            $add_ons = Session::get('add_on');
+            foreach ($add_ons as $ad_on_id) {
+                $membership['lstOptions'][] = $ad_on_id;
+            }
+        }
 
         $membership = APICall('Memberships/client?display_language_id=' . $client->language_id, "get", "{}","client_app");
         $membership = json_decode($membership);
@@ -1392,7 +1398,7 @@ else{
             }
             
             $response = array(
-                'message' => trans('title_message.membership_upgraded_succesfully'),
+                'message' => trans('title_message.membership_renewed_succesfully'),
                 'message_type' => 'success',
             );
             return redirect()->back()->with($response);

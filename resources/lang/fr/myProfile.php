@@ -40,5 +40,7 @@ return [
     'My_Profile' => 'Mon profil',
     'Status' => 'Statut',
     'Message' => 'Message',
+    'begin_date' => 'Date de début',
+    'add_on' => 'Options/complémentaire'
 
 ];

@@ -73,7 +73,7 @@ return [
     'Amount_to_be_paid' => 'Montant à payer',
     'Pay_Now' => 'Payez maintenant',
     'CSV' => 'CSV',
-    'Add_Payment_Method' => 'Ajouter un moyen de paiement',
+    'Add_Payment_Method' => 'Ajouter une carte',
     'Card_numbe_least_4_characters' => 'Le numéro de carte doit comporter au moins 4 caractères',
     'No_addon' => 'Sans module complémentaire',
     'none' => 'Aucun'

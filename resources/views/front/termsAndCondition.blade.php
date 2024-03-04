@@ -28,7 +28,7 @@
                         <div class="inner_def_cont">
                             <div class="welcomesec_info inner_heading">
                                 <div class="round_opt_btn3">
-                                    <img src="{{ asset('public/images/roundopt2.jpg') }}" alt="">
+                                    {{-- <img src="{{ asset('public/images/roundopt2.jpg') }}" alt=""> --}}
                                 </div>
                                 @if ($lang_id == 2)
                                     <h2>{{ $terms->title_en }}</h2>

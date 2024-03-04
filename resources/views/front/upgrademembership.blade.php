@@ -23,7 +23,7 @@
                                             <input type="radio" id="testnum{{ $loop->iteration }}" name="radio-group">
                                             <label
                                                 for="testnum{{ $loop->iteration }}">{{ $itemmain->type }}
-                                                {{ $itemmain->recurantCharge }}$ {{ __('upgrademembership.per_Month') }}
+                                                {{  number_format($itemmain->recurantCharge,2) }}$ {{ __('upgrademembership.per_Month') }}
                                             </label>
                                         </div>
                                         <div class="memberships_method_view">
@@ -76,13 +76,13 @@
                                                                 </div>
                                                                 <div class="optionitem_des">
                                                                     <p>{{ $item->name }}</p>
-                                                                    <div class="price_opt_add">${{ $item->price }}
+                                                                    <div class="price_opt_add">{{  number_format($item->price,2) }}$
                                                                     </div>
                                                                     <div class="optionitem_prod">
                                                                         <span>{{ __('upgrademembership.Quantity') }}:
                                                                             {{ $item->quantity }} X
                                                                             {{ $item->deliverable_quantity }}</span>
-                                                                        <span>{{ __('upgrademembership.Price') }}:{{ $item->price }}
+                                                                        <span>{{ __('upgrademembership.Price') }}:{{  number_format($item->price,2) }}$
                                                                         </span>
                                                                     </div>
                                                                     <div class="optionitem_checkopt">

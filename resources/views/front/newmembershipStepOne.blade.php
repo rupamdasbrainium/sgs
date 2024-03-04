@@ -1,4 +1,5 @@
 <x-app-layout>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     @section('title', $data['title'] . ' |')
     @include('header')
     <section class="maincontent_wrap inner_pageouter">
@@ -18,9 +19,9 @@
                                     <div class="selectcont ">
                                         <div class="arrowdown2">
                                         </div>
-                                        <select class="select_opt" title=" {{ $values->name }}">
+                                        <select class="select_opt js-example-basic-single" title=" {{ $values->name }}">
                                             <option value="{{ $values->id }}">
-                                                {{ substr($values->name, 0, 13) }}...
+                                                {{$values->name}}
                                             </option>
                                         </select>
                                     </div>
@@ -37,7 +38,7 @@
                                                 <select class="js-example-basic-single optionclass"
                                                    >
                                                     @foreach ($values->priceBydurations as $val)
-                                                        <option>{{ $val->price }}$<span>/
+                                                        <option>{{ number_format($val->price,2) }}$<span>/
                                                                 {{ $val->typeDuration }}</span> For
                                                             {{ $val->frequency }} {{ $val->typeDuration }}
                                                         </option>
@@ -45,7 +46,7 @@
                                                 </select>
                                             </div>
                                         @else
-                                            0$
+                                            0.00$
                                         @endif
                                     @endif
                                 </div>
@@ -78,5 +79,11 @@
             </div>
         </div>
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+           $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });
+    </script>
     @include('footer')
 </x-app-layout>

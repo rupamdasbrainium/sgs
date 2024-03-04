@@ -54,15 +54,15 @@
 
                     @if ($membership->data == null)
 
-                        <div class="memberships_content">
+                        <div class="memberships_content memberFlexbox">
                             {{ __('myProfile.No_Membership') }}
                         </div>
                     @else
-                        <div class="memberships_content">
+                        <div class="memberships_content memberFlexbox">
                             @foreach ($membership->data as $item)
-                                <div class="memberships_opt mb-2">
-                                    <div class="memberships_nam">{{ $item->type }} {{ $item->recurantCharge }}$
-                                        {{ __('myProfile.per_Month') }}</div>
+                                <div class="memberships_opt mb-2 menbershipNewblock">
+                                    <div class="memberships_nam">{{ $item->type }} {{ number_format($item->recurantCharge,2) }}$
+                                        {{ __('myProfile.per_Month') }}</div>                               
                                     <div class="memberships_method_view">
                                         <div class="memberships_method">{{ __('myProfile.Method_of_payment') }}:</div>
                                         <div class="memberships_method_opt">
@@ -93,9 +93,13 @@
                                             </div>
                                         </div>
                                     </div>
+                                  
                                     <div class="ranew_opt_block">
+                                        <div class="memberships_method_date">{{ __('myProfile.begin_date') }}:
+                                            {{ date('Y/m/d', strtotime($item->begin)) }} </div>
                                         <div class="memberships_method_date">{{ __('myProfile.End_date') }}:
                                             {{ date('Y/m/d', strtotime($item->end)) }} </div>
+
                                         <div class="ren_opt" id="renew">
                                             @if ($item->isRenewable)
                                                 @if ($item->creditCardId)
@@ -136,11 +140,11 @@
                                 @else
                                     @foreach ($payments as $pt)
                                         <tr>
-                                            <td data-label="TYPE">{{ __('myProfile.Payments') }}</td>
-                                            <td data-label="PAYMENT DATE">
+                                            <td data-label={{ __('myProfile.TYPE') }}>{{ __('myProfile.Payments') }}</td>
+                                            <td data-label={{ __('myProfile.PAYMENT_DATE') }}>
                                                 {{ date('Y-m-d', strtotime($pt->paymentDate)) }}</td>
-                                            <td data-label="PAYMENT">{{ $pt->amount }}$</td>
-                                            <td data-label="STATUS">
+                                            <td data-label={{ __('myProfile.PAYMENT') }}>{{ number_format($pt->amount,2) }}$</td>
+                                            <td data-label={{ __('myProfile.STATUS') }}>
                                                 {{ $pt->is_paid ? __('myProfile.Paid') : __('myProfile.Unpaid') }}</td>
                                         </tr>
                                     @endforeach
@@ -171,14 +175,14 @@
                     $.ajax({
                         url: "{{ url('onchangecardbank') }}",
                         type: 'GET',
-                        data: {                         
+                        data: {
                             type: type,
                             membershipsid: membershipsid,
                             value: $(this).val(),
                         },
                         success: function(result) {
                             console.log(result);
-                            toastr.success("Changed successfully");                         
+                            toastr.success("Changed successfully");
                         }
                     });
                 });

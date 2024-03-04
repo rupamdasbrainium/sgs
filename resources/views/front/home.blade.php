@@ -133,7 +133,7 @@
                                                         </div>
                                                         <select class="select_opt" title=" {{ $values->name }}">
                                                             <option value="{{ $values->id }}">
-                                                                {{ substr($values->name, 0, 14) }}...
+                                                                {{$values->name }}
                                                             </option>
                                                         </select>
                                                     </div>
@@ -150,7 +150,7 @@
                                                                 <select class="js-example-basic-single"
                                                                    >
                                                                     @foreach ($values->priceBydurations as $val)
-                                                                        <option>${{ $val->price }}<span>/
+                                                                        <option>{{ number_format($val->price,2) }}$<span>/
                                                                                 {{ $val->typeDuration }}</span>
                                                                             {{ __('global.For') }}
                                                                             {{ $val->frequency }}
@@ -160,7 +160,7 @@
                                                                 </select>
                                                             </div>
                                                         @else
-                                                            $0
+                                                            0.00$
                                                         @endif
                                                     @endif
                                                 </div>

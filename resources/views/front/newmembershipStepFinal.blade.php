@@ -63,7 +63,7 @@
                                                 {{ __('paymentForm.package') }}
                                             </div>
                                             <div class="sum_inp_right">
-                                                {{ $data['membership_details']->data->initial_subtotal }}
+                                                {{ number_format($data['membership_details']->data->initial_subtotal,2) }}
                                                 $
                                             </div>
                                         </div>
@@ -76,7 +76,7 @@
                                                     {{ $initial_tax->legal_name }}
                                                 </div>
                                                 <div class="sum_inp_right">
-                                                    {{ $initial_tax->amount }}$
+                                                    {{ number_format($initial_tax->amount,2) }}$
 
                                                 </div>
                                             </div>
@@ -89,7 +89,7 @@
                                                 {{ __('paymentForm.First_Payment') }}
                                             </div>
                                             <div class="sum_inp_right">
-                                                {{ $total }}$
+                                                {{ number_format($total,2) }}$
                                             </div>
                                         </div>
                                         <div class="sum_inp_cont">
@@ -150,7 +150,7 @@
                                 </div>
                                 <div class="summary_content">
                                    
-                                    <div class="summary_content">
+                                    {{-- <div class="summary_content">
                                         <h3>{{ __('paymentForm.1st_pay') }}</h3>
                                         <div class="summary_cont_wrap">
                                             <div class="sum_inp_cont">
@@ -186,7 +186,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="content_block paymentinfo">
                                         <h2 class="head_opt">{{ __('paymentForm.payment_details') }}
                                         </h2>
@@ -203,17 +203,17 @@
                                                 <tbody>
                                                     @foreach ($data['membership_details']->data->payment_details as $payment_detail)
                                                         <tr class="activeitem">
-                                                            <td data-label="TYPE">
+                                                            <td data-label={{ __('myProfile.TYPE') }}>
                                                                 <div class="pay_view_opt">
                                                                     {{ $payment_detail->type }}
                                                                 </div>
                                                             </td>
-                                                            <td data-label="PAYMENT DATE">
+                                                            <td data-label={{ __('myProfile.PAYMENT_DATE') }}>
                                                                 {{ date('Y-m-d', strtotime($payment_detail->date)) }}
                                                             </td>
-                                                            <td data-label="PAYMENT">
-                                                                {{ $payment_detail->amount }}$</td>
-                                                            <td data-label="STATUS">
+                                                            <td data-label={{ __('paymentForm.pay') }}>
+                                                                {{ number_format($payment_detail->amount,2) }}$</td>
+                                                            <td data-label={{ __('paymentForm.status') }}>
                                                                 {{ $payment_detail->isPaid ? trans('paymentForm.paid') : trans('paymentForm.unpaid') }}
                                                             </td>
                                                         </tr>
@@ -234,12 +234,12 @@
                                                         <label
                                                             for="payment_opt1">{{ __('paymentForm.Credit_Card') }}</label>
                                                     </div>
-                                                    <div class="memberships_nam radio">
+                                                    {{-- <div class="memberships_nam radio">
                                                         <input type="radio" id="payment_opt3" name="radio_group_pay"
                                                             value="bank"{{ request()->type == 'bank' ? 'checked' : '' }}>
                                                         <label for="payment_opt3">
                                                             {{ __('paymentForm.Bank_Account') }}</label>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                                 <input type="hidden" name="subscription_plan_id"
                                                     value="{{ $data['membership_details']->data->subscriptionPlan_id }}">
@@ -449,7 +449,7 @@
                                                 </div>
                                                 <div class="aboundopt">
                                                     <p>{{ __('paymentForm.Amount_to_be_paid') }}:
-                                                        {{ $total }}$</p>
+                                                        {{ number_format($total,2) }}$</p>
                                                 </div>
                                                 <div class="form-group" id="checkboxtermssuitablity">
                                                     <div class="checkbox_block">
@@ -482,9 +482,11 @@
                                                 <div class="frombtn_wrap">
                                                     <div class="def_btnopt2 frombtn frombtn2">
                                                         <button type="submit" class="btn2" id="btnformsave"
-                                                            disabled>{{ __('paymyoutstandingbalance.Pay_Now') }}</button>
+                                                            disabled>{{ __('newMembership.Save') }}</button>
                                                         <button type="submit" class="btn2"
                                                             id="btnaccsave">{{ __('newMembership.Saveapaymentmethod') }}</button>
+                                                            <button type="button" class="btn2 backbutton"
+                                                            onclick="history.back()">{{ __('paymentForm.back') }}</button>
                                                     </div>
                                                 </div>
                                             </div>

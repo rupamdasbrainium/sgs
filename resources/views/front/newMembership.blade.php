@@ -66,14 +66,14 @@
                                                                             @else
                                                                             <p>&nbsp;</p>
                                                                             @endif
-                                                                            <div class="price_opt_add">{{ $item->price }}$
+                                                                            <div class="price_opt_add">{{ number_format($item->price,2) }}$
                                                                             </div>
                                                                             <div class="optionitem_prod">
                                                                                 <span>{{ __('newMembership.quantity') }}:
                                                                                     {{ $item->quantity }} X
                                                                                     {{ $item->deliverable_quantity }}</span>
                                                                                 <span>{{ __('newMembership.price') }}:
-                                                                                    {{ $item->price }}$</span>
+                                                                                    {{ number_format($item->price,2) }}$</span>
                                                                             </div>
                                                                             <div class="optionitem_checkopt">
                                                                                 <div class="form-group">

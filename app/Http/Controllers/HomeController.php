@@ -309,10 +309,12 @@ class HomeController extends Controller
         $data['title'] = trans('title_message.Terms_Condition');
         $terms = DB::table('contents')->where('franchise_id', $this->getfranchiseId())->where('slug', 'terms')->where('status', 1)->first();
         $logo = Configuration::where('name', 'logo_image')->where('franchise_id', $this->getfranchiseId())->first();
+        $theme = Configuration::where('name', 'theme_color')->where('franchise_id', $this->getfranchiseId())->first();
+        $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id', $this->getfranchiseId())->first();
         $banner = Configuration::where('name', 'banner_image')->where('franchise_id', $this->getfranchiseId())->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', $this->getfranchiseId())->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', $this->getfranchiseId())->first();
-        return view('front.termsAndCondition', compact('data', 'terms', 'logo', 'banner', 'admin_phone', 'admin_address'));
+        return view('front.termsAndCondition', compact('data', 'terms', 'logo', 'banner', 'admin_phone', 'admin_address','theme','theme_color_hover'));
     }
     public function privacyPolicy()
     {
@@ -322,8 +324,10 @@ class HomeController extends Controller
         $logo = Configuration::where('name', 'logo_image')->where('franchise_id', $this->getfranchiseId())->first();
         $banner = Configuration::where('name', 'banner_image')->where('franchise_id', $this->getfranchiseId())->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', $this->getfranchiseId())->first();
+        $theme = Configuration::where('name', 'theme_color')->where('franchise_id', $this->getfranchiseId())->first();
+        $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id', $this->getfranchiseId())->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', $this->getfranchiseId())->first();
-        return view('front.privacyPolicy', compact('data', 'privacy', 'logo', 'banner', 'admin_address', 'admin_phone'));
+        return view('front.privacyPolicy', compact('data', 'privacy', 'logo', 'banner', 'admin_address', 'admin_phone','theme','theme_color_hover'));
     }
     public function law25()
     {
@@ -331,9 +335,11 @@ class HomeController extends Controller
         $data["title"] = "Law 25";
         $law = DB::table('contents')->where('franchise_id', $this->getfranchiseId())->where('slug', 'law')->where('status', 1)->first();
         $logo = Configuration::where('name', 'logo_image')->where('franchise_id', $this->getfranchiseId())->first();
+        $theme = Configuration::where('name', 'theme_color')->where('franchise_id', $this->getfranchiseId())->first();
+        $theme_color_hover = Configuration::where('name','theme_color_hover')->where('franchise_id', $this->getfranchiseId())->first();
         $admin_phone = Configuration::where('name', 'admin_phone')->where('franchise_id', $this->getfranchiseId())->first();
         $admin_address = Configuration::where('name', 'admin_address')->where('franchise_id', $this->getfranchiseId())->first();
-        return view('front.law25', compact('data', 'logo', 'law', 'admin_address', 'admin_phone'));
+        return view('front.law25', compact('data', 'logo', 'law', 'admin_address', 'admin_phone','theme','theme_color_hover'));
     }
     public function planType($id)
     {

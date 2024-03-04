@@ -77,7 +77,7 @@
                                                             {{ __('paymentForm.package') }}
                                                         </div>
                                                         <div class="sum_inp_right">
-                                                            {{ $data['membership_details']->data->initial_subtotal }}
+                                                            {{ number_format( $data['membership_details']->data->initial_subtotal, 2)}}
                                                             $
                                                         </div>
                                                     </div>
@@ -90,7 +90,7 @@
                                                                 {{ $initial_tax->legal_name }}
                                                             </div>
                                                             <div class="sum_inp_right">
-                                                                {{ $initial_tax->amount }}$
+                                                                {{ number_format($initial_tax->amount,2) }}$
 
                                                             </div>
                                                         </div>
@@ -103,7 +103,7 @@
                                                             {{ __('paymentForm.First_Payment') }}
                                                         </div>
                                                         <div class="sum_inp_right">
-                                                            {{ $total }}$
+                                                            {{ number_format($total,2) }}$
                                                         </div>
                                                     </div>
                                                     <div class="sum_inp_cont">
@@ -111,7 +111,7 @@
                                                             {{ __('paymentForm.number_of_payments') }}
                                                         </div>
                                                         <div class="sum_inp_right">
-                                                            {{ $data['membership_details']->data->number_of_payments }}
+                                                            {{$data['membership_details']->data->number_of_payments }}
                                                             {{ __('paymentForm.payments') }}
                                                         </div>
                                                     </div>
@@ -194,17 +194,17 @@
                                                             <tbody>
                                                                 @foreach ($data['membership_details']->data->payment_details as $payment_detail)
                                                                     <tr class="activeitem">
-                                                                        <td data-label="TYPE">
+                                                                        <td data-label={{ __('myProfile.TYPE') }}>
                                                                             <div class="pay_view_opt">
                                                                                 {{ $payment_detail->type }}
                                                                             </div>
                                                                         </td>
-                                                                        <td data-label="PAYMENT DATE">
+                                                                        <td data-label={{ __('myProfile.PAYMENT_DATE') }}>
                                                                             {{ date('Y-m-d', strtotime($payment_detail->date)) }}
                                                                         </td>
-                                                                        <td data-label="PAYMENT">
-                                                                            {{ $payment_detail->amount }}$</td>
-                                                                        <td data-label="STATUS">
+                                                                        <td data-label={{ __('myProfile.PAYMENT') }}>
+                                                                            {{ number_format($payment_detail->amount,2) }}$</td>
+                                                                        <td data-label={{ __('myProfile.STATUS') }}>
                                                                             {{ $payment_detail->isPaid ? trans('paymentForm.paid') : trans('paymentForm.unpaid') }}
                                                                         </td>
                                                                     </tr>
@@ -437,7 +437,7 @@
                                                         id="myButton" 
                                                         >{{ __('paymentForm.sign_up') }}</button>
                                                     <button type="button" class="btn2 backbutton"
-                                                        onclick="history.back()">{{ __('paymentForm.back') }}</button>
+                                                    onclick="goBackTwoPages()">{{ __('paymentForm.back') }}</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -505,5 +505,10 @@
             inputvalue = inputvalue.replace(/\D/g, ''); // Remove non-numeric characters
             event.target.value = inputvalue;
         }
+    </script>
+    <script>
+         function goBackTwoPages() {
+    window.history.go(-2);
+  }
     </script>
 </x-guest-layout>

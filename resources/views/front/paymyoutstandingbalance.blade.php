@@ -11,10 +11,10 @@
                     <input type="hidden" name="client_id" value="{{ $data['client_id'] }}">
                     <div class="content_block paymentinfo">
                         <h2 class="head_opt"><span>{{ __('paymyoutstandingbalance.Total_outstanding_balance') }}:
-                                {{ $data['total_balance']->data }}$</span>{{ __('paymyoutstandingbalance.Payment_Details') }}
+                                {{ number_format($data['total_balance']->data,2) }}$</span>{{ __('paymyoutstandingbalance.Payment_Details') }}
                         </h2>
                         <div class="table_description_view oddoreven_opt">
-                            <table class="table">
+                            <table class="table tbspace" >
                                 <thead>
                                     <tr>
                                         <th class="modify"></th>
@@ -53,7 +53,7 @@
                                                     </td>
                                                     <td data-label="{{ __('paymyoutstandingbalance.PAYMENT_DATE') }}">
                                                         {{ date('Y-m-d', strtotime($pt->paymentDate)) }}</td>
-                                                    <td data-label="{{__('paymyoutstandingbalance.PAYMENT') }}">{{ $pt->remainingAmount }}$</td>
+                                                    <td data-label="{{__('paymyoutstandingbalance.PAYMENT') }}">{{  number_format($pt->remainingAmount,2) }}$</td>
                                                     <td data-label="{{ __('paymyoutstandingbalance.STATUS') }}">{{ __('paymyoutstandingbalance.Unpaid') }}
                                                     </td>
                                                 </tr>
@@ -66,7 +66,7 @@
                                                     </td>
                                                     <td data-label="{{ __('paymyoutstandingbalance.PAYMENT_DATE') }}">
                                                         {{ date('Y-m-d', strtotime($pt->paymentDate)) }}</td>
-                                                    <td data-label="{{__('paymyoutstandingbalance.PAYMENT') }}">{{ $pt->amount }}$</td>
+                                                    <td data-label="{{__('paymyoutstandingbalance.PAYMENT') }}">{{ number_format( $pt->amount,2) }}$</td>
                                                     <td data-label="{{ __('paymyoutstandingbalance.STATUS') }}">{{ __('paymyoutstandingbalance.Paid') }}
                                                     </td>
                                                 </tr>
@@ -209,7 +209,7 @@
                                     @enderror
                                 </div>
                                 <div class="aboundopt">
-                                    <p id="totalAmount">{{ __('paymyoutstandingbalance.Amount_paid') }}: 0$</p>
+                                    <p id="totalAmount">{{ __('paymyoutstandingbalance.Amount_paid') }}: 0.00$</p>
                                 </div>
                                 <div class="frombtn_wrap">
                                     <div class="def_btnopt2 frombtn frombtn2">

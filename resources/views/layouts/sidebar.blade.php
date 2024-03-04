@@ -1,9 +1,9 @@
 <div class="left_sidebar" style="background-color: {{$theme->value}}" >
-    <div class="mob_user_icon">
+    <div class="mob_user_icon" style="display: none;">
         <span class="accountinfo" ><img src="{{ asset('public/images/icon1.svg') }}" alt="" ></span>
         <span class="close_info" ><i class="fa fa-times"></i></span>
     </div>
-    <div class="innersidebar_cont">
+    <div class="innersidebar_cont respSidebr">
         <ul style="--hovers-bg:{{ $theme_color_hover->value }}">
             <li >
                 <a href="{{ route('myProfile') }}">

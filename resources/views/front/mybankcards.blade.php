@@ -28,7 +28,8 @@
                                                                     <div class="card_item_head">
                                                                         <h4>{{ $value->owner_name }}</h4>
                                                                         <div class="def_card">
-                                                                            <a href="{{ route('byDefaultCard', $value->id) }}">{{ __('mybankcards.By_Default') }}</a>
+                                                                            <a
+                                                                                href="{{ route('byDefaultCard', $value->id) }}">{{ __('mybankcards.By_Default') }}</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -67,7 +68,11 @@
                                                 </div>
                                             </div>
                                         @endforeach
+                              
+                                    
+                                        @if ($data['pay_methods_acc']->data != null)
                                         <h3>{{ __('mybankcards.Bank_Accounts') }}:</h3>
+                                        @endif
                                         @foreach ($data['pay_methods_acc']->data as $values)
                                             <div class="col-md-6">
                                                 <div class="cards_desinfo_item ">
@@ -99,8 +104,7 @@
                                                                             class="card_opt_pass">{{ $values->account_last_digits }}</span>
                                                                     </div>
                                                                     <div class="card_icon">
-                                                                        <img src=""
-                                                                            alt="">
+                                                                        <img src="" alt="">
                                                                     </div>
                                                                 </div>
                                                                 <div class="exp_info">
@@ -120,6 +124,7 @@
                                                 </div>
                                             </div>
                                         @endforeach
+
                                     </div>
                                 </div>
                                 <div class="frombtn_wrap">

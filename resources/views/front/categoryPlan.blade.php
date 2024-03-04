@@ -1,4 +1,6 @@
 <x-guest-layout>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
     @php
         $lang_id = getLocale();
     @endphp
@@ -51,15 +53,15 @@
                             </div>
                             <div class="prod_item_wrap owl-carousel owl-theme" id="home_prod_item">
                                 @foreach ($data['all_plan_data'] as $key => $values)
-                                    <div class="prod_item">
-                                        <div class="action_opt action_opt_title">
+                                    <div class="prod_item" style="--hover_bg: {{ $theme_color_hover->value }}">
+                                        <div class="action_opt action_opt_title noBgcolor" style="--sushover-bg:{{ $secondary_theme_color_hover->value }}; background-color: {{ $theme->value }}">
                                             <div class="action_text">
-                                                <div class="selectcont">
+                                                <div class="selectcont ">
                                                     <div class="arrowdown2">
                                                     </div>
-                                                    <select class="select_opt" title=" {{ $values->name }}">
+                                                    <select class="select_opt js-example-basic-single" title=" {{ $values->name }}">
                                                         <option value="{{ $values->id }}">
-                                                            {{ substr($values->name, 0, 13) }}...
+                                                            {{$values->name }}
                                                         </option>
                                                     </select>
                                                 </div>
@@ -75,7 +77,7 @@
                                                             </div>
                                                             <select class=" js-example-basic-single">
                                                                 @foreach ($values->priceBydurations as $val)
-                                                                    <option>{{ $val->price }}$<span>/
+                                                                    <option>{{ number_format($val->price,2) }}$<span>/
                                                                             {{ $val->typeDuration }}</span>
                                                                         {{ __('global.For') }}
                                                                         {{ $val->frequency }}
@@ -85,7 +87,7 @@
                                                             </select>
                                                         </div>
                                                     @else
-                                                        0$
+                                                        0.00$
                                                     @endif
                                                 @endif
                                             </div>
@@ -126,7 +128,13 @@
                 </div>
             </div>
         </section>
-      
+     
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script>
+               $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+        });
+        </script>
     @include('footer')
    
     </x-guest-layout>

@@ -73,7 +73,7 @@ return [
     'Amount_to_be_paid' => 'Amount to be paid',
     'Pay_Now' => 'Pay Now',
     'CSV' => 'CSV',
-    'Add_Payment_Method' => 'Add a Payment Method',
+    'Add_Payment_Method' => 'Add Card',
     'Card_numbe_least_4_characters' => 'Card number must be at least 4 characters long',
     'No_addon' => 'No-addon',
     'none' => 'None',
