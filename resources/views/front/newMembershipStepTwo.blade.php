@@ -97,6 +97,8 @@
                                             <div class="def_btnopt2 frombtn frombtn2">
                                                 <button type="submit"
                                                     class="btn2">{{ __('newMembership.next') }}</button>
+                                                    <button type="button" class="btn2 backbutton"
+                                                    onclick="history.back()">{{ __('paymentForm.back') }}</button>
                                             </div>
                                         </div>
                                     </div>
