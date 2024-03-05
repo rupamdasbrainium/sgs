@@ -3395,6 +3395,20 @@ input[type="color"] {
 	}
 	.memberships_method_view {
 		margin-bottom:10px;
+		flex-direction: column;
+		align-items: baseline;
+	}
+	.memberships_method_view .memberships_method_opt{
+		padding-top: 6px;
+	}
+	.memberships_method_view .memberships_method_opt, .memberships_method_view .selectcont, .memberships_method_view select{
+		width: 100%;
+	}
+	.memberships_method_view select{
+		padding: 12px 20px 12px 10px;
+	}
+	.ranew_opt_block{
+		flex-direction: column;
 	}
 	.container-xxl,.container-xl,.container-lg,.container-md,.container-sm,.container {
 		max-width:100%;
@@ -3779,6 +3793,10 @@ input[type="color"] {
 	}
 }
 @media (max-width:479px) {
+	.menbershipNewblock{
+		width: 100%;
+		margin-bottom: 15px;
+	}
 	.payment_opt_view {
 		flex-direction:column;
 		gap:0;
