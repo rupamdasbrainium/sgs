@@ -191,7 +191,7 @@
                                         <h2 class="head_opt">{{ __('paymentForm.payment_details') }}
                                         </h2>
                                         <div class="table_description_view oddoreven_opt oddoreven_opt2">
-                                            <table class="table">
+                                            <table class="table tbspace">
                                                 <thead>
                                                     <tr>
                                                         <th></th>
@@ -234,12 +234,12 @@
                                                         <label
                                                             for="payment_opt1">{{ __('paymentForm.Credit_Card') }}</label>
                                                     </div>
-                                                    {{-- <div class="memberships_nam radio">
+                                                    <div class="memberships_nam radio">
                                                         <input type="radio" id="payment_opt3" name="radio_group_pay"
                                                             value="bank"{{ request()->type == 'bank' ? 'checked' : '' }}>
                                                         <label for="payment_opt3">
                                                             {{ __('paymentForm.Bank_Account') }}</label>
-                                                    </div> --}}
+                                                    </div>
                                                 </div>
                                                 <input type="hidden" name="subscription_plan_id"
                                                     value="{{ $data['membership_details']->data->subscriptionPlan_id }}">

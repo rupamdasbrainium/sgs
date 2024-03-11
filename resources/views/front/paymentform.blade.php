@@ -182,7 +182,7 @@
                                                     <h2 class="head_opt">{{ __('paymentForm.payment_details') }}
                                                     </h2>
                                                     <div class="table_description_view oddoreven_opt oddoreven_opt2">
-                                                        <table class="table">
+                                                        <table class="table tbspace">
                                                             <thead>
                                                                 <tr>
                                                                     <th></th>

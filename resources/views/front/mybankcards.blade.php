@@ -15,7 +15,10 @@
                             <div class="from_cont_wrap">
                                 <div class="cards_des_wrap">
                                     <div class="row">
+                                     
+                                        @if ($data['pay_methods_accc']->data != null)
                                         <h3>{{ __('mybankcards.Credit_Cards') }}:</h3>
+                                        @endif
                                         @foreach ($data['pay_methods_accc']->data as $value)
                                             <div class="col-md-6">
                                                 <div class="cards_desinfo_item ">

@@ -62,7 +62,12 @@
                             @foreach ($membership->data as $item)
                                 <div class="memberships_opt mb-2 menbershipNewblock">
                                     <div class="memberships_nam">{{ $item->type }} {{ number_format($item->recurantCharge,2) }}$
-                                        {{ __('myProfile.per_Month') }}</div>                               
+                                        {{ __('myProfile.per_Month') }}</div>
+                                        @if($item->options)  
+                                        <div class="memberships_nam">{{ __('newMembership.memberships') }}: {{ $item->options }}  </div> 
+                                        @else
+                                        <div class="memberships_nam">{{ __('newMembership.memberships') }}:   {{ __('paymentForm.none') }} </div>   
+                                        @endif                                                                  
                                     <div class="memberships_method_view">
                                         <div class="memberships_method">{{ __('myProfile.Method_of_payment') }}:</div>
                                         <div class="memberships_method_opt">
@@ -123,7 +128,7 @@
                 <div class="content_block paymentinfo">
                     <h2>{{ __('myProfile.Payment_Details') }}</h2>
                     <div class="table_description_view">
-                        <table class="table">
+                        <table class="table tbspace">
                             <thead>
                                 <tr>
                                     <th>{{ __('myProfile.TYPE') }}</th>
