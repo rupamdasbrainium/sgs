@@ -64,7 +64,7 @@
                                     <div class="memberships_nam">{{ $item->type }} {{ number_format($item->recurantCharge,2) }}$
                                         {{ __('myProfile.per_Month') }}</div>
                                         @if($item->options)  
-                                        <div class="memberships_nam">{{ __('newMembership.memberships') }}: {{ $item->options }}  </div> 
+                                        <div class="memberships_nam">{{ __('newMembership.memberships') }}: {{ rtrim($item->options,', ') }}  </div> 
                                         @else
                                         <div class="memberships_nam">{{ __('newMembership.memberships') }}:   {{ __('paymentForm.none') }} </div>   
                                         @endif                                                                  
